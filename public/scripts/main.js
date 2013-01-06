@@ -1,4 +1,4 @@
-require(['jquery', 'modernizr.min'], function($) {
+require(['jquery', 'modernizr.min', 'bootstrap.min'], function($) {
     $(function() {
         // alert('main.js loaded');
     });
