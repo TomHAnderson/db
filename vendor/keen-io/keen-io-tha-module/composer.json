@@ -1,0 +1,29 @@
+{
+    "name": "keen-io/keen-io-tha-module",
+    "description": "A Zend Framework 2 module for the Keen IO API PHP library",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "keen io",
+        "zf2",
+        "analytics"
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*",
+        "keen-io/keen-io-tha": "dev-master"
+    },
+    "homepage": "http://keen.io",
+    "authors": [
+        {
+            "name": "Tom Anderson",
+            "email": "tom.h.anderson@gmail.com",
+            "homepage": "http://db.etree.org"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "KeenIO": "src/"
+        }
+    }
+}

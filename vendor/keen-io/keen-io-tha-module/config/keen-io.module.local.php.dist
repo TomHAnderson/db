@@ -1,0 +1,23 @@
+<?php
+
+// Set your API KEY and PROJECT ID 
+// Copy this file to ~/config/autoload/keen-io.module.local.php
+
+$apiKey = '';
+$projectId = '';
+
+/** ==== End User Edit ==== **/
+
+return array(
+    'di' => array(
+        'instance' => array(
+            'KeenIO\Service\Project' => array(
+                'parameters' => array(
+                    'apiKey' => $apiKey,
+                    'name' => $projectId,
+                ),
+            ),
+        ),
+    ),
+);
+
