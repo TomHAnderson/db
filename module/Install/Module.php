@@ -33,10 +33,17 @@ class Module
 
         $em = $di->get('doctrine.entitymanager.orm_default');
 
-        self::validateSchema($em);
+        $this->getEventManager()->attach(
+            array('Zend\Mvc\Application'),
+            MvcEvent::EVENT_ROUTE,
+            array($this, 'validateEntities')
+        );
+
+
+        return;
 
         $conn = $em->getConnection();
-        $sql = "SELECT * FROM User";
+        $sql = "SELECT * FROM auth_user";
         try {
 
             $stmt = $conn->query($sql);
@@ -93,11 +100,24 @@ class Module
         }
     }
 
+    public function validateEntities($e) {
+        $em = $e->getApplication()->getServiceManager()->get('doctrine.entitymanager.orm_default');
+        $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
+
+        print_r(($em->getMetadataFactory()->getAllMetadata()));die('= metadata');
+
+        print_r(get_class_methods($tool));die();
+    }
+
+
     public function syncronizeDatabase($e)
     {
         $em = $e->getApplication()->getServiceManager()->get('doctrine.entitymanager.orm_default');
         self::validateSchema($em);
         $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
+
+
+
 
         // update the database
         if (isset($_REQUEST['sync'])) $res = $tool->UpdateSchema($em->getMetadataFactory()->getAllMetadata());

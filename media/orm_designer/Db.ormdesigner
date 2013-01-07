@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<orm-designer version="1.4.7.511">
+
+  <project code-name="Db" framework="Without Framework" name="db" orm="Doctrine2" visSizeX="0" visSizeX2="986" visSizeY="0" visSizeY2="841">
+    <module-position name="Application" visPositionX="50" visPositionY="50"/>
+  </project>
+
+  <module import-format="Doctrine2Xml" import-path="..\..\module\Application\config\xml\" name="Application" visBkColor="15989236" visSizeX="0" visSizeX2="900" visSizeY="0" visSizeY2="750">
+    <table name="User" visPositionX="75" visPositionY="73" visSizeX="0" visSizeX2="20" visSizeY="0" visSizeY2="20">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="username" size="32" type="string"/>
+      <column name="password" size="32" type="string"/>
+      <column name="perms" type="string"/>
+      <column name="email" size="100" type="string"/>
+      <column name="name" size="100" type="string"/>
+      <column name="css" type="text"/>
+      <orm-properties>
+        <attribute name="table">auth_user</attribute>
+      </orm-properties>
+    </table>
+    <orm-properties>
+      <attribute name="namespace">Application\Entity</attribute>
+    </orm-properties>
+  </module>
+
+</orm-designer>
