@@ -24,9 +24,9 @@ Installation
 Use 
 ---
 ```php
-    $keenio = $this->getServiceLocator()->get('keenIOProject');
+    $project = $this->getServiceLocator()->get('serviceKeenIO_project');
 
-    $collection = $keenio->getCollection('example');
+    $collection = $project->getCollection('example');
     $collection->send(array(
         'type' => 'test',
         'format' => 'zf2',

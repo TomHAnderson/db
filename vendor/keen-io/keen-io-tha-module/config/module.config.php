@@ -6,13 +6,13 @@ return array(
     'di' => array(
         'instance' => array(
             'alias' => array(
-                'keenIOProject' => 'KeenIO\Service\Project',
-                'keenIOService' => 'KeenIO\Service\KeenIO',
+                'serviceKeenIO_project' => 'KeenIO\Service\Project',
+                'serviceKeenIO' => 'KeenIO\Service\KeenIO',
             ),
 
             'KeenIO\Service\KeenIO' => array(
                 'parameters' => array(
-                    'name' => 'KeenIOService',
+                    'name' => 'serviceKeenIO',
                 ),
             ),
 
