@@ -1,7 +1,7 @@
 <?php
 namespace Application\Entity;
 
-use Loser\Entity\AbstractEntity;
+use Application\Entity\AbstractEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
@@ -13,6 +13,16 @@ use ZfcUser\Entity\UserInterface;
  */
 class User extends AbstractEntity implements UserInterface {
     protected $id;
+
+    protected $state;
+
+    /**
+     * @Form\Type("Zend\Form\Element")
+     * @Form\Attributes({"type": "string"})
+     * @Form\Attributes({"id": "username"})
+     * @Form\Options({"label": "Username"})
+     */
+    protected $username;
 
     /**
      * @Form\Type("Zend\Form\Element")
@@ -33,34 +43,10 @@ class User extends AbstractEntity implements UserInterface {
     /**
      * @Form\Type("Zend\Form\Element")
      * @Form\Attributes({"type": "string"})
-     * @Form\Attributes({"id": "username"})
-     * @Form\Options({"label": "Username"})
-     */
-    protected $username;
-
-    /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "string"})
      * @Form\Attributes({"id": "displayName"})
      * @Form\Options({"label": "Display Name"})
      */
     protected $displayName;
-
-    /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "date"})
-     * @Form\Attributes({"id": "birthDateAt"})
-     * @Form\Options({"label": "Birth Date"})
-     */
-    protected $birthDateAt;
-
-    /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "intger"})
-     * @Form\Attributes({"id": "height"})
-     * @Form\Options({"label": "Height (inches)"})
-     */
-    protected $height;
 
     /**
      * @Form\Type("Zend\Form\Element")
@@ -88,19 +74,11 @@ class User extends AbstractEntity implements UserInterface {
 
     /**
      * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "string"})
-     * @Form\Attributes({"id": "subscription"})
-     * @Form\Options({"label": "Subscription"})
-     */
-    protected $subscription;
-
-    /**
-     * @Form\Type("Zend\Form\Element")
      * @Form\Attributes({"type": "textarea"})
-     * @Form\Attributes({"id": "comment"})
-     * @Form\Options({"label": "Describe your fitness goals"})
+     * @Form\Attributes({"id": "note"})
+     * @Form\Options({"label": "About yourself and your trading rules"})
      */
-    protected $comment;
+    protected $note;
 
     /**
      * @Form\Type("Zend\Form\Element\Radio")
@@ -113,60 +91,53 @@ class User extends AbstractEntity implements UserInterface {
 
     /**
      * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "datetime"})
-     * @Form\Attributes({"id": "fitbitLastUpdate"})
-     * @Form\Options({"label": "Last Fitbit Update"})
+     * @Form\Attributes({"type": "string"})
+     * @Form\Attributes({"id": "perms"})
+     * @Form\Options({"label": "Permissions"})
      */
-    protected $fitbitLastUpdate;
-
-    protected $fitbitId;
-
-    protected $state;
+    protected $perms;
 
     /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(
             'id' => $this->getId(),
+            'username' => $this->getUsername(),
             'email' => $this->getEmail(),
             'password' => $this->getPassword(),
             'displayName' => $this->getDisplayName(),
             'accessToken' => $this->getAccessToken(),
             'createdAt' => $this->getCreatedAt()->format('r'),
             'lastRequestAt' => $this->getLastRequestAt()->format('r'),
-            'subscription' => $this->getSubscription(),
-            'comment' => $this->getComment(),
+            'note' => $this->getNote(),
             'isPublic' => $this->getIsPublic(),
-            'height' => $this->getHeight(),
-            'birthDateAt' => ($this->getBirthDateAt()) ? $this->getBirthDateAt()->format('Y-m-d'): '',
+            'perms' => $this->getPerms(),
         );
     }
 
     public function exchangeArray($data)
     {
+        $this->setUsername(isset($data['username']) ? $data['username']: null);
         $this->setEmail(isset($data['email']) ? $data['email']: null);
         $this->setPassword(isset($data['password']) ? $data['password']: null);
         $this->setDisplayName(isset($data['displayName']) ? $data['displayName']: null);
         $this->setAccessToken(isset($data['accessToken']) ? $data['accessToken']: null);
         $this->setCreatedAt(isset($data['createdAt']) ? $data['createdAt']: null);
         $this->setLastRequestAt(isset($data['lastRequestAt']) ? $data['lastRequestAt']: null);
-        $this->setSubscription(isset($data['subscription']) ? $data['subscription']: null);
-        $this->setComment(isset($data['comment']) ? $data['comment']: null);
+        $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setIsPublic(isset($data['isPublic']) ? $data['isPublic']: null);
-        $this->setHeight(isset($data['height']) ? $data['height']: null);
-        $this->setBirthDateAt(isset($data['birthDateAt']) ? $data['birthDateAt']: null);
+        $this->setPerms(isset($data['perms']) ? $data['perms']: null);
     }
 
     public function __construct()
     {
-        $this->teams = new ArrayCollection();
-        $this->memberships = new ArrayCollection();
-        $this->fitness = new ArrayCollection();
-        $this->friends = new ArrayCollection();
-        $this->setBirthDateAt(new \DateTime());
+#        $this->teams = new ArrayCollection();
+#        $this->memberships = new ArrayCollection();
+#        $this->fitness = new ArrayCollection();
+#        $this->friends = new ArrayCollection();
+
         $this->setCreatedAt(new \DateTime());
         $this->setLastRequestAt(new \DateTime());
-        $this->setFitbitLastUpdate(new \DateTime());
     }
 
     public function getId()
@@ -179,24 +150,15 @@ class User extends AbstractEntity implements UserInterface {
         throw new \Exception('Cannot set id');
     }
 
-    public function getTeams()
+    public function getUsername()
     {
-        return $this->teams;
+        return $this->username;
     }
 
-    public function getMemberships()
+    public function setUsername($value)
     {
-        return $this->memberships;
-    }
-
-    public function getFitness()
-    {
-        return $this->fitness;
-    }
-
-    public function getFriends()
-    {
-        return $this->friends;
+        $this->username = $value;
+        return $this;
     }
 
     public function getEmail()
@@ -218,17 +180,6 @@ class User extends AbstractEntity implements UserInterface {
     public function setPassword($value)
     {
         $this->password = $value;
-        return $this;
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    public function setUsername($value)
-    {
-        $this->username = $value;
         return $this;
     }
 
@@ -265,17 +216,6 @@ class User extends AbstractEntity implements UserInterface {
         return $this;
     }
 
-    public function getBirthDateAt()
-    {
-        return $this->birthDateAt;
-    }
-
-    public function setBirthDateAt(\DateTime $value)
-    {
-        $this->birthDateAt = $value;
-        return $this;
-    }
-
     public function getLastRequestAt()
     {
         return $this->lastRequestAt;
@@ -287,58 +227,14 @@ class User extends AbstractEntity implements UserInterface {
         return $this;
     }
 
-    public function getSubscription()
+    public function getNote()
     {
-        return $this->subscription;
+        return $this->note;
     }
 
-    public function setSubscription($subscription)
+    public function setNote($value)
     {
-        $this->subscription = $subscription;
-        return $this;
-    }
-
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    public function setState($value)
-    {
-        $this->state = $value;
-        return $this;
-    }
-
-    public function getFitbitId()
-    {
-        return $this->fitbitId;
-    }
-
-    public function setFitbitId($value)
-    {
-        $this->fitbitId = $value;
-        return $this;
-    }
-
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    public function setComment($value)
-    {
-        $this->comment = $value;
-        return $this;
-    }
-
-    public function getHeight()
-    {
-        return $this->height;
-    }
-
-    public function setHeight($value)
-    {
-        $this->height = $value;
+        $this->note = $value;
         return $this;
     }
 
@@ -353,15 +249,25 @@ class User extends AbstractEntity implements UserInterface {
         return $this;
     }
 
-    public function getFitbitLastUpdate()
+    public function getPerms()
     {
-        return $this->fitbitLastUpdate;
+        return $this->perms;
     }
 
-    public function setFitbitLastUpdate(\DateTime $value)
+    public function setPerms($value)
     {
-        $this->fitbitLastUpdate = $value;
+        $this->perms = $value;
         return $this;
     }
 
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    public function setState($value)
+    {
+        $this->state = $value;
+        return $this;
+    }
 }

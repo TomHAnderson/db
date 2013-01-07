@@ -1,8 +1,9 @@
 <?php
 return array(
     'modules' => array(
-        'Application',
         'Install',
+
+        'Application',
 
         'DoctrineModule',
         'DoctrineORMModule',
@@ -12,6 +13,7 @@ return array(
         'ZfcUserDoctrineORM',
 
         'KeenIO',
+        'Jambase',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

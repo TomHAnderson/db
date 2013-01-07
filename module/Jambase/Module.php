@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application;
+namespace Jambase;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
@@ -16,14 +16,6 @@ class Module
 {
     public function onBootstrap(MvcEvent $e)
     {
-        $e->getApplication()->getServiceManager()->get('translator');
-        $eventManager        = $e->getApplication()->getEventManager();
-        $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
-
-        // Disable zfcuser doctrine default entities
-        $options = $e->getApplication()->getServiceManager()->get('zfcuser_module_options');
-        $options->setEnableDefaultEntities(false);
     }
 
     public function getConfig()

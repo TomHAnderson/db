@@ -33,22 +33,15 @@ class Module
 
         $em = $di->get('doctrine.entitymanager.orm_default');
 
-        $this->getEventManager()->attach(
-            array('Zend\Mvc\Application'),
-            MvcEvent::EVENT_ROUTE,
-            array($this, 'validateEntities')
-        );
-
-
-        return;
+        self::validateSchema($em);
 
         $conn = $em->getConnection();
-        $sql = "SELECT * FROM auth_user";
+        $sql = "SELECT * FROM User";
         try {
 
             $stmt = $conn->query($sql);
 
-            // Installed; check for escapeHtml updates
+            // Installed; check for db updates
             $this->getEventManager()->attach(
                 array('Zend\Mvc\Application'),
                 MvcEvent::EVENT_ROUTE,
@@ -57,7 +50,7 @@ class Module
 
             return; // Application is installed
 
-        } catch (\Doctrine\escapeHtmlAL\escapeHtmlALException $e) {
+        } catch (\Doctrine\DBAL\DBALException $e) {
             switch ($e->getPrevious()->getCode()) {
                 case '42S02':  // Table or view not found; this is what we expect
                     if ($app->getRequest()->getQuery()->get('install')) {
@@ -100,24 +93,11 @@ class Module
         }
     }
 
-    public function validateEntities($e) {
-        $em = $e->getApplication()->getServiceManager()->get('doctrine.entitymanager.orm_default');
-        $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
-
-        print_r(($em->getMetadataFactory()->getAllMetadata()));die('= metadata');
-
-        print_r(get_class_methods($tool));die();
-    }
-
-
     public function syncronizeDatabase($e)
     {
         $em = $e->getApplication()->getServiceManager()->get('doctrine.entitymanager.orm_default');
         self::validateSchema($em);
         $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
-
-
-
 
         // update the database
         if (isset($_REQUEST['sync'])) $res = $tool->UpdateSchema($em->getMetadataFactory()->getAllMetadata());

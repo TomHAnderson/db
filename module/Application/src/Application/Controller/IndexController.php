@@ -16,6 +16,13 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+
+        $jambase = $this->getServiceLocator()->get('serviceJambase');
+
+        print_r($jambase->search(array(
+            'zipcode' => 94103
+        )));
+
         return new ViewModel();
     }
 }

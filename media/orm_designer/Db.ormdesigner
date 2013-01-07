@@ -8,15 +8,16 @@
   <module import-format="Doctrine2Xml" import-path="..\..\module\Application\config\xml\" name="Application" visBkColor="15989236" visSizeX="0" visSizeX2="900" visSizeY="0" visSizeY2="750">
     <table name="User" visPositionX="75" visPositionY="73" visSizeX="0" visSizeX2="20" visSizeY="0" visSizeY2="20">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="username" size="32" type="string"/>
-      <column name="password" size="32" type="string"/>
+      <column name="username" type="string"/>
+      <column name="email" type="string"/>
+      <column name="password" type="string"/>
+      <column name="displayName" type="string"/>
+      <column name="accessToken" type="string"/>
+      <column name="createdAt" type="datetime"/>
+      <column name="lastRequestAt" type="datetime"/>
+      <column name="note" type="text"/>
+      <column name="isPublic" type="boolean"/>
       <column name="perms" type="string"/>
-      <column name="email" size="100" type="string"/>
-      <column name="name" size="100" type="string"/>
-      <column name="css" type="text"/>
-      <orm-properties>
-        <attribute name="table">auth_user</attribute>
-      </orm-properties>
     </table>
     <orm-properties>
       <attribute name="namespace">Application\Entity</attribute>
