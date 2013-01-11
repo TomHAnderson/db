@@ -1,27 +1,369 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <orm-designer version="1.4.7.511">
 
-  <project code-name="Db" framework="Without Framework" name="db" orm="Doctrine2" visSizeX="0" visSizeX2="986" visSizeY="0" visSizeY2="841">
-    <module-position name="Application" visPositionX="50" visPositionY="50"/>
+  <project code-name="Db" framework="Without Framework" name="db" orm="Doctrine2" visSizeX="71" visSizeX2="1208" visSizeY="89" visSizeY2="1053">
+    <module-position name="Application" visPositionX="2" visPositionY="1"/>
   </project>
 
-  <module import-format="Doctrine2Xml" import-path="..\..\module\Application\config\xml\" name="Application" visBkColor="15989236" visSizeX="0" visSizeX2="900" visSizeY="0" visSizeY2="750">
-    <table name="User" visPositionX="75" visPositionY="73" visSizeX="0" visSizeX2="20" visSizeY="0" visSizeY2="20">
+  <module import-format="Doctrine2Xml" import-path="..\..\module\Application\config\xml\" name="Application" visBkColor="1538279" visSizeX="41" visSizeX2="1173" visSizeY="60" visSizeY2="1005">
+    <region caption="Reference Link" name="Region1" visBkColor="11850223" visPositionX="62" visPositionY="559" visSizeX="70" visSizeX2="235" visSizeY="0" visSizeY2="397"/>
+    <region caption="Artist" name="Region2" visBkColor="11850223" visPositionX="704" visPositionY="711" visSizeX="0" visSizeX2="436" visSizeY="150" visSizeY2="149"/>
+    <region caption="Venue" name="Region4" visBkColor="11850223" visPositionX="979" visPositionY="231" visSizeX="322" visSizeX2="164" visSizeY="252" visSizeY2="44"/>
+    <region caption="Source" name="Region5" visBkColor="11850223" visPositionX="326" visPositionY="559" visSizeX="0" visSizeX2="355" visSizeY="0" visSizeY2="397"/>
+    <region caption="User" name="Region6" visBkColor="11850223" visPositionX="-12" visPositionY="-18" visSizeX="0" visSizeX2="461" visSizeY="10" visSizeY2="535"/>
+    <region caption="Show" name="Region7" visBkColor="11850223" visPositionX="473" visPositionY="300" visSizeX="0" visSizeX2="183" visSizeY="0" visSizeY2="234"/>
+    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="675" visPositionY="306" visSizeX="0" visSizeX2="467" visSizeY="0" visSizeY2="240"/>
+    <table name="User" region="Region6" visPositionX="59" visPositionY="44" visSizeX="0" visSizeX2="132" visSizeY="0" visSizeY2="185">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="displayName" type="string"/>
       <column name="username" type="string"/>
       <column name="email" type="string"/>
       <column name="password" type="string"/>
-      <column name="displayName" type="string"/>
-      <column name="accessToken" type="string"/>
-      <column name="createdAt" type="datetime"/>
-      <column name="lastRequestAt" type="datetime"/>
       <column name="note" type="text"/>
       <column name="isPublic" type="boolean"/>
+      <column name="accessToken" type="string"/>
       <column name="perms" type="string"/>
+      <column name="createdAt" type="datetime"/>
+      <column name="lastRequestAt" type="datetime"/>
+      <column name="subscription" type="string"/>
     </table>
+    <table name="Show" region="Region7" visPositionX="32" visPositionY="34" visSizeX="0" visSizeX2="115" visSizeY="0" visSizeY2="171">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Artist_id" type="integer"/>
+      <column name="Venue_id" type="integer"/>
+      <column name="Event_id" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="showdate" required="true" size="10" type="string"/>
+      <column name="showdateAt" type="date"/>
+      <column name="set1" type="text"/>
+      <column name="set2" type="text"/>
+      <column name="set3" type="text"/>
+      <column name="note" type="text"/>
+    </table>
+    <table name="Venue" region="Region4" visPositionX="-295" visPositionY="-208" visSizeX="0" visSizeX2="110" visSizeY="0" visSizeY2="101">
+      <column name="id" primary="true" required="true" type="integer"/>
+      <column name="City_id" type="integer"/>
+      <column name="Zipcode_id" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="address" type="text"/>
+      <column name="note" type="text"/>
+    </table>
+    <table name="Artist" region="Region2" visPositionX="50" visPositionY="-116" visSizeX="0" visSizeX2="129" visSizeY="0" visSizeY2="87">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="name" required="true" type="string"/>
+      <column name="nameNormalized" type="string"/>
+      <column name="note" type="text"/>
+    </table>
+    <table name="Source" region="Region5" visPositionX="91" visPositionY="42" visSizeX="0" visSizeX2="164" visSizeY="0" visSizeY2="157">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Show_id" type="integer"/>
+      <column name="summary" type="text"/>
+      <column name="textdoc" type="text"/>
+      <column name="mediaSizeCompressed" type="bigint"/>
+      <column name="mediaSizeUncompressed" type="bigint"/>
+      <column name="createdAt" type="datetime"/>
+      <column name="circulatedAt" type="string"/>
+      <column name="wavDiscCount" type="integer"/>
+      <column name="shnDiscCount" type="integer"/>
+    </table>
+    <table name="AbstractLink" region="Region1" visPositionX="50" visPositionY="25" visSizeX="0" visSizeX2="151" visSizeY="0" visSizeY2="87">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="title" type="string"/>
+      <column name="description" type="text"/>
+      <column name="url" type="string"/>
+      <column name="typeDescriminator" size="255" type="text"/>
+      <inheritance-parent discriminator-column="typeDescriminator" type="SINGLE_TABLE"/>
+    </table>
+    <table name="VenueLink" region="Region1" visPositionX="100" visPositionY="329" visSizeX="0" visSizeX2="103" visSizeY="0" visSizeY2="45">
+      <column name="id" primary="true" required="true" type="integer"/>
+      <column name="Venue_id" type="integer"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Venue" visSplitted="1"/>
+    </table>
+    <table name="SourceLink" region="Region1" visPositionX="-50" visPositionY="284" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="45">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Source_id" type="integer"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Source" visSplitted="1"/>
+    </table>
+    <table name="ShowLink" region="Region1" visPositionX="100" visPositionY="234" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="45">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Show_id" type="integer"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Show" visCenterX="0" visCenterY="6" visSplitted="1"/>
+    </table>
+    <table name="ArtistLink" region="Region1" visPositionX="100" visPositionY="154" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="45">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Artist_id" type="integer"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Artist" visCenterX="0" visCenterY="0" visSplitted="1"/>
+    </table>
+    <table name="ArtistGroup" region="Region2" visPositionX="212" visPositionY="-21" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="note" type="text"/>
+    </table>
+    <table name="ArtistGroupArtist" region="Region2" visPositionX="57" visPositionY="61" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="60">
+      <column name="ArtistGroup_id" required="true" type="integer"/>
+      <column name="Artist_id" required="true" type="integer"/>
+    </table>
+    <table name="ArtistGroupUser" region="Region2" visPositionX="272" visPositionY="69" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="60">
+      <column name="User_id" required="true" type="integer"/>
+      <column name="ArtistGroup_id" required="true" type="integer"/>
+    </table>
+    <table name="Attendance" region="Region6" visPositionX="28" visPositionY="285" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="73">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="User_id" type="integer"/>
+      <column name="Show_id" type="integer"/>
+      <column name="note" type="text"/>
+    </table>
+    <table name="Friends" region="Region6" visPositionX="161" visPositionY="290" visSizeX="0" visSizeX2="130" visSizeY="0" visSizeY2="60">
+      <column name="source_User_id" required="true" type="integer"/>
+      <column name="related_User_id" required="true" type="integer"/>
+    </table>
+    <table description="A festival event is an occurance of a festival" name="Event" region="Region8" visPositionX="162" visPositionY="52" visSizeX="0" visSizeX2="141" visSizeY="0" visSizeY2="129">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="EventCategory_id" type="integer"/>
+      <column name="City_id" type="integer"/>
+      <column name="Zipcode_id" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="note" type="text"/>
+      <column name="startAt" type="date"/>
+      <column name="endAt" type="date"/>
+    </table>
+    <table name="EventLink" region="Region1" visPositionX="-54" visPositionY="206" visSizeX="0" visSizeX2="136" visSizeY="0" visSizeY2="45">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Event_id" type="integer"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="FestivalEvent" visSplitted="1"/>
+    </table>
+    <table name="UserShow" region="Region6" visPositionX="308" visPositionY="10" visSizeX="0" visSizeX2="133" visSizeY="0" visSizeY2="381">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="User_id" type="integer"/>
+      <column name="Show_id" type="integer"/>
+      <column name="Source_id" type="integer"/>
+      <column name="sourceNote" type="text"/>
+      <column name="checksum" type="text"/>
+      <column name="createdAt" type="datetime"/>
+      <column name="mediaCount" type="integer"/>
+      <column name="mediaType" type="string"/>
+      <column name="noiseReduction" type="boolean"/>
+      <column name="scmsStatus" type="string"/>
+      <column name="showRating" type="string"/>
+      <column name="soundRating" type="string"/>
+      <column name="microphones" type="time"/>
+      <column name="generation" type="integer"/>
+      <column name="note" type="text"/>
+      <column name="jCardComment" type="text"/>
+      <column name="techNote" type="text"/>
+      <column name="referenceNumber" type="string"/>
+      <column name="tradedFrom" type="string"/>
+      <column name="tradedFromEmail" type="string"/>
+      <column name="tradesAllowed" type="boolean"/>
+      <column name="status" type="string"/>
+      <column name="attendance" type="string"/>
+      <column name="taperName" type="string"/>
+      <column name="micLocation" type="string"/>
+    </table>
+    <table name="Checksum" region="Region5" visPositionX="222" visPositionY="247" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="73">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Source_id" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="contents" type="text"/>
+    </table>
+    <table name="Feedback" region="Region6" visPositionX="28" visPositionY="400" visSizeX="0" visSizeX2="113" visSizeY="0" visSizeY2="115">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="from_User_id" type="integer"/>
+      <column name="about_User_id" type="integer"/>
+      <column name="score" type="integer"/>
+      <column name="note" type="text"/>
+      <column name="response" type="text"/>
+      <column name="createdAt" type="datetime"/>
+    </table>
+    <table name="Wanted" region="Region6" visPositionX="168" visPositionY="400" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="73">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="User_id" type="integer"/>
+      <column name="Show_id" type="integer"/>
+      <column name="Source_id" type="integer"/>
+    </table>
+    <table name="Alias" region="Region2" visPositionX="285" visPositionY="-101" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Artist_id" type="integer"/>
+      <column name="name" type="string"/>
+    </table>
+    <table name="Country" region="Region4" visPositionX="47" visPositionY="-49" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="abbrev" type="string"/>
+    </table>
+    <table name="State" region="Region4" visPositionX="33" visPositionY="-202" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="73">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Country_id" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="abbrev" type="string"/>
+    </table>
+    <table name="City" region="Region4" visPositionX="-121" visPositionY="-214" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="State_id" type="integer"/>
+      <column name="name" type="string"/>
+    </table>
+    <table name="Zipcode" region="Region4" visPositionX="-271" visPositionY="-40" visSizeX="0" visSizeX2="91" visSizeY="0" visSizeY2="45">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="zipcode" type="string"/>
+    </table>
+    <table name="CityZipcode" region="Region4" visPositionX="-119" visPositionY="-49" visSizeX="0" visSizeX2="110" visSizeY="0" visSizeY2="60">
+      <column name="City_id" required="true" type="integer"/>
+      <column name="Zipcode_id" required="true" type="integer"/>
+    </table>
+    <table name="SourceComment" region="Region5" visPositionX="64" visPositionY="258" visSizeX="0" visSizeX2="113" visSizeY="0" visSizeY2="87">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="User_id" type="integer"/>
+      <column name="Source_id" type="integer"/>
+      <column name="note" type="text"/>
+      <column name="createdAt" type="datetime"/>
+    </table>
+    <table name="EventCategory" region="Region8" visPositionX="361" visPositionY="64" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="note" type="text"/>
+    </table>
+    <table name="EventCategoryLink" region="Region1" visPositionX="-46" visPositionY="129" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="45">
+      <column auto-increment="true" name="id" primary="true" type="text"/>
+      <column name="EventCategory_id" type="integer"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Festival" visCenterX="44" visCenterY="11" visSplitted="1"/>
+    </table>
+    <comment caption="db.etree.org" description="ERD v4.0.3&#xD;&#xA;Tom Anderson&#xD;&#xA;tom.h.anderson@gmail.com" visBkColor="16777215" visPositionX="1009" visPositionY="929" visSizeX="0" visSizeX2="128" visSizeY="0" visSizeY2="56" visTextColor="0"/>
     <orm-properties>
       <attribute name="namespace">Application\Entity</attribute>
     </orm-properties>
+    <foreign-key caption="Artist Show" from="Show" inverse-alias="artist" name="FK_Show_Artist_id" owning-alias="show" to="Artist" visCaption1X="0" visCaption1Y="-2" visCenterX="0" visCenterY="-40" visShowCaption="0">
+      <foreign-key-column from="Artist_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Venue Show" from="Show" inverse-alias="venue" name="FK_Show_Venue_id" owning-alias="shows" to="Venue" visShowCaption="0">
+      <foreign-key-column from="Venue_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="FestivalEvent Show" from="Show" inverse-alias="event" name="FK_Show_FestivalEvent_id" owning-alias="shows" to="Event" visShowCaption="0">
+      <foreign-key-column from="Event_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Zipcode Venue" from="Venue" inverse-alias="zipcode" name="FK_Venue_Zipcode_id" owning-alias="venues" to="Zipcode" visShowCaption="0">
+      <foreign-key-column from="Zipcode_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="City Venue" from="Venue" inverse-alias="city" name="FK_Venue_City_id" owning-alias="venues" to="City" visShowCaption="0">
+      <foreign-key-column from="City_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Show Source" from="Source" name="FK_Source_Show_id" to="Show" visShowCaption="0">
+      <foreign-key-column from="Show_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Venue VenueLink" from="VenueLink" inverse-alias="venue" name="FK_VenueLink_Venue_id" owning-alias="links" to="Venue" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Venue_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Source SourceLink" from="SourceLink" inverse-alias="source" name="FK_SourceLink_Source_id" owning-alias="links" to="Source" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Source_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Show ShowLink" from="ShowLink" inverse-alias="show" name="FK_ShowLink_Show_id" owning-alias="links" to="Show" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Show_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Artist ArtistLink" from="ArtistLink" inverse-alias="artist" name="FK_ArtistLink_Artist_id" owning-alias="links" to="Artist" visCenterX="0" visCenterY="-178" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Artist_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="ArtistGroup ArtistGroupArtist" from="ArtistGroupArtist" name="FK_ArtistGroupArtist_ArtistGroup_id" to="ArtistGroup" visCenterX="12" visCenterY="0" visShowCaption="0">
+      <foreign-key-column from="ArtistGroup_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Artist ArtistGroupArtist" from="ArtistGroupArtist" name="FK_ArtistGroupArtist_Artist_id" to="Artist" visCenterX="0" visCenterY="0" visShowCaption="0">
+      <foreign-key-column from="Artist_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User ArtistGroupUser" from="ArtistGroupUser" name="FK_ArtistGroupUser_User_id" to="User" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="User_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="ArtistGroup ArtistGroupUser" from="ArtistGroupUser" name="FK_ArtistGroupUser_ArtistGroup_id" to="ArtistGroup" visCenterX="6" visCenterY="1" visShowCaption="0">
+      <foreign-key-column from="ArtistGroup_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User ShowAttendance" from="Attendance" inverse-alias="user" name="FK_ShowAttendance_User_id" owning-alias="showsAttended" to="User" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="User_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Show ShowAttendance" from="Attendance" inverse-alias="show" name="FK_ShowAttendance_Show_id" owning-alias="attendees" to="Show" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Show_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User UserFriends" from="Friends" name="FK_UserFriends_User_id" to="User" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="source_User_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User UserFriends" from="Friends" name="FK_UserFriends_User_id2" to="User" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="related_User_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Festival FestivalEvent" from="Event" inverse-alias="festival" name="FK_FestivalEvent_Festival_id" owning-alias="events" to="EventCategory" visShowCaption="0">
+      <foreign-key-column from="EventCategory_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="City Event" from="Event" inverse-alias="city" name="FK_Event_City_id" owning-alias="events" to="City" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="City_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Zipcode Event" from="Event" inverse-alias="zipcode" name="FK_Event_Zipcode_id" owning-alias="events" to="Zipcode" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Zipcode_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Festival FestivalLink" from="EventLink" inverse-alias="event" name="FK_FestivalLink_Festival_id" owning-alias="links" to="Event" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Event_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User UserShow" from="UserShow" inverse-alias="user" name="FK_UserShow_User_id" owning-alias="shows" to="User" visShowCaption="0">
+      <foreign-key-column from="User_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Show UserShow" from="UserShow" inverse-alias="show" name="FK_UserShow_Show_id" owning-alias="userShows" to="Show" visCenterX="4" visCenterY="0" visShowCaption="0">
+      <foreign-key-column from="Show_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Source UserShow" from="UserShow" inverse-alias="source" name="FK_UserShow_Source_id" owning-alias="userShows" to="Source" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Source_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Source Checksum" from="Checksum" name="FK_Checksum_Source_id" to="Source" visShowCaption="0">
+      <foreign-key-column from="Source_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User Feedback" from="Feedback" inverse-alias="userFrom" name="FK_Feedback_User_id" owning-alias="feedback" to="User" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="from_User_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User Feedback" from="Feedback" inverse-alias="userAbout" name="FK_Feedback_User_id2" owning-alias="feedbackAbout" to="User" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="about_User_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User Wanted" from="Wanted" inverse-alias="user" name="FK_Wanted_User_id" owning-alias="wanted" to="User" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="User_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Source Wanted" from="Wanted" inverse-alias="source" name="FK_Wanted_Source_id" owning-alias="wanted" to="Source" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Source_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Show Wanted" from="Wanted" inverse-alias="show" name="FK_Wanted_Show_id" owning-alias="wanted" to="Show" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Show_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Artist Alias" from="Alias" inverse-alias="artist" name="FK_Alias_Artist_id" owning-alias="aliases" to="Artist" visCaption1X="4" visCaption1Y="6" visCenterX="0" visCenterY="0" visShowCaption="0">
+      <foreign-key-column from="Artist_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Country State" from="State" inverse-alias="country" name="FK_State_Country_id" owning-alias="states" to="Country" visShowCaption="0">
+      <foreign-key-column from="Country_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="State City" from="City" inverse-alias="state" name="FK_City_State_id" owning-alias="cities" to="State" visShowCaption="0">
+      <foreign-key-column from="State_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="City CiityZipcode" from="CityZipcode" name="FK_CiityZipcode_City_id" to="City" visShowCaption="0">
+      <foreign-key-column from="City_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Zipcode CiityZipcode" from="CityZipcode" name="FK_CiityZipcode_Zipcode_id" to="Zipcode" visShowCaption="0">
+      <foreign-key-column from="Zipcode_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Source SourceComment" from="SourceComment" inverse-alias="source" name="FK_SourceComment_Source_id" owning-alias="comments" to="Source" visCenterX="0" visCenterY="0" visShowCaption="0">
+      <foreign-key-column from="Source_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User SourceComment" from="SourceComment" inverse-alias="user" name="FK_SourceComment_User_id" owning-alias="comments" to="User" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="User_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Festival FestivalLink" from="EventCategoryLink" inverse-alias="eventCategory" name="FK_FestivalLink_Festival_id2" owning-alias="links" to="EventCategory" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="EventCategory_id" to="id"/>
+    </foreign-key>
+    <many-to-many-relation mn-table="ArtistGroupArtist">
+      <many-to-many-foreign-key foreign-key="FK_ArtistGroupArtist_ArtistGroup_id" relation-alias="groups"/>
+      <many-to-many-foreign-key foreign-key="FK_ArtistGroupArtist_Artist_id" relation-alias="artists"/>
+    </many-to-many-relation>
+    <many-to-many-relation mn-table="ArtistGroupUser">
+      <many-to-many-foreign-key foreign-key="FK_ArtistGroupUser_User_id" relation-alias="users"/>
+      <many-to-many-foreign-key foreign-key="FK_ArtistGroupUser_ArtistGroup_id" relation-alias="groups"/>
+    </many-to-many-relation>
+    <many-to-many-relation mn-table="Friends">
+      <many-to-many-foreign-key foreign-key="FK_UserFriends_User_id" relation-alias="reverseFriends"/>
+      <many-to-many-foreign-key foreign-key="FK_UserFriends_User_id2" relation-alias="friends"/>
+    </many-to-many-relation>
+    <many-to-many-relation mn-table="CityZipcode">
+      <many-to-many-foreign-key foreign-key="FK_CiityZipcode_City_id" relation-alias="cities"/>
+      <many-to-many-foreign-key foreign-key="FK_CiityZipcode_Zipcode_id" relation-alias="zipcodes"/>
+    </many-to-many-relation>
   </module>
 
 </orm-designer>
