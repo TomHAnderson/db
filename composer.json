@@ -11,9 +11,6 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "!=2.0.6,2.*",
 
-        "keen-io/keen-io-tha": "dev-master",
-        "keen-io/keen-io-tha-module": "dev-master",
-
         "zf-commons/zfc-base": "dev-master",
         "zf-commons/zfc-user": "dev-master",
         "zf-commons/zfc-admin": "dev-master",
