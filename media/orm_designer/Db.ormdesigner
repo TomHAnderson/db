@@ -12,7 +12,7 @@
     <region caption="Source" name="Region5" visBkColor="11850223" visPositionX="320" visPositionY="773" visSizeX="0" visSizeX2="355" visSizeY="0" visSizeY2="397"/>
     <region caption="User" name="Region6" visBkColor="11850223" visPositionX="-12" visPositionY="-18" visSizeX="0" visSizeX2="565" visSizeY="17" visSizeY2="774"/>
     <region caption="Show" name="Region7" visBkColor="11850223" visPositionX="585" visPositionY="304" visSizeX="0" visSizeX2="183" visSizeY="0" visSizeY2="234"/>
-    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="588" visPositionY="-32" visSizeX="0" visSizeX2="467" visSizeY="0" visSizeY2="240"/>
+    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="588" visPositionY="-32" visSizeX="0" visSizeX2="359" visSizeY="-37" visSizeY2="236"/>
     <table name="User" region="Region6" visPositionX="32" visPositionY="25" visSizeX="0" visSizeX2="132" visSizeY="0" visSizeY2="185">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="displayName" required="true" type="string"/>
@@ -47,7 +47,6 @@
       <column name="name" required="true" type="string"/>
       <column name="address" type="text"/>
       <column name="note" type="text"/>
-      <column name="Event_id" type="integer"/>
     </table>
     <table name="Artist" region="Region2" visPositionX="50" visPositionY="-116" visSizeX="0" visSizeX2="129" visSizeY="0" visSizeY2="87">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
@@ -220,7 +219,7 @@
       <column name="note" type="text"/>
       <column name="createdAt" type="datetime"/>
     </table>
-    <table name="Producer" region="Region8" visPositionX="291" visPositionY="104" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
+    <table name="Producer" region="Region8" visPositionX="247" visPositionY="75" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="name" type="string"/>
       <column name="note" type="text"/>
@@ -275,9 +274,6 @@
     </foreign-key>
     <foreign-key caption="City Venue" from="Venue" inverse-alias="city" name="FK_Venue_City_id" owning-alias="venues" to="City" visShowCaption="0">
       <foreign-key-column from="City_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Event Venue" from="Venue" inverse-alias="event" name="FK_Venue_Event_id" owning-alias="venues" to="Event" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Event_id" to="id"/>
     </foreign-key>
     <foreign-key caption="Show Source" from="Source" name="FK_Source_Show_id" to="Show" visShowCaption="0">
       <foreign-key-column from="Show_id" to="id"/>
