@@ -107,99 +107,6 @@
         ]
     },
     {
-        "name": "keen-io/keen-io-tha",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/TomHAnderson/keen.io-php",
-            "reference": "16a55c7ae0f821dceaf884a09448e0a5e9ff903a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/TomHAnderson/keen.io-php/archive/16a55c7ae0f821dceaf884a09448e0a5e9ff903a.zip",
-            "reference": "16a55c7ae0f821dceaf884a09448e0a5e9ff903a",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3",
-            "zendframework/zendframework": "2.*"
-        },
-        "time": "2012-12-23 20:23:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "KeenIO": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Tom Anderson",
-                "email": "tom.h.anderson@gmail.com",
-                "homepage": "http://db.etree.org/"
-            }
-        ],
-        "description": "A Zend Framework 2 module for accessing the Keen IO API",
-        "homepage": "http://keen.io",
-        "keywords": [
-            "zf2",
-            "analytics",
-            "keen io"
-        ]
-    },
-    {
-        "name": "keen-io/keen-io-tha-module",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/TomHAnderson/keen.io-zf2-module",
-            "reference": "82fdfbe5a33683de708062ecd993be735aea068e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/TomHAnderson/keen.io-zf2-module/archive/82fdfbe5a33683de708062ecd993be735aea068e.zip",
-            "reference": "82fdfbe5a33683de708062ecd993be735aea068e",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3",
-            "zendframework/zendframework": "2.*",
-            "keen-io/keen-io-tha": "dev-master"
-        },
-        "time": "2012-12-23 19:52:11",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "KeenIO": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Tom Anderson",
-                "email": "tom.h.anderson@gmail.com",
-                "homepage": "http://db.etree.org"
-            }
-        ],
-        "description": "A Zend Framework 2 module for the Keen IO API PHP library",
-        "homepage": "http://keen.io",
-        "keywords": [
-            "zf2",
-            "analytics",
-            "keen io"
-        ]
-    },
-    {
         "name": "zf-commons/zfc-admin",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -689,12 +596,12 @@
         "source": {
             "type": "git",
             "url": "git://github.com/doctrine/DoctrineORMModule.git",
-            "reference": "b2c9507603d4f4442fa1f3ead87e14abb80b8073"
+            "reference": "93f1d744cdda5a452fff6c29f7fad19e2c508a93"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/doctrine/DoctrineORMModule/archive/b2c9507603d4f4442fa1f3ead87e14abb80b8073.zip",
-            "reference": "b2c9507603d4f4442fa1f3ead87e14abb80b8073",
+            "url": "https://github.com/doctrine/DoctrineORMModule/archive/93f1d744cdda5a452fff6c29f7fad19e2c508a93.zip",
+            "reference": "93f1d744cdda5a452fff6c29f7fad19e2c508a93",
             "shasum": ""
         },
         "require": {
@@ -711,7 +618,7 @@
         "suggest": {
             "zendframework/zend-developer-tools": "zend-developer-tools if you want to profile operations executed by the ORM during development"
         },
-        "time": "2012-12-15 23:24:06",
+        "time": "2013-01-07 16:33:14",
         "type": "library",
         "extra": {
             "branch-alias": {

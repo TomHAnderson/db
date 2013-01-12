@@ -13,7 +13,6 @@ return array(
     'Zend\\' => $vendorDir . '/zendframework/zendframework/library/',
     'ZendTest\\' => $vendorDir . '/zendframework/zendframework/tests/',
     'Symfony\\Component\\Console' => $vendorDir . '/symfony/console/',
-    'KeenIO' => array($vendorDir . '/keen-io/keen-io-tha/src/', $vendorDir . '/keen-io/keen-io-tha-module/src/'),
     'Doctrine\\ORM' => $vendorDir . '/doctrine/orm/lib/',
     'Doctrine\\DBAL\\Migrations' => $vendorDir . '/doctrine/migrations/lib',
     'Doctrine\\DBAL' => $vendorDir . '/doctrine/dbal/lib/',

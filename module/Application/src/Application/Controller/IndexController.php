@@ -17,10 +17,19 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
 
+        $keenio = $this->getServiceLocator()->get('serviceKeenIO_project');
+        $collection = $keenio->getCollection('test');
+        $collection->send(array(
+            'type' => 'test',
+            'page' => 'index',
+        ));
+
+
         $jambase = $this->getServiceLocator()->get('serviceJambase');
 
         print_r($jambase->search(array(
-            'zipcode' => 94103
+            'name' => 'fillmore',
+            'zipcode' => 94132
         )));
 
         return new ViewModel();

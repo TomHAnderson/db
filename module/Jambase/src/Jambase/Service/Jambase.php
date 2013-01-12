@@ -29,26 +29,21 @@ class Jambase
 
     public function search($parameters = array())
     {
+        if (!$this->getApiKey())
+            throw new \Exception('Invalid API Key');
+
         $http = new Client();
         $uri = 'http://api.jambase.com/search';
         $http->setUri($uri);
         $http->setMethod('GET');
         $http->setOptions(array('sslverifypeer' => false));
 
-        $http->setParameterGet(array(
-            'apikey' => $this->getApiKey()
-        ));
-
-        foreach ((array)$parameters as $key => $val) {
-            $http->setParameterGet(array(
-                $key => $val
-            ));
-        }
+        $parameters['apikey'] = $this->getApiKey();
+        $http->setParameterGet($parameters);
 
         $response = $http->send();
         $content = $response->getBody();
-print_r($response);
-die('jambase api');
-//        return Json::decode($content);
+
+        return Json::decode($content);
     }
 }

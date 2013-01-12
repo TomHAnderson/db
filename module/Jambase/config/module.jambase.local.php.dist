@@ -2,7 +2,7 @@
 
 namespace Jambase;
 
-$apiKey = '8yr78nmh5uddsqj3gv9x6kzf';
+$apiKey = '';
 
 /** ==== End User Edit ==== **/
 
