@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <orm-designer version="1.4.7.511">
 
-  <project code-name="Db" framework="Without Framework" name="db" orm="Doctrine2" visSizeX="89" visSizeX2="2573" visSizeY="158" visSizeY2="1236">
-    <module-position name="db" visPositionX="-14" visPositionY="-52"/>
-    <module-position name="etreedb" visPositionX="1126" visPositionY="-112"/>
+  <project code-name="Db" framework="Without Framework" name="db" orm="Doctrine2" visSizeX="159" visSizeX2="2573" visSizeY="246" visSizeY2="1236">
+    <module-position name="db.etree.org" visPositionX="-111" visPositionY="-164"/>
+    <module-position name="etreedb.org" visPositionX="997" visPositionY="-224"/>
   </project>
 
-  <module import-format="Doctrine2Xml" import-path="..\..\module\Application\config\xml\" name="db" visBkColor="1538279" visSizeX="52" visSizeX2="1121" visSizeY="60" visSizeY2="795">
-    <region caption="Reference Link" name="Region1" visBkColor="11850223" visPositionX="64" visPositionY="571" visSizeX="70" visSizeX2="848" visSizeY="-2" visSizeY2="161"/>
-    <region caption="Artist" name="Region2" visBkColor="11850223" visPositionX="-6" visPositionY="398" visSizeX="0" visSizeX2="409" visSizeY="142" visSizeY2="164"/>
-    <region caption="Venue" name="Region4" visBkColor="11850223" visPositionX="774" visPositionY="505" visSizeX="356" visSizeX2="90" visSizeY="251" visSizeY2="56"/>
-    <region caption="Source" name="Region5" visBkColor="11850223" visPositionX="215" visPositionY="-35" visSizeX="0" visSizeX2="394" visSizeY="0" visSizeY2="273"/>
-    <region caption="User" name="Region6" visBkColor="11850223" visPositionX="-12" visPositionY="-18" visSizeX="0" visSizeX2="215" visSizeY="17" visSizeY2="254"/>
-    <region caption="Show" name="Region7" visBkColor="11850223" visPositionX="657" visPositionY="-38" visSizeX="0" visSizeX2="398" visSizeY="0" visSizeY2="278"/>
-    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="877" visPositionY="322" visSizeX="0" visSizeX2="176" visSizeY="68" visSizeY2="240"/>
+  <module import-format="Doctrine2Xml" import-path="..\..\module\Application\config\xml\" name="db.etree.org" visBkColor="1538279" visSizeX="29" visSizeX2="1021" visSizeY="62" visSizeY2="719">
+    <region caption="Reference Link" name="Region1" visBkColor="11850223" visPositionX="64" visPositionY="571" visSizeX="70" visSizeX2="936" visSizeY="-2" visSizeY2="134"/>
+    <region caption="Artist" name="Region2" visBkColor="11850223" visPositionX="-6" visPositionY="398" visSizeX="0" visSizeX2="349" visSizeY="144" visSizeY2="164"/>
+    <region caption="Venue" name="Region4" visBkColor="11850223" visPositionX="714" visPositionY="507" visSizeX="356" visSizeX2="90" visSizeY="251" visSizeY2="56"/>
+    <region caption="Source" name="Region5" visBkColor="11850223" visPositionX="215" visPositionY="-35" visSizeX="0" visSizeX2="423" visSizeY="0" visSizeY2="273"/>
+    <region caption="User" name="Region6" visBkColor="11850223" visPositionX="-12" visPositionY="-18" visSizeX="0" visSizeX2="205" visSizeY="16" visSizeY2="255"/>
+    <region caption="Show" name="Region7" visBkColor="11850223" visPositionX="657" visPositionY="-38" visSizeX="0" visSizeX2="342" visSizeY="0" visSizeY2="276"/>
+    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="824" visPositionY="326" visSizeX="0" visSizeX2="176" visSizeY="68" visSizeY2="237"/>
     <table name="User" region="Region6" visPositionX="32" visPositionY="25" visSizeX="0" visSizeX2="132" visSizeY="0" visSizeY2="185">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="displayName" required="true" type="string"/>
@@ -50,7 +50,7 @@
       <column name="address" type="text"/>
       <column name="note" type="text"/>
     </table>
-    <table name="Artist" region="Region2" visPositionX="50" visPositionY="-116" visSizeX="0" visSizeX2="129" visSizeY="0" visSizeY2="87">
+    <table name="Artist" region="Region2" visPositionX="28" visPositionY="-116" visSizeX="0" visSizeX2="129" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="name" required="true" type="string"/>
       <column name="nameNormalized" required="true" type="string"/>
@@ -59,16 +59,16 @@
     <table name="Source" region="Region5" visPositionX="41" visPositionY="33" visSizeX="0" visSizeX2="164" visSizeY="0" visSizeY2="157">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Show_id" required="true" type="integer"/>
-      <column name="summary" type="text"/>
-      <column name="textdoc" type="text"/>
+      <column name="summary" required="true" type="text"/>
+      <column name="textdoc" required="true" type="text"/>
       <column name="mediaSizeCompressed" type="bigint"/>
       <column name="mediaSizeUncompressed" type="bigint"/>
-      <column name="createdAt" type="datetime"/>
-      <column name="circulatedAt" type="string"/>
       <column name="wavDiscCount" type="integer"/>
       <column name="shnDiscCount" type="integer"/>
+      <column name="createdAt" required="true" type="datetime"/>
+      <column name="circulatedAt" type="string"/>
     </table>
-    <table name="AbstractLink" region="Region1" visPositionX="-31" visPositionY="31" visSizeX="0" visSizeX2="151" visSizeY="0" visSizeY2="87">
+    <table name="AbstractLink" region="Region1" visPositionX="-54" visPositionY="31" visSizeX="0" visSizeX2="151" visSizeY="0" visSizeY2="87">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="title" required="true" type="string"/>
       <column name="url" required="true" type="string"/>
@@ -76,36 +76,36 @@
       <column name="typeDescriminator" size="255" type="text"/>
       <inheritance-parent discriminator-column="typeDescriminator" type="SINGLE_TABLE"/>
     </table>
-    <table name="VenueLink" region="Region1" visPositionX="383" visPositionY="50" visSizeX="0" visSizeX2="103" visSizeY="0" visSizeY2="45">
+    <table name="VenueLink" region="Region1" visPositionX="365" visPositionY="53" visSizeX="0" visSizeX2="103" visSizeY="0" visSizeY2="45">
       <column name="id" primary="true" required="true" type="integer"/>
       <column name="Venue_id" required="true" type="integer"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Venue" visSplitted="1"/>
     </table>
-    <table name="SourceLink" region="Region1" visPositionX="494" visPositionY="50" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="45">
+    <table name="SourceLink" region="Region1" visPositionX="476" visPositionY="53" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Source_id" required="true" type="integer"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Source" visSplitted="1"/>
     </table>
-    <table name="ShowLink" region="Region1" visPositionX="273" visPositionY="50" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="45">
+    <table name="ShowLink" region="Region1" visPositionX="255" visPositionY="53" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Show_id" required="true" type="integer"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Show" visCenterX="0" visCenterY="6" visSplitted="1"/>
     </table>
-    <table name="ArtistLink" region="Region1" visPositionX="164" visPositionY="50" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="45">
+    <table name="ArtistLink" region="Region1" visPositionX="146" visPositionY="53" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Artist_id" required="true" type="integer"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Artist" visCenterX="0" visCenterY="0" visSplitted="1"/>
     </table>
-    <table name="ArtistGroup" region="Region2" visPositionX="168" visPositionY="78" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
+    <table name="ArtistGroup" region="Region2" visPositionX="130" visPositionY="86" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="name" type="string"/>
       <column name="note" required="true" type="text"/>
     </table>
-    <table name="ArtistGroupArtist" region="Region2" visPositionX="44" visPositionY="3" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="60">
+    <table name="ArtistGroupArtist" region="Region2" visPositionX="27" visPositionY="-1" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="60">
       <column name="ArtistGroup_id" required="true" type="integer"/>
       <column name="Artist_id" required="true" type="integer"/>
     </table>
-    <table name="ArtistGroupUser" region="Region2" visPositionX="254" visPositionY="-13" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="60">
+    <table name="ArtistGroupUser" region="Region2" visPositionX="198" visPositionY="0" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="60">
       <column name="User_id" required="true" type="integer"/>
       <column name="ArtistGroup_id" required="true" type="integer"/>
     </table>
@@ -120,7 +120,7 @@
       <column name="startAt" type="date"/>
       <column name="endAt" type="date"/>
     </table>
-    <table name="EventLink" region="Region1" visPositionX="610" visPositionY="50" visSizeX="0" visSizeX2="102" visSizeY="0" visSizeY2="45">
+    <table name="EventLink" region="Region1" visPositionX="592" visPositionY="53" visSizeX="0" visSizeX2="102" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Event_id" required="true" type="integer"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="FestivalEvent" visSplitted="1"/>
@@ -128,10 +128,10 @@
     <table name="Checksum" region="Region5" visPositionX="269" visPositionY="37" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Source_id" required="true" type="integer"/>
-      <column name="name" type="string"/>
-      <column name="contents" type="text"/>
+      <column name="name" required="true" type="string"/>
+      <column name="contents" required="true" type="text"/>
     </table>
-    <table name="Alias" region="Region2" visPositionX="255" visPositionY="-116" visSizeX="0" visSizeX2="129" visSizeY="0" visSizeY2="73">
+    <table name="Alias" region="Region2" visPositionX="200" visPositionY="-116" visSizeX="0" visSizeX2="129" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Artist_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
@@ -139,7 +139,7 @@
     </table>
     <table name="Country" region="Region4" visPositionX="-20" visPositionY="-201" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column auto-increment="true" name="name" type="string"/>
+      <column auto-increment="true" name="name" required="true" type="string"/>
       <column name="abbrev" type="string"/>
     </table>
     <table name="State" region="Region4" visPositionX="-89" visPositionY="-101" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="73">
@@ -155,7 +155,7 @@
     </table>
     <table name="Zipcode" region="Region4" visPositionX="-335" visPositionY="-67" visSizeX="0" visSizeX2="91" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="zipcode" type="string"/>
+      <column name="zipcode" required="true" type="string" unique="true"/>
     </table>
     <table name="CityZipcode" region="Region4" visPositionX="-219" visPositionY="-82" visSizeX="0" visSizeX2="110" visSizeY="0" visSizeY2="60">
       <column name="City_id" required="true" type="integer"/>
@@ -168,24 +168,23 @@
       <column name="note" required="true" type="text"/>
       <column name="createdAt" required="true" type="datetime"/>
     </table>
-    <table name="ShowComment" region="Region7" visPositionX="229" visPositionY="88" visSizeX="0" visSizeX2="113" visSizeY="0" visSizeY2="87">
+    <table name="ShowComment" region="Region7" visPositionX="212" visPositionY="82" visSizeX="0" visSizeX2="113" visSizeY="0" visSizeY2="87">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="User_id" required="true" type="integer"/>
-      <column name="Show_id" type="integer"/>
-      <column name="note" type="text"/>
-      <column name="createdAt" type="datetime"/>
+      <column name="Show_id" required="true" type="integer"/>
+      <column name="note" required="true" type="text"/>
+      <column name="createdAt" required="true" type="datetime"/>
     </table>
     <table name="Producer" region="Region8" visPositionX="51" visPositionY="134" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="name" required="true" type="string"/>
       <column name="note" type="text"/>
     </table>
-    <table name="ProducerLink" region="Region1" visPositionX="720" visPositionY="49" visSizeX="0" visSizeX2="114" visSizeY="0" visSizeY2="45">
+    <table name="ProducerLink" region="Region1" visPositionX="702" visPositionY="52" visSizeX="0" visSizeX2="114" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" type="text"/>
       <column name="Producer_id" required="true" type="integer"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Festival" visCenterX="44" visCenterY="11" visSplitted="1"/>
     </table>
-    <comment caption="db.etree.org and etreedb.org" description="ERD v4.0.7&#xD;&#xA;etreedb@googlegroups.com" visBkColor="16777215" visPositionX="923" visPositionY="673" visSizeX="0" visSizeX2="143" visSizeY="0" visSizeY2="44" visTextColor="0"/>
     <orm-properties>
       <attribute name="namespace">Db\Entity</attribute>
     </orm-properties>
@@ -228,7 +227,7 @@
     <foreign-key caption="User ArtistGroupUser" from="ArtistGroupUser" name="FK_ArtistGroupUser_User_id" to="User" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="User_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="ArtistGroup ArtistGroupUser" from="ArtistGroupUser" name="FK_ArtistGroupUser_ArtistGroup_id" to="ArtistGroup" visCenterX="-1" visCenterY="1" visShowCaption="0">
+    <foreign-key caption="ArtistGroup ArtistGroupUser" from="ArtistGroupUser" name="FK_ArtistGroupUser_ArtistGroup_id" to="ArtistGroup" visCenterX="-1" visCenterY="-1" visShowCaption="0">
       <foreign-key-column from="ArtistGroup_id" to="id"/>
     </foreign-key>
     <foreign-key caption="Festival FestivalEvent" from="Event" inverse-alias="festival" name="FK_FestivalEvent_Festival_id" owning-alias="events" to="Producer" visShowCaption="0" visSplitted="1">
@@ -270,7 +269,7 @@
     <foreign-key caption="User SourceComment" from="ShowComment" inverse-alias="user" name="FK_SourceComment_User_id2" owning-alias="comments" to="User" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="User_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="Show ShowComment" from="ShowComment" inverse-alias="show" name="FK_ShowComment_Show_id" owning-alias="comments" to="Show" visShowCaption="0" visSplitted="1">
+    <foreign-key caption="Show ShowComment" from="ShowComment" inverse-alias="show" name="FK_ShowComment_Show_id" owning-alias="comments" to="Show" visShowCaption="0">
       <foreign-key-column from="Show_id" to="id"/>
     </foreign-key>
     <foreign-key caption="Festival FestivalLink" from="ProducerLink" inverse-alias="producer" name="FK_FestivalLink_Festival_id2" owning-alias="links" to="Producer" visShowCaption="0" visSplitted="1">
@@ -302,9 +301,9 @@
     </many-to-many-relation>
   </module>
 
-  <module import-format="Doctrine2Xml" import-path="..\..\module\Etreedb\config\xml\" name="etreedb" visBkColor="1538279" visSizeX="0" visSizeX2="912" visSizeY="-1" visSizeY2="632">
+  <module import-format="Doctrine2Xml" import-path="..\..\module\Etreedb\config\xml\" name="etreedb.org" visBkColor="1538279" visSizeX="-27" visSizeX2="806" visSizeY="-1" visSizeY2="608">
     <region caption="User" name="Region9" visBkColor="11850223" visPositionX="44" visPositionY="39" visSizeX="0" visSizeX2="388" visSizeY="0" visSizeY2="375"/>
-    <region caption="UserShow" name="Region10" visBkColor="11850223" visPositionX="469" visPositionY="45" visSizeX="0" visSizeX2="408" visSizeY="0" visSizeY2="556"/>
+    <region caption="UserShow" name="Region10" visBkColor="11850223" visPositionX="469" visPositionY="45" visSizeX="31" visSizeX2="322" visSizeY="0" visSizeY2="545"/>
     <table name="Attendance" region="Region9" visPositionX="234" visPositionY="168" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="User_id" required="true" type="integer"/>
@@ -315,7 +314,7 @@
       <column name="source_User_id" required="true" type="integer"/>
       <column name="related_User_id" required="true" type="integer"/>
     </table>
-    <table name="UserShow" region="Region10" visPositionX="104" visPositionY="153" visSizeX="0" visSizeX2="133" visSizeY="0" visSizeY2="381">
+    <table name="UserShow" region="Region10" visPositionX="170" visPositionY="150" visSizeX="0" visSizeX2="133" visSizeY="0" visSizeY2="381">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="User_id" required="true" type="integer"/>
       <column name="Show_id" required="true" type="integer"/>
@@ -366,7 +365,7 @@
       <column name="note" required="true" type="text"/>
       <column name="status" type="string"/>
     </table>
-    <table name="List" region="Region10" visPositionX="38" visPositionY="51" visSizeX="0" visSizeX2="97" visSizeY="0" visSizeY2="87">
+    <table name="List" region="Region10" visPositionX="39" visPositionY="40" visSizeX="0" visSizeX2="97" visSizeY="0" visSizeY2="87">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="User_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
@@ -377,11 +376,11 @@
       <column name="ListGroup_id" required="true" type="integer"/>
       <column name="UserShow_id" required="true" type="integer"/>
     </table>
-    <table name="UserShowField" region="Region10" visPositionX="300" visPositionY="136" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="45">
+    <table name="UserShowField" region="Region10" visPositionX="41" visPositionY="140" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
     </table>
-    <table name="UserShowFieldConfig" region="Region10" visPositionX="250" visPositionY="228" visSizeX="0" visSizeX2="139" visSizeY="0" visSizeY2="60">
+    <table name="UserShowFieldConfig" region="Region10" visPositionX="-10" visPositionY="228" visSizeX="0" visSizeX2="139" visSizeY="0" visSizeY2="60">
       <column name="User_id" required="true" type="integer"/>
       <column name="UserShowField_id" required="true" type="integer"/>
     </table>
