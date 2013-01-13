@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Db\Entity\City">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="name" type="string" nullable="false"/>
+    <many-to-one field="state" target-entity="Db\Entity\State" inversed-by="cities">
+      <join-columns>
+        <join-column name="State_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="venues" target-entity="Db\Entity\Venue" mapped-by="city"/>
+    <one-to-many field="events" target-entity="Db\Entity\Event" mapped-by="city"/>
+    <many-to-many field="zipcodes" target-entity="Db\Entity\Zipcode" inversed-by="cities">
+      <join-table name="CityZipcode">
+        <join-columns>
+          <join-column name="City_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="Zipcode_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

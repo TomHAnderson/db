@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Db\Entity\Venue">
+    <id name="id" type="integer"/>
+    <field name="name" type="string" nullable="false"/>
+    <field name="address" type="text" nullable="true"/>
+    <field name="note" type="text" nullable="true"/>
+    <many-to-one field="zipcode" target-entity="Db\Entity\Zipcode" inversed-by="venues">
+      <join-columns>
+        <join-column name="Zipcode_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="city" target-entity="Db\Entity\City" inversed-by="venues">
+      <join-columns>
+        <join-column name="City_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="shows" target-entity="Db\Entity\Show" mapped-by="venue"/>
+    <one-to-many field="links" target-entity="Db\Entity\VenueLink" mapped-by="venue"/>
+  </entity>
+</doctrine-mapping>

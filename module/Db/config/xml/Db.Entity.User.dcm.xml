@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Db\Entity\User">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="displayName" type="string" nullable="false"/>
+    <field name="username" type="string" nullable="false"/>
+    <field name="email" type="string" nullable="false"/>
+    <field name="password" type="string" nullable="false"/>
+    <field name="note" type="text" nullable="true"/>
+    <field name="isPublic" type="boolean" nullable="false"/>
+    <field name="accessToken" type="string" nullable="true"/>
+    <field name="perms" type="string" nullable="true"/>
+    <field name="createdAt" type="datetime" nullable="false"/>
+    <field name="lastRequestAt" type="datetime" nullable="false"/>
+    <field name="hash" type="string" nullable="true"/>
+    <field name="subscription" type="string" nullable="true"/>
+    <one-to-many field="comments" target-entity="Db\Entity\SourceComment" mapped-by="user"/>
+    <one-to-many field="comments" target-entity="Db\Entity\ShowComment" mapped-by="user"/>
+    <one-to-many field="showsAttended" target-entity="Etreedb/Entity\Attendance" mapped-by="user"/>
+    <one-to-many field="userShows" target-entity="Etreedb/Entity\UserShow" mapped-by="user"/>
+    <one-to-many field="feedback" target-entity="Etreedb/Entity\Feedback" mapped-by="userFrom"/>
+    <one-to-many field="feedbackAbout" target-entity="Etreedb/Entity\Feedback" mapped-by="userAbout"/>
+    <one-to-many field="wanted" target-entity="Etreedb/Entity\Wanted" mapped-by="user"/>
+    <one-to-many field="sentEmail" target-entity="Etreedb/Entity\Mail" mapped-by="fromUser"/>
+    <one-to-many field="receivedEmail" target-entity="Etreedb/Entity\Mail" mapped-by="toUser"/>
+    <one-to-many field="lists" target-entity="Etreedb/Entity\List" mapped-by="user"/>
+    <many-to-many field="groups" target-entity="Db\Entity\ArtistGroup" inversed-by="users">
+      <join-table name="ArtistGroupUser">
+        <join-columns>
+          <join-column name="User_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="ArtistGroup_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="friends" target-entity="Db\Entity\User" inversed-by="reverseFriends">
+      <join-table name="Friends">
+        <join-columns>
+          <join-column name="source_User_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="related_User_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="reverseFriends" target-entity="Db\Entity\User" mapped-by="friends"/>
+    <many-to-many field="fieldConfig" target-entity="Etreedb/Entity\UserShowField" inversed-by="users">
+      <join-table name="UserShowFieldConfig">
+        <join-columns>
+          <join-column name="User_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="UserShowField_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

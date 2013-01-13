@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Etreedb/Entity\Feedback">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="score" type="integer" nullable="false"/>
+    <field name="note" type="text" nullable="false"/>
+    <field name="response" type="text" nullable="true"/>
+    <field name="createdAt" type="datetime" nullable="false"/>
+    <many-to-one field="userFrom" target-entity="Db\Entity\User" inversed-by="feedback">
+      <join-columns>
+        <join-column name="from_User_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="userAbout" target-entity="Db\Entity\User" inversed-by="feedbackAbout">
+      <join-columns>
+        <join-column name="about_User_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Db\Entity\Show">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="name" type="string" nullable="true"/>
+    <field name="showdate" type="string" length="10" nullable="false"/>
+    <field name="showdateAt" type="date" nullable="true"/>
+    <field name="set1" type="text" nullable="true"/>
+    <field name="set2" type="text" nullable="true"/>
+    <field name="set3" type="text" nullable="true"/>
+    <field name="note" type="text" nullable="true"/>
+    <many-to-one field="artist" target-entity="Db\Entity\Artist" inversed-by="show">
+      <join-columns>
+        <join-column name="Artist_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="venue" target-entity="Db\Entity\Venue" inversed-by="shows">
+      <join-columns>
+        <join-column name="Venue_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="event" target-entity="Db\Entity\Event" inversed-by="shows">
+      <join-columns>
+        <join-column name="Event_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="links" target-entity="Db\Entity\ShowLink" mapped-by="show"/>
+    <one-to-many field="comments" target-entity="Db\Entity\ShowComment" mapped-by="show"/>
+    <one-to-many field="attendees" target-entity="Etreedb/Entity\Attendance" mapped-by="show"/>
+    <one-to-many field="userShows" target-entity="Etreedb/Entity\UserShow" mapped-by="show"/>
+    <one-to-many field="wanted" target-entity="Etreedb/Entity\Wanted" mapped-by="show"/>
+  </entity>
+</doctrine-mapping>

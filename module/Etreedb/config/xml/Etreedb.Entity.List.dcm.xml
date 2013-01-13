@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Etreedb/Entity\List">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="name" type="string" nullable="false"/>
+    <field name="abbrev" type="string" nullable="false"/>
+    <field name="note" type="text" nullable="true"/>
+    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="lists">
+      <join-columns>
+        <join-column name="User_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="shows" target-entity="Etreedb/Entity\UserShow" inversed-by="groups">
+      <join-table name="UserShowList">
+        <join-columns>
+          <join-column name="ListGroup_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="UserShow_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>
