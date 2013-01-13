@@ -15,6 +15,7 @@
         "zf-commons/zfc-user": "dev-master",
         "zf-commons/zfc-admin": "dev-master",
         "zf-commons/zfc-user-doctrine-orm": "dev-master",
+        "socalnick/scn-social-auth": "dev-master",
 
         "doctrine/common": "2.3.0-RC1",
         "doctrine/dbal": "2.3.0-RC1",
@@ -22,6 +23,8 @@
         "doctrine/migrations": "v1.0-ALPHA1",
         "doctrine/data-fixtures": "v1.0.0-ALPHA3",
         "doctrine/doctrine-module":"dev-master",
-        "doctrine/doctrine-orm-module":"dev-master"
+        "doctrine/doctrine-orm-module":"dev-master",
+
+        "keen-io/keen-io": "dev-master"
     }
 }
