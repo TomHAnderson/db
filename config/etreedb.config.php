@@ -3,10 +3,12 @@ return array(
     'modules' => array(
         'Install',
 
+        'Application',
+
         'Db',
         'Etreedb',
 
-        'DbApplication',
+        'EtreedbApplication',
 
         'DoctrineModule',
         'DoctrineORMModule',
@@ -15,7 +17,6 @@ return array(
         'ZfcUser',
         'ZfcUserDoctrineORM',
 
-        'KeenIO',
         'Jambase',
     ),
     'module_listener_options' => array(

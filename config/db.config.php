@@ -3,6 +3,8 @@ return array(
     'modules' => array(
         'Install',
 
+        'Application',
+
         'Db',
         'Etreedb',
 
@@ -15,7 +17,6 @@ return array(
         'ZfcUser',
         'ZfcUserDoctrineORM',
 
-        'KeenIO',
         'Jambase',
     ),
     'module_listener_options' => array(

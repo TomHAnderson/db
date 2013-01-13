@@ -19,6 +19,11 @@ return array(
         )
     ),
 
+    'keen-io' => array(
+        'projectId' => '',
+        'apiKey' => ''
+    ),
+
     'di' => array(
         'instance' => array(
             'Jambase\Service\Jambase' => array(
