@@ -13,11 +13,13 @@ trait Description
      */
     protected $description;
 
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
-    public function setDescription($value) {
+    public function setDescription($value)
+    {
         $this->description = $value;
         return $this;
     }

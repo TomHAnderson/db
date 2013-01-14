@@ -4,7 +4,7 @@
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
-    <field name="summary" type="text" nullable="false"/>
+    <field name="content" type="text" nullable="false"/>
     <field name="textdoc" type="text" nullable="false"/>
     <field name="mediaSizeCompressed" type="bigint" nullable="true"/>
     <field name="mediaSizeUncompressed" type="bigint" nullable="true"/>

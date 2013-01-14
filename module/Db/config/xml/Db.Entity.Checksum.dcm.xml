@@ -5,6 +5,6 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="false"/>
-    <field name="contents" type="text" nullable="false"/>
+    <field name="content" type="text" nullable="false"/>
   </entity>
 </doctrine-mapping>
