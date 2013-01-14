@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application;
+namespace DbApplication;
 
 return array(
     'router' => array(
@@ -17,7 +17,7 @@ return array(
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
+                        'controller' => 'index',
                         'action'     => 'index',
                     ),
                 ),
@@ -31,7 +31,7 @@ return array(
                 'options' => array(
                     'route'    => '/application',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
+                        '__NAMESPACE__' => 'DbApplication\Controller',
                         'controller'    => 'Index',
                         'action'        => 'index',
                     ),
@@ -71,7 +71,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'index' => 'DbApplication\Controller\IndexController'
         ),
     ),
     'view_manager' => array(
@@ -88,21 +88,6 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
-        ),
-    ),
-
-    'doctrine' => array(
-        'driver' => array(
-            __NAMESPACE__ . '_driver' => array(
-                'class' => 'Doctrine\ORM\Mapping\Driver\XmlDriver',
-                'paths' => array(__DIR__ . '/xml'),
-            ),
-
-            'orm_default' => array(
-                'drivers' => array(
-                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
-                ),
-            ),
         ),
     ),
 );

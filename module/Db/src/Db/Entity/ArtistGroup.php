@@ -1,7 +1,7 @@
 <?php
 namespace Db\Entity;
 
-use Application\Entity\AbstractEntity;
+use Db\Entity\AbstractEntity;
 use Zend\Form\Annotation as Form;
 
 /**

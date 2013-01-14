@@ -1,7 +1,7 @@
 <?php
 namespace Db\Entity;
 
-use Application\Entity\AbstractEntity;
+use Db\Entity\AbstractEntity;
 
 class Wanted extends AbstractEntity
 {

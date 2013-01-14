@@ -21,4 +21,14 @@ trait Note
         $this->note = $value;
         return $this;
     }
+
+    private function inputFilterInputNote($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'note',
+            'required' => false,
+            'validators' => array(),
+        ));
+    }
 }

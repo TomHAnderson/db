@@ -26,6 +26,13 @@ return array(
                 'modelTeam' => 'Db\Model\Team',
                 'modelFriend' => 'Db\Model\Friend',
             ),
+
+            'Application\Model\ModelAbstract' => array(
+                'parameters' => array(
+                    'servicemanager' => 'Zend\ServiceManager\ServiceManager',
+                    'em' => 'Doctrine\ORM\EntityManager',
+                ),
+            ),
         ),
     ),
 );

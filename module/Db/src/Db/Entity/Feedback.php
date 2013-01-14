@@ -1,7 +1,7 @@
 <?php
 namespace Db\Entity;
 
-use Application\Entity\AbstractEntity;
+use Db\Entity\AbstractEntity;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -25,7 +25,7 @@ class Feedback extends AbstractEntity
             'id' => $this->getId(),
             'note' => $this->getNote(),
             'score' => $this->getScore(),
-            'reply' => $this->getReply();
+            'reply' => $this->getReply(),
             'createdAt' => $this->getCreatedAt()->format('r'),
         );
     }
@@ -33,6 +33,7 @@ class Feedback extends AbstractEntity
     public function exchangeArray($data)
     {
         $this->setNote(isset($data['note']) ? $data['note']: null);
-        $this->setNote(isset($data['score']) ? $data['score']: null);
+        $this->setScore(isset($data['score']) ? $data['score']: null);
+        $this->setReply(isset($data['reply']) ? $data['reply']: null);
     }
 }

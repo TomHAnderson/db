@@ -6,27 +6,31 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("attendance")
+ * @Form\Name("producer")
  */
-class Attendance extends AbstractEntity
+class VenueGroup extends AbstractEntity
 {
     use \Db\Field\Id
-        , \Db\Field\User
-        , \Db\Field\Show
+        , \Db\Field\Name
         , \Db\Field\Note
         ;
 
-    /** Hydrator functions */
+    use \Db\Relation\Venues
+        , \Db\Relation\Links
+        ;
+
     public function getArrayCopy()
     {
         return array(
             'id' => $this->getId(),
+            'name' => $this->getName(),
             'note' => $this->getNote(),
         );
     }
 
     public function exchangeArray($data)
     {
+        $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }
 }

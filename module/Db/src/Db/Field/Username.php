@@ -2,6 +2,7 @@
 
 namespace Db\Field;
 use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 trait Username
 {
@@ -22,5 +23,15 @@ trait Username
     {
         $this->username = $value;
         return $this;
+    }
+
+    private function inputFilterInputUsername($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'username',
+            'required' => true,
+            'validators' => array(),
+        ));
     }
 }

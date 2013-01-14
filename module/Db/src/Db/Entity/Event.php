@@ -1,7 +1,7 @@
 <?php
 namespace Db\Entity;
 
-use Application\Entity\AbstractEntity;
+use Db\Entity\AbstractEntity;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -10,7 +10,7 @@ use Zend\Form\Annotation as Form;
  */
 class Event extends AbstractEntity
 {
-    use \Db\Field\Id;
+    use \Db\Field\Id
         , \Db\Field\Producer
         , \Db\Field\City
         , \Db\Field\Zipcode

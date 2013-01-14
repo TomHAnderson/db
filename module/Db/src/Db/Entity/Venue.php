@@ -1,7 +1,7 @@
 <?php
 namespace Db\Entity;
 
-use Application\Entity\AbstractEntity;
+use Db\Entity\AbstractEntity;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -19,6 +19,7 @@ class Venue extends AbstractEntity
 
     use \Db\Relation\Shows
         , \Db\Relation\Links
+        , \Db\Relation\VenueGroups
         ;
 
     public function getArrayCopy()

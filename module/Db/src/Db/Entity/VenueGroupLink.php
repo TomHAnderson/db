@@ -7,7 +7,7 @@ use Zend\Form\Annotation as Form;
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("link")
  */
-final class ShowLink extends AbstractLink
+final class VenueGroupLink extends AbstractLink
 {
-    use \Db\Field\Show;
+    use \Db\Field\VenueGroup;
 }

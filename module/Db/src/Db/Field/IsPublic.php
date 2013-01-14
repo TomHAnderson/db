@@ -24,4 +24,18 @@ trait isPublic
         $this->isPublic = $value;
         return $this;
     }
+
+    private function inputFilterInputIsPublic($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'isPublic',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'digits'
+                ),
+            ),
+        ));
+    }
 }
