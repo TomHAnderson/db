@@ -11,31 +11,10 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("abstractLink")
  */
 class AbstractLink extends AbstractEntity {
-    protected $id;
-
-    /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "string"})
-     * @Form\Attributes({"id": "title"})
-     * @Form\Options({"label": "Title"})
-     */
-    protected $title;
-
-    /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "string"})
-     * @Form\Attributes({"id": "url"})
-     * @Form\Options({"label": "URL"})
-     */
-    protected $url;
-
-    /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "textarea"})
-     * @Form\Attributes({"id": "description"})
-     * @Form\Options({"label": "Description"})
-     */
-    protected $description;
+    use \Db\Field\Id;
+    use \Db\Field\Title;
+    use \Db\Field\Url;
+    use \Db\Field\Description;
 
     protected $typeDescriminator;
 
@@ -56,41 +35,6 @@ class AbstractLink extends AbstractEntity {
         $this->setTitle(isset($data['title']) ? $data['title']: null);
         $this->setUrl(isset($data['url']) ? $data['url']: null);
         $this->setDescription(isset($data['description']) ? $data['description']: null);
-    }
-
-    public function __construct()
-    {
-    }
-
-    public function getId() {
-        return $this->id;
-    }
-
-    public function getTitle() {
-        return $this->title;
-    }
-
-    public function setTitle($value) {
-        $this->title = $value;
-        return $this;
-    }
-
-    public function getUrl() {
-        return $this->url;
-    }
-
-    public function setUrl($value) {
-        $this->url = $value;
-        return $this;
-    }
-
-    public function getDescription() {
-        return $this->description;
-    }
-
-    public function setDescription($value) {
-        $this->description = $value;
-        return $this;
     }
 
     public function getTypeDescriminator() {

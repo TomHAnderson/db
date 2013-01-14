@@ -7,7 +7,7 @@
     <field name="name" type="string" nullable="false"/>
     <field name="nameNormalized" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
-    <one-to-many field="show" target-entity="Db\Entity\Show" mapped-by="artist"/>
+    <one-to-many field="shows" target-entity="Db\Entity\Show" mapped-by="artist"/>
     <one-to-many field="links" target-entity="Db\Entity\ArtistLink" mapped-by="artist"/>
     <one-to-many field="aliases" target-entity="Db\Entity\Alias" mapped-by="artist"/>
     <many-to-many field="groups" target-entity="Db\Entity\ArtistGroup" mapped-by="artists"/>

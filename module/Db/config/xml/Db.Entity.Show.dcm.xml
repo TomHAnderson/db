@@ -11,7 +11,7 @@
     <field name="set2" type="text" nullable="true"/>
     <field name="set3" type="text" nullable="true"/>
     <field name="note" type="text" nullable="true"/>
-    <many-to-one field="artist" target-entity="Db\Entity\Artist" inversed-by="show">
+    <many-to-one field="artist" target-entity="Db\Entity\Artist" inversed-by="shows">
       <join-columns>
         <join-column name="Artist_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
