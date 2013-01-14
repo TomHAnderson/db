@@ -22,12 +22,15 @@ class State extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'abbrev' => $this->getAbbrev(),
         );
     }
 
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
+        $this->setAbbrev(isset($data['abbrev']) ? $data['abbrev']: null);
     }
 }
+
 

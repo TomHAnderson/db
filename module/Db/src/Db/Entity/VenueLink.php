@@ -5,7 +5,7 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("venueLink")
+ * @Form\Name("link")
  */
 final class VenueLink extends AbstractLink
 {

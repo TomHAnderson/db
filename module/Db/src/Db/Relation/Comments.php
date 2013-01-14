@@ -1,6 +1,6 @@
 <?php
 
-namespace Db\Field;
+namespace Db\Relation;
 use Zend\Form\Annotation as Form;
 use Doctrine\Common\Collections\ArrayCollection;
 

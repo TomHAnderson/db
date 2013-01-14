@@ -6,15 +6,14 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("list")
  */
-class Venue extends AbstractEntity
+class UserShow extends AbstractEntity
 {
     use \Db\Field\Id;
-    use \Db\Field\City;
-    use \Db\Field\Zipcode;
-    use \Db\Field\Name;
-    use \Db\Field\Note;
+    use \Db\Field\User;
+    use \Db\Field\Show;
+    use \Db\Field\Source;
 
     /** Hydrator functions */
     public function getArrayCopy()
@@ -22,6 +21,7 @@ class Venue extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'abbrev' => $this->getAbbrev(),
             'note' => $this->getNote(),
         );
     }
@@ -29,6 +29,7 @@ class Venue extends AbstractEntity
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
+        $this->setAbbrev(isset($data['abbrev']) ? $data['abbrev']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }
 }
