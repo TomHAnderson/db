@@ -1,5 +1,5 @@
 <?php
-namespace Db\Field;
+namespace Db\Relation;
 
 use Application\Entity\User as UserEntity;
 

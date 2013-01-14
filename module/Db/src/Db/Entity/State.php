@@ -2,22 +2,23 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("state")
  */
 class State extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\Country;
-    use \Db\Field\Name;
-    use \Db\Field\Abbrev;
-    use \Db\Relation\Cities;
+    use \Db\Field\Id
+        , \Db\Field\Country
+        , \Db\Field\Name
+        , \Db\Field\Abbrev
+        ;
 
-    /** Hydrator functions */
+    use \Db\Relation\Cities
+        ;
+
     public function getArrayCopy()
     {
         return array(

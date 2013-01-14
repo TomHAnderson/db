@@ -6,7 +6,7 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("venue")
  */
 class Venue extends AbstractEntity
 {
@@ -21,7 +21,6 @@ class Venue extends AbstractEntity
         , \Db\Relation\Links
         ;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(

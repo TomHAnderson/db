@@ -11,13 +11,16 @@ use Zend\Form\Annotation as Form;
  */
 class Feedback extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\From;
-    use \Db\Field\To;
-    use \Db\Field\Score;
-    use \Db\Field\Note;
-    use \Db\Field\Reply;
-    use \Db\Field\CreatedAt;
+    use \Db\Field\Id
+        , \Db\Field\Score
+        , \Db\Field\Note
+        , \Db\Field\Reply
+        , \Db\Field\CreatedAt
+    ;
+
+    use \Db\Relation\From
+        , \Db\Relation\To
+        ;
 
     /** Hydrator functions */
     public function getArrayCopy()

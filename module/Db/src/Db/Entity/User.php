@@ -2,7 +2,6 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 use ZfcUser\Entity\UserInterface;
 
@@ -23,7 +22,8 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Field\Permission
         , \Db\Field\CreatedAt
         , \Db\Field\LastRequestAt
-        , \Db\Field\Subscription;
+        , \Db\Field\Subscription
+        ;
 
     use \Db\Relation\Lists
         , \Db\Relation\Groups
@@ -37,11 +37,11 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Relation\WantedBy
         , \Db\Relation\Inbox
         , \Db\Relation\Outbox
-        , \Db\Relation\FieldConfig;
+        , \Db\Relation\FieldConfig
+        ;
 
     protected $state;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(

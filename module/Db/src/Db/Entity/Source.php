@@ -10,23 +10,24 @@ use Zend\Form\Annotation as Form;
  */
 class Source extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\Show;
-    use \Db\Field\Note;
-    use \Db\Field\Content;
-    use \Db\Field\MediaSizeCompressed;
-    use \Db\Field\MediaSizeUncompressed;
-    use \Db\Field\DiscCountWav;
-    use \Db\Field\DiscCountShn;
-    use \Db\Field\CreatedAt;
-    use \Db\Field\CirculatedAt;
-    use \Db\Relation\Links;
-    use \Db\Relation\Comments;
-    use \Db\Relation\UserShows;
-    use \Db\Relation\WantedBy;
+    use \Db\Field\Id
+        , \Db\Field\Show
+        , \Db\Field\Note
+        , \Db\Field\Content
+        , \Db\Field\MediaSizeCompressed
+        , \Db\Field\MediaSizeUncompressed
+        , \Db\Field\DiscCountWav
+        , \Db\Field\DiscCountShn
+        , \Db\Field\CreatedAt
+        , \Db\Field\CirculatedAt
+        ;
 
+    use \Db\Relation\Links
+        , \Db\Relation\Comments
+        , \Db\Relation\UserShows
+        , \Db\Relation\WantedBy
+        ;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(

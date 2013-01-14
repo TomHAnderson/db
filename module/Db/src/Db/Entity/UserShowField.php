@@ -12,10 +12,11 @@ class UserShowField extends AbstractEntity
 {
     use \Db\Field\Id
         , \Db\Field\Name
-        , \Db\Relation\Users
         ;
 
-    /** Hydrator functions */
+    use \Db\Relation\Users
+        ;
+
     public function getArrayCopy()
     {
         return array(

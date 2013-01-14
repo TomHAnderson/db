@@ -2,7 +2,6 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -20,7 +19,6 @@ class UserList extends AbstractEntity
     use \Db\Relation\UserShows
         , \Db\Relation\Shows;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(

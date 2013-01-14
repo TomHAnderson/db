@@ -7,7 +7,7 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("zipcode")
  */
 class Zipcode extends AbstractEntity
 {
@@ -19,7 +19,6 @@ class Zipcode extends AbstractEntity
         , \Db\Relation\Cities
         ;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(

@@ -5,7 +5,7 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("showLink")
+ * @Form\Name("comment")
  */
 final class ShowComment extends AbstractComment
 {

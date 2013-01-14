@@ -6,7 +6,7 @@ use Application\Entity\Show as ShowEntity;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("showLink")
+ * @Form\Name("link")
  */
 final class ShowLink extends AbstractLink
 {

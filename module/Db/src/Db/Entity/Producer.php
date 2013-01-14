@@ -2,22 +2,23 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("producer")
  */
 class Producer extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\Name;
-    use \Db\Field\Note;
-    use \Db\Relation\Events;
-    use \Db\Relation\Links;
+    use \Db\Field\Id
+        , \Db\Field\Name
+        , \Db\Field\Note
+        ;
 
-    /** Hydrator functions */
+    use \Db\Relation\Events
+        , \Db\Relation\Links
+        ;
+
     public function getArrayCopy()
     {
         return array(

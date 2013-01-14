@@ -6,7 +6,7 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("list")
+ * @Form\Name("userShow")
  */
 class UserShow extends AbstractEntity
 {
@@ -37,12 +37,11 @@ class UserShow extends AbstractEntity
         , \Db\Field\UserShow\TaperName
         , \Db\Field\UserShow\MicLocation
         ;
+
     use \Db\Relation\Lists
         , \Db\Relation\Users
         ;
 
-
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(

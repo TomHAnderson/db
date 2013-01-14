@@ -12,16 +12,16 @@ use Zend\Form\Annotation as Form;
  */
 class Artist extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\Name;
-    use \Db\Field\NameNormalized;
-    use \Db\Field\Note;
-    use \Db\Relation\Shows;
-    use \Db\Relation\Links;
-    use \Db\Relation\Aliases;
-    use \Db\Relation\Groups;
+    use \Db\Field\Id
+        , \Db\Field\Name
+        , \Db\Field\NameNormalized
+        , \Db\Field\Note
+        , \Db\Relation\Shows
+        , \Db\Relation\Links
+        , \Db\Relation\Aliases
+        , \Db\Relation\Groups
+        ;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(
