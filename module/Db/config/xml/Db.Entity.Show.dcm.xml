@@ -28,8 +28,8 @@
     </many-to-one>
     <one-to-many field="links" target-entity="Db\Entity\ShowLink" mapped-by="show"/>
     <one-to-many field="comments" target-entity="Db\Entity\ShowComment" mapped-by="show"/>
-    <one-to-many field="attendees" target-entity="Etreedb/Entity\Attendance" mapped-by="show"/>
-    <one-to-many field="userShows" target-entity="Etreedb/Entity\UserShow" mapped-by="show"/>
-    <one-to-many field="wanted" target-entity="Etreedb/Entity\Wanted" mapped-by="show"/>
+    <one-to-many field="attendees" target-entity="Db\Entity\Attendance" mapped-by="show"/>
+    <one-to-many field="userShows" target-entity="Db\Entity\UserShow" mapped-by="show"/>
+    <one-to-many field="wanted" target-entity="Db\Entity\Wanted" mapped-by="show"/>
   </entity>
 </doctrine-mapping>

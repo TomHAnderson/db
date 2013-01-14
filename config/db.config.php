@@ -6,7 +6,6 @@ return array(
         'Application',
 
         'Db',
-        'Etreedb',
 
         'DbApplication',
 

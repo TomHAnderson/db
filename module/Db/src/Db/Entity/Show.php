@@ -127,7 +127,6 @@ class Show extends AbstractEntity
         return $this->wanted;
     }
 
-
     /** Hydrator functions */
     public function getArrayCopy()
     {

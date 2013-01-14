@@ -1,16 +1,20 @@
 <?xml version="1.0"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Etreedb/Entity\Attendance">
+  <entity name="Db\Entity\Wanted">
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
-    <field name="note" type="text" nullable="true"/>
-    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="showsAttended">
+    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="wanted">
       <join-columns>
         <join-column name="User_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="show" target-entity="Db\Entity\Show" inversed-by="attendees">
+    <many-to-one field="source" target-entity="Db\Entity\Source" inversed-by="wanted">
+      <join-columns>
+        <join-column name="Source_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="show" target-entity="Db\Entity\Show" inversed-by="wanted">
       <join-columns>
         <join-column name="Show_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
