@@ -11,19 +11,18 @@
     <field name="note" type="text" nullable="true"/>
     <field name="isPublic" type="boolean" nullable="false"/>
     <field name="accessToken" type="string" nullable="true"/>
-    <field name="perms" type="string" nullable="true"/>
+    <field name="permission" type="string" nullable="true"/>
     <field name="createdAt" type="datetime" nullable="false"/>
     <field name="lastRequestAt" type="datetime" nullable="false"/>
-    <field name="hash" type="string" nullable="true"/>
     <field name="subscription" type="string" nullable="true"/>
     <one-to-many field="comments" target-entity="Db\Entity\AbstractComment" mapped-by="user"/>
-    <one-to-many field="showsAttended" target-entity="Db\Entity\Attendance" mapped-by="user"/>
+    <one-to-many field="attendance" target-entity="Db\Entity\Attendance" mapped-by="user"/>
     <one-to-many field="userShows" target-entity="Db\Entity\UserShow" mapped-by="user"/>
-    <one-to-many field="feedback" target-entity="Db\Entity\Feedback" mapped-by="from"/>
-    <one-to-many field="feedbackAbout" target-entity="Db\Entity\Feedback" mapped-by="to"/>
-    <one-to-many field="wanted" target-entity="Db\Entity\Wanted" mapped-by="user"/>
-    <one-to-many field="sentEmail" target-entity="Db\Entity\Mail" mapped-by="from"/>
-    <one-to-many field="receivedEmail" target-entity="Db\Entity\Mail" mapped-by="to"/>
+    <one-to-many field="feedbackFrom" target-entity="Db\Entity\Feedback" mapped-by="from"/>
+    <one-to-many field="feedbackTo" target-entity="Db\Entity\Feedback" mapped-by="to"/>
+    <one-to-many field="wantedBy" target-entity="Db\Entity\Wanted" mapped-by="user"/>
+    <one-to-many field="outbox" target-entity="Db\Entity\Mail" mapped-by="from"/>
+    <one-to-many field="inbox" target-entity="Db\Entity\Mail" mapped-by="to"/>
     <one-to-many field="lists" target-entity="Db\Entity\UserList" mapped-by="user"/>
     <many-to-many field="groups" target-entity="Db\Entity\ArtistGroup" inversed-by="users">
       <join-table name="ArtistGroupUser">

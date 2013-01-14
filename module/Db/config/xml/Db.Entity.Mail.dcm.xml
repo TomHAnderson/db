@@ -7,12 +7,12 @@
     <field name="createdAt" type="datetime" nullable="false"/>
     <field name="note" type="text" nullable="false"/>
     <field name="status" type="string" nullable="true"/>
-    <many-to-one field="from" target-entity="Db\Entity\User" inversed-by="sentEmail">
+    <many-to-one field="from" target-entity="Db\Entity\User" inversed-by="outbox">
       <join-columns>
         <join-column name="fromUser_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="to" target-entity="Db\Entity\User" inversed-by="receivedEmail">
+    <many-to-one field="to" target-entity="Db\Entity\User" inversed-by="inbox">
       <join-columns>
         <join-column name="toUser_id" referenced-column-name="id" nullable="false"/>
       </join-columns>

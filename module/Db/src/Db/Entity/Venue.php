@@ -10,11 +10,16 @@ use Zend\Form\Annotation as Form;
  */
 class Venue extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\City;
-    use \Db\Field\Zipcode;
-    use \Db\Field\Name;
-    use \Db\Field\Note;
+    use \Db\Field\Id
+        , \Db\Field\City
+        , \Db\Field\Zipcode
+        , \Db\Field\Name
+        , \Db\Field\Note
+        ;
+
+    use \Db\Relation\Shows
+        , \Db\Relation\Links
+        ;
 
     /** Hydrator functions */
     public function getArrayCopy()

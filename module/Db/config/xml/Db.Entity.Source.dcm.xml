@@ -4,17 +4,17 @@
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
+    <field name="note" type="text" nullable="false"/>
     <field name="content" type="text" nullable="false"/>
-    <field name="textdoc" type="text" nullable="false"/>
     <field name="mediaSizeCompressed" type="bigint" nullable="true"/>
     <field name="mediaSizeUncompressed" type="bigint" nullable="true"/>
-    <field name="wavDiscCount" type="integer" nullable="true"/>
-    <field name="shnDiscCount" type="integer" nullable="true"/>
+    <field name="discCountWav" type="integer" nullable="true"/>
+    <field name="discCountShn" type="integer" nullable="true"/>
     <field name="createdAt" type="datetime" nullable="false"/>
     <field name="circulatedAt" type="string" nullable="true"/>
     <one-to-many field="links" target-entity="Db\Entity\SourceLink" mapped-by="source"/>
     <one-to-many field="comments" target-entity="Db\Entity\SourceComment" mapped-by="source"/>
     <one-to-many field="userShows" target-entity="Db\Entity\UserShow" mapped-by="source"/>
-    <one-to-many field="wanted" target-entity="Db\Entity\Wanted" mapped-by="source"/>
+    <one-to-many field="wantedBy" target-entity="Db\Entity\Wanted" mapped-by="source"/>
   </entity>
 </doctrine-mapping>

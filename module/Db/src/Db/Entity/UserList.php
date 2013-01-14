@@ -11,12 +11,14 @@ use Zend\Form\Annotation as Form;
  */
 class UserList extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\User;
-    use \Db\Field\Name;
-    use \Db\Field\Abbrev;
-    use \Db\Field\Note;
-    use \Db\Relation\UserShows;
+    use \Db\Field\Id
+        , \Db\Field\User
+        , \Db\Field\Name
+        , \Db\Field\Abbrev
+        , \Db\Field\Note;
+
+    use \Db\Relation\UserShows
+        , \Db\Relation\Shows;
 
     /** Hydrator functions */
     public function getArrayCopy()

@@ -30,6 +30,6 @@
     <one-to-many field="comments" target-entity="Db\Entity\ShowComment" mapped-by="show"/>
     <one-to-many field="attendees" target-entity="Db\Entity\Attendance" mapped-by="show"/>
     <one-to-many field="userShows" target-entity="Db\Entity\UserShow" mapped-by="show"/>
-    <one-to-many field="wanted" target-entity="Db\Entity\Wanted" mapped-by="show"/>
+    <one-to-many field="wantedBy" target-entity="Db\Entity\Wanted" mapped-by="show"/>
   </entity>
 </doctrine-mapping>

@@ -12,18 +12,32 @@ use ZfcUser\Entity\UserInterface;
  */
 class User extends AbstractEntity implements UserInterface
 {
-    use \Db\Field\Id;
-    use \Db\Field\DisplayName;
-    use \Db\Field\Username;
-    use \Db\Field\Email;
-    use \Db\Field\Password;
-    use \Db\Field\Note;
-    use \Db\Field\IsPublic;
-    use \Db\Field\accessToken;
-    use \Db\Field\Permission;
-    use \Db\Field\CreatedAt;
-    use \Db\Field\LastRequestAt;
-    use \Db\Field\Subscription;
+    use \Db\Field\Id
+        , \Db\Field\DisplayName
+        , \Db\Field\Username
+        , \Db\Field\Email
+        , \Db\Field\Password
+        , \Db\Field\Note
+        , \Db\Field\IsPublic
+        , \Db\Field\accessToken
+        , \Db\Field\Permission
+        , \Db\Field\CreatedAt
+        , \Db\Field\LastRequestAt
+        , \Db\Field\Subscription;
+
+    use \Db\Relation\Lists
+        , \Db\Relation\Groups
+        , \Db\Relation\Friends
+        , \Db\Relation\ReverseFriends
+        , \Db\Relation\Comments
+        , \Db\Relation\Attendance
+        , \Db\Relation\UserShows
+        , \Db\Relation\FeedbackFrom
+        , \Db\Relation\FeedbackTo
+        , \Db\Relation\WantedBy
+        , \Db\Relation\Inbox
+        , \Db\Relation\Outbox
+        , \Db\Relation\FieldConfig;
 
     protected $state;
 

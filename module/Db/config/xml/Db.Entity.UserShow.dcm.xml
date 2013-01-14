@@ -13,7 +13,7 @@
     <field name="scmsStatus" type="string" nullable="true"/>
     <field name="showRating" type="string" nullable="true"/>
     <field name="soundRating" type="string" nullable="true"/>
-    <field name="microphones" type="time" nullable="true"/>
+    <field name="microphone" type="text" nullable="true"/>
     <field name="generation" type="integer" nullable="true"/>
     <field name="note" type="text" nullable="true"/>
     <field name="jCardComment" type="text" nullable="true"/>

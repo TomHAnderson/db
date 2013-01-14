@@ -11,8 +11,13 @@ use Zend\Form\Annotation as Form;
  */
 class Zipcode extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\Name;
+    use \Db\Field\Id
+        , \Db\Field\Name
+        ;
+    use \Db\Relation\Venues
+        , \Db\Relation\Events
+        , \Db\Relation\Cities
+        ;
 
     /** Hydrator functions */
     public function getArrayCopy()
