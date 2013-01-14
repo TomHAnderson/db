@@ -2,7 +2,6 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -22,13 +21,13 @@ class Feedback extends AbstractEntity
         , \Db\Relation\To
         ;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(
             'id' => $this->getId(),
             'note' => $this->getNote(),
             'score' => $this->getScore(),
+            'reply' => $this->getReply();
             'createdAt' => $this->getCreatedAt()->format('r'),
         );
     }
