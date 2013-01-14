@@ -10,4 +10,9 @@ trait Id
     {
         return $this->id;
     }
+
+    public function setId($value)
+    {
+        throw new \Exception('Cannot set id');
+    }
 }
