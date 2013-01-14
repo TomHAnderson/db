@@ -4,7 +4,7 @@
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
-    <field name="zipcode" type="string" unique="true" nullable="false"/>
+    <field name="name" type="string" unique="true" nullable="false"/>
     <one-to-many field="venues" target-entity="Db\Entity\Venue" mapped-by="zipcode"/>
     <one-to-many field="events" target-entity="Db\Entity\Event" mapped-by="zipcode"/>
     <many-to-many field="cities" target-entity="Db\Entity\City" mapped-by="zipcodes"/>

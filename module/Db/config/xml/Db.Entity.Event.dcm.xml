@@ -6,10 +6,9 @@
     </id>
     <field name="name" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
-    <field name="address" type="text" nullable="true"/>
     <field name="startAt" type="date" nullable="true"/>
     <field name="endAt" type="date" nullable="true"/>
-    <many-to-one field="festival" target-entity="Db\Entity\Producer" inversed-by="events">
+    <many-to-one field="producer" target-entity="Db\Entity\Producer" inversed-by="events">
       <join-columns>
         <join-column name="Producer_id" referenced-column-name="id" nullable="false"/>
       </join-columns>

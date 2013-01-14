@@ -1,19 +1,9 @@
 <?xml version="1.0"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="Db\Entity\SourceComment">
-    <id name="id" type="integer">
-      <generator strategy="AUTO"/>
-    </id>
-    <field name="note" type="text" nullable="false"/>
-    <field name="createdAt" type="datetime" nullable="false"/>
     <many-to-one field="source" target-entity="Db\Entity\Source" inversed-by="comments">
       <join-columns>
-        <join-column name="Source_id" referenced-column-name="id" nullable="false"/>
-      </join-columns>
-    </many-to-one>
-    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="comments">
-      <join-columns>
-        <join-column name="User_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="Source_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

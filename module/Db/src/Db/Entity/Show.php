@@ -20,6 +20,7 @@ class Show extends AbstractEntity
     use \Db\Field\Venue;
     use \Db\Field\Event;
     use \Db\Field\Links;
+    use \Db\Field\Comments;
 
     protected $showdate;
 
@@ -96,6 +97,35 @@ class Show extends AbstractEntity
         return $this;
     }
 
+    protected $attendees;
+
+    public function getAttendees()
+    {
+        if (!$this->attendees)
+            $this->attendees = new ArrayCollection();
+
+        return $this->attendees;
+    }
+
+    protected $userShows;
+
+    public function getUserShows()
+    {
+        if (!$this->userShows)
+            $this->userShows = new ArrayCollection();
+
+        return $this->userShows;
+    }
+
+    protected $wanted;
+
+    public function getWanted()
+    {
+        if (!$this->wanted)
+            $this->wanted = new ArrayCollection();
+
+        return $this->wanted;
+    }
 
 
     /** Hydrator functions */

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Db\Entity\AbstractComment" inheritance-type="SINGLE_TABLE">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="note" type="text" nullable="false"/>
+    <field name="createdAt" type="datetime" nullable="false"/>
+    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="comments">
+      <join-columns>
+        <join-column name="User_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <discriminator-column name="typeDescriminator" length="255" type="text"/>
+    <discriminator-map>
+      <discriminator-mapping class="Db\Entity\ShowComment" value="Show"/>
+      <discriminator-mapping class="Db\Entity\SourceComment" value="Source"/>
+    </discriminator-map>
+  </entity>
+</doctrine-mapping>

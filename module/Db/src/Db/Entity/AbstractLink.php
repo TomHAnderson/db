@@ -15,8 +15,7 @@ class AbstractLink extends AbstractEntity {
     use \Db\Field\Title;
     use \Db\Field\Url;
     use \Db\Field\Description;
-
-    protected $typeDescriminator;
+    use \Db\Field\TypeDescriminator;
 
     /** Hydrator functions */
     public function getArrayCopy()
@@ -35,14 +34,5 @@ class AbstractLink extends AbstractEntity {
         $this->setTitle(isset($data['title']) ? $data['title']: null);
         $this->setUrl(isset($data['url']) ? $data['url']: null);
         $this->setDescription(isset($data['description']) ? $data['description']: null);
-    }
-
-    public function getTypeDescriminator() {
-        return $this->typeDescriminator;
-    }
-
-    public function setTypeDescriminator($value) {
-        $this->typeDescriminator = $value;
-        return $this;
     }
 }

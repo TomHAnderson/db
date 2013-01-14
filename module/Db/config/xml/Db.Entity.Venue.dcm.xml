@@ -3,7 +3,6 @@
   <entity name="Db\Entity\Venue">
     <id name="id" type="integer"/>
     <field name="name" type="string" nullable="false"/>
-    <field name="address" type="text" nullable="true"/>
     <field name="note" type="text" nullable="true"/>
     <many-to-one field="zipcode" target-entity="Db\Entity\Zipcode" inversed-by="venues">
       <join-columns>

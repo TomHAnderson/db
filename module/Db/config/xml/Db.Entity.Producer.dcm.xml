@@ -6,7 +6,7 @@
     </id>
     <field name="name" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
-    <one-to-many field="events" target-entity="Db\Entity\Event" mapped-by="festival"/>
+    <one-to-many field="events" target-entity="Db\Entity\Event" mapped-by="producer"/>
     <one-to-many field="links" target-entity="Db\Entity\ProducerLink" mapped-by="producer"/>
   </entity>
 </doctrine-mapping>
