@@ -2,8 +2,6 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**

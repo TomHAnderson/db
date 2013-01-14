@@ -2,7 +2,6 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -11,14 +10,16 @@ use Zend\Form\Annotation as Form;
  */
 class City extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\Name;
-    use \Db\Field\State;
-    use \Db\Relation\Venues;
-    use \Db\Relation\Events;
-    use \Db\Relation\Zipcodes;
+    use \Db\Field\Id
+        , \Db\Field\Name
+        , \Db\Field\State
+        ;
 
-    /** Hydrator functions */
+    use \Db\Relation\Venues
+        , \Db\Relation\Events
+        , \Db\Relation\Zipcodes
+        ;
+
     public function getArrayCopy()
     {
         return array(

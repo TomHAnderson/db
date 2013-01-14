@@ -2,8 +2,6 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -11,11 +9,12 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("abstractLink")
  */
 class AbstractLink extends AbstractEntity {
-    use \Db\Field\Id;
-    use \Db\Field\Title;
-    use \Db\Field\Url;
-    use \Db\Field\Description;
-    use \Db\Field\TypeDescriminator;
+    use \Db\Field\Id
+        , \Db\Field\Title
+        , \Db\Field\Url
+        , \Db\Field\Description
+        , \Db\Field\TypeDescriminator
+        ;
 
     /** Hydrator functions */
     public function getArrayCopy()

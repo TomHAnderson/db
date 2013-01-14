@@ -2,7 +2,6 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -12,7 +11,7 @@ use Zend\Form\Annotation as Form;
 class Event extends AbstractEntity
 {
     use \Db\Field\Id;
-        , \Db\Relation\Producer
+        , \Db\Field\Producer
         , \Db\Field\City
         , \Db\Field\Zipcode
         , \Db\Field\Name
@@ -25,7 +24,6 @@ class Event extends AbstractEntity
         , \Db\Relation\Links
         ;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(
@@ -40,6 +38,7 @@ class Event extends AbstractEntity
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
+        $this->setName(isset($data['note']) ? $data['note']: null);
     }
 }
 

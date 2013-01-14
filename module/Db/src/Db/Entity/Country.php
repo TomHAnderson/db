@@ -2,7 +2,6 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -11,12 +10,14 @@ use Zend\Form\Annotation as Form;
  */
 class Country extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\Name;
-    use \Db\Field\Abbrev;
-    use \Db\Relation\States;
+    use \Db\Field\Id
+        , \Db\Field\Name
+        , \Db\Field\Abbrev
+        ;
 
-    /** Hydrator functions */
+    use \Db\Relation\States
+        ;
+
     public function getArrayCopy()
     {
         return array(

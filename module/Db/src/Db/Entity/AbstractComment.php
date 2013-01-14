@@ -2,22 +2,21 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("abstractComment")
  */
 class AbstractComment extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\User;
-    use \Db\Field\Note;
-    use \Db\Field\CreatedAt;
-    use \Db\Field\TypeDescriminator;
+    use \Db\Field\Id
+        , \Db\Field\User
+        , \Db\Field\Note
+        , \Db\Field\CreatedAt
+        , \Db\Field\TypeDescriminator
+        ;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(

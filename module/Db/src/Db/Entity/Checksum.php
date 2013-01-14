@@ -2,7 +2,6 @@
 namespace Db\Entity;
 
 use Application\Entity\AbstractEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Form\Annotation as Form;
 
 /**
@@ -11,12 +10,12 @@ use Zend\Form\Annotation as Form;
  */
 class Checksum extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\Name;
-    use \Db\Field\Content;
-    use \Db\Field\Source;
+    use \Db\Field\Id
+        , \Db\Field\Name
+        , \Db\Field\Content
+        , \Db\Field\Source
+        ;
 
-    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(
