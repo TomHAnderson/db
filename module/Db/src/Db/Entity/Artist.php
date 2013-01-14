@@ -16,27 +16,10 @@ class Artist extends AbstractEntity
     use \Db\Field\Name;
     use \Db\Field\NameNormalized;
     use \Db\Field\Note;
-    use \Db\Field\Shows;
-    use \Db\Field\Links;
-
-    protected $aliases;
-
-    public function getAliases() {
-        if (!$this->aliases)
-            $this->aliases = new ArrayCollection();
-
-        return $this->aliases;
-    }
-
-    protected $groups;
-
-    public function getGroups() {
-        if (!$this->groups)
-            $this->groups = new ArrayCollection();
-
-        return $this->groups;
-    }
-
+    use \Db\Relation\Shows;
+    use \Db\Relation\Links;
+    use \Db\Relation\Aliases;
+    use \Db\Relation\Groups;
 
     /** Hydrator functions */
     public function getArrayCopy()
@@ -53,6 +36,6 @@ class Artist extends AbstractEntity
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNameNormalized(isset($data['nameNormalized']) ? $data['nameNormalized']: null);
-        $this->setDescription(isset($data['description']) ? $data['description']: null);
+        $this->setNote(isset($data['note']) ? $data['note']: null);
     }
 }

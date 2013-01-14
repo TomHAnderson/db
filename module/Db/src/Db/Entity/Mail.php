@@ -24,7 +24,8 @@ class Mail extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'abbrev' => $this->getAbbrev(),
+            'createdAt' => $this->getCreatedAt()->format('r'),
+            'status' => $this->getStatus(),
             'note' => $this->getNote(),
         );
     }

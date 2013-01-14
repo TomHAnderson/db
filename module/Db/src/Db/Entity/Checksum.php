@@ -7,7 +7,7 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("checksum")
  */
 class Checksum extends AbstractEntity
 {
@@ -15,7 +15,6 @@ class Checksum extends AbstractEntity
     use \Db\Field\Name;
     use \Db\Field\Content;
     use \Db\Field\Source;
-
 
     /** Hydrator functions */
     public function getArrayCopy()

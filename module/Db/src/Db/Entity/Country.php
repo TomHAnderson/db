@@ -7,14 +7,14 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("country")
  */
 class Country extends AbstractEntity
 {
     use \Db\Field\Id;
     use \Db\Field\Name;
     use \Db\Field\Abbrev;
-    use \Db\Field\States;
+    use \Db\Relation\States;
 
     /** Hydrator functions */
     public function getArrayCopy()

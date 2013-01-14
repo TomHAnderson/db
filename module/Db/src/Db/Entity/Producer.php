@@ -14,8 +14,8 @@ class Producer extends AbstractEntity
     use \Db\Field\Id;
     use \Db\Field\Name;
     use \Db\Field\Note;
-    use \Db\Field\Events;
-    use \Db\Field\Links;
+    use \Db\Relation\Events;
+    use \Db\Relation\Links;
 
     /** Hydrator functions */
     public function getArrayCopy()
@@ -30,6 +30,6 @@ class Producer extends AbstractEntity
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setAbbrev(isset($data['note']) ? $data['note']: null);
+        $this->setNote(isset($data['note']) ? $data['note']: null);
     }
 }

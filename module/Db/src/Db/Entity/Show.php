@@ -14,118 +14,20 @@ class Show extends AbstractEntity
 {
     use \Db\Field\Id;
     use \Db\Field\Name;
+    use \Db\Field\Showdate;
+    use \Db\Field\ShowdateAt;
+    use \Db\Field\Set1;
+    use \Db\Field\Set2;
+    use \Db\Field\Set3;
     use \Db\Field\Note;
-
     use \Db\Field\Artist;
     use \Db\Field\Venue;
     use \Db\Field\Event;
-    use \Db\Field\Links;
-    use \Db\Field\Comments;
-
-    protected $showdate;
-
-    public function getShowdate()
-    {
-        return $this->showdate;
-    }
-
-    public function setShowdate($showdate) {
-        $this->showdate = $showdate;
-        return $this;
-    }
-
-    protected $showdateAt;
-
-    public function getShowdateAt()
-    {
-        return $this->showdateAt;
-    }
-
-    public function setShowdateAt(\DateTime $showdateAt) {
-        $this->showdateAt = $showdateAt;
-        return $this;
-    }
-
-    /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "textarea"})
-     * @Form\Attributes({"id": "set1"})
-     * @Form\Options({"label": "Set 1"})
-     */
-    protected $set1;
-
-    public function getSet1() {
-        return $this->set1;
-    }
-
-    public function setSet1($value) {
-        $this->set1 = $value;
-        return $this;
-    }
-
-    /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "textarea"})
-     * @Form\Attributes({"id": "set2"})
-     * @Form\Options({"label": "Set 2"})
-     */
-    protected $set2;
-
-    public function getSet2() {
-        return $this->set2;
-    }
-
-    public function setSet2($value) {
-        $this->set2 = $value;
-        return $this;
-    }
-
-    /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "textarea"})
-     * @Form\Attributes({"id": "set3"})
-     * @Form\Options({"label": "Set 3"})
-     */
-    protected $set3;
-
-    public function getSet3() {
-        return $this->set3;
-    }
-
-    public function setSet3($value) {
-        $this->set3 = $value;
-        return $this;
-    }
-
-    protected $attendees;
-
-    public function getAttendees()
-    {
-        if (!$this->attendees)
-            $this->attendees = new ArrayCollection();
-
-        return $this->attendees;
-    }
-
-    protected $userShows;
-
-    public function getUserShows()
-    {
-        if (!$this->userShows)
-            $this->userShows = new ArrayCollection();
-
-        return $this->userShows;
-    }
-
-    protected $wanted;
-
-    public function getWanted()
-    {
-        if (!$this->wanted)
-            $this->wanted = new ArrayCollection();
-
-        return $this->wanted;
-    }
+    use \Db\Relation\Links;
+    use \Db\Relation\Comments;
+    use \Db\Relation\Attendees;
+    use \Db\Relation\UserShows;
+    use \Db\Relation\WantedBy;
 
     /** Hydrator functions */
     public function getArrayCopy()
@@ -133,7 +35,11 @@ class Show extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'nameNormalized' => $this->getNameNormalized(),
+            'showdate' => $this->getShowdate(),
+            'showdateAt' => $this->getShowdateAt()->format('r'),
+            'set1' => $this->getSet1(),
+            'set2' => $this->getSet2(),
+            'set3' => $this->getSet3(),
             'note' => $this->getNote(),
         );
     }
@@ -141,7 +47,12 @@ class Show extends AbstractEntity
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setNameNormalized(isset($data['nameNormalized']) ? $data['nameNormalized']: null);
-        $this->setDescription(isset($data['description']) ? $data['description']: null);
+        $this->setShowdate(isset($data['showdate']) ? $data['showdate']: null);
+        $this->setShowdateAt(isset($data['showdateAt']) ? $data['showdateAt']: null);
+        $this->setSet1(isset($data['set1']) ? $data['set1']: null);
+        $this->setSet1(isset($data['set2']) ? $data['set2']: null);
+        $this->setSet1(isset($data['set3']) ? $data['set3']: null);
+        $this->setSet1(isset($data['note']) ? $data['note']: null);
     }
 }
+

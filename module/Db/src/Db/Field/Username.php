@@ -3,7 +3,7 @@
 namespace Db\Field;
 use Zend\Form\Annotation as Form;
 
-trait DisplayName
+trait Username
 {
     /**
      * @Form\Type("Zend\Form\Element")

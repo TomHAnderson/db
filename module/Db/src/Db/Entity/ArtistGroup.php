@@ -7,15 +7,15 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("artistGroup")
  */
 class ArtistGroup extends AbstractEntity
 {
     use \Db\Field\Id;
     use \Db\Field\Name;
     use \Db\Field\Note;
-    use \Db\Field\Artists;
-    use \Db\Field\Users;
+    use \Db\Relation\Artists;
+    use \Db\Relation\Users;
 
     /** Hydrator functions */
     public function getArrayCopy()

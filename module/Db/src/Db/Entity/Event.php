@@ -7,7 +7,7 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("event")
  */
 class Event extends AbstractEntity
 {
@@ -17,34 +17,10 @@ class Event extends AbstractEntity
     use \Db\Field\Zipcode;
     use \Db\Field\Name;
     use \Db\Field\Note;
-    use \Db\Field\Shows;
-    use \Db\Field\Links;
-
-    protected $startAt;
-
-    public function getStartAt()
-    {
-        return $this->startAt;
-    }
-
-    public function setStartAt(\DateTime $value)
-    {
-        $this->startAt = $value;
-        return $this;
-    }
-
-    protected $endAt;
-
-    public function getEndAt()
-    {
-        return $this->endAt;
-    }
-
-    public function setEndAt(\DateTime $value)
-    {
-        $this->endAt = $value;
-        return $this;
-    }
+    use \Db\Field\StartAt;
+    use \Db\Field\EndAt;
+    use \Db\Relation\Shows;
+    use \Db\Relation\Links;
 
     /** Hydrator functions */
     public function getArrayCopy()

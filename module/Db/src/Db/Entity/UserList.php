@@ -16,7 +16,7 @@ class UserList extends AbstractEntity
     use \Db\Field\Name;
     use \Db\Field\Abbrev;
     use \Db\Field\Note;
-    use \Db\Field\UserShows;
+    use \Db\Relation\UserShows;
 
     /** Hydrator functions */
     public function getArrayCopy()

@@ -7,16 +7,16 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("artist")
+ * @Form\Name("city")
  */
 class City extends AbstractEntity
 {
     use \Db\Field\Id;
     use \Db\Field\Name;
     use \Db\Field\State;
-    use \Db\Field\Venues;
-    use \Db\Field\Events;
-    use \Db\Field\Zipcodes;
+    use \Db\Relation\Venues;
+    use \Db\Relation\Events;
+    use \Db\Relation\Zipcodes;
 
     /** Hydrator functions */
     public function getArrayCopy()
