@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace DbApplication;
+namespace DbEtreeOrg;
 
 return array(
     'router' => array(
@@ -56,8 +56,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'index' => 'DbApplication\Controller\IndexController',
-            'user' => 'DbApplication\Controller\UserController',
+            'index' => 'DbEtreeOrg\Controller\IndexController',
+            'user' => 'DbEtreeOrg\Controller\UserController',
         ),
     ),
     'view_manager' => array(

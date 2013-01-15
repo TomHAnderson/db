@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace DbApplication\Controller;
+namespace DbEtreeOrg\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -16,16 +16,15 @@ use Db\Entity\User as UserEntity;
 
 use Zend\Form\Annotation\AnnotationBuilder;
 
-class UserController extends AbstractActionController
+class IndexController extends AbstractActionController
 {
-    public function editAction()
+    public function indexAction()
     {
         $modelUser = $this->getServiceLocator()->get('modelUser');
 
-        $user = $modelUser->getAuthenticatedUser();
-        if (!$user)
-            throw new \Exception('User is not authenticated');
+        $user = new UserEntity;
 
+        $user->setUsername('testing');
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($user);
 
@@ -34,7 +33,7 @@ class UserController extends AbstractActionController
             'attributes' => array(
                 'id' => 'submit',
                 'type'  => 'submit',
-                'value' => 'Submit',
+                'value' => 'Save',
             ),
         ));
 
@@ -43,13 +42,13 @@ class UserController extends AbstractActionController
             $form->setUseInputFilterDefaults(false);
             $form->setInputFilter($modelUser->getInputFilter($user));
 
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $user->exchangeArray($form->getData());
+        }
 
-                $modelUser->create($edit);
-                die('created');
-            }
+        if ($this->getRequest()->isPost() && $form->isValid()) {
+            $data = $form->getData();
+
+            $modelUser->create($user);
+            die('created');
         }
 
         return array(
