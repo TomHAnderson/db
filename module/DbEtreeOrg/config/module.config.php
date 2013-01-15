@@ -32,6 +32,16 @@ return array(
                     ),
                 ),
             ),
+            'logout' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/user/takelogout',
+                    'defaults' => array(
+                        'controller' => 'user',
+                        'action'     => 'takelogout',
+                    ),
+                ),
+            ),
 
             'default' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',

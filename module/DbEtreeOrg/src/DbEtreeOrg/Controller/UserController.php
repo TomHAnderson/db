@@ -23,6 +23,12 @@ class UserController extends AbstractActionController
         return $this->plugin('redirect')->toUrl('/user/profile');
     }
 
+    public function takelogoutAction()
+    {
+        session_destroy();
+        return $this->plugin('redirect')->toUrl('/');
+    }
+
     public function profileAction()
     {
         $modelUser = $this->getServiceLocator()->get('modelUser');
