@@ -11,7 +11,7 @@ trait EntityManager
         return $this->entityManager;
     }
 
-    public function setEm(DoctrineEntityManager $entityManager) {
+    public function setEntityManager(DoctrineEntityManager $entityManager) {
         $this->entityManager = $entityManager;
         return $this;
     }

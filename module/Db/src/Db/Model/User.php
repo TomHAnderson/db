@@ -6,7 +6,7 @@ use Db\Model\AbstractModel;
 use Db\Entity\User as UserEntity;
 use Zend\InputFilter\InputFilter;
 
-class User extends AbstractModel
+final class User extends AbstractModel
 {
     use Component\Entity
         , \Db\Field\DisplayName

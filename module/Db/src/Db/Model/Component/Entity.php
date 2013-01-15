@@ -4,37 +4,39 @@ namespace Db\Model\Component;
 
 trait Entity
 {
+    use EntityManager;
+
     abstract function getEntityName();
 
     abstract function getDefaultSort();
 
     public function find($id)
     {
-        return $this->getEm()->getRepository($this->getEntityName())->find($id);
+        return $this->getEntityManager()->getRepository($this->getEntityName())->find($id);
     }
 
     public function findOneBy($params)
     {
-        return $this->getEm()->getRepository($this->getEntityName())->findOneBy($params);
+        return $this->getEntityManager()->getRepository($this->getEntityName())->findOneBy($params);
     }
 
     public function findAll($sort = null)
     {
         if (!$sort) $sort = $this->getDefaultSort();
-        return $this->getEm()->getRepository($this->getEntityName())->findBy(array(), $sort);
+        return $this->getEntityManager()->getRepository($this->getEntityName())->findBy(array(), $sort);
     }
 
     public function findBy($search, $sort = null)
     {
         if (!$sort) $sort = $this->getDefaultSort();
-        return $this->getEm()->getRepository($this->getEntityName())->findBy($search, $sort);
+        return $this->getEntityManager()->getRepository($this->getEntityName())->findBy($search, $sort);
     }
 
     public function findLike($search, $sort = null)
     {
         if (!$sort) $sort = $this->getDefaultSort();
 
-        $query = $this->getEm()->getRepository($this->getEntityName())->createQueryBuilder('s');
+        $query = $this->getEntityManager()->getRepository($this->getEntityName())->createQueryBuilder('s');
         $i = 0;
         foreach ($search as $column => $value) {
             $paramName = md5(uniqid());
