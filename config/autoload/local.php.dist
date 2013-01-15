@@ -1,6 +1,6 @@
 <?php
 /**
- * Local.php.dist
+ * Local.php
  */
 
 return array(
@@ -21,7 +21,7 @@ return array(
 
     'keen-io' => array(
         'projectId' => '',
-        'apiKey' => ''
+        'apiKey' => '',
     ),
 
     'di' => array(
