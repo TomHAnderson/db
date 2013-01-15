@@ -3,7 +3,7 @@
  * The application for db.etree.org
  */
 
-namespace DbApplication;
+namespace DbEtreeOrg;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
