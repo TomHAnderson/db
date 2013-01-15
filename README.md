@@ -1,11 +1,11 @@
-ZendSkeletonApplication
-=======================
+db.etree.org & etreedb.org
+==========================
 
 Introduction
 ------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+db.etree.org is a setlist database.  
+etreedb.org is a database of shows owned by users of the sites.  
+Both sites run on this same codebase.
 
 
 Installation
@@ -23,30 +23,28 @@ Alternately, clone the repository and manually invoke `composer` using the shipp
 `composer.phar`:
 
     cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
-    php composer.phar self-update
+    git clone git://github.com/TomHAnderson/db.git
+    cd db
     php composer.phar install
-
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
 
 Another alternative for downloading the project is to grab it via `curl`, and
 then pass it to `tar`:
 
     cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
+    curl -#L https://github.com/TomHAnderson/db/tarball/master | tar xz --strip-components=1
 
 You would then invoke `composer` to install dependencies per the previous
 example.
 
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
-
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
-
 Virtual Host
 ------------
-Afterwards, set up a virtual host to point to the public/ directory of the
-project and you should be ready to go!
+To run a virtual host for db.etree.org run `php -S localhost:8080` from the public directory.
+
+
+Install
+-------
+Create a local db database
+
+Copy ~/config/autoload/local.php.dist to ~/config/autoload/local.php and edit it relpacing any '' with the appropriate value.
+
+Browse to http://localhost:8080 and follow the installation
