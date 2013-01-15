@@ -23,4 +23,18 @@ trait Email
         $this->email = $value;
         return $this;
     }
+
+    private function inputFilterInputEmail($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'email',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'EmailAddress',
+                ),
+            ),
+        ));
+    }
 }

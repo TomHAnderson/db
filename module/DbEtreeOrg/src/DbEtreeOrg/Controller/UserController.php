@@ -18,6 +18,24 @@ use Zend\Form\Annotation\AnnotationBuilder;
 
 class UserController extends AbstractActionController
 {
+    public function takeloginAction()
+    {
+        return $this->plugin('redirect')->toUrl('/user/profile');
+    }
+
+    public function profileAction()
+    {
+        $modelUser = $this->getServiceLocator()->get('modelUser');
+
+        $user = $modelUser->getAuthenticatedUser();
+        if (!$user)
+            throw new \Exception('User is not authenticated');
+
+        return array(
+            'user' => $user
+        );
+    }
+
     public function editAction()
     {
         $modelUser = $this->getServiceLocator()->get('modelUser');
@@ -28,6 +46,7 @@ class UserController extends AbstractActionController
 
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($user);
+        $form->setData($user->getArrayCopy());
 
         $form->add(array(
             'name' => 'submit',
@@ -47,8 +66,8 @@ class UserController extends AbstractActionController
                 $data = $form->getData();
                 $user->exchangeArray($form->getData());
 
-                $modelUser->create($edit);
-                die('created');
+                $modelUser->edit($user);
+                return $this->plugin('redirect')->toUrl('/user/profile');
             }
         }
 

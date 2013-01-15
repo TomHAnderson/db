@@ -22,6 +22,16 @@ return array(
                     ),
                 ),
             ),
+            'takelogin' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/user/takelogin',
+                    'defaults' => array(
+                        'controller' => 'user',
+                        'action'     => 'takelogin',
+                    ),
+                ),
+            ),
 
             'default' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
