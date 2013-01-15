@@ -27,19 +27,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/">db.etree.org</a>
+                    <a class="brand" href="/"><img src="/images/db-logo.png"></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <?php
                             if (isset($_SESSION['Zend_Auth']) and isset($_SESSION['Zend_Auth']['storage'])) {
                             ?>
                             <li id="user-menu" class="dropdown">
-                                <a id="userdrop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                <a id="user-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
                                     <?php echo $this->gravatar($this->zfcUserIdentity()->getEmail(), array('img_size' => 24)); ?>
                                     <?php echo $this->zfcUserDisplayName() ?>
                                     <b class="caret"></b>
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="userdrop" role="menu">
+                                <ul class="dropdown-menu" aria-labelledby="user-drop" role="menu">
                                     <li role="menuitem"><a href="/user/profile">Profile</a></li>
                                     <li role="menuitem"><a href="/user/logout">Logout</a></li>
                                 </ul>
@@ -54,10 +54,31 @@
                         </ul>
 
                         <ul class="nav">
-                            <li class=""><a href="/artist"><?php echo $this->translate('Artists') ?></a></li>
+                            <li class="dropdown">
+                                <a id="artist-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <?php echo $this->translate('Artists') ?>
+                                    <b class="caret"></b>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="artist-drop" role="menu">
+                                    <li role="menuitem">
+                                        <a href="/artist/browse">Browse</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a href="/artist/create">Create</a>
+                                    </li>
+                                </ul>
+                            </li>
+
                             <li class=""><a href="/show"><?php echo $this->translate('Shows') ?></a></li>
                             <li class=""><a href="/source"><?php echo $this->translate('Sources') ?></a></li>
                         </ul>
+
+                            <form class="navbar-search pull-left" name="search">
+                                <input type="text" name="name" id="name" maxlength="85" size="32" autocomplete="off" placeholder="artist name">
+                                <input type="text" name="date" id="date" maxlength="10" size="10" placeholder="show date">
+                                <input type="submit" value="search">
+                            </form>
                     </div>
                 </div>
             </div>
@@ -70,6 +91,29 @@
             </footer>
         </div>
         <?php echo $this->inlineScript() ?>
+
+        <script>
+
+        require(['datemask', 'bootstrap.min'], function() {
+            $('#date').datemask();
+
+            $('#name').typeahead({
+                source: function(query, process) {
+                    return $.ajax({
+                        url: '/db/artists/ajaxlookup',
+                        type: 'get',
+                        data: {query: query},
+                        dataType: 'json',
+                        success: function(json) {
+                            return typeof json.options == 'undefined' ? false : process(json.options);
+                        }
+                    });
+                },
+                suppressKeyPressRepeat: true,
+            });
+        });
+
+        </script>
 
         <script type="text/javascript">
 

@@ -1,5 +1,3 @@
-require(['jquery', 'modernizr.min', 'bootstrap.min'], function($) {
-    $(function() {
-        // alert('main.js loaded');
-    });
+require(['modernizr.min', 'bootstrap.min', 'datemask'], function($) {
+    //alert('main.js loaded');
 });
