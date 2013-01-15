@@ -1,0 +1,160 @@
+Field-Level Abstraction of Entities
+
+The abstraction of a database through an object relational mapper has been hindered by duplicated code in entities and models.
+In PHP abstraction of the fieldsin an entity has not been possible until the introduction of Traits in PHP 5.4.
+
+Where a field is a data column or a one to many identifier on an entity and where a relation is a many to one identifier
+on an entity, each of these may be abstracted to it's own trait to avoid duplication of form annotations, getters and setters, 
+property declarations, and input filters.
+
+
+Note Field Trait
+
+<?php
+
+namespace Db\Field;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
+
+trait Note
+{
+    /**
+     * @Form\Type("Zend\Form\Element")
+     * @Form\Attributes({"type": "textarea"})
+     * @Form\Attributes({"id": "note"})
+     * @Form\Options({"label": "Note"})
+     */
+    protected $note;
+
+    public function getNote() {
+        return $this->note;
+    }
+
+    public function setNote($value) {
+        $this->note = $value;
+        return $this;
+    }
+
+	// Input filters are named 'inputFilterInput[TraitName]'
+	// PHP does not allow aliased abstract functions in traits used by traits
+    private function inputFilterInputNote($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'note',
+            'required' => false,
+            'validators' => array(),
+        ));
+    }
+}
+
+
+Zipcodes Relation Trait, used on a City entity
+
+<?php
+
+namespace Db\Relation;
+use Zend\Form\Annotation as Form;
+use Doctrine\Common\Collections\ArrayCollection;
+
+trait Zipcodes
+{
+    protected $zipcodes;
+
+    public function getZipcodes()
+    {
+        if (!$this->zipcodes)
+            $this->zipcodes = new ArrayCollection();
+
+        return $this->zipcodes;
+    }
+}
+
+
+Entity Leveraging Field Traits
+
+<?php
+namespace Db\Entity;
+
+use Application\Entity\AbstractEntity;
+use Zend\Form\Annotation as Form;
+
+/**
+ * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
+ * @Form\Name("feedback")
+ */
+class Feedback extends AbstractEntity
+{
+    use \Db\Field\Id
+        , \Db\Field\From
+        , \Db\Field\To
+        , \Db\Field\Score
+        , \Db\Field\Note
+        , \Db\Field\Reply
+        , \Db\Field\CreatedAt
+        ;
+
+    public function getArrayCopy()
+    {
+        return array(
+            'id' => $this->getId(),
+            'note' => $this->getNote(),
+            'score' => $this->getScore(),
+            'reply' => $this->getReply(),
+            'createdAt' => $this->getCreatedAt()->format('r'),
+        );
+    }
+
+    public function exchangeArray($data)
+    {
+        $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setScore(isset($data['score']) ? $data['score']: null);
+        $this->setReply(isset($data['reply']) ? $data['reply']: null);
+    }
+}
+
+
+Model Leveraging Field Traits
+
+namespace Db\Model;
+
+use Db\Model\AbstractModel;
+use Db\Entity\Feedback as FeedbackEntity;
+use Zend\InputFilter\InputFilter;
+
+class Feedback extends AbstractModel
+{
+    use \Db\Field\Score
+        , \Db\Field\Note
+        , \Db\Field\Reply
+        ;
+
+    public function getInputFilter($entity = null)
+    {
+        $inputFilter = new InputFilter();
+
+        $inputFilter->add($this->inputFilterInputScore());
+        $inputFilter->add($this->inputFilterInputNote());
+        $inputFilter->add($this->inputFilterInputReply());
+
+        return $inputFilter;
+    }
+}
+
+
+Field-Level Abstraction keeps all entities at a managable size.  Should you ever need to 
+override a Trait you may remove the trait from the entity and create your own
+traditional property and getter/setter methods for it.
+
+Zend Framework 2 gives you the ability to run multiple applications on the same code base
+by altering which configuration is loaded in index.php or which index file to load forked
+at the .htaccess level.  Using this approach you can have 
+fully independent routes and controllers for multiple applications which all use the same
+database structure if you abstract your database to a Db module which contains no routing
+or view information.
+
+Field-Level Abstraction is how engineered PHP applicaitons will be built today and in the 
+future.  Traits are available in PHP 5.4 yet it is not widely adopted but PHP 5.5 is in 
+beta and I expect that version to become as popularly supported as 5.3.
+
+Tom
