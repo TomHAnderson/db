@@ -27,10 +27,16 @@ return array(
                 'modelFriend' => 'Db\Model\Friend',
             ),
 
-            'Application\Model\ModelAbstract' => array(
+            'Db\Model\AbstractModel' => array(
                 'parameters' => array(
                     'servicemanager' => 'Zend\ServiceManager\ServiceManager',
-                    'em' => 'Doctrine\ORM\EntityManager',
+                ),
+            ),
+
+            'Db\Model\AbstractEntityModel' => array(
+                'parameters' => array(
+                    'servicemanager' => 'Zend\ServiceManager\ServiceManager',
+                    'entitymanager' => 'Doctrine\ORM\EntityManager',
                 ),
             ),
         ),

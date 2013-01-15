@@ -9,11 +9,9 @@ abstract class AbstractModel
 {
     use Component\ServiceManager
         , Component\EventManager
-        , Component\EntityManager
         ;
 
-    public function __construct(ServiceManager $serviceManager, EntityManager $entityManager) {
+    public function __construct(ServiceManager $serviceManager) {
         $this->setServiceManager($serviceManager);
-        $this->setEntityManager($entityManager);
     }
 }

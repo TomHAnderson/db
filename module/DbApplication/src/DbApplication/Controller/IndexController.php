@@ -47,7 +47,8 @@ class IndexController extends AbstractActionController
         if ($this->getRequest()->isPost() && $form->isValid()) {
             $data = $form->getData();
 
-            die('valid');
+            $modelUser->create($user);
+            die('created');
         }
 
         return array(

@@ -7,8 +7,8 @@ trait ServiceManager
 {
     private $serviceManager;
 
-    public function setServiceManager(ZendServiceManager $manager) {
-        $this->serviceManager = $manager;
+    public function setServiceManager(ZendServiceManager $serviceManager) {
+        $this->serviceManager = $serviceManager;
         return $this;
     }
 
