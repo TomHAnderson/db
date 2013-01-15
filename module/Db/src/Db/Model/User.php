@@ -9,6 +9,9 @@ final class User extends AbstractEntityModel
 {
     use \Db\Field\DisplayName
         , \Db\Field\Username
+        , \Db\Field\Email
+        , \Db\Field\Note
+        , \Db\Field\IsPublic
         ;
 
     public function getDefaultSort()
@@ -16,7 +19,7 @@ final class User extends AbstractEntityModel
         return array('displayName' => 'asc');
     }
 
-    public function getAuthUser()
+    public function getAuthenticatedUser()
     {
         $auth = $this->getServiceManager()->get('Zend\Authentication\AuthenticationService');
 
@@ -34,6 +37,9 @@ final class User extends AbstractEntityModel
 
         $inputFilter->add($this->inputFilterInputDisplayName());
         $inputFilter->add($this->inputFilterInputUsername());
+        $inputFilter->add($this->inputFilterInputEmail());
+        $inputFilter->add($this->inputFilterInputNote());
+        $inputFilter->add($this->inputFilterInputIsPublic());
 
         return $inputFilter;
     }

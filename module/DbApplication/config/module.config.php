@@ -22,33 +22,18 @@ return array(
                     ),
                 ),
             ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => array(
-                'type'    => 'Literal',
+
+            'default' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route'    => '/application',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'DbApplication\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
+                    'route' => '/[:controller[/][/:action]]',
+                    'constraints' => array(
+                        'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
+                    'defaults' => array(
+                        'controller' => 'index',
+                        'action' => 'index',
                     ),
                 ),
             ),
@@ -71,7 +56,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'index' => 'DbApplication\Controller\IndexController'
+            'index' => 'DbApplication\Controller\IndexController',
+            'user' => 'DbApplication\Controller\UserController',
         ),
     ),
     'view_manager' => array(

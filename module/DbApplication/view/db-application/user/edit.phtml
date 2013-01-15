@@ -1,0 +1,17 @@
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('displayName')); ?>
+
+<?= $this->formRow($this->form->get('username')); ?>
+
+<?= $this->formRow($this->form->get('email')); ?>
+
+<?= $this->formRow($this->form->get('isPublic')); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<br>
+
+<?=  $this->formRow($this->form->get('submit')); ?>
+
+<?= $this->form()->closeTag(); ?>

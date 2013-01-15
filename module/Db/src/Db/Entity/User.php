@@ -65,14 +65,8 @@ class User extends AbstractEntity implements UserInterface
         $this->setDisplayName(isset($data['displayName']) ? $data['displayName']: null);
         $this->setUsername(isset($data['username']) ? $data['username']: null);
         $this->setEmail(isset($data['email']) ? $data['email']: null);
-        $this->setPassword(isset($data['password']) ? $data['password']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setIsPublic(isset($data['isPublic']) ? $data['isPublic']: null);
-        $this->setAccessToken(isset($data['accessToken']) ? $data['accessToken']: null);
-        $this->setPermission(isset($data['permission']) ? $data['permission']: null);
-        $this->setCreatedAt(isset($data['createdAt']) ? $data['createdAt']: null);
-        $this->setLastRequestAt(isset($data['lastRequestAt']) ? $data['lastRequestAt']: null);
-        $this->setSubscription(isset($data['subscription']) ? $data['subscription']: null);
     }
 
     public function getState()
