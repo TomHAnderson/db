@@ -42,6 +42,12 @@ class User extends AbstractEntity implements UserInterface
 
     protected $state;
 
+    public function __construct() {
+        $this->setCreatedAt(new \DateTime());
+        $this->setLastRequestAt(new \DateTime());
+        $this->setIsPublic(1);
+    }
+
     public function getArrayCopy()
     {
         return array(

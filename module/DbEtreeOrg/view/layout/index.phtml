@@ -27,32 +27,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/">db.etree.org</a>
+                    <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
                     <div class="nav-collapse collapse">
-                        <?php
-                        if (isset($_SESSION['Zend_Auth']) and isset($_SESSION['Zend_Auth']['storage'])) {
-                        ?>
-                        <ul class="nav pull-right">
-                            <li id="user-menu" class="dropdown">
-                                <a id="userdrop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
-                                    <?php echo $this->gravatar($this->zfcUserIdentity()->getEmail(), array('img_size' => 24)); ?>
-                                    <?php echo $this->zfcUserDisplayName() ?>
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="userdrop" role="menu">
-                                    <li role="menuitem"><a href="/user/profile">Profile</a></li>
-                                    <li role="menuitem"><a href="/user/logout">Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <?php
-                        }
-                        ?>
-
                         <ul class="nav">
-                            <li class=""><a href="/artist"><?php echo $this->translate('Artists') ?></a></li>
-                            <li class=""><a href="/show"><?php echo $this->translate('Shows') ?></a></li>
-                            <li class=""><a href="/source"><?php echo $this->translate('Sources') ?></a></li>
+                            <li class="active"><a href="/"><?php echo $this->translate('Home') ?></a></li>
+                            <li class="active"><a href="/artist"><?php echo $this->translate('Artists') ?></a></li>
+                            <li class="active"><a href="/show"><?php echo $this->translate('Shows') ?></a></li>
+                            <li class="active"><a href="/source"><?php echo $this->translate('Sources') ?></a></li>
                         </ul>
                     </div>
                 </div>

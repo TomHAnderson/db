@@ -3,12 +3,8 @@ return array(
     'modules' => array(
         'Install',
 
-        'Application',
-
         'Db',
-        'Etreedb',
-
-        'EtreedbApplication',
+        'EtreeDbOrg',
 
         'DoctrineModule',
         'DoctrineORMModule',

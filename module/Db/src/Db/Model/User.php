@@ -35,11 +35,11 @@ final class User extends AbstractEntityModel
     {
         $inputFilter = new InputFilter();
 
-        $inputFilter->add($this->inputFilterInputDisplayName());
-        $inputFilter->add($this->inputFilterInputUsername());
-        $inputFilter->add($this->inputFilterInputEmail());
-        $inputFilter->add($this->inputFilterInputNote());
-        $inputFilter->add($this->inputFilterInputIsPublic());
+        $inputFilter->add($this->inputFilterInputDisplayName($inputFilter));
+        $inputFilter->add($this->inputFilterInputUsername($inputFilter));
+        $inputFilter->add($this->inputFilterInputEmail($inputFilter));
+        $inputFilter->add($this->inputFilterInputNote($inputFilter));
+        $inputFilter->add($this->inputFilterInputIsPublic($inputFilter));
 
         return $inputFilter;
     }
