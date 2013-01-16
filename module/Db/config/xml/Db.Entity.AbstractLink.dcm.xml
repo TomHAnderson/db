@@ -12,10 +12,11 @@
       <discriminator-mapping class="Db\Entity\VenueLink" value="Venue"/>
       <discriminator-mapping class="Db\Entity\SourceLink" value="Source"/>
       <discriminator-mapping class="Db\Entity\ShowLink" value="Show"/>
-      <discriminator-mapping class="Db\Entity\ArtistLink" value="Artist"/>
+      <discriminator-mapping class="Db\Entity\PerformerLink" value="Performer"/>
       <discriminator-mapping class="Db\Entity\EventLink" value="FestivalEvent"/>
       <discriminator-mapping class="Db\Entity\ProducerLink" value="Festival"/>
       <discriminator-mapping class="Db\Entity\VenueGroupLink" value="VenueGroup"/>
+      <discriminator-mapping class="Db\Entity\BandLink" value="Band"/>
     </discriminator-map>
   </entity>
 </doctrine-mapping>

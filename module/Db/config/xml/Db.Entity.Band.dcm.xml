@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Db\Entity\Band">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="name" type="string" nullable="false"/>
+    <field name="nameNormalized" nullable="false"/>
+    <field name="note" type="text" nullable="true"/>
+    <many-to-one field="bandGroup" target-entity="Db\Entity\BandGroup" inversed-by="bands">
+      <join-columns>
+        <join-column name="BandGroup_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="aliases" target-entity="Db\Entity\Alias" mapped-by="band"/>
+    <one-to-many field="lineups" target-entity="Db\Entity\Lineup" mapped-by="band"/>
+    <one-to-many field="links" target-entity="Db\Entity\BandLink" mapped-by="band"/>
+  </entity>
+</doctrine-mapping>
