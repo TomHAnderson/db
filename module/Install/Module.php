@@ -124,7 +124,7 @@ class Module
 
     public function notifyNoDatabase($e) {
         $response = $e->getTarget()->getResponse();
-        $response->setContent('<h1>etreedb</h1>
+        $response->setContent('<h1>db.etree.org</h1>
               The database does not exist.
               Please create the database and try again.
         ');
@@ -137,8 +137,8 @@ class Module
      */
     public function showInstall($e) {
         $response = $e->getTarget()->getResponse();
-        $response->setContent('<h1>etreedb</h1>
-              etreedb thinks it is not installed because it cannot connect to your
+        $response->setContent('<h1>db.etree.org</h1>
+              db.etree.org thinks it is not installed because it cannot see it\'s tables in your
               database.
               <br>
               <a href="/?install=1">Begin installation</a>
@@ -218,7 +218,7 @@ class Module
             $res = $tool->createSchema($em->getMetadataFactory()->getAllMetadata());
 
             $response = $e->getTarget()->getResponse();
-            $response->setContent('<a href="/">Start using etreedb</a>');
+            $response->setContent('<a href="/user/logout">Start using db.etree.org</a>');
 
         } catch (\Exception $error) {
             print_r($error->getMessage());

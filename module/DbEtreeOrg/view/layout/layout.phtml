@@ -8,7 +8,7 @@
         <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
 
         <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'href' => $this->basePath() . '/images/db-logo.png'))
                         ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.css')
                         ->prependStylesheet($this->basePath() . '/css/style.css')
                         ->prependStylesheet($this->basePath() . '/css/bootstrap.css') ?>
@@ -54,31 +54,59 @@
                         </ul>
 
                         <ul class="nav">
+<?php
+foreach (array(
+    'band' => 'Bands',
+    'performer' => 'Performers',
+    'show' => 'Shows',
+    'song' => 'Songs',
+    'source' => 'Sources',
+    'venue' => 'Venues') as $section => $name) {
+?>
+
                             <li class="dropdown">
-                                <a id="artist-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
-                                    <?php echo $this->translate('Artists') ?>
+                                <a id="<?= $section; ?>-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <?php echo $this->translate($name) ?>
                                     <b class="caret"></b>
                                 </a>
 
-                                <ul class="dropdown-menu" aria-labelledby="artist-drop" role="menu">
+                                <ul class="dropdown-menu" aria-labelledby="<?= $section; ?>-drop" role="menu">
+
                                     <li role="menuitem">
-                                        <a href="/artist/browse">Browse</a>
+                                        <form class="navbar-search pull-left" name="search" action="/<?= $section; ?>/search">
+                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="<?= $section; ?> name">
+                                        </form>
                                     </li>
+
                                     <li role="menuitem">
-                                        <a href="/artist/create">Create</a>
+                                        <a href="/<?= $section; ?>/browse">Browse</a>
                                     </li>
+
+                                    <li class="divider"></li>
+
+                                    <li role="menuitem">
+                                        <a href="/<?= $section; ?>/create">Create</a>
+                                    </li>
+
+                                    <li class="divider"></li>
+
+                                    <li role="menuitem">
+                                        <a href="/<?= $section; ?>/create">Last 10 browsed here</a>
+                                    </li>
+
                                 </ul>
                             </li>
-
-                            <li class=""><a href="/show"><?php echo $this->translate('Shows') ?></a></li>
-                            <li class=""><a href="/source"><?php echo $this->translate('Sources') ?></a></li>
+<?php
+}
+?>
                         </ul>
-
+<!--
                             <form class="navbar-search pull-left" name="search">
-                                <input type="text" name="name" id="name" maxlength="85" size="32" autocomplete="off" placeholder="artist name">
+                                <input type="text" name="name" id="name" maxlength="85" size="32" autocomplete="off" placeholder="band name">
                                 <input type="text" name="date" id="date" maxlength="10" size="10" placeholder="show date">
                                 <input type="submit" value="search">
                             </form>
+-->
                     </div>
                 </div>
             </div>
