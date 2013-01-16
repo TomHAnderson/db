@@ -17,7 +17,6 @@ class City extends AbstractEntity
 
     use \Db\Relation\Venues
         , \Db\Relation\Events
-        , \Db\Relation\Zipcodes
         ;
 
     public function getArrayCopy()

@@ -4,6 +4,7 @@
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
+    <field name="Zipcode_id" type="integer" nullable="false"/>
     <field name="name" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
     <field name="startAt" type="date" nullable="true"/>
@@ -16,11 +17,6 @@
     <many-to-one field="city" target-entity="Db\Entity\City" inversed-by="events">
       <join-columns>
         <join-column name="City_id" referenced-column-name="id" nullable="false"/>
-      </join-columns>
-    </many-to-one>
-    <many-to-one field="zipcode" target-entity="Db\Entity\Zipcode" inversed-by="events">
-      <join-columns>
-        <join-column name="Zipcode_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="shows" target-entity="Db\Entity\Show" mapped-by="event"/>

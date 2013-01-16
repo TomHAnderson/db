@@ -4,11 +4,7 @@
     <id name="id" type="integer"/>
     <field name="name" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
-    <many-to-one field="zipcode" target-entity="Db\Entity\Zipcode" inversed-by="venues">
-      <join-columns>
-        <join-column name="Zipcode_id" referenced-column-name="id" nullable="false"/>
-      </join-columns>
-    </many-to-one>
+    <field name="zipcode" type="string" nullable="true"/>
     <many-to-one field="city" target-entity="Db\Entity\City" inversed-by="venues">
       <join-columns>
         <join-column name="City_id" referenced-column-name="id" nullable="false"/>

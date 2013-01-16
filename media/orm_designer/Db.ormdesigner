@@ -48,9 +48,9 @@
     <table name="Venue" region="Region4" visPositionX="-325" visPositionY="-208" visSizeX="0" visSizeX2="110" visSizeY="0" visSizeY2="87">
       <column name="id" primary="true" required="true" type="integer"/>
       <column name="City_id" required="true" type="integer"/>
-      <column name="Zipcode_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
       <column name="note" type="text"/>
+      <column name="zipcode" type="string"/>
     </table>
     <table name="Performer" region="Region11" visPositionX="51" visPositionY="113" visSizeX="0" visSizeX2="97" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
@@ -109,11 +109,11 @@
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Producer_id" required="true" type="integer"/>
       <column name="City_id" required="true" type="integer"/>
-      <column name="Zipcode_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
       <column name="note" type="text"/>
       <column name="startAt" type="date"/>
       <column name="endAt" type="date"/>
+      <column name="zipcode" type="string"/>
     </table>
     <table name="EventLink" region="Region1" visPositionX="420" visPositionY="105" visSizeX="0" visSizeX2="102" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
@@ -132,29 +132,21 @@
       <column name="name" required="true" type="string"/>
       <column name="nameNormalized" required="true" type="string"/>
     </table>
-    <table name="Country" region="Region4" visPositionX="-15" visPositionY="-137" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="59">
+    <table name="Country" region="Region4" visPositionX="-18" visPositionY="-63" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column auto-increment="true" name="name" required="true" type="string"/>
       <column name="abbrev" type="string"/>
     </table>
-    <table name="State" region="Region4" visPositionX="-45" visPositionY="-36" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="73">
+    <table name="State" region="Region4" visPositionX="-167" visPositionY="-70" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Country_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
       <column name="abbrev" type="string"/>
     </table>
-    <table name="City" region="Region4" visPositionX="-216" visPositionY="-99" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="59">
+    <table name="City" region="Region4" visPositionX="-326" visPositionY="-63" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="State_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
-    </table>
-    <table name="Zipcode" region="Region4" visPositionX="-325" visPositionY="-5" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="name" required="true" type="string" unique="true"/>
-    </table>
-    <table name="CityZipcode" region="Region4" visPositionX="-202" visPositionY="-13" visSizeX="0" visSizeX2="110" visSizeY="0" visSizeY2="60">
-      <column name="City_id" required="true" type="integer"/>
-      <column name="Zipcode_id" required="true" type="integer"/>
     </table>
     <table name="AbstractComment" region="Region12" visPositionX="25" visPositionY="31" visSizeX="0" visSizeX2="151" visSizeY="0" visSizeY2="87">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
@@ -273,9 +265,6 @@
     <foreign-key caption="Lineup Show" from="Show" inverse-alias="lineup" name="FK_Show_Lineup_id" owning-alias="shows" to="Lineup" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Lineup_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="Zipcode Venue" from="Venue" inverse-alias="zipcode" name="FK_Venue_Zipcode_id" owning-alias="venues" to="Zipcode" visShowCaption="0">
-      <foreign-key-column from="Zipcode_id" to="id"/>
-    </foreign-key>
     <foreign-key caption="City Venue" from="Venue" inverse-alias="city" name="FK_Venue_City_id" owning-alias="venues" to="City" visShowCaption="0">
       <foreign-key-column from="City_id" to="id"/>
     </foreign-key>
@@ -306,9 +295,6 @@
     <foreign-key caption="City Event" from="Event" inverse-alias="city" name="FK_Event_City_id" owning-alias="events" to="City" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="City_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="Zipcode Event" from="Event" inverse-alias="zipcode" name="FK_Event_Zipcode_id" owning-alias="events" to="Zipcode" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Zipcode_id" to="id"/>
-    </foreign-key>
     <foreign-key caption="Festival FestivalLink" from="EventLink" inverse-alias="event" name="FK_FestivalLink_Festival_id" owning-alias="links" to="Event" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Event_id" to="id"/>
     </foreign-key>
@@ -323,12 +309,6 @@
     </foreign-key>
     <foreign-key caption="State City" from="City" inverse-alias="state" name="FK_City_State_id" owning-alias="cities" to="State" visShowCaption="0">
       <foreign-key-column from="State_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="City CiityZipcode" from="CityZipcode" name="FK_CiityZipcode_City_id" to="City" visShowCaption="0">
-      <foreign-key-column from="City_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Zipcode CiityZipcode" from="CityZipcode" name="FK_CiityZipcode_Zipcode_id" to="Zipcode" visShowCaption="0">
-      <foreign-key-column from="Zipcode_id" to="id"/>
     </foreign-key>
     <foreign-key caption="User SourceComment" from="AbstractComment" inverse-alias="user" name="FK_SourceComment_User_id3" owning-alias="comments" to="User" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="User_id" to="id"/>
@@ -396,10 +376,6 @@
     <many-to-many-relation mn-table="Friends">
       <many-to-many-foreign-key foreign-key="FK_UserFriends_User_id" relation-alias="reverseFriends"/>
       <many-to-many-foreign-key foreign-key="FK_UserFriends_User_id2" relation-alias="friends"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="CityZipcode">
-      <many-to-many-foreign-key foreign-key="FK_CiityZipcode_City_id" relation-alias="cities"/>
-      <many-to-many-foreign-key foreign-key="FK_CiityZipcode_Zipcode_id" relation-alias="zipcodes"/>
     </many-to-many-relation>
     <many-to-many-relation mn-table="UserShowList">
       <many-to-many-foreign-key foreign-key="FK_UserGroupShow_UserGroup_id" relation-alias="lists"/>
