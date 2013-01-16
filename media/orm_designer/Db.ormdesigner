@@ -47,7 +47,7 @@
     </table>
     <table name="Venue" region="Region4" visPositionX="-325" visPositionY="-208" visSizeX="0" visSizeX2="110" visSizeY="0" visSizeY2="87">
       <column name="id" primary="true" required="true" type="integer"/>
-      <column name="City_id" required="true" type="integer"/>
+      <column name="Place_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
       <column name="note" type="text"/>
       <column name="zipcode" type="string"/>
@@ -108,7 +108,7 @@
     <table description="A festival event is an occurance of a festival" name="Event" region="Region8" visPositionX="36" visPositionY="-26" visSizeX="0" visSizeX2="114" visSizeY="0" visSizeY2="129">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Producer_id" required="true" type="integer"/>
-      <column name="City_id" required="true" type="integer"/>
+      <column name="Place_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
       <column name="note" type="text"/>
       <column name="startAt" type="date"/>
@@ -132,18 +132,18 @@
       <column name="name" required="true" type="string"/>
       <column name="nameNormalized" required="true" type="string"/>
     </table>
-    <table name="Country" region="Region4" visPositionX="-18" visPositionY="-63" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="59">
+    <table name="Country" region="Region4" visPositionX="-15" visPositionY="-64" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column auto-increment="true" name="name" required="true" type="string"/>
       <column name="abbrev" type="string"/>
     </table>
-    <table name="State" region="Region4" visPositionX="-167" visPositionY="-70" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="73">
+    <table name="State" region="Region4" visPositionX="-167" visPositionY="-71" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="Country_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
       <column name="abbrev" type="string"/>
     </table>
-    <table name="City" region="Region4" visPositionX="-326" visPositionY="-63" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="59">
+    <table name="Place" region="Region4" visPositionX="-324" visPositionY="-64" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="State_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
@@ -265,8 +265,8 @@
     <foreign-key caption="Lineup Show" from="Show" inverse-alias="lineup" name="FK_Show_Lineup_id" owning-alias="shows" to="Lineup" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Lineup_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="City Venue" from="Venue" inverse-alias="city" name="FK_Venue_City_id" owning-alias="venues" to="City" visShowCaption="0">
-      <foreign-key-column from="City_id" to="id"/>
+    <foreign-key caption="City Venue" from="Venue" inverse-alias="place" name="FK_Venue_City_id" owning-alias="venues" to="Place" visShowCaption="0">
+      <foreign-key-column from="Place_id" to="id"/>
     </foreign-key>
     <foreign-key caption="User Performer" from="Performer" inverse-alias="user" name="FK_Performer_User_id" owning-alias="performer" to="User" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="User_id" to="id"/>
@@ -292,8 +292,8 @@
     <foreign-key caption="Event Producer" from="Event" inverse-alias="producer" name="FK_Event_Producer_id" owning-alias="events" to="Producer" visShowCaption="0">
       <foreign-key-column from="Producer_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="City Event" from="Event" inverse-alias="city" name="FK_Event_City_id" owning-alias="events" to="City" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="City_id" to="id"/>
+    <foreign-key caption="City Event" from="Event" inverse-alias="place" name="FK_Event_City_id" owning-alias="events" to="Place" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Place_id" to="id"/>
     </foreign-key>
     <foreign-key caption="Festival FestivalLink" from="EventLink" inverse-alias="event" name="FK_FestivalLink_Festival_id" owning-alias="links" to="Event" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Event_id" to="id"/>
@@ -307,7 +307,7 @@
     <foreign-key caption="Country State" from="State" inverse-alias="country" name="FK_State_Country_id" owning-alias="states" to="Country" visShowCaption="0">
       <foreign-key-column from="Country_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="State City" from="City" inverse-alias="state" name="FK_City_State_id" owning-alias="cities" to="State" visShowCaption="0">
+    <foreign-key caption="State City" from="Place" inverse-alias="state" name="FK_City_State_id" owning-alias="cities" to="State" visShowCaption="0">
       <foreign-key-column from="State_id" to="id"/>
     </foreign-key>
     <foreign-key caption="User SourceComment" from="AbstractComment" inverse-alias="user" name="FK_SourceComment_User_id3" owning-alias="comments" to="User" visShowCaption="0" visSplitted="1">

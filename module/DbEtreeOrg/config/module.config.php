@@ -80,6 +80,7 @@ return array(
             'user' => 'DbEtreeOrg\Controller\UserController',
             'country' => 'DbEtreeOrg\Controller\CountryController',
             'state' => 'DbEtreeOrg\Controller\StateController',
+            'place' => 'DbEtreeOrg\Controller\PlaceController',
 
             'import' => 'DbEtreeOrg\Controller\ImportController',
         ),

@@ -1,3 +1,9 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a href="/country">Back to Countries</a>
+    </li>
+</ul>
+
 <h1>States</h1>
 <h2><?= $this->escapeHtml($this->country->getName()); ?></h2>
 
@@ -5,7 +11,7 @@
 
 <?php
 
-$col1 = $col2 = $col3 = '';
+$col1 = $col2 = $col3 = array();
 $i = 0;
 foreach ($this->states as $state) {
     $i ++;
@@ -33,7 +39,7 @@ foreach ($this->states as $state) {
         foreach ($col1 as $entity) {
         ?>
             <h5>
-                <a href="/state?countryId=<?= $entity->getId(); ?>">
+                <a href="/place?stateId=<?= $entity->getId(); ?>">
                     <?= $this->escapeHtml($entity->getName()); ?>
                 </a>
              </h5>
@@ -46,7 +52,7 @@ foreach ($this->states as $state) {
         foreach ($col2 as $entity) {
         ?>
             <h5>
-                <a href="/state?countryId=<?= $entity->getId(); ?>">
+                <a href="/place?stateId=<?= $entity->getId(); ?>">
                     <?= $this->escapeHtml($entity->getName()); ?>
                 </a>
              </h5>
@@ -59,7 +65,7 @@ foreach ($this->states as $state) {
         foreach ($col3 as $entity) {
         ?>
             <h5>
-                <a href="/state?countryId=<?= $entity->getId(); ?>">
+                <a href="/place?stateId=<?= $entity->getId(); ?>">
                     <?= $this->escapeHtml($entity->getName()); ?>
                 </a>
              </h5>
