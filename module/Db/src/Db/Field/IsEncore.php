@@ -3,33 +3,33 @@
 namespace Db\Field;
 use Zend\Form\Annotation as Form;
 
-trait IsPublic
+trait IsEncore
 {
     /**
      * @Form\Type("Zend\Form\Element\Radio")
      * @Form\Attributes({"type": "radio"})
-     * @Form\Attributes({"id": "isPublic"})
+     * @Form\Attributes({"id": "isEncore"})
      * @Form\Attributes({"is_required": true})
      * @Form\Options({"label": "Public?", "value_options": {"1": "Yes", "0": "No"}})
      */
-    protected $isPublic;
+    protected $isEncore;
 
-    public function getIsPublic()
+    public function getIsEncore()
     {
-        return $this->isPublic;
+        return $this->isEncore;
     }
 
-    public function setIsPublic($value)
+    public function setIsEncore($value)
     {
-        $this->isPublic = $value;
+        $this->isEncore = $value;
         return $this;
     }
 
-    private function inputFilterInputIsPublic($inputFilter = null) {
+    private function inputFilterInputIsEncore($inputFilter = null) {
         if (!$inputFilter) $inputFilter = new InputFilter();
 
         return $inputFilter->getFactory()->createInput(array(
-            'name' => 'isPublic',
+            'name' => 'isEncore',
             'required' => true,
             'validators' => array(
                 array(

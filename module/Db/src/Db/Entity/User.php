@@ -23,6 +23,7 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Field\CreatedAt
         , \Db\Field\LastRequestAt
         , \Db\Field\Subscription
+        , \Db\Field\Performer
         ;
 
     use \Db\Relation\Lists
@@ -38,6 +39,7 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Relation\Inbox
         , \Db\Relation\Outbox
         , \Db\Relation\FieldConfig
+        , \Db\Relation\BandGroups
         ;
 
     protected $state;

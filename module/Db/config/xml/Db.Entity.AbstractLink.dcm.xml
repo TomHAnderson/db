@@ -17,6 +17,8 @@
       <discriminator-mapping class="Db\Entity\ProducerLink" value="Festival"/>
       <discriminator-mapping class="Db\Entity\VenueGroupLink" value="VenueGroup"/>
       <discriminator-mapping class="Db\Entity\BandLink" value="Band"/>
+      <discriminator-mapping class="Db\Entity\ComposerLink" value="Composer"/>
+      <discriminator-mapping class="Db\Entity\SongLink" value="Song"/>
     </discriminator-map>
   </entity>
 </doctrine-mapping>

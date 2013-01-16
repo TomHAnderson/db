@@ -12,7 +12,7 @@ class Show extends AbstractEntity
 {
     use \Db\Field\Id
         , \Db\Field\Name
-        , \Db\Field\Showdate
+        , \Db\Field\NameNormalized        , \Db\Field\Showdate
         , \Db\Field\ShowdateAt
         , \Db\Field\Set1
         , \Db\Field\Set2
@@ -28,6 +28,8 @@ class Show extends AbstractEntity
         , \Db\Relation\Attendees
         , \Db\Relation\UserShows
         , \Db\Relation\WantedBy
+        , \Db\Relation\ShowSongs
+        , \Db\Relation\Performers
         ;
 
     public function getArrayCopy()
@@ -47,6 +49,7 @@ class Show extends AbstractEntity
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
+        $this->setNameNormalized(isset($data['nameNormalized']) ? $data['nameNormalized']: null);
         $this->setShowdate(isset($data['showdate']) ? $data['showdate']: null);
         $this->setShowdateAt(isset($data['showdateAt']) ? $data['showdateAt']: null);
         $this->setSet1(isset($data['set1']) ? $data['set1']: null);

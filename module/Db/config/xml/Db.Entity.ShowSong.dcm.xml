@@ -9,12 +9,12 @@
     <field name="note" type="text" nullable="true"/>
     <field name="isSegue" type="boolean" nullable="true"/>
     <field name="isEncore" type="boolean" nullable="true"/>
-    <many-to-one field="song" target-entity="Db\Entity\Song" inversed-by="showsongs">
+    <many-to-one field="song" target-entity="Db\Entity\Song" inversed-by="showSongs">
       <join-columns>
         <join-column name="Song_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="show" target-entity="Db\Entity\Show" inversed-by="showsongs">
+    <many-to-one field="show" target-entity="Db\Entity\Show" inversed-by="showSongs">
       <join-columns>
         <join-column name="Show_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
