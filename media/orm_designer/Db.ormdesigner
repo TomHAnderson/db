@@ -6,14 +6,14 @@
     <module-position name="etreedb.org" visPositionX="1150" visPositionY="-224"/>
   </project>
 
-  <module import-format="Doctrine2Xml" import-path="..\..\module\Db\config\xml\" name="db.etree.org" visBkColor="1538279" visSizeX="29" visSizeX2="1020" visSizeY="62" visSizeY2="814">
-    <region caption="Links and Comments" name="Region1" visBkColor="11850223" visPositionX="64" visPositionY="571" visSizeX="70" visSizeX2="936" visSizeY="-2" visSizeY2="225"/>
-    <region caption="Artist" name="Region2" visBkColor="11850223" visPositionX="-6" visPositionY="398" visSizeX="0" visSizeX2="349" visSizeY="144" visSizeY2="164"/>
-    <region caption="Venue" name="Region4" visBkColor="11850223" visPositionX="714" visPositionY="507" visSizeX="356" visSizeX2="90" visSizeY="251" visSizeY2="56"/>
+  <module import-format="Doctrine2Xml" import-path="..\..\module\Db\config\xml\" name="db.etree.org" visBkColor="1538279" visSizeX="29" visSizeX2="1237" visSizeY="62" visSizeY2="820">
+    <region caption="Links and Comments" name="Region1" visBkColor="11850223" visPositionX="62" visPositionY="574" visSizeX="70" visSizeX2="1156" visSizeY="-6" visSizeY2="225"/>
+    <region caption="Band and Performer" name="Region2" visBkColor="11850223" visPositionX="657" visPositionY="401" visSizeX="0" visSizeX2="562" visSizeY="144" visSizeY2="158"/>
+    <region caption="Venue" name="Region4" visBkColor="11850223" visPositionX="347" visPositionY="504" visSizeX="356" visSizeX2="90" visSizeY="251" visSizeY2="56"/>
     <region caption="Source" name="Region5" visBkColor="11850223" visPositionX="215" visPositionY="-35" visSizeX="0" visSizeX2="423" visSizeY="0" visSizeY2="273"/>
     <region caption="User" name="Region6" visBkColor="11850223" visPositionX="-12" visPositionY="-18" visSizeX="0" visSizeX2="205" visSizeY="16" visSizeY2="255"/>
-    <region caption="Show" name="Region7" visBkColor="11850223" visPositionX="657" visPositionY="-38" visSizeX="0" visSizeX2="199" visSizeY="0" visSizeY2="276"/>
-    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="821" visPositionY="324" visSizeX="0" visSizeX2="176" visSizeY="68" visSizeY2="237"/>
+    <region caption="Show" name="Region7" visBkColor="11850223" visPositionX="657" visPositionY="-38" visSizeX="0" visSizeX2="216" visSizeY="0" visSizeY2="276"/>
+    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="460" visPositionY="323" visSizeX="0" visSizeX2="176" visSizeY="68" visSizeY2="237"/>
     <table name="User" region="Region6" visPositionX="32" visPositionY="25" visSizeX="0" visSizeX2="132" visSizeY="0" visSizeY2="185">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="displayName" required="true" type="string"/>
@@ -30,10 +30,11 @@
     </table>
     <table name="Show" region="Region7" visPositionX="32" visPositionY="34" visSizeX="0" visSizeX2="115" visSizeY="0" visSizeY2="171">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Artist_id" required="true" type="integer"/>
+      <column name="Lineup_id" required="true" type="integer"/>
       <column name="Venue_id" required="true" type="integer"/>
       <column name="Event_id" type="integer"/>
       <column name="name" type="string"/>
+      <column name="nameNormalized" required="true" type="string"/>
       <column name="showdate" required="true" size="10" type="string"/>
       <column name="showdateAt" type="date"/>
       <column name="set1" type="text"/>
@@ -48,10 +49,10 @@
       <column name="name" required="true" type="string"/>
       <column name="note" type="text"/>
     </table>
-    <table name="Artist" region="Region2" visPositionX="28" visPositionY="-116" visSizeX="0" visSizeX2="129" visSizeY="0" visSizeY2="73">
+    <table name="Performer" region="Region2" visPositionX="367" visPositionY="55" visSizeX="0" visSizeX2="97" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="User_id" type="integer" unique="true"/>
       <column name="name" required="true" type="string"/>
-      <column name="nameNormalized" required="true" type="string"/>
       <column name="note" type="text"/>
     </table>
     <table name="Source" region="Region5" visPositionX="41" visPositionY="33" visSizeX="0" visSizeX2="164" visSizeY="0" visSizeY2="157">
@@ -89,23 +90,16 @@
       <column name="Show_id" required="true" type="integer"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Show" visCenterX="0" visCenterY="6" visSplitted="1"/>
     </table>
-    <table name="ArtistLink" region="Region1" visPositionX="146" visPositionY="53" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="45">
+    <table name="PerformerLink" region="Region1" visPositionX="831" visPositionY="52" visSizeX="0" visSizeX2="119" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Artist_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Artist" visCenterX="0" visCenterY="0" visSplitted="1"/>
+      <column name="Performer_id" required="true" type="integer"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Performer" visCenterX="0" visCenterY="0" visSplitted="1"/>
     </table>
-    <table name="ArtistGroup" region="Region2" visPositionX="130" visPositionY="86" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
+    <table name="Band" region="Region2" visPositionX="34" visPositionY="56" visSizeX="0" visSizeX2="97" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="name" type="string"/>
-      <column name="note" required="true" type="text"/>
-    </table>
-    <table name="ArtistGroupArtist" region="Region2" visPositionX="27" visPositionY="-1" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="60">
-      <column name="ArtistGroup_id" required="true" type="integer"/>
-      <column name="Artist_id" required="true" type="integer"/>
-    </table>
-    <table name="ArtistGroupUser" region="Region2" visPositionX="198" visPositionY="0" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="60">
-      <column name="User_id" required="true" type="integer"/>
-      <column name="ArtistGroup_id" required="true" type="integer"/>
+      <column name="name" required="true" type="string"/>
+      <column name="nameNormalized" required="true"/>
+      <column name="note" type="text"/>
     </table>
     <table description="A festival event is an occurance of a festival" name="Event" region="Region8" visPositionX="34" visPositionY="-41" visSizeX="0" visSizeX2="114" visSizeY="0" visSizeY2="143">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
@@ -128,9 +122,9 @@
       <column name="name" required="true" type="string"/>
       <column name="content" required="true" type="text"/>
     </table>
-    <table name="Alias" region="Region2" visPositionX="200" visPositionY="-116" visSizeX="0" visSizeX2="129" visSizeY="0" visSizeY2="73">
+    <table name="Alias" region="Region2" visPositionX="187" visPositionY="56" visSizeX="0" visSizeX2="129" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Artist_id" required="true" type="integer"/>
+      <column name="Band_id" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
       <column name="nameNormalized" required="true" type="string"/>
     </table>
@@ -200,23 +194,45 @@
       <column name="VenueGroup_id" type="integer"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="VenueGroup" visSplitted="1"/>
     </table>
+    <table name="Lineup" region="Region2" visPositionX="33" visPositionY="-99" visSizeX="0" visSizeX2="98" visSizeY="0" visSizeY2="73">
+      <column name="id" primary="true" type="integer"/>
+      <column name="Band_id" required="true" type="integer"/>
+      <column name="name" required="true" type="string"/>
+      <column name="note"/>
+    </table>
+    <table name="PerformerLineup" region="Region2" visPositionX="203" visPositionY="-93" visSizeX="0" visSizeX2="119" visSizeY="0" visSizeY2="60">
+      <column name="Performer_id" required="true" type="integer"/>
+      <column name="Lineup_id" required="true" type="integer"/>
+    </table>
+    <table name="PerformerShow" region="Region2" visPositionX="362" visPositionY="-93" visSizeX="0" visSizeX2="119" visSizeY="0" visSizeY2="60">
+      <column name="Show_id" required="true" type="integer"/>
+      <column name="Performer_id" required="true" type="integer"/>
+    </table>
+    <table name="BandLink" region="Region1" visPositionX="151" visPositionY="53" visSizeX="0" visSizeX2="20" visSizeY="0" visSizeY2="20">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Band_id" type="integer"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Band" visSplitted="1"/>
+    </table>
     <orm-properties>
       <attribute name="namespace">Db\Entity</attribute>
     </orm-properties>
-    <foreign-key caption="Artist Show" from="Show" inverse-alias="artist" name="FK_Show_Artist_id" owning-alias="shows" to="Artist" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Artist_id" to="id"/>
-    </foreign-key>
     <foreign-key caption="Venue Show" from="Show" inverse-alias="venue" name="FK_Show_Venue_id" owning-alias="shows" to="Venue" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Venue_id" to="id"/>
     </foreign-key>
     <foreign-key caption="FestivalEvent Show" from="Show" inverse-alias="event" name="FK_Show_FestivalEvent_id" owning-alias="shows" to="Event" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Event_id" to="id"/>
     </foreign-key>
+    <foreign-key caption="Lineup Show" from="Show" inverse-alias="lineup" name="FK_Show_Lineup_id" owning-alias="shows" to="Lineup" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Lineup_id" to="id"/>
+    </foreign-key>
     <foreign-key caption="Zipcode Venue" from="Venue" inverse-alias="zipcode" name="FK_Venue_Zipcode_id" owning-alias="venues" to="Zipcode" visShowCaption="0">
       <foreign-key-column from="Zipcode_id" to="id"/>
     </foreign-key>
     <foreign-key caption="City Venue" from="Venue" inverse-alias="city" name="FK_Venue_City_id" owning-alias="venues" to="City" visShowCaption="0">
       <foreign-key-column from="City_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User Performer" from="Performer" inverse-alias="user" name="FK_Performer_User_id" owning-alias="performer" to="User" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="User_id" to="id"/>
     </foreign-key>
     <foreign-key caption="Show Source" from="Source" name="FK_Source_Show_id" to="Show" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Show_id" to="id"/>
@@ -230,20 +246,8 @@
     <foreign-key caption="Show ShowLink" from="ShowLink" inverse-alias="show" name="FK_ShowLink_Show_id" owning-alias="links" to="Show" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Show_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="Artist ArtistLink" from="ArtistLink" inverse-alias="artist" name="FK_ArtistLink_Artist_id" owning-alias="links" to="Artist" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Artist_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="ArtistGroup ArtistGroupArtist" from="ArtistGroupArtist" name="FK_ArtistGroupArtist_ArtistGroup_id" to="ArtistGroup" visCenterX="2" visCenterY="0" visShowCaption="0">
-      <foreign-key-column from="ArtistGroup_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Artist ArtistGroupArtist" from="ArtistGroupArtist" name="FK_ArtistGroupArtist_Artist_id" to="Artist" visCenterX="0" visCenterY="0" visShowCaption="0">
-      <foreign-key-column from="Artist_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User ArtistGroupUser" from="ArtistGroupUser" name="FK_ArtistGroupUser_User_id" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="ArtistGroup ArtistGroupUser" from="ArtistGroupUser" name="FK_ArtistGroupUser_ArtistGroup_id" to="ArtistGroup" visCenterX="-1" visCenterY="-1" visShowCaption="0">
-      <foreign-key-column from="ArtistGroup_id" to="id"/>
+    <foreign-key caption="Artist ArtistLink" from="PerformerLink" inverse-alias="performer" name="FK_ArtistLink_Artist_id" owning-alias="links" to="Performer" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Performer_id" to="id"/>
     </foreign-key>
     <foreign-key caption="Event Producer" from="Event" inverse-alias="producer" name="FK_Event_Producer_id" owning-alias="events" to="Producer" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Producer_id" to="id"/>
@@ -260,8 +264,8 @@
     <foreign-key caption="Source Checksum" from="Checksum" name="FK_Checksum_Source_id" to="Source" visShowCaption="0">
       <foreign-key-column from="Source_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="Artist Alias" from="Alias" inverse-alias="artist" name="FK_Alias_Artist_id" owning-alias="aliases" to="Artist" visCaption1X="4" visCaption1Y="6" visCenterX="0" visCenterY="0" visShowCaption="0">
-      <foreign-key-column from="Artist_id" to="id"/>
+    <foreign-key caption="Band Alias" from="Alias" inverse-alias="band" name="FK_Alias_Band_id" owning-alias="aliases" to="Band" visCenterX="0" visCenterY="0" visShowCaption="0">
+      <foreign-key-column from="Band_id" to="id"/>
     </foreign-key>
     <foreign-key caption="Country State" from="State" inverse-alias="country" name="FK_State_Country_id" owning-alias="states" to="Country" visShowCaption="0">
       <foreign-key-column from="Country_id" to="id"/>
@@ -296,14 +300,24 @@
     <foreign-key caption="VenueGroup VenueGroupLink" from="VenueGroupLink" inverse-alias="venueGroup" name="FK_VenueGroupLink_VenueGroup_id" owning-alias="links" to="VenueGroup" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="VenueGroup_id" to="id"/>
     </foreign-key>
-    <many-to-many-relation mn-table="ArtistGroupArtist">
-      <many-to-many-foreign-key foreign-key="FK_ArtistGroupArtist_ArtistGroup_id" relation-alias="groups"/>
-      <many-to-many-foreign-key foreign-key="FK_ArtistGroupArtist_Artist_id" relation-alias="artists"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="ArtistGroupUser">
-      <many-to-many-foreign-key foreign-key="FK_ArtistGroupUser_User_id" relation-alias="users"/>
-      <many-to-many-foreign-key foreign-key="FK_ArtistGroupUser_ArtistGroup_id" relation-alias="groups"/>
-    </many-to-many-relation>
+    <foreign-key caption="Band Lineup" from="Lineup" inverse-alias="band" name="FK_Lineup_Band_id" owning-alias="lineups" to="Band" visShowCaption="0">
+      <foreign-key-column from="Band_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Performer PerformerLineup" from="PerformerLineup" name="FK_PerformerLineup_Performer_id" to="Performer" visCenterX="4" visCenterY="8" visShowCaption="0">
+      <foreign-key-column from="Performer_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Lineup PerformerLineup" from="PerformerLineup" name="FK_PerformerLineup_Lineup_id" to="Lineup" visCenterX="-10" visCenterY="3" visShowCaption="0">
+      <foreign-key-column from="Lineup_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Show ShowPerformer" from="PerformerShow" name="FK_ShowPerformer_Show_id" to="Show" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Show_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Performer ShowPerformer" from="PerformerShow" name="FK_ShowPerformer_Performer_id" to="Performer" visShowCaption="0">
+      <foreign-key-column from="Performer_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Band BandLink" from="BandLink" inverse-alias="band" name="FK_BandLink_Band_id" owning-alias="links" to="Band" visShowCaption="0" visSplitted="1">
+      <foreign-key-column from="Band_id" to="id"/>
+    </foreign-key>
     <many-to-many-relation mn-table="Friends">
       <many-to-many-foreign-key foreign-key="FK_UserFriends_User_id" relation-alias="reverseFriends"/>
       <many-to-many-foreign-key foreign-key="FK_UserFriends_User_id2" relation-alias="friends"/>
@@ -324,9 +338,17 @@
       <many-to-many-foreign-key foreign-key="FK_VenueGroupVenue_Venue_id" relation-alias="venues"/>
       <many-to-many-foreign-key foreign-key="FK_VenueGroupVenue_VenueGroup_id" relation-alias="venueGroups"/>
     </many-to-many-relation>
+    <many-to-many-relation mn-table="PerformerLineup">
+      <many-to-many-foreign-key foreign-key="FK_PerformerLineup_Performer_id" relation-alias="performers"/>
+      <many-to-many-foreign-key foreign-key="FK_PerformerLineup_Lineup_id" relation-alias="lineups"/>
+    </many-to-many-relation>
+    <many-to-many-relation mn-table="PerformerShow">
+      <many-to-many-foreign-key foreign-key="FK_ShowPerformer_Show_id" relation-alias="shows"/>
+      <many-to-many-foreign-key foreign-key="FK_ShowPerformer_Performer_id" relation-alias="performers"/>
+    </many-to-many-relation>
   </module>
 
-  <module import-format="Doctrine2Xml" import-path="..\..\module\Db\config\xml\" name="etreedb.org" visBkColor="1538279" visSizeX="-27" visSizeX2="806" visSizeY="-1" visSizeY2="608">
+  <module import-format="Doctrine2Xml" import-path="..\..\module\Db\config\xml\" name="etreedb.org" visBkColor="1538279" visSizeX="-21" visSizeX2="806" visSizeY="-1" visSizeY2="608">
     <region caption="User" name="Region9" visBkColor="11850223" visPositionX="44" visPositionY="39" visSizeX="0" visSizeX2="388" visSizeY="0" visSizeY2="375"/>
     <region caption="UserShow" name="Region10" visBkColor="11850223" visPositionX="469" visPositionY="45" visSizeX="31" visSizeX2="322" visSizeY="0" visSizeY2="545"/>
     <table name="Attendance" region="Region9" visPositionX="234" visPositionY="168" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="73">
