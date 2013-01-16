@@ -22,9 +22,7 @@ return array(
         'instance' => array(
             'alias' => array(
                 'modelUser' => 'Db\Model\User',
-                'modelFitness' => 'Db\Model\Fitness',
-                'modelTeam' => 'Db\Model\Team',
-                'modelFriend' => 'Db\Model\Friend',
+                'modelCountry' => 'Db\Model\Country',
             ),
 
             'Db\Model\AbstractModel' => array(

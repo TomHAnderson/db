@@ -78,6 +78,8 @@ return array(
         'invokables' => array(
             'index' => 'DbEtreeOrg\Controller\IndexController',
             'user' => 'DbEtreeOrg\Controller\UserController',
+            'country' => 'DbEtreeOrg\Controller\CountryController',
+            'import' => 'DbEtreeOrg\Controller\ImportController',
         ),
     ),
     'view_manager' => array(
