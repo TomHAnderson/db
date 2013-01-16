@@ -15,15 +15,11 @@ Installation
     cd db
     php composer.phar install
 
-Virtual Host
-------------
-To run a virtual host for db.etree.org run `php -S localhost:8080` from the public directory.
+Create a mysql database.
 
+Copy ~/config/autoload/local.php.dist to ~/config/autoload/local.php and edit it relpacing any '' with the appropriate values.
 
-Install
--------
-Create a local db database
+Run a virtual host for db.etree.org from the public directory.
+    php -S localhost:8080
 
-Copy ~/config/autoload/local.php.dist to ~/config/autoload/local.php and edit it relpacing any '' with the appropriate value.
-
-Browse to http://localhost:8080 and follow the installation
+Browse to http://localhost:8080 and follow the installation instructions.
