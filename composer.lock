@@ -1,6 +1,59 @@
 {
-    "hash": "d7e8fdd75f0472e96320ceefde5dca60",
+    "hash": "cf4ffabcbe49eb414d9dd34120b74792",
     "packages": [
+        {
+            "name": "bjyoungblood/bjy-authorize",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/bjyoungblood/BjyAuthorize.git",
+                "reference": "release-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/bjyoungblood/BjyAuthorize/archive/release-1.1.zip",
+                "reference": "release-1.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zf-commons/zfc-base": "dev-master",
+                "zf-commons/zfc-user": "dev-master",
+                "zendframework/zendframework": "2.*"
+            },
+            "require-dev": {
+                "doctrine/doctrine-orm-module": "0.*"
+            },
+            "suggest": {
+                "zf-commons/zfc-user-doctrine-orm": "dev-master"
+            },
+            "time": "2013-01-10 17:39:28",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "BjyAuthorize\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Youngblood",
+                    "email": "bx.youngblood@gmail.com",
+                    "homepage": "http://bjyoungblood.com/"
+                }
+            ],
+            "description": "Zend\\Acl based firewall system for ZF2 dispatch protection",
+            "homepage": "https://github.com/bjyoungblood/BjyAuthorize",
+            "keywords": [
+                "zf2",
+                "acl",
+                "zfc-user"
+            ]
+        },
         {
             "name": "doctrine/common",
             "version": "2.3.0-RC1",
@@ -179,39 +232,48 @@
         },
         {
             "name": "doctrine/doctrine-module",
-            "version": "dev-master",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "git://github.com/doctrine/DoctrineModule.git",
-                "reference": "1cd6f814e6f7c1f2b2e7fbc7a7ea0d283bc7c96c"
+                "reference": "0.7.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/DoctrineModule/archive/1cd6f814e6f7c1f2b2e7fbc7a7ea0d283bc7c96c.zip",
-                "reference": "1cd6f814e6f7c1f2b2e7fbc7a7ea0d283bc7c96c",
+                "url": "https://github.com/doctrine/DoctrineModule/archive/0.7.0.zip",
+                "reference": "0.7.0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/console": ">=2.0.13",
                 "doctrine/common": ">=2.3-dev,<2.5-dev",
-                "zendframework/zendframework": "2.*",
-                "doctrine/data-fixtures": "1.*"
+                "symfony/console": ">=2.0.13",
+                "zendframework/zend-authentication": "2.*",
+                "zendframework/zend-cache": "2.*",
+                "zendframework/zend-paginator": "2.*",
+                "zendframework/zend-stdlib": "2.*",
+                "zendframework/zend-mvc": "2.*",
+                "zendframework/zend-servicemanager": "2.*",
+                "zendframework/zend-validator": "2.*"
             },
-            "time": "2012-12-16 21:40:55",
+            "suggest": {
+                "doctrine/data-fixtures": "Data Fixtures if you want to generate test data or bootstrap data for your deployments"
+            },
+            "time": "2013-01-13 19:39:22",
             "bin": [
                 "bin/doctrine-module"
             ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.6.x-dev"
+                    "dev-master": "0.8.x-dev"
                 }
             },
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
-                    "DoctrineModule\\": "src/"
+                    "DoctrineModule\\": "src/",
+                    "DoctrineModuleTest\\": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -259,33 +321,37 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/doctrine/DoctrineORMModule.git",
-                "reference": "93f1d744cdda5a452fff6c29f7fad19e2c508a93"
+                "reference": "0.7.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/DoctrineORMModule/archive/93f1d744cdda5a452fff6c29f7fad19e2c508a93.zip",
-                "reference": "93f1d744cdda5a452fff6c29f7fad19e2c508a93",
+                "url": "https://github.com/doctrine/DoctrineORMModule/archive/0.7.0.zip",
+                "reference": "0.7.0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "doctrine/orm": ">=2.3-dev,<2.5-dev",
                 "doctrine/dbal": ">=2.3-dev,<2.5-dev",
-                "zendframework/zendframework": "2.*",
-                "doctrine/migrations": "1.*",
-                "doctrine/doctrine-module": ">=0.5.1"
+                "zendframework/zend-stdlib": "2.*",
+                "zendframework/zend-form": "2.*",
+                "zendframework/zend-mvc": "2.*",
+                "zendframework/zend-servicemanager": "2.*",
+                "doctrine/doctrine-module": "0.7.*"
             },
             "require-dev": {
-                "zendframework/zend-developer-tools": "dev-master"
+                "zendframework/zend-developer-tools": "dev-master",
+                "doctrine/migrations": "1.*"
             },
             "suggest": {
-                "zendframework/zend-developer-tools": "zend-developer-tools if you want to profile operations executed by the ORM during development"
+                "zendframework/zend-developer-tools": "zend-developer-tools if you want to profile operations executed by the ORM during development",
+                "doctrine/migrations": "doctrine migrations if you want to keep your schema definitions versioned"
             },
-            "time": "2013-01-07 16:33:14",
+            "time": "2013-01-13 19:47:34",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.6.x-dev"
+                    "dev-master": "0.8.x-dev"
                 }
             },
             "installation-source": "source",
@@ -454,6 +520,51 @@
             "keywords": [
                 "database",
                 "orm"
+            ]
+        },
+        {
+            "name": "keen-io/keen-io",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/keenlabs/KeenClient-PHP",
+                "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/keenlabs/KeenClient-PHP/archive/562593bb91aa19e0ffac99869d9323ad3d47beea.zip",
+                "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zendframework": "2.*,!=2.0.6"
+            },
+            "time": "2013-01-13 02:09:37",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "KeenIO": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Anderson",
+                    "email": "tom.h.anderson@gmail.com",
+                    "homepage": "http://db.etree.org"
+                }
+            ],
+            "description": "A PHP library for reporting events to the Keen IO API",
+            "homepage": "http://keen.io",
+            "keywords": [
+                "zf2",
+                "analytics",
+                "keen io"
             ]
         },
         {
@@ -817,13 +928,14 @@
         "zf-commons/zfc-base": 20,
         "zf-commons/zfc-user": 20,
         "zf-commons/zfc-admin": 20,
+        "bjyoungblood/bjy-authorize": 20,
         "zf-commons/zfc-user-doctrine-orm": 20,
         "doctrine/common": 5,
         "doctrine/dbal": 5,
         "doctrine/orm": 5,
         "doctrine/migrations": 15,
         "doctrine/data-fixtures": 15,
-        "doctrine/doctrine-module": 20,
-        "doctrine/doctrine-orm-module": 20
+        "doctrine/doctrine-orm-module": 20,
+        "keen-io/keen-io": 20
     }
 }
