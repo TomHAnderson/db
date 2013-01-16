@@ -357,7 +357,7 @@
     <foreign-key caption="Performer PerformerLineup" from="PerformerLineup" name="FK_PerformerLineup_Performer_id" to="Performer" visCenterX="4" visCenterY="0" visShowCaption="0">
       <foreign-key-column from="Performer_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="Lineup PerformerLineup" from="PerformerLineup" name="FK_PerformerLineup_Lineup_id" to="Lineup" visCenterX="0" visCenterY="0" visShowCaption="0" visSplitted="1">
+    <foreign-key caption="Lineup PerformerLineup" from="PerformerLineup" name="FK_PerformerLineup_Lineup_id" to="Lineup" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Lineup_id" to="id"/>
     </foreign-key>
     <foreign-key caption="Show ShowPerformer" from="PerformerShow" name="FK_ShowPerformer_Show_id" to="Show" visShowCaption="0" visSplitted="1">
@@ -369,7 +369,7 @@
     <foreign-key caption="Band BandLink" from="BandLink" inverse-alias="band" name="FK_BandLink_Band_id" owning-alias="links" to="Band" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Band_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="Song ShowSong" from="ShowSong" inverse-alias="song" name="FK_ShowSong_Song_id" owning-alias="showsongs" to="Song" visShowCaption="0">
+    <foreign-key caption="Song ShowSong" from="ShowSong" inverse-alias="song" name="FK_ShowSong_Song_id" owning-alias="showSongs" to="Song" visShowCaption="0">
       <foreign-key-column from="Song_id" to="id"/>
     </foreign-key>
     <foreign-key caption="Show ShowSong" from="ShowSong" inverse-alias="show" name="FK_ShowSong_Show_id" owning-alias="showSongs" to="Show" visShowCaption="0" visSplitted="1">
