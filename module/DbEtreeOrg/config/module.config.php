@@ -81,8 +81,6 @@ return array(
             'country' => 'DbEtreeOrg\Controller\CountryController',
             'state' => 'DbEtreeOrg\Controller\StateController',
             'place' => 'DbEtreeOrg\Controller\PlaceController',
-
-            'import' => 'DbEtreeOrg\Controller\ImportController',
         ),
     ),
     'view_manager' => array(

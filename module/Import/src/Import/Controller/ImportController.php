@@ -1,6 +1,6 @@
 <?php
 
-namespace DbEtreeOrg\Controller;
+namespace Import\Controller;
 use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
     , Db\Entity\Country as CountryEntity

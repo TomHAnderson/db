@@ -6,8 +6,8 @@
 
 <h1>Places</h1>
 <h2>
-    <?= $this->escapeHtml($this->state->getCountry()->getName()); ?>
-    &gt;
+    <a href="/state?countryId=<?= $this->state->getCountry()->getId(); ?>"><?= $this->escapeHtml($this->state->getCountry()->getName()); ?></a>
+    ::
     <?= $this->escapeHtml($this->state->getName()); ?>
 </h2>
 
