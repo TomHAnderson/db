@@ -11,7 +11,7 @@ use Zend\Form\Annotation as Form;
 class Venue extends AbstractEntity
 {
     use \Db\Field\Id
-        , \Db\Field\City
+        , \Db\Field\Place
         , \Db\Field\Zipcode
         , \Db\Field\Name
         , \Db\Field\Note

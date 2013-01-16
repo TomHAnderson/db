@@ -12,7 +12,7 @@ class Event extends AbstractEntity
 {
     use \Db\Field\Id
         , \Db\Field\Producer
-        , \Db\Field\City
+        , \Db\Field\Place
         , \Db\Field\Zipcode
         , \Db\Field\Name
         , \Db\Field\Note

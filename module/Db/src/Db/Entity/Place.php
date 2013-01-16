@@ -6,9 +6,9 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("city")
+ * @Form\Name("place")
  */
-class City extends AbstractEntity
+class Place extends AbstractEntity
 {
     use \Db\Field\Id
         , \Db\Field\Name

@@ -16,7 +16,7 @@ class State extends AbstractEntity
         , \Db\Field\Abbrev
         ;
 
-    use \Db\Relation\Cities
+    use \Db\Relation\Places
         ;
 
     public function getArrayCopy()
