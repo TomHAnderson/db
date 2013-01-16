@@ -18,7 +18,7 @@ class Show extends AbstractEntity
         , \Db\Field\Set2
         , \Db\Field\Set3
         , \Db\Field\Note
-        , \Db\Field\Artist
+        , \Db\Field\Lineup
         , \Db\Field\Venue
         , \Db\Field\Event
     ;

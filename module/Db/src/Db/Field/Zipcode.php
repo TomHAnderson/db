@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Artist as ZipcodeEntity;
+use Application\Entity\Zipcode as ZipcodeEntity;
 
 trait Zipcode
 {

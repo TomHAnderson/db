@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Artist as StateEntity;
+use Application\Entity\State as StateEntity;
 
 trait State
 {

@@ -10,7 +10,7 @@ use Zend\Form\Annotation as Form;
  */
 class Alias extends AbstractEntity {
     use \Db\Field\Id
-        , \Db\Field\Artist
+        , \Db\Field\Band
         , \Db\Field\Name
         , \Db\Field\NameNormalized
         ;

@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Artist as CityEntity;
+use Application\Entity\City as CityEntity;
 
 trait City
 {
