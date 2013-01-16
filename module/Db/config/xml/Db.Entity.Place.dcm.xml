@@ -5,7 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="false"/>
-    <many-to-one field="state" target-entity="Db\Entity\State" inversed-by="cities">
+    <many-to-one field="state" target-entity="Db\Entity\State" inversed-by="places">
       <join-columns>
         <join-column name="State_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
