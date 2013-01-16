@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Country as CountryEntity;
+use Db\Entity\Country as CountryEntity;
 
 trait Country
 {

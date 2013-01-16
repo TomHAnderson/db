@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\State as StateEntity;
+use Db\Entity\State as StateEntity;
 
 trait State
 {

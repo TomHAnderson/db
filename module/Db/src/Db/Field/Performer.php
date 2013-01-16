@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Performer as PerformerEntity;
+use Db\Entity\Performer as PerformerEntity;
 
 trait Performer
 {

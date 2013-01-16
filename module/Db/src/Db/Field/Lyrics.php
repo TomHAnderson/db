@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Lyrics as LyricsEntity;
+use Db\Entity\Lyrics as LyricsEntity;
 
 trait Lyrics
 {

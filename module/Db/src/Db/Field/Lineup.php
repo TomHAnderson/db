@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Lineup as LineupEntity;
+use Db\Entity\Lineup as LineupEntity;
 
 trait Lineup
 {

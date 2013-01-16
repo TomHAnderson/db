@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Band as BandEntity;
+use Db\Entity\Band as BandEntity;
 
 trait Band
 {

@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Show as ShowEntity;
+use Db\Entity\Show as ShowEntity;
 
 trait Show
 {

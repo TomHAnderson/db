@@ -2,7 +2,7 @@
 
 namespace Db\Field;
 
-use Application\Entity\Source as SourceEntity;
+use Db\Entity\Source as SourceEntity;
 
 trait Source
 {

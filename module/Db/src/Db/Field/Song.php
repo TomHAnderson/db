@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Song as SongEntity;
+use Db\Entity\Song as SongEntity;
 
 trait Song
 {

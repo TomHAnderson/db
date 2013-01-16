@@ -2,7 +2,7 @@
 
 namespace Db\Field;
 
-use Application\Entity\VenueGroup as VenueGroupEntity;
+use Db\Entity\VenueGroup as VenueGroupEntity;
 
 trait VenueGroup
 {

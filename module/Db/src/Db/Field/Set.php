@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Set as SetEntity;
+use Db\Entity\Set as SetEntity;
 
 trait Set
 {

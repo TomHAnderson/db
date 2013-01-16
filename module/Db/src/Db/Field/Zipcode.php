@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Zipcode as ZipcodeEntity;
+use Db\Entity\Zipcode as ZipcodeEntity;
 
 trait Zipcode
 {

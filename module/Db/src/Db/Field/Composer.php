@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Composer as ComposerEntity;
+use Db\Entity\Composer as ComposerEntity;
 
 trait Composer
 {

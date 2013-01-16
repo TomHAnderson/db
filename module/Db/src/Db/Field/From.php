@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\User as UserEntity;
+use Db\Entity\User as UserEntity;
 
 trait From
 {

@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\BandGroup as BandGroupEntity;
+use Db\Entity\BandGroup as BandGroupEntity;
 
 trait BandGroup
 {

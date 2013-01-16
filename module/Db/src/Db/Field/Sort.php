@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Sort as SortEntity;
+use Db\Entity\Sort as SortEntity;
 
 trait Sort
 {

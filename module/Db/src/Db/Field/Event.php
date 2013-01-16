@@ -1,7 +1,7 @@
 <?php
 namespace Db\Field;
 
-use Application\Entity\Event as EventEntity;
+use Db\Entity\Event as EventEntity;
 
 trait Event
 {

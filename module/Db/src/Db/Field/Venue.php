@@ -2,7 +2,7 @@
 
 namespace Db\Field;
 
-use Application\Entity\Venue as VenueEntity;
+use Db\Entity\Venue as VenueEntity;
 
 trait Venue
 {
