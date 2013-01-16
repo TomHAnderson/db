@@ -2,10 +2,11 @@
 
 namespace Db\Model;
 
-use Db\Model\AbstractModel;
-use Zend\InputFilter\InputFilter;
-use Zend\ServiceManager\ServiceManager;
-use Doctrine\ORM\EntityManager;
+use Db\Model\AbstractModel
+    , Zend\InputFilter\InputFilter
+    , Zend\ServiceManager\ServiceManager
+    , Doctrine\ORM\EntityManager
+    ;
 
 abstract class AbstractEntityModel extends AbstractModel
 {

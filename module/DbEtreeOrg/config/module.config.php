@@ -79,6 +79,8 @@ return array(
             'index' => 'DbEtreeOrg\Controller\IndexController',
             'user' => 'DbEtreeOrg\Controller\UserController',
             'country' => 'DbEtreeOrg\Controller\CountryController',
+            'state' => 'DbEtreeOrg\Controller\StateController',
+
             'import' => 'DbEtreeOrg\Controller\ImportController',
         ),
     ),

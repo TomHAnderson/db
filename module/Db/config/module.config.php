@@ -22,6 +22,7 @@ return array(
         'instance' => array(
             'alias' => array(
                 'modelUser' => 'Db\Model\User',
+                'modelState' => 'Db\Model\State',
                 'modelCountry' => 'Db\Model\Country',
             ),
 

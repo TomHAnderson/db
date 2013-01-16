@@ -8,13 +8,10 @@
  */
 
 namespace DbEtreeOrg\Controller;
-
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-
-use Db\Entity\Country as CountryEntity;
-
-use Zend\Form\Annotation\AnnotationBuilder;
+use Zend\Mvc\Controller\AbstractActionController
+    , Zend\View\Model\ViewModel
+    , Db\Entity\Country as CountryEntity
+    , Zend\Form\Annotation\AnnotationBuilder;
 
 class CountryController extends AbstractActionController
 {

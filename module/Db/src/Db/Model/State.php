@@ -5,10 +5,11 @@ use Db\Model\AbstractEntityModel
     , Zend\InputFilter\InputFilter
     ;
 
-final class Country extends AbstractEntityModel
+final class State extends AbstractEntityModel
 {
     use \Db\Field\Name
         , \Db\Field\Abbrev
+        , \Db\Field\Country
         ;
 
     public function getDefaultSort()

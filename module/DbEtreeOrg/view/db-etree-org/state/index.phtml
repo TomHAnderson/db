@@ -1,4 +1,5 @@
-<h1>Countries</h1>
+<h1>States</h1>
+<h2><?= $this->escapeHtml($this->country->getName()); ?></h2>
 
 <hr>
 
@@ -6,19 +7,19 @@
 
 $col1 = $col2 = $col3 = '';
 $i = 0;
-foreach ($this->countries as $country) {
+foreach ($this->states as $state) {
     $i ++;
     switch ($i) {
         case 1:
-            $col1[] = $country;
+            $col1[] = $state;
             break;
         case 2:
-            $col2[] = $country;
+            $col2[] = $state;
             break;
         case 3:
         default:
             $i = 0;
-            $col3[] = $country;
+            $col3[] = $state;
             break;
     }
 }
