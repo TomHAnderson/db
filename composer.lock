@@ -1,5 +1,5 @@
 {
-    "hash": "cf4ffabcbe49eb414d9dd34120b74792",
+    "hash": "4692bda972b64ad2ce2ad8ff11301f5e",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/bjyoungblood/BjyAuthorize.git",
-                "reference": "release-1.1"
+                "reference": "5c1914322100a82c5ad69580e017de1085184035"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/bjyoungblood/BjyAuthorize/archive/release-1.1.zip",
-                "reference": "release-1.1",
+                "url": "https://github.com/bjyoungblood/BjyAuthorize/archive/5c1914322100a82c5ad69580e017de1085184035.zip",
+                "reference": "5c1914322100a82c5ad69580e017de1085184035",
                 "shasum": ""
             },
             "require": {
@@ -27,7 +27,7 @@
             "suggest": {
                 "zf-commons/zfc-user-doctrine-orm": "dev-master"
             },
-            "time": "2013-01-10 17:39:28",
+            "time": "2013-01-16 20:01:22",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -917,6 +917,52 @@
             "keywords": [
                 "zf2"
             ]
+        },
+        {
+            "name": "zippopotamus/zippopotamus",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TomHAnderson/ZippopotamusClient-PHP",
+                "reference": "3374f4199072bc792a47870439d30474e7fce8d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/TomHAnderson/ZippopotamusClient-PHP/archive/3374f4199072bc792a47870439d30474e7fce8d0.zip",
+                "reference": "3374f4199072bc792a47870439d30474e7fce8d0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zendframework": "2.*,!=2.0.6"
+            },
+            "time": "2013-01-17 05:33:51",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Zippopotamus": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Anderson",
+                    "email": "tom.h.anderson@gmail.com",
+                    "homepage": "http://db.etree.org"
+                }
+            ],
+            "description": "A PHP library for Zippopotam.us API",
+            "homepage": "http://www.zippopotam.us",
+            "keywords": [
+                "state",
+                "zipcode",
+                "country",
+                "city"
+            ]
         }
     ],
     "packages-dev": null,
@@ -936,6 +982,7 @@
         "doctrine/migrations": 15,
         "doctrine/data-fixtures": 15,
         "doctrine/doctrine-orm-module": 20,
-        "keen-io/keen-io": 20
+        "keen-io/keen-io": 20,
+        "zippopotamus/zippopotamus": 20
     }
 }

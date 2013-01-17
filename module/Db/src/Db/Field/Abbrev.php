@@ -23,4 +23,14 @@ trait Abbrev
         $this->abbrev = $value;
         return $this;
     }
+
+    private function inputFilterInputAbbrev($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'abbrev',
+            'required' => false,
+            'validators' => array(),
+        ));
+    }
 }

@@ -25,6 +25,7 @@
         "doctrine/doctrine-module":"0.7.0",
         "doctrine/doctrine-orm-module":"dev-master",
 
-        "keen-io/keen-io": "dev-master"
+        "keen-io/keen-io": "dev-master",
+        "zippopotamus/zippopotamus": "dev-master"
     }
 }

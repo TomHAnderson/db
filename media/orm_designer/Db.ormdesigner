@@ -134,7 +134,7 @@
     </table>
     <table name="Country" region="Region4" visPositionX="-15" visPositionY="-64" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column auto-increment="true" name="name" required="true" type="string"/>
+      <column auto-increment="true" name="name" required="true" type="string" unique="true"/>
       <column name="abbrev" type="string"/>
     </table>
     <table name="State" region="Region4" visPositionX="-167" visPositionY="-71" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="73">
@@ -307,7 +307,7 @@
     <foreign-key caption="Country State" from="State" inverse-alias="country" name="FK_State_Country_id" owning-alias="states" to="Country" visShowCaption="0">
       <foreign-key-column from="Country_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="State City" from="Place" inverse-alias="state" name="FK_City_State_id" owning-alias="cities" to="State" visShowCaption="0">
+    <foreign-key caption="State City" from="Place" inverse-alias="state" name="FK_City_State_id" owning-alias="places" to="State" visShowCaption="0">
       <foreign-key-column from="State_id" to="id"/>
     </foreign-key>
     <foreign-key caption="User SourceComment" from="AbstractComment" inverse-alias="user" name="FK_SourceComment_User_id3" owning-alias="comments" to="User" visShowCaption="0" visSplitted="1">

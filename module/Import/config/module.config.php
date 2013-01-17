@@ -7,10 +7,31 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace DbEtreeOrg;
+namespace Import;
 
 return array(
-            'default' => array(
+    'service_manager' => array(
+        'factories' => array(
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+        ),
+        'aliases' => array(
+            'db' => 'Zend\Db\Adapter\Adapter',
+        ),
+    ),
+
+    'db' => array(
+        'driver'    => 'pdo',
+        'dsn'       => 'mysql:dbname=db;host=localhost',
+        'username'  => 'root',
+        'password'  => '',
+        'driver_options' => array(
+            \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"
+         ),
+    ),
+
+    'router' => array(
+        'routes' => array(
+            'import' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
                     'route' => '/import[/:action]',

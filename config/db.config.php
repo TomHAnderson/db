@@ -2,6 +2,7 @@
 return array(
     'modules' => array(
         'Install',
+        'Import',
 
         'Db',
         'DbEtreeOrg',

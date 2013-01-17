@@ -23,4 +23,14 @@ trait Name
         $this->name = $value;
         return $this;
     }
+
+    private function inputFilterInputName($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'name',
+            'required' => true,
+            'validators' => array(),
+        ));
+    }
 }

@@ -23,4 +23,47 @@ class CountryController extends AbstractActionController
             'countries' => $modelCountry->findAll(),
         );
     }
+
+    public function createAction()
+    {
+        $modelUser = $this->getServiceLocator()->get('modelUser');
+        $modelCountry = $this->getServiceLocator()->get('modelCountry');
+
+        $user = $modelUser->getAuthenticatedUser();
+        if (!$user) {
+            return $this->plugin('redirect')->toUrl('/user/login?redirect=/country/create');
+        }
+
+        $country = new CountryEntity;
+
+        $builder = new AnnotationBuilder();
+        $form = $builder->createForm($country);
+
+        $form->add(array(
+            'name' => 'submit',
+            'attributes' => array(
+                'id' => 'submit',
+                'type'  => 'submit',
+                'value' => 'Submit',
+            ),
+        ));
+
+        if ($this->getRequest()->isPost()) {
+            $form->setData($this->getRequest()->getPost()->toArray());
+            $form->setUseInputFilterDefaults(false);
+            $form->setInputFilter($modelCountry->getInputFilter($country));
+
+            if ($form->isValid()) {
+                $data = $form->getData();
+                $country->exchangeArray($form->getData());
+
+                $modelCountry->create($country);
+                return $this->plugin('redirect')->toUrl('/state?countryId=' . $country->getId());
+            }
+        }
+
+        return array(
+            'form' => $form
+        );
+    }
 }
