@@ -25,6 +25,8 @@
         "doctrine/doctrine-module":"0.7.0",
         "doctrine/doctrine-orm-module":"dev-master",
 
+        "heartsentwined/zf2-geoname": "3.*",
+
         "keen-io/keen-io": "dev-master",
         "zippopotamus/zippopotamus": "dev-master"
     }

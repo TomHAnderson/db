@@ -5,11 +5,6 @@
     <field name="name" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
     <field name="zipcode" type="string" nullable="true"/>
-    <many-to-one field="place" target-entity="Db\Entity\Place" inversed-by="venues">
-      <join-columns>
-        <join-column name="Place_id" referenced-column-name="id" nullable="false"/>
-      </join-columns>
-    </many-to-one>
     <one-to-many field="shows" target-entity="Db\Entity\Show" mapped-by="venue"/>
     <one-to-many field="links" target-entity="Db\Entity\VenueLink" mapped-by="venue"/>
     <many-to-many field="venueGroups" target-entity="Db\Entity\VenueGroup" inversed-by="venues">

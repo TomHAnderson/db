@@ -14,6 +14,9 @@ return array(
         'ZfcUser',
         'ZfcUserDoctrineORM',
 
+        'Heartsentwined\Geoname',
+        'Heartsentwined\Cron',
+
         'Jambase',
     ),
     'module_listener_options' => array(

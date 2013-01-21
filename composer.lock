@@ -1,5 +1,5 @@
 {
-    "hash": "4692bda972b64ad2ce2ad8ff11301f5e",
+    "hash": "1b1c3c6c74d6632f86a6cb05e858d4ab",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -523,6 +523,575 @@
             ]
         },
         {
+            "name": "heartsentwined/arg-validator",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/php-arg-validator",
+                "reference": "1.1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/php-arg-validator/zipball/1.1.3",
+                "reference": "1.1.3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "time": "2012-10-03 12:54:08",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Heartsentwined\\ArgValidator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Validate function arguments, extending typehinting capabilities of PHP.",
+            "homepage": "https://github.com/heartsentwined/arg-validator",
+            "keywords": [
+                "validator",
+                "typehint",
+                "validate",
+                "argument",
+                "typehinting"
+            ]
+        },
+        {
+            "name": "heartsentwined/background-exec",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/php-background-exec",
+                "reference": "1.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/php-background-exec/zipball/1.0.1",
+                "reference": "1.0.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "time": "2012-09-07 12:48:09",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Heartsentwined\\BackgroundExec": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Close a client HTTP connection and continue script execution in background.",
+            "homepage": "https://github.com/heartsentwined/background-exec",
+            "keywords": [
+                "file",
+                "manager",
+                "directory",
+                "system",
+                "dir"
+            ]
+        },
+        {
+            "name": "heartsentwined/cron-expr-parser",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/php-cron-expr-parser",
+                "reference": "1.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/php-cron-expr-parser/zipball/1.0.2",
+                "reference": "1.0.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "heartsentwined/arg-validator": "1.*"
+            },
+            "time": "2012-10-03 12:54:08",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Heartsentwined\\CronExprParser": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Parse cron expressions and match them against time.",
+            "homepage": "https://github.com/heartsentwined/cron-expr-parser",
+            "keywords": [
+                "cron"
+            ]
+        },
+        {
+            "name": "heartsentwined/file-system-manager",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/php-file-system-manager",
+                "reference": "1.1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/php-file-system-manager/zipball/1.1.3",
+                "reference": "1.1.3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "heartsentwined/arg-validator": "1.*"
+            },
+            "time": "2012-10-03 12:54:08",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Heartsentwined\\FileSystemManager": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A collection of file and directory management functions.",
+            "homepage": "https://github.com/heartsentwined/file-system-manager",
+            "keywords": [
+                "file",
+                "manager",
+                "directory",
+                "system",
+                "dir"
+            ]
+        },
+        {
+            "name": "heartsentwined/yaml",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/php-yaml",
+                "reference": "1.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/php-yaml/zipball/1.0.2",
+                "reference": "1.0.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "heartsentwined/arg-validator": "1.*",
+                "symfony/yaml": "2.0.*"
+            },
+            "time": "2012-10-03 12:54:08",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Heartsentwined\\Yaml": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Wrapper around Symfony's Yaml parser - added __DIR__ support.",
+            "homepage": "https://github.com/heartsentwined/yaml",
+            "keywords": [
+                "yaml",
+                "yml"
+            ]
+        },
+        {
+            "name": "heartsentwined/zf2-assetwig",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/zf2-assetwig",
+                "reference": "1.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/zf2-assetwig/zipball/1.1.0",
+                "reference": "1.1.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/yaml": "2.0.*",
+                "heartsentwined/arg-validator": "1.*",
+                "kriswallsmith/assetic": "1.0.*",
+                "twig/twig": "1.9.*"
+            },
+            "require-dev": {
+                "twig/extensions": "1.0.*"
+            },
+            "time": "2012-09-11 14:00:06",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Assetwig": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Integrates Assetic and Twig to a ZF2 application",
+            "homepage": "https://github.com/heartsentwined/zf2-assetwig",
+            "keywords": [
+                "twig",
+                "zf2",
+                "ZendFramework",
+                "assetic",
+                "asset management"
+            ]
+        },
+        {
+            "name": "heartsentwined/zf2-cli",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/zf2-cli",
+                "reference": "1.0.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/zf2-cli/zipball/1.0.3",
+                "reference": "1.0.3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "heartsentwined/arg-validator": "1.*",
+                "zendframework/zend-console": "2.*"
+            },
+            "time": "2012-10-03 12:54:08",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Heartsentwined\\Cli": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "helper functions for building a zf2 CLI app",
+            "homepage": "https://github.com/heartsentwined/zf2-cli",
+            "keywords": [
+                "cli",
+                "zf2",
+                "helper"
+            ]
+        },
+        {
+            "name": "heartsentwined/zf2-cron",
+            "version": "2.2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/zf2-cron",
+                "reference": "2.2.8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/zf2-cron/zipball/2.2.8",
+                "reference": "2.2.8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "heartsentwined/yaml": "1.*",
+                "zendframework/zendframework": "2.0.*",
+                "heartsentwined/arg-validator": "1.*",
+                "heartsentwined/background-exec": "1.*",
+                "heartsentwined/zf2-doctrine": "1.*",
+                "heartsentwined/cron-expr-parser": "1.*",
+                "heartsentwined/zf2-phpunit-testcase": "1.*",
+                "heartsentwined/zf2-phing-task": "1.*"
+            },
+            "time": "2012-10-03 12:54:08",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Heartsentwined\\Cron": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "ZF2 cron module",
+            "homepage": "https://github.com/heartsentwined/zf2-cron",
+            "keywords": [
+                "zf2",
+                "cron",
+                "ZendFramework"
+            ]
+        },
+        {
+            "name": "heartsentwined/zf2-doctrine",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/zf2-doctrine",
+                "reference": "1.0.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/zf2-doctrine/zipball/1.0.5",
+                "reference": "1.0.5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "heartsentwined/yaml": "1.*",
+                "doctrine/doctrine-orm-module": "dev-master"
+            },
+            "time": "2012-09-27 15:19:23",
+            "bin": [
+                "bin/doctrine-cli"
+            ],
+            "type": "library",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "wrapper for DoctrineORMModule + DoctrineModule's CLI, tailored for yaml config files",
+            "homepage": "https://github.com/heartsentwined/zf2-doctrine",
+            "keywords": [
+                "cli",
+                "zf2",
+                "doctrine"
+            ]
+        },
+        {
+            "name": "heartsentwined/zf2-geoname",
+            "version": "3.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/zf2-geoname",
+                "reference": "3.0.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/zf2-geoname/zipball/3.0.7",
+                "reference": "3.0.7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "heartsentwined/yaml": "1.*",
+                "zendframework/zendframework": "2.0.*",
+                "heartsentwined/arg-validator": "1.*",
+                "heartsentwined/zf2-doctrine": "1.*",
+                "heartsentwined/zf2-cron": "2.*",
+                "heartsentwined/zf2-cli": "1.*",
+                "heartsentwined/file-system-manager": "1.*",
+                "heartsentwined/zf2-phpunit-testcase": "1.*",
+                "heartsentwined/zf2-phing-task": "1.*"
+            },
+            "time": "2012-10-03 12:54:08",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Heartsentwined\\Geoname": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "maintain a local copy of the Geonames database",
+            "homepage": "https://github.com/heartsentwined/zf2-geoname",
+            "keywords": [
+                "zf2",
+                "ZendFramework",
+                "geoname"
+            ]
+        },
+        {
+            "name": "heartsentwined/zf2-phing-task",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/zf2-phing-task",
+                "reference": "1.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/zf2-phing-task/zipball/1.1.1",
+                "reference": "1.1.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "heartsentwined/yaml": "1.*",
+                "zendframework/zendframework": "2.*",
+                "heartsentwined/zf2-doctrine": "1.*",
+                "heartsentwined/zf2-assetwig": "1.*"
+            },
+            "time": "2012-09-17 00:04:06",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "src/task/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A collection of Phing Tasks for a ZF2 app.",
+            "homepage": "https://github.com/heartsentwined/phing-task",
+            "keywords": [
+                "phing"
+            ]
+        },
+        {
+            "name": "heartsentwined/zf2-phpunit-testcase",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heartsentwined/zf2-phpunit-testcase",
+                "reference": "1.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/heartsentwined/zf2-phpunit-testcase/zipball/1.0.2",
+                "reference": "1.0.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zendframework": "2.*",
+                "heartsentwined/arg-validator": "1.*",
+                "heartsentwined/zf2-doctrine": "1.*",
+                "heartsentwined/file-system-manager": "1.*"
+            },
+            "time": "2012-09-27 15:19:28",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Heartsentwined\\Phpunit\\Testcase": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "heartsentwined",
+                    "email": "heartsentwined@cogito-lab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHPUnit test case base classes for ZF2 applications.",
+            "homepage": "https://github.com/heartsentwined/zf2-phpunit-testcase",
+            "keywords": [
+                "phpunit",
+                "zf2",
+                "ZendFramework"
+            ]
+        },
+        {
             "name": "keen-io/keen-io",
             "version": "dev-master",
             "source": {
@@ -568,24 +1137,68 @@
             ]
         },
         {
+            "name": "kriswallsmith/assetic",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "http://github.com/kriswallsmith/assetic.git",
+                "reference": "v1.0.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/kriswallsmith/assetic/zipball/v1.0.4",
+                "reference": "v1.0.4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "time": "2012-08-28 05:18:28",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Assetic": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Wallsmith",
+                    "email": "kris.wallsmith@gmail.com",
+                    "homepage": "http://kriswallsmith.net/"
+                }
+            ],
+            "description": "Asset Management for PHP",
+            "homepage": "https://github.com/kriswallsmith/assetic",
+            "keywords": [
+                "assets",
+                "compression",
+                "minification"
+            ]
+        },
+        {
             "name": "symfony/console",
-            "version": "v2.1.6",
+            "version": "v2.1.7",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console",
-                "reference": "v2.1.6"
+                "reference": "v2.1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Console/archive/v2.1.6.zip",
-                "reference": "v2.1.6",
+                "url": "https://github.com/symfony/Console/archive/v2.1.7.zip",
+                "reference": "v2.1.7",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-12-13 17:42:00",
+            "time": "2013-01-17 15:20:05",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -609,6 +1222,99 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v2.0.22",
+            "target-dir": "Symfony/Component/Yaml",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Yaml",
+                "reference": "v2.0.22"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/symfony/Yaml/archive/v2.0.22.zip",
+                "reference": "v2.0.22",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "time": "2013-01-17 21:16:19",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Yaml": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "http://symfony.com"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v1.9.2",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/fabpot/Twig.git",
+                "reference": "v1.9.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/fabpot/Twig/zipball/v1.9.2",
+                "reference": "v1.9.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "time": "2012-08-25 10:32:57",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "http://twig.sensiolabs.org",
+            "keywords": [
+                "templating"
+            ]
         },
         {
             "name": "zendframework/zendframework",
@@ -924,19 +1630,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TomHAnderson/ZippopotamusClient-PHP",
-                "reference": "3374f4199072bc792a47870439d30474e7fce8d0"
+                "reference": "93705d8f6b7e0a402067dc80f368fd3d02688287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/TomHAnderson/ZippopotamusClient-PHP/archive/3374f4199072bc792a47870439d30474e7fce8d0.zip",
-                "reference": "3374f4199072bc792a47870439d30474e7fce8d0",
+                "url": "https://github.com/TomHAnderson/ZippopotamusClient-PHP/archive/93705d8f6b7e0a402067dc80f368fd3d02688287.zip",
+                "reference": "93705d8f6b7e0a402067dc80f368fd3d02688287",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*,!=2.0.6"
             },
-            "time": "2013-01-17 05:33:51",
+            "time": "2013-01-17 05:54:13",
             "type": "library",
             "installation-source": "source",
             "autoload": {

@@ -11,7 +11,7 @@ return array(
                 'params' => array(
                     'host'     => 'localhost',
                     'port'     => '3306',
-                    'user'     => '',
+                    'user'     => 'root',
                     'password' => '',
                     'dbname'   => 'db',
                 )
@@ -29,6 +29,17 @@ return array(
             'Jambase\Service\Jambase' => array(
                 'parameters' => array(
                     'apiKey' => '',
+                ),
+            ),
+
+            'geoname' => array(
+                'parameters' => array(
+                    # tmp dir for storing geoname data source files
+                    'tmpDir'    => 'data/geoname',
+                    # cron expression: how frequently Geoname module 
+                    # should be run
+                    # for both auto-install and auto-update
+                    'cron'      => '*/15 * * * *',
                 ),
             ),
         ),

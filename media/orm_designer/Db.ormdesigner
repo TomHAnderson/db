@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <orm-designer version="1.4.7.511">
 
-  <project code-name="Db" framework="Without Framework" name="db" orm="Doctrine2" visSizeX="219" visSizeX2="2573" visSizeY="276" visSizeY2="1236">
+  <project code-name="Db" framework="Without Framework" name="db" orm="Doctrine2" visSizeX="219" visSizeX2="2327" visSizeY="276" visSizeY2="1058">
     <module-position name="db.etree.org" visPositionX="-137" visPositionY="-194"/>
     <module-position name="etreedb.org" visPositionX="1271" visPositionY="-255"/>
+    <module-position name="Geoname - Reference Only" visPositionX="1152" visPositionY="381"/>
   </project>
 
   <module import-format="Doctrine2Xml" import-path="..\..\module\Db\config\xml\" name="db.etree.org" visBkColor="1538279" visSizeX="28" visSizeX2="1344" visSizeY="62" visSizeY2="939">
@@ -13,7 +14,7 @@
     <region caption="Source" name="Region5" visBkColor="11850223" visPositionX="215" visPositionY="-35" visSizeX="0" visSizeX2="423" visSizeY="0" visSizeY2="273"/>
     <region caption="User" name="Region6" visBkColor="11850223" visPositionX="-12" visPositionY="-18" visSizeX="0" visSizeX2="205" visSizeY="16" visSizeY2="255"/>
     <region caption="Show" name="Region7" visBkColor="11850223" visPositionX="657" visPositionY="-38" visSizeX="0" visSizeX2="216" visSizeY="0" visSizeY2="276"/>
-    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="460" visPositionY="323" visSizeX="0" visSizeX2="176" visSizeY="68" visSizeY2="237"/>
+    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="460" visPositionY="323" visSizeX="1" visSizeX2="176" visSizeY="68" visSizeY2="237"/>
     <region caption="Song" name="Region10" visBkColor="11850223" visPositionX="884" visPositionY="-36" visSizeX="-8" visSizeX2="403" visSizeY="0" visSizeY2="274"/>
     <region caption="Performer" name="Region11" visBkColor="11850223" visPositionX="1086" visPositionY="257" visSizeX="0" visSizeX2="201" visSizeY="0" visSizeY2="301"/>
     <region caption="Comment" name="Region12" visBkColor="11850223" visPositionX="-7" visPositionY="761" visSizeX="0" visSizeX2="902" visSizeY="0" visSizeY2="157"/>
@@ -132,22 +133,6 @@
       <column name="name" required="true" type="string"/>
       <column name="nameNormalized" required="true" type="string"/>
     </table>
-    <table name="Country" region="Region4" visPositionX="-15" visPositionY="-64" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="59">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column auto-increment="true" name="name" required="true" type="string" unique="true"/>
-      <column name="abbrev" type="string"/>
-    </table>
-    <table name="State" region="Region4" visPositionX="-167" visPositionY="-71" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="73">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Country_id" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="abbrev" type="string"/>
-    </table>
-    <table name="Place" region="Region4" visPositionX="-324" visPositionY="-64" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="59">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="State_id" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-    </table>
     <table name="AbstractComment" region="Region12" visPositionX="25" visPositionY="31" visSizeX="0" visSizeX2="151" visSizeY="0" visSizeY2="87">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="User_id" required="true" type="integer"/>
@@ -265,7 +250,7 @@
     <foreign-key caption="Lineup Show" from="Show" inverse-alias="lineup" name="FK_Show_Lineup_id" owning-alias="shows" to="Lineup" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Lineup_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="City Venue" from="Venue" inverse-alias="place" name="FK_Venue_City_id" owning-alias="venues" to="Place" visShowCaption="0">
+    <foreign-key caption="City Venue" from="Venue" inverse-alias="place" name="FK_Venue_City_id" owning-alias="venues" to="Place" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="Place_id" to="id"/>
     </foreign-key>
     <foreign-key caption="User Performer" from="Performer" inverse-alias="user" name="FK_Performer_User_id" owning-alias="performer" to="User" visShowCaption="0" visSplitted="1">
@@ -303,12 +288,6 @@
     </foreign-key>
     <foreign-key caption="Band Alias" from="Alias" inverse-alias="band" name="FK_Alias_Band_id" owning-alias="aliases" to="Band" visCenterX="0" visCenterY="0" visShowCaption="0">
       <foreign-key-column from="Band_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Country State" from="State" inverse-alias="country" name="FK_State_Country_id" owning-alias="states" to="Country" visShowCaption="0">
-      <foreign-key-column from="Country_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="State City" from="Place" inverse-alias="state" name="FK_City_State_id" owning-alias="places" to="State" visShowCaption="0">
-      <foreign-key-column from="State_id" to="id"/>
     </foreign-key>
     <foreign-key caption="User SourceComment" from="AbstractComment" inverse-alias="user" name="FK_SourceComment_User_id3" owning-alias="comments" to="User" visShowCaption="0" visSplitted="1">
       <foreign-key-column from="User_id" to="id"/>
@@ -490,6 +469,22 @@
       <column name="User_id" required="true" type="integer"/>
       <column name="UserShowField_id" required="true" type="integer"/>
     </table>
+    <table name="Country" visPositionX="341" visPositionY="512" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column auto-increment="true" name="name" required="true" type="string" unique="true"/>
+      <column name="abbrev" type="string"/>
+    </table>
+    <table name="State" visPositionX="189" visPositionY="505" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="73">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="Country_id" required="true" type="integer"/>
+      <column name="name" required="true" type="string"/>
+      <column name="abbrev" type="string"/>
+    </table>
+    <table name="Place" visPositionX="32" visPositionY="512" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="State_id" required="true" type="integer"/>
+      <column name="name" required="true" type="string"/>
+    </table>
     <orm-properties>
       <attribute name="namespace">Db\Entity</attribute>
     </orm-properties>
@@ -550,6 +545,163 @@
     <foreign-key caption="UserShowField UserShowFieldConfig" from="UserShowFieldConfig" name="FK_UserShowFieldConfig_UserShowField_id" to="UserShowField" visCenterX="0" visCenterY="0" visShowCaption="0">
       <foreign-key-column from="UserShowField_id" to="id"/>
     </foreign-key>
+    <foreign-key caption="Country State" from="State" inverse-alias="country" name="FK_State_Country_id" owning-alias="states" to="Country" visCenterX="0" visCenterY="0" visShowCaption="0">
+      <foreign-key-column from="Country_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="State City" from="Place" inverse-alias="state" name="FK_City_State_id" owning-alias="places" to="State" visCenterX="3" visCenterY="0" visShowCaption="0">
+      <foreign-key-column from="State_id" to="id"/>
+    </foreign-key>
+  </module>
+
+  <module import-format="Doctrine2Xml" import-path="..\..\module\Geoname\config\xml\" name="Geoname - Reference Only" visBkColor="16380923" visSizeX="-142" visSizeX2="790" visSizeY="0" visSizeY2="631">
+    <table name="AltName" visPositionX="248" visPositionY="456" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="157">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="name" required="true" type="string"/>
+      <column name="isPreferred" required="true" type="boolean"/>
+      <column name="isShort" required="true" type="boolean"/>
+      <column name="isColloquial" required="true" type="boolean"/>
+      <column name="isHistoric" required="true" type="boolean"/>
+      <column name="languageOther" type="string"/>
+      <column name="isDeprecated" type="boolean"/>
+      <column name="Place_id" type="integer"/>
+      <column name="Language_id" type="integer"/>
+    </table>
+    <table name="Country" visPositionX="442" visPositionY="39" visSizeX="0" visSizeX2="143" visSizeY="0" visSizeY2="227">
+      <column auto-increment="true" name="id" primary="true" type="text"/>
+      <column name="iso3" type="string"/>
+      <column name="iso2" type="string"/>
+      <column name="isoNum" type="string"/>
+      <column name="capital" type="string"/>
+      <column name="area" type="integer"/>
+      <column name="population" type="integer"/>
+      <column name="tld" type="string"/>
+      <column name="phone" type="string"/>
+      <column name="postalCode" type="string"/>
+      <column name="postalCodeRegex" type="string"/>
+      <column name="Place_continent_id" type="integer"/>
+      <column name="Place_id" type="integer" unique="true"/>
+      <column name="Currency_id" type="integer"/>
+      <column name="Locale_id" type="integer"/>
+    </table>
+    <table name="Currency" visPositionX="681" visPositionY="22" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="code" type="string"/>
+      <column name="name" type="string"/>
+    </table>
+    <table name="Feature" visPositionX="653" visPositionY="490" visSizeX="0" visSizeX2="109" visSizeY="0" visSizeY2="87">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="code" required="true" type="string"/>
+      <column name="description" type="string"/>
+      <column name="comment" type="string"/>
+      <column name="Feature_id" type="integer"/>
+    </table>
+    <table name="Language" visPositionX="178" visPositionY="322" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="87">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="iso3" type="string"/>
+      <column name="iso2" type="string"/>
+      <column name="iso1" type="string"/>
+    </table>
+    <table name="Locale" visPositionX="180" visPositionY="125" visSizeX="0" visSizeX2="117" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="code" required="true" type="string"/>
+      <column name="Language_id" type="integer"/>
+    </table>
+    <table name="Meta" visPositionX="205" visPositionY="30" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="status" required="true" type="integer"/>
+      <column name="isLocked" type="boolean"/>
+    </table>
+    <table name="Place" visPositionX="447" visPositionY="373" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="241">
+      <column name="id" primary="true" type="integer"/>
+      <column name="name" type="string"/>
+      <column name="latitude" type="decimal"/>
+      <column name="longitude" type="decimal"/>
+      <column name="elevation" type="integer"/>
+      <column name="digiEleModel" type="integer"/>
+      <column name="population" type="bigint"/>
+      <column name="countryCode" type="string"/>
+      <column name="admin1Code" type="string"/>
+      <column name="admin2Code" type="string"/>
+      <column name="admin3Code" type="string"/>
+      <column name="admin4Code" type="string"/>
+      <column name="isDeprecated" type="boolean"/>
+      <column name="Place_id" type="integer"/>
+      <column name="Feature_id" type="integer"/>
+      <column name="Timezone_id" type="integer"/>
+    </table>
+    <table name="Timezone" visPositionX="661" visPositionY="309" visSizeX="0" visSizeX2="110" visSizeY="0" visSizeY2="101">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="code" required="true" type="string"/>
+      <column name="offset" type="decimal"/>
+      <column name="offsetJan" type="decimal"/>
+      <column name="offsetJul" type="decimal"/>
+      <column name="Country_id" type="text"/>
+    </table>
+    <table name="CountryLocale" visPositionX="279" visPositionY="241" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="60">
+      <column name="Country_id" required="true" type="text"/>
+      <column name="Locale_id" required="true" type="integer"/>
+    </table>
+    <table name="CountryNeighbors" visPositionX="648" visPositionY="121" visSizeX="0" visSizeX2="132" visSizeY="0" visSizeY2="60">
+      <column name="source_Country_id" required="true" type="text"/>
+      <column name="related_Country_id" required="true" type="text"/>
+    </table>
+    <foreign-key caption="Place AltName" from="AltName" inverse-alias="place" name="FK_AltName_Place_id" owning-alias="altNames" to="Place" visShowCaption="0">
+      <foreign-key-column from="Place_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Language AltName" from="AltName" inverse-alias="language" name="FK_AltName_Language_id" to="Language" visShowCaption="0">
+      <foreign-key-column from="Language_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Place Country" from="Country" inverse-alias="continent" name="FK_Country_Place_id" owning-alias="countries" to="Place" visCenterX="0" visCenterY="26" visShowCaption="0">
+      <foreign-key-column from="Place_continent_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Place Country" from="Country" inverse-alias="place" name="FK_Country_Place_id2" owning-alias="country" to="Place" visShowCaption="0">
+      <foreign-key-column from="Place_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Currency Country" from="Country" inverse-alias="currency" name="FK_Country_Currency_id" owning-alias="countries" to="Currency" visShowCaption="0">
+      <foreign-key-column from="Currency_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Locale Country" from="Country" inverse-alias="mainLocale" name="FK_Country_Locale_id" owning-alias="countries" to="Locale" visShowCaption="0">
+      <foreign-key-column from="Locale_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Feature Feature" from="Feature" inverse-alias="parent" name="FK_Feature_Feature_id" owning-alias="children" to="Feature" visCaption1X="0" visCaption1Y="0" visCenterX="0" visCenterY="-20" visShowCaption="0">
+      <foreign-key-column from="Feature_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Language Locale" from="Locale" inverse-alias="language" name="FK_Locale_Language_id" owning-alias="locales" to="Language" visShowCaption="0">
+      <foreign-key-column from="Language_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Place Place" from="Place" inverse-alias="parent" name="FK_Place_Place_id" owning-alias="children" to="Place" visCaption1X="0" visCaption1Y="0" visCenterX="0" visCenterY="-20" visShowCaption="0">
+      <foreign-key-column from="Place_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Feature Place" from="Place" inverse-alias="feature" name="FK_Place_Feature_id" owning-alias="places" to="Feature" visShowCaption="0">
+      <foreign-key-column from="Feature_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Timezone Place" from="Place" inverse-alias="timezone" name="FK_Place_Timezone_id" owning-alias="places" to="Timezone" visShowCaption="0">
+      <foreign-key-column from="Timezone_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Country Timezone" from="Timezone" inverse-alias="country" name="FK_Timezone_Country_id" owning-alias="timezones" to="Country" visShowCaption="0">
+      <foreign-key-column from="Country_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Country CountryLocale" from="CountryLocale" name="FK_CountryLocale_Country_id" to="Country" visShowCaption="0">
+      <foreign-key-column from="Country_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Locale CountryLocale" from="CountryLocale" name="FK_CountryLocale_Locale_id" to="Locale" visShowCaption="0">
+      <foreign-key-column from="Locale_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Country CountryNeighbors" from="CountryNeighbors" name="FK_CountryNeighbors_Country_id" to="Country" visShowCaption="0">
+      <foreign-key-column from="source_Country_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Country CountryNeighbors" from="CountryNeighbors" name="FK_CountryNeighbors_Country_id2" to="Country" visShowCaption="0">
+      <foreign-key-column from="related_Country_id" to="id"/>
+    </foreign-key>
+    <many-to-many-relation mn-table="CountryLocale">
+      <many-to-many-foreign-key foreign-key="FK_CountryLocale_Country_id" relation-alias="countries"/>
+      <many-to-many-foreign-key foreign-key="FK_CountryLocale_Locale_id" relation-alias="locales"/>
+    </many-to-many-relation>
+    <many-to-many-relation mn-table="CountryNeighbors">
+      <many-to-many-foreign-key foreign-key="FK_CountryNeighbors_Country_id" relation-alias="neighbors"/>
+      <many-to-many-foreign-key foreign-key="FK_CountryNeighbors_Country_id2" relation-alias="inverseNeighbors"/>
+    </many-to-many-relation>
   </module>
 
 </orm-designer>

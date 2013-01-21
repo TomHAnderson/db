@@ -14,11 +14,6 @@
         <join-column name="Producer_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="place" target-entity="Db\Entity\Place" inversed-by="events">
-      <join-columns>
-        <join-column name="Place_id" referenced-column-name="id" nullable="false"/>
-      </join-columns>
-    </many-to-one>
     <one-to-many field="shows" target-entity="Db\Entity\Show" mapped-by="event"/>
     <one-to-many field="links" target-entity="Db\Entity\EventLink" mapped-by="event"/>
   </entity>
