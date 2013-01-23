@@ -1,4 +1,10 @@
 <?php
+/**
+
+ alter table shows add column imported int not null default 0;
+
+
+ */
 
 namespace Import\Controller;
 use Zend\Mvc\Controller\AbstractActionController
@@ -11,6 +17,20 @@ use Zend\Mvc\Controller\AbstractActionController
 
 class ImportController extends AbstractActionController
 {
+    public function showsAction() {
+        $modelVenue = $this->getServiceLocator()->get('modelVenue');
+        $db = $this->getServiceLocator()->get('db');
+
+        $statement = $db->query('select * from shows where imported = 0 limit 1000');
+        $results = $statement->execute();
+
+        foreach ($results as $row) {
+            // Lookup venue
+        }
+
+        die('update venues');
+    }
+
     public function countryAction()
     {
         $modelCountry = $this->getServiceLocator()->get('modelCountry');

@@ -9,15 +9,15 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("performer")
  */
 class Performer extends AbstractEntity {
-    use \Db\Field\Id
-        , \Db\Field\User
-        , \Db\Field\Name
-        , \Db\Field\Note
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\User
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\Note
         ;
 
-    use \Db\Relation\Lineups
-        , \Db\Relation\Shows
-        , \Db\Relation\Links
+    use \Db\Entity\Relation\Lineups
+        , \Db\Entity\Relation\Shows
+        , \Db\Entity\Relation\Links
         ;
 
 

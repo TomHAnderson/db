@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class BandLink extends AbstractLink
 {
-    use \Db\Field\Band;
+    use \Db\Entity\Field\Band;
 }

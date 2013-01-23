@@ -10,14 +10,14 @@ use Zend\Form\Annotation as Form;
  */
 class UserList extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\User
-        , \Db\Field\Name
-        , \Db\Field\Abbrev
-        , \Db\Field\Note;
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\User
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\Abbrev
+        , \Db\Entity\Field\Note;
 
-    use \Db\Relation\UserShows
-        , \Db\Relation\Shows;
+    use \Db\Entity\Relation\UserShows
+        , \Db\Entity\Relation\Shows;
 
     public function getArrayCopy()
     {

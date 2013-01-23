@@ -8,13 +8,12 @@
     <field name="note" type="text" nullable="true"/>
     <field name="startAt" type="date" nullable="true"/>
     <field name="endAt" type="date" nullable="true"/>
-    <field name="zipcode" type="string" nullable="true"/>
     <many-to-one field="producer" target-entity="Db\Entity\Producer" inversed-by="events">
       <join-columns>
         <join-column name="Producer_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <one-to-many field="shows" target-entity="Db\Entity\Show" mapped-by="event"/>
+    <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="event"/>
     <one-to-many field="links" target-entity="Db\Entity\EventLink" mapped-by="event"/>
   </entity>
 </doctrine-mapping>

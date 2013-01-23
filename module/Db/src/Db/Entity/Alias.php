@@ -9,10 +9,10 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("alias")
  */
 class Alias extends AbstractEntity {
-    use \Db\Field\Id
-        , \Db\Field\Band
-        , \Db\Field\Name
-        , \Db\Field\NameNormalized
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Band
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\NameNormalize
         ;
 
    /** Hydrator functions */
@@ -21,13 +21,13 @@ class Alias extends AbstractEntity {
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'nameNormalized' => $this->getNameNormalized(),
+            'nameNormalized' => $this->getNameNormalize(),
         );
     }
 
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setNameNormalized(isset($data['nameNormalized']) ? $data['nameNormalized']: null);
+        $this->setNameNormalized(isset($data['nameNormalize']) ? $data['nameNormalize']: null);
     }
 }

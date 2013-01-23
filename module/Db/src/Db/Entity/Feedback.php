@@ -10,13 +10,13 @@ use Zend\Form\Annotation as Form;
  */
 class Feedback extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\From
-        , \Db\Field\To
-        , \Db\Field\Score
-        , \Db\Field\Note
-        , \Db\Field\Reply
-        , \Db\Field\CreatedAt
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\From
+        , \Db\Entity\Field\To
+        , \Db\Entity\Field\Score
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\Reply
+        , \Db\Entity\Field\CreatedAt
         ;
 
     public function getArrayCopy()

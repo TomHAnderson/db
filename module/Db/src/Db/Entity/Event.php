@@ -10,18 +10,18 @@ use Zend\Form\Annotation as Form;
  */
 class Event extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\Producer
-        , \Db\Field\Place
-        , \Db\Field\Zipcode
-        , \Db\Field\Name
-        , \Db\Field\Note
-        , \Db\Field\StartAt
-        , \Db\Field\EndAt
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Producer
+        , \Db\Entity\Field\Place
+        , \Db\Entity\Field\Zipcode
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\StartAt
+        , \Db\Entity\Field\EndAt
         ;
 
-    use \Db\Relation\Shows
-        , \Db\Relation\Links
+    use \Db\Entity\Relation\Shows
+        , \Db\Entity\Relation\Links
         ;
 
     public function getArrayCopy()

@@ -9,14 +9,14 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("showSong")
  */
 class ShowSong extends AbstractEntity {
-    use \Db\Field\Id
-        , \Db\Field\Song
-        , \Db\Field\Show
-        , \Db\Field\Set
-        , \Db\Field\Sort
-        , \Db\Field\Note
-        , \Db\Field\IsSegue
-        , \Db\Field\IsEncore
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Song
+        , \Db\Entity\Field\Show
+        , \Db\Entity\Field\Set
+        , \Db\Entity\Field\Sort
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\IsSegue
+        , \Db\Entity\Field\IsEncore
         ;
 
     public function getArrayCopy()

@@ -5,8 +5,8 @@ use Db\Entity\AbstractEntity;
 
 class Wanted extends AbstractEntity
 {
-    use \Db\Field\Id;
-    use \Db\Field\User;
-    use \Db\Field\Show;
-    use \Db\Field\Source;
+    use \Db\Entity\Field\Id;
+    use \Db\Entity\Field\User;
+    use \Db\Entity\Field\Show;
+    use \Db\Entity\Field\Source;
 }

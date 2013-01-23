@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Db\Entity\PerformanceSet">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="name" type="string" nullable="false"/>
+    <field name="sort" type="integer" nullable="false"/>
+    <field name="content" type="text" nullable="false"/>
+    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="sets">
+      <join-columns>
+        <join-column name="Performance_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="performanceSongs" target-entity="Db\Entity\PerformanceSong" mapped-by="performanceSet"/>
+  </entity>
+</doctrine-mapping>

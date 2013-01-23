@@ -10,10 +10,10 @@ use Zend\Form\Annotation as Form;
  */
 class Attendance extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\User
-        , \Db\Field\Show
-        , \Db\Field\Note
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\User
+        , \Db\Entity\Field\Show
+        , \Db\Entity\Field\Note
         ;
 
     /** Hydrator functions */

@@ -47,9 +47,19 @@ return array(
             ),
         ),
     ),
-    'controllers' => array(
-        'invokables' => array(
-            'import' => 'Import\Controller\ImportController',
+    'di' => array(
+        'instance' => array(
+            'alias' => array(
+                'serviceImport' => 'Import\Service\Import',
+            ),
+
+            'Import\Service\Import' => array(
+                'parameters' => array(
+                    'servicemanager' => 'Zend\ServiceManager\ServiceManager',
+                    'entitymanager' => 'Doctrine\ORM\EntityManager',
+                    'cron' => '*/5 * * * *',
+                ),
+            ),
         ),
     ),
 );

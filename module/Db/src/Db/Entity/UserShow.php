@@ -10,36 +10,36 @@ use Zend\Form\Annotation as Form;
  */
 class UserShow extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\User
-        , \Db\Field\Show
-        , \Db\Field\Source
-        , \Db\Field\UserShow\SourceNote
-        , \Db\Field\UserShow\Checksum
-        , \Db\Field\CreatedAt
-        , \Db\Field\UserShow\MediaCount
-        , \Db\Field\UserShow\MediaType
-        , \Db\Field\UserShow\NoiseReduction
-        , \Db\Field\UserShow\ScmsStatus
-        , \Db\Field\UserShow\ShowRating
-        , \Db\Field\UserShow\SoundRating
-        , \Db\Field\UserShow\Microphone
-        , \Db\Field\UserShow\Generation
-        , \Db\Field\Note
-        , \Db\Field\UserShow\JCardComment
-        , \Db\Field\UserShow\TechNote
-        , \Db\Field\UserShow\ReferenceNumber
-        , \Db\Field\UserShow\TradedFrom
-        , \Db\Field\UserShow\TradedFromEmail
-        , \Db\Field\UserShow\TradesAllowed
-        , \Db\Field\Status
-        , \Db\Field\UserShow\Attendance
-        , \Db\Field\UserShow\TaperName
-        , \Db\Field\UserShow\MicLocation
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\User
+        , \Db\Entity\Field\Show
+        , \Db\Entity\Field\Source
+        , \Db\Entity\Field\UserShow\SourceNote
+        , \Db\Entity\Field\UserShow\Checksum
+        , \Db\Entity\Field\CreatedAt
+        , \Db\Entity\Field\UserShow\MediaCount
+        , \Db\Entity\Field\UserShow\MediaType
+        , \Db\Entity\Field\UserShow\NoiseReduction
+        , \Db\Entity\Field\UserShow\ScmsStatus
+        , \Db\Entity\Field\UserShow\ShowRating
+        , \Db\Entity\Field\UserShow\SoundRating
+        , \Db\Entity\Field\UserShow\Microphone
+        , \Db\Entity\Field\UserShow\Generation
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\UserShow\JCardComment
+        , \Db\Entity\Field\UserShow\TechNote
+        , \Db\Entity\Field\UserShow\ReferenceNumber
+        , \Db\Entity\Field\UserShow\TradedFrom
+        , \Db\Entity\Field\UserShow\TradedFromEmail
+        , \Db\Entity\Field\UserShow\TradesAllowed
+        , \Db\Entity\Field\Status
+        , \Db\Entity\Field\UserShow\Attendance
+        , \Db\Entity\Field\UserShow\TaperName
+        , \Db\Entity\Field\UserShow\MicLocation
         ;
 
-    use \Db\Relation\Lists
-        , \Db\Relation\Users
+    use \Db\Entity\Relation\Lists
+        , \Db\Entity\Relation\Users
         ;
 
     public function getArrayCopy()

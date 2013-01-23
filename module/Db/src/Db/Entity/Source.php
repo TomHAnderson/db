@@ -10,22 +10,22 @@ use Zend\Form\Annotation as Form;
  */
 class Source extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\Show
-        , \Db\Field\Note
-        , \Db\Field\Content
-        , \Db\Field\MediaSizeCompressed
-        , \Db\Field\MediaSizeUncompressed
-        , \Db\Field\DiscCountWav
-        , \Db\Field\DiscCountShn
-        , \Db\Field\CreatedAt
-        , \Db\Field\CirculatedAt
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Show
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\Content
+        , \Db\Entity\Field\MediaSizeCompressed
+        , \Db\Entity\Field\MediaSizeUncompressed
+        , \Db\Entity\Field\DiscCountWav
+        , \Db\Entity\Field\DiscCountShn
+        , \Db\Entity\Field\CreatedAt
+        , \Db\Entity\Field\CirculatedAt
         ;
 
-    use \Db\Relation\Links
-        , \Db\Relation\Comments
-        , \Db\Relation\UserShows
-        , \Db\Relation\WantedBy
+    use \Db\Entity\Relation\Links
+        , \Db\Entity\Relation\Comments
+        , \Db\Entity\Relation\UserShows
+        , \Db\Entity\Relation\WantedBy
         ;
 
     public function getArrayCopy()

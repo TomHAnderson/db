@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class SourceComment extends AbstractComment
 {
-    use \Db\Field\Source;
+    use \Db\Entity\Field\Source;
 }

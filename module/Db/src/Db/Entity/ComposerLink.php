@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class ComposerLink extends AbstractLink
 {
-    use \Db\Field\Composer;
+    use \Db\Entity\Field\Composer;
 }

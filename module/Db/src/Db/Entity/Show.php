@@ -10,26 +10,27 @@ use Zend\Form\Annotation as Form;
  */
 class Show extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\Name
-        , \Db\Field\NameNormalized        , \Db\Field\Showdate
-        , \Db\Field\ShowdateAt
-        , \Db\Field\Set1
-        , \Db\Field\Set2
-        , \Db\Field\Set3
-        , \Db\Field\Note
-        , \Db\Field\Lineup
-        , \Db\Field\Venue
-        , \Db\Field\Event
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\NameNormalize
+        , \Db\Entity\Field\Showdate
+        , \Db\Entity\Field\ShowdateAt
+        , \Db\Entity\Field\Set1
+        , \Db\Entity\Field\Set2
+        , \Db\Entity\Field\Set3
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\Lineup
+        , \Db\Entity\Field\Venue
+        , \Db\Entity\Field\Event
     ;
 
-    use \Db\Relation\Links
-        , \Db\Relation\Comments
-        , \Db\Relation\Attendees
-        , \Db\Relation\UserShows
-        , \Db\Relation\WantedBy
-        , \Db\Relation\ShowSongs
-        , \Db\Relation\Performers
+    use \Db\Entity\Relation\Links
+        , \Db\Entity\Relation\Comments
+        , \Db\Entity\Relation\Attendees
+        , \Db\Entity\Relation\UserShows
+        , \Db\Entity\Relation\WantedBy
+        , \Db\Entity\Relation\ShowSongs
+        , \Db\Entity\Relation\Performers
         ;
 
     public function getArrayCopy()
@@ -49,7 +50,7 @@ class Show extends AbstractEntity
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setNameNormalized(isset($data['nameNormalized']) ? $data['nameNormalized']: null);
+        $this->setNameNormalize(isset($data['nameNormalize']) ? $data['nameNormalize']: null);
         $this->setShowdate(isset($data['showdate']) ? $data['showdate']: null);
         $this->setShowdateAt(isset($data['showdateAt']) ? $data['showdateAt']: null);
         $this->setSet1(isset($data['set1']) ? $data['set1']: null);

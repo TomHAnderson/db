@@ -9,13 +9,13 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("song")
  */
 class Composer extends AbstractEntity {
-    use \Db\Field\Id
-        , \Db\Field\Name
-        , \Db\Field\Note
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\Note
         ;
 
-    use \Db\Relation\Links
-        , \Db\Relation\Songs
+    use \Db\Entity\Relation\Links
+        , \Db\Entity\Relation\Songs
         ;
 
     public function getArrayCopy()

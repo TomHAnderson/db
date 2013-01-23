@@ -5,7 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="false"/>
-    <field name="nameNormalized" nullable="false"/>
+    <field name="nameNormalize" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
     <many-to-one field="bandGroup" target-entity="Db\Entity\BandGroup" inversed-by="bands">
       <join-columns>

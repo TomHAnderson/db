@@ -3,9 +3,10 @@
   <entity name="Db\Entity\Venue">
     <id name="id" type="integer"/>
     <field name="name" type="string" nullable="false"/>
+    <field name="city" type="string" nullable="true"/>
+    <field name="state" type="string" nullable="true"/>
     <field name="note" type="text" nullable="true"/>
-    <field name="zipcode" type="string" nullable="true"/>
-    <one-to-many field="shows" target-entity="Db\Entity\Show" mapped-by="venue"/>
+    <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="venue"/>
     <one-to-many field="links" target-entity="Db\Entity\VenueLink" mapped-by="venue"/>
     <many-to-many field="venueGroups" target-entity="Db\Entity\VenueGroup" inversed-by="venues">
       <join-table name="VenueGroupVenue">

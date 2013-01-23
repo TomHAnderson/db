@@ -15,6 +15,7 @@ return array(
         'ZfcUserDoctrineORM',
 
         'Heartsentwined\Geoname',
+        'Geoname',
         'Heartsentwined\Cron',
 
         'Jambase',

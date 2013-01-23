@@ -11,35 +11,35 @@ use ZfcUser\Entity\UserInterface;
  */
 class User extends AbstractEntity implements UserInterface
 {
-    use \Db\Field\Id
-        , \Db\Field\DisplayName
-        , \Db\Field\Username
-        , \Db\Field\Email
-        , \Db\Field\Password
-        , \Db\Field\Note
-        , \Db\Field\IsPublic
-        , \Db\Field\accessToken
-        , \Db\Field\Permission
-        , \Db\Field\CreatedAt
-        , \Db\Field\LastRequestAt
-        , \Db\Field\Subscription
-        , \Db\Field\Performer
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\DisplayName
+        , \Db\Entity\Field\Username
+        , \Db\Entity\Field\Email
+        , \Db\Entity\Field\Password
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\IsPublic
+        , \Db\Entity\Field\accessToken
+        , \Db\Entity\Field\Permission
+        , \Db\Entity\Field\CreatedAt
+        , \Db\Entity\Field\LastRequestAt
+        , \Db\Entity\Field\Subscription
+        , \Db\Entity\Field\Performer
         ;
 
-    use \Db\Relation\Lists
-        , \Db\Relation\Groups
-        , \Db\Relation\Friends
-        , \Db\Relation\ReverseFriends
-        , \Db\Relation\Comments
-        , \Db\Relation\Attendance
-        , \Db\Relation\UserShows
-        , \Db\Relation\FeedbackFrom
-        , \Db\Relation\FeedbackTo
-        , \Db\Relation\WantedBy
-        , \Db\Relation\Inbox
-        , \Db\Relation\Outbox
-        , \Db\Relation\FieldConfig
-        , \Db\Relation\BandGroups
+    use \Db\Entity\Relation\Lists
+        , \Db\Entity\Relation\Groups
+        , \Db\Entity\Relation\Friends
+        , \Db\Entity\Relation\ReverseFriends
+        , \Db\Entity\Relation\Comments
+        , \Db\Entity\Relation\Attendance
+        , \Db\Entity\Relation\UserShows
+        , \Db\Entity\Relation\FeedbackFrom
+        , \Db\Entity\Relation\FeedbackTo
+        , \Db\Entity\Relation\WantedBy
+        , \Db\Entity\Relation\Inbox
+        , \Db\Entity\Relation\Outbox
+        , \Db\Entity\Relation\FieldConfig
+        , \Db\Entity\Relation\BandGroups
         ;
 
     protected $state;

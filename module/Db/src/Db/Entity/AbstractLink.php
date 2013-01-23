@@ -9,11 +9,11 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("abstractLink")
  */
 class AbstractLink extends AbstractEntity {
-    use \Db\Field\Id
-        , \Db\Field\Title
-        , \Db\Field\Url
-        , \Db\Field\Description
-        , \Db\Field\TypeDescriminator
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Title
+        , \Db\Entity\Field\Url
+        , \Db\Entity\Field\Description
+        , \Db\Entity\Field\TypeDescriminator
         ;
 
     /** Hydrator functions */

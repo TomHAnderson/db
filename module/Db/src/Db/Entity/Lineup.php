@@ -9,14 +9,14 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("lineup")
  */
 class Lineup extends AbstractEntity {
-    use \Db\Field\Id
-        , \Db\Field\Band
-        , \Db\Field\Name
-        , \Db\Field\Note
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Band
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\Note
         ;
 
-    use \Db\Relation\Shows
-        , \Db\Relation\Performers
+    use \Db\Entity\Relation\Shows
+        , \Db\Entity\Relation\Performers
         ;
 
 

@@ -10,11 +10,11 @@ use Zend\Form\Annotation as Form;
  */
 class UserShowField extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\Name
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Name
         ;
 
-    use \Db\Relation\Users
+    use \Db\Entity\Relation\Users
         ;
 
     public function getArrayCopy()

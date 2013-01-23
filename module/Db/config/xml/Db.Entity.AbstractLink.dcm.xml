@@ -11,7 +11,7 @@
     <discriminator-map>
       <discriminator-mapping class="Db\Entity\VenueLink" value="Venue"/>
       <discriminator-mapping class="Db\Entity\SourceLink" value="Source"/>
-      <discriminator-mapping class="Db\Entity\ShowLink" value="Show"/>
+      <discriminator-mapping class="Db\Entity\PerformanceLink" value="Show"/>
       <discriminator-mapping class="Db\Entity\PerformerLink" value="Performer"/>
       <discriminator-mapping class="Db\Entity\EventLink" value="FestivalEvent"/>
       <discriminator-mapping class="Db\Entity\ProducerLink" value="Festival"/>

@@ -10,10 +10,10 @@ use Zend\Form\Annotation as Form;
  */
 class Checksum extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\Name
-        , \Db\Field\Content
-        , \Db\Field\Source
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\Content
+        , \Db\Entity\Field\Source
         ;
 
     public function getArrayCopy()

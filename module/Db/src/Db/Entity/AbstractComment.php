@@ -10,11 +10,11 @@ use Zend\Form\Annotation as Form;
  */
 class AbstractComment extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\User
-        , \Db\Field\Note
-        , \Db\Field\CreatedAt
-        , \Db\Field\TypeDescriminator
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\User
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\CreatedAt
+        , \Db\Entity\Field\TypeDescriminator
         ;
 
     public function getArrayCopy()

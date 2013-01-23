@@ -9,16 +9,16 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("band")
  */
 class Band extends AbstractEntity {
-    use \Db\Field\Id
-        , \Db\Field\BandGroup
-        , \Db\Field\Name
-        , \Db\Field\NameNormalized
-        , \Db\Field\Note
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\BandGroup
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\NameNormalize
+        , \Db\Entity\Field\Note
         ;
 
-    use \Db\Relation\Aliases
-        , \Db\Relation\Lineups
-        , \Db\Relation\Links
+    use \Db\Entity\Relation\Aliases
+        , \Db\Entity\Relation\Lineups
+        , \Db\Entity\Relation\Links
         ;
 
    /** Hydrator functions */
@@ -27,7 +27,7 @@ class Band extends AbstractEntity {
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'nameNormalized' => $this->getNameNormalized(),
+            'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
         );
     }
@@ -35,7 +35,7 @@ class Band extends AbstractEntity {
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setNameNormalized(isset($data['nameNormalized']) ? $data['nameNormalized']: null);
+        $this->setNameNormalize(isset($data['nameNormalize']) ? $data['nameNormalize']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }
 }

@@ -12,6 +12,11 @@
     <field name="discCountShn" type="integer" nullable="true"/>
     <field name="createdAt" type="datetime" nullable="false"/>
     <field name="circulatedAt" type="string" nullable="true"/>
+    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="sources">
+      <join-columns>
+        <join-column name="Performance_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
     <one-to-many field="links" target-entity="Db\Entity\SourceLink" mapped-by="source"/>
     <one-to-many field="comments" target-entity="Db\Entity\SourceComment" mapped-by="source"/>
     <one-to-many field="userShows" target-entity="Db\Entity\UserShow" mapped-by="source"/>

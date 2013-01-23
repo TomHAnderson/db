@@ -9,7 +9,7 @@
         <join-column name="Band_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <one-to-many field="shows" target-entity="Db\Entity\Show" mapped-by="lineup"/>
+    <one-to-many field="shows" target-entity="Db\Entity\Performance" mapped-by="lineup"/>
     <many-to-many field="performers" target-entity="Db\Entity\Performer" mapped-by="lineups"/>
   </entity>
 </doctrine-mapping>

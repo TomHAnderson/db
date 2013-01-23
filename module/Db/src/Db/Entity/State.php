@@ -10,13 +10,13 @@ use Zend\Form\Annotation as Form;
  */
 class State extends AbstractEntity
 {
-    use \Db\Field\Id
-        , \Db\Field\Country
-        , \Db\Field\Name
-        , \Db\Field\Abbrev
+    use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Country
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\Abbrev
         ;
 
-    use \Db\Relation\Places
+    use \Db\Entity\Relation\Places
         ;
 
     public function getArrayCopy()
