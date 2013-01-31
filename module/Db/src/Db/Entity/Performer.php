@@ -18,6 +18,7 @@ class Performer extends AbstractEntity {
     use \Db\Entity\Relation\Lineups
         , \Db\Entity\Relation\Performances
         , \Db\Entity\Relation\Links
+        , \Db\Entity\Relation\Comments
         ;
 
 

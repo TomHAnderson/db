@@ -20,6 +20,7 @@ class Song extends AbstractEntity {
     use \Db\Entity\Relation\PerformanceSongs
         , \Db\Entity\Relation\Links
         , \Db\Entity\Relation\Composers
+        , \Db\Entity\Relation\Comments
         ;
 
     public function getArrayCopy()

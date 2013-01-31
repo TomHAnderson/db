@@ -20,6 +20,7 @@ class Venue extends AbstractEntity
 
     use \Db\Entity\Relation\Performances
         , \Db\Entity\Relation\Links
+        , \Db\Entity\Relation\Comments
         , \Db\Entity\Relation\VenueGroups
         ;
 

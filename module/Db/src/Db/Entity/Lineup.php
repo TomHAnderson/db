@@ -17,6 +17,7 @@ class Lineup extends AbstractEntity {
 
     use \Db\Entity\Relation\Performances
         , \Db\Entity\Relation\Performers
+        , \Db\Entity\Relation\Comments
         ;
 
 

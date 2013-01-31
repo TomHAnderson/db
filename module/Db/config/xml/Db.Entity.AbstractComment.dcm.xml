@@ -19,6 +19,9 @@
       <discriminator-mapping class="Db\Entity\PerformerComment" value="Performer"/>
       <discriminator-mapping class="Db\Entity\BandComment" value="Band"/>
       <discriminator-mapping class="Db\Entity\VenueComment" value="Venue"/>
+      <discriminator-mapping class="Db\Entity\EventComment" value="Event"/>
+      <discriminator-mapping class="Db\Entity\SongComment" value="Song"/>
+      <discriminator-mapping class="Db\Entity\LineupComment" value="Lineup"/>
     </discriminator-map>
   </entity>
 </doctrine-mapping>

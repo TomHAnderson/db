@@ -22,6 +22,7 @@ class Event extends AbstractEntity
 
     use \Db\Entity\Relation\Performances
         , \Db\Entity\Relation\Links
+        , \Db\Entity\Relation\Comments
         ;
 
     public function getArrayCopy()

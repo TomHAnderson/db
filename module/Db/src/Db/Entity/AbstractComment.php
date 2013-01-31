@@ -13,6 +13,7 @@ class AbstractComment extends AbstractEntity
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\User
         , \Db\Entity\Field\Note
+        , \Db\Entity\Field\Rating
         , \Db\Entity\Field\CreatedAt
         , \Db\Entity\Field\TypeDescriminator
         ;

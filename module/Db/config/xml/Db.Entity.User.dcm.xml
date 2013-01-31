@@ -36,7 +36,7 @@
       </join-table>
     </many-to-many>
     <many-to-many field="reverseFriends" target-entity="Db\Entity\User" mapped-by="friends"/>
-    <many-to-many field="fieldConfig" target-entity="Db\Entity\UserShowField" inversed-by="users">
+    <many-to-many field="fieldConfig" target-entity="Db\Entity\UserPerformanceField" inversed-by="users">
       <join-table name="UserPerformanceFieldConfig">
         <join-columns>
           <join-column name="User_id" referenced-column-name="id" nullable="false"/>
