@@ -28,6 +28,6 @@ class Module
 
     public function onBootstrap(MvcEvent $e)
     {
-        $e->getApplication()->getServiceManager()->get('serviceImport')->registerCron();
+//        $e->getApplication()->getServiceManager()->get('serviceImport')->registerCron();
     }
 }

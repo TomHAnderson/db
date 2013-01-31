@@ -5,6 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="note" type="text" nullable="false"/>
+    <field name="rating" type="integer" nullable="false"/>
     <field name="createdAt" type="datetime" nullable="false"/>
     <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="comments">
       <join-columns>
@@ -13,8 +14,11 @@
     </many-to-one>
     <discriminator-column name="typeDescriminator" length="255" type="text"/>
     <discriminator-map>
-      <discriminator-mapping class="Db\Entity\ShowComment" value="Show"/>
+      <discriminator-mapping class="Db\Entity\PerformanceComment" value="Show"/>
       <discriminator-mapping class="Db\Entity\SourceComment" value="Source"/>
+      <discriminator-mapping class="Db\Entity\PerformerComment" value="Performer"/>
+      <discriminator-mapping class="Db\Entity\BandComment" value="Band"/>
+      <discriminator-mapping class="Db\Entity\VenueComment" value="Venue"/>
     </discriminator-map>
   </entity>
 </doctrine-mapping>

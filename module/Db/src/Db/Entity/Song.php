@@ -14,9 +14,10 @@ class Song extends AbstractEntity {
         , \Db\Entity\Field\Composer
         , \Db\Entity\Field\Lyrics
         , \Db\Entity\Field\Note
+        , \Db\Entity\Field\Band
         ;
 
-    use \Db\Entity\Relation\ShowSongs
+    use \Db\Entity\Relation\PerformanceSongs
         , \Db\Entity\Relation\Links
         , \Db\Entity\Relation\Composers
         ;

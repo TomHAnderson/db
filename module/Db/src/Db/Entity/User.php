@@ -32,7 +32,7 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Entity\Relation\ReverseFriends
         , \Db\Entity\Relation\Comments
         , \Db\Entity\Relation\Attendance
-        , \Db\Entity\Relation\UserShows
+        , \Db\Entity\Relation\UserPerformances
         , \Db\Entity\Relation\FeedbackFrom
         , \Db\Entity\Relation\FeedbackTo
         , \Db\Entity\Relation\WantedBy

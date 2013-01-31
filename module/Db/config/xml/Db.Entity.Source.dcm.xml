@@ -19,7 +19,7 @@
     </many-to-one>
     <one-to-many field="links" target-entity="Db\Entity\SourceLink" mapped-by="source"/>
     <one-to-many field="comments" target-entity="Db\Entity\SourceComment" mapped-by="source"/>
-    <one-to-many field="userShows" target-entity="Db\Entity\UserShow" mapped-by="source"/>
+    <one-to-many field="userPerformances" target-entity="Db\Entity\UserPerformance" mapped-by="source"/>
     <one-to-many field="wantedBy" target-entity="Db\Entity\Wanted" mapped-by="source"/>
   </entity>
 </doctrine-mapping>

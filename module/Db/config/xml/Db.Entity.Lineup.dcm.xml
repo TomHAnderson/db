@@ -3,13 +3,14 @@
   <entity name="Db\Entity\Lineup">
     <id name="id" type="integer"/>
     <field name="name" type="string" nullable="false"/>
-    <field name="note" nullable="true"/>
+    <field name="note" type="text" nullable="true"/>
     <many-to-one field="band" target-entity="Db\Entity\Band" inversed-by="lineups">
       <join-columns>
         <join-column name="Band_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <one-to-many field="shows" target-entity="Db\Entity\Performance" mapped-by="lineup"/>
+    <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="lineup"/>
+    <one-to-many field="comments" target-entity="Db\Entity\LineupComment" mapped-by="lineup"/>
     <many-to-many field="performers" target-entity="Db\Entity\Performer" mapped-by="lineups"/>
   </entity>
 </doctrine-mapping>

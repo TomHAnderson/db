@@ -7,9 +7,9 @@ use Db\Model\AbstractEntityModel
 
 final class Venue extends AbstractEntityModel
 {
-    use \Db\Field\Name
-        , \Db\Field\Note
-        , \Db\Field\Location
+    use \Db\Entity\Field\Name
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\Location
         ;
 
     public function getDefaultSort()

@@ -15,5 +15,6 @@
     </many-to-one>
     <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="event"/>
     <one-to-many field="links" target-entity="Db\Entity\EventLink" mapped-by="event"/>
+    <one-to-many field="comments" target-entity="Db\Entity\EventComment" mapped-by="event"/>
   </entity>
 </doctrine-mapping>

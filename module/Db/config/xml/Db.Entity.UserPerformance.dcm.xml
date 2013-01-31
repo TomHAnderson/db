@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Db\Entity\UserShow">
+  <entity name="Db\Entity\UserPerformance">
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
@@ -26,21 +26,21 @@
     <field name="attendance" type="string" nullable="true"/>
     <field name="taperName" type="string" nullable="true"/>
     <field name="micLocation" type="string" nullable="true"/>
-    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="userShows">
+    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="userPerformances">
       <join-columns>
         <join-column name="User_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="userShows">
+    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="userPerformances">
       <join-columns>
-        <join-column name="Show_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="Performance_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="source" target-entity="Db\Entity\Source" inversed-by="userShows">
+    <many-to-one field="source" target-entity="Db\Entity\Source" inversed-by="userPerformances">
       <join-columns>
         <join-column name="Source_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-many field="lists" target-entity="Db\Entity\UserList" mapped-by="shows"/>
+    <many-to-many field="lists" target-entity="Db\Entity\UserList" mapped-by="userPerformances"/>
   </entity>
 </doctrine-mapping>

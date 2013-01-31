@@ -7,8 +7,8 @@ use Db\Model\AbstractEntityModel
 
 final class Place extends AbstractEntityModel
 {
-    use \Db\Field\Name
-        , \Db\Field\State
+    use \Db\Entity\Field\Name
+        , \Db\Entity\Field\State
         ;
 
     public function getDefaultSort()

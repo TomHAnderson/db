@@ -1,7 +1,7 @@
 {
-    "name": "zendframework/skeleton-application",
-    "description": "Skeleton Application for ZF2",
-    "license": "BSD-3-Clause",
+    "name": "db.etree.org/db",
+    "description": "db.etree.org and etreedb.org",
+    "license": "Closed",
     "keywords": [
         "framework",
         "zf2"
@@ -24,6 +24,9 @@
         "doctrine/data-fixtures": "v1.0.0-ALPHA3",
         "doctrine/doctrine-module":"0.7.0",
         "doctrine/doctrine-orm-module":"dev-master",
+
+        "tawfekov/zf2entityaudit": "dev-master",
+        "simplethings/entity-audit-bundle": "dev-master",
 
         "heartsentwined/zf2-geoname": "3.*",
 

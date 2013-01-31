@@ -19,6 +19,7 @@ class Band extends AbstractEntity {
     use \Db\Entity\Relation\Aliases
         , \Db\Entity\Relation\Lineups
         , \Db\Entity\Relation\Links
+        , \Db\Entity\Relation\Songs
         ;
 
    /** Hydrator functions */

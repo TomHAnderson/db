@@ -7,8 +7,14 @@
     <field name="name" type="string" nullable="false"/>
     <field name="lyrics" type="text" nullable="true"/>
     <field name="note" type="text" nullable="true"/>
-    <one-to-many field="showSongs" target-entity="Db\Entity\PerformanceSong" mapped-by="song"/>
+    <many-to-one field="band" target-entity="Db\Entity\Band" inversed-by="songs">
+      <join-columns>
+        <join-column name="Band_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="performanceSongs" target-entity="Db\Entity\PerformanceSong" mapped-by="song"/>
     <one-to-many field="links" target-entity="Db\Entity\SongLink" mapped-by="song"/>
+    <one-to-many field="comments" target-entity="Db\Entity\SongComment" mapped-by="song"/>
     <many-to-many field="composers" target-entity="Db\Entity\Composer" inversed-by="songs">
       <join-table name="ComposerSong">
         <join-columns>

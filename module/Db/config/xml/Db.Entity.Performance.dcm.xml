@@ -6,8 +6,8 @@
     </id>
     <field name="name" type="string" nullable="true"/>
     <field name="nameNormalize" type="string" nullable="false"/>
-    <field name="showdate" type="string" length="10" nullable="false"/>
-    <field name="showdateAt" type="date" nullable="true"/>
+    <field name="performanceDate" type="string" length="10" nullable="false"/>
+    <field name="performanceDateAt" type="date" nullable="true"/>
     <field name="note" type="text" nullable="true"/>
     <many-to-one field="venue" target-entity="Db\Entity\Venue" inversed-by="performances">
       <join-columns>
@@ -19,17 +19,17 @@
         <join-column name="Event_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="lineup" target-entity="Db\Entity\Lineup" inversed-by="shows">
+    <many-to-one field="lineup" target-entity="Db\Entity\Lineup" inversed-by="performances">
       <join-columns>
         <join-column name="Lineup_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="sources" target-entity="Db\Entity\Source" mapped-by="performance"/>
     <one-to-many field="links" target-entity="Db\Entity\PerformanceLink" mapped-by="performance"/>
-    <one-to-many field="comments" target-entity="Db\Entity\ShowComment" mapped-by="performance"/>
-    <one-to-many field="sets" target-entity="Db\Entity\PerformanceSet" mapped-by="performance"/>
+    <one-to-many field="comments" target-entity="Db\Entity\PerformanceComment" mapped-by="performance"/>
+    <one-to-many field="performanceSets" target-entity="Db\Entity\PerformanceSet" mapped-by="performance"/>
     <one-to-many field="attendees" target-entity="Db\Entity\Attendance" mapped-by="performance"/>
-    <one-to-many field="userShows" target-entity="Db\Entity\UserShow" mapped-by="performance"/>
+    <one-to-many field="userPerformances" target-entity="Db\Entity\UserPerformance" mapped-by="performance"/>
     <one-to-many field="wantedBy" target-entity="Db\Entity\Wanted" mapped-by="performance"/>
     <many-to-many field="performers" target-entity="Db\Entity\Performer" inversed-by="performances">
       <join-table name="PerformerShow">

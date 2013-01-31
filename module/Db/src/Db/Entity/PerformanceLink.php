@@ -5,9 +5,9 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("comment")
+ * @Form\Name("link")
  */
-final class ShowComment extends AbstractComment
+final class PerformanceLink extends AbstractLink
 {
-    use \Db\Entity\Field\Show;
+    use \Db\Entity\Field\Performance;
 }

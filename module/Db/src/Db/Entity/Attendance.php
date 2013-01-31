@@ -12,7 +12,7 @@ class Attendance extends AbstractEntity
 {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\User
-        , \Db\Entity\Field\Show
+        , \Db\Entity\Field\Performance
         , \Db\Entity\Field\Note
         ;
 

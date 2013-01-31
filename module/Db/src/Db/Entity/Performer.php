@@ -16,7 +16,7 @@ class Performer extends AbstractEntity {
         ;
 
     use \Db\Entity\Relation\Lineups
-        , \Db\Entity\Relation\Shows
+        , \Db\Entity\Relation\Performances
         , \Db\Entity\Relation\Links
         ;
 

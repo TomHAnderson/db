@@ -7,11 +7,11 @@ use Zend\InputFilter\InputFilter;
 
 final class User extends AbstractEntityModel
 {
-    use \Db\Field\DisplayName
-        , \Db\Field\Username
-        , \Db\Field\Email
-        , \Db\Field\Note
-        , \Db\Field\IsPublic
+    use \Db\Entity\Field\DisplayName
+        , \Db\Entity\Field\Username
+        , \Db\Entity\Field\Email
+        , \Db\Entity\Field\Note
+        , \Db\Entity\Field\IsPublic
         ;
 
     public function getDefaultSort()

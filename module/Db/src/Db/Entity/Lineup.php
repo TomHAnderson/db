@@ -15,7 +15,7 @@ class Lineup extends AbstractEntity {
         , \Db\Entity\Field\Note
         ;
 
-    use \Db\Entity\Relation\Shows
+    use \Db\Entity\Relation\Performances
         , \Db\Entity\Relation\Performers
         ;
 

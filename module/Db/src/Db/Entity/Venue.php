@@ -18,7 +18,7 @@ class Venue extends AbstractEntity
         , \Db\Entity\Field\State
         ;
 
-    use \Db\Entity\Relation\Shows
+    use \Db\Entity\Relation\Performances
         , \Db\Entity\Relation\Links
         , \Db\Entity\Relation\VenueGroups
         ;

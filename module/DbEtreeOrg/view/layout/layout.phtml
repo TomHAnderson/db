@@ -101,6 +101,7 @@ foreach (array(
 
                             <li class="dropdown">
                                 <a id="venue-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <i class="icon-home"></i>
                                     <?php echo $this->translate('Venues') ?>
                                     <b class="caret"></b>
                                 </a>
@@ -128,21 +129,11 @@ foreach (array(
                                 </ul>
                             </li>
 
-                            <li class="dropdown">
-                                <a id="import-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
-                                    <?php echo $this->translate('IMPORT DATA') ?>
-                                    <b class="caret"></b>
+                            <li>
+                                <a href="/audit">
+                                    <i class="icon-list"></i>
+                                    Audit Log
                                 </a>
-
-                                <ul class="dropdown-menu" aria-labelledby="import-drop" role="menu">
-
-                                    <li role="menuitem">
-                                        <a href="/import/artist-groups">Artist Groups</a>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a href="/import/artists">Artists/a>
-                                    </li>
-                                </ul>
                             </li>
                         </ul>
 <!--

@@ -7,8 +7,8 @@ use Db\Model\AbstractEntityModel
 
 final class Country extends AbstractEntityModel
 {
-    use \Db\Field\Name
-        , \Db\Field\Abbrev
+    use \Db\Entity\Field\Name
+        , \Db\Entity\Field\Abbrev
         ;
 
     public function getDefaultSort()

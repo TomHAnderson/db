@@ -8,11 +8,11 @@ use Zend\Form\Annotation as Form;
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("userShow")
  */
-class UserShow extends AbstractEntity
+class UserPerformance extends AbstractEntity
 {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\User
-        , \Db\Entity\Field\Show
+        , \Db\Entity\Field\Performance
         , \Db\Entity\Field\Source
         , \Db\Entity\Field\UserShow\SourceNote
         , \Db\Entity\Field\UserShow\Checksum

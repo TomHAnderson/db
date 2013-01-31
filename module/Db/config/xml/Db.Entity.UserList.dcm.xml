@@ -12,13 +12,13 @@
         <join-column name="User_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-many field="shows" target-entity="Db\Entity\UserShow" inversed-by="lists">
-      <join-table name="UserShowList">
+    <many-to-many field="userPerformances" target-entity="Db\Entity\UserPerformance" inversed-by="lists">
+      <join-table name="UserPerformanceList">
         <join-columns>
           <join-column name="ListGroup_id" referenced-column-name="id" nullable="false"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="UserShow_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="UserPerformance_id" referenced-column-name="id" nullable="false"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>

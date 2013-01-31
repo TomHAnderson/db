@@ -11,7 +11,7 @@ use Zend\Form\Annotation as Form;
 class Source extends AbstractEntity
 {
     use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Show
+        , \Db\Entity\Field\Performance
         , \Db\Entity\Field\Note
         , \Db\Entity\Field\Content
         , \Db\Entity\Field\MediaSizeCompressed
@@ -24,7 +24,7 @@ class Source extends AbstractEntity
 
     use \Db\Entity\Relation\Links
         , \Db\Entity\Relation\Comments
-        , \Db\Entity\Relation\UserShows
+        , \Db\Entity\Relation\UserPerformances
         , \Db\Entity\Relation\WantedBy
         ;
 
