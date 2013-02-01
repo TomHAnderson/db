@@ -497,6 +497,9 @@
       <column name="User_id" required="true" type="integer"/>
       <column name="Show_id" required="true" type="integer"/>
       <column name="note" type="text"/>
+      <orm-properties>
+        <attribute name="repository-class">Db\Repository\Attendance</attribute>
+      </orm-properties>
     </table>
     <table name="Friends" region="Region9" visPositionX="57" visPositionY="33" visSizeX="0" visSizeX2="130" visSizeY="0" visSizeY2="60">
       <column name="source_User_id" required="true" type="integer"/>
@@ -529,6 +532,9 @@
       <column name="attendance" type="string"/>
       <column name="taperName" type="string"/>
       <column name="micLocation" type="string"/>
+      <orm-properties>
+        <attribute name="repository-class">Db\Repository\UserPerformance</attribute>
+      </orm-properties>
     </table>
     <table name="Feedback" region="Region9" visPositionX="234" visPositionY="36" visSizeX="0" visSizeX2="125" visSizeY="0" visSizeY2="115">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
@@ -538,12 +544,18 @@
       <column name="note" required="true" type="text"/>
       <column name="reply" type="text"/>
       <column name="createdAt" required="true" type="datetime"/>
+      <orm-properties>
+        <attribute name="repository-class">Db\Repository\Feedback</attribute>
+      </orm-properties>
     </table>
     <table name="Wanted" region="Region9" visPositionX="230" visPositionY="282" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="73">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
       <column name="User_id" required="true" type="integer"/>
       <column name="Show_id" required="true" type="integer"/>
       <column name="Source_id" type="integer"/>
+      <orm-properties>
+        <attribute name="repository-class">Db\Repository\Wanted</attribute>
+      </orm-properties>
     </table>
     <table name="Mail" region="Region9" visPositionX="63" visPositionY="129" visSizeX="0" visSizeX2="117" visSizeY="0" visSizeY2="101">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
@@ -552,6 +564,9 @@
       <column name="createdAt" required="true" type="datetime"/>
       <column name="note" required="true" type="text"/>
       <column name="status" type="string"/>
+      <orm-properties>
+        <attribute name="repository-class">Db\Repository\Mail</attribute>
+      </orm-properties>
     </table>
     <table name="UserList" region="Region10" visPositionX="39" visPositionY="40" visSizeX="0" visSizeX2="97" visSizeY="0" visSizeY2="87">
       <column auto-increment="true" name="id" primary="true" type="integer"/>
@@ -559,6 +574,9 @@
       <column name="name" required="true" type="string"/>
       <column name="abbrev" required="true" type="string"/>
       <column name="note" type="text"/>
+      <orm-properties>
+        <attribute name="repository-class">Db\Repository\UserList</attribute>
+      </orm-properties>
     </table>
     <table name="UserPerformanceList" region="Region10" visPositionX="177" visPositionY="53" visSizeX="0" visSizeX2="119" visSizeY="0" visSizeY2="60">
       <column name="ListGroup_id" required="true" type="integer"/>
@@ -567,6 +585,9 @@
     <table name="UserPerformanceField" region="Region10" visPositionX="41" visPositionY="140" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="45">
       <column auto-increment="true" name="id" primary="true" required="true" type="integer"/>
       <column name="name" required="true" type="string"/>
+      <orm-properties>
+        <attribute name="repository-class">Db\Repository\UserPerformanceField</attribute>
+      </orm-properties>
     </table>
     <table name="UserPerformanceFieldConfig" region="Region10" visPositionX="-10" visPositionY="228" visSizeX="0" visSizeX2="139" visSizeY="0" visSizeY2="60">
       <column name="User_id" required="true" type="integer"/>
