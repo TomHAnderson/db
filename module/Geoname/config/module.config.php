@@ -2,10 +2,7 @@
 
 namespace Geoname;
 
-return array();
-
-
-/*
+return array(
     'di' => array(
         'instance' => array(
             'alias' => array(
@@ -14,12 +11,12 @@ return array();
                 'browser' => 'Heartsentwined\Browser\Factory',
             ),
 
-            'Geoname\Service\Geoname' => array(
+            'geoname' => array(
                 'parameters' => array(
-                    'entityManager' => 'Doctrine\ORM\EntityManager',
+                    'entitymanager' => 'Doctrine\ORM\EntityManager',
                     'cli' => 'geoname-cli',
                     'tmpDir' => 'data/geoname',
-                    'cron' => '* /15 * * * *',
+                    'cron' => '*/15 * * * *',
                 ),
             ),
 
@@ -59,5 +56,3 @@ return array();
         ),
     ),
 );
-
-*/

@@ -1,10 +1,8 @@
 <?xml version="1.0"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Geoname\Entity\Place">
-    <id name="id" type="integer">
-      <generator strategy="AUTO"/>
-    </id>
-    <field name="name" type="string" nullable="false"/>
+  <entity name="Geoname\Entity\Place" table="he_geoname_place" repository-class="Geoname\Repository\Place">
+    <id name="id" type="integer"/>
+    <field name="name" type="string" nullable="true"/>
     <field name="latitude" type="decimal" nullable="true"/>
     <field name="longitude" type="decimal" nullable="true"/>
     <field name="elevation" type="integer" nullable="true"/>
@@ -18,17 +16,17 @@
     <field name="isDeprecated" type="boolean" nullable="true"/>
     <many-to-one field="parent" target-entity="Geoname\Entity\Place" inversed-by="children">
       <join-columns>
-        <join-column name="Place_id" referenced-column-name="id"/>
+        <join-column name="parent_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="feature" target-entity="Geoname\Entity\Feature" inversed-by="places">
       <join-columns>
-        <join-column name="Feature_id" referenced-column-name="id"/>
+        <join-column name="feature_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="timezone" target-entity="Geoname\Entity\Timezone" inversed-by="places">
       <join-columns>
-        <join-column name="Timezone_id" referenced-column-name="id"/>
+        <join-column name="timezone_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="altNames" target-entity="Geoname\Entity\AltName" mapped-by="place"/>

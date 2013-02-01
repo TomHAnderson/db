@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Geoname\Entity\Country">
+  <entity name="Geoname\Entity\Country" table="he_geoname_country" repository-class="Geoname\Repository\Country">
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
-    <field name="name" type="string" unique="true" nullable="false"/>
-    <field name="abbrev" type="string" nullable="true"/>
     <field name="iso3" type="string" nullable="true"/>
     <field name="iso2" type="string" nullable="true"/>
     <field name="isoNum" type="string" nullable="true"/>
@@ -18,42 +16,42 @@
     <field name="postalCodeRegex" type="string" nullable="true"/>
     <many-to-one field="continent" target-entity="Geoname\Entity\Place" inversed-by="countries">
       <join-columns>
-        <join-column name="Place_continent_id" referenced-column-name="id"/>
+        <join-column name="continent_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <one-to-one field="place" target-entity="Geoname\Entity\Place" inversed-by="country">
       <join-columns>
-        <join-column name="Place_id" referenced-column-name="id" unique="true"/>
+        <join-column name="place_id" referenced-column-name="id" unique="true"/>
       </join-columns>
     </one-to-one>
     <many-to-one field="currency" target-entity="Geoname\Entity\Currency" inversed-by="countries">
       <join-columns>
-        <join-column name="Currency_id" referenced-column-name="id"/>
+        <join-column name="currency_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="mainLocale" target-entity="Geoname\Entity\Locale">
       <join-columns>
-        <join-column name="Locale_id" referenced-column-name="id"/>
+        <join-column name="mainlocale_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="timezones" target-entity="Geoname\Entity\Timezone" mapped-by="country"/>
     <many-to-many field="locales" target-entity="Geoname\Entity\Locale">
-      <join-table name="CountryLocale">
+      <join-table name="he_geoname_countries_locales">
         <join-columns>
-          <join-column name="Country_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="country_id" referenced-column-name="id" nullable="false"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="Locale_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="locale_id" referenced-column-name="id" nullable="false"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>
     <many-to-many field="neighbours" target-entity="Geoname\Entity\Country">
-      <join-table name="CountryNeighbors">
+      <join-table name="he_geoname_countries_neighbours">
         <join-columns>
-          <join-column name="related_Country_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="neighbour_id" referenced-column-name="id" nullable="false"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="source_Country_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="country_id" referenced-column-name="id" nullable="false"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>

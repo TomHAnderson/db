@@ -22,6 +22,13 @@ use Geoname\Repository;
  */
 class Geoname
 {
+    public function __construct(EntityManager $entityManager, $cli, $tmpDir, $cron) {
+        $this->setEntityManager($entityManager);
+        $this->setCli($cli);
+        $this->setTmpDir($tmpDir);
+        $this->setCron($cron);
+    }
+
     /**
      * cli app helper
      *
@@ -45,12 +52,13 @@ class Geoname
      * @var EntityManager
      */
     protected $entityManager;
+
     public function setEntityManager(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
-
         return $this;
     }
+
     public function getEntityManager()
     {
         return $this->entityManager;
@@ -103,11 +111,8 @@ class Geoname
 
         $meta = $this->getMeta();
         if ($meta->getIsLocked()) {
-            echo 'Meta is locked';
-//            return $this;
+            return $this;
         }
-
-        echo Repository\Meta::STATUS_INSTALL_DOWNLOAD;
 
         $meta->setIsLocked(true);
         switch ($meta->getStatus()) {
@@ -555,6 +560,7 @@ class Geoname
                         $place->setFeature($feature);
                     }
                 }
+
                 fclose($fh);
                 $em->flush();
                 $this->markDone($source);
