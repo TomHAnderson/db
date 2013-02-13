@@ -493,6 +493,29 @@
     </orm-attributes>
   </module>
   <module name="Geoname" import-format="Doctrine2Xml" import-path="../../module/Geoname/config/xml" uuid="3cbdb9d3-941f-4690-8568-c9258ce21152">
+    <entity name="CountryNeighbours" uuid="813bc558-e409-4d6a-9853-19ffb10a1bf6">
+      <field name="country_id" type="integer" required="true" primary="true" uuid="49562b95-b787-4322-a64b-d720382f8360">
+        <orm-attributes>
+          <attribute name="column">country_id</attribute>
+        </orm-attributes>
+      </field>
+      <field name="neighbour_id" type="integer" required="true" primary="true" uuid="2dfaa03d-5ec4-4580-8b85-7a07c1e7524c">
+        <orm-attributes>
+          <attribute name="column">neighbour_id</attribute>
+        </orm-attributes>
+      </field>
+      <orm-attributes>
+        <attribute name="table">he_geoname_countries_neighbours</attribute>
+      </orm-attributes>
+    </entity>
+    <many-to-many mn-entity="CountryNeighbours" uuid="b611c23f-9a4c-4a66-a481-ff8747604234">
+      <many-to-many-entity name="Country" owning-side="true" alias="neighbours" uuid="8d3fc489-db6c-4f1c-b01f-b6d1351582fe">
+        <many-to-many-field from="neighbour_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="Country" owning-side="false" uuid="d6e1b14d-38f9-4da7-9f24-e85231beeca1">
+        <many-to-many-field from="country_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
     <entity name="AltName" uuid="31544907-76ed-4476-b1e7-a744bf1fe956">
       <field name="id" type="integer" primary="true" uuid="f00a8be7-7b05-4fc8-82d0-4cbf1bc2a9b2"/>
       <field name="name" type="string" required="true" uuid="7c789238-1f99-483f-8080-b90cfea578da"/>
@@ -664,21 +687,6 @@
         <many-to-many-field from="locale_id" to="id"/>
       </many-to-many-entity>
     </many-to-many>
-    <entity name="CountryNeighbors" uuid="1400e3d7-70d9-4f8e-a540-dc16f9d62d1c">
-      <field name="country_id" type="integer" required="true" primary="true" uuid="276e2b2b-9eb3-43fa-a6bc-af92f679d3d6"/>
-      <field name="neighbour_id" type="integer" required="true" primary="true" uuid="18f3e525-29de-4a4d-9a15-493f702f7119"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_countries_neighbours</attribute>
-      </orm-attributes>
-    </entity>
-    <many-to-many mn-entity="CountryNeighbors" uuid="3f8d4789-0e80-4af7-a191-7bdfbadfe1e2">
-      <many-to-many-entity name="Country" owning-side="true" alias="neighbours" uuid="f4b46a6b-9d6d-45b2-ba28-0a105d8a0ce8">
-        <many-to-many-field from="country_id" to="id"/>
-      </many-to-many-entity>
-      <many-to-many-entity name="Country" owning-side="false" alias="" uuid="67c2ec0d-7f05-4436-9a6b-6ba1dcc0fb42">
-        <many-to-many-field from="neighbour_id" to="id"/>
-      </many-to-many-entity>
-    </many-to-many>
     <region caption="Geoname" uuid="58593bcd-f57a-4938-90e4-a3ea6cbdc2bc">
       <entity-ref name="AltName"/>
       <entity-ref name="Country"/>
@@ -690,7 +698,7 @@
       <entity-ref name="Place"/>
       <entity-ref name="Timezone"/>
       <entity-ref name="CountryLocale"/>
-      <entity-ref name="CountryNeighbors"/>
+      <entity-ref name="CountryNeighbours"/>
     </region>
     <orm-attributes>
       <attribute name="namespace">Geoname\Entity</attribute>
@@ -917,8 +925,11 @@
   <module name="Audit" import-format="Doctrine2Xml" import-path="../../module/Audit/config/xml" uuid="8af8ad2c-3c5e-4de0-b8d0-4bcf049eefc0">
     <entity name="Revision" uuid="d516b8ce-e87c-4ca9-aa13-013734cc7e29">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="e17b0027-5be7-4920-87c2-7468da345a46"/>
-      <field name="timestamp" required="true" uuid="5f5b477a-d5a5-4c9c-8e8f-209c1ffb5f76"/>
+      <field name="timestamp" type="datetime" required="true" uuid="5f5b477a-d5a5-4c9c-8e8f-209c1ffb5f76"/>
       <field name="user_id" type="integer" required="true" uuid="436f2a8c-c52c-4d4c-82e5-4210a712c2a6"/>
+      <orm-attributes>
+        <attribute name="repository-class">Audit\Repository\Revision</attribute>
+      </orm-attributes>
     </entity>
     <association from="Revision" to="User" owner-alias="revisions" inverse-alias="user" uuid="17e92ab3-bb74-4c58-8960-5d6ff6ca819e">
       <association-field from="user_id" to="id"/>
@@ -952,7 +963,6 @@
     <association uuid="12d9049b-6ae0-4c55-bc8d-c2719e614680" splitted="1"/>
     <association uuid="136b6eba-dce9-4391-88d5-3186fe322a4a" splitted="1"/>
     <association uuid="13c35ea7-aa41-465f-9602-f0b477836b35" splitted="1"/>
-    <entity uuid="1400e3d7-70d9-4f8e-a540-dc16f9d62d1c" position-x="498" position-y="102" size-x="0" size-x2="144" size-y="0" size-y2="60"/>
     <region uuid="142287a0-efb1-472e-b4a3-32a2b6d9e760" bk-color="15716788" position-x="424" position-y="269" size-x="0" size-x2="344" size-y="0" size-y2="261"/>
     <association uuid="176656c7-fc2b-4a39-ab91-9251119dbd09" splitted="1"/>
     <many-to-many-association-entity uuid="17927894-b6b8-4862-9ca1-009a513270bb" splitted="1"/>
@@ -1027,6 +1037,7 @@
     <association uuid="7a6fda74-bbbf-4399-877d-16a5ccf3a711" splitted="1"/>
     <association uuid="7b541b84-a6de-43a4-8698-e7b4e9f56212" splitted="1"/>
     <inheritance-child uuid="813221d1-5d55-4e29-bca4-58c2f63e038c" splitted="1"/>
+    <entity uuid="813bc558-e409-4d6a-9853-19ffb10a1bf6" position-x="512" position-y="112" size-x="0" size-x2="109" size-y="0" size-y2="60"/>
     <inheritance-child uuid="81949f09-9133-4b01-b39d-755484649516" splitted="1"/>
     <entity uuid="84a8d9b9-d842-414b-8220-ad30a48fc440" position-x="524" position-y="110" size-x="0" size-x2="95" size-y="0" size-y2="45"/>
     <entity uuid="85042b69-8b14-4540-81ee-c0d91ea5ef6b" position-x="55" position-y="11" size-x="0" size-x2="106" size-y="0" size-y2="59"/>
@@ -1042,12 +1053,12 @@
     <region uuid="96f356b4-b805-4ea4-8d92-055900e0e964" bk-color="15716788" position-x="799" position-y="213" size-x="356" size-x2="-97" size-y="251" size-y2="48"/>
     <entity uuid="99fcccf0-d144-4dd1-bbd2-f0aca7e96f8b" position-x="35" position-y="133" size-x="0" size-x2="77" size-y="0" size-y2="59"/>
     <association uuid="9b2d1c5b-f99a-430e-8d7d-8fed59719b94" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
-    <module uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31" bk-color="15169559" position-x="71" position-y="-230" size-x="28" size-x2="1116" size-y="62" size-y2="546"/>
+    <module uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31" bk-color="15169559" position-x="61" position-y="-228" size-x="28" size-x2="1116" size-y="62" size-y2="546"/>
     <module uuid="9c8416db-f2b4-4889-b17c-a29057586381" bk-color="4293359639" position-x="39" position-y="520" size-x="0" size-x2="1013" size-y="176" size-y2="306"/>
     <entity uuid="9e31240b-a34c-4ad8-afaa-bb21e0724e00" position-x="-192" position-y="-46" size-x="0" size-x2="77" size-y="0" size-y2="59"/>
     <entity uuid="9e7fbb88-4860-492a-b01c-7e88c0769300" position-x="-305" position-y="-236" size-x="0" size-x2="93" size-y="0" size-y2="101"/>
     <entity uuid="9eaae197-c75b-45a8-a2fa-445cae818cee" position-x="360" position-y="110" size-x="0" size-x2="97" size-y="0" size-y2="45"/>
-    <association uuid="9ebca2ee-ce15-4516-9048-02f6f76d9e62" center-position-x="0" center-position-y="19"/>
+    <association uuid="9ebca2ee-ce15-4516-9048-02f6f76d9e62" center-position-x="0" center-position-y="1"/>
     <entity uuid="a13ba289-ccbe-4cb0-8565-7706df3ee82f" position-x="514" position-y="40" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
     <association uuid="a2c72590-97e7-4fb1-abff-34d77daa4a3d" splitted="1"/>
     <association uuid="a6bcb53a-0137-410d-a1d5-0cb54dc3b703" splitted="1"/>
@@ -1090,7 +1101,7 @@
     <entity uuid="e63050c6-78fe-4e6e-b4bb-44f031943f51" position-x="208" position-y="109" size-x="0" size-x2="123" size-y="0" size-y2="45"/>
     <association uuid="e8eb80a6-0776-4176-84d7-a6a43f0b40d9" splitted="1"/>
     <association uuid="e954599d-410b-47b6-a464-e525ff15a3bc" splitted="1"/>
-    <entity uuid="eb406a7a-3ed3-4e8c-8395-42b2cdf6d7a3" position-x="292" position-y="20" size-x="0" size-x2="143" size-y="0" size-y2="255"/>
+    <entity uuid="eb406a7a-3ed3-4e8c-8395-42b2cdf6d7a3" position-x="294" position-y="29" size-x="0" size-x2="126" size-y="0" size-y2="227"/>
     <inheritance-child uuid="ec0d7a7f-94ad-4233-b6d7-0876c4edc98b" center-position-x="0" center-position-y="0" splitted="1"/>
     <association uuid="f2c14db6-2f95-4b88-82e2-08434097ba92" splitted="1"/>
     <entity uuid="f2ef5068-c394-49f2-9274-ea9f9fb38649" position-x="497" position-y="110" size-x="0" size-x2="95" size-y="0" size-y2="45"/>
