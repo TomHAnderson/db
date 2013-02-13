@@ -15,7 +15,7 @@
     </many-to-one>
     <many-to-one field="place" target-entity="Geoname\Entity\Place" inversed-by="events">
       <join-columns>
-        <join-column name="place_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="place_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="event"/>
