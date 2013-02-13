@@ -1,855 +1,1072 @@
-<?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<orm-designer version="1.4.7.511">
-
-  <project code-name="Db" framework="Without Framework" name="db" orm="Doctrine2" visSizeX="219" visSizeX2="2327" visSizeY="276" visSizeY2="1058">
-    <module-position name="db.etree.org" visPositionX="-137" visPositionY="-194"/>
-    <module-position name="etreedb.org" visPositionX="1271" visPositionY="-255"/>
-    <module-position name="Geoname" visPositionX="1120" visPositionY="381"/>
-  </project>
-
-  <module import-format="Doctrine2Xml" import-path="..\..\module\Db\config\xml\" name="db.etree.org" visBkColor="1538279" visSizeX="28" visSizeX2="1344" visSizeY="62" visSizeY2="939">
-    <region caption="Reference Link" name="Region1" visBkColor="11850223" visPositionX="62" visPositionY="574" visSizeX="70" visSizeX2="1259" visSizeY="-6" visSizeY2="177"/>
-    <region caption="Band" name="Region2" visBkColor="11850223" visPositionX="685" visPositionY="400" visSizeX="30" visSizeX2="386" visSizeY="144" visSizeY2="158"/>
-    <region caption="Venue" name="Region4" visBkColor="11850223" visPositionX="347" visPositionY="504" visSizeX="356" visSizeX2="95" visSizeY="251" visSizeY2="56"/>
-    <region caption="Source" name="Region5" visBkColor="11850223" visPositionX="215" visPositionY="-35" visSizeX="0" visSizeX2="423" visSizeY="0" visSizeY2="273"/>
-    <region caption="User" name="Region6" visBkColor="11850223" visPositionX="-12" visPositionY="-18" visSizeX="0" visSizeX2="205" visSizeY="16" visSizeY2="255"/>
-    <region caption="Performance" name="Region7" visBkColor="11850223" visPositionX="657" visPositionY="-38" visSizeX="0" visSizeX2="216" visSizeY="0" visSizeY2="283"/>
-    <region caption="Event" name="Region8" visBkColor="11850223" visPositionX="460" visPositionY="323" visSizeX="1" visSizeX2="176" visSizeY="68" visSizeY2="237"/>
-    <region caption="Song" name="Region10" visBkColor="11850223" visPositionX="884" visPositionY="-36" visSizeX="-8" visSizeX2="403" visSizeY="0" visSizeY2="274"/>
-    <region caption="Performer" name="Region11" visBkColor="11850223" visPositionX="1086" visPositionY="257" visSizeX="0" visSizeX2="201" visSizeY="0" visSizeY2="301"/>
-    <region caption="Comment" name="Region12" visBkColor="11850223" visPositionX="-7" visPositionY="761" visSizeX="0" visSizeX2="902" visSizeY="0" visSizeY2="157"/>
-    <table name="User" region="Region6" visPositionX="32" visPositionY="25" visSizeX="0" visSizeX2="132" visSizeY="0" visSizeY2="185">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="displayName" required="true" type="string"/>
-      <column name="username" required="true" type="string"/>
-      <column name="email" required="true" type="string"/>
-      <column name="password" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <column name="isPublic" required="true" type="boolean"/>
-      <column name="accessToken" type="string"/>
-      <column name="permission" type="string"/>
-      <column name="createdAt" required="true" type="datetime"/>
-      <column name="lastRequestAt" required="true" type="datetime"/>
-      <column name="subscription" type="string"/>
-      <orm-properties>
-        <attribute name="repository-class">Db\Repository\User</attribute>
-      </orm-properties>
-    </table>
-    <table name="Performance" region="Region7" visPositionX="38" visPositionY="21" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="143">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Lineup_id" required="true" type="integer"/>
-      <column name="Venue_id" required="true" type="integer"/>
-      <column name="Event_id" type="integer"/>
-      <column name="name" type="string"/>
-      <column name="nameNormalize" required="true" type="string"/>
-      <column name="performanceDate" required="true" size="10" type="string"/>
-      <column name="performanceDateAt" type="date"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+<?xml version="1.0"?>
+<orm-designer version="2.1.9.690" name="db" mvc="Without MVC" orm="Doctrine2" uuid="6b0db420-4a65-402e-8377-355db297598b">
+  <module name="db.etree.org" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31">
+    <entity name="Performance" uuid="dc854433-cfaa-4890-b913-ef302bb0d250">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="43a10a39-cd0a-42e0-a758-06e4049f4ecc"/>
+      <field name="lineup_id" type="integer" required="true" uuid="7f9df4d2-ee9c-472a-8d1c-d4830c0c8151"/>
+      <field name="venue_id" type="integer" required="true" uuid="f26fbbe6-5b11-4f89-bbcd-02f9911d74de"/>
+      <field name="event_id" type="integer" uuid="0e699b14-d775-4a66-8ce0-cc4dfb0312a3"/>
+      <field name="name" type="string" uuid="d855a7ee-e0b1-417f-b22d-1853d362bbb8"/>
+      <field name="nameNormalize" type="string" required="true" uuid="af3a4a1f-a0a4-4aef-af36-3254ccf0a099"/>
+      <field name="performanceDate" type="string" size="10" required="true" uuid="fc114cc8-6217-4027-a0c2-b11a14de14db"/>
+      <field name="performanceDateAt" type="date" uuid="ed3742ed-c10b-4cc3-bdce-ace52d18f9ad"/>
+      <field name="note" type="text" uuid="70e1a491-5f8b-421f-a3b7-6cb8c5b23779"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Performance</attribute>
-      </orm-properties>
-    </table>
-    <table name="Venue" region="Region4" visPositionX="-325" visPositionY="-226" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="87">
-      <column name="id" primary="true" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="city" type="string"/>
-      <column name="state" type="string"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Performance" to="Venue" owner-alias="performances" inverse-alias="venue" uuid="c16ceb93-119c-4811-a171-fa7ae36864b8">
+      <association-field from="venue_id" to="id"/>
+    </association>
+    <association from="Performance" to="Event" owner-alias="performances" inverse-alias="event" uuid="50a15d73-6118-43c0-907f-34a44b69aa8a">
+      <association-field from="event_id" to="id"/>
+    </association>
+    <association from="Performance" to="Lineup" owner-alias="performances" inverse-alias="lineup" uuid="7a6fda74-bbbf-4399-877d-16a5ccf3a711">
+      <association-field from="lineup_id" to="id"/>
+    </association>
+    <entity name="Venue" uuid="9e7fbb88-4860-492a-b01c-7e88c0769300">
+      <field name="id" type="integer" required="true" primary="true" uuid="9f126215-974d-4725-827a-53d64dad7f92"/>
+      <field name="Place_id" type="integer" required="true" uuid="d4b7b30c-51c3-469d-9d1c-cce736e27262"/>
+      <field name="name" type="string" required="true" uuid="acad31fe-d41a-49f6-89f9-3f6493a17be0"/>
+      <field name="city" type="string" uuid="a6aba5cc-b2ed-45ad-b7da-2f7c25ca2e72"/>
+      <field name="state" type="string" uuid="e0c24338-2fa6-4f1b-bd7e-426c45fd419b"/>
+      <field name="note" type="text" uuid="763c9d4e-3ae3-4707-9f7c-6da5b482261d"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Venue</attribute>
-      </orm-properties>
-    </table>
-    <table name="Performer" region="Region11" visPositionX="51" visPositionY="113" visSizeX="0" visSizeX2="97" visSizeY="0" visSizeY2="73">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="User_id" type="integer" unique="true"/>
-      <column name="name" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Venue" to="Place" owner-alias="venues" inverse-alias="place" uuid="9b2d1c5b-f99a-430e-8d7d-8fed59719b94">
+      <association-field from="Place_id" to="id"/>
+    </association>
+    <entity name="Performer" uuid="8b9c2e8b-b7e6-4ff7-a0a8-b0452541edf2">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="2773ef01-b20e-467d-a574-b6aae7d9c240"/>
+      <field name="user_id" type="integer" unique="true" uuid="8736456f-b643-4849-bf07-799d6ce3926f"/>
+      <field name="name" type="string" required="true" uuid="dea0f1f5-155b-40fd-ac86-199b53b466a5"/>
+      <field name="note" type="text" uuid="b4f08379-07ea-4a48-8e24-7eff5746ca0c"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Performer</attribute>
-      </orm-properties>
-    </table>
-    <table name="Source" region="Region5" visPositionX="41" visPositionY="33" visSizeX="0" visSizeX2="164" visSizeY="0" visSizeY2="157">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Performance_id" required="true" type="integer"/>
-      <column name="note" required="true" type="text"/>
-      <column name="content" required="true" type="text"/>
-      <column name="mediaSizeCompressed" type="bigint"/>
-      <column name="mediaSizeUncompressed" type="bigint"/>
-      <column name="discCountWav" type="integer"/>
-      <column name="discCountShn" type="integer"/>
-      <column name="createdAt" required="true" type="datetime"/>
-      <column name="circulatedAt" type="string"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Performer" to="User" owner-alias="performer" inverse-alias="user" uuid="b1b14245-ba6e-48f4-ba21-c01d58650b25">
+      <association-field from="user_id" to="id"/>
+    </association>
+    <entity name="Source" uuid="687e66f7-2707-4262-b22e-f5b98cbbe16b">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="86461eb9-f869-4d42-8eef-bc104823c507"/>
+      <field name="Performance_id" type="integer" required="true" uuid="f869a769-1d16-4ca7-963a-ee7d9702a76b"/>
+      <field name="note" type="text" required="true" uuid="18f4b418-6292-4949-aa0a-481d40ac6db0"/>
+      <field name="content" type="text" required="true" uuid="223eae28-e54e-4fa4-95a9-e22f4c0a4f23"/>
+      <field name="mediaSizeCompressed" type="bigint" uuid="0e13df02-4685-4a86-9103-127c2e44cb7d"/>
+      <field name="mediaSizeUncompressed" type="bigint" uuid="6a13fd7d-abc1-4579-9dd2-1be6905821f2"/>
+      <field name="discCountWav" type="integer" uuid="db57169a-0bf9-4432-b195-15b8d958b87d"/>
+      <field name="discCountShn" type="integer" uuid="e814c8df-9715-4604-8e6e-8fb38552d0f2"/>
+      <field name="createdAt" type="datetime" required="true" uuid="ceb1e42f-a687-40a3-90c1-3c38180573bb"/>
+      <field name="circulatedAt" type="string" uuid="96734dbb-5bc7-4b34-b35b-956b7cdd1451"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Source</attribute>
-      </orm-properties>
-    </table>
-    <table name="AbstractLink" region="Region1" visPositionX="-54" visPositionY="31" visSizeX="0" visSizeX2="151" visSizeY="0" visSizeY2="87">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="title" required="true" type="string"/>
-      <column name="url" required="true" type="string"/>
-      <column name="description" type="text"/>
-      <column name="typeDescriminator" required="true" size="255" type="text"/>
-      <inheritance-parent discriminator-column="typeDescriminator" type="SINGLE_TABLE"/>
-    </table>
-    <table name="VenueLink" region="Region1" visPositionX="283" visPositionY="105" visSizeX="0" visSizeX2="103" visSizeY="0" visSizeY2="45">
-      <column name="id" primary="true" required="true" type="integer"/>
-      <column name="Venue_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Venue" visSplitted="1"/>
-    </table>
-    <table name="SourceLink" region="Region1" visPositionX="718" visPositionY="36" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Source_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Source" visSplitted="1"/>
-    </table>
-    <table name="PerformanceLink" region="Region1" visPositionX="131" visPositionY="104" visSizeX="0" visSizeX2="131" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Performance_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Show" visCenterX="0" visCenterY="6" visSplitted="1"/>
-    </table>
-    <table name="PerformerLink" region="Region1" visPositionX="275" visPositionY="34" visSizeX="0" visSizeX2="119" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Performer_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Performer" visCenterX="0" visCenterY="0" visSplitted="1"/>
-    </table>
-    <table name="Band" region="Region2" visPositionX="131" visPositionY="-116" visSizeX="0" visSizeX2="123" visSizeY="0" visSizeY2="87">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="BandGroup_id" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="nameNormalize" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Source" to="Performance" owner-alias="sources" inverse-alias="performance" uuid="a2c72590-97e7-4fb1-abff-34d77daa4a3d">
+      <association-field from="Performance_id" to="id"/>
+    </association>
+    <entity name="Band" uuid="6e82ba04-ce37-484f-ba25-149030015036">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="328ad22f-f877-4449-a06f-a8238b47cb14"/>
+      <field name="BandGroup_id" type="integer" uuid="6d3b8a7e-bd83-4841-8bc1-a4e0926347a8"/>
+      <field name="name" type="string" required="true" uuid="778ecfa5-2a80-4a6d-877e-d91c2d6bbd76"/>
+      <field name="nameNormalize" type="string" required="true" uuid="2f0a4f53-d477-4b24-b8ef-79d6f9546e68"/>
+      <field name="note" type="text" uuid="caf8c0a0-81b7-40b9-8c6b-924c2e3071b6"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Band</attribute>
-      </orm-properties>
-    </table>
-    <table description="A festival event is an occurance of a festival" name="Event" region="Region8" visPositionX="36" visPositionY="-26" visSizeX="0" visSizeX2="114" visSizeY="0" visSizeY2="129">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Producer_id" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <column name="startAt" type="date"/>
-      <column name="endAt" type="date"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Band" to="BandGroup" owner-alias="bands" inverse-alias="bandGroup" uuid="5a298604-6995-4022-a80c-d42f8af762b6">
+      <association-field from="BandGroup_id" to="id"/>
+    </association>
+    <entity name="Event" description="A festival event is an occurance of a festival" uuid="5e5eed40-c20e-44b5-a239-358575cccdc3">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="b582bf05-c07d-4a97-9a83-ec8ee135cd11"/>
+      <field name="Place_id" type="integer" required="true" uuid="eff3c66b-8623-4e8a-ad6b-8c0fe37473e2"/>
+      <field name="Producer_id" type="integer" required="true" uuid="ebacffbb-ae40-4811-a937-d0742c60fedd"/>
+      <field name="name" type="string" required="true" uuid="6310402e-24ff-4fd0-b671-f643f1a9ae77"/>
+      <field name="note" type="text" uuid="e1d2f39d-8cad-41ca-a536-ec3b197315fd"/>
+      <field name="startAt" type="date" uuid="eaffabb4-c428-4ace-a907-a01c935a6537"/>
+      <field name="endAt" type="date" uuid="aa316c83-f3bc-4561-86ee-5fd09e5c9bc3"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Event</attribute>
-      </orm-properties>
-    </table>
-    <table name="EventLink" region="Region1" visPositionX="420" visPositionY="105" visSizeX="0" visSizeX2="102" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Event_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="FestivalEvent" visSplitted="1"/>
-    </table>
-    <table name="Checksum" region="Region5" visPositionX="269" visPositionY="37" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="73">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Source_id" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="content" required="true" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Event" to="Producer" owner-alias="events" inverse-alias="producer" uuid="7d71202d-5a5f-4baf-a2cb-1bf1d6b0325a">
+      <association-field from="Producer_id" to="id"/>
+    </association>
+    <association from="Event" to="Place" owner-alias="events" inverse-alias="place" uuid="cdd2f61d-c906-4ed3-baa5-fb4b20e7f036">
+      <association-field from="Place_id" to="id"/>
+    </association>
+    <entity name="Checksum" uuid="ac9f2726-6f28-4600-8176-9fbea28acfc7">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="5c41d5bd-d4cf-4be4-ba1f-c0208670f5f8"/>
+      <field name="Source_id" type="integer" required="true" uuid="bc233a09-664c-4405-8d35-71d61df0c3d3"/>
+      <field name="name" type="string" required="true" uuid="8790363c-3285-4b29-adac-d400ca66fc1b"/>
+      <field name="content" type="text" required="true" uuid="b5ce38af-472c-4b83-9c61-6ab29165654b"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Checksum</attribute>
-      </orm-properties>
-    </table>
-    <table name="Alias" region="Region2" visPositionX="68" visPositionY="29" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="73">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Band_id" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="nameNormalize" required="true" type="string"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Checksum" to="Source" uuid="68ad424c-ee40-4b79-8cf6-a43e71b53ddd">
+      <association-field from="Source_id" to="id"/>
+    </association>
+    <entity name="Alias" uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="77b8de49-2f81-435f-b83a-71e41b9133a0"/>
+      <field name="Band_id" type="integer" required="true" uuid="979042f2-8732-43fe-be5e-d8a73abf533b"/>
+      <field name="name" type="string" required="true" uuid="d419d061-ed67-4862-9759-6e9bf3ebdb4b"/>
+      <field name="nameNormalize" type="string" required="true" uuid="6595f78c-16c8-447c-8179-3776b42c8e5c"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Alias</attribute>
-      </orm-properties>
-    </table>
-    <table name="AbstractComment" region="Region12" visPositionX="25" visPositionY="31" visSizeX="0" visSizeX2="151" visSizeY="0" visSizeY2="87">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="User_id" required="true" type="integer"/>
-      <column name="note" required="true" type="text"/>
-      <column default="0" name="rating" required="true" type="integer"/>
-      <column name="createdAt" required="true" type="datetime"/>
-      <column name="typeDescriminator" required="true" size="255" type="text"/>
-      <inheritance-parent discriminator-column="typeDescriminator" type="SINGLE_TABLE"/>
-    </table>
-    <table name="Producer" region="Region8" visPositionX="48" visPositionY="148" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Alias" to="Band" owner-alias="aliases" inverse-alias="band" uuid="06c521a4-df8e-438a-b214-0672351a82b6">
+      <association-field from="Band_id" to="id"/>
+    </association>
+    <entity name="Producer" uuid="99fcccf0-d144-4dd1-bbd2-f0aca7e96f8b">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="7e48f66c-1a00-4c80-9759-8b449a5bae2a"/>
+      <field name="name" type="string" required="true" uuid="80f5797c-919d-43aa-b866-fd1cd4163959"/>
+      <field name="note" type="text" uuid="6345e213-b789-4e45-9d1e-d1b7f2766431"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Producer</attribute>
-      </orm-properties>
-    </table>
-    <table name="ProducerLink" region="Region1" visPositionX="548" visPositionY="105" visSizeX="0" visSizeX2="114" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="text"/>
-      <column name="Producer_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Festival" visCenterX="44" visCenterY="11" visSplitted="1"/>
-    </table>
-    <table name="PerformanceComment" region="Region12" visPositionX="225" visPositionY="103" visSizeX="0" visSizeX2="131" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Performance_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractComment" discriminator-value="Show" visSplitted="1"/>
-    </table>
-    <table name="SourceComment" region="Region12" visPositionX="750" visPositionY="32" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Source_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractComment" discriminator-value="Source" visSplitted="1"/>
-    </table>
-    <table name="VenueGroup" region="Region4" visPositionX="-162" visPositionY="-79" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <entity name="VenueGroup" uuid="9e31240b-a34c-4ad8-afaa-bb21e0724e00">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="efb97a09-b5f8-4286-bcf4-b32cb29c1ea4"/>
+      <field name="name" type="string" required="true" uuid="395c1ab4-9def-4856-b0bb-86236388aa58"/>
+      <field name="note" type="text" uuid="19c1ffd4-034b-46b6-9439-fa8fafe77ba0"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\VenueGroup</attribute>
-      </orm-properties>
-    </table>
-    <table name="VenueGroupVenue" region="Region4" visPositionX="-185" visPositionY="-213" visSizeX="0" visSizeX2="128" visSizeY="0" visSizeY2="60">
-      <column name="Venue_id" required="true" type="integer"/>
-      <column name="VenueGroup_id" required="true" type="integer"/>
-    </table>
-    <table name="VenueGroupLink" region="Region1" visPositionX="695" visPositionY="104" visSizeX="0" visSizeX2="128" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="VenueGroup_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="VenueGroup" visSplitted="1"/>
-    </table>
-    <table name="Lineup" region="Region2" visPositionX="-18" visPositionY="-100" visSizeX="0" visSizeX2="98" visSizeY="0" visSizeY2="73">
-      <column name="id" primary="true" type="integer"/>
-      <column name="Band_id" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <entity name="VenueGroupVenue" uuid="859e7fea-b536-4fc1-8405-29100471e852">
+      <field name="Venue_id" type="integer" required="true" uuid="b3071d34-429d-4c64-9f8f-6287ff5adf30"/>
+      <field name="VenueGroup_id" type="integer" required="true" uuid="a492cec9-da49-41c4-be2d-fdcfb7e2c59c"/>
+    </entity>
+    <many-to-many mn-entity="VenueGroupVenue" uuid="ca50dc76-50c1-4b86-8500-8bc7187958bd">
+      <many-to-many-entity name="Venue" owning-side="true" alias="venues" uuid="c43e658e-d744-4766-8ae0-ab74fa8af1d7">
+        <many-to-many-field from="Venue_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="VenueGroup" owning-side="false" alias="venueGroups" uuid="316bdaba-aed1-45bf-b714-d3e655815eb0">
+        <many-to-many-field from="VenueGroup_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="Lineup" uuid="0288b513-9531-454a-bc91-5f02c7d49f45">
+      <field name="id" type="integer" primary="true" uuid="7ddfeb76-79d8-437c-a06f-ba5da7088887"/>
+      <field name="Band_id" type="integer" required="true" uuid="2e78be0d-1ed7-4d08-b4e9-79cedc0eb1ec"/>
+      <field name="name" type="string" required="true" uuid="30398254-7fb2-4a6f-947b-98cec8225191"/>
+      <field name="note" type="text" uuid="bcd15dfd-143f-4f6b-bab7-9ac2f52cdf40"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Lineup</attribute>
-      </orm-properties>
-    </table>
-    <table name="PerformerLineup" region="Region11" visPositionX="44" visPositionY="222" visSizeX="0" visSizeX2="119" visSizeY="0" visSizeY2="60">
-      <column name="Performer_id" required="true" type="integer"/>
-      <column name="Lineup_id" required="true" type="integer"/>
-    </table>
-    <table name="PerformerShow" region="Region11" visPositionX="43" visPositionY="25" visSizeX="0" visSizeX2="119" visSizeY="0" visSizeY2="60">
-      <column name="Performance_id" required="true" type="integer"/>
-      <column name="Performer_id" required="true" type="integer"/>
-    </table>
-    <table name="BandLink" region="Region1" visPositionX="154" visPositionY="32" visSizeX="0" visSizeX2="98" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Band_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Band" visSplitted="1"/>
-    </table>
-    <table name="Song" region="Region10" visPositionX="67" visPositionY="177" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="73">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Band_id" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="lyrics" type="text"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Lineup" to="Band" owner-alias="lineups" inverse-alias="band" uuid="5ef988c5-bb5c-4236-800c-804e598f8b3f">
+      <association-field from="Band_id" to="id"/>
+    </association>
+    <entity name="PerformerLineup" uuid="30857bb0-bd39-46bc-8d58-1c88c9c4a5fd">
+      <field name="performer_id" type="integer" required="true" uuid="c09b225d-92fd-470a-81e5-c34da0dab819"/>
+      <field name="lineup_id" type="integer" required="true" uuid="da3c4f3e-474f-48de-a922-915ee74f244d"/>
+    </entity>
+    <many-to-many mn-entity="PerformerLineup" uuid="58c4a316-e685-4af2-a61c-b08f48386d5f">
+      <many-to-many-entity name="Performer" owning-side="true" alias="performers" uuid="7a5097de-df89-4110-a63d-0e29bd2ccecb">
+        <many-to-many-field from="performer_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="Lineup" owning-side="false" alias="lineups" uuid="17927894-b6b8-4862-9ca1-009a513270bb">
+        <many-to-many-field from="lineup_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="PerformerShow" uuid="caa57870-48cb-4347-a53d-465a3ce2d738">
+      <field name="performance_id" type="integer" required="true" uuid="7c751e49-9a98-4820-b2b1-ec6040367cee"/>
+      <field name="performer_id" type="integer" required="true" uuid="789d223b-69f2-4a40-a9f5-748461672ec7"/>
+    </entity>
+    <many-to-many mn-entity="PerformerShow" uuid="faf761e8-03bd-401a-b157-6fd9a1da50c9">
+      <many-to-many-entity name="Performance" owning-side="true" alias="performances" uuid="1cc52f1a-06ea-43b4-b7e8-3a34ee00c33a">
+        <many-to-many-field from="performance_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="Performer" owning-side="false" alias="performers" uuid="1dd4c473-d688-4f81-bb04-768a114b03cd">
+        <many-to-many-field from="performer_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="Song" uuid="6903266c-5c12-423d-8145-e32fe38258e9">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="3be7d9be-e963-4755-904f-13d9f08aeb0f"/>
+      <field name="Band_id" type="integer" uuid="58b228e9-ca10-467e-9875-6bb32a63016b"/>
+      <field name="name" type="string" required="true" uuid="bbd70ddd-dda0-46a4-99a7-611a3a994e3a"/>
+      <field name="lyrics" type="text" uuid="325ec709-b1a4-45b3-8f52-8c2853d7347d"/>
+      <field name="note" type="text" uuid="74a71e0c-e2a7-4d20-9ba0-c19314a830cb"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Song</attribute>
-      </orm-properties>
-    </table>
-    <table name="PerformanceSong" region="Region10" visPositionX="36" visPositionY="24" visSizeX="0" visSizeX2="105" visSizeY="0" visSizeY2="115">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Song_id" required="true" type="integer"/>
-      <column name="PerformanceSet_id" required="true" type="integer"/>
-      <column name="note" type="text"/>
-      <column name="isSegue" type="boolean"/>
-      <column name="sort" required="true" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Song" to="Band" owner-alias="songs" inverse-alias="band" uuid="5c53322a-3c77-4d30-b605-3b68132d0b19">
+      <association-field from="Band_id" to="id"/>
+    </association>
+    <entity name="PerformanceSong" uuid="4cae9159-3783-4e82-9afc-b16f6f6a826b">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="097abc51-8873-4f03-a7fa-d49f545bff3c"/>
+      <field name="Song_id" type="integer" required="true" uuid="aea997cd-9b57-449d-8bbc-316837c12d07"/>
+      <field name="PerformanceSet_id" type="integer" required="true" uuid="815aa343-c614-4af3-9abc-6caff0ae019d"/>
+      <field name="note" type="text" uuid="e2ab4902-8ab6-4993-9eae-7d9c08e5dae8"/>
+      <field name="isSegue" type="boolean" uuid="0e02e43b-8740-4e93-9f90-c9ef160da207"/>
+      <field name="sort" type="integer" required="true" uuid="b1cd0e02-facd-4de9-928e-9c612c9dd9f7"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\PerformanceSong</attribute>
-      </orm-properties>
-    </table>
-    <table name="BandGroup" region="Region2" visPositionX="292" visPositionY="-102" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="PerformanceSong" to="Song" owner-alias="performanceSongs" inverse-alias="song" uuid="7ea7f4b5-d23f-4cfc-a3e8-aab1d06b3a4d">
+      <association-field from="Song_id" to="id"/>
+    </association>
+    <association from="PerformanceSong" to="PerformanceSet" owner-alias="performanceSongs" inverse-alias="performanceSet" uuid="e954599d-410b-47b6-a464-e525ff15a3bc">
+      <association-field from="PerformanceSet_id" to="id"/>
+    </association>
+    <entity name="BandGroup" uuid="18cb5d8f-d0ea-49cb-83fa-9127c25c3664">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="31e18fa1-0ba2-4440-ac7a-44c0439dc9a9"/>
+      <field name="name" type="string" required="true" uuid="67ea989c-a116-4c33-a7d8-0db0a2c93d73"/>
+      <field name="note" type="text" uuid="20ccc270-cffd-4a11-8d34-2da7a50da454"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\BandGroup</attribute>
-      </orm-properties>
-    </table>
-    <table name="UserBandGroup" region="Region2" visPositionX="251" visPositionY="45" visSizeX="0" visSizeX2="123" visSizeY="0" visSizeY2="60">
-      <column name="User_id" required="true" type="integer"/>
-      <column name="BandGroup_id" required="true" type="integer"/>
-    </table>
-    <table name="Composer" region="Region10" visPositionX="217" visPositionY="49" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <entity name="UserBandGroup" uuid="25157232-610d-4bc9-be16-343fe9764e87">
+      <field name="User_id" type="integer" required="true" uuid="26eefd1c-0fa9-4b87-8754-9bdb73cb2cfe"/>
+      <field name="BandGroup_id" type="integer" required="true" uuid="5d9eae02-7a29-4b05-bb9e-7b01e644de20"/>
+    </entity>
+    <many-to-many mn-entity="UserBandGroup" uuid="3a35e688-9e22-4f33-bd10-5a016fcf2b10">
+      <many-to-many-entity name="User" owning-side="true" alias="users" uuid="e2031257-85e7-4937-9dcd-a4b50ba65923">
+        <many-to-many-field from="User_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="BandGroup" owning-side="false" alias="bandGroups" uuid="0f2ff2db-1cd1-4dcb-881b-d51f6092bfc8">
+        <many-to-many-field from="BandGroup_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="Composer" uuid="6de9205a-0f2f-43e1-b082-be956ca60ad0">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="e3f16d1a-e46e-48d3-8029-1c98ea9c47a9"/>
+      <field name="name" type="string" required="true" uuid="8b30b1a2-4163-451a-ae01-6ccf4fb275af"/>
+      <field name="note" type="text" uuid="dca68284-243b-4710-af18-2e67652240de"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Composer</attribute>
-      </orm-properties>
-    </table>
-    <table name="ComposerSong" region="Region10" visPositionX="198" visPositionY="184" visSizeX="0" visSizeX2="120" visSizeY="0" visSizeY2="60">
-      <column name="Song_id" required="true" type="integer"/>
-      <column name="Composer_id" required="true" type="integer"/>
-    </table>
-    <table name="ComposerLink" region="Region1" visPositionX="568" visPositionY="35" visSizeX="0" visSizeX2="120" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Composer_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Composer" visSplitted="1"/>
-    </table>
-    <table name="SongLink" region="Region1" visPositionX="435" visPositionY="33" visSizeX="0" visSizeX2="98" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Song_id" required="true" type="integer"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Song" visSplitted="1"/>
-    </table>
-    <table name="PerformanceSet" region="Region7" visPositionX="46" visPositionY="191" visSizeX="0" visSizeX2="131" visSizeY="0" visSizeY2="87">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Performance_id" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="content" required="true" type="text"/>
-      <column name="sort" required="true" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <entity name="ComposerSong" uuid="553871ee-0f25-4f9f-b05b-cb7c4bb9c8a2">
+      <field name="Song_id" type="integer" required="true" uuid="df9009ba-4db6-4277-9da2-209edf9c2e40"/>
+      <field name="Composer_id" type="integer" required="true" uuid="ac4d555f-978b-4139-b9f0-34d27b6dcf9f"/>
+    </entity>
+    <many-to-many mn-entity="ComposerSong" uuid="f2a9b92f-9939-4678-b9f9-c12ccbe0b201">
+      <many-to-many-entity name="Song" owning-side="true" alias="songs" uuid="94d60319-674c-4109-909b-5d037d5bae65">
+        <many-to-many-field from="Song_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="Composer" owning-side="false" alias="composers" uuid="afac9db8-c995-4909-8991-8f16fa9d1a73">
+        <many-to-many-field from="Composer_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="PerformanceSet" uuid="b0a5c9f7-a36e-4d07-8e1c-bf43a0560882">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="4d007523-93f8-4f04-8304-f24cc92c1164"/>
+      <field name="Performance_id" type="integer" required="true" uuid="6bae6ad8-80af-4105-b076-90bc4ce8bffc"/>
+      <field name="name" type="string" required="true" uuid="57c63d9a-170e-4144-9f54-b49b00783307"/>
+      <field name="content" type="text" required="true" uuid="35d0bd9e-4b46-4a08-b267-6b9b23e38422"/>
+      <field name="sort" type="integer" required="true" uuid="7a630014-9994-4e8e-8bc9-a3588e5dedb3"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\PerformanceSet</attribute>
-      </orm-properties>
-    </table>
-    <table name="PerformerComment" region="Region12" visPositionX="356" visPositionY="28" visSizeX="0" visSizeX2="119" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Performer_id" type="integer"/>
-      <inheritance-child derived-from="AbstractComment" discriminator-value="Performer" visSplitted="1"/>
-    </table>
-    <table name="BandComment" region="Region12" visPositionX="232" visPositionY="27" visSizeX="0" visSizeX2="98" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Band_id" type="integer"/>
-      <inheritance-child derived-from="AbstractComment" discriminator-value="Band" visSplitted="1"/>
-    </table>
-    <table name="VenueComment" region="Region12" visPositionX="389" visPositionY="103" visSizeX="0" visSizeX2="103" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Venue_id" type="integer"/>
-      <inheritance-child derived-from="AbstractComment" discriminator-value="Venue" visShowCaption="0" visSplitted="1"/>
-    </table>
-    <table name="EventComment" region="Region12" visPositionX="526" visPositionY="101" visSizeX="0" visSizeX2="102" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Event_id" type="integer"/>
-      <inheritance-child derived-from="AbstractComment" discriminator-value="Event" visSplitted="1"/>
-    </table>
-    <table name="SongComment" region="Region12" visPositionX="516" visPositionY="31" visSizeX="0" visSizeX2="20" visSizeY="0" visSizeY2="20">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Song_id" type="integer"/>
-      <inheritance-child derived-from="AbstractComment" discriminator-value="Song" visSplitted="1"/>
-    </table>
-    <table name="LineupComment" region="Region12" visPositionX="748" visPositionY="103" visSizeX="0" visSizeX2="104" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="Lineup_id" type="integer"/>
-      <inheritance-child derived-from="AbstractComment" discriminator-value="Lineup" visSplitted="1"/>
-    </table>
-    <comment caption="Venue > Place" description="to be added" region="Region4" visBkColor="14745599" visPositionX="-329" visPositionY="-99" visSizeX="0" visSizeX2="74" visSizeY="0" visSizeY2="32" visTextColor="0"/>
-    <comment caption="Event > Place" description="to be added" region="Region8" visBkColor="14745599" visPositionX="-1" visPositionY="90" visSizeX="0" visSizeX2="71" visSizeY="0" visSizeY2="32" visTextColor="0"/>
-    <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="PerformanceSet" to="Performance" owner-alias="performanceSets" inverse-alias="performance" uuid="45e7a18f-b845-458d-b4f1-b824d2f9b18b">
+      <association-field from="Performance_id" to="id"/>
+    </association>
+    <region caption="Band" uuid="86490e22-2c2a-4f81-b8ec-51f819610748">
+      <entity-ref name="Band"/>
+      <entity-ref name="Alias"/>
+      <entity-ref name="Lineup"/>
+      <entity-ref name="BandGroup"/>
+      <entity-ref name="UserBandGroup"/>
+    </region>
+    <region caption="Venue" uuid="96f356b4-b805-4ea4-8d92-055900e0e964">
+      <comment caption="Venue &gt; Place" description="to be added" uuid="1363b617-d953-492a-a9db-010378c063d8"/>
+      <entity-ref name="Venue"/>
+      <entity-ref name="VenueGroup"/>
+      <entity-ref name="VenueGroupVenue"/>
+    </region>
+    <region caption="Source" uuid="142287a0-efb1-472e-b4a3-32a2b6d9e760">
+      <entity-ref name="Source"/>
+      <entity-ref name="Checksum"/>
+    </region>
+    <region caption="Performance" uuid="fc3b2ac7-9262-4231-bf15-972a31762202">
+      <entity-ref name="Performance"/>
+      <entity-ref name="PerformanceSet"/>
+    </region>
+    <region caption="Event" uuid="b43dc053-43b9-4d8f-a1ff-0a6c12e17129">
+      <comment caption="Event &gt; Place" description="to be added" uuid="71f8138a-d609-4d61-bf4a-eb7fb24911a2"/>
+      <entity-ref name="Event"/>
+      <entity-ref name="Producer"/>
+    </region>
+    <region caption="Song" uuid="6fbe78c9-c9fd-4d6b-a4f9-2dd405e78bad">
+      <entity-ref name="Song"/>
+      <entity-ref name="PerformanceSong"/>
+      <entity-ref name="Composer"/>
+      <entity-ref name="ComposerSong"/>
+    </region>
+    <region caption="Performer" uuid="dc61b3c0-1ff7-468f-9d5e-977b255a4b26">
+      <entity-ref name="Performer"/>
+      <entity-ref name="PerformerLineup"/>
+      <entity-ref name="PerformerShow"/>
+    </region>
+    <orm-attributes>
       <attribute name="namespace">Db\Entity</attribute>
-    </orm-properties>
-    <foreign-key caption="Venue Show" from="Performance" inverse-alias="venue" name="FK_Show_Venue_id" owning-alias="performances" to="Venue" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Venue_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="FestivalEvent Show" from="Performance" inverse-alias="event" name="FK_Show_FestivalEvent_id" owning-alias="performances" to="Event" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Event_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Lineup Show" from="Performance" inverse-alias="lineup" name="FK_Show_Lineup_id" owning-alias="performances" to="Lineup" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Lineup_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User Performer" from="Performer" inverse-alias="user" name="FK_Performer_User_id" owning-alias="performer" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Show Source" from="Source" inverse-alias="performance" name="FK_Source_Show_id" owning-alias="sources" to="Performance" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Performance_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Venue VenueLink" from="VenueLink" inverse-alias="venue" name="FK_VenueLink_Venue_id" owning-alias="links" to="Venue" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Venue_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Source SourceLink" from="SourceLink" inverse-alias="source" name="FK_SourceLink_Source_id" owning-alias="links" to="Source" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Source_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Show ShowLink" from="PerformanceLink" inverse-alias="performance" name="FK_ShowLink_Show_id" owning-alias="links" to="Performance" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Performance_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Artist ArtistLink" from="PerformerLink" inverse-alias="performer" name="FK_ArtistLink_Artist_id" owning-alias="links" to="Performer" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Performer_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="BandGroup Band" from="Band" inverse-alias="bandGroup" name="FK_Band_BandGroup_id" owning-alias="bands" to="BandGroup" visShowCaption="0">
-      <foreign-key-column from="BandGroup_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Event Producer" from="Event" inverse-alias="producer" name="FK_Event_Producer_id" owning-alias="events" to="Producer" visShowCaption="0">
-      <foreign-key-column from="Producer_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Festival FestivalLink" from="EventLink" inverse-alias="event" name="FK_FestivalLink_Festival_id" owning-alias="links" to="Event" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Event_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Source Checksum" from="Checksum" name="FK_Checksum_Source_id" to="Source" visShowCaption="0">
-      <foreign-key-column from="Source_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Band Alias" from="Alias" inverse-alias="band" name="FK_Alias_Band_id" owning-alias="aliases" to="Band" visCenterX="0" visCenterY="0" visShowCaption="0">
-      <foreign-key-column from="Band_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User SourceComment" from="AbstractComment" inverse-alias="user" name="FK_SourceComment_User_id3" owning-alias="comments" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Festival FestivalLink" from="ProducerLink" inverse-alias="producer" name="FK_FestivalLink_Festival_id2" owning-alias="links" to="Producer" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Producer_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Show ShowComment" from="PerformanceComment" inverse-alias="performance" name="FK_ShowComment_Show_id" owning-alias="comments" to="Performance" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Performance_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Source SourceComment" from="SourceComment" inverse-alias="source" name="FK_SourceComment_Source_id" owning-alias="comments" to="Source" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Source_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Venue VenueGroupVenue" from="VenueGroupVenue" name="FK_VenueGroupVenue_Venue_id" to="Venue" visShowCaption="0">
-      <foreign-key-column from="Venue_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="VenueGroup VenueGroupVenue" from="VenueGroupVenue" name="FK_VenueGroupVenue_VenueGroup_id" to="VenueGroup" visShowCaption="0">
-      <foreign-key-column from="VenueGroup_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="VenueGroup VenueGroupLink" from="VenueGroupLink" inverse-alias="venueGroup" name="FK_VenueGroupLink_VenueGroup_id" owning-alias="links" to="VenueGroup" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="VenueGroup_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Band Lineup" from="Lineup" inverse-alias="band" name="FK_Lineup_Band_id" owning-alias="lineups" to="Band" visShowCaption="0">
-      <foreign-key-column from="Band_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Performer PerformerLineup" from="PerformerLineup" name="FK_PerformerLineup_Performer_id" to="Performer" visCenterX="4" visCenterY="0" visShowCaption="0">
-      <foreign-key-column from="Performer_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Lineup PerformerLineup" from="PerformerLineup" name="FK_PerformerLineup_Lineup_id" to="Lineup" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Lineup_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Show ShowPerformer" from="PerformerShow" name="FK_ShowPerformer_Show_id" to="Performance" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Performance_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Performer ShowPerformer" from="PerformerShow" name="FK_ShowPerformer_Performer_id" to="Performer" visShowCaption="0">
-      <foreign-key-column from="Performer_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Band BandLink" from="BandLink" inverse-alias="band" name="FK_BandLink_Band_id" owning-alias="links" to="Band" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Band_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Band Song" from="Song" inverse-alias="band" name="FK_Song_Band_id" owning-alias="songs" to="Band" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Band_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Song ShowSong" from="PerformanceSong" inverse-alias="song" name="FK_ShowSong_Song_id" owning-alias="performanceSongs" to="Song" visShowCaption="0">
-      <foreign-key-column from="Song_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="PerformanceSet PerformanceSong" from="PerformanceSong" inverse-alias="performanceSet" name="FK_PerformanceSong_PerformanceSet_id" owning-alias="performanceSongs" to="PerformanceSet" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="PerformanceSet_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User UserBandGroup" from="UserBandGroup" name="FK_UserBandGroup_User_id" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="BandGroup UserBandGroup" from="UserBandGroup" name="FK_UserBandGroup_BandGroup_id" to="BandGroup" visShowCaption="0">
-      <foreign-key-column from="BandGroup_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Song ComposerSong" from="ComposerSong" name="FK_ComposerSong_Song_id" to="Song" visShowCaption="0">
-      <foreign-key-column from="Song_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Composer ComposerSong" from="ComposerSong" name="FK_ComposerSong_Composer_id" to="Composer" visShowCaption="0">
-      <foreign-key-column from="Composer_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Composer ComposerLink" from="ComposerLink" inverse-alias="composer" name="FK_ComposerLink_Composer_id" owning-alias="links" to="Composer" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Composer_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Song SongLink" from="SongLink" inverse-alias="song" name="FK_SongLink_Song_id" owning-alias="links" to="Song" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Song_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Performance PerformanceSet" from="PerformanceSet" inverse-alias="performance" name="FK_PerformanceSet_Performance_id" owning-alias="performanceSets" to="Performance" visShowCaption="0">
-      <foreign-key-column from="Performance_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Performer PerformerComment" from="PerformerComment" inverse-alias="performer" name="FK_PerformerComment_Performer_id" owning-alias="comments" to="Performer" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Performer_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Band BandComment" from="BandComment" inverse-alias="band" name="FK_BandComment_Band_id" owning-alias="comments" to="Band" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Band_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Venue VenueComment" from="VenueComment" inverse-alias="venue" name="FK_VenueComment_Venue_id" owning-alias="comments" to="Venue" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Venue_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Event EventComment" from="EventComment" inverse-alias="event" name="FK_EventComment_Event_id" owning-alias="comments" to="Event" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Event_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Song SongComment" from="SongComment" inverse-alias="song" name="FK_SongComment_Song_id" owning-alias="comments" to="Song" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Song_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Lineup LineupComment" from="LineupComment" inverse-alias="lineup" name="FK_LineupComment_Lineup_id" owning-alias="comments" to="Lineup" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Lineup_id" to="id"/>
-    </foreign-key>
-    <many-to-many-relation mn-table="Friends">
-      <many-to-many-foreign-key foreign-key="FK_UserFriends_User_id" relation-alias="reverseFriends"/>
-      <many-to-many-foreign-key foreign-key="FK_UserFriends_User_id2" relation-alias="friends"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="UserPerformanceList">
-      <many-to-many-foreign-key foreign-key="FK_UserGroupShow_UserGroup_id" relation-alias="lists"/>
-      <many-to-many-foreign-key foreign-key="FK_UserGroupShow_UserShow_id" relation-alias="userPerformances"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="UserPerformanceFieldConfig">
-      <many-to-many-foreign-key foreign-key="FK_UserShowFieldConfig_User_id" relation-alias="users"/>
-      <many-to-many-foreign-key foreign-key="FK_UserShowFieldConfig_UserShowField_id" relation-alias="fieldConfig"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="VenueGroupVenue">
-      <many-to-many-foreign-key foreign-key="FK_VenueGroupVenue_Venue_id" relation-alias="venues"/>
-      <many-to-many-foreign-key foreign-key="FK_VenueGroupVenue_VenueGroup_id" relation-alias="venueGroups"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="PerformerLineup">
-      <many-to-many-foreign-key foreign-key="FK_PerformerLineup_Performer_id" relation-alias="performers"/>
-      <many-to-many-foreign-key foreign-key="FK_PerformerLineup_Lineup_id" relation-alias="lineups"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="PerformerShow">
-      <many-to-many-foreign-key foreign-key="FK_ShowPerformer_Show_id" relation-alias="performances"/>
-      <many-to-many-foreign-key foreign-key="FK_ShowPerformer_Performer_id" relation-alias="performers"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="UserBandGroup">
-      <many-to-many-foreign-key foreign-key="FK_UserBandGroup_User_id" relation-alias="users"/>
-      <many-to-many-foreign-key foreign-key="FK_UserBandGroup_BandGroup_id" relation-alias="bandGroups"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="ComposerSong">
-      <many-to-many-foreign-key foreign-key="FK_ComposerSong_Song_id" relation-alias="songs"/>
-      <many-to-many-foreign-key foreign-key="FK_ComposerSong_Composer_id" relation-alias="composers"/>
-    </many-to-many-relation>
+    </orm-attributes>
   </module>
-
-  <module import-format="Doctrine2Xml" import-path="..\..\module\Db\config\xml\" name="etreedb.org" visBkColor="1538279" visSizeX="-21" visSizeX2="875" visSizeY="5" visSizeY2="618">
-    <region caption="User" name="Region9" visBkColor="11850223" visPositionX="44" visPositionY="39" visSizeX="0" visSizeX2="388" visSizeY="0" visSizeY2="375"/>
-    <region caption="UserShow" name="Region10" visBkColor="11850223" visPositionX="469" visPositionY="45" visSizeX="31" visSizeX2="356" visSizeY="0" visSizeY2="545"/>
-    <table name="Attendance" region="Region9" visPositionX="234" visPositionY="168" visSizeX="0" visSizeX2="99" visSizeY="0" visSizeY2="73">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="User_id" required="true" type="integer"/>
-      <column name="Show_id" required="true" type="integer"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+  <module name="etreedb.org" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda">
+    <entity name="Attendance" uuid="4e1e7abf-b0e7-43cd-b51f-5e42b193daa5">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="1012efdc-5750-4450-b99c-619b614b74e5"/>
+      <field name="User_id" type="integer" required="true" uuid="b615dea2-61e1-485e-8011-9aa98946ea83"/>
+      <field name="Show_id" type="integer" required="true" uuid="8a64869b-dc07-45e4-8d15-9cdd0b241277"/>
+      <field name="note" type="text" uuid="2471b963-12d1-426a-9bec-d4d27a7f99ac"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Attendance</attribute>
-      </orm-properties>
-    </table>
-    <table name="Friends" region="Region9" visPositionX="57" visPositionY="33" visSizeX="0" visSizeX2="130" visSizeY="0" visSizeY2="60">
-      <column name="source_User_id" required="true" type="integer"/>
-      <column name="related_User_id" required="true" type="integer"/>
-    </table>
-    <table name="UserPerformance" region="Region10" visPositionX="191" visPositionY="150" visSizeX="0" visSizeX2="133" visSizeY="0" visSizeY2="381">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="User_id" required="true" type="integer"/>
-      <column name="Performance_id" required="true" type="integer"/>
-      <column name="Source_id" type="integer"/>
-      <column name="sourceNote" type="text"/>
-      <column name="checksum" type="text"/>
-      <column name="createdAt" type="datetime"/>
-      <column name="mediaCount" type="integer"/>
-      <column name="mediaType" type="string"/>
-      <column name="noiseReduction" type="boolean"/>
-      <column name="scmsStatus" type="string"/>
-      <column name="showRating" type="string"/>
-      <column name="soundRating" type="string"/>
-      <column name="microphone" type="text"/>
-      <column name="generation" type="integer"/>
-      <column name="note" type="text"/>
-      <column name="jCardComment" type="text"/>
-      <column name="techNote" type="text"/>
-      <column name="referenceNumber" type="string"/>
-      <column name="tradedFrom" type="string"/>
-      <column name="tradedFromEmail" type="string"/>
-      <column name="tradesAllowed" type="boolean"/>
-      <column name="status" type="string"/>
-      <column name="attendance" type="string"/>
-      <column name="taperName" type="string"/>
-      <column name="micLocation" type="string"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Attendance" to="User" owner-alias="attendance" inverse-alias="user" uuid="35af89d5-6581-406e-bb52-6be0aa4fbfb2">
+      <association-field from="User_id" to="id"/>
+    </association>
+    <association from="Attendance" to="Performance" owner-alias="attendees" inverse-alias="performance" uuid="e8eb80a6-0776-4176-84d7-a6a43f0b40d9">
+      <association-field from="Show_id" to="id"/>
+    </association>
+    <entity name="Friends" uuid="2ad447a5-1083-42b2-9cbc-57a4fe47bbb3">
+      <field name="source_User_id" type="integer" required="true" uuid="a62a3b78-1b69-48e1-ba03-a7102f4017f3"/>
+      <field name="related_User_id" type="integer" required="true" uuid="d25ed1d3-682c-41a8-94bb-0ebae21e2166"/>
+    </entity>
+    <many-to-many mn-entity="Friends" uuid="d0a02e96-9f32-42ed-8d92-6e85ffeb8866">
+      <many-to-many-entity name="User" owning-side="true" alias="reverseFriends" uuid="5f06bae6-df65-4ff0-8bfb-9980fe9b2f4d">
+        <many-to-many-field from="source_User_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="User" owning-side="false" alias="friends" uuid="4532882c-d00c-4535-ae38-afff3ce41613">
+        <many-to-many-field from="related_User_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="UserPerformance" uuid="3d3181bb-c13e-46cc-8b20-8172c8d12154">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="22ad6f37-f20f-4cb1-8a54-19c3eb0b4574"/>
+      <field name="User_id" type="integer" required="true" uuid="462c7490-cbe9-4846-b3a2-248c1dd07dd1"/>
+      <field name="Performance_id" type="integer" required="true" uuid="4f7db310-8cd8-4dc0-b8af-776072542338"/>
+      <field name="Source_id" type="integer" uuid="0fc805ae-d572-4d45-827c-1e20420402f5"/>
+      <field name="sourceNote" type="text" uuid="5465326f-5824-41e8-bc2c-81559599336e"/>
+      <field name="checksum" type="text" uuid="bf5394fb-b7e3-474e-8bfc-2ed04669c4b4"/>
+      <field name="createdAt" type="datetime" uuid="4e1e381a-3eb1-4927-9b8c-078e365bb373"/>
+      <field name="mediaCount" type="integer" uuid="0f36f085-64e4-43c0-9dde-f30b8136b947"/>
+      <field name="mediaType" type="string" uuid="853bc7dc-5ee4-4c8b-9f4e-916e658c4eb5"/>
+      <field name="noiseReduction" type="boolean" uuid="ba6b8011-2993-430d-955d-99e479e4978a"/>
+      <field name="scmsStatus" type="string" uuid="95989310-9868-4807-85d8-144a4c5d8ed2"/>
+      <field name="showRating" type="string" uuid="75984b37-0137-4c02-839d-86b9e30eda71"/>
+      <field name="soundRating" type="string" uuid="ecff6852-2613-4d06-a4b0-4c7fefa78509"/>
+      <field name="microphone" type="text" uuid="f22d33c1-0d92-461e-8cc5-1a6e21ac46c2"/>
+      <field name="generation" type="integer" uuid="1205b0bd-8c0b-46ec-8a98-8b46191e6859"/>
+      <field name="note" type="text" uuid="0aff8af3-9dc2-4537-8d3b-bf95dcff1333"/>
+      <field name="jCardComment" type="text" uuid="335dba3e-8022-461d-a70f-ab96323ebb58"/>
+      <field name="techNote" type="text" uuid="cc9ad627-f663-438c-ae31-44576d2e717c"/>
+      <field name="referenceNumber" type="string" uuid="9432f827-d6b7-4215-aa3e-ef973791ff58"/>
+      <field name="tradedFrom" type="string" uuid="c91dc9c2-fbde-4ddb-88b8-03484a5b1160"/>
+      <field name="tradedFromEmail" type="string" uuid="07e3c206-62bf-4700-bf70-efab95f777bc"/>
+      <field name="tradesAllowed" type="boolean" uuid="d3e87c58-4fa0-4d4a-a677-c57741b0bf20"/>
+      <field name="status" type="string" uuid="a07680e1-f912-43d0-bc21-b190d4277e38"/>
+      <field name="attendance" type="string" uuid="cf472150-3618-4818-b5b4-7a7c8a3dd17a"/>
+      <field name="taperName" type="string" uuid="3a413c6d-b6b2-4c6b-9f2e-3389da8777f9"/>
+      <field name="micLocation" type="string" uuid="7c00fca9-4c3d-465d-8a18-cb41e76cdd37"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\UserPerformance</attribute>
-      </orm-properties>
-    </table>
-    <table name="Feedback" region="Region9" visPositionX="234" visPositionY="36" visSizeX="0" visSizeX2="125" visSizeY="0" visSizeY2="115">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="fromUser_id" required="true" type="integer"/>
-      <column name="toUser_id" required="true" type="integer"/>
-      <column name="score" required="true" type="integer"/>
-      <column name="note" required="true" type="text"/>
-      <column name="reply" type="text"/>
-      <column name="createdAt" required="true" type="datetime"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="UserPerformance" to="User" owner-alias="userPerformances" inverse-alias="user" uuid="779ac5c4-167a-42dc-95ed-eced2629339c">
+      <association-field from="User_id" to="id"/>
+    </association>
+    <association from="UserPerformance" to="Performance" owner-alias="userPerformances" inverse-alias="performance" uuid="12d9049b-6ae0-4c55-bc8d-c2719e614680">
+      <association-field from="Performance_id" to="id"/>
+    </association>
+    <association from="UserPerformance" to="Source" owner-alias="userPerformances" inverse-alias="source" uuid="c8b868f5-7a7e-46e8-8e4f-a42a8c4eacfa">
+      <association-field from="Source_id" to="id"/>
+    </association>
+    <entity name="Feedback" uuid="4bf4c0aa-d36f-428e-a616-5acc5a8aa717">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="cff1e3d9-1c4b-4719-b0f5-b0bc661c749b"/>
+      <field name="fromUser_id" type="integer" required="true" uuid="726d7c05-2ae4-465d-8e00-34c94e378533"/>
+      <field name="toUser_id" type="integer" required="true" uuid="6fa85896-ad16-4654-9276-f5f0d35c0964"/>
+      <field name="score" type="integer" required="true" uuid="39a6c4d1-04a3-4447-a8a7-d785e1c5b7bd"/>
+      <field name="note" type="text" required="true" uuid="006e1bec-42d7-4e03-9804-05f3458574e7"/>
+      <field name="reply" type="text" uuid="3d784307-32c3-43f9-be0a-4d132fe6d8a3"/>
+      <field name="createdAt" type="datetime" required="true" uuid="43342c38-0dba-4531-933a-7468a08a5c47"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Feedback</attribute>
-      </orm-properties>
-    </table>
-    <table name="Wanted" region="Region9" visPositionX="230" visPositionY="282" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="73">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="User_id" required="true" type="integer"/>
-      <column name="Show_id" required="true" type="integer"/>
-      <column name="Source_id" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Feedback" to="User" owner-alias="feedbackFrom" inverse-alias="from" uuid="13c35ea7-aa41-465f-9602-f0b477836b35">
+      <association-field from="fromUser_id" to="id"/>
+    </association>
+    <association from="Feedback" to="User" owner-alias="feedbackTo" inverse-alias="to" uuid="ad9ae0d3-e90a-444f-a08e-51c3a5eb2fdb">
+      <association-field from="toUser_id" to="id"/>
+    </association>
+    <entity name="Wanted" uuid="4864cc5f-572c-4f9b-bbfa-92522469cbf7">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="b9274679-9a54-4141-815e-e6bd8cc02386"/>
+      <field name="User_id" type="integer" required="true" uuid="55112d88-edf1-4d57-9ba5-1dcef51fefcb"/>
+      <field name="Show_id" type="integer" required="true" uuid="c1300820-99ca-4c1e-b0f6-7ad6b90216b4"/>
+      <field name="Source_id" type="integer" uuid="a3f3d8f6-3fba-40f3-9b5e-27365fcbb2d1"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Wanted</attribute>
-      </orm-properties>
-    </table>
-    <table name="Mail" region="Region9" visPositionX="63" visPositionY="129" visSizeX="0" visSizeX2="117" visSizeY="0" visSizeY2="101">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="fromUser_id" required="true" type="integer"/>
-      <column name="toUser_id" required="true" type="integer"/>
-      <column name="createdAt" required="true" type="datetime"/>
-      <column name="note" required="true" type="text"/>
-      <column name="status" type="string"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Wanted" to="User" owner-alias="wantedBy" inverse-alias="user" uuid="db2ed8ab-450d-4d09-b542-b500c5f3a648">
+      <association-field from="User_id" to="id"/>
+    </association>
+    <association from="Wanted" to="Source" owner-alias="wantedBy" inverse-alias="source" uuid="7b541b84-a6de-43a4-8698-e7b4e9f56212">
+      <association-field from="Source_id" to="id"/>
+    </association>
+    <association from="Wanted" to="Performance" owner-alias="wantedBy" inverse-alias="performance" uuid="63eca234-7c86-49f6-ba4c-262ca6f8fbc2">
+      <association-field from="Show_id" to="id"/>
+    </association>
+    <entity name="Mail" uuid="3cc86590-d96a-48d6-b575-5aad4941e6c5">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="4fdc5f23-1083-4c44-b099-1ab5c6092b9a"/>
+      <field name="fromUser_id" type="integer" required="true" uuid="0b051bec-f7c3-4c83-bf40-d5807b3bfdf8"/>
+      <field name="toUser_id" type="integer" required="true" uuid="7b49b1ba-70da-47d1-b4f4-eb223ccfab66"/>
+      <field name="createdAt" type="datetime" required="true" uuid="936a3da4-b0c1-41c3-9edb-9aee5c1405e4"/>
+      <field name="note" type="text" required="true" uuid="42897352-b8e2-40b0-8848-2c357dcb2d54"/>
+      <field name="status" type="string" uuid="b3f7b9af-eb2c-4903-bfef-6d7ecc2fd8b2"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\Mail</attribute>
-      </orm-properties>
-    </table>
-    <table name="UserList" region="Region10" visPositionX="39" visPositionY="40" visSizeX="0" visSizeX2="97" visSizeY="0" visSizeY2="87">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="User_id" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="abbrev" required="true" type="string"/>
-      <column name="note" type="text"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Mail" to="User" owner-alias="outbox" inverse-alias="from" uuid="1c6fa38e-ed34-4102-8971-550fbbb05b0e">
+      <association-field from="fromUser_id" to="id"/>
+    </association>
+    <association from="Mail" to="User" owner-alias="inbox" inverse-alias="to" uuid="af1dc0f3-ed9d-47f2-9717-0a491ce02b98">
+      <association-field from="toUser_id" to="id"/>
+    </association>
+    <entity name="UserList" uuid="e2f1b616-219b-4bd7-be91-dc04c98bd3a5">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="4da9ed3f-bd65-48d4-ae94-bdcf9603a646"/>
+      <field name="User_id" type="integer" required="true" uuid="86290cc3-29bc-442a-9e2b-1147e2ff29b1"/>
+      <field name="name" type="string" required="true" uuid="4e9e4d49-5f50-4396-be0a-84a3a7c99df0"/>
+      <field name="abbrev" type="string" required="true" uuid="08e078b2-f3a0-41bb-8293-d116ea2f58de"/>
+      <field name="note" type="text" uuid="fb24c6ba-d0be-4280-b538-27d26cd4819d"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\UserList</attribute>
-      </orm-properties>
-    </table>
-    <table name="UserPerformanceList" region="Region10" visPositionX="177" visPositionY="53" visSizeX="0" visSizeX2="119" visSizeY="0" visSizeY2="60">
-      <column name="ListGroup_id" required="true" type="integer"/>
-      <column name="UserPerformance_id" required="true" type="integer"/>
-    </table>
-    <table name="UserPerformanceField" region="Region10" visPositionX="41" visPositionY="140" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="45">
-      <column auto-increment="true" name="id" primary="true" required="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="UserList" to="User" owner-alias="lists" inverse-alias="user" uuid="5e03ea82-cfff-4c1e-8854-c966850ea809">
+      <association-field from="User_id" to="id"/>
+    </association>
+    <entity name="UserPerformanceList" uuid="d794f911-287a-4ecc-ac5f-aadce68e5b30">
+      <field name="ListGroup_id" type="integer" required="true" uuid="bebf9c00-3fc3-4d56-8ae5-af351fac98c1"/>
+      <field name="UserPerformance_id" type="integer" required="true" uuid="ec93aa7a-fa38-43ee-a794-14d44a7c23c9"/>
+    </entity>
+    <many-to-many mn-entity="UserPerformanceList" uuid="e11f6ab5-99f9-4635-a91a-e5ff60b77b5d">
+      <many-to-many-entity name="UserList" owning-side="true" alias="lists" uuid="ef860d5e-b5ad-48f8-a717-d4ae9d742826">
+        <many-to-many-field from="ListGroup_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="UserPerformance" owning-side="false" alias="userPerformances" uuid="44d51858-40ba-4043-a3bb-028a8c2ee932">
+        <many-to-many-field from="UserPerformance_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="UserPerformanceField" uuid="fb8433d5-2eb9-4f0b-9f5c-9161e83e3728">
+      <field name="id" type="integer" required="true" primary="true" auto-increment="true" uuid="e8d1c750-3575-4b3b-86dc-5623781b1833"/>
+      <field name="name" type="string" required="true" uuid="1cfdf270-208d-4012-a0e5-bf843c5e3eb3"/>
+      <orm-attributes>
         <attribute name="repository-class">Db\Repository\UserPerformanceField</attribute>
-      </orm-properties>
-    </table>
-    <table name="UserPerformanceFieldConfig" region="Region10" visPositionX="-10" visPositionY="228" visSizeX="0" visSizeX2="139" visSizeY="0" visSizeY2="60">
-      <column name="User_id" required="true" type="integer"/>
-      <column name="UserPerformanceField_id" required="true" type="integer"/>
-    </table>
-    <orm-properties>
+      </orm-attributes>
+    </entity>
+    <entity name="UserPerformanceFieldConfig" uuid="d1ed7de2-6778-48e0-a81c-22735fc0d71e">
+      <field name="User_id" type="integer" required="true" uuid="fa1a6c24-8a24-463e-9da9-9d2a9304bfe6"/>
+      <field name="UserPerformanceField_id" type="integer" required="true" uuid="e5da1c16-3af0-4935-914e-8525d1026647"/>
+    </entity>
+    <many-to-many mn-entity="UserPerformanceFieldConfig" uuid="3ddb1eb4-b957-442e-8005-c83e142e1a3f">
+      <many-to-many-entity name="User" owning-side="true" alias="users" uuid="f3c1d6c9-8ed3-4833-a5bf-bada34d5f274">
+        <many-to-many-field from="User_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="UserPerformanceField" owning-side="false" alias="fieldConfig" uuid="a8719c37-aaa2-4aac-ba75-1a50f78b63a9">
+        <many-to-many-field from="UserPerformanceField_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <region caption="User" uuid="8f69e7ba-888b-4cc0-b80a-fea1e0da2238">
+      <entity-ref name="Attendance"/>
+      <entity-ref name="Friends"/>
+      <entity-ref name="Feedback"/>
+      <entity-ref name="Wanted"/>
+      <entity-ref name="Mail"/>
+    </region>
+    <region caption="UserShow" uuid="52ac6c26-25b6-4d3b-9572-bd8e75c16ab8">
+      <entity-ref name="UserPerformance"/>
+      <entity-ref name="UserList"/>
+      <entity-ref name="UserPerformanceList"/>
+      <entity-ref name="UserPerformanceField"/>
+      <entity-ref name="UserPerformanceFieldConfig"/>
+    </region>
+    <orm-attributes>
       <attribute name="namespace">Db\Entity</attribute>
-    </orm-properties>
-    <foreign-key caption="User ShowAttendance" from="Attendance" inverse-alias="user" name="FK_ShowAttendance_User_id" owning-alias="attendance" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Show ShowAttendance" from="Attendance" inverse-alias="performance" name="FK_ShowAttendance_Show_id" owning-alias="attendees" to="Performance" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Show_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User UserFriends" from="Friends" name="FK_UserFriends_User_id" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="source_User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User UserFriends" from="Friends" name="FK_UserFriends_User_id2" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="related_User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User UserShow" from="UserPerformance" inverse-alias="user" name="FK_UserShow_User_id" owning-alias="userPerformances" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Show UserShow" from="UserPerformance" inverse-alias="performance" name="FK_UserShow_Show_id" owning-alias="userPerformances" to="Performance" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Performance_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Source UserShow" from="UserPerformance" inverse-alias="source" name="FK_UserShow_Source_id" owning-alias="userPerformances" to="Source" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Source_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User Feedback" from="Feedback" inverse-alias="from" name="FK_Feedback_User_id" owning-alias="feedbackFrom" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="fromUser_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User Feedback" from="Feedback" inverse-alias="to" name="FK_Feedback_User_id2" owning-alias="feedbackTo" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="toUser_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User Wanted" from="Wanted" inverse-alias="user" name="FK_Wanted_User_id" owning-alias="wantedBy" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Source Wanted" from="Wanted" inverse-alias="source" name="FK_Wanted_Source_id" owning-alias="wantedBy" to="Source" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Source_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Show Wanted" from="Wanted" inverse-alias="performance" name="FK_Wanted_Show_id" owning-alias="wantedBy" to="Performance" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="Show_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User Email" from="Mail" inverse-alias="from" name="FK_Email_User_id" owning-alias="outbox" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="fromUser_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User Email" from="Mail" inverse-alias="to" name="FK_Email_User_id2" owning-alias="inbox" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="toUser_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User UserGroup" from="UserList" inverse-alias="user" name="FK_UserGroup_User_id" owning-alias="lists" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="UserGroup UserGroupShow" from="UserPerformanceList" name="FK_UserGroupShow_UserGroup_id" to="UserList" visCenterX="0" visCenterY="2" visShowCaption="0">
-      <foreign-key-column from="ListGroup_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="UserShow UserGroupShow" from="UserPerformanceList" name="FK_UserGroupShow_UserShow_id" to="UserPerformance" visCenterX="0" visCenterY="0" visShowCaption="0">
-      <foreign-key-column from="UserPerformance_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="User UserShowFieldConfig" from="UserPerformanceFieldConfig" name="FK_UserShowFieldConfig_User_id" to="User" visShowCaption="0" visSplitted="1">
-      <foreign-key-column from="User_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="UserShowField UserShowFieldConfig" from="UserPerformanceFieldConfig" name="FK_UserShowFieldConfig_UserShowField_id" to="UserPerformanceField" visCenterX="0" visCenterY="0" visShowCaption="0">
-      <foreign-key-column from="UserPerformanceField_id" to="id"/>
-    </foreign-key>
+    </orm-attributes>
   </module>
-
-  <module import-format="Doctrine2Xml" import-path="..\..\module\Geoname\config\xml\" name="Geoname" visBkColor="1538279" visSizeX="-142" visSizeX2="852" visSizeY="0" visSizeY2="672">
-    <region caption="Geoname" name="Region10" visBkColor="11850223" visPositionX="166" visPositionY="32" visSizeX="0" visSizeX2="671" visSizeY="10" visSizeY2="627"/>
-    <table name="AltName" region="Region10" visPositionX="98" visPositionY="437" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="157">
-      <column name="id" primary="true" type="integer"/>
-      <column name="name" required="true" type="string"/>
-      <column name="isPreferred" required="true" type="boolean"/>
-      <column name="isShort" required="true" type="boolean"/>
-      <column name="isColloquial" required="true" type="boolean"/>
-      <column name="isHistoric" required="true" type="boolean"/>
-      <column name="languageOther" type="string"/>
-      <column name="isDeprecated" type="boolean"/>
-      <column name="place_id" type="integer"/>
-      <column name="language_id" type="integer"/>
-      <orm-properties>
+  <module name="Geoname" import-format="Doctrine2Xml" import-path="../../module/Geoname/config/xml" uuid="3cbdb9d3-941f-4690-8568-c9258ce21152">
+    <entity name="AltName" uuid="31544907-76ed-4476-b1e7-a744bf1fe956">
+      <field name="id" type="integer" primary="true" uuid="f00a8be7-7b05-4fc8-82d0-4cbf1bc2a9b2"/>
+      <field name="name" type="string" required="true" uuid="7c789238-1f99-483f-8080-b90cfea578da"/>
+      <field name="isPreferred" type="boolean" required="true" uuid="8a28e1fd-335c-49a7-aa4c-e7bc6185072f"/>
+      <field name="isShort" type="boolean" required="true" uuid="66c078f6-c841-4185-92d8-985f7f0322a1"/>
+      <field name="isColloquial" type="boolean" required="true" uuid="af935ab9-7809-49e2-9284-3961c85591d1"/>
+      <field name="isHistoric" type="boolean" required="true" uuid="f253b4a3-fd1f-47ca-9ff3-8c50ca145c54"/>
+      <field name="languageOther" type="string" uuid="bf304cbf-8dab-4896-a0ca-0dde01f4a01c"/>
+      <field name="isDeprecated" type="boolean" uuid="cfb225a6-36d1-4479-b741-782ca22c174a"/>
+      <field name="place_id" type="integer" uuid="83f084d4-2e30-4a34-8dce-404fb3a694aa"/>
+      <field name="language_id" type="integer" uuid="d927a393-14c2-45c5-8658-dfde4c33bfae"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_alt_name</attribute>
         <attribute name="repository-class">Geoname\Repository\AltName</attribute>
-      </orm-properties>
-    </table>
-    <table name="Country" region="Region10" visPositionX="292" visPositionY="20" visSizeX="0" visSizeX2="143" visSizeY="0" visSizeY2="255">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="iso3" type="string"/>
-      <column name="iso2" type="string"/>
-      <column name="isoNum" type="string"/>
-      <column name="capital" type="string"/>
-      <column name="area" type="integer"/>
-      <column name="population" type="integer"/>
-      <column name="tld" type="string"/>
-      <column name="phone" type="string"/>
-      <column name="postalCode" type="string"/>
-      <column name="postalCodeRegex" type="string"/>
-      <column name="continent_id" type="integer"/>
-      <column name="place_id" type="integer" unique="true"/>
-      <column name="currency_id" type="integer"/>
-      <column name="mainlocale_id" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="AltName" to="Place" owner-alias="altNames" inverse-alias="place" uuid="17b6248f-719a-4f65-948a-5d008f7ff080">
+      <association-field from="place_id" to="id"/>
+    </association>
+    <association from="AltName" to="Language" inverse-alias="language" uuid="845f695a-1bf1-4a93-8c8f-9cb7ce1ccb9a">
+      <association-field from="language_id" to="id"/>
+    </association>
+    <entity name="Country" uuid="eb406a7a-3ed3-4e8c-8395-42b2cdf6d7a3">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="b647da91-81d5-49ae-a5d3-fe14e315c1e6"/>
+      <field name="iso3" type="string" uuid="b758c4bb-8fc8-4dba-b9be-17c775903088"/>
+      <field name="iso2" type="string" uuid="ecb075cf-d101-4110-9207-cf80d2359844"/>
+      <field name="isoNum" type="string" uuid="aceb9281-4d3f-400d-8383-594a0ab9588d"/>
+      <field name="capital" type="string" uuid="982cfb59-51ff-4ff7-9d76-a6f001830bdb"/>
+      <field name="area" type="integer" uuid="2d982ce6-dd3e-4f91-909e-ea5ec8dc81ae"/>
+      <field name="population" type="integer" uuid="c3575eed-233d-4fcf-8093-5f7ebaf9a3e6"/>
+      <field name="tld" type="string" uuid="13d576c5-354b-4d7a-ae93-45a829a9a2cb"/>
+      <field name="phone" type="string" uuid="4e7de2fc-cb06-4e34-924a-e3284dbd9de8"/>
+      <field name="postalCode" type="string" uuid="3cd3ed12-86e4-46ef-8514-f45ef67ec33c"/>
+      <field name="postalCodeRegex" type="string" uuid="400e1cfb-7937-4e5a-a227-2e8be6817040"/>
+      <field name="continent_id" type="integer" uuid="7f6868c2-90d2-4d74-af1e-563378fa9817"/>
+      <field name="place_id" type="integer" unique="true" uuid="f6a83a5e-4df1-4528-9247-b8aec65c8933"/>
+      <field name="currency_id" type="integer" uuid="82527201-1db1-4890-b506-0627d735269e"/>
+      <field name="mainlocale_id" type="integer" uuid="a812f068-d9d3-4516-bcd8-3ee9f003ac36"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_country</attribute>
         <attribute name="repository-class">Geoname\Repository\Country</attribute>
-      </orm-properties>
-    </table>
-    <table name="Currency" region="Region10" visPositionX="531" visPositionY="3" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="59">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="code" type="string"/>
-      <column name="name" type="string"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Country" to="Place" owner-alias="countries" inverse-alias="continent" uuid="9ebca2ee-ce15-4516-9048-02f6f76d9e62">
+      <association-field from="continent_id" to="id"/>
+    </association>
+    <association from="Country" to="Place" owner-alias="country" inverse-alias="place" uuid="ad7a2621-da0b-476d-90c2-7b6226f732b3">
+      <association-field from="place_id" to="id"/>
+    </association>
+    <association from="Country" to="Currency" owner-alias="countries" inverse-alias="currency" uuid="62a9d141-efc9-43be-a799-6501caef1e76">
+      <association-field from="currency_id" to="id"/>
+    </association>
+    <association from="Country" to="Locale" inverse-alias="mainLocale" uuid="2dfc4855-8f23-464f-9c7d-67bba1ed68b0">
+      <association-field from="mainlocale_id" to="id"/>
+    </association>
+    <entity name="Currency" uuid="68ebcd14-7e6e-416d-a7a0-5fb37578329c">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="f1ee0d72-bd86-47a5-97fa-85910cec0d24"/>
+      <field name="code" type="string" uuid="85a54d41-365e-4c08-8fbe-241faf973c13"/>
+      <field name="name" type="string" uuid="66c5ae0e-1ced-4eee-b7fe-e5408c5ae73a"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_currency</attribute>
         <attribute name="repository-class">Geoname\Repository\Currency</attribute>
-      </orm-properties>
-    </table>
-    <table name="Feature" region="Region10" visPositionX="503" visPositionY="471" visSizeX="0" visSizeX2="109" visSizeY="0" visSizeY2="87">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="code" required="true" type="string"/>
-      <column name="description" type="string"/>
-      <column name="comment" type="string"/>
-      <column name="parent_id" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <entity name="Feature" uuid="64337f4d-a815-4821-bf46-e11c83c1d8a3">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="dfd059eb-63a9-4cfd-bc77-2d0982849c67"/>
+      <field name="code" type="string" required="true" uuid="c96b6f5c-310f-44dd-8e76-3e936f4a72a0"/>
+      <field name="description" type="string" uuid="c86b4c47-df03-4523-bf38-61bfb536fde1"/>
+      <field name="comment" type="string" uuid="7bb24044-26fb-4129-85dc-b8330f1b5a13"/>
+      <field name="parent_id" type="integer" uuid="23f85cf8-ba0c-48d5-bf01-99958e9e0c28"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_feature</attribute>
         <attribute name="repository-class">Geoname\Repository\Feature</attribute>
-      </orm-properties>
-    </table>
-    <table name="Language" region="Region10" visPositionX="28" visPositionY="303" visSizeX="0" visSizeX2="83" visSizeY="0" visSizeY2="87">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="name" type="string"/>
-      <column name="iso3" type="string"/>
-      <column name="iso2" type="string"/>
-      <column name="iso1" type="string"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Feature" to="Feature" owner-alias="children" inverse-alias="parent" uuid="5ca62afa-b36d-4fa3-8b68-9e5fac9dce01">
+      <association-field from="parent_id" to="id"/>
+    </association>
+    <entity name="Language" uuid="93d9b80b-1d07-43eb-89a4-37a87bffdcc7">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="14268f94-a72b-4044-8552-5168f641d0e3"/>
+      <field name="name" type="string" uuid="5518f5d3-410d-4d61-8a75-e4b8fda0fc8a"/>
+      <field name="iso3" type="string" uuid="43cd537c-021c-41ef-97bb-ec476ecb0ccd"/>
+      <field name="iso2" type="string" uuid="79769e84-d87f-4de5-9909-78844744e3e1"/>
+      <field name="iso1" type="string" uuid="8c6d0712-ddb5-4025-ac67-f8f5f30c4392"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_language</attribute>
         <attribute name="repository-class">Geoname\Repository\Language</attribute>
-      </orm-properties>
-    </table>
-    <table name="Locale" region="Region10" visPositionX="30" visPositionY="106" visSizeX="0" visSizeX2="117" visSizeY="0" visSizeY2="59">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="code" required="true" type="string"/>
-      <column name="language_id" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <entity name="Locale" uuid="4e5bd64e-a59a-41b8-90bb-fcbd5e4d7f6f">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="81bdf796-f756-4ac9-9494-16d51d9ec3dd"/>
+      <field name="code" type="string" required="true" uuid="753e05e9-e194-423b-9d30-e318a88b82d4"/>
+      <field name="language_id" type="integer" uuid="d66f494f-a6fe-4fc4-9329-2c02ccd8f67a"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_locale</attribute>
         <attribute name="repository-class">Geoname\Repository\Locale</attribute>
-      </orm-properties>
-    </table>
-    <table name="Meta" region="Region10" visPositionX="55" visPositionY="11" visSizeX="0" visSizeX2="106" visSizeY="0" visSizeY2="59">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="status" required="true" type="integer"/>
-      <column name="isLocked" type="boolean"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Locale" to="Language" owner-alias="locales" inverse-alias="language" uuid="c6135085-6793-4bf8-93e6-332b8a5622ba">
+      <association-field from="language_id" to="id"/>
+    </association>
+    <entity name="Meta" uuid="85042b69-8b14-4540-81ee-c0d91ea5ef6b">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="4dd79acf-470c-4455-ba1e-d8cb5e5e37c7"/>
+      <field name="status" type="integer" required="true" uuid="214ca5f9-f725-442e-ac55-2caf2ffb7ceb"/>
+      <field name="isLocked" type="boolean" uuid="7b5ca263-1479-4490-979c-dfcb62b294ef"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_meta</attribute>
         <attribute name="repository-class">Geoname\Repository\Meta</attribute>
-      </orm-properties>
-    </table>
-    <table name="Place" region="Region10" visPositionX="297" visPositionY="354" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="241">
-      <column name="id" primary="true" required="true" type="integer"/>
-      <column name="name" type="string"/>
-      <column name="latitude" type="decimal"/>
-      <column name="longitude" type="decimal"/>
-      <column name="elevation" type="integer"/>
-      <column name="digiEleModel" type="integer"/>
-      <column name="population" type="bigint"/>
-      <column name="countryCode" type="string"/>
-      <column name="admin1Code" type="string"/>
-      <column name="admin2Code" type="string"/>
-      <column name="admin3Code" type="string"/>
-      <column name="admin4Code" type="string"/>
-      <column name="isDeprecated" type="boolean"/>
-      <column name="parent_id" type="integer"/>
-      <column name="feature_id" type="integer"/>
-      <column name="timezone_id" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <entity name="Place" uuid="d8d44aff-eaa4-4ed8-9bd8-e1adf9f51093">
+      <field name="id" type="integer" required="true" primary="true" uuid="0c167f03-1c50-4c48-9250-b3b6e4810faa"/>
+      <field name="name" type="string" uuid="0ceb272f-74a4-43ad-b164-86f75b66dfa2"/>
+      <field name="latitude" type="decimal" uuid="1f9de968-5fe9-4b26-8f36-c03d7524d992"/>
+      <field name="longitude" type="decimal" uuid="6a98bb20-cd26-4666-8796-675cf1b0e89a"/>
+      <field name="elevation" type="integer" uuid="4297dae3-7508-4747-b176-9146947d6e94"/>
+      <field name="digiEleModel" type="integer" uuid="2869c610-def2-44bb-82c6-a2c707ddb24e"/>
+      <field name="population" type="bigint" uuid="e4991f16-ff61-4925-a4e2-9dbfd33fe4f4"/>
+      <field name="countryCode" type="string" uuid="46683edd-f423-4f85-9b72-c677e5680a4e"/>
+      <field name="admin1Code" type="string" uuid="ba3e2c93-47ac-4729-977c-9b65e2e0f30b"/>
+      <field name="admin2Code" type="string" uuid="87e6354e-3635-4a97-a6eb-ddaf07e5101f"/>
+      <field name="admin3Code" type="string" uuid="cdb72a59-46b6-481a-9589-edfd4ac732a8"/>
+      <field name="admin4Code" type="string" uuid="3ee47c9c-4c70-4260-a0ab-b99e70b0f81f"/>
+      <field name="isDeprecated" type="boolean" uuid="e245bbbe-02b8-4d73-9cb2-13f859b097e2"/>
+      <field name="parent_id" type="integer" uuid="e0d6beee-ecd4-478e-b4ed-3b1f3fabefa7"/>
+      <field name="feature_id" type="integer" uuid="74d474c1-ec2f-4457-bcbf-27a9485dfede"/>
+      <field name="timezone_id" type="integer" uuid="e893c8bb-47b8-45ec-bf4e-634e32ca1a5b"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_place</attribute>
         <attribute name="repository-class">Geoname\Repository\Place</attribute>
-      </orm-properties>
-    </table>
-    <table name="Timezone" region="Region10" visPositionX="511" visPositionY="290" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="101">
-      <column auto-increment="true" name="id" primary="true" type="integer"/>
-      <column name="code" required="true" type="string"/>
-      <column name="offset" type="decimal"/>
-      <column name="offsetJan" type="decimal"/>
-      <column name="offsetJul" type="decimal"/>
-      <column name="country_id" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Place" to="Place" owner-alias="children" inverse-alias="parent" uuid="4d1e8140-45e6-402d-9fe5-70a9b1700d6b">
+      <association-field from="parent_id" to="id"/>
+    </association>
+    <association from="Place" to="Feature" owner-alias="places" inverse-alias="feature" uuid="dbf3ec07-c05d-4c16-b021-b861953bfc38">
+      <association-field from="feature_id" to="id"/>
+    </association>
+    <association from="Place" to="Timezone" owner-alias="places" inverse-alias="timezone" uuid="60669063-df73-461b-8ecb-78dba5cb61be">
+      <association-field from="timezone_id" to="id"/>
+    </association>
+    <entity name="Timezone" uuid="862e2114-4ca1-4ba3-8aab-cad8b25177de">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="8864d7d8-67c2-4201-82b7-095d583a002a"/>
+      <field name="code" type="string" required="true" uuid="aff2429a-775c-452f-9701-4d680e7df5ca"/>
+      <field name="offset" type="decimal" uuid="6494ea46-3e3a-4439-929c-d8b68900d5cf"/>
+      <field name="offsetJan" type="decimal" uuid="a05a3bdb-a7b6-4738-a5c3-775ac831a915"/>
+      <field name="offsetJul" type="decimal" uuid="5fc02c8a-b5d5-49ad-bb79-f0078cb3b603"/>
+      <field name="country_id" type="integer" uuid="6cd09419-5733-4388-ad8f-a9a79f618930"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_timezone</attribute>
         <attribute name="repository-class">Geoname\Repository\Timezone</attribute>
-      </orm-properties>
-    </table>
-    <table name="CountryLocale" region="Region10" visPositionX="129" visPositionY="222" visSizeX="0" visSizeX2="111" visSizeY="0" visSizeY2="60">
-      <column name="country_id" required="true" type="integer"/>
-      <column name="locale_id" required="true" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <association from="Timezone" to="Country" owner-alias="timezones" inverse-alias="country" uuid="8610d688-6d7a-445d-bcde-b8b669a3213a">
+      <association-field from="country_id" to="id"/>
+    </association>
+    <entity name="CountryLocale" uuid="11812438-e06d-4d02-8b87-5dd7f475b4fc">
+      <field name="country_id" type="integer" required="true" uuid="76010f28-8cd4-4e73-84fa-5e70fc955ffc"/>
+      <field name="locale_id" type="integer" required="true" uuid="7d9ac6b1-82bb-46f7-95dc-f2fdfe67179e"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_countries_locales</attribute>
-      </orm-properties>
-    </table>
-    <table name="CountryNeighbors" region="Region10" visPositionX="498" visPositionY="102" visSizeX="0" visSizeX2="144" visSizeY="0" visSizeY2="60">
-      <column name="country_id" primary="true" required="true" type="integer"/>
-      <column name="neighbour_id" primary="true" required="true" type="integer"/>
-      <orm-properties>
+      </orm-attributes>
+    </entity>
+    <many-to-many mn-entity="CountryLocale" uuid="e11d5951-daec-49c5-b1d1-1cf71dc449a0">
+      <many-to-many-entity name="Country" owning-side="true" alias="" uuid="1c418237-8871-4b74-9c1f-a4c8427edcf4">
+        <many-to-many-field from="country_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="Locale" owning-side="false" alias="locales" uuid="4d4add0e-64e9-4089-aa6d-2169b53af7f6">
+        <many-to-many-field from="locale_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="CountryNeighbors" uuid="1400e3d7-70d9-4f8e-a540-dc16f9d62d1c">
+      <field name="country_id" type="integer" required="true" primary="true" uuid="276e2b2b-9eb3-43fa-a6bc-af92f679d3d6"/>
+      <field name="neighbour_id" type="integer" required="true" primary="true" uuid="18f3e525-29de-4a4d-9a15-493f702f7119"/>
+      <orm-attributes>
         <attribute name="table">he_geoname_countries_neighbours</attribute>
-      </orm-properties>
-    </table>
-    <orm-properties>
+      </orm-attributes>
+    </entity>
+    <many-to-many mn-entity="CountryNeighbors" uuid="3f8d4789-0e80-4af7-a191-7bdfbadfe1e2">
+      <many-to-many-entity name="Country" owning-side="true" alias="neighbours" uuid="f4b46a6b-9d6d-45b2-ba28-0a105d8a0ce8">
+        <many-to-many-field from="country_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="Country" owning-side="false" alias="" uuid="67c2ec0d-7f05-4436-9a6b-6ba1dcc0fb42">
+        <many-to-many-field from="neighbour_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <region caption="Geoname" uuid="58593bcd-f57a-4938-90e4-a3ea6cbdc2bc">
+      <entity-ref name="AltName"/>
+      <entity-ref name="Country"/>
+      <entity-ref name="Currency"/>
+      <entity-ref name="Feature"/>
+      <entity-ref name="Language"/>
+      <entity-ref name="Locale"/>
+      <entity-ref name="Meta"/>
+      <entity-ref name="Place"/>
+      <entity-ref name="Timezone"/>
+      <entity-ref name="CountryLocale"/>
+      <entity-ref name="CountryNeighbors"/>
+    </region>
+    <orm-attributes>
       <attribute name="namespace">Geoname\Entity</attribute>
-    </orm-properties>
-    <foreign-key caption="Place AltName" from="AltName" inverse-alias="place" name="FK_AltName_Place_id" owning-alias="altNames" to="Place" visShowCaption="0">
-      <foreign-key-column from="place_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Language AltName" from="AltName" inverse-alias="language" name="FK_AltName_Language_id" to="Language" visShowCaption="0">
-      <foreign-key-column from="language_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Place Country" from="Country" inverse-alias="continent" name="FK_Country_Place_id" owning-alias="countries" to="Place" visCenterX="0" visCenterY="19" visShowCaption="0">
-      <foreign-key-column from="continent_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Place Country" from="Country" inverse-alias="place" name="FK_Country_Place_id2" owning-alias="country" to="Place" visShowCaption="0">
-      <foreign-key-column from="place_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Currency Country" from="Country" inverse-alias="currency" name="FK_Country_Currency_id" owning-alias="countries" to="Currency" visShowCaption="0">
-      <foreign-key-column from="currency_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Locale Country" from="Country" inverse-alias="mainLocale" name="FK_Country_Locale_id" owning-alias="" to="Locale" visShowCaption="0">
-      <foreign-key-column from="mainlocale_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Feature Feature" from="Feature" inverse-alias="parent" name="FK_Feature_Feature_id" owning-alias="children" to="Feature" visCaption1X="0" visCaption1Y="0" visCenterX="0" visCenterY="-20" visShowCaption="0">
-      <foreign-key-column from="parent_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Language Locale" from="Locale" inverse-alias="language" name="FK_Locale_Language_id" owning-alias="locales" to="Language" visShowCaption="0">
-      <foreign-key-column from="language_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Place Place" from="Place" inverse-alias="parent" name="FK_Place_Place_id" owning-alias="children" to="Place" visCaption1X="0" visCaption1Y="0" visCenterX="0" visCenterY="-20" visShowCaption="0">
-      <foreign-key-column from="parent_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Feature Place" from="Place" inverse-alias="feature" name="FK_Place_Feature_id" owning-alias="places" to="Feature" visShowCaption="0">
-      <foreign-key-column from="feature_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Timezone Place" from="Place" inverse-alias="timezone" name="FK_Place_Timezone_id" owning-alias="places" to="Timezone" visShowCaption="0">
-      <foreign-key-column from="timezone_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Country Timezone" from="Timezone" inverse-alias="country" name="FK_Timezone_Country_id" owning-alias="timezones" to="Country" visShowCaption="0">
-      <foreign-key-column from="country_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Country CountryLocale" from="CountryLocale" name="FK_CountryLocale_Country_id" to="Country" visShowCaption="0">
-      <foreign-key-column from="country_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Locale CountryLocale" from="CountryLocale" name="FK_CountryLocale_Locale_id" to="Locale" visShowCaption="0">
-      <foreign-key-column from="locale_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Country CountryNeighbors" from="CountryNeighbors" name="FK_CountryNeighbors_Country_id" to="Country" visShowCaption="0">
-      <foreign-key-column from="country_id" to="id"/>
-    </foreign-key>
-    <foreign-key caption="Country CountryNeighbors" from="CountryNeighbors" name="FK_CountryNeighbors_Country_id2" to="Country" visShowCaption="0">
-      <foreign-key-column from="neighbour_id" to="id"/>
-    </foreign-key>
-    <many-to-many-relation mn-table="CountryLocale">
-      <many-to-many-foreign-key foreign-key="FK_CountryLocale_Country_id" relation-alias=""/>
-      <many-to-many-foreign-key foreign-key="FK_CountryLocale_Locale_id" relation-alias="locales"/>
-    </many-to-many-relation>
-    <many-to-many-relation mn-table="CountryNeighbors">
-      <many-to-many-foreign-key foreign-key="FK_CountryNeighbors_Country_id" relation-alias="neighbours"/>
-      <many-to-many-foreign-key foreign-key="FK_CountryNeighbors_Country_id2" relation-alias=""/>
-    </many-to-many-relation>
+    </orm-attributes>
   </module>
-
+  <module name="User" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="49b4509d-b15f-4ae3-a072-1825b437649d">
+    <entity name="User" uuid="59a80c15-1576-4c7a-8a76-0acdcb9b5e54">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="793c6cf2-2702-41f8-9a42-14aa03038198"/>
+      <field name="displayName" type="string" required="true" uuid="82af8b90-92a6-40b9-90fc-4519e1315fb1"/>
+      <field name="username" type="string" required="true" uuid="0185fd1d-3149-43da-9e71-20dbe64f4506"/>
+      <field name="email" type="string" required="true" uuid="89af3e4f-7807-4a7b-b90e-b4dee21d8658"/>
+      <field name="password" type="string" required="true" uuid="27f3943a-8f64-4ce3-9803-4ea7e6a6b4ef"/>
+      <field name="note" type="text" uuid="a8b88857-bd9e-44e6-9bd4-cb798176a101"/>
+      <field name="isPublic" type="boolean" required="true" uuid="7aaadcc6-f942-4967-959d-3de23e0f47fd"/>
+      <field name="accessToken" type="string" uuid="413aa55f-dfbe-48c0-b742-d0d71f0d30d7"/>
+      <field name="permission" type="string" uuid="a8fd5149-a638-4854-ba50-aefde6c644bb"/>
+      <field name="createdAt" type="datetime" required="true" uuid="f5f043c9-1642-4e84-9bda-d0b604e2fba7"/>
+      <field name="lastRequestAt" type="datetime" required="true" uuid="a1f63fea-bea5-468a-a27f-c35d43a7ecdd"/>
+      <field name="subscription" type="string" uuid="db5f7ee7-fbe5-441f-b1b1-aedd86ebfdb1"/>
+      <orm-attributes>
+        <attribute name="repository-class">Db\Repository\User</attribute>
+      </orm-attributes>
+    </entity>
+    <region caption="User" uuid="dc3874d1-08ad-4106-95bc-e52e07edeab3">
+      <entity-ref name="User"/>
+    </region>
+    <orm-attributes>
+      <attribute name="namespace">Db\Entity</attribute>
+    </orm-attributes>
+  </module>
+  <module name="Link and Comment" uuid="9c8416db-f2b4-4889-b17c-a29057586381">
+    <entity name="AbstractLink" uuid="8d270e66-501b-466f-ab56-045250803130">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="c78bb5db-b5a6-496a-aaef-fb40fd7e46b4"/>
+      <field name="title" type="string" required="true" uuid="dec6c5df-f14e-4b76-8a98-5f3df7ce938a"/>
+      <field name="url" type="string" required="true" uuid="bb948084-93a1-4063-8fc8-12c6b2a9ed5a"/>
+      <field name="description" type="text" uuid="fa956ef6-bdcd-458a-a519-99b06acf0428"/>
+      <field name="typeDescriminator" type="text" size="255" required="true" uuid="d9324e8f-b7c5-47c5-b46a-4d0f2075baed"/>
+      <inheritance-parent discriminator-field="typeDescriminator" type="SINGLE_TABLE" uuid="d3aad4e0-a6e9-434b-ba8c-0971caa92ea2"/>
+    </entity>
+    <entity name="VenueLink" uuid="9eaae197-c75b-45a8-a2fa-445cae818cee">
+      <field name="id" type="integer" required="true" primary="true" uuid="b0632e87-fafd-4f8a-9ad4-0b64516d0816"/>
+      <field name="Venue_id" type="integer" required="true" uuid="58f22d83-5281-4ea1-bd79-662264aec5a8"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Venue" uuid="21197a5b-d6b2-48e3-95c8-595c2644dbb6"/>
+    </entity>
+    <association from="VenueLink" to="Venue" owner-alias="links" inverse-alias="venue" uuid="ad7bce74-bffe-46f6-8cfa-267bb23d9655">
+      <association-field from="Venue_id" to="id"/>
+    </association>
+    <entity name="SourceLink" uuid="196b1120-9de8-406b-a18b-209b92301d05">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="3203d9b1-20e2-4036-aabb-8e0009b9573d"/>
+      <field name="Source_id" type="integer" required="true" uuid="eeea165b-c721-4e86-b556-2f383624d153"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Source" uuid="43047de0-f818-4a3c-95cd-271557018eb4"/>
+    </entity>
+    <association from="SourceLink" to="Source" owner-alias="links" inverse-alias="source" uuid="4a171c01-8a95-4cd0-938f-ce5fd9fa1a46">
+      <association-field from="Source_id" to="id"/>
+    </association>
+    <entity name="PerformanceLink" uuid="e63050c6-78fe-4e6e-b4bb-44f031943f51">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="a8fb3a95-2b58-4b67-bc86-231c2fed36a1"/>
+      <field name="Performance_id" type="integer" required="true" uuid="abe2a341-7a85-4af5-92c8-d3c732c59bf9"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Show" uuid="5368bcd9-44dc-4bcd-8913-efde725fe9b7"/>
+    </entity>
+    <association from="PerformanceLink" to="Performance" owner-alias="links" inverse-alias="performance" uuid="e58aa347-563a-41ba-8a08-022f909fdf51">
+      <association-field from="Performance_id" to="id"/>
+    </association>
+    <entity name="PerformerLink" uuid="077f4a47-5b70-46f5-bb24-53b355f15ec8">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="fd2bbcc2-2097-4156-aa62-369d3136629c"/>
+      <field name="Performer_id" type="integer" required="true" uuid="93bdcbfb-fbc7-409f-ae96-f06ae34284ce"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Performer" uuid="ec0d7a7f-94ad-4233-b6d7-0876c4edc98b"/>
+    </entity>
+    <association from="PerformerLink" to="Performer" owner-alias="links" inverse-alias="performer" uuid="cc0e540b-a3fc-4a78-99ac-57cfdcaca938">
+      <association-field from="Performer_id" to="id"/>
+    </association>
+    <entity name="EventLink" uuid="f2ef5068-c394-49f2-9274-ea9f9fb38649">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="c3813c8b-5d0f-4e34-9de1-407ec673d6bd"/>
+      <field name="Event_id" type="integer" required="true" uuid="1c89fc77-78e8-4d32-a14f-20f371739606"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="FestivalEvent" uuid="813221d1-5d55-4e29-bca4-58c2f63e038c"/>
+    </entity>
+    <association from="EventLink" to="Event" owner-alias="links" inverse-alias="event" uuid="0733e495-e674-4cac-a3cb-07346e488ace">
+      <association-field from="Event_id" to="id"/>
+    </association>
+    <entity name="AbstractComment" uuid="6f4aeefc-a0c7-4aa7-8d07-633fd28fc044">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="bd23da19-6399-4015-a249-b3236062b3a8"/>
+      <field name="User_id" type="integer" required="true" uuid="1e607040-3f55-4267-b781-56d19742c443"/>
+      <field name="note" type="text" required="true" uuid="a14a2087-1ce6-471b-8c19-d05580192fca"/>
+      <field name="rating" type="integer" default="0" required="true" uuid="5fab74f6-a592-4ceb-b4c9-d6bab27dbdd6"/>
+      <field name="createdAt" type="datetime" required="true" uuid="8ef0a1e9-c613-4c49-b1be-a8602a1c6c32"/>
+      <field name="typeDescriminator" type="text" size="255" required="true" uuid="3a12d18a-5e17-4d5c-bea7-f9846f9a777b"/>
+      <inheritance-parent discriminator-field="typeDescriminator" type="SINGLE_TABLE" uuid="8ad1eb7d-27d6-47f8-9471-6f6a55eb2a4b"/>
+    </entity>
+    <association from="AbstractComment" to="User" owner-alias="comments" inverse-alias="user" uuid="a6bcb53a-0137-410d-a1d5-0cb54dc3b703">
+      <association-field from="User_id" to="id"/>
+    </association>
+    <entity name="ProducerLink" uuid="d3030348-9746-4be7-9ec6-e8206e98f498">
+      <field name="id" type="text" primary="true" auto-increment="true" uuid="f69c365a-8a3d-4595-81d5-5469a3ba9b12"/>
+      <field name="Producer_id" type="integer" required="true" uuid="d1d98045-908e-46d0-812e-6335085b4310"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Festival" uuid="bd9f7e54-b5de-45f0-a5a9-17bfaccf8e79"/>
+    </entity>
+    <association from="ProducerLink" to="Producer" owner-alias="links" inverse-alias="producer" uuid="136b6eba-dce9-4391-88d5-3186fe322a4a">
+      <association-field from="Producer_id" to="id"/>
+    </association>
+    <entity name="PerformanceComment" uuid="789f89eb-cafa-4e95-9845-cea7170627e4">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="fd81867c-6198-4980-aa2e-f65119604ec5"/>
+      <field name="Performance_id" type="integer" required="true" uuid="2efa42fc-fb61-4839-acd0-6f2429fcb1fb"/>
+      <inheritance-child derived-from="AbstractComment" discriminator-value="Show" uuid="6ca566ae-c0e4-4774-a6f9-1dea84e9bb08"/>
+    </entity>
+    <association from="PerformanceComment" to="Performance" owner-alias="comments" inverse-alias="performance" uuid="e5638835-68c7-4900-b753-d984944d6225">
+      <association-field from="Performance_id" to="id"/>
+    </association>
+    <entity name="SourceComment" uuid="4fa7e45c-16f5-488d-b5ee-36000f375c4e">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="36e78ed5-907b-4023-a031-af9cbb9c3813"/>
+      <field name="Source_id" type="integer" required="true" uuid="27574d82-a43e-4488-8c78-c7b7324b082a"/>
+      <inheritance-child derived-from="AbstractComment" discriminator-value="Source" uuid="81949f09-9133-4b01-b39d-755484649516"/>
+    </entity>
+    <association from="SourceComment" to="Source" owner-alias="comments" inverse-alias="source" uuid="5b41b03a-1296-4025-8447-067288f64858">
+      <association-field from="Source_id" to="id"/>
+    </association>
+    <entity name="VenueGroupLink" uuid="e5aa80ed-8894-4d80-a064-b37287782851">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="05130dbc-8deb-4830-9b63-dda7160f3fca"/>
+      <field name="VenueGroup_id" type="integer" required="true" uuid="2942ec2a-90fc-4f5e-bdfe-9ffe99f2e0e0"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="VenueGroup" uuid="f9c33c41-7266-438b-b5ad-7f818d015793"/>
+    </entity>
+    <association from="VenueGroupLink" to="VenueGroup" owner-alias="links" inverse-alias="venueGroup" uuid="099ca87f-13e2-48f1-9944-eaf7bb47e3df">
+      <association-field from="VenueGroup_id" to="id"/>
+    </association>
+    <entity name="BandLink" uuid="186e33a8-75f4-40a8-84d0-bafeb79203de">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="ef840679-3f6f-4d1b-aee4-9b671275fc24"/>
+      <field name="Band_id" type="integer" required="true" uuid="4401442b-85d4-447d-a373-5b90a90f487e"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Band" uuid="36dc3ca6-70d5-4c6e-ae7f-ef69436c924a"/>
+    </entity>
+    <association from="BandLink" to="Band" owner-alias="links" inverse-alias="band" uuid="f2c14db6-2f95-4b88-82e2-08434097ba92">
+      <association-field from="Band_id" to="id"/>
+    </association>
+    <entity name="ComposerLink" uuid="d574d5bd-a418-4082-9d9d-d5e7462fde4d">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="4ef926ea-081f-486f-bb54-5ba1945c8807"/>
+      <field name="Composer_id" type="integer" required="true" uuid="faaed645-ae8c-48de-a618-b731bfef3005"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Composer" uuid="d818f169-4309-400f-8b41-15b8b03cf75e"/>
+    </entity>
+    <association from="ComposerLink" to="Composer" owner-alias="links" inverse-alias="composer" uuid="1e369c67-c630-44e3-9ac8-68ee1278e073">
+      <association-field from="Composer_id" to="id"/>
+    </association>
+    <entity name="SongLink" uuid="93579d77-9cf7-4d37-baef-58ebafc386da">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="7c9bc991-faa4-4bbf-8019-b1a0d3f83cb4"/>
+      <field name="Song_id" type="integer" required="true" uuid="55c8597d-2349-48b6-9022-76aeb0d261b8"/>
+      <inheritance-child derived-from="AbstractLink" discriminator-value="Song" uuid="f307a3e3-0ea4-4c00-a7d9-44933f85e412"/>
+    </entity>
+    <association from="SongLink" to="Song" owner-alias="links" inverse-alias="song" uuid="24be276e-2e49-4777-bd49-684621e1dc05">
+      <association-field from="Song_id" to="id"/>
+    </association>
+    <entity name="PerformerComment" uuid="5960a44a-781b-42e4-be06-60a106c0abf9">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="efa839dd-0d5a-4719-8384-4d63954c9281"/>
+      <field name="Performer_id" type="integer" uuid="011fa768-c175-4865-9d3b-a16ff29b8724"/>
+      <inheritance-child derived-from="AbstractComment" discriminator-value="Performer" uuid="5b0e12b7-63f3-49aa-a192-7f5795bbe41c"/>
+    </entity>
+    <association from="PerformerComment" to="Performer" owner-alias="comments" inverse-alias="performer" uuid="dbc7b8f0-bbca-48da-8d5c-384e03404912">
+      <association-field from="Performer_id" to="id"/>
+    </association>
+    <entity name="BandComment" uuid="0422e7df-736b-47b5-86f2-644bad5a59b3">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="9f6102d1-135b-4d60-8c2e-9c67bfcd1a19"/>
+      <field name="Band_id" type="integer" uuid="77dac989-5ba1-41cc-9fdc-0a351827fc36"/>
+      <inheritance-child derived-from="AbstractComment" discriminator-value="Band" uuid="25980790-208e-4c2d-8738-8bc19483c21f"/>
+    </entity>
+    <association from="BandComment" to="Band" owner-alias="comments" inverse-alias="band" uuid="3bd1e05b-fdb0-4821-aa2c-78c06d08efe3">
+      <association-field from="Band_id" to="id"/>
+    </association>
+    <entity name="VenueComment" uuid="bbe69f06-7ab8-4a84-95b3-4a63d147bd44">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="40fdbfd2-acad-46fa-b1d9-268a7e99cc25"/>
+      <field name="Venue_id" type="integer" uuid="c6e433e9-5994-4b74-99d7-13d8a5ba9d65"/>
+      <inheritance-child derived-from="AbstractComment" discriminator-value="Venue" uuid="193b0eef-8bf2-41c1-beb0-38d118061091"/>
+    </entity>
+    <association from="VenueComment" to="Venue" owner-alias="comments" inverse-alias="venue" uuid="32f968c3-fb3a-4781-8b19-c1290400910c">
+      <association-field from="Venue_id" to="id"/>
+    </association>
+    <entity name="EventComment" uuid="84a8d9b9-d842-414b-8220-ad30a48fc440">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="0469dcd9-632a-47ec-86f3-1de552885b71"/>
+      <field name="Event_id" type="integer" uuid="41d68551-4f93-4494-90f3-8ecab51ae9cf"/>
+      <inheritance-child derived-from="AbstractComment" discriminator-value="Event" uuid="c9270a59-e814-41d0-909f-aed25d1ead29"/>
+    </entity>
+    <association from="EventComment" to="Event" owner-alias="comments" inverse-alias="event" uuid="176656c7-fc2b-4a39-ab91-9251119dbd09">
+      <association-field from="Event_id" to="id"/>
+    </association>
+    <entity name="SongComment" uuid="a13ba289-ccbe-4cb0-8565-7706df3ee82f">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="18f4000c-2431-4655-89ac-86c90d218334"/>
+      <field name="Song_id" type="integer" uuid="d72d5862-5f73-40ce-be30-4b4d1cca02a3"/>
+      <inheritance-child derived-from="AbstractComment" discriminator-value="Song" uuid="09e7846f-f21e-4304-afb1-03b91134950d"/>
+    </entity>
+    <association from="SongComment" to="Song" owner-alias="comments" inverse-alias="song" uuid="c7646cb9-cc39-4531-ac0e-ee79509c9c99">
+      <association-field from="Song_id" to="id"/>
+    </association>
+    <entity name="LineupComment" uuid="68cf3687-882b-4cbb-b942-389514edfb4e">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="54d11400-c34a-4533-902c-223ce3b5e91e"/>
+      <field name="Lineup_id" type="integer" uuid="d95baea9-e404-4438-a59e-d8939924e61b"/>
+      <inheritance-child derived-from="AbstractComment" discriminator-value="Lineup" uuid="47ddd537-35d7-4835-a8cf-4942b190466f"/>
+    </entity>
+    <association from="LineupComment" to="Lineup" owner-alias="comments" inverse-alias="lineup" uuid="1bcf942f-4c7d-4a6b-82a4-a6c6f7c8e947">
+      <association-field from="Lineup_id" to="id"/>
+    </association>
+    <region caption="Comment" uuid="3be2c6d7-da43-4462-a925-fa5e605f4bc5">
+      <entity-ref name="AbstractComment"/>
+      <entity-ref name="PerformanceComment"/>
+      <entity-ref name="SourceComment"/>
+      <entity-ref name="PerformerComment"/>
+      <entity-ref name="BandComment"/>
+      <entity-ref name="VenueComment"/>
+      <entity-ref name="EventComment"/>
+      <entity-ref name="SongComment"/>
+      <entity-ref name="LineupComment"/>
+    </region>
+    <region caption="Link" uuid="d58ec363-3d3a-4f2a-8fa1-cda3102d8ee6">
+      <entity-ref name="AbstractLink"/>
+      <entity-ref name="VenueLink"/>
+      <entity-ref name="SourceLink"/>
+      <entity-ref name="PerformanceLink"/>
+      <entity-ref name="PerformerLink"/>
+      <entity-ref name="EventLink"/>
+      <entity-ref name="ProducerLink"/>
+      <entity-ref name="VenueGroupLink"/>
+      <entity-ref name="BandLink"/>
+      <entity-ref name="ComposerLink"/>
+      <entity-ref name="SongLink"/>
+    </region>
+  </module>
+  <visual-data>
+    <entity uuid="0288b513-9531-454a-bc91-5f02c7d49f45" position-x="-18" position-y="-100" size-x="0" size-x2="98" size-y="0" size-y2="73"/>
+    <entity uuid="0422e7df-736b-47b5-86f2-644bad5a59b3" position-x="230" position-y="36" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
+    <association uuid="06c521a4-df8e-438a-b214-0672351a82b6" center-position-x="0" center-position-y="0"/>
+    <association uuid="0733e495-e674-4cac-a3cb-07346e488ace" splitted="1"/>
+    <entity uuid="077f4a47-5b70-46f5-bb24-53b355f15ec8" position-x="352" position-y="39" size-x="0" size-x2="112" size-y="0" size-y2="45"/>
+    <association uuid="099ca87f-13e2-48f1-9944-eaf7bb47e3df" splitted="1"/>
+    <inheritance-child uuid="09e7846f-f21e-4304-afb1-03b91134950d" splitted="1"/>
+    <entity uuid="11812438-e06d-4d02-8b87-5dd7f475b4fc" position-x="129" position-y="222" size-x="0" size-x2="111" size-y="0" size-y2="60"/>
+    <association uuid="12d9049b-6ae0-4c55-bc8d-c2719e614680" splitted="1"/>
+    <comment uuid="1363b617-d953-492a-a9db-010378c063d8" bk-color="16777184" position-x="-319" position-y="-18" size-x="0" size-x2="74" size-y="0" size-y2="32" txt-color="0"/>
+    <association uuid="136b6eba-dce9-4391-88d5-3186fe322a4a" splitted="1"/>
+    <association uuid="13c35ea7-aa41-465f-9602-f0b477836b35" splitted="1"/>
+    <entity uuid="1400e3d7-70d9-4f8e-a540-dc16f9d62d1c" position-x="498" position-y="102" size-x="0" size-x2="144" size-y="0" size-y2="60"/>
+    <region uuid="142287a0-efb1-472e-b4a3-32a2b6d9e760" bk-color="15716788" position-x="424" position-y="269" size-x="0" size-x2="344" size-y="0" size-y2="261"/>
+    <association uuid="176656c7-fc2b-4a39-ab91-9251119dbd09" splitted="1"/>
+    <many-to-many-association-entity uuid="17927894-b6b8-4862-9ca1-009a513270bb" splitted="1"/>
+    <entity uuid="186e33a8-75f4-40a8-84d0-bafeb79203de" position-x="231" position-y="37" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
+    <entity uuid="18cb5d8f-d0ea-49cb-83fa-9127c25c3664" position-x="292" position-y="-102" size-x="0" size-x2="83" size-y="0" size-y2="59"/>
+    <inheritance-child uuid="193b0eef-8bf2-41c1-beb0-38d118061091" splitted="1"/>
+    <entity uuid="196b1120-9de8-406b-a18b-209b92301d05" position-x="795" position-y="41" size-x="0" size-x2="100" size-y="0" size-y2="45"/>
+    <association uuid="1bcf942f-4c7d-4a6b-82a4-a6c6f7c8e947" splitted="1"/>
+    <association uuid="1c6fa38e-ed34-4102-8971-550fbbb05b0e" splitted="1"/>
+    <many-to-many-association-entity uuid="1cc52f1a-06ea-43b4-b7e8-3a34ee00c33a" splitted="1"/>
+    <association uuid="1e369c67-c630-44e3-9ac8-68ee1278e073" splitted="1"/>
+    <entity uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b" position-x="68" position-y="29" size-x="0" size-x2="124" size-y="0" size-y2="73"/>
+    <inheritance-child uuid="21197a5b-d6b2-48e3-95c8-595c2644dbb6" splitted="1"/>
+    <association uuid="24be276e-2e49-4777-bd49-684621e1dc05" splitted="1"/>
+    <entity uuid="25157232-610d-4bc9-be16-343fe9764e87" position-x="251" position-y="45" size-x="0" size-x2="123" size-y="0" size-y2="60"/>
+    <inheritance-child uuid="25980790-208e-4c2d-8738-8bc19483c21f" center-position-x="9" center-position-y="0" splitted="1"/>
+    <entity uuid="2ad447a5-1083-42b2-9cbc-57a4fe47bbb3" position-x="57" position-y="33" size-x="0" size-x2="130" size-y="0" size-y2="60"/>
+    <entity uuid="30857bb0-bd39-46bc-8d58-1c88c9c4a5fd" position-x="44" position-y="222" size-x="0" size-x2="119" size-y="0" size-y2="60"/>
+    <entity uuid="31544907-76ed-4476-b1e7-a744bf1fe956" position-x="98" position-y="437" size-x="0" size-x2="124" size-y="0" size-y2="157"/>
+    <association uuid="32f968c3-fb3a-4781-8b19-c1290400910c" splitted="1"/>
+    <association uuid="35af89d5-6581-406e-bb52-6be0aa4fbfb2" splitted="1"/>
+    <inheritance-child uuid="36dc3ca6-70d5-4c6e-ae7f-ef69436c924a" center-position-x="14" center-position-y="0" splitted="1"/>
+    <association uuid="3bd1e05b-fdb0-4821-aa2c-78c06d08efe3" splitted="1"/>
+    <region uuid="3be2c6d7-da43-4462-a925-fa5e605f4bc5" bk-color="4293906868" position-x="27" position-y="-142" size-x="0" size-x2="966" size-y="0" size-y2="195"/>
+    <module uuid="3cbdb9d3-941f-4690-8568-c9258ce21152" bk-color="15169559" position-x="925" position-y="345" size-x="-142" size-x2="1029" size-y="0" size-y2="672"/>
+    <entity uuid="3cc86590-d96a-48d6-b575-5aad4941e6c5" position-x="63" position-y="129" size-x="0" size-x2="117" size-y="0" size-y2="101"/>
+    <entity uuid="3d3181bb-c13e-46cc-8b20-8172c8d12154" position-x="191" position-y="150" size-x="0" size-x2="133" size-y="0" size-y2="381"/>
+    <inheritance-child uuid="43047de0-f818-4a3c-95cd-271557018eb4" splitted="1"/>
+    <many-to-many-association-entity uuid="4532882c-d00c-4535-ae38-afff3ce41613" splitted="1"/>
+    <inheritance-child uuid="47ddd537-35d7-4835-a8cf-4942b190466f" splitted="1"/>
+    <entity uuid="4864cc5f-572c-4f9b-bbfa-92522469cbf7" position-x="230" position-y="282" size-x="0" size-x2="106" size-y="0" size-y2="73"/>
+    <module uuid="49b4509d-b15f-4ae3-a072-1825b437649d" bk-color="4293359639" position-x="-201" position-y="-292" size-x="0" size-x2="215" size-y="0" size-y2="279"/>
+    <association uuid="4a171c01-8a95-4cd0-938f-ce5fd9fa1a46" splitted="1"/>
+    <entity uuid="4bf4c0aa-d36f-428e-a616-5acc5a8aa717" position-x="234" position-y="36" size-x="0" size-x2="125" size-y="0" size-y2="115"/>
+    <entity uuid="4cae9159-3783-4e82-9afc-b16f6f6a826b" position-x="36" position-y="24" size-x="0" size-x2="105" size-y="0" size-y2="115"/>
+    <association uuid="4d1e8140-45e6-402d-9fe5-70a9b1700d6b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-20"/>
+    <entity uuid="4e1e7abf-b0e7-43cd-b51f-5e42b193daa5" position-x="234" position-y="168" size-x="0" size-x2="99" size-y="0" size-y2="73"/>
+    <entity uuid="4e5bd64e-a59a-41b8-90bb-fcbd5e4d7f6f" position-x="30" position-y="106" size-x="0" size-x2="117" size-y="0" size-y2="59"/>
+    <entity uuid="4fa7e45c-16f5-488d-b5ee-36000f375c4e" position-x="748" position-y="41" size-x="0" size-x2="100" size-y="0" size-y2="45"/>
+    <module uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda" bk-color="15169559" position-x="1248" position-y="-287" size-x="-21" size-x2="840" size-y="5" size-y2="607"/>
+    <association uuid="50a15d73-6118-43c0-907f-34a44b69aa8a" splitted="1"/>
+    <region uuid="52ac6c26-25b6-4d3b-9572-bd8e75c16ab8" bk-color="15716788" position-x="469" position-y="45" size-x="31" size-x2="356" size-y="0" size-y2="545"/>
+    <inheritance-child uuid="5368bcd9-44dc-4bcd-8913-efde725fe9b7" center-position-x="2" center-position-y="10" splitted="1"/>
+    <entity uuid="553871ee-0f25-4f9f-b05b-cb7c4bb9c8a2" position-x="205" position-y="170" size-x="0" size-x2="113" size-y="0" size-y2="60"/>
+    <region uuid="58593bcd-f57a-4938-90e4-a3ea6cbdc2bc" bk-color="15716788" position-x="166" position-y="32" size-x="0" size-x2="671" size-y="10" size-y2="627"/>
+    <entity uuid="5960a44a-781b-42e4-be06-60a106c0abf9" position-x="354" position-y="37" size-x="0" size-x2="112" size-y="0" size-y2="45"/>
+    <entity uuid="59a80c15-1576-4c7a-8a76-0acdcb9b5e54" position-x="20" position-y="22" size-x="0" size-x2="123" size-y="0" size-y2="185"/>
+    <inheritance-child uuid="5b0e12b7-63f3-49aa-a192-7f5795bbe41c" splitted="1"/>
+    <association uuid="5b41b03a-1296-4025-8447-067288f64858" splitted="1"/>
+    <association uuid="5c53322a-3c77-4d30-b605-3b68132d0b19" splitted="1"/>
+    <association uuid="5ca62afa-b36d-4fa3-8b68-9e5fac9dce01" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-20"/>
+    <association uuid="5e03ea82-cfff-4c1e-8854-c966850ea809" splitted="1"/>
+    <entity uuid="5e5eed40-c20e-44b5-a239-358575cccdc3" position-x="36" position-y="-26" size-x="0" size-x2="114" size-y="0" size-y2="129"/>
+    <many-to-many-association-entity uuid="5f06bae6-df65-4ff0-8bfb-9980fe9b2f4d" splitted="1"/>
+    <association uuid="63eca234-7c86-49f6-ba4c-262ca6f8fbc2" splitted="1"/>
+    <entity uuid="64337f4d-a815-4821-bf46-e11c83c1d8a3" position-x="503" position-y="471" size-x="0" size-x2="109" size-y="0" size-y2="87"/>
+    <entity uuid="687e66f7-2707-4262-b22e-f5b98cbbe16b" position-x="41" position-y="33" size-x="0" size-x2="164" size-y="0" size-y2="157"/>
+    <entity uuid="68cf3687-882b-4cbb-b942-389514edfb4e" position-x="746" position-y="112" size-x="0" size-x2="99" size-y="0" size-y2="45"/>
+    <entity uuid="68ebcd14-7e6e-416d-a7a0-5fb37578329c" position-x="531" position-y="3" size-x="0" size-x2="83" size-y="0" size-y2="59"/>
+    <entity uuid="6903266c-5c12-423d-8145-e32fe38258e9" position-x="64" position-y="157" size-x="0" size-x2="93" size-y="0" size-y2="87"/>
+    <project uuid="6b0db420-4a65-402e-8377-355db297598b" size-x="219" size-x2="2739" size-y="316" size-y2="1151"/>
+    <inheritance-child uuid="6ca566ae-c0e4-4774-a6f9-1dea84e9bb08" center-position-x="9" center-position-y="0" splitted="1"/>
+    <entity uuid="6de9205a-0f2f-43e1-b082-be956ca60ad0" position-x="223" position-y="51" size-x="0" size-x2="77" size-y="0" size-y2="59"/>
+    <entity uuid="6e82ba04-ce37-484f-ba25-149030015036" position-x="131" position-y="-116" size-x="0" size-x2="123" size-y="0" size-y2="87"/>
+    <entity uuid="6f4aeefc-a0c7-4aa7-8d07-633fd28fc044" position-x="23" position-y="40" size-x="0" size-x2="140" size-y="0" size-y2="101"/>
+    <region uuid="6fbe78c9-c9fd-4d6b-a4f9-2dd405e78bad" bk-color="15716788" position-x="770" position-y="269" size-x="-8" size-x2="403" size-y="0" size-y2="261"/>
+    <comment uuid="71f8138a-d609-4d61-bf4a-eb7fb24911a2" bk-color="16777184" position-x="-1" position-y="90" size-x="0" size-x2="71" size-y="0" size-y2="32" txt-color="0"/>
+    <association uuid="779ac5c4-167a-42dc-95ed-eced2629339c" splitted="1"/>
+    <entity uuid="789f89eb-cafa-4e95-9845-cea7170627e4" position-x="223" position-y="112" size-x="0" size-x2="123" size-y="0" size-y2="45"/>
+    <many-to-many-association-entity uuid="7a5097de-df89-4110-a63d-0e29bd2ccecb" splitted="1"/>
+    <association uuid="7a6fda74-bbbf-4399-877d-16a5ccf3a711" splitted="1"/>
+    <association uuid="7b541b84-a6de-43a4-8698-e7b4e9f56212" splitted="1"/>
+    <inheritance-child uuid="813221d1-5d55-4e29-bca4-58c2f63e038c" splitted="1"/>
+    <inheritance-child uuid="81949f09-9133-4b01-b39d-755484649516" splitted="1"/>
+    <entity uuid="84a8d9b9-d842-414b-8220-ad30a48fc440" position-x="524" position-y="110" size-x="0" size-x2="95" size-y="0" size-y2="45"/>
+    <entity uuid="85042b69-8b14-4540-81ee-c0d91ea5ef6b" position-x="55" position-y="11" size-x="0" size-x2="106" size-y="0" size-y2="59"/>
+    <entity uuid="859e7fea-b536-4fc1-8405-29100471e852" position-x="-335" position-y="-93" size-x="0" size-x2="122" size-y="0" size-y2="60"/>
+    <entity uuid="862e2114-4ca1-4ba3-8aab-cad8b25177de" position-x="511" position-y="290" size-x="0" size-x2="111" size-y="0" size-y2="101"/>
+    <region uuid="86490e22-2c2a-4f81-b8ec-51f819610748" bk-color="15716788" position-x="28" position-y="413" size-x="30" size-x2="386" size-y="144" size-y2="119"/>
+    <entity uuid="8b9c2e8b-b7e6-4ff7-a0a8-b0452541edf2" position-x="51" position-y="113" size-x="0" size-x2="97" size-y="0" size-y2="73"/>
+    <entity uuid="8d270e66-501b-466f-ab56-045250803130" position-x="23" position-y="36" size-x="0" size-x2="140" size-y="0" size-y2="87"/>
+    <region uuid="8f69e7ba-888b-4cc0-b80a-fea1e0da2238" bk-color="15716788" position-x="44" position-y="39" size-x="0" size-x2="388" size-y="0" size-y2="375"/>
+    <entity uuid="93579d77-9cf7-4d37-baef-58ebafc386da" position-x="512" position-y="38" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
+    <entity uuid="93d9b80b-1d07-43eb-89a4-37a87bffdcc7" position-x="28" position-y="303" size-x="0" size-x2="83" size-y="0" size-y2="87"/>
+    <region uuid="96f356b4-b805-4ea4-8d92-055900e0e964" bk-color="15716788" position-x="799" position-y="213" size-x="356" size-x2="-97" size-y="251" size-y2="48"/>
+    <entity uuid="99fcccf0-d144-4dd1-bbd2-f0aca7e96f8b" position-x="48" position-y="148" size-x="0" size-x2="83" size-y="0" size-y2="59"/>
+    <association uuid="9b2d1c5b-f99a-430e-8d7d-8fed59719b94" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
+    <module uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31" bk-color="15169559" position-x="71" position-y="-230" size-x="28" size-x2="1189" size-y="62" size-y2="546"/>
+    <module uuid="9c8416db-f2b4-4889-b17c-a29057586381" bk-color="4293359639" position-x="39" position-y="520" size-x="0" size-x2="1013" size-y="176" size-y2="306"/>
+    <entity uuid="9e31240b-a34c-4ad8-afaa-bb21e0724e00" position-x="-192" position-y="-46" size-x="0" size-x2="77" size-y="0" size-y2="59"/>
+    <entity uuid="9e7fbb88-4860-492a-b01c-7e88c0769300" position-x="-305" position-y="-236" size-x="0" size-x2="93" size-y="0" size-y2="101"/>
+    <entity uuid="9eaae197-c75b-45a8-a2fa-445cae818cee" position-x="360" position-y="110" size-x="0" size-x2="97" size-y="0" size-y2="45"/>
+    <association uuid="9ebca2ee-ce15-4516-9048-02f6f76d9e62" center-position-x="0" center-position-y="19"/>
+    <entity uuid="a13ba289-ccbe-4cb0-8565-7706df3ee82f" position-x="514" position-y="40" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
+    <association uuid="a2c72590-97e7-4fb1-abff-34d77daa4a3d" splitted="1"/>
+    <association uuid="a6bcb53a-0137-410d-a1d5-0cb54dc3b703" splitted="1"/>
+    <entity uuid="ac9f2726-6f28-4600-8176-9fbea28acfc7" position-x="228" position-y="164" size-x="0" size-x2="100" size-y="0" size-y2="73"/>
+    <association uuid="ad7bce74-bffe-46f6-8cfa-267bb23d9655" splitted="1"/>
+    <association uuid="ad9ae0d3-e90a-444f-a08e-51c3a5eb2fdb" splitted="1"/>
+    <association uuid="af1dc0f3-ed9d-47f2-9717-0a491ce02b98" splitted="1"/>
+    <entity uuid="b0a5c9f7-a36e-4d07-8e1c-bf43a0560882" position-x="46" position-y="191" size-x="0" size-x2="131" size-y="0" size-y2="87"/>
+    <association uuid="b1b14245-ba6e-48f4-ba21-c01d58650b25" splitted="1"/>
+    <region uuid="b43dc053-43b9-4d8f-a1ff-0a6c12e17129" bk-color="15716788" position-x="717" position-y="31" size-x="1" size-x2="176" size-y="68" size-y2="230"/>
+    <entity uuid="bbe69f06-7ab8-4a84-95b3-4a63d147bd44" position-x="387" position-y="112" size-x="0" size-x2="97" size-y="0" size-y2="45"/>
+    <inheritance-child uuid="bd9f7e54-b5de-45f0-a5a9-17bfaccf8e79" center-position-x="44" center-position-y="11" splitted="1"/>
+    <association uuid="c16ceb93-119c-4811-a171-fa7ae36864b8" center-position-x="19" center-position-y="0" splitted="1"/>
+    <association uuid="c7646cb9-cc39-4531-ac0e-ee79509c9c99" splitted="1"/>
+    <association uuid="c8b868f5-7a7e-46e8-8e4f-a42a8c4eacfa" splitted="1"/>
+    <inheritance-child uuid="c9270a59-e814-41d0-909f-aed25d1ead29" splitted="1"/>
+    <entity uuid="caa57870-48cb-4347-a53d-465a3ce2d738" position-x="43" position-y="25" size-x="0" size-x2="119" size-y="0" size-y2="60"/>
+    <association uuid="cc0e540b-a3fc-4a78-99ac-57cfdcaca938" splitted="1"/>
+    <association uuid="cdd2f61d-c906-4ed3-baa5-fb4b20e7f036" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
+    <entity uuid="d1ed7de2-6778-48e0-a81c-22735fc0d71e" position-x="-10" position-y="228" size-x="0" size-x2="139" size-y="0" size-y2="60"/>
+    <entity uuid="d3030348-9746-4be7-9ec6-e8206e98f498" position-x="625" position-y="110" size-x="0" size-x2="108" size-y="0" size-y2="45"/>
+    <entity uuid="d574d5bd-a418-4082-9d9d-d5e7462fde4d" position-x="645" position-y="40" size-x="0" size-x2="113" size-y="0" size-y2="45"/>
+    <region uuid="d58ec363-3d3a-4f2a-8fa1-cda3102d8ee6" bk-color="4293906868" position-x="45" position-y="82" size-x="0" size-x2="948" size-y="0" size-y2="207"/>
+    <entity uuid="d794f911-287a-4ecc-ac5f-aadce68e5b30" position-x="177" position-y="53" size-x="0" size-x2="119" size-y="0" size-y2="60"/>
+    <inheritance-child uuid="d818f169-4309-400f-8b41-15b8b03cf75e" splitted="1"/>
+    <entity uuid="d8d44aff-eaa4-4ed8-9bd8-e1adf9f51093" position-x="297" position-y="354" size-x="0" size-x2="124" size-y="0" size-y2="241"/>
+    <association uuid="db2ed8ab-450d-4d09-b542-b500c5f3a648" splitted="1"/>
+    <association uuid="dbc7b8f0-bbca-48da-8d5c-384e03404912" splitted="1"/>
+    <region uuid="dc3874d1-08ad-4106-95bc-e52e07edeab3" bk-color="4293906868" position-x="15" position-y="19" size-x="0" size-x2="186" size-y="0" size-y2="243"/>
+    <region uuid="dc61b3c0-1ff7-468f-9d5e-977b255a4b26" bk-color="15716788" position-x="-4" position-y="-41" size-x="0" size-x2="201" size-y="0" size-y2="301"/>
+    <entity uuid="dc854433-cfaa-4890-b913-ef302bb0d250" position-x="38" position-y="21" size-x="0" size-x2="124" size-y="0" size-y2="143"/>
+    <many-to-many-association-entity uuid="e2031257-85e7-4937-9dcd-a4b50ba65923" splitted="1"/>
+    <entity uuid="e2f1b616-219b-4bd7-be91-dc04c98bd3a5" position-x="39" position-y="40" size-x="0" size-x2="97" size-y="0" size-y2="87"/>
+    <association uuid="e5638835-68c7-4900-b753-d984944d6225" splitted="1"/>
+    <association uuid="e58aa347-563a-41ba-8a08-022f909fdf51" splitted="1"/>
+    <entity uuid="e5aa80ed-8894-4d80-a064-b37287782851" position-x="772" position-y="109" size-x="0" size-x2="122" size-y="0" size-y2="45"/>
+    <entity uuid="e63050c6-78fe-4e6e-b4bb-44f031943f51" position-x="208" position-y="109" size-x="0" size-x2="123" size-y="0" size-y2="45"/>
+    <association uuid="e8eb80a6-0776-4176-84d7-a6a43f0b40d9" splitted="1"/>
+    <association uuid="e954599d-410b-47b6-a464-e525ff15a3bc" splitted="1"/>
+    <entity uuid="eb406a7a-3ed3-4e8c-8395-42b2cdf6d7a3" position-x="292" position-y="20" size-x="0" size-x2="143" size-y="0" size-y2="255"/>
+    <inheritance-child uuid="ec0d7a7f-94ad-4233-b6d7-0876c4edc98b" center-position-x="0" center-position-y="0" splitted="1"/>
+    <association uuid="f2c14db6-2f95-4b88-82e2-08434097ba92" splitted="1"/>
+    <entity uuid="f2ef5068-c394-49f2-9274-ea9f9fb38649" position-x="497" position-y="110" size-x="0" size-x2="95" size-y="0" size-y2="45"/>
+    <inheritance-child uuid="f307a3e3-0ea4-4c00-a7d9-44933f85e412" splitted="1"/>
+    <many-to-many-association-entity uuid="f3c1d6c9-8ed3-4833-a5bf-bada34d5f274" splitted="1"/>
+    <inheritance-child uuid="f9c33c41-7266-438b-b5ad-7f818d015793" splitted="1"/>
+    <entity uuid="fb8433d5-2eb9-4f0b-9f5c-9161e83e3728" position-x="41" position-y="140" size-x="0" size-x2="83" size-y="0" size-y2="45"/>
+    <region uuid="fc3b2ac7-9262-4231-bf15-972a31762202" bk-color="15716788" position-x="212" position-y="-40" size-x="0" size-x2="216" size-y="0" size-y2="301"/>
+  </visual-data>
 </orm-designer>
