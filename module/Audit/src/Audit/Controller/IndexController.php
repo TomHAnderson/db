@@ -41,7 +41,7 @@ class IndexController extends AbstractActionController {
         $rev = (int) $this->getEvent()->getRouteMatch()->getParam('rev');
         $revision = $this->getServiceLocator()->get('auditReader')->findRevision($rev);
         if (!$revision) {
-            echo(sprintf('Revision %i not found', $rev));
+            throw new \Exception(sprintf('Revision %i not found', $rev));
         }
         $changedEntities = $this->getServiceLocator()->get('auditReader')->findEntitesChangedAtRevision($rev);
 

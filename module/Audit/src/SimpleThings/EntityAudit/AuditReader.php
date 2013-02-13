@@ -203,22 +203,14 @@ class AuditReader
      */
     public function findRevisionHistory($limit = 20, $offset = 0)
     {
-        $this->platform = $this->em->getConnection()->getDatabasePlatform();
+        $qb = $this->em->createQueryBuilder();
+        $qb->select('r');
+        $qb->from('Audit\Entity\Revision', 'r');
+        $qb->orderBy('r.id', 'DESC');
+        $qb->setFirstResult($offset);
+        $qb->setMaxResults($limit);
 
-        $query = $this->platform->modifyLimitQuery(
-            "SELECT * FROM " . $this->config->getRevisionTableName() . " ORDER BY id DESC", $limit, $offset
-        );
-        $revisionsData = $this->em->getConnection()->fetchAll($query);
-
-        $revisions = array();
-        foreach ($revisionsData AS $row) {
-            $revisions[] = new Revision(
-                $row['id'],
-                \DateTime::createFromFormat($this->platform->getDateTimeFormatString(), $row['timestamp']),
-                $row['username']
-            );
-        }
-        return $revisions;
+        return $qb->getQuery()->getResult();
     }
 
     /**
@@ -287,18 +279,7 @@ class AuditReader
      */
     public function findRevision($rev)
     {
-        $query = "SELECT * FROM " . $this->config->getRevisionTableName() . " r WHERE r.id = ?";
-        $revisionsData = $this->em->getConnection()->fetchAll($query, array($rev));
-
-        if (count($revisionsData) == 1) {
-            return new Revision(
-                $revisionsData[0]['id'],
-                \DateTime::createFromFormat($this->platform->getDateTimeFormatString(), $revisionsData[0]['timestamp']),
-                $revisionsData[0]['username']
-            );
-        } else {
-            throw AuditException::invalidRevision($rev);
-        }
+        return $this->em->getRepository('Audit\Entity\Revision')->find($rev);
     }
 
     /**
