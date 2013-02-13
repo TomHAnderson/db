@@ -1,9 +1,11 @@
 <?php
-namespace Db\Entity;
 
-use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form;
-use ZfcUser\Entity\UserInterface;
+namespace Db\Entity;
+use Db\Entity\AbstractEntity
+    , Zend\Form\Annotation as Form
+    , ZfcUser\Entity\UserInterface
+    , Zend\InputFilter\InputFilter
+    ;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -18,7 +20,7 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Entity\Field\Password
         , \Db\Entity\Field\Note
         , \Db\Entity\Field\IsPublic
-        , \Db\Entity\Field\accessToken
+        , \Db\Entity\Field\AccessToken
         , \Db\Entity\Field\Permission
         , \Db\Entity\Field\CreatedAt
         , \Db\Entity\Field\LastRequestAt
@@ -40,6 +42,7 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Entity\Relation\Outbox
         , \Db\Entity\Relation\FieldConfig
         , \Db\Entity\Relation\BandGroups
+        , \Db\Entity\Relation\Revisions
         ;
 
     protected $state;
@@ -75,6 +78,19 @@ class User extends AbstractEntity implements UserInterface
         $this->setEmail(isset($data['email']) ? $data['email']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setIsPublic(isset($data['isPublic']) ? $data['isPublic']: null);
+    }
+
+    public function getInputFilter()
+    {
+        $inputFilter = new InputFilter();
+
+        $inputFilter->add($this->inputFilterInputDisplayName($inputFilter));
+        $inputFilter->add($this->inputFilterInputUsername($inputFilter));
+        $inputFilter->add($this->inputFilterInputEmail($inputFilter));
+        $inputFilter->add($this->inputFilterInputNote($inputFilter));
+        $inputFilter->add($this->inputFilterInputIsPublic($inputFilter));
+
+        return $inputFilter;
     }
 
     public function getState()

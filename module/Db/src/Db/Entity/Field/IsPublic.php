@@ -1,7 +1,9 @@
 <?php
 
 namespace Db\Entity\Field;
-use Zend\Form\Annotation as Form;
+use Zend\Form\Annotation as Form
+    , Zend\InputFilter\InputFilter
+    ;
 
 trait IsPublic
 {
@@ -25,9 +27,8 @@ trait IsPublic
         return $this;
     }
 
-    private function inputFilterInputIsPublic($inputFilter = null) {
-        if (!$inputFilter) $inputFilter = new InputFilter();
-
+    private function inputFilterInputIsPublic(InputFilter $inputFilter)
+    {
         return $inputFilter->getFactory()->createInput(array(
             'name' => 'isPublic',
             'required' => true,

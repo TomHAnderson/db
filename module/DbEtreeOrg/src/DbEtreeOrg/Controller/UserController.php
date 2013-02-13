@@ -57,13 +57,16 @@ class UserController extends AbstractActionController
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($modelUser->getInputFilter($user));
+            $form->setInputFilter($user->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
                 $user->exchangeArray($form->getData());
 
-                $modelUser->edit($user);
+                $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+                $em->persist($user);
+                $em->flush();
+
                 return $this->plugin('redirect')->toUrl('/user/profile');
             }
         }

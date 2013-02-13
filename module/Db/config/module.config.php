@@ -22,11 +22,6 @@ return array(
         'instance' => array(
             'alias' => array(
                 'modelUser' => 'Db\Model\User',
-                'modelCountry' => 'Db\Model\Country',
-                'modelState' => 'Db\Model\State',
-                'modelPlace' => 'Db\Model\Place',
-
-                'modelVenue' => 'Db\Model\Venue',
             ),
 
             'Db\Model\AbstractModel' => array(

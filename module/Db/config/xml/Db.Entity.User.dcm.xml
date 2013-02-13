@@ -25,27 +25,7 @@
     <one-to-many field="outbox" target-entity="Db\Entity\Mail" mapped-by="from"/>
     <one-to-many field="inbox" target-entity="Db\Entity\Mail" mapped-by="to"/>
     <one-to-many field="lists" target-entity="Db\Entity\UserList" mapped-by="user"/>
-    <many-to-many field="friends" target-entity="Db\Entity\User" inversed-by="reverseFriends">
-      <join-table name="Friends">
-        <join-columns>
-          <join-column name="source_User_id" referenced-column-name="id" nullable="false"/>
-        </join-columns>
-        <inverse-join-columns>
-          <join-column name="related_User_id" referenced-column-name="id" nullable="false"/>
-        </inverse-join-columns>
-      </join-table>
-    </many-to-many>
-    <many-to-many field="reverseFriends" target-entity="Db\Entity\User" mapped-by="friends"/>
-    <many-to-many field="fieldConfig" target-entity="Db\Entity\UserPerformanceField" inversed-by="users">
-      <join-table name="UserPerformanceFieldConfig">
-        <join-columns>
-          <join-column name="User_id" referenced-column-name="id" nullable="false"/>
-        </join-columns>
-        <inverse-join-columns>
-          <join-column name="UserPerformanceField_id" referenced-column-name="id" nullable="false"/>
-        </inverse-join-columns>
-      </join-table>
-    </many-to-many>
+    <one-to-many field="revisions" target-entity="Audit\Entity\Revision" mapped-by="user"/>
     <many-to-many field="bandGroups" target-entity="Db\Entity\BandGroup" inversed-by="users">
       <join-table name="UserBandGroup">
         <join-columns>
@@ -56,5 +36,26 @@
         </inverse-join-columns>
       </join-table>
     </many-to-many>
+    <many-to-many field="friends" target-entity="Db\Entity\User" inversed-by="reverseFriends">
+      <join-table name="Friends">
+        <join-columns>
+          <join-column name="source_User_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="related_User_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="fieldConfig" target-entity="Db\Entity\UserPerformanceField" inversed-by="users">
+      <join-table name="UserPerformanceFieldConfig">
+        <join-columns>
+          <join-column name="User_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="UserPerformanceField_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="reverseFriends" target-entity="Db\Entity\User" mapped-by="friends"/>
   </entity>
 </doctrine-mapping>

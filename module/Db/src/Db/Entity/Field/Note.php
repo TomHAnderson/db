@@ -1,7 +1,9 @@
 <?php
 
 namespace Db\Entity\Field;
-use Zend\Form\Annotation as Form;
+use Zend\Form\Annotation as Form
+    , Zend\InputFilter\InputFilter
+    ;
 
 trait Note
 {
@@ -13,18 +15,19 @@ trait Note
      */
     protected $note;
 
-    public function getNote() {
+    public function getNote()
+    {
         return $this->note;
     }
 
-    public function setNote($value) {
+    public function setNote($value)
+    {
         $this->note = $value;
         return $this;
     }
 
-    private function inputFilterInputNote($inputFilter = null) {
-        if (!$inputFilter) $inputFilter = new InputFilter();
-
+    private function inputFilterInputNote(InputFilter $inputFilter)
+    {
         return $inputFilter->getFactory()->createInput(array(
             'name' => 'note',
             'required' => false,

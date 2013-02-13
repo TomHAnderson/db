@@ -22,6 +22,7 @@
       <discriminator-mapping class="Db\Entity\EventComment" value="Event"/>
       <discriminator-mapping class="Db\Entity\SongComment" value="Song"/>
       <discriminator-mapping class="Db\Entity\LineupComment" value="Lineup"/>
+      <discriminator-mapping class="Audit\Entity\RevisionComment" value="Revision"/>
     </discriminator-map>
   </entity>
 </doctrine-mapping>

@@ -1,7 +1,9 @@
 <?php
 
 namespace Db\Entity\Field;
-use Zend\Form\Annotation as Form;
+use Zend\Form\Annotation as Form
+    , Zend\InputFilter\InputFilter
+    ;
 
 trait Email
 {
@@ -24,9 +26,8 @@ trait Email
         return $this;
     }
 
-    private function inputFilterInputEmail($inputFilter = null) {
-        if (!$inputFilter) $inputFilter = new InputFilter();
-
+    private function inputFilterInputEmail(InputFilter $inputFilter)
+    {
         return $inputFilter->getFactory()->createInput(array(
             'name' => 'email',
             'required' => true,
