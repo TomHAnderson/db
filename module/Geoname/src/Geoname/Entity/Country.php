@@ -21,6 +21,7 @@ class Country
         , Field\Currency
         , Field\Continent
         , Field\mainLocale
+        , Field\Country
         ;
 
     use Relation\Timezones

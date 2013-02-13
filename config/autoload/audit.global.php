@@ -2,13 +2,27 @@
 return array(
     'audit'=> array(
         'entities' => array(
+            'Db\Entity\Performer',
+            'Db\Entity\Performance',
+            'Db\Entity\PerformanceSet',
+            'Db\Entity\Venue',
+            'Db\Entity\VenueGroup',
+            'Db\Entity\Event',
+            'Db\Entity\Producer',
+            'Db\Entity\Lineup',
+            'Db\Entity\Band',
+            'Db\Entity\BandGroup',
+            'Db\Entity\Alias',
+            'Db\Entity\Source',
+            'Db\Entity\Checksum',
+            'Db\Entity\PerformanceSong',
+            'Db\Entity\Song',
+            'Db\Entity\Composer',
         ),
         'ui' => array(
             'datetime.format' => 'r',
             'page.limit'    => '20'
         ),
-        'zfcuser.integration' => true,
-
     ),
 );
 

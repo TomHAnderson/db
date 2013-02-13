@@ -17,6 +17,7 @@ class Module
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    'SimpleThings' => __DIR__ . '/src/SimpleThings',
                 ),
             ),
         );
@@ -54,8 +55,6 @@ class Module
                     $auth = $serviceManager->get('zfcuser_auth_service');
                     if ($auth->hasIdentity()) {
                         $auditconfig->setUser($auth->getIdentity());
-                    } else {
-                        //throw new \Exception('user is not authenticated');
                     }
 
                     $auditManager = new AuditManager($auditconfig);

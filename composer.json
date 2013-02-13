@@ -11,10 +11,7 @@
         "php": ">=5.4",
         "zendframework/zendframework": "!=2.0.6,2.*",
 
-        "zf-commons/zfc-base": "dev-master",
-        "zf-commons/zfc-user": "dev-master",
-        "zf-commons/zfc-admin": "dev-master",
-        "bjyoungblood/bjy-authorize": "dev-master",
+        "zf-commons/zfc-user": "0.1.0",
         "zf-commons/zfc-user-doctrine-orm": "dev-master",
 
         "doctrine/common": "2.3.0-RC1",
@@ -25,9 +22,6 @@
         "doctrine/doctrine-module":"0.7.0",
         "doctrine/doctrine-orm-module":"dev-master",
 
-        "tawfekov/zf2entityaudit": "dev-master",
-        "simplethings/entity-audit-bundle": "dev-master",
-
         "heartsentwined/yaml": "1.*",
         "heartsentwined/arg-validator": "1.*",
         "heartsentwined/zf2-doctrine": "1.*",
@@ -36,6 +30,7 @@
         "heartsentwined/file-system-manager": "1.*",
         "heartsentwined/zf2-phpunit-testcase": "1.*",
         "heartsentwined/zf2-phing-task": "1.*",
+        "heartsentwined/zf2-geoname": "dev-master",
 
         "keen-io/keen-io": "dev-master"
     }

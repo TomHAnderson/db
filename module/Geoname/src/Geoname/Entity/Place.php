@@ -26,5 +26,7 @@ class Place
     use Relation\ChildrenPlace
         , Relation\AltNames
         , Relation\Countries
+        , \Db\Entity\Relation\Venues
+        , \Db\Entity\Relation\Events
         ;
 }

@@ -35,6 +35,16 @@
       </join-columns>
     </many-to-one>
     <one-to-many field="timezones" target-entity="Geoname\Entity\Timezone" mapped-by="country"/>
+    <many-to-many field="neighbours" target-entity="Geoname\Entity\Country" inversed-by="country">
+      <join-table name="he_geoname_countries_neighbours">
+        <join-columns>
+          <join-column name="country_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="neighbour_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
     <many-to-many field="locales" target-entity="Geoname\Entity\Locale">
       <join-table name="he_geoname_countries_locales">
         <join-columns>
@@ -45,6 +55,6 @@
         </inverse-join-columns>
       </join-table>
     </many-to-many>
-    <many-to-many field="neighbours" target-entity="Geoname\Entity\Country" mapped-by=""/>
+    <many-to-many field="country" target-entity="Geoname\Entity\Country" mapped-by="neighbours"/>
   </entity>
 </doctrine-mapping>
