@@ -9,7 +9,8 @@ return array(
 
         'DoctrineModule',
         'DoctrineORMModule',
-        'ZF2EntityAudit',
+        'Audit',
+//        'ZF2EntityAudit',
 
         'ZfcBase',
         'ZfcUser',
