@@ -115,9 +115,6 @@ class LogRevisionsListener implements EventSubscriber
 
     public function onFlush(OnFlushEventArgs $eventArgs)
     {
-        if (!$this->config->getUser())
-            throw new \Exception('User is not authentictated.  Cannot audit entities.');
-
         $this->em = $eventArgs->getEntityManager();
         $this->conn = $this->em->getConnection();
         $this->uow = $this->em->getUnitOfWork();
@@ -129,6 +126,10 @@ class LogRevisionsListener implements EventSubscriber
             if (!$this->metadataFactory->isAudited($class->name)) {
                 continue;
             }
+
+            if (!$this->config->getUser())
+                throw new \Exception('User is not authentictated.  Cannot audit entities.');
+
             $entityData = array_merge($this->getOriginalEntityData($entity), $this->uow->getEntityIdentifier($entity));
             $this->saveRevisionEntityData($class, $entityData, 'DEL');
         }
