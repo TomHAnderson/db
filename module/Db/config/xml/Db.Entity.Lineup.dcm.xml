@@ -6,7 +6,7 @@
     <field name="note" type="text" nullable="true"/>
     <many-to-one field="band" target-entity="Db\Entity\Band" inversed-by="lineups">
       <join-columns>
-        <join-column name="Band_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="band_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="lineup"/>

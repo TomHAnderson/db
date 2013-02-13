@@ -11,33 +11,33 @@
     <field name="note" type="text" nullable="true"/>
     <many-to-one field="venue" target-entity="Db\Entity\Venue" inversed-by="performances">
       <join-columns>
-        <join-column name="Venue_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="venue_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="event" target-entity="Db\Entity\Event" inversed-by="performances">
       <join-columns>
-        <join-column name="Event_id" referenced-column-name="id"/>
+        <join-column name="event_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <many-to-one field="lineup" target-entity="Db\Entity\Lineup" inversed-by="performances">
       <join-columns>
-        <join-column name="Lineup_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="lineup_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="sources" target-entity="Db\Entity\Source" mapped-by="performance"/>
-    <one-to-many field="links" target-entity="Db\Entity\PerformanceLink" mapped-by="performance"/>
-    <one-to-many field="comments" target-entity="Db\Entity\PerformanceComment" mapped-by="performance"/>
     <one-to-many field="performanceSets" target-entity="Db\Entity\PerformanceSet" mapped-by="performance"/>
     <one-to-many field="attendees" target-entity="Db\Entity\Attendance" mapped-by="performance"/>
     <one-to-many field="userPerformances" target-entity="Db\Entity\UserPerformance" mapped-by="performance"/>
     <one-to-many field="wantedBy" target-entity="Db\Entity\Wanted" mapped-by="performance"/>
+    <one-to-many field="links" target-entity="Db\Entity\PerformanceLink" mapped-by="performance"/>
+    <one-to-many field="comments" target-entity="Db\Entity\PerformanceComment" mapped-by="performance"/>
     <many-to-many field="performers" target-entity="Db\Entity\Performer" inversed-by="performances">
       <join-table name="PerformerShow">
         <join-columns>
-          <join-column name="Performance_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="performance_id" referenced-column-name="id" nullable="false"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="Performer_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="performer_id" referenced-column-name="id" nullable="false"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>

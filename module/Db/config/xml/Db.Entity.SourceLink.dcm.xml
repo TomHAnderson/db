@@ -3,7 +3,7 @@
   <entity name="Db\Entity\SourceLink" extends="AbstractLink">
     <many-to-one field="source" target-entity="Db\Entity\Source" inversed-by="links">
       <join-columns>
-        <join-column name="Source_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="source_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
   </entity>

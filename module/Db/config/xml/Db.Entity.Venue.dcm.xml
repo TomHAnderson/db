@@ -6,16 +6,21 @@
     <field name="city" type="string" nullable="true"/>
     <field name="state" type="string" nullable="true"/>
     <field name="note" type="text" nullable="true"/>
+    <many-to-one field="place" target-entity="Geoname\Entity\Place" inversed-by="venues">
+      <join-columns>
+        <join-column name="place_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
     <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="venue"/>
     <one-to-many field="links" target-entity="Db\Entity\VenueLink" mapped-by="venue"/>
     <one-to-many field="comments" target-entity="Db\Entity\VenueComment" mapped-by="venue"/>
     <many-to-many field="venueGroups" target-entity="Db\Entity\VenueGroup" inversed-by="venues">
       <join-table name="VenueGroupVenue">
         <join-columns>
-          <join-column name="Venue_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="venue_id" referenced-column-name="id" nullable="false"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="VenueGroup_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="venueGroup_id" referenced-column-name="id" nullable="false"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>

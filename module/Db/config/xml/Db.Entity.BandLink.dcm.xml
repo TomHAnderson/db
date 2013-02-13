@@ -3,7 +3,7 @@
   <entity name="Db\Entity\BandLink" extends="AbstractLink">
     <many-to-one field="band" target-entity="Db\Entity\Band" inversed-by="links">
       <join-columns>
-        <join-column name="Band_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="band_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
   </entity>

@@ -16,7 +16,6 @@
     <field name="lastRequestAt" type="datetime" nullable="false"/>
     <field name="subscription" type="string" nullable="true"/>
     <one-to-one field="performer" target-entity="Db\Entity\Performer" mapped-by="user"/>
-    <one-to-many field="comments" target-entity="Db\Entity\AbstractComment" mapped-by="user"/>
     <one-to-many field="attendance" target-entity="Db\Entity\Attendance" mapped-by="user"/>
     <one-to-many field="userPerformances" target-entity="Db\Entity\UserPerformance" mapped-by="user"/>
     <one-to-many field="feedbackFrom" target-entity="Db\Entity\Feedback" mapped-by="from"/>
@@ -25,14 +24,15 @@
     <one-to-many field="outbox" target-entity="Db\Entity\Mail" mapped-by="from"/>
     <one-to-many field="inbox" target-entity="Db\Entity\Mail" mapped-by="to"/>
     <one-to-many field="lists" target-entity="Db\Entity\UserList" mapped-by="user"/>
+    <one-to-many field="comments" target-entity="Db\Entity\AbstractComment" mapped-by="user"/>
     <one-to-many field="revisions" target-entity="Audit\Entity\Revision" mapped-by="user"/>
     <many-to-many field="bandGroups" target-entity="Db\Entity\BandGroup" inversed-by="users">
       <join-table name="UserBandGroup">
         <join-columns>
-          <join-column name="User_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="user_id" referenced-column-name="id" nullable="false"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="BandGroup_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="bandGroup_id" referenced-column-name="id" nullable="false"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>

@@ -29,6 +29,8 @@
         <join-column name="timezone_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
+    <one-to-many field="venues" target-entity="Db\Entity\Venue" mapped-by="place"/>
+    <one-to-many field="events" target-entity="Db\Entity\Event" mapped-by="place"/>
     <one-to-many field="altNames" target-entity="Geoname\Entity\AltName" mapped-by="place"/>
     <one-to-many field="countries" target-entity="Geoname\Entity\Country" mapped-by="continent"/>
     <one-to-one field="country" target-entity="Geoname\Entity\Country" mapped-by="place"/>

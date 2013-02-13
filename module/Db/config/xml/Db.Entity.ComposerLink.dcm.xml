@@ -3,7 +3,7 @@
   <entity name="Db\Entity\ComposerLink" extends="AbstractLink">
     <many-to-one field="composer" target-entity="Db\Entity\Composer" inversed-by="links">
       <join-columns>
-        <join-column name="Composer_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="composer_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
   </entity>

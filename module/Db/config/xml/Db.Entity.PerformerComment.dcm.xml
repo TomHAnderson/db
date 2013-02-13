@@ -3,7 +3,7 @@
   <entity name="Db\Entity\PerformerComment" extends="AbstractComment">
     <many-to-one field="performer" target-entity="Db\Entity\Performer" inversed-by="comments">
       <join-columns>
-        <join-column name="Performer_id" referenced-column-name="id"/>
+        <join-column name="performer_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
   </entity>

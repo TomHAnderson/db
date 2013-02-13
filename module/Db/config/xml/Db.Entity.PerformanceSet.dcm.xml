@@ -9,7 +9,7 @@
     <field name="sort" type="integer" nullable="false"/>
     <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="performanceSets">
       <join-columns>
-        <join-column name="Performance_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="performance_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="performanceSongs" target-entity="Db\Entity\PerformanceSong" mapped-by="performanceSet"/>

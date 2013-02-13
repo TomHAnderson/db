@@ -9,7 +9,7 @@
     <field name="note" type="text" nullable="true"/>
     <many-to-one field="band" target-entity="Db\Entity\Band" inversed-by="songs">
       <join-columns>
-        <join-column name="Band_id" referenced-column-name="id"/>
+        <join-column name="band_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="performanceSongs" target-entity="Db\Entity\PerformanceSong" mapped-by="song"/>
@@ -18,10 +18,10 @@
     <many-to-many field="composers" target-entity="Db\Entity\Composer" inversed-by="songs">
       <join-table name="ComposerSong">
         <join-columns>
-          <join-column name="Song_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="song_id" referenced-column-name="id" nullable="false"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="Composer_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="composer_id" referenced-column-name="id" nullable="false"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>

@@ -9,13 +9,13 @@
     <field name="note" type="text" nullable="true"/>
     <many-to-one field="bandGroup" target-entity="Db\Entity\BandGroup" inversed-by="bands">
       <join-columns>
-        <join-column name="BandGroup_id" referenced-column-name="id"/>
+        <join-column name="bandGroup_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="aliases" target-entity="Db\Entity\Alias" mapped-by="band"/>
     <one-to-many field="lineups" target-entity="Db\Entity\Lineup" mapped-by="band"/>
-    <one-to-many field="links" target-entity="Db\Entity\BandLink" mapped-by="band"/>
     <one-to-many field="songs" target-entity="Db\Entity\Song" mapped-by="band"/>
+    <one-to-many field="links" target-entity="Db\Entity\BandLink" mapped-by="band"/>
     <one-to-many field="comments" target-entity="Db\Entity\BandComment" mapped-by="band"/>
   </entity>
 </doctrine-mapping>

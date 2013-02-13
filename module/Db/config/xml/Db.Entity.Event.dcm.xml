@@ -10,7 +10,12 @@
     <field name="endAt" type="date" nullable="true"/>
     <many-to-one field="producer" target-entity="Db\Entity\Producer" inversed-by="events">
       <join-columns>
-        <join-column name="Producer_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="producer_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="place" target-entity="Geoname\Entity\Place" inversed-by="events">
+      <join-columns>
+        <join-column name="place_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="event"/>
