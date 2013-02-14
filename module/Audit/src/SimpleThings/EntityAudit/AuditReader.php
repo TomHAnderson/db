@@ -317,18 +317,15 @@ class AuditReader
             }
         }
 
-        $query = "SELECT r.* FROM " . $this->config->getRevisionTableName() . " r " .
+        $query = "SELECT r.id FROM " . $this->config->getRevisionTableName() . " r " .
                  "INNER JOIN " . $tableName . " e ON r.id = e." . $this->config->getRevisionFieldName() . " WHERE " . $whereSQL . " ORDER BY r.id DESC";
         $revisionsData = $this->em->getConnection()->fetchAll($query, array_values($id));
 
         $revisions = array();
         $this->platform = $this->em->getConnection()->getDatabasePlatform();
+
         foreach ($revisionsData AS $row) {
-            $revisions[] = new Revision(
-                $row['id'],
-                \DateTime::createFromFormat($this->platform->getDateTimeFormatString(), $row['timestamp']),
-                $row['username']
-            );
+            $revisions[] = $this->findRevision($row['id']);
         }
 
         return $revisions;

@@ -117,15 +117,30 @@ foreach (array(
                                     <li class="divider"></li>
 
                                     <li role="menuitem">
-                                        <a href="/country">Countries</a>
+                                        <a href="/venue/create">Create</a>
                                     </li>
 
                                     <li class="divider"></li>
 
                                     <li role="menuitem">
-                                        <a href="/<?= $section; ?>/create">Last 10 browsed here</a>
+                                        <b>Recent</b>
                                     </li>
 
+                                    <?php
+                                    if (isset($_SESSION['venues']['latest'])) {
+                                        foreach ($_SESSION['venues']['latest'] as $id) {
+                                            if ($v = $this->findVenue($id)) {
+                                                ?>
+                                                    <li role="menuitem">
+                                                        <a href="/venue/detail?id=<?= $v->getId(); ?>">
+                                                            <?= $this->escapeHtml($v->getName()); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </ul>
                             </li>
 

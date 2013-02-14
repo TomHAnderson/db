@@ -1,0 +1,21 @@
+<h1>Create Venue</h1>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('name')); ?>
+
+<?php
+    //$this->formRow($this->form->get('place'));
+?>
+
+<?= $this->formRow($this->form->get('city')); ?>
+
+<?= $this->formRow($this->form->get('state')); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<br>
+
+<?=  $this->formRow($this->form->get('submit')); ?>
+
+<?= $this->form()->closeTag(); ?>

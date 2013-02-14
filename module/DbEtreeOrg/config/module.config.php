@@ -82,6 +82,7 @@ return array(
             'venue' => 'DbEtreeOrg\Controller\VenueController',
         ),
     ),
+
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
@@ -96,6 +97,24 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+    ),
+
+    'view_helpers' => array(
+        'invokables' => array(
+            'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',
+
+            'createComment' => 'DbEtreeOrg\View\Helper\CreateComment',
+        ),
+    ),
+
+    'di' => array(
+        'instance' => array(
+#            'DbEtreeOrg\View\Helper\AbstractFind' => array(
+#                'parameters' => array(
+#                    'entitymanager' => 'Doctrine\ORM\EntityManager',
+#                ),
+#            ),
         ),
     ),
 );

@@ -8,7 +8,7 @@ trait Comments
 {
     protected $comments;
 
-    public function getEvents()
+    public function getComments()
     {
         if (!$this->comments)
             $this->comments = new ArrayCollection();

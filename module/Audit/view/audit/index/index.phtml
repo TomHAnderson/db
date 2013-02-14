@@ -9,6 +9,7 @@
                     <th>Timestamp</th>
                     <th>Entities</th>
                     <th>User</th>
+                    <th>Comments</th>
                 </tr>
             </thead>
 
@@ -98,6 +99,10 @@
                             <span class="label label-info">
                                 <?= $this->escapeHtml($revision->getUser()->getDisplayName()); ?>
                             </span>
+                        </td>
+
+                        <td>
+                            <?= sizeof($revision->getComments()); ?>
                         </td>
                     </tr>
                 <?php
