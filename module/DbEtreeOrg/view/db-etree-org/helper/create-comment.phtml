@@ -1,0 +1,44 @@
+<ul class="nav nav-pills ">
+    <li class="">
+        <a onClick="$('#createComment').toggle();"  class="btn-success" href="#">Create Comment</a>
+    </li>
+</ul>
+
+<div id="createComment" style="display: none;">
+    <div class="row">
+
+        <div class="span1">
+            Rating
+        </div>
+
+        <div class="span11">
+
+            <span class="rating">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span1">
+            Comment
+        </div>
+
+        <div class="span11">
+            <form method="post" action="/comment/create">
+                <input type="hidden" name="id" value="<?= $id; ?>">
+                <input type="hidden" name="entityName" value="<?= $entityName; ?>">
+                <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
+                <textarea name="note"></textarea>
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+    </div>
+
+</div>

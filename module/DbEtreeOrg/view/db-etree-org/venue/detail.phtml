@@ -13,7 +13,9 @@ State: <?= $this->escapeHtml($this->venue->getState()); ?>
 <br>
 Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
 
+<?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
 
-<?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail/' . $this->venue->getId()); ?>
+
+<?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
 
 <?= $this->listComments($this->venue->getComments());

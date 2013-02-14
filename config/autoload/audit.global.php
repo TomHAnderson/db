@@ -18,6 +18,8 @@ return array(
             'Db\Entity\PerformanceSong',
             'Db\Entity\Song',
             'Db\Entity\Composer',
+            'Db\Entity\AbstractComment',
+            'Db\Entity\AbstractLink',
         ),
         'ui' => array(
             'datetime.format' => 'r',

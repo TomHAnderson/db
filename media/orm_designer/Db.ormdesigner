@@ -864,6 +864,16 @@
     </entity>
     <association from="VenueComment" to="Venue" owner-alias="comments" inverse-alias="venue" uuid="32f968c3-fb3a-4781-8b19-c1290400910c">
       <association-field from="venue_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-inverse">
+          <attribute name="order-by">
+            <attribute name="order-by-field">
+              <attribute name="direction">DESC</attribute>
+              <attribute name="field">createdAt</attribute>
+            </attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="EventComment" uuid="84a8d9b9-d842-414b-8220-ad30a48fc440">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="0469dcd9-632a-47ec-86f3-1de552885b71"/>
@@ -931,7 +941,7 @@
     </association>
     <entity name="RevisionComment" uuid="a9e0571c-130f-42c0-83a0-b0940d38e7da">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="0c793d59-f7d8-4225-9ed1-89eade93111f"/>
-      <field name="revision_id" type="integer" required="true" uuid="8d5a8f1e-f93e-4acb-895c-e4b4cebae5bb"/>
+      <field name="revision_id" type="integer" uuid="8d5a8f1e-f93e-4acb-895c-e4b4cebae5bb"/>
       <inheritance-child derived-from="AbstractComment" discriminator-value="Revision" uuid="04b92fbc-2839-4a2d-9388-61e167f9ef55"/>
     </entity>
     <association from="RevisionComment" to="Revision" owner-alias="comments" inverse-alias="revision" uuid="209fd702-6115-499b-8df3-2184996bcb67">

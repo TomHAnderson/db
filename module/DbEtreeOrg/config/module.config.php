@@ -107,6 +107,9 @@ return array(
 
             'createComment' => 'DbEtreeOrg\View\Helper\CreateComment',
             'listComments' => 'DbEtreeOrg\View\Helper\ListComments',
+
+            'createLink' => 'DbEtreeOrg\View\Helper\CreateLink',
+            'listLinks' => 'DbEtreeOrg\View\Helper\ListLinks',
         ),
     ),
 

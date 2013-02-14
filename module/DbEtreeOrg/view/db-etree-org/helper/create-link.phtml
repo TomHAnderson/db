@@ -1,0 +1,26 @@
+<ul class="nav nav-pills">
+    <li class="">
+        <a onClick="$('#createLink').toggle();"  class="btn-success" href="#">Create Link</a>
+    </li>
+</ul>
+
+<div class="row" style="display: none;" id="createLink">
+    <div class="span12">
+        <form method="post" action="/comment/create">
+            <input type="hidden" name="id" value="<?= $id; ?>">
+            <input type="hidden" name="entityName" value="<?= $entityName; ?>">
+            <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
+            Title
+                <input type="text" maxlength="255" name="title">
+            <br>
+            URL
+                <input type="text" maxlength="255" name="url">
+            <br>
+            Note
+            <textarea name="note"></textarea>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</div>

@@ -7,17 +7,17 @@ use Zend\View\Helper\AbstractHelper
     , Zend\View\Model\ViewModel
     ;
 
-final class CreateComment extends AbstractHelper implements ServiceLocatorAwareInterface {
+final class CreateLink extends AbstractHelper implements ServiceLocatorAwareInterface {
     use \Db\Model\Component\ServiceLocator;
 
     public function __invoke($id, $entityName, $returnUrl)
     {
         if (!$this->getServiceLocator()->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return '<a href="/user/login">Login to comment</a>';
+            return '<a href="/user/login">Login to add links</a>';
 
         $view = $this->getServiceLocator()->getServiceLocator()->get('View');
         $model = new ViewModel();
-        $model->setTemplate('db-etree-org/helper/create-comment.phtml');
+        $model->setTemplate('db-etree-org/helper/create-link.phtml');
         $model->setVariable('id', $id);
         $model->setVariable('entityName', $entityName);
         $model->setVariable('returnUrl', $returnUrl);
