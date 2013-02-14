@@ -1,6 +1,6 @@
 <ul class="nav nav-pills pull-right">
     <li class="">
-        <a href="/venue/edit?id=<?= $this->venue->getId(); ?>">Edit Venue</a>
+        <a class="btn-warning" href="/venue/edit?id=<?= $this->venue->getId(); ?>">Edit Venue</a>
     </li>
 </ul>
 
@@ -12,3 +12,8 @@ City: <?= $this->escapeHtml($this->venue->getCity()); ?>
 State: <?= $this->escapeHtml($this->venue->getState()); ?>
 <br>
 Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
+
+
+<?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail/' . $this->venue->getId()); ?>
+
+<?= $this->listComments($this->venue->getComments());

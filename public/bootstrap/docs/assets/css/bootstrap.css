@@ -3594,6 +3594,7 @@ ul.icons li [class*=" icon-"] {
   content: "\f006";
 }
 
+.rating span.star.selected,
 .rating span.star:hover:before,
 .rating span.star:hover ~ span.star:before {
   color: #e3cf7a;

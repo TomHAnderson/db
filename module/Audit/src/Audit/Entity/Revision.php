@@ -9,7 +9,7 @@ use Zend\Form\Annotation as Form
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("revision")
  */
-final class Revision extends AbstractEntity
+class Revision extends AbstractEntity
 {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\User

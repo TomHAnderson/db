@@ -1,3 +1,5 @@
-require(['modernizr.min', 'bootstrap.min', 'datemask'], function($) {
-    //alert('main.js loaded');
+require(['modernizr.min', 'bootstrap.min', 'datemask'], function() {
+    $('.confirm').live('click', function(event) {
+        return confirm('Are you sure?');
+    });
 });

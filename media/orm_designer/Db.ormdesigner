@@ -778,6 +778,9 @@
       <field name="createdAt" type="datetime" required="true" uuid="8ef0a1e9-c613-4c49-b1be-a8602a1c6c32"/>
       <field name="typeDescriminator" type="text" size="255" required="true" uuid="3a12d18a-5e17-4d5c-bea7-f9846f9a777b"/>
       <inheritance-parent discriminator-field="typeDescriminator" type="SINGLE_TABLE" uuid="8ad1eb7d-27d6-47f8-9471-6f6a55eb2a4b"/>
+      <orm-attributes>
+        <attribute name="repository-class">Db\Repository\AbstractComment</attribute>
+      </orm-attributes>
     </entity>
     <association from="AbstractComment" to="User" owner-alias="comments" inverse-alias="user" uuid="a6bcb53a-0137-410d-a1d5-0cb54dc3b703">
       <association-field from="user_id" to="id"/>

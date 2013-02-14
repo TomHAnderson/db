@@ -9,7 +9,7 @@ use Zend\Form\Annotation as Form
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("comment")
  */
-final class RevisionComment extends AbstractComment
+class RevisionComment extends AbstractComment
 {
     use \Audit\Entity\Field\Revision;
 }

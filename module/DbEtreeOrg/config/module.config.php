@@ -106,6 +106,7 @@ return array(
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',
 
             'createComment' => 'DbEtreeOrg\View\Helper\CreateComment',
+            'listComments' => 'DbEtreeOrg\View\Helper\ListComments',
         ),
     ),
 

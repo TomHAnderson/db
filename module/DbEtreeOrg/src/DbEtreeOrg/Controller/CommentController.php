@@ -45,6 +45,23 @@ class CommentController extends AbstractActionController
 
         return $this->plugin('redirect')->toUrl($returnUrl);
     }
+
+    public function deleteAction()
+    {
+        $id = $this->getRequest()->getQuery()->get('id');
+        $entityName = $this->getRequest()->getQuery()->get('entityName');
+
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $comment = $em->getRepository($entityName)->find($id);
+        if (!$comment)
+            return $this->plugin('redirect')->toUrl($returnUrl);
+
+        $em->remove($comment);
+        $em->flush();
+
+        die('deleted');
+    }
 /*
     public function editAction()
     {
