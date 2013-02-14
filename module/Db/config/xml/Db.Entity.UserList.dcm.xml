@@ -15,10 +15,10 @@
     <many-to-many field="userPerformances" target-entity="Db\Entity\UserPerformance" inversed-by="lists">
       <join-table name="UserPerformanceList">
         <join-columns>
-          <join-column name="ListGroup_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="listGroup_id" referenced-column-name="id" nullable="false"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="UserPerformance_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="userPerformance_id" referenced-column-name="id" nullable="false"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>
