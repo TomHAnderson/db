@@ -85,6 +85,7 @@
                             ?>">
 
 
+                                    <i class="icon-folder-close"></i>
                                     <?php  echo $this->escapeHtml($ce->getClassName()); ?>
                             </span>
                                 </a>
@@ -97,7 +98,7 @@
 
                         <td>
                             <span class="label label-info">
-                                <?= $this->escapeHtml($revision->getUser()->getDisplayName()); ?>
+                                <i class="icon-user"></i> <?= $this->escapeHtml($revision->getUser()->getDisplayName()); ?>
                             </span>
                         </td>
 
