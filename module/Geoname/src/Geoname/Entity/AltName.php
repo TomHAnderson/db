@@ -6,10 +6,10 @@ class AltName
 {
     use Field\Id
         , Field\Name
-        , Field\isPreferred
-        , Field\isShort
-        , Field\isColloquial
-        , Field\isHistoric
+        , Field\IsPreferred
+        , Field\IsShort
+        , Field\IsColloquial
+        , Field\IsHistoric
         , Field\LanguageOther
         , Field\IsDeprecated
         , Field\Place
