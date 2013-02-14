@@ -20,6 +20,7 @@ return array(
             'Db\Entity\Composer',
             'Db\Entity\AbstractComment',
             'Db\Entity\AbstractLink',
+            'Db\Entity\VenueComment',
         ),
         'ui' => array(
             'datetime.format' => 'r',
