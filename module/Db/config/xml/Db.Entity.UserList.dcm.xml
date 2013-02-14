@@ -9,7 +9,7 @@
     <field name="note" type="text" nullable="true"/>
     <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="lists">
       <join-columns>
-        <join-column name="User_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="user_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
     <many-to-many field="userPerformances" target-entity="Db\Entity\UserPerformance" inversed-by="lists">

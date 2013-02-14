@@ -52,7 +52,7 @@
           <join-column name="user_id" referenced-column-name="id" nullable="false"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="UserPerformanceField_id" referenced-column-name="id" nullable="false"/>
+          <join-column name="userPerformanceField_id" referenced-column-name="id" nullable="false"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>
