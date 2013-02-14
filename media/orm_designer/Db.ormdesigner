@@ -25,8 +25,8 @@
       <association-field from="lineup_id" to="id"/>
     </association>
     <entity name="Venue" uuid="9e7fbb88-4860-492a-b01c-7e88c0769300">
-      <field name="id" type="integer" required="true" primary="true" uuid="9f126215-974d-4725-827a-53d64dad7f92"/>
-      <field name="place_id" type="integer" required="true" uuid="d4b7b30c-51c3-469d-9d1c-cce736e27262"/>
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="9f126215-974d-4725-827a-53d64dad7f92"/>
+      <field name="place_id" type="integer" uuid="d4b7b30c-51c3-469d-9d1c-cce736e27262"/>
       <field name="name" type="string" required="true" uuid="acad31fe-d41a-49f6-89f9-3f6493a17be0"/>
       <field name="city" type="string" uuid="a6aba5cc-b2ed-45ad-b7da-2f7c25ca2e72"/>
       <field name="state" type="string" uuid="e0c24338-2fa6-4f1b-bd7e-426c45fd419b"/>
@@ -83,7 +83,7 @@
     </association>
     <entity name="Event" description="A festival event is an occurance of a festival" uuid="5e5eed40-c20e-44b5-a239-358575cccdc3">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="b582bf05-c07d-4a97-9a83-ec8ee135cd11"/>
-      <field name="place_id" type="integer" required="true" uuid="eff3c66b-8623-4e8a-ad6b-8c0fe37473e2"/>
+      <field name="place_id" type="integer" uuid="eff3c66b-8623-4e8a-ad6b-8c0fe37473e2"/>
       <field name="producer_id" type="integer" required="true" uuid="ebacffbb-ae40-4811-a937-d0742c60fedd"/>
       <field name="name" type="string" required="true" uuid="6310402e-24ff-4fd0-b671-f643f1a9ae77"/>
       <field name="note" type="text" uuid="e1d2f39d-8cad-41ca-a536-ec3b197315fd"/>
@@ -680,6 +680,7 @@
       </many-to-many-entity>
     </many-to-many>
     <region caption="Geoname" uuid="58593bcd-f57a-4938-90e4-a3ea6cbdc2bc">
+      <entity-ref name="CountryNeighbours"/>
       <entity-ref name="AltName"/>
       <entity-ref name="Country"/>
       <entity-ref name="Currency"/>
@@ -690,7 +691,6 @@
       <entity-ref name="Place"/>
       <entity-ref name="Timezone"/>
       <entity-ref name="CountryLocale"/>
-      <entity-ref name="CountryNeighbours"/>
     </region>
     <orm-attributes>
       <attribute name="namespace">Geoname\Entity</attribute>
@@ -731,8 +731,8 @@
       <inheritance-parent discriminator-field="typeDescriminator" type="SINGLE_TABLE" uuid="d3aad4e0-a6e9-434b-ba8c-0971caa92ea2"/>
     </entity>
     <entity name="VenueLink" uuid="9eaae197-c75b-45a8-a2fa-445cae818cee">
-      <field name="id" type="integer" required="true" primary="true" uuid="b0632e87-fafd-4f8a-9ad4-0b64516d0816"/>
-      <field name="venue_id" type="integer" required="true" uuid="58f22d83-5281-4ea1-bd79-662264aec5a8"/>
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="b0632e87-fafd-4f8a-9ad4-0b64516d0816"/>
+      <field name="venue_id" type="integer" uuid="58f22d83-5281-4ea1-bd79-662264aec5a8"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Venue" uuid="21197a5b-d6b2-48e3-95c8-595c2644dbb6"/>
     </entity>
     <association from="VenueLink" to="Venue" owner-alias="links" inverse-alias="venue" uuid="ad7bce74-bffe-46f6-8cfa-267bb23d9655">
@@ -740,7 +740,7 @@
     </association>
     <entity name="SourceLink" uuid="196b1120-9de8-406b-a18b-209b92301d05">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="3203d9b1-20e2-4036-aabb-8e0009b9573d"/>
-      <field name="source_id" type="integer" required="true" uuid="eeea165b-c721-4e86-b556-2f383624d153"/>
+      <field name="source_id" type="integer" uuid="eeea165b-c721-4e86-b556-2f383624d153"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Source" uuid="43047de0-f818-4a3c-95cd-271557018eb4"/>
     </entity>
     <association from="SourceLink" to="Source" owner-alias="links" inverse-alias="source" uuid="4a171c01-8a95-4cd0-938f-ce5fd9fa1a46">
@@ -748,7 +748,7 @@
     </association>
     <entity name="PerformanceLink" uuid="e63050c6-78fe-4e6e-b4bb-44f031943f51">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="a8fb3a95-2b58-4b67-bc86-231c2fed36a1"/>
-      <field name="performance_id" type="integer" required="true" uuid="abe2a341-7a85-4af5-92c8-d3c732c59bf9"/>
+      <field name="performance_id" type="integer" uuid="abe2a341-7a85-4af5-92c8-d3c732c59bf9"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Show" uuid="5368bcd9-44dc-4bcd-8913-efde725fe9b7"/>
     </entity>
     <association from="PerformanceLink" to="Performance" owner-alias="links" inverse-alias="performance" uuid="e58aa347-563a-41ba-8a08-022f909fdf51">
@@ -756,7 +756,7 @@
     </association>
     <entity name="PerformerLink" uuid="077f4a47-5b70-46f5-bb24-53b355f15ec8">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="fd2bbcc2-2097-4156-aa62-369d3136629c"/>
-      <field name="performer_id" type="integer" required="true" uuid="93bdcbfb-fbc7-409f-ae96-f06ae34284ce"/>
+      <field name="performer_id" type="integer" uuid="93bdcbfb-fbc7-409f-ae96-f06ae34284ce"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Performer" uuid="ec0d7a7f-94ad-4233-b6d7-0876c4edc98b"/>
     </entity>
     <association from="PerformerLink" to="Performer" owner-alias="links" inverse-alias="performer" uuid="cc0e540b-a3fc-4a78-99ac-57cfdcaca938">
@@ -764,7 +764,7 @@
     </association>
     <entity name="EventLink" uuid="f2ef5068-c394-49f2-9274-ea9f9fb38649">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="c3813c8b-5d0f-4e34-9de1-407ec673d6bd"/>
-      <field name="event_id" type="integer" required="true" uuid="1c89fc77-78e8-4d32-a14f-20f371739606"/>
+      <field name="event_id" type="integer" uuid="1c89fc77-78e8-4d32-a14f-20f371739606"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="FestivalEvent" uuid="813221d1-5d55-4e29-bca4-58c2f63e038c"/>
     </entity>
     <association from="EventLink" to="Event" owner-alias="links" inverse-alias="event" uuid="0733e495-e674-4cac-a3cb-07346e488ace">
@@ -784,7 +784,7 @@
     </association>
     <entity name="ProducerLink" uuid="d3030348-9746-4be7-9ec6-e8206e98f498">
       <field name="id" type="text" primary="true" auto-increment="true" uuid="f69c365a-8a3d-4595-81d5-5469a3ba9b12"/>
-      <field name="producer_id" type="integer" required="true" uuid="d1d98045-908e-46d0-812e-6335085b4310"/>
+      <field name="producer_id" type="integer" uuid="d1d98045-908e-46d0-812e-6335085b4310"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Festival" uuid="bd9f7e54-b5de-45f0-a5a9-17bfaccf8e79"/>
     </entity>
     <association from="ProducerLink" to="Producer" owner-alias="links" inverse-alias="producer" uuid="136b6eba-dce9-4391-88d5-3186fe322a4a">
@@ -792,7 +792,7 @@
     </association>
     <entity name="PerformanceComment" uuid="789f89eb-cafa-4e95-9845-cea7170627e4">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="fd81867c-6198-4980-aa2e-f65119604ec5"/>
-      <field name="performance_id" type="integer" required="true" uuid="2efa42fc-fb61-4839-acd0-6f2429fcb1fb"/>
+      <field name="performance_id" type="integer" uuid="2efa42fc-fb61-4839-acd0-6f2429fcb1fb"/>
       <inheritance-child derived-from="AbstractComment" discriminator-value="Show" uuid="6ca566ae-c0e4-4774-a6f9-1dea84e9bb08"/>
     </entity>
     <association from="PerformanceComment" to="Performance" owner-alias="comments" inverse-alias="performance" uuid="e5638835-68c7-4900-b753-d984944d6225">
@@ -800,7 +800,7 @@
     </association>
     <entity name="SourceComment" uuid="4fa7e45c-16f5-488d-b5ee-36000f375c4e">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="36e78ed5-907b-4023-a031-af9cbb9c3813"/>
-      <field name="source_id" type="integer" required="true" uuid="27574d82-a43e-4488-8c78-c7b7324b082a"/>
+      <field name="source_id" type="integer" uuid="27574d82-a43e-4488-8c78-c7b7324b082a"/>
       <inheritance-child derived-from="AbstractComment" discriminator-value="Source" uuid="81949f09-9133-4b01-b39d-755484649516"/>
     </entity>
     <association from="SourceComment" to="Source" owner-alias="comments" inverse-alias="source" uuid="5b41b03a-1296-4025-8447-067288f64858">
@@ -808,7 +808,7 @@
     </association>
     <entity name="VenueGroupLink" uuid="e5aa80ed-8894-4d80-a064-b37287782851">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="05130dbc-8deb-4830-9b63-dda7160f3fca"/>
-      <field name="venueGroup_id" type="integer" required="true" uuid="2942ec2a-90fc-4f5e-bdfe-9ffe99f2e0e0"/>
+      <field name="venueGroup_id" type="integer" uuid="2942ec2a-90fc-4f5e-bdfe-9ffe99f2e0e0"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="VenueGroup" uuid="f9c33c41-7266-438b-b5ad-7f818d015793"/>
     </entity>
     <association from="VenueGroupLink" to="VenueGroup" owner-alias="links" inverse-alias="venueGroup" uuid="099ca87f-13e2-48f1-9944-eaf7bb47e3df">
@@ -816,7 +816,7 @@
     </association>
     <entity name="BandLink" uuid="186e33a8-75f4-40a8-84d0-bafeb79203de">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="ef840679-3f6f-4d1b-aee4-9b671275fc24"/>
-      <field name="band_id" type="integer" required="true" uuid="4401442b-85d4-447d-a373-5b90a90f487e"/>
+      <field name="band_id" type="integer" uuid="4401442b-85d4-447d-a373-5b90a90f487e"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Band" uuid="36dc3ca6-70d5-4c6e-ae7f-ef69436c924a"/>
     </entity>
     <association from="BandLink" to="Band" owner-alias="links" inverse-alias="band" uuid="f2c14db6-2f95-4b88-82e2-08434097ba92">
@@ -824,7 +824,7 @@
     </association>
     <entity name="ComposerLink" uuid="d574d5bd-a418-4082-9d9d-d5e7462fde4d">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="4ef926ea-081f-486f-bb54-5ba1945c8807"/>
-      <field name="composer_id" type="integer" required="true" uuid="faaed645-ae8c-48de-a618-b731bfef3005"/>
+      <field name="composer_id" type="integer" uuid="faaed645-ae8c-48de-a618-b731bfef3005"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Composer" uuid="d818f169-4309-400f-8b41-15b8b03cf75e"/>
     </entity>
     <association from="ComposerLink" to="Composer" owner-alias="links" inverse-alias="composer" uuid="1e369c67-c630-44e3-9ac8-68ee1278e073">
@@ -832,7 +832,7 @@
     </association>
     <entity name="SongLink" uuid="93579d77-9cf7-4d37-baef-58ebafc386da">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="7c9bc991-faa4-4bbf-8019-b1a0d3f83cb4"/>
-      <field name="song_id" type="integer" required="true" uuid="55c8597d-2349-48b6-9022-76aeb0d261b8"/>
+      <field name="song_id" type="integer" uuid="55c8597d-2349-48b6-9022-76aeb0d261b8"/>
       <inheritance-child derived-from="AbstractLink" discriminator-value="Song" uuid="f307a3e3-0ea4-4c00-a7d9-44933f85e412"/>
     </entity>
     <association from="SongLink" to="Song" owner-alias="links" inverse-alias="song" uuid="24be276e-2e49-4777-bd49-684621e1dc05">
@@ -840,7 +840,7 @@
     </association>
     <entity name="PerformerComment" uuid="5960a44a-781b-42e4-be06-60a106c0abf9">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="efa839dd-0d5a-4719-8384-4d63954c9281"/>
-      <field name="performer_id" type="integer" required="true" uuid="011fa768-c175-4865-9d3b-a16ff29b8724"/>
+      <field name="performer_id" type="integer" uuid="011fa768-c175-4865-9d3b-a16ff29b8724"/>
       <inheritance-child derived-from="AbstractComment" discriminator-value="Performer" uuid="5b0e12b7-63f3-49aa-a192-7f5795bbe41c"/>
     </entity>
     <association from="PerformerComment" to="Performer" owner-alias="comments" inverse-alias="performer" uuid="dbc7b8f0-bbca-48da-8d5c-384e03404912">
@@ -848,7 +848,7 @@
     </association>
     <entity name="BandComment" uuid="0422e7df-736b-47b5-86f2-644bad5a59b3">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="9f6102d1-135b-4d60-8c2e-9c67bfcd1a19"/>
-      <field name="band_id" type="integer" required="true" uuid="77dac989-5ba1-41cc-9fdc-0a351827fc36"/>
+      <field name="band_id" type="integer" uuid="77dac989-5ba1-41cc-9fdc-0a351827fc36"/>
       <inheritance-child derived-from="AbstractComment" discriminator-value="Band" uuid="25980790-208e-4c2d-8738-8bc19483c21f"/>
     </entity>
     <association from="BandComment" to="Band" owner-alias="comments" inverse-alias="band" uuid="3bd1e05b-fdb0-4821-aa2c-78c06d08efe3">
@@ -856,7 +856,7 @@
     </association>
     <entity name="VenueComment" uuid="bbe69f06-7ab8-4a84-95b3-4a63d147bd44">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="40fdbfd2-acad-46fa-b1d9-268a7e99cc25"/>
-      <field name="venue_id" type="integer" required="true" uuid="c6e433e9-5994-4b74-99d7-13d8a5ba9d65"/>
+      <field name="venue_id" type="integer" uuid="c6e433e9-5994-4b74-99d7-13d8a5ba9d65"/>
       <inheritance-child derived-from="AbstractComment" discriminator-value="Venue" uuid="193b0eef-8bf2-41c1-beb0-38d118061091"/>
     </entity>
     <association from="VenueComment" to="Venue" owner-alias="comments" inverse-alias="venue" uuid="32f968c3-fb3a-4781-8b19-c1290400910c">
@@ -864,7 +864,7 @@
     </association>
     <entity name="EventComment" uuid="84a8d9b9-d842-414b-8220-ad30a48fc440">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="0469dcd9-632a-47ec-86f3-1de552885b71"/>
-      <field name="event_id" type="integer" required="true" uuid="41d68551-4f93-4494-90f3-8ecab51ae9cf"/>
+      <field name="event_id" type="integer" uuid="41d68551-4f93-4494-90f3-8ecab51ae9cf"/>
       <inheritance-child derived-from="AbstractComment" discriminator-value="Event" uuid="c9270a59-e814-41d0-909f-aed25d1ead29"/>
     </entity>
     <association from="EventComment" to="Event" owner-alias="comments" inverse-alias="event" uuid="176656c7-fc2b-4a39-ab91-9251119dbd09">
@@ -872,7 +872,7 @@
     </association>
     <entity name="SongComment" uuid="a13ba289-ccbe-4cb0-8565-7706df3ee82f">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="18f4000c-2431-4655-89ac-86c90d218334"/>
-      <field name="song_id" type="integer" required="true" uuid="d72d5862-5f73-40ce-be30-4b4d1cca02a3"/>
+      <field name="song_id" type="integer" uuid="d72d5862-5f73-40ce-be30-4b4d1cca02a3"/>
       <inheritance-child derived-from="AbstractComment" discriminator-value="Song" uuid="09e7846f-f21e-4304-afb1-03b91134950d"/>
     </entity>
     <association from="SongComment" to="Song" owner-alias="comments" inverse-alias="song" uuid="c7646cb9-cc39-4531-ac0e-ee79509c9c99">
@@ -880,7 +880,7 @@
     </association>
     <entity name="LineupComment" uuid="68cf3687-882b-4cbb-b942-389514edfb4e">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="54d11400-c34a-4533-902c-223ce3b5e91e"/>
-      <field name="lineup_id" type="integer" required="true" uuid="d95baea9-e404-4438-a59e-d8939924e61b"/>
+      <field name="lineup_id" type="integer" uuid="d95baea9-e404-4438-a59e-d8939924e61b"/>
       <inheritance-child derived-from="AbstractComment" discriminator-value="Lineup" uuid="47ddd537-35d7-4835-a8cf-4942b190466f"/>
     </entity>
     <association from="LineupComment" to="Lineup" owner-alias="comments" inverse-alias="lineup" uuid="1bcf942f-4c7d-4a6b-82a4-a6c6f7c8e947">
@@ -998,7 +998,7 @@
     <entity uuid="4fa7e45c-16f5-488d-b5ee-36000f375c4e" position-x="748" position-y="41" size-x="0" size-x2="100" size-y="0" size-y2="45"/>
     <module uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda" bk-color="15169559" position-x="1182" position-y="-290" size-x="-31" size-x2="840" size-y="3" size-y2="607"/>
     <association uuid="50a15d73-6118-43c0-907f-34a44b69aa8a" splitted="1"/>
-    <region uuid="52ac6c26-25b6-4d3b-9572-bd8e75c16ab8" bk-color="15716788" position-x="469" position-y="45" size-x="31" size-x2="356" size-y="0" size-y2="545"/>
+    <region uuid="52ac6c26-25b6-4d3b-9572-bd8e75c16ab8" bk-color="15716788" position-x="480" position-y="24" size-x="31" size-x2="356" size-y="0" size-y2="545"/>
     <inheritance-child uuid="5368bcd9-44dc-4bcd-8913-efde725fe9b7" center-position-x="2" center-position-y="10" splitted="1"/>
     <entity uuid="553871ee-0f25-4f9f-b05b-cb7c4bb9c8a2" position-x="205" position-y="170" size-x="0" size-x2="113" size-y="0" size-y2="60"/>
     <region uuid="58593bcd-f57a-4938-90e4-a3ea6cbdc2bc" bk-color="15716788" position-x="166" position-y="32" size-x="0" size-x2="671" size-y="10" size-y2="627"/>
@@ -1038,7 +1038,7 @@
     <module uuid="8af8ad2c-3c5e-4de0-b8d0-4bcf049eefc0" bk-color="4293359639" position-x="-199" position-y="9" size-x="0" size-x2="214" size-y="0" size-y2="306"/>
     <entity uuid="8b9c2e8b-b7e6-4ff7-a0a8-b0452541edf2" position-x="51" position-y="113" size-x="0" size-x2="97" size-y="0" size-y2="73"/>
     <entity uuid="8d270e66-501b-466f-ab56-045250803130" position-x="23" position-y="36" size-x="0" size-x2="140" size-y="0" size-y2="87"/>
-    <region uuid="8f69e7ba-888b-4cc0-b80a-fea1e0da2238" bk-color="15716788" position-x="44" position-y="39" size-x="0" size-x2="388" size-y="0" size-y2="375"/>
+    <region uuid="8f69e7ba-888b-4cc0-b80a-fea1e0da2238" bk-color="15716788" position-x="45" position-y="24" size-x="0" size-x2="388" size-y="0" size-y2="375"/>
     <entity uuid="93579d77-9cf7-4d37-baef-58ebafc386da" position-x="512" position-y="38" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
     <entity uuid="93d9b80b-1d07-43eb-89a4-37a87bffdcc7" position-x="28" position-y="303" size-x="0" size-x2="83" size-y="0" size-y2="87"/>
     <region uuid="96f356b4-b805-4ea4-8d92-055900e0e964" bk-color="15716788" position-x="799" position-y="213" size-x="356" size-x2="-97" size-y="251" size-y2="48"/>

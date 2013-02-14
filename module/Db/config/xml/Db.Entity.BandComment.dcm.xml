@@ -3,7 +3,7 @@
   <entity name="Db\Entity\BandComment" extends="AbstractComment">
     <many-to-one field="band" target-entity="Db\Entity\Band" inversed-by="comments">
       <join-columns>
-        <join-column name="band_id" referenced-column-name="id" nullable="false"/>
+        <join-column name="band_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
   </entity>

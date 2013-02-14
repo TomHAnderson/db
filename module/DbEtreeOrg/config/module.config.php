@@ -78,6 +78,7 @@ return array(
         'invokables' => array(
             'index' => 'DbEtreeOrg\Controller\IndexController',
             'user' => 'DbEtreeOrg\Controller\UserController',
+            'comment' => 'DbEtreeOrg\Controller\CommentController',
             'place' => 'DbEtreeOrg\Controller\PlaceController',
             'venue' => 'DbEtreeOrg\Controller\VenueController',
         ),

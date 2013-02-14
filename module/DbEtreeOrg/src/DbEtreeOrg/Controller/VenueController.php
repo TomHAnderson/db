@@ -21,7 +21,7 @@ class VenueController extends AbstractActionController
         if (!$id)
             return $this->plugin('redirect')->toUrl('/venue');
 
-        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $venue = $em->getRepository('Db\Entity\Venue')->find($id);
 
         if (!$venue)
@@ -68,7 +68,7 @@ class VenueController extends AbstractActionController
 
                 # $venue->setPlace($place);
 
-                $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+                $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
                 $em->persist($venue);
                 $em->flush();
 
@@ -86,7 +86,7 @@ class VenueController extends AbstractActionController
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
             throw new \Exception('User is not authenticated');
 
-        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
         $venue = $em->getRepository('Db\Entity\Venue')->find($id);

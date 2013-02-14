@@ -59,12 +59,12 @@
     </div>
 </div>
 
+<?php
+if (sizeof($this->revision->getComments())) {
+?>
 <h3>Comments</h3>
+<?php
+}
+?>
 
-<?= $this->createComment('Audit\Entity\RevisionComment', '/return'); ?>
-
-<div class="row">
-    <div class="span5">
-
-    </div>
-</div>
+<?= $this->createComment($this->revision->getId(), 'Audit\Entity\Revision', '/audit/revision/' . $this->revision->getId()); ?>
