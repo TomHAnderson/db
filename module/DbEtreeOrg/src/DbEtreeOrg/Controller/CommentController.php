@@ -48,6 +48,10 @@ class CommentController extends AbstractActionController
 
     public function deleteAction()
     {
+        $auth = $this->getServiceLocator()->get('zfcuser_auth_service');
+        if (!$auth->hasIdentity())
+            throw new \Exception('User is not authenticated');
+
         $id = $this->getRequest()->getQuery()->get('id');
         $entityName = $this->getRequest()->getQuery()->get('entityName');
 
@@ -57,10 +61,13 @@ class CommentController extends AbstractActionController
         if (!$comment)
             return $this->plugin('redirect')->toUrl($returnUrl);
 
-        $em->remove($comment);
-        $em->flush();
+        if ($comment->getUser() == $auth->getIdentity()) {
+            $em->remove($comment);
+            $em->flush();
+            die('deleted');
+        }
 
-        die('deleted');
+        die('user does not own this comment');
     }
 /*
     public function editAction()

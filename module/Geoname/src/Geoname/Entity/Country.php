@@ -20,7 +20,7 @@ class Country
         , Field\Place
         , Field\Currency
         , Field\Continent
-        , Field\mainLocale
+        , Field\MainLocale
         , Field\Country
         ;
 
