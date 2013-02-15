@@ -116,16 +116,6 @@ foreach (array(
 
                                     <li class="divider"></li>
 
-                                    <li role="menuitem">
-                                        <a href="/venue/create">Create</a>
-                                    </li>
-
-                                    <li class="divider"></li>
-
-                                    <li role="menuitem">
-                                        <b>Recent</b>
-                                    </li>
-
                                     <?php
                                     if (isset($_SESSION['venues']['latest'])) {
                                         foreach ($_SESSION['venues']['latest'] as $id) {
@@ -133,6 +123,7 @@ foreach (array(
                                                 ?>
                                                     <li role="menuitem">
                                                         <a href="/venue/detail?id=<?= $v->getId(); ?>">
+                                                            <i class="icon-home"></i>
                                                             <?= $this->escapeHtml($v->getName()); ?>
                                                         </a>
                                                     </li>
@@ -141,6 +132,17 @@ foreach (array(
                                         }
                                     }
                                     ?>
+
+                                    <li class="divider"></li>
+
+                                    <li role="">
+                                        <a class="btn-success" href="/venue/create" style="color: white;">
+                                            <i class="icon-home"></i>
+                                            Create Venue
+                                        </a>
+                                    </li>
+
+
                                 </ul>
                             </li>
 

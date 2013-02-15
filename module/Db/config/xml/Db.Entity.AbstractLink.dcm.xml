@@ -6,7 +6,7 @@
     </id>
     <field name="title" type="string" nullable="false"/>
     <field name="url" type="string" nullable="false"/>
-    <field name="description" type="text" nullable="true"/>
+    <field name="note" type="text" nullable="true"/>
     <discriminator-column name="typeDescriminator" length="255" type="text"/>
     <discriminator-map>
       <discriminator-mapping class="Db\Entity\VenueLink" value="Venue"/>

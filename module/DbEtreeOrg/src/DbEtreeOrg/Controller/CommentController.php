@@ -54,6 +54,7 @@ class CommentController extends AbstractActionController
 
         $id = $this->getRequest()->getQuery()->get('id');
         $entityName = $this->getRequest()->getQuery()->get('entityName');
+        $returnUrl = $this->getRequest()->getQuery()->get('returnUrl');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
@@ -64,10 +65,10 @@ class CommentController extends AbstractActionController
         if ($comment->getUser() == $auth->getIdentity()) {
             $em->remove($comment);
             $em->flush();
-            die('deleted');
+            return $this->plugin('redirect')->toUrl($returnUrl);
         }
 
-        die('user does not own this comment');
+        die('User does not own this comment');
     }
 /*
     public function editAction()

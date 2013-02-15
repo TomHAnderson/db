@@ -2,6 +2,20 @@
     <li class="">
         <a class="btn-warning" href="/venue/edit?id=<?= $this->venue->getId(); ?>"><i class="icon-home"></i> Edit Venue</a>
     </li>
+
+    <?php
+    if (!sizeof($this->venue->getPerformances())
+        and !sizeof($this->venue->getLinks())
+        and !sizeof($this->venue->getComments())
+        and !sizeof($this->venue->getVenueGroups()))
+    {
+    ?>
+        <li class="">
+            <a class="btn-danger confirm" href="/venue/delete?id=<?= $this->venue->getId(); ?>"><i class="icon-home"></i> Delete Venue</a>
+        </li>
+    <?php
+    }
+    ?>
 </ul>
 
 <h1>Venue</h1>
@@ -13,9 +27,11 @@ State: <?= $this->escapeHtml($this->venue->getState()); ?>
 <br>
 Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
 
-<?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+<ul class="nav nav-pills">
+    <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
 
+    <?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+</ul>
 
-<?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
 
 <?= $this->listComments($this->venue->getComments());

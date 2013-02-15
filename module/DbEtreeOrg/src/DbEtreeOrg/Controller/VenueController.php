@@ -42,7 +42,7 @@ class VenueController extends AbstractActionController
     public function createAction()
     {
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            throw new \Exception('User is not authenticated');
+            return $this->plugin('redirect')->toUrl('/user/login');
 
         $venue = new VenueEntity();
         $builder = new AnnotationBuilder();
@@ -84,7 +84,7 @@ class VenueController extends AbstractActionController
     public function editAction()
     {
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            throw new \Exception('User is not authenticated');
+            return $this->plugin('redirect')->toUrl('/user/login');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
@@ -127,5 +127,38 @@ class VenueController extends AbstractActionController
             'form' => $form,
             'venue' => $venue,
         );
+    }
+
+    public function deleteAction()
+    {
+        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
+            return $this->plugin('redirect')->toUrl('/user/login');
+
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        $em->getConfiguration()->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger());
+
+
+        $id = $this->getRequest()->getQuery()->get('id');
+        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
+        if (!$venue)
+            return $this->plugin('redirect')->toUrl('/');
+
+        $em->remove($venue);
+        $em->flush();
+        die('done');
+
+        if (!sizeof($venue->getPerformances())
+            and !sizeof($venue->getVenueGroups())
+            and !sizeof($venue->getLinks())
+            and !sizeof($venue->getComments()))
+        {
+            $em->remove($venue);
+#            echo ($em->getUnitOfWork()->size());
+
+#            $em->flush();
+die('asdf');
+        }
+
+        return $this->plugin('redirect')->toUrl('/');
     }
 }

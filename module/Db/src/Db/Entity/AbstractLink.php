@@ -12,7 +12,7 @@ class AbstractLink extends AbstractEntity {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\Title
         , \Db\Entity\Field\Url
-        , \Db\Entity\Field\Description
+        , \Db\Entity\Field\Note
         , \Db\Entity\Field\TypeDescriminator
         ;
 
@@ -23,7 +23,7 @@ class AbstractLink extends AbstractEntity {
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'url' => $this->getUrl(),
-            'description' => $this->getDescription(),
+            'note' => $this->getNote(),
             'typeDescriminator' => $this->getTypeDescriminator(),
         );
     }
@@ -32,6 +32,6 @@ class AbstractLink extends AbstractEntity {
     {
         $this->setTitle(isset($data['title']) ? $data['title']: null);
         $this->setUrl(isset($data['url']) ? $data['url']: null);
-        $this->setDescription(isset($data['description']) ? $data['description']: null);
+        $this->setNote(isset($data['note']) ? $data['note']: null);
     }
 }

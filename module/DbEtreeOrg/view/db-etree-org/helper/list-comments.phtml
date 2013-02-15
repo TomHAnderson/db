@@ -29,8 +29,8 @@ foreach ($comments as $comment) {
 
             <ul class="nav nav-pills pull-right">
                 <li class="">
-                   <a class="confirm btn-danger"
-                       href="/comment/delete?id=<?= $comment->getId(); ?>&entityName=<?= get_class($comment); ?>&">
+                   <a class="returnUrl btn-danger"
+                       href="/comment/delete?id=<?= $comment->getId(); ?>&entityName=<?= get_class($comment); ?>">
                        <i class="icon-comment"></i> Delete Comment
                    </a>
                 </li>
