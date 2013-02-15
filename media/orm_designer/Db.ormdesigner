@@ -312,18 +312,18 @@
   <module name="etreedb.org" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda">
     <entity name="Attendance" uuid="4e1e7abf-b0e7-43cd-b51f-5e42b193daa5">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="1012efdc-5750-4450-b99c-619b614b74e5"/>
-      <field name="User_id" type="integer" required="true" uuid="b615dea2-61e1-485e-8011-9aa98946ea83"/>
-      <field name="Show_id" type="integer" required="true" uuid="8a64869b-dc07-45e4-8d15-9cdd0b241277"/>
+      <field name="user_id" type="integer" required="true" uuid="b615dea2-61e1-485e-8011-9aa98946ea83"/>
+      <field name="show_id" type="integer" required="true" uuid="8a64869b-dc07-45e4-8d15-9cdd0b241277"/>
       <field name="note" type="text" uuid="2471b963-12d1-426a-9bec-d4d27a7f99ac"/>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\Attendance</attribute>
       </orm-attributes>
     </entity>
     <association from="Attendance" to="User" owner-alias="attendance" inverse-alias="user" uuid="35af89d5-6581-406e-bb52-6be0aa4fbfb2">
-      <association-field from="User_id" to="id"/>
+      <association-field from="user_id" to="id"/>
     </association>
     <association from="Attendance" to="Performance" owner-alias="attendees" inverse-alias="performance" uuid="e8eb80a6-0776-4176-84d7-a6a43f0b40d9">
-      <association-field from="Show_id" to="id"/>
+      <association-field from="show_id" to="id"/>
     </association>
     <entity name="Friends" uuid="2ad447a5-1083-42b2-9cbc-57a4fe47bbb3">
       <field name="source_User_id" type="integer" required="true" uuid="a62a3b78-1b69-48e1-ba03-a7102f4017f3"/>
@@ -339,9 +339,9 @@
     </many-to-many>
     <entity name="UserPerformance" uuid="3d3181bb-c13e-46cc-8b20-8172c8d12154">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="22ad6f37-f20f-4cb1-8a54-19c3eb0b4574"/>
-      <field name="User_id" type="integer" required="true" uuid="462c7490-cbe9-4846-b3a2-248c1dd07dd1"/>
-      <field name="Performance_id" type="integer" required="true" uuid="4f7db310-8cd8-4dc0-b8af-776072542338"/>
-      <field name="Source_id" type="integer" uuid="0fc805ae-d572-4d45-827c-1e20420402f5"/>
+      <field name="user_id" type="integer" required="true" uuid="462c7490-cbe9-4846-b3a2-248c1dd07dd1"/>
+      <field name="performance_id" type="integer" required="true" uuid="4f7db310-8cd8-4dc0-b8af-776072542338"/>
+      <field name="source_id" type="integer" uuid="0fc805ae-d572-4d45-827c-1e20420402f5"/>
       <field name="sourceNote" type="text" uuid="5465326f-5824-41e8-bc2c-81559599336e"/>
       <field name="checksum" type="text" uuid="bf5394fb-b7e3-474e-8bfc-2ed04669c4b4"/>
       <field name="createdAt" type="datetime" uuid="4e1e381a-3eb1-4927-9b8c-078e365bb373"/>
@@ -369,13 +369,13 @@
       </orm-attributes>
     </entity>
     <association from="UserPerformance" to="User" owner-alias="userPerformances" inverse-alias="user" uuid="779ac5c4-167a-42dc-95ed-eced2629339c">
-      <association-field from="User_id" to="id"/>
+      <association-field from="user_id" to="id"/>
     </association>
     <association from="UserPerformance" to="Performance" owner-alias="userPerformances" inverse-alias="performance" uuid="12d9049b-6ae0-4c55-bc8d-c2719e614680">
-      <association-field from="Performance_id" to="id"/>
+      <association-field from="performance_id" to="id"/>
     </association>
     <association from="UserPerformance" to="Source" owner-alias="userPerformances" inverse-alias="source" uuid="c8b868f5-7a7e-46e8-8e4f-a42a8c4eacfa">
-      <association-field from="Source_id" to="id"/>
+      <association-field from="source_id" to="id"/>
     </association>
     <entity name="Feedback" uuid="4bf4c0aa-d36f-428e-a616-5acc5a8aa717">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="cff1e3d9-1c4b-4719-b0f5-b0bc661c749b"/>
@@ -397,21 +397,21 @@
     </association>
     <entity name="Wanted" uuid="4864cc5f-572c-4f9b-bbfa-92522469cbf7">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="b9274679-9a54-4141-815e-e6bd8cc02386"/>
-      <field name="User_id" type="integer" required="true" uuid="55112d88-edf1-4d57-9ba5-1dcef51fefcb"/>
-      <field name="Show_id" type="integer" required="true" uuid="c1300820-99ca-4c1e-b0f6-7ad6b90216b4"/>
-      <field name="Source_id" type="integer" uuid="a3f3d8f6-3fba-40f3-9b5e-27365fcbb2d1"/>
+      <field name="user_id" type="integer" required="true" uuid="55112d88-edf1-4d57-9ba5-1dcef51fefcb"/>
+      <field name="show_id" type="integer" required="true" uuid="c1300820-99ca-4c1e-b0f6-7ad6b90216b4"/>
+      <field name="source_id" type="integer" uuid="a3f3d8f6-3fba-40f3-9b5e-27365fcbb2d1"/>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\Wanted</attribute>
       </orm-attributes>
     </entity>
     <association from="Wanted" to="User" owner-alias="wantedBy" inverse-alias="user" uuid="db2ed8ab-450d-4d09-b542-b500c5f3a648">
-      <association-field from="User_id" to="id"/>
+      <association-field from="user_id" to="id"/>
     </association>
     <association from="Wanted" to="Source" owner-alias="wantedBy" inverse-alias="source" uuid="7b541b84-a6de-43a4-8698-e7b4e9f56212">
-      <association-field from="Source_id" to="id"/>
+      <association-field from="source_id" to="id"/>
     </association>
     <association from="Wanted" to="Performance" owner-alias="wantedBy" inverse-alias="performance" uuid="63eca234-7c86-49f6-ba4c-262ca6f8fbc2">
-      <association-field from="Show_id" to="id"/>
+      <association-field from="show_id" to="id"/>
     </association>
     <entity name="Mail" uuid="3cc86590-d96a-48d6-b575-5aad4941e6c5">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="4fdc5f23-1083-4c44-b099-1ab5c6092b9a"/>
@@ -432,7 +432,7 @@
     </association>
     <entity name="UserList" uuid="e2f1b616-219b-4bd7-be91-dc04c98bd3a5">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="4da9ed3f-bd65-48d4-ae94-bdcf9603a646"/>
-      <field name="User_id" type="integer" required="true" uuid="86290cc3-29bc-442a-9e2b-1147e2ff29b1"/>
+      <field name="user_id" type="integer" required="true" uuid="86290cc3-29bc-442a-9e2b-1147e2ff29b1"/>
       <field name="name" type="string" required="true" uuid="4e9e4d49-5f50-4396-be0a-84a3a7c99df0"/>
       <field name="abbrev" type="string" required="true" uuid="08e078b2-f3a0-41bb-8293-d116ea2f58de"/>
       <field name="note" type="text" uuid="fb24c6ba-d0be-4280-b538-27d26cd4819d"/>
@@ -441,18 +441,18 @@
       </orm-attributes>
     </entity>
     <association from="UserList" to="User" owner-alias="lists" inverse-alias="user" uuid="5e03ea82-cfff-4c1e-8854-c966850ea809">
-      <association-field from="User_id" to="id"/>
+      <association-field from="user_id" to="id"/>
     </association>
     <entity name="UserPerformanceList" uuid="d794f911-287a-4ecc-ac5f-aadce68e5b30">
-      <field name="ListGroup_id" type="integer" required="true" uuid="bebf9c00-3fc3-4d56-8ae5-af351fac98c1"/>
-      <field name="UserPerformance_id" type="integer" required="true" uuid="ec93aa7a-fa38-43ee-a794-14d44a7c23c9"/>
+      <field name="listGroup_id" type="integer" required="true" uuid="bebf9c00-3fc3-4d56-8ae5-af351fac98c1"/>
+      <field name="userPerformance_id" type="integer" required="true" uuid="ec93aa7a-fa38-43ee-a794-14d44a7c23c9"/>
     </entity>
     <many-to-many mn-entity="UserPerformanceList" uuid="e11f6ab5-99f9-4635-a91a-e5ff60b77b5d">
       <many-to-many-entity name="UserList" owning-side="true" alias="lists" uuid="ef860d5e-b5ad-48f8-a717-d4ae9d742826">
-        <many-to-many-field from="ListGroup_id" to="id"/>
+        <many-to-many-field from="listGroup_id" to="id"/>
       </many-to-many-entity>
       <many-to-many-entity name="UserPerformance" owning-side="false" alias="userPerformances" uuid="44d51858-40ba-4043-a3bb-028a8c2ee932">
-        <many-to-many-field from="UserPerformance_id" to="id"/>
+        <many-to-many-field from="userPerformance_id" to="id"/>
       </many-to-many-entity>
     </many-to-many>
     <entity name="UserPerformanceField" uuid="fb8433d5-2eb9-4f0b-9f5c-9161e83e3728">
@@ -463,15 +463,15 @@
       </orm-attributes>
     </entity>
     <entity name="UserPerformanceFieldConfig" uuid="d1ed7de2-6778-48e0-a81c-22735fc0d71e">
-      <field name="User_id" type="integer" required="true" uuid="fa1a6c24-8a24-463e-9da9-9d2a9304bfe6"/>
-      <field name="UserPerformanceField_id" type="integer" required="true" uuid="e5da1c16-3af0-4935-914e-8525d1026647"/>
+      <field name="user_id" type="integer" required="true" uuid="fa1a6c24-8a24-463e-9da9-9d2a9304bfe6"/>
+      <field name="userPerformanceField_id" type="integer" required="true" uuid="e5da1c16-3af0-4935-914e-8525d1026647"/>
     </entity>
     <many-to-many mn-entity="UserPerformanceFieldConfig" uuid="3ddb1eb4-b957-442e-8005-c83e142e1a3f">
       <many-to-many-entity name="User" owning-side="true" alias="users" uuid="f3c1d6c9-8ed3-4833-a5bf-bada34d5f274">
-        <many-to-many-field from="User_id" to="id"/>
+        <many-to-many-field from="user_id" to="id"/>
       </many-to-many-entity>
       <many-to-many-entity name="UserPerformanceField" owning-side="false" alias="fieldConfig" uuid="a8719c37-aaa2-4aac-ba75-1a50f78b63a9">
-        <many-to-many-field from="UserPerformanceField_id" to="id"/>
+        <many-to-many-field from="userPerformanceField_id" to="id"/>
       </many-to-many-entity>
     </many-to-many>
     <region caption="User" uuid="8f69e7ba-888b-4cc0-b80a-fea1e0da2238">
@@ -726,7 +726,7 @@
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="c78bb5db-b5a6-496a-aaef-fb40fd7e46b4"/>
       <field name="title" type="string" required="true" uuid="dec6c5df-f14e-4b76-8a98-5f3df7ce938a"/>
       <field name="url" type="string" required="true" uuid="bb948084-93a1-4063-8fc8-12c6b2a9ed5a"/>
-      <field name="description" type="text" uuid="fa956ef6-bdcd-458a-a519-99b06acf0428"/>
+      <field name="note" type="text" uuid="fa956ef6-bdcd-458a-a519-99b06acf0428"/>
       <field name="typeDescriminator" type="text" size="255" required="true" uuid="d9324e8f-b7c5-47c5-b46a-4d0f2075baed"/>
       <inheritance-parent discriminator-field="typeDescriminator" type="SINGLE_TABLE" uuid="d3aad4e0-a6e9-434b-ba8c-0971caa92ea2"/>
     </entity>
