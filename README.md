@@ -10,10 +10,8 @@ Both sites run on this same codebase.
 
 Installation
 ------------
-    cd my/project/dir
     git clone git://github.com/TomHAnderson/db.git
     cd db
-    php composer.phar install
 
 Create a mysql database.
 
