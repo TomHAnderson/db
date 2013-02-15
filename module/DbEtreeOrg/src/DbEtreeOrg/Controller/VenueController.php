@@ -153,10 +153,7 @@ class VenueController extends AbstractActionController
             and !sizeof($venue->getComments()))
         {
             $em->remove($venue);
-#            echo ($em->getUnitOfWork()->size());
-
-#            $em->flush();
-die('asdf');
+            $em->flush();
         }
 
         return $this->plugin('redirect')->toUrl('/');
