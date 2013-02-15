@@ -135,17 +135,11 @@ class VenueController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/user/login');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $em->getConfiguration()->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger());
-
 
         $id = $this->getRequest()->getQuery()->get('id');
         $venue = $em->getRepository('Db\Entity\Venue')->find($id);
         if (!$venue)
             return $this->plugin('redirect')->toUrl('/');
-
-        $em->remove($venue);
-        $em->flush();
-        die('done');
 
         if (!sizeof($venue->getPerformances())
             and !sizeof($venue->getVenueGroups())
