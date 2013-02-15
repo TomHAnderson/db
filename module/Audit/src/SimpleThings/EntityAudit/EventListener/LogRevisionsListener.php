@@ -154,16 +154,20 @@ class LogRevisionsListener implements EventSubscriber
 
     private function getRevisionId()
     {
-        if ($this->revisionId) return $this->revisionId;
+        if ($this->revisionId === null) {
+            $date = date_create("now")->format($this->platform->getDateTimeFormatString());
+            $this->conn->insert($this->config->getRevisionTableName(), array(
+                'timestamp' => $date,
+                'user_id' => $this->config->getUser()->getId(),
+            ));
 
-        $revision = new RevisionEntity;
-        $revision->setTimestamp(new \DateTime());
-        $revision->setUser($this->config->getUser());
+            $sequenceName = $this->platform->supportsSequences()
+                ? 'REVISIONS_ID_SEQ'
+                : null;
 
-        $this->em->persist($revision);
-        $this->em->flush();
-
-        return $revision->getId();
+            $this->revisionId = $this->conn->lastInsertId($sequenceName);
+        }
+        return $this->revisionId;
     }
 
     private function getInsertRevisionSQL($class)
