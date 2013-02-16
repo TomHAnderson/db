@@ -29,11 +29,9 @@ trait Lastname
     }
 
     private function inputFilterInputLastname($inputFilter = null) {
-        if (!$inputFilter) $inputFilter = new InputFilter();
-
         return $inputFilter->getFactory()->createInput(array(
-            'lastname' => 'lastname',
-            'required' => true,
+            'name' => 'lastname',
+            'required' => false,
             'validators' => array(),
         ));
     }

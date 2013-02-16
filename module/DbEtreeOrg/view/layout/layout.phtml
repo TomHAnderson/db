@@ -47,7 +47,10 @@
                         <?php
                         } else {
                         ?>
-                            <li><a href="/user/login">Login</a></li>
+                            <li><a href="/user/login">
+                                <i class="icon-user"></i>
+                                Sign In
+                            </a></li>
                         <?php
                         }
                         ?>
@@ -57,7 +60,6 @@
 <?php
 foreach (array(
     'band' => 'Bands',
-    'performer' => 'Performers',
     'show' => 'Shows',
     'song' => 'Songs',
     'source' => 'Sources') as $section => $name) {
@@ -98,6 +100,54 @@ foreach (array(
 <?php
 }
 ?>
+
+                            <li class="dropdown">
+                                <a id="performer-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <i class="icon-film"></i>
+                                    <?php echo $this->translate('Performers') ?>
+                                    <b class="caret"></b>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="performer-drop" role="menu">
+
+                                    <li role="menuitem">
+                                        <form class="navbar-search pull-left" name="search" action="/venue/search">
+                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Performers">
+                                        </form>
+                                    </li>
+
+                                    <li class="divider"></li>
+
+                                    <?php
+                                    if (isset($_SESSION['performers']['latest'])) {
+                                        foreach ($_SESSION['performer']['latest'] as $id) {
+                                            if ($v = $this->findPerformer($id)) {
+                                                ?>
+                                                    <li role="menuitem">
+                                                        <a href="/performer/detail?id=<?= $v->getId(); ?>">
+                                                            <i class="icon-film"></i>
+                                                            <?= $this->escapeHtml($v->getName()); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <li class="divider"></li>
+
+                                    <li role="">
+                                        <a class="btn-success" href="/performer/create" style="color: white;">
+                                            <i class="icon-film"></i>
+                                            Create Performer
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
 
                             <li class="dropdown">
                                 <a id="venue-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">

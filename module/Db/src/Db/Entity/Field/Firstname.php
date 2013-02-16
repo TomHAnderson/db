@@ -29,10 +29,8 @@ trait Firstname
     }
 
     private function inputFilterInputFirstname($inputFilter = null) {
-        if (!$inputFilter) $inputFilter = new InputFilter();
-
         return $inputFilter->getFactory()->createInput(array(
-            'firstname' => 'firstname',
+            'name' => 'firstname',
             'required' => true,
             'validators' => array(),
         ));

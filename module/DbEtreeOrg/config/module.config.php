@@ -81,6 +81,7 @@ return array(
             'comment' => 'DbEtreeOrg\Controller\CommentController',
             'place' => 'DbEtreeOrg\Controller\PlaceController',
             'venue' => 'DbEtreeOrg\Controller\VenueController',
+            'performer' => 'DbEtreeOrg\Controller\PerformerController',
         ),
     ),
 

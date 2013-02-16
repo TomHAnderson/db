@@ -22,6 +22,7 @@ class PerformerAlias extends AbstractEntity {
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
         );
     }

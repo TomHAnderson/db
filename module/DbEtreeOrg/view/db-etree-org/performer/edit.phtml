@@ -1,0 +1,18 @@
+<h1>Edit Venue</h1>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('lastname')); ?>
+
+<?= $this->formRow($this->form->get('firstname')); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<br>
+
+<button type="send" class="btn btn-warning">
+    <i class="icon-film"></i>
+    Edit Performer
+</button>
+
+<?= $this->form()->closeTag(); ?>
