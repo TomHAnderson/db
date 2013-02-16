@@ -49,7 +49,9 @@
  */
 
 namespace Db\Filter;
-use Zend\Filter\StringTrim;
+use Zend\Filter\StringTrim
+    , Zend\Filter\AbstractFilter
+    ;
 
 class Normalize extends AbstractFilter
 {
@@ -243,7 +245,7 @@ class Normalize extends AbstractFilter
     }
 
 
-    public function unprefix($value)
+    public function unprefix($str)
     {
         $_prefix_ignore = array(
             array('l' => 2, 's' => 'a '),

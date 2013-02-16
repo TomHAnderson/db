@@ -29,7 +29,24 @@
 
 Note: <?= $this->escapeHtml($this->performer->getNote()); ?>
 
+<h3>Aliases</h3>
+<ul>
+<?php
+foreach ($this->performer->getAliases() as $alias) {
+?>
+    <li>
+        <a href="/performerAlias/detail?id=<?= $alias->getId(); ?>">
+            <?= $this->escapeHtml($alias->getName()); ?>
+        </a>
+    </li>
+<?php
+}
+?>
+</ul>
+
 <ul class="nav nav-pills">
+    <?= $this->createPerformerAlias($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+
     <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
 
     <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>

@@ -2,40 +2,34 @@
     <a onClick="$('#createPerformerAlias').toggle();"  class="btn-success" href="#"><i class="icon-film"></i> Create Performer Alias</a>
 </li>
 
-<div id="createComment" style="display: none; clear:both;">
-    <div class="row">
+<div id="createPerformerAlias" style="display: none; clear:both;">
 
-        <div class="span1">
-            Rating
+    <form method="post" action="/performer-alias/create">
+        <div class="row">
+
+            <div class="span1">
+                Name
+            </div>
+
+            <div class="span11">
+                <input type="text" name="name" maxlength="255">
+            </div>
         </div>
 
-        <div class="span11">
+        <div class="row">
+            <div class="span1">
+                Note
+            </div>
 
-            <span class="rating">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="span1">
-            Comment
-        </div>
-
-        <div class="span11">
-            <form method="post" action="/comment/create">
+            <div class="span11">
                 <input type="hidden" name="id" value="<?= $id; ?>">
                 <input type="hidden" name="entityName" value="<?= $entityName; ?>">
                 <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
                 <textarea name="note"></textarea>
                 <br>
                 <input type="submit" value="Submit">
-            </form>
-        </div>
+            </div>
 
-    </div>
+        </div>
+    </form>
 </div>

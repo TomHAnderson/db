@@ -12,7 +12,11 @@
         <join-column name="user_id" referenced-column-name="id" unique="true"/>
       </join-columns>
     </one-to-one>
-    <one-to-many field="aliases" target-entity="Db\Entity\PerformerAlias" mapped-by="performer"/>
+    <one-to-many field="aliases" target-entity="Db\Entity\PerformerAlias" mapped-by="performer">
+      <order-by>
+        <order-by-field name="name" direction="ASC"/>
+      </order-by>
+    </one-to-many>
     <one-to-many field="links" target-entity="Db\Entity\PerformerLink" mapped-by="performer"/>
     <one-to-many field="comments" target-entity="Db\Entity\PerformerComment" mapped-by="performer"/>
     <many-to-many field="lineups" target-entity="Db\Entity\Lineup" inversed-by="performers">
