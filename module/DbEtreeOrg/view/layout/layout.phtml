@@ -57,49 +57,54 @@
                         </ul>
 
                         <ul class="nav">
-<?php
-foreach (array(
-    'band' => 'Bands',
-    'show' => 'Shows',
-    'song' => 'Songs',
-    'source' => 'Sources') as $section => $name) {
-?>
+
 
                             <li class="dropdown">
-                                <a id="<?= $section; ?>-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
-                                    <?php echo $this->translate($name) ?>
+                                <a id="band-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <i class="icon-cogs"></i>
+                                    <?php echo $this->translate('Bands') ?>
                                     <b class="caret"></b>
                                 </a>
 
-                                <ul class="dropdown-menu" aria-labelledby="<?= $section; ?>-drop" role="menu">
+                                <ul class="dropdown-menu" aria-labelledby="band-drop" role="menu">
 
                                     <li role="menuitem">
-                                        <form class="navbar-search pull-left" name="search" action="/<?= $section; ?>/search">
-                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search <?= $name; ?>">
+                                        <form class="navbar-search pull-left" name="search" action="/band/search">
+                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Bands">
                                         </form>
                                     </li>
 
-                                    <li role="menuitem">
-                                        <a href="/<?= $section; ?>/browse">Browse</a>
-                                    </li>
+                                    <li class="divider"></li>
+
+                                    <?php
+                                    if (isset($_SESSION['bands']['latest'])) {
+                                        foreach ($_SESSION['bands']['latest'] as $id) {
+                                            if ($p = $this->findEntity('Db\Entity\Band', $id)) {
+                                                ?>
+                                                    <li role="menuitem">
+                                                        <a href="/band/detail?id=<?= $p->getId(); ?>">
+                                                            <i class="icon-cogs"></i>
+                                                            <?= $this->escapeHtml($p->getName()); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
 
                                     <li class="divider"></li>
 
-                                    <li role="menuitem">
-                                        <a href="/<?= $section; ?>/create">Create</a>
+                                    <li role="">
+                                        <a class="btn-success" href="/band/create" style="color: white;">
+                                            <i class="icon-film"></i>
+                                            Create Band
+                                        </a>
                                     </li>
 
-                                    <li class="divider"></li>
-
-                                    <li role="menuitem">
-                                        <a href="/<?= $section; ?>/create">Last 10 browsed here</a>
-                                    </li>
 
                                 </ul>
                             </li>
-<?php
-}
-?>
 
                             <li class="dropdown">
                                 <a id="performer-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">

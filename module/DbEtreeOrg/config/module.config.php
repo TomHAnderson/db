@@ -83,6 +83,7 @@ return array(
             'venue' => 'DbEtreeOrg\Controller\VenueController',
             'performer' => 'DbEtreeOrg\Controller\PerformerController',
             'performer-alias' => 'DbEtreeOrg\Controller\PerformerAliasController',
+            'band' => 'DbEtreeOrg\Controller\BandController',
         ),
     ),
 
@@ -105,6 +106,8 @@ return array(
 
     'view_helpers' => array(
         'invokables' => array(
+            'findEntity' => 'DbEtreeOrg\View\Helper\FindEntity',
+
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',
             'findPerformer' => 'DbEtreeOrg\View\Helper\FindPerformer',
 
