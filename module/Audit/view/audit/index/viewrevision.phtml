@@ -47,6 +47,7 @@
                                         echo 'info';
                                 }
                             ?>">
+                                    <i class="icon-folder-close"></i>
                                     <?php echo $this->escapeHtml($ce->getClassName()); ?>
                             </span>
                         </td>
@@ -59,6 +60,8 @@
     </div>
 </div>
 
+<ul class="nav nav-pills">
 <?= $this->createComment($this->revision->getId(), 'Audit\Entity\Revision', '/audit/revision/' . $this->revision->getId()); ?>
+</ul>
 
 <?= $this->listComments($this->revision->getComments());

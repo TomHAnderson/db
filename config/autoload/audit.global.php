@@ -3,6 +3,7 @@ return array(
     'audit'=> array(
         'entities' => array(
             'Db\Entity\Performer',
+            'Db\Entity\PerformerAlias',
             'Db\Entity\Performance',
             'Db\Entity\PerformanceSet',
             'Db\Entity\Venue',
