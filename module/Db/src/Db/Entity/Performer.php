@@ -2,7 +2,9 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form;
+use Zend\Form\Annotation as Form
+    , Zend\InputFilter\InputFilter
+    ;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -29,14 +31,27 @@ class Performer extends AbstractEntity {
     {
         return array(
             'id' => $this->getId(),
-            'name' => $this->getName(),
+            'lastname' => $this->getLastname(),
+            'firstname' => $this->getFirstname(),
             'note' => $this->getNote(),
         );
     }
 
     public function exchangeArray($data)
     {
-        $this->setName(isset($data['name']) ? $data['name']: null);
+        $this->setLastname(isset($data['lastname']) ? $data['lastname']: null);
+        $this->setFirstname(isset($data['firstname']) ? $data['firstname']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
+    }
+
+    public function getInputFilter()
+    {
+        $inputFilter = new InputFilter();
+
+        $inputFilter->add($this->inputFilterInputLastname($inputFilter));
+        $inputFilter->add($this->inputFilterInputFirstname($inputFilter));
+        $inputFilter->add($this->inputFilterInputNote($inputFilter));
+
+        return $inputFilter;
     }
 }

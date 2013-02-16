@@ -1,0 +1,18 @@
+<h1>Create Performer</h1>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('lastname')); ?>
+
+<?= $this->formRow($this->form->get('firstname')); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<br>
+
+<button type="send" class="btn btn-success">
+    <i class="icon-film"></i>
+    Create Performer
+</button>
+
+<?= $this->form()->closeTag(); ?>

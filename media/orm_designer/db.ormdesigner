@@ -8,11 +8,21 @@
       <field name="nameNormalize" type="string" required="true" uuid="369d8f03-7fa4-4c8a-b8f4-4224e827aa3d"/>
       <field name="note" type="text" uuid="f7af4eda-cecb-4ecb-8c61-a3c3467ab6c4"/>
       <orm-attributes>
-        <attribute name="repository-class">Db\Entity\PerformerAlias</attribute>
+        <attribute name="repository-class">Db\Repository\PerformerAlias</attribute>
       </orm-attributes>
     </entity>
     <association from="PerformerAlias" to="Performer" owner-alias="aliases" inverse-alias="performer" uuid="6d961e8d-34b1-46d4-b94f-e547d6fe1eec">
       <association-field from="performer_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-inverse">
+          <attribute name="order-by">
+            <attribute name="order-by-field">
+              <attribute name="direction">ASC</attribute>
+              <attribute name="field">name</attribute>
+            </attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Performance" uuid="dc854433-cfaa-4890-b913-ef302bb0d250">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="43a10a39-cd0a-42e0-a758-06e4049f4ecc"/>

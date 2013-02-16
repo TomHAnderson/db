@@ -1,0 +1,21 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a class="btn-warning" href="/performer-alias/edit?id=<?= $this->performerAlias->getId(); ?>"><i class="icon-film"></i> Edit Performer Alias</a>
+    </li>
+</ul>
+
+<h1>Performer Alias</h1>
+
+<h2><?= $this->escapeHtml($this->performerAlias->getName()); ?></h2>
+
+<h3>
+Performer:
+<a href="/performer/detail?id=<?= $this->performerAlias->getPerformer()->getId(); ?>">
+<?= $this->escapeHtml($this->performerAlias->getPerformer()->getLastname()); ?>
+<?php if ($this->escapeHtml($this->performerAlias->getPerformer()->getLastname())) echo ', '; ?>
+<?= $this->escapeHtml($this->performerAlias->getPerformer()->getFirstname()); ?>
+</a>
+</h3>
+
+
+Note: <?= $this->escapeHtml($this->performerAlias->getNote()); ?>

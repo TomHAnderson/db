@@ -1,0 +1,56 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a class="btn-warning" href="/performer/edit?id=<?= $this->performer->getId(); ?>"><i class="icon-film"></i> Edit Performer</a>
+    </li>
+
+    <?php
+    if (!sizeof($this->performer->getAliases())
+        and !sizeof($this->performer->getLineups())
+        and !sizeof($this->performer->getPerformances())
+        and !sizeof($this->performer->getLinks())
+        and !sizeof($this->performer->getComments()))
+    {
+    ?>
+        <li class="">
+            <a class="btn-danger confirm" href="/performer/delete?id=<?= $this->performer->getId(); ?>"><i class="icon-film"></i> Delete Performer</a>
+        </li>
+    <?php
+    }
+    ?>
+</ul>
+
+<h1>Performer</h1>
+
+<h2>
+<?= $this->escapeHtml($this->performer->getLastname()); ?>
+<?php if ($this->escapeHtml($this->performer->getLastname())) echo ', '; ?>
+<?= $this->escapeHtml($this->performer->getFirstname()); ?>
+</h2>
+
+Note: <?= $this->escapeHtml($this->performer->getNote()); ?>
+
+<h3>Aliases</h3>
+<ul>
+<?php
+foreach ($this->performer->getAliases() as $alias) {
+?>
+    <li>
+        <a href="/performerAlias/detail?id=<?= $alias->getId(); ?>">
+            <?= $this->escapeHtml($alias->getName()); ?>
+        </a>
+    </li>
+<?php
+}
+?>
+</ul>
+
+<ul class="nav nav-pills">
+    <?= $this->createPerformerAlias($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+
+    <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+
+    <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+</ul>
+
+
+<?= $this->listComments($this->performer->getComments());

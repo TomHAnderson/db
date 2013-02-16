@@ -1,0 +1,23 @@
+<h1>Edit Performer Alias</h1>
+
+<h3>
+Real Name:
+<?= $this->escapeHtml($this->performerAlias->getPerformer()->getLastname()); ?>
+<?php if ($this->escapeHtml($this->performerAlias->getPerformer()->getLastname())) echo ', '; ?>
+<?= $this->escapeHtml($this->performerAlias->getPerformer()->getFirstname()); ?>
+</h3>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('name')); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<br>
+
+<button type="send" class="btn btn-warning">
+    <i class="icon-film"></i>
+    Edit Performer Alias
+</button>
+
+<?= $this->form()->closeTag(); ?>

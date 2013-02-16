@@ -81,6 +81,8 @@ return array(
             'comment' => 'DbEtreeOrg\Controller\CommentController',
             'place' => 'DbEtreeOrg\Controller\PlaceController',
             'venue' => 'DbEtreeOrg\Controller\VenueController',
+            'performer' => 'DbEtreeOrg\Controller\PerformerController',
+            'performer-alias' => 'DbEtreeOrg\Controller\PerformerAliasController',
         ),
     ),
 
@@ -104,9 +106,12 @@ return array(
     'view_helpers' => array(
         'invokables' => array(
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',
+            'findPerformer' => 'DbEtreeOrg\View\Helper\FindPerformer',
 
             'createComment' => 'DbEtreeOrg\View\Helper\CreateComment',
             'listComments' => 'DbEtreeOrg\View\Helper\ListComments',
+
+            'createPerformerAlias' => 'DbEtreeOrg\View\Helper\CreatePerformerAlias',
 
             'createLink' => 'DbEtreeOrg\View\Helper\CreateLink',
             'listLinks' => 'DbEtreeOrg\View\Helper\ListLinks',
