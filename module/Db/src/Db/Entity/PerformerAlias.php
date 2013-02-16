@@ -6,23 +6,15 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("performer")
+ * @Form\Name("performerAlias")
  */
-class Performer extends AbstractEntity {
+class PerformerAlias extends AbstractEntity {
     use \Db\Entity\Field\Id
-        , \Db\Entity\Field\User
-        , \Db\Entity\Field\Lastname
-        , \Db\Entity\Field\Firstname
+        , \Db\Entity\Field\Performer
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\NameNormalize
         , \Db\Entity\Field\Note
         ;
-
-    use \Db\Entity\Relation\Aliases
-        , \Db\Entity\Relation\Lineups
-        , \Db\Entity\Relation\Performances
-        , \Db\Entity\Relation\Links
-        , \Db\Entity\Relation\Comments
-        ;
-
 
    /** Hydrator functions */
     public function getArrayCopy()

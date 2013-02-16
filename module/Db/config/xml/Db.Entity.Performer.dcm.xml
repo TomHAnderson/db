@@ -4,13 +4,15 @@
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
-    <field name="name" type="string" nullable="false"/>
+    <field name="lastname" type="string" nullable="true"/>
+    <field name="firstname" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
     <one-to-one field="user" target-entity="Db\Entity\User" inversed-by="performer">
       <join-columns>
         <join-column name="user_id" referenced-column-name="id" unique="true"/>
       </join-columns>
     </one-to-one>
+    <one-to-many field="aliases" target-entity="Db\Entity\PerformerAlias" mapped-by="performer"/>
     <one-to-many field="links" target-entity="Db\Entity\PerformerLink" mapped-by="performer"/>
     <one-to-many field="comments" target-entity="Db\Entity\PerformerComment" mapped-by="performer"/>
     <many-to-many field="lineups" target-entity="Db\Entity\Lineup" inversed-by="performers">

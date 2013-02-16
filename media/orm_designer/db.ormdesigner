@@ -1,12 +1,15 @@
 <?xml version="1.0"?>
 <orm-designer version="2.1.9.690" name="db" mvc="Without MVC" orm="Doctrine2" uuid="6b0db420-4a65-402e-8377-355db297598b">
-  <module name="db.etree.org" import-format="Doctrine2Xml" import-path="../../../newdb/media/orm_designer/../../module/Db/config/xml" uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31">
+  <module name="db.etree.org" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31">
     <entity name="PerformerAlias" uuid="53964b5e-51b2-4eaa-9c97-15ec096b3bcf">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="65011d1e-ac15-429d-9a6c-2a82b6eca3fd"/>
       <field name="performer_id" type="integer" required="true" uuid="f67c7f64-d575-48cf-9c97-189a593bdf49"/>
       <field name="name" type="string" required="true" uuid="ad57c29a-f885-4a5e-a17d-c91d749b0fed"/>
-      <field name="nameNormalized" type="string" required="true" uuid="369d8f03-7fa4-4c8a-b8f4-4224e827aa3d"/>
+      <field name="nameNormalize" type="string" required="true" uuid="369d8f03-7fa4-4c8a-b8f4-4224e827aa3d"/>
       <field name="note" type="text" uuid="f7af4eda-cecb-4ecb-8c61-a3c3467ab6c4"/>
+      <orm-attributes>
+        <attribute name="repository-class">Db\Entity\PerformerAlias</attribute>
+      </orm-attributes>
     </entity>
     <association from="PerformerAlias" to="Performer" owner-alias="aliases" inverse-alias="performer" uuid="6d961e8d-34b1-46d4-b94f-e547d6fe1eec">
       <association-field from="performer_id" to="id"/>
@@ -504,7 +507,7 @@
       <attribute name="namespace">Db\Entity</attribute>
     </orm-attributes>
   </module>
-  <module name="Geoname" import-format="Doctrine2Xml" import-path="../../../newdb/media/orm_designer/../../module/Geoname/config/xml" uuid="3cbdb9d3-941f-4690-8568-c9258ce21152">
+  <module name="Geoname" import-format="Doctrine2Xml" import-path="../../module/Geoname/config/xml" uuid="3cbdb9d3-941f-4690-8568-c9258ce21152">
     <entity name="CountryNeighbours" uuid="a2a59f55-c89a-4f32-b323-d6d26145f1f8">
       <field name="country_id" type="integer" required="true" primary="true" uuid="b9c0148c-7263-4dab-ae42-2da1952a07cf"/>
       <field name="neighbour_id" type="integer" required="true" primary="true" uuid="2cfd9753-7558-45c2-866c-8cdb4a325ab4"/>
@@ -708,7 +711,7 @@
       <attribute name="namespace">Geoname\Entity</attribute>
     </orm-attributes>
   </module>
-  <module name="User" import-format="Doctrine2Xml" import-path="../../../newdb/media/orm_designer/../../module/Db/config/xml" uuid="49b4509d-b15f-4ae3-a072-1825b437649d">
+  <module name="User" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="49b4509d-b15f-4ae3-a072-1825b437649d">
     <entity name="User" uuid="59a80c15-1576-4c7a-8a76-0acdcb9b5e54">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="793c6cf2-2702-41f8-9a42-14aa03038198"/>
       <field name="displayName" type="string" required="true" uuid="82af8b90-92a6-40b9-90fc-4519e1315fb1"/>
@@ -733,7 +736,7 @@
       <attribute name="namespace">Db\Entity</attribute>
     </orm-attributes>
   </module>
-  <module name="Link and Comment" import-format="Doctrine2Xml" import-path="../../../newdb/media/orm_designer/../../module/Db/config/xml" uuid="9c8416db-f2b4-4889-b17c-a29057586381">
+  <module name="Link and Comment" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="9c8416db-f2b4-4889-b17c-a29057586381">
     <entity name="AbstractLink" uuid="8d270e66-501b-466f-ab56-045250803130">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="c78bb5db-b5a6-496a-aaef-fb40fd7e46b4"/>
       <field name="title" type="string" required="true" uuid="dec6c5df-f14e-4b76-8a98-5f3df7ce938a"/>
@@ -939,7 +942,7 @@
       <attribute name="namespace">Db\Entity</attribute>
     </orm-attributes>
   </module>
-  <module name="Audit" import-format="Doctrine2Xml" import-path="../../../newdb/media/orm_designer/../../module/Audit/config/xml" uuid="8af8ad2c-3c5e-4de0-b8d0-4bcf049eefc0">
+  <module name="Audit" import-format="Doctrine2Xml" import-path="../../module/Audit/config/xml" uuid="8af8ad2c-3c5e-4de0-b8d0-4bcf049eefc0">
     <entity name="Revision" uuid="d516b8ce-e87c-4ca9-aa13-013734cc7e29">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="e17b0027-5be7-4920-87c2-7468da345a46"/>
       <field name="timestamp" type="datetime" required="true" uuid="5f5b477a-d5a5-4c9c-8e8f-209c1ffb5f76"/>
@@ -1021,7 +1024,7 @@
     <entity uuid="4e1e7abf-b0e7-43cd-b51f-5e42b193daa5" position-x="234" position-y="168" size-x="0" size-x2="99" size-y="0" size-y2="73"/>
     <entity uuid="4e5bd64e-a59a-41b8-90bb-fcbd5e4d7f6f" position-x="30" position-y="106" size-x="0" size-x2="117" size-y="0" size-y2="59"/>
     <entity uuid="4fa7e45c-16f5-488d-b5ee-36000f375c4e" position-x="748" position-y="41" size-x="0" size-x2="100" size-y="0" size-y2="45"/>
-    <module uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda" bk-color="15169559" position-x="1182" position-y="-290" size-x="-31" size-x2="840" size-y="3" size-y2="607"/>
+    <module uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda" bk-color="15169559" position-x="1182" position-y="-290" size-x="-31" size-x2="850" size-y="3" size-y2="607"/>
     <association uuid="50a15d73-6118-43c0-907f-34a44b69aa8a" splitted="1"/>
     <region uuid="52ac6c26-25b6-4d3b-9572-bd8e75c16ab8" bk-color="15716788" position-x="480" position-y="24" size-x="31" size-x2="356" size-y="0" size-y2="545"/>
     <inheritance-child uuid="5368bcd9-44dc-4bcd-8913-efde725fe9b7" center-position-x="2" center-position-y="10" splitted="1"/>
@@ -1071,7 +1074,7 @@
     <region uuid="96f356b4-b805-4ea4-8d92-055900e0e964" bk-color="15716788" position-x="1006" position-y="211" size-x="356" size-x2="-97" size-y="251" size-y2="48"/>
     <entity uuid="99fcccf0-d144-4dd1-bbd2-f0aca7e96f8b" position-x="35" position-y="133" size-x="0" size-x2="77" size-y="0" size-y2="59"/>
     <association uuid="9b2d1c5b-f99a-430e-8d7d-8fed59719b94" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
-    <module uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31" bk-color="15169559" position-x="61" position-y="-228" size-x="28" size-x2="1116" size-y="62" size-y2="546"/>
+    <module uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31" bk-color="4293359639" position-x="61" position-y="-228" size-x="28" size-x2="1116" size-y="62" size-y2="546"/>
     <module uuid="9c8416db-f2b4-4889-b17c-a29057586381" bk-color="4293359639" position-x="39" position-y="520" size-x="0" size-x2="1013" size-y="176" size-y2="306"/>
     <entity uuid="9e31240b-a34c-4ad8-afaa-bb21e0724e00" position-x="-192" position-y="-46" size-x="0" size-x2="77" size-y="0" size-y2="59"/>
     <entity uuid="9e7fbb88-4860-492a-b01c-7e88c0769300" position-x="-305" position-y="-236" size-x="0" size-x2="93" size-y="0" size-y2="101"/>
