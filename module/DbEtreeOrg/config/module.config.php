@@ -105,6 +105,7 @@ return array(
     'view_helpers' => array(
         'invokables' => array(
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',
+            'findPerformer' => 'DbEtreeOrg\View\Helper\FindPerformer',
 
             'createComment' => 'DbEtreeOrg\View\Helper\CreateComment',
             'listComments' => 'DbEtreeOrg\View\Helper\ListComments',

@@ -118,15 +118,16 @@ class PerformerController extends AbstractActionController
 
         $id = $this->getRequest()->getQuery()->get('id');
         $performer = $em->getRepository('Db\Entity\Performer')->find($id);
-        if (!$venue)
+        if (!$performer)
             return $this->plugin('redirect')->toUrl('/');
 
-        if (!sizeof($performer->getPerformances())
-            and !sizeof($venue->getVenueGroups())
-            and !sizeof($venue->getLinks())
-            and !sizeof($venue->getComments()))
+        if (!sizeof($performer->getAliases())
+            and !sizeof($performer->getLineups())
+            and !sizeof($performer->getPerformances())
+            and !sizeof($performer->getLinks())
+            and !sizeof($performer->getComments()))
         {
-            $em->remove($venue);
+            $em->remove($performer);
             $em->flush();
         }
 

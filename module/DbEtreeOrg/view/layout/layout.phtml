@@ -120,13 +120,13 @@ foreach (array(
 
                                     <?php
                                     if (isset($_SESSION['performers']['latest'])) {
-                                        foreach ($_SESSION['performer']['latest'] as $id) {
-                                            if ($v = $this->findPerformer($id)) {
+                                        foreach ($_SESSION['performers']['latest'] as $id) {
+                                            if ($p = $this->findPerformer($id)) {
                                                 ?>
                                                     <li role="menuitem">
-                                                        <a href="/performer/detail?id=<?= $v->getId(); ?>">
+                                                        <a href="/performer/detail?id=<?= $p->getId(); ?>">
                                                             <i class="icon-film"></i>
-                                                            <?= $this->escapeHtml($v->getName()); ?>
+                                                            <?= $this->escapeHtml($p->getLastname()); ?><?php if ($this->escapeHtml($p->getLastname())) echo ', '; ?><?= $this->escapeHtml($p->getFirstname()); ?>
                                                         </a>
                                                     </li>
                                                 <?php
