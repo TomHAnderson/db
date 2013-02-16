@@ -1,0 +1,39 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a class="btn-warning" href="/band/edit?id=<?= $this->band->getId(); ?>"><i class="icon-cogs"></i> Edit Band</a>
+    </li>
+</ul>
+
+<h1>Band</h1>
+
+<h2><?= $this->escapeHtml($this->band->getName()); ?></h2>
+
+Note: <?= $this->escapeHtml($this->band->getNote()); ?>
+
+<h3>Lineups</h3>
+
+<ul>
+<?php
+foreach ($this->band->getLineups() as $lineup) {
+?>
+    <li><?= $this->escapeHtml($lineup->getName()); ?></li>
+<?php
+}
+?>
+</ul>
+
+<ul class="nav nav-pills">
+     <li class="">
+         <a class="btn-success" href="/lineup/create?id=<?= $this->band->getId(); ?>">
+            <i class="icon-group"></i>
+            Create Lineup
+        </a>
+     </li>
+
+    <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+
+    <?= $this->createComment($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+</ul>
+
+
+<?= $this->listComments($this->band->getComments());
