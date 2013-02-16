@@ -45,15 +45,6 @@ class UserController extends AbstractActionController
         $form = $builder->createForm($user);
         $form->setData($user->getArrayCopy());
 
-        $form->add(array(
-            'name' => 'submit',
-            'attributes' => array(
-                'id' => 'submit',
-                'type'  => 'submit',
-                'value' => 'Submit',
-            ),
-        ));
-
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
