@@ -1,0 +1,47 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a class="btn-warning" href="/lineup/edit?id=<?= $this->lineup->getId(); ?>"><i class="icon-group"></i> Edit Lineup</a>
+    </li>
+</ul>
+
+<h1>Lineup</h1>
+
+<h2>Band:
+    <a href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
+        <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
+    </a>
+</h2>
+
+
+<h2><?= $this->escapeHtml($this->lineup->getName()); ?></h2>
+
+<?php
+if ($this->lineup->getNote()) { ?>
+    <pre><?= $this->escapeHtml($this->lineup->getNote()); ?></pre>
+<?php
+}
+?>
+
+<h3>Performers</h3>
+
+<ul>
+<?php
+foreach ($this->lineup->getPerformers() as $performer) {
+#    print_r($performer);
+?>
+    <li>
+        <a href="/performer/detail?id=<?= $performer->getId(); ?>">
+<?= $this->escapeHtml($performer->getLastname()); ?>
+<?php if ($this->escapeHtml($performer->getLastname())) echo ', '; ?>
+<?= $this->escapeHtml($performer->getFirstname()); ?>
+        </a>
+    </li>
+<?php
+}
+?>
+</ul>
+
+
+<ul class="nav nav-pills">
+    <?= $this->addPerformerToLineup($this->lineup->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->lineup->getId()); ?>
+</ul>

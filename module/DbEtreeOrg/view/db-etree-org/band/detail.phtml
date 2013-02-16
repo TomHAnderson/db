@@ -16,7 +16,11 @@ Note: <?= $this->escapeHtml($this->band->getNote()); ?>
 <?php
 foreach ($this->band->getLineups() as $lineup) {
 ?>
-    <li><?= $this->escapeHtml($lineup->getName()); ?></li>
+    <li>
+        <a href="/lineup/detail?id=<?= $lineup->getId(); ?>">
+            <?= $this->escapeHtml($lineup->getName()); ?>
+        </a>
+    </li>
 <?php
 }
 ?>

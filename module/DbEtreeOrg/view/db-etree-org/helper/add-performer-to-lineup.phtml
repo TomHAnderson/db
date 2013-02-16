@@ -1,0 +1,41 @@
+<li class="">
+    <a onClick="$('#addPerformerToLineup').toggle();"  class="btn-success" href="#"><i class="icon-film"></i> Add Performer to Lineup</a>
+</li>
+
+<div id="addPerformerToLineup" style="display: none; clear:both;">
+
+    <form method="post" action="/lineup/add-performer">
+        <div class="row">
+
+            <div class="span1">
+                Name
+            </div>
+
+            <div class="span11">
+                <input type="text" autocomplete="off" name="performer_id" placeholder="Name" maxlength="255">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span1">
+                Note
+            </div>
+
+            <div class="span11">
+                <input type="hidden" name="id" value="<?= $id; ?>">
+                <input type="hidden" name="entityName" value="<?= $entityName; ?>">
+                <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
+                <textarea name="note"></textarea>
+                <br>
+                <input type="submit" value="Submit">
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<script>
+    $('#performer_id').typeahead(
+    {
+       //
+    });

@@ -84,6 +84,7 @@ return array(
             'performer' => 'DbEtreeOrg\Controller\PerformerController',
             'performer-alias' => 'DbEtreeOrg\Controller\PerformerAliasController',
             'band' => 'DbEtreeOrg\Controller\BandController',
+            'lineup' => 'DbEtreeOrg\Controller\LineupController',
         ),
     ),
 
@@ -107,6 +108,8 @@ return array(
     'view_helpers' => array(
         'invokables' => array(
             'findEntity' => 'DbEtreeOrg\View\Helper\FindEntity',
+
+            'addPerformerToLineup' => 'DbEtreeOrg\View\Helper\AddPerformerToLineup',
 
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',
             'findPerformer' => 'DbEtreeOrg\View\Helper\FindPerformer',

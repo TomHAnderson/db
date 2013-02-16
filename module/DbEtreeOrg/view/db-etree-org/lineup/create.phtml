@@ -1,0 +1,18 @@
+<h1>Create Lineup</h1>
+
+<h2><?= $this->escapeHtml($this->band->getName()); ?></h2>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('name')); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<br>
+
+<button type="send" class="btn btn-success">
+    <i class="icon-group"></i>
+    Create Lineup
+</button>
+
+<?= $this->form()->closeTag(); ?>

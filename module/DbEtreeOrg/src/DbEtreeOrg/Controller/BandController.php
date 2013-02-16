@@ -113,8 +113,6 @@ class BandController extends AbstractActionController
 
     public function deleteAction()
     {
-        die("Once you get an alias you're stuck with it");
-
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
             return $this->plugin('redirect')->toUrl('/user/login');
 
