@@ -12,7 +12,8 @@
             </div>
 
             <div class="span11">
-                <input type="text" autocomplete="off" name="performer_id" placeholder="Name" maxlength="255">
+                <input type="text" id="performer" autocomplete="off" placeholder="Performer Name or Alias"/>
+                <input type="hidden" name="performer_id" id="performerId" value="" />
             </div>
         </div>
 
@@ -35,7 +36,52 @@
 </div>
 
 <script>
-    $('#performer_id').typeahead(
-    {
-       //
+var performers = {};
+var performerLabels = [];
+
+require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
+    $( "#performer" ).typeahead({
+        source: function ( query, process ) {
+
+            //the "process" argument is a callback, expecting an array of values (strings) to display
+
+            //get the data to populate the typeahead (plus some)
+            //from your api, wherever that may be
+            $.get('/performer/search.json', { q: query }, function ( data ) {
+
+                //reset these containers
+                performers = {};
+                performerLabels = [];
+
+                data = $.parseJSON(data);
+
+                //for each item returned, if the display name is already included
+                //(e.g. multiple "John Smith" records) then add a unique value to the end
+                //so that the user can tell them apart. Using underscore.js for a functional approach.
+                _.each( data, function( item, ix, list ){
+                    if ( _.contains( performers, item.label ) ){
+                        item.label = item.label + ' #' + item.value;
+                    }
+
+                    //add the label to the display array
+                    performerLabels.push( item.label );
+
+                    //also store a mapping to get from label back to ID
+                    performers[ item.label ] = item.value;
+                });
+
+                //return the display array
+                process( performerLabels );
+            });
+        }
+        , updater: function (item) {
+            //save the id value into the hidden field
+            $( "#performerId" ).val( users[ item ] );
+
+            //return the string you want to go into the textbox (e.g. name)
+            return item;
+        }
     });
+
+});
+</script>

@@ -133,4 +133,9 @@ class PerformerController extends AbstractActionController
 
         return $this->plugin('redirect')->toUrl('/');
     }
+
+    public function searchJsonAction()
+    {
+
+    }
 }

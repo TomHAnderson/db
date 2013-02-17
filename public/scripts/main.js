@@ -1,4 +1,4 @@
-require(['modernizr.min', 'bootstrap.min', 'datemask'], function() {
+require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
     $('a.confirm').live('click', function(event) {
         return confirm('Are you sure?');
     });
