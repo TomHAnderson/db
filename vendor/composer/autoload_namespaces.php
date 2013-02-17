@@ -35,6 +35,7 @@ return array(
     'DoctrineORMModuleTest\\' => $vendorDir . '/doctrine/doctrine-orm-module/tests/',
     'DoctrineModule\\' => $vendorDir . '/doctrine/doctrine-module/src/',
     'DoctrineModuleTest\\' => $vendorDir . '/doctrine/doctrine-module/tests/',
+    'CdliTwoStageSignup' => $vendorDir . '/cdli/two-stage-signup/src/',
     'Assetwig' => $vendorDir . '/heartsentwined/zf2-assetwig/src/',
     'Assetic' => $vendorDir . '/kriswallsmith/assetic/src/',
 );
