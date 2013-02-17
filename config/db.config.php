@@ -14,6 +14,7 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
+        'CdliTwoStageSignup',
 
         'Geoname',
         'Heartsentwined\Cron',

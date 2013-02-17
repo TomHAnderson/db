@@ -1,6 +1,62 @@
 {
-    "hash": "e963ec89f3afa4081d8f3ab3be222271",
+    "hash": "f82d3d1312ffb50411660587d165be1a",
     "packages": [
+        {
+            "name": "cdli/two-stage-signup",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/cdli/CdliTwoStageSignup.git",
+                "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cdli/CdliTwoStageSignup/zipball/41f88cde87f69ddd9393e1b0568edb4cec6c6046",
+                "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046",
+                "shasum": ""
+            },
+            "require": {
+                "zendframework/zendframework": "2.*",
+                "zf-commons/zfc-user": "0.*"
+            },
+            "replace": {
+                "cdli/cdlitwostagesignup": "self.version"
+            },
+            "suggest": {
+                "doctrine/doctrine-orm-module": "dev-master",
+                "zf-commons/zfc-user-doctrine-orm": "dev-master"
+            },
+            "time": "2013-02-13 12:16:55",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "CdliTwoStageSignup": "src/"
+                },
+                "classmap": [
+                    "./"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Lundrigan",
+                    "email": "adamlundrigan@cdli.ca",
+                    "homepage": "http://www.cdli.ca/"
+                }
+            ],
+            "description": "Two-stage signup process for ZfcUser",
+            "homepage": "https://github.com/cdli/CdliTwoStageSignup",
+            "keywords": [
+                "register",
+                "signup",
+                "user",
+                "zf2",
+                "zfcuser"
+            ]
+        },
         {
             "name": "doctrine/common",
             "version": "2.3.0-RC1",
@@ -1590,6 +1646,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "zf-commons/zfc-user-doctrine-orm": 20,
+        "cdli/two-stage-signup": 20,
         "doctrine/common": 5,
         "doctrine/dbal": 5,
         "doctrine/orm": 5,

@@ -13,6 +13,7 @@
 
         "zf-commons/zfc-user": "0.1.0",
         "zf-commons/zfc-user-doctrine-orm": "dev-master",
+        "cdli/two-stage-signup": "dev-master",
 
         "doctrine/common": "2.3.0-RC1",
         "doctrine/dbal": "2.3.0-RC1",
