@@ -54,6 +54,11 @@ Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
             <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
         </ul>
     </div>
+
+
+        $res = Jambase::search(array('band' => 'Wilco'));
+
+        print_r($res);die();
 </div>
 
 <?= $this->listComments($this->venue->getComments());
