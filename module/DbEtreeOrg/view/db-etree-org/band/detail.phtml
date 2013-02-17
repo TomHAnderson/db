@@ -4,9 +4,7 @@
     </li>
 </ul>
 
-<h1>Band</h1>
-
-<h2><?= $this->escapeHtml($this->band->getName()); ?></h2>
+<h1><i class="icon-cogs"></i> <?= $this->escapeHtml($this->band->getName()); ?></h1>
 
 Note: <?= $this->escapeHtml($this->band->getNote()); ?>
 
@@ -49,6 +47,12 @@ $res = Gracenote::query('ALBUM_SEARCH', array(
     <li class="">
         <a href="#comments" data-toggle="tab">
             Comments
+        </a>
+    </li>
+
+    <li class="">
+        <a href="#links" data-toggle="tab">
+            Links
         </a>
     </li>
 
