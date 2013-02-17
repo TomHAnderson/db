@@ -85,6 +85,7 @@ return array(
             'performer-alias' => 'DbEtreeOrg\Controller\PerformerAliasController',
             'band' => 'DbEtreeOrg\Controller\BandController',
             'lineup' => 'DbEtreeOrg\Controller\LineupController',
+            'performance' => 'DbEtreeOrg\Controller\PerformanceController',
         ),
     ),
 

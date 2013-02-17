@@ -19,6 +19,11 @@ return array(
         )
     ),
 
+    'gracenote' => array(
+        'clientId' => '',
+        'userId' => '',
+    },
+
     'keen-io' => array(
         'projectId' => '',
         'apiKey' => '',

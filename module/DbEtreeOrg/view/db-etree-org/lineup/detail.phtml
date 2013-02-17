@@ -44,4 +44,8 @@ foreach ($this->lineup->getPerformers() as $performer) {
 
 <ul class="nav nav-pills">
     <?= $this->addPerformerToLineup($this->lineup->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->lineup->getId()); ?>
+
+    <li class="">
+        <a class="btn-success" href="/performance/create?id=<?= $this->lineup->getId(); ?>"><i class="icon-music"></i> Add Performane</a>
+    </li>
 </ul>

@@ -26,18 +26,108 @@ foreach ($this->band->getLineups() as $lineup) {
 ?>
 </ul>
 
-<ul class="nav nav-pills">
-     <li class="">
-         <a class="btn-success" href="/lineup/create?id=<?= $this->band->getId(); ?>">
-            <i class="icon-group"></i>
-            Create Lineup
+<?php
+use Gracenote\Service\Gracenote;
+
+$res = Gracenote::query('ALBUM_SEARCH', array(
+    'parameters' => array(
+        'ARTIST' => $this->band->getName(),
+    ),
+    'options' => array(
+        'SELECT_EXTENDED' => 'COVER',
+    ),
+));
+?>
+
+<ul class="nav nav-tabs" id="tabs">
+    <li class="active">
+        <a href="#actions" data-toggle="tab">
+            Actions
         </a>
-     </li>
+    </li>
 
-    <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+    <li class="">
+        <a href="#comments" data-toggle="tab">
+            Comments
+        </a>
+    </li>
 
-    <?= $this->createComment($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+<?php
+if (sizeof($res->RESPONSE->ALBUM)) {
+?>
+    <li class="">
+        <a href="#gracenote-albums" data-toggle="tab">
+            Gracenote Albums
+        </a>
+    </li>
+<?php
+}
+?>
 </ul>
 
+<div class="tab-content">
+    <div class="tab-pane active" id="actions">
+        <ul class="nav nav-pills">
+             <li class="">
+                 <a class="btn-success" href="/lineup/create?id=<?= $this->band->getId(); ?>">
+                    <i class="icon-group"></i>
+                    Create Lineup
+                </a>
+             </li>
+        </ul>
+   </div>
 
-<?= $this->listComments($this->band->getComments());
+   <div class="tab-pane" id="comments">
+        <ul class="nav nav-pills">
+            <?= $this->createComment($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+        </ul>
+
+        <?= $this->listComments($this->band->getComments()); ?>
+    </div>
+
+    <div class="tab-pane" id="links">
+        <ul class="nav nav-pills">
+            <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+        </ul>
+    </div>
+
+
+    <?
+    if (sizeof($res->RESPONSE->ALBUM)) {
+    ?>
+    <div class="tab-pane" id="gracenote-albums">
+        <div class="row">
+            <div class="span1">
+                <b>Date</b>
+            </div>
+
+            <div class="span4">
+                <b>Artist</b>
+            </div>
+
+            <div class="span6">
+                <b>Title</b>
+            </div>
+        </div>
+
+        <?php
+            foreach ($res->RESPONSE->ALBUM as $album) {
+        ?>
+            <div class="row">
+                <div class="span1">
+                    <pre><?= $this->escapeHtml((string)$album->DATE); ?>&nbsp;</pre>
+                </div>
+                <div class="span4">
+                    <pre><?= $this->escapeHtml((string)$album->ARTIST); ?>&nbsp;</pre>
+                </div>
+                <div class="span6">
+                    <pre><?= $this->escapeHtml((string)$album->TITLE); ?></pre>
+                </div>
+            </div>
+
+        <?php
+            }
+        }
+        ?>
+    </div>
+</div>

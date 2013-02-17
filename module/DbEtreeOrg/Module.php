@@ -6,7 +6,9 @@
 namespace DbEtreeOrg;
 
 use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
+use Zend\Mvc\MvcEvent
+    , Gracenote\Service\Gracenote
+    ;
 
 class Module
 {
@@ -22,6 +24,10 @@ class Module
         // Disable zfcuser doctrine default entities
         $options = $e->getApplication()->getServiceManager()->get('zfcuser_module_options');
         $options->setEnableDefaultEntities(false);
+
+        $config = $e->getApplication()->getConfig();
+
+        Gracenote::configure($config['gracenote']['clientId'], $config['gracenote']['userId']);
     }
 
     public function getConfig()

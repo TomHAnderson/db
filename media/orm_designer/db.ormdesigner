@@ -176,7 +176,7 @@
       </many-to-many-entity>
     </many-to-many>
     <entity name="Lineup" uuid="0288b513-9531-454a-bc91-5f02c7d49f45">
-      <field name="id" type="integer" primary="true" uuid="7ddfeb76-79d8-437c-a06f-ba5da7088887"/>
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="7ddfeb76-79d8-437c-a06f-ba5da7088887"/>
       <field name="band_id" type="integer" required="true" uuid="2e78be0d-1ed7-4d08-b4e9-79cedc0eb1ec"/>
       <field name="name" type="string" required="true" uuid="30398254-7fb2-4a6f-947b-98cec8225191"/>
       <field name="note" type="text" uuid="bcd15dfd-143f-4f6b-bab7-9ac2f52cdf40"/>
