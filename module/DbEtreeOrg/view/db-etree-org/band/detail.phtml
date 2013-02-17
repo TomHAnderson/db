@@ -26,8 +26,9 @@ foreach ($this->band->getLineups() as $lineup) {
 
 <?php
 use Gracenote\Service\Gracenote;
+use Jambase\Service\Jambase;
 
-$res = Gracenote::query('ALBUM_SEARCH', array(
+$gracenote = Gracenote::query('ALBUM_SEARCH', array(
     'parameters' => array(
         'ARTIST' => $this->band->getName(),
     ),
@@ -35,6 +36,9 @@ $res = Gracenote::query('ALBUM_SEARCH', array(
         'SELECT_EXTENDED' => 'COVER',
     ),
 ));
+
+$jambase = Jambase::search(array('band' => $this->band->getName()));
+
 ?>
 
 <ul class="nav nav-tabs" id="tabs">
@@ -57,7 +61,19 @@ $res = Gracenote::query('ALBUM_SEARCH', array(
     </li>
 
 <?php
-if (sizeof($res->RESPONSE->ALBUM)) {
+if (sizeof($jambase->event)) {
+?>
+    <li class="">
+        <a href="#jambase" data-toggle="tab">
+            Jambase Shows
+        </a>
+    </li>
+<?php
+}
+?>
+
+<?php
+if (sizeof($gracenote->RESPONSE->ALBUM)) {
 ?>
     <li class="">
         <a href="#gracenote-albums" data-toggle="tab">
@@ -95,9 +111,53 @@ if (sizeof($res->RESPONSE->ALBUM)) {
         </ul>
     </div>
 
+<?php
+if (sizeof($jambase->event)) {
+?>
+    <div class="tab-pane" id="jambase">
+        <div class="row">
+            <div class="span2">
+                <b>Date</b>
+            </div>
+
+            <div class="span5">
+                <b>Venue</b>
+            </div>
+            <div class="span3">
+                <b>City</b>
+            </div>
+            <div class="span1">
+                <b>State</b>
+            </div>
+        </div>
+
+        <?php
+        foreach ($jambase->event as $event) {
+        ?>
+            <div class="row">
+                <div class="span2">
+                    <pre><a href="<?= (string)$event->event_url; ?>"><?= $this->escapeHtml((string)$event->event_date); ?></a></pre>
+                </div>
+                <div class="span5">
+                    <pre><a href="<?= (string)$event->event_url; ?>"><?= $this->escapeHtml((string)$event->venue->venue_name); ?></a></pre>
+                </div>
+                <div class="span3">
+                    <pre><a href="<?= (string)$event->event_url; ?>"><?= $this->escapeHtml((string)$event->venue->venue_city); ?></a></pre>
+                </div>
+                <div class="span1">
+                    <pre><a href="<?= (string)$event->event_url; ?>"><?= $this->escapeHtml((string)$event->venue->venue_state); ?></a></pre>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+<?php
+}
+?>
 
     <?
-    if (sizeof($res->RESPONSE->ALBUM)) {
+    if (sizeof($gracenote->RESPONSE->ALBUM)) {
     ?>
     <div class="tab-pane" id="gracenote-albums">
         <div class="row">
@@ -115,7 +175,7 @@ if (sizeof($res->RESPONSE->ALBUM)) {
         </div>
 
         <?php
-            foreach ($res->RESPONSE->ALBUM as $album) {
+            foreach ($gracenote->RESPONSE->ALBUM as $album) {
         ?>
             <div class="row">
                 <div class="span1">

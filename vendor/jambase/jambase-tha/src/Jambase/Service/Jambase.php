@@ -18,13 +18,12 @@ class Jambase
 
     static public function getApiKey()
     {
-        return self::apiKey;
+        return self::$apiKey;
     }
 
     static public function setApiKey($value)
     {
-        self::apiKey = $value;
-        return $this;
+        self::$apiKey = $value;
     }
 
     static public function search($parameters = array())
@@ -42,8 +41,8 @@ class Jambase
         $http->setParameterGet($parameters);
 
         $response = $http->send();
-        $content = $response->getBody();
+        $responseXml = simplexml_load_string($response->getBody());
 
-        return Json::decode($content);
+        return $responseXml;
     }
 }

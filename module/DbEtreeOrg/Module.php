@@ -29,6 +29,7 @@ class Module
         $config = $e->getApplication()->getConfig();
 
         Gracenote::configure($config['gracenote']['clientId'], $config['gracenote']['userId']);
+        Jambase::configure($config['jambase']['apiKey']);
     }
 
     public function getConfig()

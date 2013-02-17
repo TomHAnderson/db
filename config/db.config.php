@@ -10,17 +10,14 @@ return array(
         'DoctrineModule',
         'DoctrineORMModule',
         'Audit',
-//        'ZF2EntityAudit',
 
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
 
-//        'Heartsentwined\Geoname',
         'Geoname',
         'Heartsentwined\Cron',
 
-        'Jambase',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

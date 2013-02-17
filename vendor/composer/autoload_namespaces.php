@@ -15,6 +15,7 @@ return array(
     'Symfony\\Component\\Yaml' => $vendorDir . '/symfony/yaml/',
     'Symfony\\Component\\Console' => $vendorDir . '/symfony/console/',
     'KeenIO' => $vendorDir . '/keen-io/keen-io/src/',
+    'Jambase' => $vendorDir . '/jambase/jambase-tha/src/',
     'Heartsentwined\\Yaml' => $vendorDir . '/heartsentwined/yaml/src/',
     'Heartsentwined\\Phpunit\\Testcase' => $vendorDir . '/heartsentwined/zf2-phpunit-testcase/src/',
     'Heartsentwined\\Geoname' => $vendorDir . '/heartsentwined/zf2-geoname/src/',

@@ -1,5 +1,5 @@
 {
-    "hash": "ec6b4e26fe55495357626f732e8a027f",
+    "hash": "e963ec89f3afa4081d8f3ab3be222271",
     "packages": [
         {
             "name": "doctrine/common",
@@ -467,20 +467,20 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/TomHAnderson/php-gracenote.git",
-                "reference": "f7744134c2bd1f05c94441b252ed39e65a2bf3d4"
+                "url": "https://github.com/TomHAnderson/GracenoteClient-PHP.git",
+                "reference": "b2c31302d71a2d07a083a8aadc14189d94e53541"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TomHAnderson/php-gracenote/zipball/f7744134c2bd1f05c94441b252ed39e65a2bf3d4",
-                "reference": "f7744134c2bd1f05c94441b252ed39e65a2bf3d4",
+                "url": "https://api.github.com/repos/TomHAnderson/GracenoteClient-PHP/zipball/b2c31302d71a2d07a083a8aadc14189d94e53541",
+                "reference": "b2c31302d71a2d07a083a8aadc14189d94e53541",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*,!=2.0.6"
             },
-            "time": "2013-02-16 23:41:46",
+            "time": "2013-02-17 01:17:18",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1064,6 +1064,50 @@
             ]
         },
         {
+            "name": "jambase/jambase-tha",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TomHAnderson/JambaseClient-PHP.git",
+                "reference": "198139f74fa4458716f09ef96759e8cee9bfab80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TomHAnderson/JambaseClient-PHP/zipball/198139f74fa4458716f09ef96759e8cee9bfab80",
+                "reference": "198139f74fa4458716f09ef96759e8cee9bfab80",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zendframework": "2.*,!=2.0.6"
+            },
+            "time": "2013-02-17 04:27:14",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Jambase": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Anderson",
+                    "email": "tom.h.anderson@gmail.com",
+                    "homepage": "http://db.etree.org/"
+                }
+            ],
+            "description": "A PHP library for the Jambase API",
+            "homepage": "http://developer.jambase.com",
+            "keywords": [
+                "concerts",
+                "live music",
+                "zf2"
+            ]
+        },
+        {
             "name": "keen-io/keen-io",
             "version": "dev-master",
             "source": {
@@ -1554,6 +1598,7 @@
         "doctrine/doctrine-orm-module": 20,
         "heartsentwined/zf2-geoname": 20,
         "keen-io/keen-io": 20,
-        "gracenote/gracenote-tha": 20
+        "gracenote/gracenote-tha": 20,
+        "jambase/jambase-tha": 20
     }
 }
