@@ -9,27 +9,27 @@ use Zend\Authentication\Adapter\AdapterInterface,
 
 class Jambase
 {
-    private $apiKey;
+    static private $apiKey;
 
-    public function __construct($apiKey)
+    static public function configure($apiKey)
     {
-        $this->setApiKey($apiKey);
+        self::setApiKey($apiKey);
     }
 
-    public function getApiKey()
+    static public function getApiKey()
     {
-        return $this->apiKey;
+        return self::apiKey;
     }
 
-    public function setApiKey($value)
+    static public function setApiKey($value)
     {
-        $this->apiKey = $value;
+        self::apiKey = $value;
         return $this;
     }
 
-    public function search($parameters = array())
+    static public function search($parameters = array())
     {
-        if (!$this->getApiKey())
+        if (!self::getApiKey())
             throw new \Exception('Invalid API Key');
 
         $http = new Client();
@@ -38,7 +38,7 @@ class Jambase
         $http->setMethod('GET');
         $http->setOptions(array('sslverifypeer' => false));
 
-        $parameters['apikey'] = $this->getApiKey();
+        $parameters['apikey'] = self::getApiKey();
         $http->setParameterGet($parameters);
 
         $response = $http->send();

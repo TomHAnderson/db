@@ -19,13 +19,12 @@
     ?>
 </ul>
 
-<h1>Performer</h1>
-
-<h2>
+<h1>
+<i class="icon-film"></i>
 <?= $this->escapeHtml($this->performer->getLastname()); ?>
 <?php if ($this->escapeHtml($this->performer->getLastname())) echo ', '; ?>
 <?= $this->escapeHtml($this->performer->getFirstname()); ?>
-</h2>
+</h1>
 
 Note: <?= $this->escapeHtml($this->performer->getNote()); ?>
 

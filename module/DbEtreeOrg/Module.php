@@ -8,6 +8,7 @@ namespace DbEtreeOrg;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent
     , Gracenote\Service\Gracenote
+    , Jambase\Service\Jambase
     ;
 
 class Module

@@ -18,8 +18,7 @@
     ?>
 </ul>
 
-<h1>Venue</h1>
-<h2><?= $this->escapeHtml($this->venue->getName()); ?></h2>
+<h1><i class="icon-home"></i> <?= $this->escapeHtml($this->venue->getName()); ?></h1>
 
 City: <?= $this->escapeHtml($this->venue->getCity()); ?>
 <br>
@@ -27,11 +26,34 @@ State: <?= $this->escapeHtml($this->venue->getState()); ?>
 <br>
 Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
 
-<ul class="nav nav-pills">
-    <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+<ul class="nav nav-tabs" id="tabs">
+    <li class="active">
+        <a href="#comments" data-toggle="tab">
+            Comments
+        </a>
+    </li>
 
-    <?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+    <li class="">
+        <a href="#links" data-toggle="tab">
+            Links
+        </a>
+    </li>
 </ul>
 
+<div class="tab-content">
+   <div class="tab-pane active" id="comments">
+        <ul class="nav nav-pills">
+            <?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+        </ul>
+
+        <?= $this->listComments($this->venue->getComments()); ?>
+    </div>
+
+    <div class="tab-pane" id="links">
+        <ul class="nav nav-pills">
+            <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+        </ul>
+    </div>
+</div>
 
 <?= $this->listComments($this->venue->getComments());
