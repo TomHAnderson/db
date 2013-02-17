@@ -1,30 +1,17 @@
 <?php
 return array(
     'modules' => array(
-        'Install',
-        'Import',
-
-        'Db',
-        'DbEtreeOrg',
-
+        'Application',
         'DoctrineModule',
         'DoctrineORMModule',
-        'Audit',
-
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
         'CdliTwoStageSignup',
-
-        'Geoname',
-        'Heartsentwined\Cron',
-
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(
-            'config/autoload/{,*.}{global}.php',
-            'config/autoload/{,*.}{live}.php',
-            'config/autoload/{,*.}{local}.php',
+            'config/autoload/{,*.}{global,local}.php',
         ),
         'module_paths' => array(
             './module',
