@@ -10,15 +10,22 @@ use Db\Model\AbstractModel
 
 abstract class AbstractRepository extends EntityRepository
 {
-/*
-//    use Component\Entity
-    use Component\ServiceManager
-        , Component\EventManager
-        ;
+    public function findLike($search, $sort = array())
+    {
+        $query = $this->createQueryBuilder('s');
+        $i = 0;
+        foreach ($search as $column => $value) {
+            $paramName = md5(uniqid());
+            $query->andWhere('s.' . $column . ' LIKE ?' . ++$i);
+            $query->setParameter($i, $value);
+        }
 
-    public function __construct(ServiceManager $serviceManager, EntityManager $entityManager) {
-        $this->setServiceManager($serviceManager);
-        $this->setEntityManager($entityManager);
+        foreach ($sort as $column => $direction) {
+            $query->add('orderBy', "s.$column $direction");
+        }
+
+        $query = $query->getQuery();
+
+       return $query->getResult();
     }
-*/
 }

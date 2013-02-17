@@ -5,6 +5,8 @@ use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Entity\Performer as PerformerEntity
+    , Db\Filter\Normalize
+    , Zend\View\Model\JsonModel
     ;
 
 class PerformerController extends AbstractActionController
@@ -136,6 +138,41 @@ class PerformerController extends AbstractActionController
 
     public function searchJsonAction()
     {
+        $query = $this->getRequest()->getQuery()->get('q');
 
+        $filterNormalize = new Normalize();
+
+        $queryLast = $filterNormalize(trim(strtok($query, ',')));
+        $queryFirst = $filterNormalize(trim(strtok(',')));
+
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $queryArray = array();
+        if ($queryFirst) $queryArray['firstnameNormalize'] = '%' . $queryFirst . '%';
+        if ($queryLast) $queryArray['lastnameNormalize'] = '%' . $queryLast . '%';
+
+        if ($queryArray) $performers = $em->getRepository('Db\Entity\Performer')->findLike($queryArray);
+
+        if (!$queryFirst and $queryLast) {
+            $aliases = $em->getRepository('Db\Entity\PerformerAlias')->findLike(array(
+                'nameNormalize' => $queryLast
+            ));
+        }
+
+        $return = array();
+        $i = 0;
+
+        foreach ($performers as $performer) {
+            if (++$i > 10) break;
+            $return[] = array(
+                'value' => $performer->getId(),
+                'label' => $performer->getFullname(),
+            );
+        }
+
+        $jsonModel = new JsonModel;
+        $jsonModel->setVariable('performers', $return);
+
+        return $jsonModel;
     }
 }

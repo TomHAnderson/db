@@ -27,6 +27,13 @@ class Performer extends AbstractEntity {
         , \Db\Entity\Relation\Comments
         ;
 
+    public function getFullName()
+    {
+        $fullname = $this->getLastname();
+        if ($this->getFirstname()) $fullname .= ', ' . $this->getFirstname();
+
+        return $fullname;
+    }
 
    /** Hydrator functions */
     public function getArrayCopy()
