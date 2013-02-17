@@ -24,8 +24,6 @@ trait Name
 
         if (method_exists($this, 'setNameNormalize'))
             $this->setNameNormalize($this->getName());
-#            call_user_func(__NAMESPACE__ .'\Name::test');
-        #    call_user_method('setNameNormalize', $this, $this->getName());
 
         return $this;
     }
