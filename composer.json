@@ -33,6 +33,7 @@
         "heartsentwined/zf2-geoname": "dev-master",
 
         "keen-io/keen-io": "dev-master",
-        "gracenote/gracenote-tha": "dev-master"
+        "gracenote/gracenote-tha": "dev-master",
+        "jambase/jambase-tha": "dev-master"
     }
 }
