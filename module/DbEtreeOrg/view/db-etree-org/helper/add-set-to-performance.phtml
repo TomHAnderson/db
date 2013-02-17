@@ -1,10 +1,10 @@
 <li class="">
-    <a onClick="$('#createPerformerAlias').toggle();"  class="btn-success" href="#"><i class="icon-film"></i> Create Performer Alias</a>
+    <a onClick="$('#addSetToPerformance').toggle();"  class="btn-success" href="#"><i class="icon-film"></i> Add Performer to Lineup</a>
 </li>
 
-<div id="createPerformerAlias" style="display: none; clear:both;">
+<div id="addSetToPerformance" style="display: none; clear:both;">
 
-    <form method="post" action="/performer-alias/create">
+    <form method="post" action="/lineup/add-performer">
         <div class="row">
 
             <div class="span1">
@@ -12,7 +12,7 @@
             </div>
 
             <div class="span11">
-                <input type="text" name="name" maxlength="255">
+                <input type="text" autocomplete="off" name="performer_id" placeholder="Name" maxlength="255">
             </div>
         </div>
 
@@ -27,12 +27,15 @@
                 <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
                 <textarea name="note"></textarea>
                 <br>
-                <button class="btn btn-info" type="send">
-                    <i class="icon-save"></i>
-                    Submit
-                </button>
+                <input type="submit" value="Submit">
             </div>
 
         </div>
     </form>
 </div>
+
+<script>
+    $('#performer_id').typeahead(
+    {
+       //
+    });

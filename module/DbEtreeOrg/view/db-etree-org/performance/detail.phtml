@@ -1,0 +1,44 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a class="btn-warning" href="/lineup/edit?id=<?= $this->performance->getId(); ?>"><i class="icon-group"></i> Edit Performance</a>
+    </li>
+</ul>
+
+<h1>Performance</h1>
+
+<h2>
+    <a href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+        <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
+    </a>
+</h2>
+
+<h2><?= $this->escapeHtml($this->performance->getPerformanceDate()->format('r')); ?></h2>
+
+<?php
+if ($this->performance->getNote()) { ?>
+    <pre><?= $this->escapeHtml($this->performance->getNote()); ?></pre>
+<?php
+}
+?>
+
+<h3>Sets</h3>
+
+<ul>
+<?php
+foreach ($this->performance->getPerformanceSets() as $set) {
+#    print_r($performer);
+?>
+    <li>
+        <a href="/set/detail?id=<?= $set->getId(); ?>">
+            <?= $this->escapeHtml($set->getName()); ?>
+        </a>
+    </li>
+<?php
+}
+?>
+</ul>
+
+
+<ul class="nav nav-pills">
+    <?= $this->addSetToPerformance($this->performance->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->performance->getId()); ?>
+</ul>

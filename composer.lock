@@ -1,5 +1,5 @@
 {
-    "hash": "c2c59ededaa80957f036b4c6db0074e1",
+    "hash": "ec6b4e26fe55495357626f732e8a027f",
     "packages": [
         {
             "name": "doctrine/common",
@@ -460,6 +460,50 @@
             "keywords": [
                 "database",
                 "orm"
+            ]
+        },
+        {
+            "name": "gracenote/gracenote-tha",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TomHAnderson/php-gracenote.git",
+                "reference": "f7744134c2bd1f05c94441b252ed39e65a2bf3d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TomHAnderson/php-gracenote/zipball/f7744134c2bd1f05c94441b252ed39e65a2bf3d4",
+                "reference": "f7744134c2bd1f05c94441b252ed39e65a2bf3d4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zendframework": "2.*,!=2.0.6"
+            },
+            "time": "2013-02-16 23:41:46",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Gracenote": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Anderson",
+                    "email": "tom.h.anderson@gmail.com",
+                    "homepage": "http://db.etree.org/"
+                }
+            ],
+            "description": "A PHP library for reporting events to the Keen IO API",
+            "homepage": "http://developer.gracenote.com",
+            "keywords": [
+                "gracenote",
+                "music",
+                "zf2"
             ]
         },
         {
@@ -1509,6 +1553,7 @@
         "doctrine/data-fixtures": 15,
         "doctrine/doctrine-orm-module": 20,
         "heartsentwined/zf2-geoname": 20,
-        "keen-io/keen-io": 20
+        "keen-io/keen-io": 20,
+        "gracenote/gracenote-tha": 20
     }
 }

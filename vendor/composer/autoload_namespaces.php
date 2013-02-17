@@ -24,6 +24,7 @@ return array(
     'Heartsentwined\\Cli' => $vendorDir . '/heartsentwined/zf2-cli/src/',
     'Heartsentwined\\BackgroundExec' => $vendorDir . '/heartsentwined/background-exec/src/',
     'Heartsentwined\\ArgValidator' => $vendorDir . '/heartsentwined/arg-validator/src/',
+    'Gracenote' => $vendorDir . '/gracenote/gracenote-tha/src/',
     'Doctrine\\ORM' => $vendorDir . '/doctrine/orm/lib/',
     'Doctrine\\DBAL\\Migrations' => $vendorDir . '/doctrine/migrations/lib',
     'Doctrine\\DBAL' => $vendorDir . '/doctrine/dbal/lib/',

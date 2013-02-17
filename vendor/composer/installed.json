@@ -1547,5 +1547,51 @@
             "geoname",
             "zf2"
         ]
+    },
+    {
+        "name": "gracenote/gracenote-tha",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/TomHAnderson/php-gracenote.git",
+            "reference": "f7744134c2bd1f05c94441b252ed39e65a2bf3d4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/TomHAnderson/php-gracenote/zipball/f7744134c2bd1f05c94441b252ed39e65a2bf3d4",
+            "reference": "f7744134c2bd1f05c94441b252ed39e65a2bf3d4",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "zendframework/zendframework": "2.*,!=2.0.6"
+        },
+        "time": "2013-02-16 23:41:46",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Gracenote": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Tom Anderson",
+                "email": "tom.h.anderson@gmail.com",
+                "homepage": "http://db.etree.org/"
+            }
+        ],
+        "description": "A PHP library for reporting events to the Keen IO API",
+        "homepage": "http://developer.gracenote.com",
+        "keywords": [
+            "gracenote",
+            "music",
+            "zf2"
+        ]
     }
 ]
