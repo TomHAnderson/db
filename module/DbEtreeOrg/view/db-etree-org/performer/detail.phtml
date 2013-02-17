@@ -43,13 +43,46 @@ foreach ($this->performer->getAliases() as $alias) {
 ?>
 </ul>
 
-<ul class="nav nav-pills">
-    <?= $this->createPerformerAlias($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+<ul class="nav nav-tabs" id="tabs">
+    <li class="active">
+        <a href="#actions" data-toggle="tab">
+            Actions
+        </a>
+    </li>
 
-    <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+    <li class="">
+        <a href="#comments" data-toggle="tab">
+            Comments
+        </a>
+    </li>
 
-    <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+    <li class="">
+        <a href="#links" data-toggle="tab">
+            Links
+        </a>
+    </li>
 </ul>
 
+<div class="tab-content">
 
-<?= $this->listComments($this->performer->getComments());
+    <div class="tab-pane active" id="actions">
+        <ul class="nav nav-pills">
+            <?= $this->createPerformerAlias($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+        </ul>
+    </div>
+
+   <div class="tab-pane" id="comments">
+        <ul class="nav nav-pills">
+            <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+        </ul>
+
+        <?= $this->listComments($this->performer->getComments()); ?>
+    </div>
+
+    <div class="tab-pane" id="links">
+        <ul class="nav nav-pills">
+            <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+        </ul>
+    </div>
+</div>
+

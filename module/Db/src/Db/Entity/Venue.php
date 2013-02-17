@@ -14,6 +14,7 @@ class Venue extends AbstractEntity
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\Place
         , \Db\Entity\Field\Name
+        , \Db\Entity\Field\NameNormalize
         , \Db\Entity\Field\Note
         , \Db\Entity\Field\City
         , \Db\Entity\Field\State
@@ -30,6 +31,7 @@ class Venue extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'nameNormalize' => $this->getNameNormalize(),
             'city' => $this->getCity(),
             'state' => $this->getState(),
             'note' => $this->getNote(),

@@ -15,6 +15,7 @@ class Event extends AbstractEntity
         , \Db\Entity\Field\Place
         , \Db\Entity\Field\Zipcode
         , \Db\Entity\Field\Name
+        , \Db\Entity\Field\NameNormalize
         , \Db\Entity\Field\Note
         , \Db\Entity\Field\StartAt
         , \Db\Entity\Field\EndAt
@@ -30,6 +31,7 @@ class Event extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
             'startAt' => $this->getStartAt()->format('r'),
             'endAt' => $this->getStartAt()->format('r'),

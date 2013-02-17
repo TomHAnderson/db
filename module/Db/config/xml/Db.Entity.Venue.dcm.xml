@@ -5,6 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="false"/>
+    <field name="nameNormalize" type="string" nullable="false"/>
     <field name="city" type="string" nullable="true"/>
     <field name="state" type="string" nullable="true"/>
     <field name="note" type="text" nullable="true"/>

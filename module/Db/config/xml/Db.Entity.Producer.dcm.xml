@@ -5,6 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="false"/>
+    <field name="nameNormalize" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
     <one-to-many field="events" target-entity="Db\Entity\Event" mapped-by="producer"/>
     <one-to-many field="links" target-entity="Db\Entity\ProducerLink" mapped-by="producer"/>

@@ -23,7 +23,7 @@ trait Lastname
         $this->lastname = $value;
 
         if (method_exists($this, 'setLastnameNormalize'))
-            call_user_method('setLastnameNormalize', $this, $this->getLastname());
+            $this->setLastnameNormalize($this->getLastname());
 
         return $this;
     }
