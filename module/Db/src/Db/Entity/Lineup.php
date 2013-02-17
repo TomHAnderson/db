@@ -14,6 +14,7 @@ class Lineup extends AbstractEntity {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\Band
         , \Db\Entity\Field\Name
+        , \Db\Entity\Field\NameNormalize
         , \Db\Entity\Field\Note
         ;
 
@@ -29,6 +30,7 @@ class Lineup extends AbstractEntity {
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
         );
     }

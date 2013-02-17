@@ -5,6 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="false"/>
+    <field name="nameNormalize" type="string" nullable="false"/>
     <field name="lyrics" type="text" nullable="true"/>
     <field name="note" type="text" nullable="true"/>
     <many-to-one field="band" target-entity="Db\Entity\Band" inversed-by="songs">

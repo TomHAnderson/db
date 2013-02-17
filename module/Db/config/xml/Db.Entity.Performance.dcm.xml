@@ -5,7 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="true"/>
-    <field name="nameNormalize" type="string" nullable="false"/>
+    <field name="nameNormalize" type="string" nullable="true"/>
     <field name="performanceDate" type="string" length="10" nullable="false"/>
     <field name="performanceDateAt" type="date" nullable="true"/>
     <field name="note" type="text" nullable="true"/>

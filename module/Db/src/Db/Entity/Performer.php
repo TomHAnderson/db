@@ -14,7 +14,9 @@ class Performer extends AbstractEntity {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\User
         , \Db\Entity\Field\Lastname
+        , \Db\Entity\Field\LastnameNormalize
         , \Db\Entity\Field\Firstname
+        , \Db\Entity\Field\FirstnameNormalize
         , \Db\Entity\Field\Note
         ;
 
@@ -32,7 +34,9 @@ class Performer extends AbstractEntity {
         return array(
             'id' => $this->getId(),
             'lastname' => $this->getLastname(),
+            'lastnameNormalize' => $this->getLastnameNormalize(),
             'firstname' => $this->getFirstname(),
+            'firstnameNormalize' => $this->getFirstnameNormalize(),
             'note' => $this->getNote(),
         );
     }

@@ -13,6 +13,7 @@ class VenueGroup extends AbstractEntity
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\Name
         , \Db\Entity\Field\Note
+        , \Db\Entity\Field\NameNormalize
         ;
 
     use \Db\Entity\Relation\Venues
@@ -24,6 +25,7 @@ class VenueGroup extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
         );
     }

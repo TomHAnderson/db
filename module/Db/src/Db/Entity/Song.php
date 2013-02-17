@@ -11,6 +11,7 @@ use Zend\Form\Annotation as Form;
 class Song extends AbstractEntity {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\Name
+        , \Db\Entity\Field\NameNormalize
         , \Db\Entity\Field\Composer
         , \Db\Entity\Field\Lyrics
         , \Db\Entity\Field\Note
@@ -28,6 +29,7 @@ class Song extends AbstractEntity {
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'nameNormalize' => $this->getNameNormalize(),
             'composer' => $this->getComposer(),
             'lyrics' => $this->getLyrics(),
             'note' => $this->getNote(),

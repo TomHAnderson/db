@@ -5,6 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="false"/>
+    <field name="nameNormalize" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
     <one-to-many field="links" target-entity="Db\Entity\ComposerLink" mapped-by="composer"/>
     <many-to-many field="songs" target-entity="Db\Entity\Song" mapped-by="composers"/>
