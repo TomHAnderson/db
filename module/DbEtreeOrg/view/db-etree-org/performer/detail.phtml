@@ -1,4 +1,5 @@
 <ul class="nav nav-pills pull-right">
+
     <li class="">
         <a class="btn-warning" href="/performer/edit?id=<?= $this->performer->getId(); ?>"><i class="icon-film"></i> Edit Performer</a>
     </li>
@@ -26,7 +27,13 @@
 <?= $this->escapeHtml($this->performer->getFirstname()); ?>
 </h1>
 
-Note: <?= $this->escapeHtml($this->performer->getNote()); ?>
+<?php
+if ($this->performer->getNote()) {
+?>
+<pre><?= $this->escapeHtml($this->performer->getNote()); ?></pre>
+<?php
+}
+?>
 
 <h3>Aliases</h3>
 <ul>
@@ -43,14 +50,22 @@ foreach ($this->performer->getAliases() as $alias) {
 ?>
 </ul>
 
+<?php
+use Gracenote\Service\Gracenote;
+
+$gracenote = Gracenote::query('ALBUM_SEARCH', array(
+    'parameters' => array(
+        'ARTIST' => $this->performer->getFullname(),
+    ),
+    'options' => array(
+        'SELECT_EXTENDED' => 'COVER',
+    ),
+));
+
+?>
+
 <ul class="nav nav-tabs" id="tabs">
     <li class="active">
-        <a href="#actions" data-toggle="tab">
-            Actions
-        </a>
-    </li>
-
-    <li class="">
         <a href="#comments" data-toggle="tab">
             Comments
         </a>
@@ -61,17 +76,24 @@ foreach ($this->performer->getAliases() as $alias) {
             Links
         </a>
     </li>
+
+<?php
+if (sizeof($gracenote->RESPONSE->ALBUM)) {
+?>
+    <li class="">
+        <a href="#gracenote-albums" data-toggle="tab">
+            Gracenote Albums
+        </a>
+    </li>
+<?php
+}
+?>
+
 </ul>
 
 <div class="tab-content">
 
-    <div class="tab-pane active" id="actions">
-        <ul class="nav nav-pills">
-            <?= $this->createPerformerAlias($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
-        </ul>
-    </div>
-
-   <div class="tab-pane" id="comments">
+   <div class="tab-pane active" id="comments">
         <ul class="nav nav-pills">
             <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
         </ul>
@@ -84,5 +106,43 @@ foreach ($this->performer->getAliases() as $alias) {
             <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
         </ul>
     </div>
+
+    <?
+    if (sizeof($gracenote->RESPONSE->ALBUM)) {
+    ?>
+    <div class="tab-pane" id="gracenote-albums">
+        <div class="row">
+            <div class="span1">
+                <b>Date</b>
+            </div>
+
+            <div class="span4">
+                <b>Artist</b>
+            </div>
+
+            <div class="span6">
+                <b>Title</b>
+            </div>
+        </div>
+
+        <?php
+            foreach ($gracenote->RESPONSE->ALBUM as $album) {
+        ?>
+            <div class="row">
+                <div class="span1">
+                    <pre><?= $this->escapeHtml((string)$album->DATE); ?>&nbsp;</pre>
+                </div>
+                <div class="span4">
+                    <pre><?= $this->escapeHtml((string)$album->ARTIST); ?>&nbsp;</pre>
+                </div>
+                <div class="span6">
+                    <pre><?= $this->escapeHtml((string)$album->TITLE); ?></pre>
+                </div>
+            </div>
+
+        <?php
+            }
+        }
+        ?>
 </div>
 

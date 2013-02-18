@@ -9,7 +9,7 @@ trait Lastname
      * @Form\Type("Zend\Form\Element")
      * @Form\Attributes({"type": "string"})
      * @Form\Attributes({"id": "lastname"})
-     * @Form\Options({"label": "Lastname"})
+     * @Form\Options({"label": "Last Name"})
      */
     protected $lastname;
 

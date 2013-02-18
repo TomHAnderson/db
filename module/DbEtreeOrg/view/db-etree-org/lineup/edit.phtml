@@ -1,4 +1,4 @@
-<h1>Edit Band</h1>
+<h1>Edit Lineup</h1>
 
 <?= $this->form()->openTag($form); ?>
 
@@ -9,8 +9,16 @@
 <br>
 
 <button type="send" class="btn btn-warning">
-    <i class="icon-cogs"></i>
-    Edit Band
+    <i class="icon-group"></i>
+    Edit Lineup
 </button>
 
+<a class="btn btn-link" href="/lineup/detail?id=<?= $this->lineup->getId(); ?>">
+    cancel
+</a>
+
 <?= $this->form()->closeTag(); ?>
+
+<ul class="nav nav-pills">
+    <?= $this->addPerformerToLineup($this->lineup->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->lineup->getId()); ?>
+</ul>

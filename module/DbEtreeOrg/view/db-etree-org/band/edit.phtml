@@ -13,4 +13,17 @@
     Edit Band
 </button>
 
+<a class="btn btn-link" href="/band/detail?id=<?= $this->band->getId(); ?>">
+    cancel
+</a>
+
 <?= $this->form()->closeTag(); ?>
+
+<ul class="nav nav-pills">
+    <li class="">
+         <a class="btn-success" href="/lineup/create?id=<?= $this->band->getId(); ?>">
+            <i class="icon-group"></i>
+            Create Lineup
+        </a>
+     </li>
+</ul>
