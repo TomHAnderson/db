@@ -6,15 +6,20 @@
 
 <h1><i class="icon-cogs"></i> <?= $this->escapeHtml($this->band->getName()); ?></h1>
 
-Note: <?= $this->escapeHtml($this->band->getNote()); ?>
-
-<h3>Lineups</h3>
+<?php
+if ($this->band->getNote()) {
+?>
+<pre><?= $this->escapeHtml($this->band->getNote()); ?></pre>
+<?php
+}
+?>
 
 <ul>
 <?php
 foreach ($this->band->getLineups() as $lineup) {
 ?>
     <li>
+        <i class="icon-group"></i>
         <a href="/lineup/detail?id=<?= $lineup->getId(); ?>">
             <?= $this->escapeHtml($lineup->getName()); ?>
         </a>
@@ -43,12 +48,6 @@ $jambase = Jambase::search(array('band' => $this->band->getName()));
 
 <ul class="nav nav-tabs" id="tabs">
     <li class="active">
-        <a href="#actions" data-toggle="tab">
-            Actions
-        </a>
-    </li>
-
-    <li class="">
         <a href="#comments" data-toggle="tab">
             Comments
         </a>
@@ -86,18 +85,7 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane active" id="actions">
-        <ul class="nav nav-pills">
-             <li class="">
-                 <a class="btn-success" href="/lineup/create?id=<?= $this->band->getId(); ?>">
-                    <i class="icon-group"></i>
-                    Create Lineup
-                </a>
-             </li>
-        </ul>
-   </div>
-
-   <div class="tab-pane" id="comments">
+   <div class="tab-pane active" id="comments">
         <ul class="nav nav-pills">
             <?= $this->createComment($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
         </ul>

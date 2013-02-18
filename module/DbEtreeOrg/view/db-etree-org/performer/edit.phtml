@@ -1,4 +1,4 @@
-<h1>Edit Venue</h1>
+<h1>Edit Performer</h1>
 
 <?= $this->form()->openTag($form); ?>
 
@@ -15,4 +15,12 @@
     Edit Performer
 </button>
 
+<a class="btn btn-link" href="/performer/detail?id=<?= $this->performer->getId(); ?>">
+    cancel
+</a>
+
 <?= $this->form()->closeTag(); ?>
+
+<ul class="nav nav-pills">
+    <?= $this->createPerformerAlias($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+</ul>

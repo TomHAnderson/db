@@ -81,7 +81,7 @@
                                                 ?>
                                                     <li role="menuitem">
                                                         <a href="/performance/detail?id=<?= $p->getId(); ?>">
-                                                            <i class="icon-cogs"></i>
+                                                            <i class="icon-music"></i>
                                                             <?= $this->escapeHtml($p->getName()); ?>
                                                         </a>
                                                     </li>
@@ -95,7 +95,7 @@
 
                                     <li role="">
                                         <a class="btn-success" id="createPerformance" href="/performance/create" style="color: white;">
-                                            <i class="icon-film"></i>
+                                            <i class="icon-music"></i>
                                             Create Performane
                                         </a>
                                     </li>
@@ -141,7 +141,7 @@
 
                                     <li role="">
                                         <a class="btn-success" href="/band/create" style="color: white;">
-                                            <i class="icon-film"></i>
+                                            <i class="icon-cogs"></i>
                                             Create Band
                                         </a>
                                     </li>
@@ -291,7 +291,7 @@
             });
 
             $('#createPerformance').click(function(event) {
-                alert('To add a performance select a lineup from a band');
+                alert('To create a performance select a lineup from a band');
                 return false;
             });
         });

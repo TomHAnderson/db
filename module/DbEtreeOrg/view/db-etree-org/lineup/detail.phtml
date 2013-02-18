@@ -1,19 +1,20 @@
 <ul class="nav nav-pills pull-right">
     <li class="">
+        <a class="btn-success" href="/performance/create?id=<?= $this->lineup->getId(); ?>"><i class="icon-music"></i> Add Performane</a>
+    </li>
+
+    <li class="">
         <a class="btn-warning" href="/lineup/edit?id=<?= $this->lineup->getId(); ?>"><i class="icon-group"></i> Edit Lineup</a>
     </li>
 </ul>
 
-<h1>Lineup</h1>
-
-<h2>Band:
+<h1><i class="icon-cogs"></i>
     <a href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
         <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
     </a>
-</h2>
+</h1>
 
-
-<h2><?= $this->escapeHtml($this->lineup->getName()); ?></h2>
+<h2><i class="icon-group"></i> <?= $this->escapeHtml($this->lineup->getName()); ?></h2>
 
 <?php
 if ($this->lineup->getNote()) { ?>
@@ -22,14 +23,12 @@ if ($this->lineup->getNote()) { ?>
 }
 ?>
 
-<h3>Performers</h3>
-
 <ul>
 <?php
 foreach ($this->lineup->getPerformers() as $performer) {
-#    print_r($performer);
 ?>
     <li>
+        <i class="icon-film"></i>
         <a href="/performer/detail?id=<?= $performer->getId(); ?>">
 <?= $this->escapeHtml($performer->getLastname()); ?>
 <?php if ($this->escapeHtml($performer->getLastname())) echo ', '; ?>
@@ -39,13 +38,4 @@ foreach ($this->lineup->getPerformers() as $performer) {
 <?php
 }
 ?>
-</ul>
-
-
-<ul class="nav nav-pills">
-    <?= $this->addPerformerToLineup($this->lineup->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->lineup->getId()); ?>
-
-    <li class="">
-        <a class="btn-success" href="/performance/create?id=<?= $this->lineup->getId(); ?>"><i class="icon-music"></i> Add Performane</a>
-    </li>
 </ul>
