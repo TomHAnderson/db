@@ -38,6 +38,20 @@ Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
             Links
         </a>
     </li>
+
+<?php
+if ($this->venue->getPerformances()) {
+?>
+
+    <li class="">
+        <a href="#performances" data-toggle="tab">
+            Performances
+        </a>
+    </li>
+<?php
+}
+?>
+
 </ul>
 
 <div class="tab-content">
@@ -54,4 +68,14 @@ Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
             <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
         </ul>
     </div>
+
+<?php
+if ($this->venue->getPerformances()) {
+?>
+    <div class="tab-pane" id="performances">
+        <?= $this->listPerformances($this->venue->getPerformances()); ?>
+    </div>
+<?php
+}
+?>
 </div>
