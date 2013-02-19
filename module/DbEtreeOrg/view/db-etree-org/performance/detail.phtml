@@ -67,3 +67,33 @@ foreach ($this->performance->getPerformanceSets() as $set) {
 <ul class="nav nav-pills">
     <?php //$this->addSetToPerformance($this->performance->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->performance->getId()); ?>
 </ul>
+
+<ul class="nav nav-tabs" id="tabs">
+    <li class="active">
+        <a href="#comments" data-toggle="tab">
+            Comments
+        </a>
+    </li>
+
+    <li class="">
+        <a href="#links" data-toggle="tab">
+            Links
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+   <div class="tab-pane active" id="comments">
+        <ul class="nav nav-pills">
+            <?= $this->createComment($this->performance->getId(), 'Db\Entity\Performance', '/performance/detail?id=' . $this->performance->getId()); ?>
+        </ul>
+
+        <?= $this->listComments($this->performance->getComments()); ?>
+    </div>
+
+    <div class="tab-pane" id="links">
+        <ul class="nav nav-pills">
+            <?= $this->createLink($this->performance->getId(), 'Db\Entity\Performance', '/performance/detail?id=' . $this->performance->getId()); ?>
+        </ul>
+    </div>
+</div>

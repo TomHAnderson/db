@@ -5,11 +5,11 @@
 
 <?= $this->form()->openTag($form); ?>
 
+<?= $this->formRow($this->form->get('performanceDate')); ?>
+
 <?= $this->formRow($this->form->get('name')); ?>
 
 <?= $this->inputVenue($this->performance->getVenue()); ?>
-
-<?= $this->formRow($this->form->get('performanceDate')); ?>
 
 <?= $this->formRow($this->form->get('note')); ?>
 
