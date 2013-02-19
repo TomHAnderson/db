@@ -33,6 +33,8 @@
         "heartsentwined/zf2-phing-task": "1.*",
         "heartsentwined/zf2-geoname": "dev-master",
 
+        "lncd/Oauth2": "dev-develop",
+ 
         "keen-io/keen-io": "dev-master",
         "gracenote/gracenote-tha": "dev-master",
         "jambase/jambase-tha": "dev-master"

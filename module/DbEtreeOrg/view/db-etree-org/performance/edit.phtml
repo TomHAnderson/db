@@ -1,16 +1,23 @@
-<h1>Edit Band</h1>
+<h1>
+    <i class="icon-magic"></i>
+    Edit Performance
+</h1>
 
 <?= $this->form()->openTag($form); ?>
 
 <?= $this->formRow($this->form->get('name')); ?>
+
+<?= $this->inputVenue($this->performance->getVenue()); ?>
+
+<?= $this->formRow($this->form->get('performanceDate')); ?>
 
 <?= $this->formRow($this->form->get('note')); ?>
 
 <br>
 
 <button type="send" class="btn btn-warning">
-    <i class="icon-cogs"></i>
-    Edit Band
+    <i class="icon-magic"></i>
+    Edit Performance
 </button>
 
 <?= $this->form()->closeTag(); ?>

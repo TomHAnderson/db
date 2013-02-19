@@ -5,6 +5,8 @@ use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
     , Db\Entity\Venue as VenueEntity
     , Zend\Form\Annotation\AnnotationBuilder
+    , Db\Filter\Normalize
+    , Zend\View\Model\JsonModel
     ;
 
 class VenueController extends AbstractActionController
@@ -133,5 +135,35 @@ class VenueController extends AbstractActionController
         }
 
         return $this->plugin('redirect')->toUrl('/');
+    }
+
+    public function searchJsonAction()
+    {
+        $query = $this->getRequest()->getQuery()->get('q');
+
+        $filterNormalize = new Normalize();
+
+        $query = $filterNormalize(trim($query));
+
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
+            'nameNormalize' => '%' . $query . '%',
+        ));
+
+        $return = array();
+        $i = 0;
+        foreach ($venues as $venue) {
+            if (++$i > 25) break;
+            $return[] = array(
+                'value' => $venue->getId(),
+                'label' => $venue->getName(),
+            );
+        }
+
+        $jsonModel = new JsonModel;
+        $jsonModel->setVariable('venues', $return);
+
+        return $jsonModel;
     }
 }

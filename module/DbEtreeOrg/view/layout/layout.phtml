@@ -9,9 +9,10 @@
 
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'href' => $this->basePath() . '/images/db-logo.png'))
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.css')
-                        ->prependStylesheet($this->basePath() . '/css/style.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap.css') ?>
+            ->prependStylesheet($this->basePath() . '/css/qunit.css')
+            ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.css')
+            ->prependStylesheet($this->basePath() . '/css/style.css')
+            ->prependStylesheet($this->basePath() . '/css/bootstrap.css') ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()->appendFile($this->basePath() . '/scripts/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
@@ -60,7 +61,7 @@
 
                             <li class="dropdown">
                                 <a id="performance-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
-                                    <i class="icon-music"></i>
+                                    <i class="icon-magic"></i>
                                     <?php echo $this->translate('Performances') ?>
                                     <b class="caret"></b>
                                 </a>
@@ -81,7 +82,21 @@
                                                 ?>
                                                     <li role="menuitem">
                                                         <a href="/performance/detail?id=<?= $p->getId(); ?>">
-                                                            <i class="icon-music"></i>
+                                                            <i class="icon-cogs"></i>
+                                                            <?= $this->escapeHtml($p->getLineup()->getBand()->getName()); ?>
+
+                                                            <i class="icon-map-marker"></i>
+                                                            <?= $this->escapeHtml($p->getVenue()->getName()); ?>
+
+                                                            <i class="icon-magic"></i>
+                                                            <?php
+                                                            if ($p->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+                                                                echo $this->escapeHtml($p->getPerformanceDateAt()->format('F d, Y'));
+                                                            } else {
+                                                                echo $this->escapeHtml($p->getPerformanceDate());
+                                                            }
+                                                            ?>
+
                                                             <?= $this->escapeHtml($p->getName()); ?>
                                                         </a>
                                                     </li>
@@ -95,7 +110,7 @@
 
                                     <li role="">
                                         <a class="btn-success" id="createPerformance" href="/performance/create" style="color: white;">
-                                            <i class="icon-music"></i>
+                                            <i class="icon-magic"></i>
                                             Create Performane
                                         </a>
                                     </li>
@@ -199,7 +214,7 @@
 
                             <li class="dropdown">
                                 <a id="venue-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
-                                    <i class="icon-home"></i>
+                                    <i class="icon-map-marker"></i>
                                     <?php echo $this->translate('Venues') ?>
                                     <b class="caret"></b>
                                 </a>
@@ -220,7 +235,7 @@
                                                 ?>
                                                     <li role="menuitem">
                                                         <a href="/venue/detail?id=<?= $v->getId(); ?>">
-                                                            <i class="icon-home"></i>
+                                                            <i class="icon-map-marker"></i>
                                                             <?= $this->escapeHtml($v->getName()); ?>
                                                         </a>
                                                     </li>
@@ -234,7 +249,7 @@
 
                                     <li role="">
                                         <a class="btn-success" href="/venue/create" style="color: white;">
-                                            <i class="icon-home"></i>
+                                            <i class="icon-map-marker"></i>
                                             Create Venue
                                         </a>
                                     </li>
