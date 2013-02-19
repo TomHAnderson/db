@@ -152,6 +152,25 @@
                                     }
                                     ?>
 
+                                    <?php
+                                    if (isset($_SESSION['lineups']['latest'])) {
+                                    ?><li class="divider"></li><?php
+                                        foreach ($_SESSION['lineups']['latest'] as $id) {
+                                            if ($p = $this->findEntity('Db\Entity\Lineup', $id)) {
+                                                ?>
+                                                    <li role="menuitem">
+                                                        <a href="/band/detail?id=<?= $p->getId(); ?>">
+                                                            <i class="icon-group"></i>
+                                                            <?= $this->escapeHtml($p->getBand()->getName()); ?>:
+                                                            <?= $this->escapeHtml($p->getName()); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+
                                     <li class="divider"></li>
 
                                     <li role="">
