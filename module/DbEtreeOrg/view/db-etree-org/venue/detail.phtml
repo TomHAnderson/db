@@ -1,6 +1,6 @@
 <ul class="nav nav-pills pull-right">
     <li class="">
-        <a class="btn-warning" href="/venue/edit?id=<?= $this->venue->getId(); ?>"><i class="icon-home"></i> Edit Venue</a>
+        <a class="btn-warning" href="/venue/edit?id=<?= $this->venue->getId(); ?>"><i class="icon-map-marker"></i> Edit Venue</a>
     </li>
 
     <?php
@@ -11,14 +11,14 @@
     {
     ?>
         <li class="">
-            <a class="btn-danger confirm" href="/venue/delete?id=<?= $this->venue->getId(); ?>"><i class="icon-home"></i> Delete Venue</a>
+            <a class="btn-danger confirm" href="/venue/delete?id=<?= $this->venue->getId(); ?>"><i class="icon-map-marker"></i> Delete Venue</a>
         </li>
     <?php
     }
     ?>
 </ul>
 
-<h1><i class="icon-home"></i> <?= $this->escapeHtml($this->venue->getName()); ?></h1>
+<h1><i class="icon-map-marker"></i> <?= $this->escapeHtml($this->venue->getName()); ?></h1>
 
 City: <?= $this->escapeHtml($this->venue->getCity()); ?>
 <br>

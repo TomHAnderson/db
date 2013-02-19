@@ -113,6 +113,8 @@ return array(
         'invokables' => array(
             'findEntity' => 'DbEtreeOrg\View\Helper\FindEntity',
 
+            'inputVenue' => 'DbEtreeOrg\View\Helper\InputVenue',
+
             'addPerformerToLineup' => 'DbEtreeOrg\View\Helper\AddPerformerToLineup',
 
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',

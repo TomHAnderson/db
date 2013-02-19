@@ -4,7 +4,7 @@ namespace DbEtreeOrg\Controller;
 use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
     , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Entity\Lineup as LineupEntity
+    , Db\Entity\Performance as PerformanceEntity
     ;
 
 class PerformanceController extends AbstractActionController
@@ -19,24 +19,24 @@ class PerformanceController extends AbstractActionController
     {
         $id = $this->getRequest()->getQuery()->get('id');
         if (!$id)
-            return $this->plugin('redirect')->toUrl('/lineup');
+            return $this->plugin('redirect')->toUrl('/performance');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
+        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
 
-        if (!$lineup)
-            throw new \Exception("Lineup $id not found");
+        if (!$performance)
+            throw new \Exception("Performance $id not found");
 
-        if (!isset($_SESSION['lineups']['latest'])) $_SESSION['lineups']['latest'] = array();
-        if (in_array($lineup->getId(), $_SESSION['lineups']['latest'])) {
-            unset($_SESSION['lineups']['latest'][array_search($lineup->getId(), $_SESSION['lineups']['latest'])]);
+        if (!isset($_SESSION['performances']['latest'])) $_SESSION['performances']['latest'] = array();
+        if (in_array($performance->getId(), $_SESSION['performances']['latest'])) {
+            unset($_SESSION['performances']['latest'][array_search($performance->getId(), $_SESSION['performances']['latest'])]);
         }
-        if (!isset($_SESSION['lineups']['latest'])) $_SESSION['lineups']['latest'] = array();
-        array_unshift($_SESSION['lineups']['latest'], $lineup->getId());
-        $_SESSION['lineups']['latest'] = array_slice($_SESSION['lineups']['latest'], 0, 10);
+        if (!isset($_SESSION['performances']['latest'])) $_SESSION['performances']['latest'] = array();
+        array_unshift($_SESSION['performances']['latest'], $performance->getId());
+        $_SESSION['performances']['latest'] = array_slice($_SESSION['performances']['latest'], 0, 10);
 
         return array(
-            'lineup' => $lineup
+            'performance' => $performance
         );
     }
 
@@ -45,35 +45,45 @@ class PerformanceController extends AbstractActionController
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
             return $this->plugin('redirect')->toUrl('/user/login');
 
-        $lineup = new LineupEntity();
+        $performance = new PerformanceEntity();
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($lineup);
+        $form = $builder->createForm($performance);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $band = $em->getRepository('Db\Entity\Band')->find($id);
+        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
 
         if ($this->getRequest()->isPost()) {
+            $valid = true;
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($lineup->getInputFilter());
+            $form->setInputFilter($performance->getInputFilter());
 
-            if ($form->isValid()) {
+            $venue_id = $this->getRequest()->getPost()->get('venue_id');
+            $venue = $em->getRepository('Db\Entity\Venue')->find($venue_id);
+            if (!$venue) $valid = false;
+
+            $event_id = $this->getRequest()->getPost()->get('event_id');
+            $event = ($event_id) ? $em->getRepository('Db\Entity\Event')->find($event_id): null;
+
+            if ($valid and $form->isValid()) {
                 $data = $form->getData();
-                $lineup->exchangeArray($form->getData());
-                $lineup->setBand($band);
+                $performance->exchangeArray($form->getData());
+                $performance->setLineup($lineup);
+                $performance->setVenue($venue);
+                if ($event) $performance->setEvent($event);
 
-                $em->persist($lineup);
+                $em->persist($performance);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/lineup/detail?id=' . $lineup->getId());
+                return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performance->getId());
             }
         }
 
         return array(
             'form' => $form,
-            'band' => $band,
+            'lineup' => $lineup,
         );
     }
 
@@ -85,34 +95,34 @@ class PerformanceController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
+        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
 
-        if (!$lineup)
-            throw new \Exception("Lineup $id not found");
+        if (!$performance)
+            throw new \Exception("Performance $id not found");
 
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($lineup);
-        $form->setData($lineup->getArrayCopy());
+        $form = $builder->createForm($performance);
+        $form->setData($performance->getArrayCopy());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($lineup->getInputFilter());
+            $form->setInputFilter($performance->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $lineup->exchangeArray($form->getData());
+                $performance->exchangeArray($form->getData());
 
-                $em->persist($lineup);
+                $em->persist($performance);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/lineup/detail?id=' . $lineup->getId());
+                return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performance->getId());
             }
         }
 
         return array(
             'form' => $form,
-            'lineup' => $lineup,
+            'performance' => $performance,
         );
     }
 
@@ -124,17 +134,17 @@ class PerformanceController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
-        if (!$lineup)
+        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
+        if (!$performance)
             return $this->plugin('redirect')->toUrl('/');
 
-        if (!sizeof($lineup->getAliases())
-            and !sizeof($lineup->getLineups())
-            and !sizeof($lineup->getPerformances())
-            and !sizeof($lineup->getLinks())
-            and !sizeof($lineup->getComments()))
+        if (!sizeof($performance->getAliases())
+            and !sizeof($performance->getPerformances())
+            and !sizeof($performance->getPerformances())
+            and !sizeof($performance->getLinks())
+            and !sizeof($performance->getComments()))
         {
-            $em->remove($lineup);
+            $em->remove($performance);
             $em->flush();
         }
 
@@ -149,12 +159,12 @@ class PerformanceController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
+        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
         $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
 
 
-        $lineup->getPerformers()->add($performer);
-        $performer->getLineups()->add($lineup);
+        $performance->getPerformers()->add($performer);
+        $performer->getPerformances()->add($performance);
 
         $em->flush();
 

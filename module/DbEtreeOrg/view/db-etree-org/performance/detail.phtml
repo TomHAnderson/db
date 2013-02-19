@@ -1,18 +1,43 @@
 <ul class="nav nav-pills pull-right">
-    <li class="">
-        <a class="btn-warning" href="/lineup/edit?id=<?= $this->performance->getId(); ?>"><i class="icon-group"></i> Edit Performance</a>
+    <li>
+    <a class="btn-warning" href="/performance/edit?id=<?= $this->performance->getId(); ?>"><i class="icon-magic"></i> Edit Performance</a>
     </li>
 </ul>
 
-<h1>Performance</h1>
+<h1>
+    <li class="icon-magic"></li>
+<?php
+if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+    echo $this->escapeHtml($this->performance->getPerformanceDateAt()->format('F d, Y'));
+} else {
+    echo $this->escapeHtml($this->performance->getPerformanceDate());
+}
+?>
+
+    <?= $this->escapeHtml($this->performance->getName()); ?>
+</h1>
+
+<h1>
+    <a href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+        <li class="icon-cogs"></li>
+        <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
+    </a>
+</h1>
 
 <h2>
-    <a href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
-        <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
+    <a href="/lineup/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+        <li class="icon-group"></li>
+        <?= $this->escapeHtml($this->performance->getLineup()->getName()); ?>
     </a>
 </h2>
 
-<h2><?= $this->escapeHtml($this->performance->getPerformanceDate()->format('r')); ?></h2>
+<h2>
+    <a href="/venue/id=<?= $this->performance->getVenue()->getId(); ?>">
+
+        <i class="icon-map-marker"></i>
+        <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
+    </a>
+</h2>
 
 <?php
 if ($this->performance->getNote()) { ?>
@@ -40,5 +65,5 @@ foreach ($this->performance->getPerformanceSets() as $set) {
 
 
 <ul class="nav nav-pills">
-    <?= $this->addSetToPerformance($this->performance->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->performance->getId()); ?>
+    <?php //$this->addSetToPerformance($this->performance->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->performance->getId()); ?>
 </ul>

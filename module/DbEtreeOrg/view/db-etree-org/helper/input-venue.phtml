@@ -1,0 +1,80 @@
+<?php
+use Zend\Form\Element;
+use Zend\Form\Form;
+
+$venueElement = new Element\Text('venue');
+$venueElement
+    ->setLabel('<i class="icon-map-marker"></i> Venue')
+    ->setAttributes(array(
+        'id' => 'venue',
+        'autocomplete' => 'off',
+        'placeholder'  => '',
+    ));
+
+if ($venue) {
+    $venueElement->setAttributes(array(
+        'value' => $venue->getName(),
+    ));
+}
+
+?>
+
+<?= $this->formRow($venueElement); ?>
+
+<input type="hidden" name="venue_id" <?php if ($venue) echo 'venue_id="' . $venue->getId() . '"'; ?> id="venueId" value="" />
+
+<script>
+var venues = {};
+var venueLabels = [];
+
+require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
+
+    $( "#venue" ).typeahead({
+        source: function ( query, process ) {
+            searchVenues( query, process );
+        }
+        , updater: function (item) {
+            //save the id value into the hidden field
+            $( "#venueId" ).val( venues[ item ] );
+
+            //return the string you want to go into the textbox (e.g. name)
+            return item;
+        }
+        , matcher: function () { return true; }
+    });
+
+    var searchVenues = _.debounce(function ( query, process ) {
+
+        //the "process" argument is a callback, expecting an array of values (strings) to display
+
+        //get the data to populate the typeahead (plus some)
+        //from your api, wherever that may be
+        $.get('/venue/search-json', { q: query }, function ( data ) {
+
+            //reset these containers
+            venues = {};
+            venueLabels = [];
+
+            //for each item returned, if the display name is already included
+            //(e.g. multiple "John Smith" records) then add a unique value to the end
+            //so that the user can tell them apart. Using underscore.js for a functional approach.
+            _.each( data.venues, function( item, ix, list ){
+
+                if ( _.contains( venues, item.label ) ){
+                    item.label = item.label + ' #' + item.value;
+                }
+
+                //add the label to the display array
+                venueLabels.push( item.label );
+
+                //also store a mapping to get from label back to ID
+                venues[ item.label ] = item.value;
+            });
+
+            //return the display array
+            process( venueLabels );
+        });
+    }, 300);
+
+});
+</script>

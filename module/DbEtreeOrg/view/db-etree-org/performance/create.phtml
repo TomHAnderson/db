@@ -1,19 +1,33 @@
-<h1>Create Performance</h1>
+<h1>
+    <i class="icon-magic"></i>
+    Create Performance
+</h1>
 
-<h2><?= $this->escapeHtml($this->band->getName()); ?></h2>
+<h2>
+    <i class="icon-cogs"></i>
+    <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
+</h2>
 
+<h3>
+    <i class="icon-group"></i>
+    <?= $this->escapeHtml($this->lineup->getName()); ?>
+</h3>
+
+</h3>
 <?= $this->form()->openTag($form); ?>
 
 <?= $this->formRow($this->form->get('name')); ?>
 
 <?= $this->formRow($this->form->get('performanceDate')); ?>
 
+<?= $this->inputVenue(); ?>
+
 <?= $this->formRow($this->form->get('note')); ?>
 
 <br>
 
 <button type="send" class="btn btn-success">
-    <i class="icon-group"></i>
+    <i class="icon-magic"></i>
     Create Performance
 </button>
 
