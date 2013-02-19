@@ -1697,5 +1697,58 @@
             "zf2",
             "zfcuser"
         ]
+    },
+    {
+        "name": "lncd/Oauth2",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/lncd/OAuth2.git",
+            "reference": "6b2f5944ef73d1c6ea2f42d2f9b7b02e2e9919c0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/lncd/OAuth2/zipball/6b2f5944ef73d1c6ea2f42d2f9b7b02e2e9919c0",
+            "reference": "6b2f5944ef73d1c6ea2f42d2f9b7b02e2e9919c0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "mockery/mockery": ">=0.7.2",
+            "phpunit/phpunit": "*"
+        },
+        "time": "2013-02-19 00:42:49",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "OAuth2": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Alex Bilbie",
+                "email": "hello@alexbilbie.com",
+                "homepage": "http://www.alexbilbie.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "OAuth 2.0 Framework",
+        "homepage": "https://github.com/lncd/OAuth2",
+        "keywords": [
+            "Authentication",
+            "authorization",
+            "oauth",
+            "oauth2",
+            "resource",
+            "server"
+        ]
     }
 ]
