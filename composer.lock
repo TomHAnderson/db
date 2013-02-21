@@ -1,12 +1,12 @@
 {
-    "hash": "4ead3e4c2b6d600c94495d239a86751f",
+    "hash": "7293d9e8166a756bae50e4771217043d",
     "packages": [
         {
             "name": "cdli/two-stage-signup",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://github.com/cdli/CdliTwoStageSignup.git",
+                "url": "https://github.com/cdli/CdliTwoStageSignup.git",
                 "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046"
             },
             "dist": {
@@ -97,7 +97,7 @@
                     "homepage": "http://www.jwage.com/"
                 },
                 {
-                    "name": "Guilherme Blanco",
+                    "name": "Christoph Dorn",
                     "email": "guilhermeblanco@gmail.com",
                     "homepage": "http://www.instaclick.com"
                 },
@@ -110,7 +110,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes Schmitt",
+                    "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -208,7 +208,7 @@
                     "homepage": "http://www.jwage.com/"
                 },
                 {
-                    "name": "Guilherme Blanco",
+                    "name": "Christoph Dorn",
                     "email": "guilhermeblanco@gmail.com",
                     "homepage": "http://www.instaclick.com"
                 },
@@ -319,7 +319,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://github.com/doctrine/DoctrineORMModule.git",
+                "url": "https://github.com/doctrine/DoctrineORMModule.git",
                 "reference": "8da0dab03be4f282b97632d54979d6b45d6bf479"
             },
             "dist": {
@@ -551,7 +551,7 @@
                 {
                     "name": "Tom Anderson",
                     "email": "tom.h.anderson@gmail.com",
-                    "homepage": "http://db.etree.org/"
+                    "homepage": "http://db.etree.org"
                 }
             ],
             "description": "A PHP library for abstracting the Gracenote API",
@@ -976,58 +976,6 @@
             ]
         },
         {
-            "name": "heartsentwined/zf2-geoname",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/heartsentwined/zf2-geoname",
-                "reference": "3.0.8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/heartsentwined/zf2-geoname/zipball/3.0.8",
-                "reference": "3.0.8",
-                "shasum": ""
-            },
-            "require": {
-                "heartsentwined/arg-validator": "1.*",
-                "heartsentwined/file-system-manager": "1.*",
-                "heartsentwined/yaml": "1.*",
-                "heartsentwined/zf2-cli": "1.*",
-                "heartsentwined/zf2-cron": "2.*",
-                "heartsentwined/zf2-doctrine": "1.*",
-                "heartsentwined/zf2-phing-task": "1.*",
-                "heartsentwined/zf2-phpunit-testcase": "1.*",
-                "php": ">=5.3.3",
-                "zendframework/zendframework": "2.*"
-            },
-            "time": "2013-02-11 07:15:17",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Heartsentwined\\Geoname": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "heartsentwined",
-                    "email": "heartsentwined@cogito-lab.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "maintain a local copy of the Geonames database",
-            "homepage": "https://github.com/heartsentwined/zf2-geoname",
-            "keywords": [
-                "ZendFramework",
-                "geoname",
-                "zf2"
-            ]
-        },
-        {
             "name": "heartsentwined/zf2-phing-task",
             "version": "1.1.1",
             "source": {
@@ -1120,24 +1068,24 @@
             ]
         },
         {
-            "name": "jambase/jambase-tha",
+            "name": "jambase/jambase",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TomHAnderson/JambaseClient-PHP.git",
-                "reference": "198139f74fa4458716f09ef96759e8cee9bfab80"
+                "reference": "a5ac41042863209bbed8059ecec6e8446e3bd941"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TomHAnderson/JambaseClient-PHP/zipball/198139f74fa4458716f09ef96759e8cee9bfab80",
-                "reference": "198139f74fa4458716f09ef96759e8cee9bfab80",
+                "url": "https://api.github.com/repos/TomHAnderson/JambaseClient-PHP/zipball/a5ac41042863209bbed8059ecec6e8446e3bd941",
+                "reference": "a5ac41042863209bbed8059ecec6e8446e3bd941",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*,!=2.0.6"
             },
-            "time": "2013-02-17 04:27:14",
+            "time": "2013-02-21 19:14:50",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1168,7 +1116,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/keenlabs/KeenClient-PHP",
+                "url": "https://github.com/keenlabs/KeenClient-PHP.git",
                 "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea"
             },
             "dist": {
@@ -1252,16 +1200,16 @@
         },
         {
             "name": "lncd/Oauth2",
-            "version": "dev-develop",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lncd/OAuth2.git",
-                "reference": "6b2f5944ef73d1c6ea2f42d2f9b7b02e2e9919c0"
+                "reference": "1.0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lncd/OAuth2/zipball/6b2f5944ef73d1c6ea2f42d2f9b7b02e2e9919c0",
-                "reference": "6b2f5944ef73d1c6ea2f42d2f9b7b02e2e9919c0",
+                "url": "https://api.github.com/repos/lncd/OAuth2/zipball/1.0.5",
+                "reference": "1.0.5",
                 "shasum": ""
             },
             "require": {
@@ -1271,7 +1219,7 @@
                 "mockery/mockery": ">=0.7.2",
                 "phpunit/phpunit": "*"
             },
-            "time": "2013-02-19 00:42:49",
+            "time": "2013-02-21 17:51:59",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1294,6 +1242,7 @@
             "homepage": "https://github.com/lncd/OAuth2",
             "keywords": [
                 "Authentication",
+                "api",
                 "authorization",
                 "oauth",
                 "oauth2",
@@ -1435,17 +1384,65 @@
             ]
         },
         {
-            "name": "zendframework/zendframework",
-            "version": "2.1.1",
+            "name": "umpirsky/country-list",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://github.com/zendframework/zf2.git",
-                "reference": "release-2.1.1"
+                "url": "https://github.com/umpirsky/country-list.git",
+                "reference": "1.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/release-2.1.1",
-                "reference": "release-2.1.1",
+                "url": "https://api.github.com/repos/umpirsky/country-list/zipball/1.0.0",
+                "reference": "1.0.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "doctrine/dbal": "2.*",
+                "symfony/class-loader": "2.1.*",
+                "symfony/console": "2.1.*",
+                "symfony/filesystem": "2.1.*",
+                "symfony/finder": "2.1.*",
+                "symfony/locale": "2.1.*",
+                "symfony/yaml": "2.1.*",
+                "zendframework/zend-db": "2.0.*",
+                "zendframework/zendframework1": "1.*"
+            },
+            "time": "2012-11-27 09:51:19",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Umpirsky\\Country": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Саша Стаменковић",
+                    "email": "umpirsky@gmail.com",
+                    "homepage": "http://umpirsky.com/"
+                }
+            ],
+            "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats."
+        },
+        {
+            "name": "zendframework/zendframework",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zf2.git",
+                "reference": "release-2.1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/release-2.1.2",
+                "reference": "release-2.1.2",
                 "shasum": ""
             },
             "require": {
@@ -1514,7 +1511,7 @@
                 "zendframework/zendpdf": "ZendPdf for creating PDF representations of barcodes",
                 "zendframework/zendservice-recaptcha": "ZendService\\ReCaptcha for rendering ReCaptchas in Zend\\Captcha and/or Zend\\Form"
             },
-            "time": "2013-02-06 21:23:43",
+            "time": "2013-02-20 19:05:13",
             "bin": [
                 "bin/classmap_generator.php"
             ],
@@ -1646,7 +1643,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://github.com/ZF-Commons/ZfcUserDoctrineORM.git",
+                "url": "https://github.com/ZF-Commons/ZfcUserDoctrineORM.git",
                 "reference": "0.1.1"
             },
             "dist": {
@@ -1704,10 +1701,10 @@
         "doctrine/migrations": 15,
         "doctrine/data-fixtures": 15,
         "doctrine/doctrine-orm-module": 20,
-        "heartsentwined/zf2-geoname": 20,
         "lncd/oauth2": 20,
+        "umpirsky/country-list": 20,
         "keen-io/keen-io": 20,
         "gracenote/gracenote": 20,
-        "jambase/jambase-tha": 20
+        "jambase/jambase": 20
     }
 }

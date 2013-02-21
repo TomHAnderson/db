@@ -31,12 +31,12 @@
         "heartsentwined/file-system-manager": "1.*",
         "heartsentwined/zf2-phpunit-testcase": "1.*",
         "heartsentwined/zf2-phing-task": "1.*",
-        "heartsentwined/zf2-geoname": "dev-master",
 
-        "lncd/Oauth2": "dev-develop",
+        "lncd/Oauth2": "dev-master",
+        "umpirsky/country-list": "dev-master",
  
         "keen-io/keen-io": "dev-master",
         "gracenote/gracenote": "dev-master",
-        "jambase/jambase-tha": "dev-master"
+        "jambase/jambase": "dev-master"
     }
 }
