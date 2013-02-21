@@ -1,8 +1,6 @@
 <?php
 namespace Db\Entity\Field;
 
-use Db\Entity\Zipcode as ZipcodeEntity;
-
 trait Zipcode
 {
     /**
@@ -18,7 +16,7 @@ trait Zipcode
         return $this->zipcode;
     }
 
-    public function setZipcode(ZipcodeEntity $value)
+    public function setZipcode($value)
     {
         $this->zipcode = $value;
         return $this;

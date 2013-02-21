@@ -4,10 +4,10 @@ namespace Db\Entity\Field;
 trait Country
 {
     /**
-     * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "string"})
+     * @Form\Type("Zend\Form\Element\Select")
      * @Form\Attributes({"id": "country"})
      * @Form\Options({"label": "Country"})
+     * @Form\Attributes({"options": {"UNK": "Unknown"}})
      */
     protected $country;
 
