@@ -1,17 +1,17 @@
 [
     {
         "name": "zendframework/zendframework",
-        "version": "2.1.1",
-        "version_normalized": "2.1.1.0",
+        "version": "2.1.2",
+        "version_normalized": "2.1.2.0",
         "source": {
             "type": "git",
-            "url": "git://github.com/zendframework/zf2.git",
-            "reference": "release-2.1.1"
+            "url": "https://github.com/zendframework/zf2.git",
+            "reference": "release-2.1.2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/zendframework/zf2/zipball/release-2.1.1",
-            "reference": "release-2.1.1",
+            "url": "https://api.github.com/repos/zendframework/zf2/zipball/release-2.1.2",
+            "reference": "release-2.1.2",
             "shasum": ""
         },
         "require": {
@@ -80,7 +80,7 @@
             "zendframework/zendpdf": "ZendPdf for creating PDF representations of barcodes",
             "zendframework/zendservice-recaptcha": "ZendService\\ReCaptcha for rendering ReCaptchas in Zend\\Captcha and/or Zend\\Form"
         },
-        "time": "2013-02-06 21:23:43",
+        "time": "2013-02-20 19:05:13",
         "bin": [
             "bin/classmap_generator.php"
         ],
@@ -305,7 +305,7 @@
                 "homepage": "http://www.jwage.com/"
             },
             {
-                "name": "Guilherme Blanco",
+                "name": "Christoph Dorn",
                 "email": "guilhermeblanco@gmail.com",
                 "homepage": "http://www.instaclick.com"
             },
@@ -318,7 +318,7 @@
                 "email": "kontakt@beberlei.de"
             },
             {
-                "name": "Johannes Schmitt",
+                "name": "Johannes M. Schmitt",
                 "email": "schmittjoh@gmail.com",
                 "homepage": "https://github.com/schmittjoh",
                 "role": "Developer of wrapped JMSSerializerBundle"
@@ -507,7 +507,7 @@
                 "homepage": "http://www.jwage.com/"
             },
             {
-                "name": "Guilherme Blanco",
+                "name": "Christoph Dorn",
                 "email": "guilhermeblanco@gmail.com",
                 "homepage": "http://www.instaclick.com"
             },
@@ -607,7 +607,7 @@
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "git://github.com/doctrine/DoctrineORMModule.git",
+            "url": "https://github.com/doctrine/DoctrineORMModule.git",
             "reference": "8da0dab03be4f282b97632d54979d6b45d6bf479"
         },
         "dist": {
@@ -832,7 +832,7 @@
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "git://github.com/ZF-Commons/ZfcUserDoctrineORM.git",
+            "url": "https://github.com/ZF-Commons/ZfcUserDoctrineORM.git",
             "reference": "0.1.1"
         },
         "dist": {
@@ -877,12 +877,174 @@
         ]
     },
     {
+        "name": "cdli/two-stage-signup",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cdli/CdliTwoStageSignup.git",
+            "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cdli/CdliTwoStageSignup/zipball/41f88cde87f69ddd9393e1b0568edb4cec6c6046",
+            "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046",
+            "shasum": ""
+        },
+        "require": {
+            "zendframework/zendframework": "2.*",
+            "zf-commons/zfc-user": "0.*"
+        },
+        "replace": {
+            "cdli/cdlitwostagesignup": "self.version"
+        },
+        "suggest": {
+            "doctrine/doctrine-orm-module": "dev-master",
+            "zf-commons/zfc-user-doctrine-orm": "dev-master"
+        },
+        "time": "2013-02-13 12:16:55",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "CdliTwoStageSignup": "src/"
+            },
+            "classmap": [
+                "./"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Adam Lundrigan",
+                "email": "adamlundrigan@cdli.ca",
+                "homepage": "http://www.cdli.ca/"
+            }
+        ],
+        "description": "Two-stage signup process for ZfcUser",
+        "homepage": "https://github.com/cdli/CdliTwoStageSignup",
+        "keywords": [
+            "register",
+            "signup",
+            "user",
+            "zf2",
+            "zfcuser"
+        ]
+    },
+    {
+        "name": "lncd/Oauth2",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/lncd/OAuth2.git",
+            "reference": "1.0.5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/lncd/OAuth2/zipball/1.0.5",
+            "reference": "1.0.5",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "mockery/mockery": ">=0.7.2",
+            "phpunit/phpunit": "*"
+        },
+        "time": "2013-02-21 17:51:59",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "OAuth2": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Alex Bilbie",
+                "email": "hello@alexbilbie.com",
+                "homepage": "http://www.alexbilbie.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "OAuth 2.0 Framework",
+        "homepage": "https://github.com/lncd/OAuth2",
+        "keywords": [
+            "Authentication",
+            "api",
+            "authorization",
+            "oauth",
+            "oauth2",
+            "resource",
+            "server"
+        ]
+    },
+    {
+        "name": "umpirsky/country-list",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/umpirsky/country-list.git",
+            "reference": "1.0.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/umpirsky/country-list/zipball/1.0.0",
+            "reference": "1.0.0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "doctrine/dbal": "2.*",
+            "symfony/class-loader": "2.1.*",
+            "symfony/console": "2.1.*",
+            "symfony/filesystem": "2.1.*",
+            "symfony/finder": "2.1.*",
+            "symfony/locale": "2.1.*",
+            "symfony/yaml": "2.1.*",
+            "zendframework/zend-db": "2.0.*",
+            "zendframework/zendframework1": "1.*"
+        },
+        "time": "2012-11-27 09:51:19",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Umpirsky\\Country": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Саша Стаменковић",
+                "email": "umpirsky@gmail.com",
+                "homepage": "http://umpirsky.com/"
+            }
+        ],
+        "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats."
+    },
+    {
         "name": "keen-io/keen-io",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/keenlabs/KeenClient-PHP",
+            "url": "https://github.com/keenlabs/KeenClient-PHP.git",
             "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea"
         },
         "dist": {
@@ -919,6 +1081,98 @@
         "keywords": [
             "analytics",
             "keen io",
+            "zf2"
+        ]
+    },
+    {
+        "name": "gracenote/gracenote",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/TomHAnderson/GracenoteClient-PHP.git",
+            "reference": "3e03d6f829e18248beb4472357601c85d974a716"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/TomHAnderson/GracenoteClient-PHP/zipball/3e03d6f829e18248beb4472357601c85d974a716",
+            "reference": "3e03d6f829e18248beb4472357601c85d974a716",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "zendframework/zendframework": "2.*,!=2.0.6"
+        },
+        "time": "2013-02-20 04:39:08",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Gracenote": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Tom Anderson",
+                "email": "tom.h.anderson@gmail.com",
+                "homepage": "http://db.etree.org"
+            }
+        ],
+        "description": "A PHP library for abstracting the Gracenote API",
+        "homepage": "http://developer.gracenote.com",
+        "keywords": [
+            "gracenote",
+            "music",
+            "zf2"
+        ]
+    },
+    {
+        "name": "jambase/jambase",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/TomHAnderson/JambaseClient-PHP.git",
+            "reference": "a5ac41042863209bbed8059ecec6e8446e3bd941"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/TomHAnderson/JambaseClient-PHP/zipball/a5ac41042863209bbed8059ecec6e8446e3bd941",
+            "reference": "a5ac41042863209bbed8059ecec6e8446e3bd941",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "zendframework/zendframework": "2.*,!=2.0.6"
+        },
+        "time": "2013-02-21 19:14:50",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Jambase": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Tom Anderson",
+                "email": "tom.h.anderson@gmail.com",
+                "homepage": "http://db.etree.org/"
+            }
+        ],
+        "description": "A PHP library for the Jambase API",
+        "homepage": "http://developer.jambase.com",
+        "keywords": [
+            "concerts",
+            "live music",
             "zf2"
         ]
     },
@@ -1492,263 +1746,6 @@
             "cli",
             "helper",
             "zf2"
-        ]
-    },
-    {
-        "name": "heartsentwined/zf2-geoname",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/heartsentwined/zf2-geoname",
-            "reference": "3.0.8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/heartsentwined/zf2-geoname/zipball/3.0.8",
-            "reference": "3.0.8",
-            "shasum": ""
-        },
-        "require": {
-            "heartsentwined/arg-validator": "1.*",
-            "heartsentwined/file-system-manager": "1.*",
-            "heartsentwined/yaml": "1.*",
-            "heartsentwined/zf2-cli": "1.*",
-            "heartsentwined/zf2-cron": "2.*",
-            "heartsentwined/zf2-doctrine": "1.*",
-            "heartsentwined/zf2-phing-task": "1.*",
-            "heartsentwined/zf2-phpunit-testcase": "1.*",
-            "php": ">=5.3.3",
-            "zendframework/zendframework": "2.*"
-        },
-        "time": "2013-02-11 07:15:17",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Heartsentwined\\Geoname": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0"
-        ],
-        "authors": [
-            {
-                "name": "heartsentwined",
-                "email": "heartsentwined@cogito-lab.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "maintain a local copy of the Geonames database",
-        "homepage": "https://github.com/heartsentwined/zf2-geoname",
-        "keywords": [
-            "ZendFramework",
-            "geoname",
-            "zf2"
-        ]
-    },
-    {
-        "name": "jambase/jambase-tha",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/TomHAnderson/JambaseClient-PHP.git",
-            "reference": "198139f74fa4458716f09ef96759e8cee9bfab80"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/TomHAnderson/JambaseClient-PHP/zipball/198139f74fa4458716f09ef96759e8cee9bfab80",
-            "reference": "198139f74fa4458716f09ef96759e8cee9bfab80",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3",
-            "zendframework/zendframework": "2.*,!=2.0.6"
-        },
-        "time": "2013-02-17 04:27:14",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Jambase": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Tom Anderson",
-                "email": "tom.h.anderson@gmail.com",
-                "homepage": "http://db.etree.org/"
-            }
-        ],
-        "description": "A PHP library for the Jambase API",
-        "homepage": "http://developer.jambase.com",
-        "keywords": [
-            "concerts",
-            "live music",
-            "zf2"
-        ]
-    },
-    {
-        "name": "gracenote/gracenote-tha",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/TomHAnderson/GracenoteClient-PHP.git",
-            "reference": "b2c31302d71a2d07a083a8aadc14189d94e53541"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/TomHAnderson/GracenoteClient-PHP/zipball/b2c31302d71a2d07a083a8aadc14189d94e53541",
-            "reference": "b2c31302d71a2d07a083a8aadc14189d94e53541",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3",
-            "zendframework/zendframework": "2.*,!=2.0.6"
-        },
-        "time": "2013-02-17 01:17:18",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Gracenote": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Tom Anderson",
-                "email": "tom.h.anderson@gmail.com",
-                "homepage": "http://db.etree.org/"
-            }
-        ],
-        "description": "A PHP library for reporting events to the Keen IO API",
-        "homepage": "http://developer.gracenote.com",
-        "keywords": [
-            "gracenote",
-            "music",
-            "zf2"
-        ]
-    },
-    {
-        "name": "cdli/two-stage-signup",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/cdli/CdliTwoStageSignup.git",
-            "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cdli/CdliTwoStageSignup/zipball/41f88cde87f69ddd9393e1b0568edb4cec6c6046",
-            "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046",
-            "shasum": ""
-        },
-        "require": {
-            "zendframework/zendframework": "2.*",
-            "zf-commons/zfc-user": "0.*"
-        },
-        "replace": {
-            "cdli/cdlitwostagesignup": "self.version"
-        },
-        "suggest": {
-            "doctrine/doctrine-orm-module": "dev-master",
-            "zf-commons/zfc-user-doctrine-orm": "dev-master"
-        },
-        "time": "2013-02-13 12:16:55",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "CdliTwoStageSignup": "src/"
-            },
-            "classmap": [
-                "./"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Adam Lundrigan",
-                "email": "adamlundrigan@cdli.ca",
-                "homepage": "http://www.cdli.ca/"
-            }
-        ],
-        "description": "Two-stage signup process for ZfcUser",
-        "homepage": "https://github.com/cdli/CdliTwoStageSignup",
-        "keywords": [
-            "register",
-            "signup",
-            "user",
-            "zf2",
-            "zfcuser"
-        ]
-    },
-    {
-        "name": "lncd/Oauth2",
-        "version": "dev-develop",
-        "version_normalized": "dev-develop",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/lncd/OAuth2.git",
-            "reference": "6b2f5944ef73d1c6ea2f42d2f9b7b02e2e9919c0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/lncd/OAuth2/zipball/6b2f5944ef73d1c6ea2f42d2f9b7b02e2e9919c0",
-            "reference": "6b2f5944ef73d1c6ea2f42d2f9b7b02e2e9919c0",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "mockery/mockery": ">=0.7.2",
-            "phpunit/phpunit": "*"
-        },
-        "time": "2013-02-19 00:42:49",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "OAuth2": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Alex Bilbie",
-                "email": "hello@alexbilbie.com",
-                "homepage": "http://www.alexbilbie.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "OAuth 2.0 Framework",
-        "homepage": "https://github.com/lncd/OAuth2",
-        "keywords": [
-            "Authentication",
-            "authorization",
-            "oauth",
-            "oauth2",
-            "resource",
-            "server"
         ]
     }
 ]
