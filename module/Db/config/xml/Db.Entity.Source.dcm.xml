@@ -12,6 +12,7 @@
     <field name="discCountShn" type="integer" nullable="true"/>
     <field name="createdAt" type="datetime" nullable="false"/>
     <field name="circulatedAt" type="string" nullable="true"/>
+    <field name="mbid" type="string" nullable="true"/>
     <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="sources">
       <join-columns>
         <join-column name="performance_id" referenced-column-name="id" nullable="false"/>

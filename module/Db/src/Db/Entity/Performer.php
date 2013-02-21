@@ -18,6 +18,7 @@ class Performer extends AbstractEntity {
         , \Db\Entity\Field\Firstname
         , \Db\Entity\Field\FirstnameNormalize
         , \Db\Entity\Field\Note
+        , \Db\Entity\Field\Mbid
         ;
 
     use \Db\Entity\Relation\Aliases
@@ -40,6 +41,7 @@ class Performer extends AbstractEntity {
     {
         return array(
             'id' => $this->getId(),
+            'mbid' => $this->getMbid(),
             'lastname' => $this->getLastname(),
             'lastnameNormalize' => $this->getLastnameNormalize(),
             'firstname' => $this->getFirstname(),
@@ -52,6 +54,7 @@ class Performer extends AbstractEntity {
     {
         $this->setLastname(isset($data['lastname']) ? $data['lastname']: null);
         $this->setFirstname(isset($data['firstname']) ? $data['firstname']: null);
+        $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }
 

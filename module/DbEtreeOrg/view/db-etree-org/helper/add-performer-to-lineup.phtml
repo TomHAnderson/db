@@ -5,17 +5,8 @@
 <div id="addPerformerToLineup" style="display: none; clear:both;">
 
     <form method="post" action="/lineup/add-performer">
-        <div class="row">
 
-            <div class="span1">
-                Name
-            </div>
-
-            <div class="span11">
-                <input type="text" id="performer" autocomplete="off" placeholder="Performer Name or Alias"/>
-                <input type="hidden" name="performer_id" id="performerId" value="" />
-            </div>
-        </div>
+        <?= $this->inputPerformer(); ?>
 
         <div class="row">
             <div class="span1">

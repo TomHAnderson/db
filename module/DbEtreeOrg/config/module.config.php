@@ -114,8 +114,11 @@ return array(
             'findEntity' => 'DbEtreeOrg\View\Helper\FindEntity',
 
             'inputVenue' => 'DbEtreeOrg\View\Helper\InputVenue',
+            'inputPerformer' => 'DbEtreeOrg\View\Helper\InputPerformer',
+            'inputBand' => 'DbEtreeOrg\View\Helper\InputBand',
 
             'addPerformerToLineup' => 'DbEtreeOrg\View\Helper\AddPerformerToLineup',
+            'listPerformances' => 'DbEtreeOrg\View\Helper\ListPerformances',
 
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',
             'findPerformer' => 'DbEtreeOrg\View\Helper\FindPerformer',
@@ -132,11 +135,6 @@ return array(
 
     'di' => array(
         'instance' => array(
-#            'DbEtreeOrg\View\Helper\AbstractFind' => array(
-#                'parameters' => array(
-#                    'entitymanager' => 'Doctrine\ORM\EntityManager',
-#                ),
-#            ),
         ),
     ),
 );
