@@ -1,15 +1,16 @@
-<h1>Edit Performer Alias</h1>
+<h1>
+    <i class="icon-facetime-video"></i>
+    Edit Performer Alias
+</h1>
 
-<h3>
-Real Name:
-<?= $this->escapeHtml($this->performerAlias->getPerformer()->getLastname()); ?>
-<?php if ($this->escapeHtml($this->performerAlias->getPerformer()->getLastname())) echo ', '; ?>
-<?= $this->escapeHtml($this->performerAlias->getPerformer()->getFirstname()); ?>
+<h1>
+    <i class="icon-film"></i>
+    <?= $this->escapeHtml($this->performerAlias->getPerformer()->getFullName()); ?>
 </h3>
 
 <?= $this->form()->openTag($form); ?>
 
-<?= $this->formRow($this->form->get('name')); ?>
+<?= $this->formRow($this->form->get('name')->setLabel('Alias')); ?>
 
 <?= $this->formRow($this->form->get('note')); ?>
 

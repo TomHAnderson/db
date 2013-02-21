@@ -14,20 +14,18 @@ if ($this->band->getNote()) {
 }
 ?>
 
-<ul>
+<h3>
 <?php
 foreach ($this->band->getLineups() as $lineup) {
 ?>
-    <li>
-        <i class="icon-group"></i>
-        <a href="/lineup/detail?id=<?= $lineup->getId(); ?>">
-            <?= $this->escapeHtml($lineup->getName()); ?>
-        </a>
-    </li>
+    <i class="icon-group"></i>
+    <a href="/lineup/detail?id=<?= $lineup->getId(); ?>">
+        <?= $this->escapeHtml($lineup->getName()); ?>
+    </a>
 <?php
 }
 ?>
-</ul>
+</h3>
 
 <?php
 use Gracenote\Service\Gracenote;
@@ -44,6 +42,14 @@ $gracenote = Gracenote::query('ALBUM_SEARCH', array(
 
 $jambase = Jambase::search(array('band' => $this->band->getName()));
 
+use \Echonest\Service\Echonest;
+
+$echonest = Echonest::query('artist', 'biographies', array(
+    'name' => $this->band->getName(),
+    'results' => '1',
+    'start' => '0',
+));
+
 ?>
 
 <ul class="nav nav-tabs" id="tabs">
@@ -58,6 +64,18 @@ $jambase = Jambase::search(array('band' => $this->band->getName()));
             Links
         </a>
     </li>
+
+    <?php
+        if ($echonest->response->status->message == 'Success') {
+        ?>
+            <li class="">
+                <a href="#biography" data-toggle="tab">
+                    Biography
+                </a>
+            </li>
+        <?php
+        }
+    ?>
 
 <?php
 if (sizeof($jambase->event)) {
@@ -98,6 +116,29 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
             <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
         </ul>
     </div>
+
+    <?php
+        if ($echonest->response->status->message == 'Success') {
+        ?>
+
+    <div class="tab-pane" id="biography">
+        <ul class="nav nav-pills">
+            <?php
+                if ($echonest->response->status->message == 'Success') {
+                    foreach ($echonest->response->biographies as $bio) {
+                ?>
+                    <pre><?= $this->escapeHtml($bio->text); ?></pre>
+
+                <?php
+                    }
+                }
+                ?>
+        </ul>
+    </div>
+
+    <?php
+    }
+    ?>
 
 <?php
 if (sizeof($jambase->event)) {

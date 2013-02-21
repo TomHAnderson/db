@@ -1,5 +1,5 @@
 {
-    "hash": "7293d9e8166a756bae50e4771217043d",
+    "hash": "0edaa6434abb944117894f57f4cc2b5d",
     "packages": [
         {
             "name": "cdli/two-stage-signup",
@@ -516,6 +516,50 @@
             "keywords": [
                 "database",
                 "orm"
+            ]
+        },
+        {
+            "name": "echonest/echonest",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TomHAnderson/EchonestClient-PHP.git",
+                "reference": "a2cf6628798f17da0f2885cf7cc25cc637b38962"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TomHAnderson/EchonestClient-PHP/zipball/a2cf6628798f17da0f2885cf7cc25cc637b38962",
+                "reference": "a2cf6628798f17da0f2885cf7cc25cc637b38962",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zendframework": "2.*,!=2.0.6"
+            },
+            "time": "2013-02-21 23:30:10",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Echonest": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Anderson",
+                    "email": "tom.h.anderson@gmail.com",
+                    "homepage": "http://db.etree.org/"
+                }
+            ],
+            "description": "A PHP library for abstracting the Echonest API",
+            "homepage": "http://developer.echonest.com/docs/v4/contents.html",
+            "keywords": [
+                "echonest",
+                "music",
+                "zf2"
             ]
         },
         {
@@ -1433,16 +1477,16 @@
         },
         {
             "name": "zendframework/zendframework",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "release-2.1.2"
+                "reference": "release-2.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/release-2.1.2",
-                "reference": "release-2.1.2",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/release-2.1.3",
+                "reference": "release-2.1.3",
                 "shasum": ""
             },
             "require": {
@@ -1511,7 +1555,7 @@
                 "zendframework/zendpdf": "ZendPdf for creating PDF representations of barcodes",
                 "zendframework/zendservice-recaptcha": "ZendService\\ReCaptcha for rendering ReCaptchas in Zend\\Captcha and/or Zend\\Form"
             },
-            "time": "2013-02-20 19:05:13",
+            "time": "2013-02-21 21:00:16",
             "bin": [
                 "bin/classmap_generator.php"
             ],
@@ -1705,6 +1749,7 @@
         "umpirsky/country-list": 20,
         "keen-io/keen-io": 20,
         "gracenote/gracenote": 20,
-        "jambase/jambase": 20
+        "jambase/jambase": 20,
+        "echonest/echonest": 20
     }
 }

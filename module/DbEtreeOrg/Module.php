@@ -9,6 +9,7 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent
     , Gracenote\Service\Gracenote
     , Jambase\Service\Jambase
+    , Echonest\Service\Echonest
     ;
 
 class Module
@@ -30,6 +31,7 @@ class Module
 
         Gracenote::configure($config['gracenote']['clientId'], $config['gracenote']['userId']);
         Jambase::configure($config['jambase']['apiKey']);
+        Echonest::configure($config['echonest']['apiKey']);
     }
 
     public function getConfig()

@@ -37,6 +37,7 @@
  
         "keen-io/keen-io": "dev-master",
         "gracenote/gracenote": "dev-master",
-        "jambase/jambase": "dev-master"
+        "jambase/jambase": "dev-master",
+        "echonest/echonest": "dev-master"
     }
 }

@@ -35,20 +35,18 @@ if ($this->performer->getNote()) {
 }
 ?>
 
-<h3>Aliases</h3>
-<ul>
+<h3>
 <?php
 foreach ($this->performer->getAliases() as $alias) {
 ?>
-    <li>
+        <i class="icon-facetime-video"></i>
         <a href="/performerAlias/detail?id=<?= $alias->getId(); ?>">
             <?= $this->escapeHtml($alias->getName()); ?>
         </a>
-    </li>
 <?php
 }
 ?>
-</ul>
+</h3>
 
 <?php
 use Gracenote\Service\Gracenote;
@@ -60,6 +58,14 @@ $gracenote = Gracenote::query('ALBUM_SEARCH', array(
     'options' => array(
         'SELECT_EXTENDED' => 'COVER',
     ),
+));
+
+use \Echonest\Service\Echonest;
+
+$echonest = Echonest::query('artist', 'biographies', array(
+    'name' => $this->performer->getFullname(),
+    'results' => '1',
+    'start' => '0',
 ));
 
 ?>
@@ -77,6 +83,23 @@ $gracenote = Gracenote::query('ALBUM_SEARCH', array(
         </a>
     </li>
 
+        <?php
+            if ($echonest->response->status->message == 'Success') {
+            ?>
+                <li class="">
+                    <a href="#biography" data-toggle="tab">
+                        Biography
+                    </a>
+                </li>
+            <?php
+            }
+        ?>
+
+    <li class="">
+        <a href="#performances" data-toggle="tab">
+            Performances
+        </a>
+    </li>
 <?php
 if (sizeof($gracenote->RESPONSE->ALBUM)) {
 ?>
@@ -104,6 +127,27 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
     <div class="tab-pane" id="links">
         <ul class="nav nav-pills">
             <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+        </ul>
+    </div>
+
+    <div class="tab-pane" id="biography">
+        <ul class="nav nav-pills">
+            <?php
+                if ($echonest->response->status->message == 'Success') {
+                    foreach ($echonest->response->biographies as $bio) {
+                ?>
+                    <pre><?= $this->escapeHtml($bio->text); ?></pre>
+
+                <?php
+                    }
+                }
+                ?>
+        </ul>
+    </div>
+
+    <div class="tab-pane" id="performances">
+        <ul class="nav nav-pills">
+            <?= $this->listPerformances($this->performer->getPerformances()); ?>
         </ul>
     </div>
 
