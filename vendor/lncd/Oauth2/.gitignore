@@ -1,8 +1,0 @@
-/vendor/
-/composer.lock
-/docs/build/
-/build/logs/
-/build/coverage/
-test
-/docs/
-/testing/
