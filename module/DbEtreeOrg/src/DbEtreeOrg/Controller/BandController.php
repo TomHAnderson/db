@@ -148,7 +148,7 @@ class BandController extends AbstractActionController
 
         $bands = $em->getRepository('Db\Entity\Band')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
-        ));
+        ), array(), 20);
 
         $return = array();
         $i = 0;

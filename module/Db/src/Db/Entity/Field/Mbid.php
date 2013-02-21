@@ -1,4 +1,8 @@
 <?php
+/**
+ * Music Brains ID
+ */
+
 namespace Db\Entity\Field;
 
 trait Mbid

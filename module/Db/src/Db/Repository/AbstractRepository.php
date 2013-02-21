@@ -10,7 +10,7 @@ use Db\Model\AbstractModel
 
 abstract class AbstractRepository extends EntityRepository
 {
-    public function findLike($search, $sort = array())
+    public function findLike($search, $sort = array(), $limit, $offset)
     {
         $query = $this->createQueryBuilder('s');
         $i = 0;
@@ -23,6 +23,10 @@ abstract class AbstractRepository extends EntityRepository
         foreach ($sort as $column => $direction) {
             $query->add('orderBy', "s.$column $direction");
         }
+
+        if ($limit) $query->setMaxResults($limit);
+
+        if ($page) $query->setFirstResult($offset);
 
         $query = $query->getQuery();
 
