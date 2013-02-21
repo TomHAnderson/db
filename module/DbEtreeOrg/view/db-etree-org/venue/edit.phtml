@@ -7,9 +7,15 @@
 
 <?= $this->formRow($this->form->get('name')); ?>
 
-<?php
-    //$this->formRow($this->form->get('place'));
-?>
+<?= $this->formRow($this->form->get('country')); ?>
+
+<?= $this->formRow($this->form->get('zipcode')); ?>
+
+<a href="#" id="lookup-zipcode" class="btn btn-primary"><i class="icon-book"></i> Lookup</a>
+<div class="alert" style="display: none;" id="lookup-alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    Enter Country and Zipcode to Lookup location
+</div>
 
 <?= $this->formRow($this->form->get('city')); ?>
 
@@ -29,3 +35,34 @@
 </a>
 
 <?= $this->form()->closeTag(); ?>
+
+<script>
+$(function() {
+    $('#lookup-zipcode').on('click', function(event) {
+        $('#lookup-alert').hide();
+
+        if ($('#country').val() && $('#zipcode').val()) {
+            $.ajax({
+                url: 'http://api.zippopotam.us/'
+                    + $('#country').val().trim().toLowerCase()
+                    + '/'
+                    + $('#zipcode').val().trim().toLowerCase()
+                    ,
+                success: function(data) {
+                    if (data.places.length == 1) {
+                        $('#city').val(data.places[0]['place name']);
+                        $('#state').val(data.places[0]['state abbreviation']);
+                    } else {
+                        alert('more than one place found');
+                    }
+                },
+                dataType: 'json'
+            });
+        } else {
+            $('#lookup-alert').show();
+        }
+
+        return false;
+    });
+});
+</script>

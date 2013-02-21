@@ -69,6 +69,11 @@ class VenueController extends AbstractActionController
             }
         }
 
+        $country = $form->get('country');
+        $countries = include(__DIR__ . '/../../../../../vendor/umpirsky/country-list/country/cldr/en_US/country.php');
+        $country->setValueOptions($countries);
+        $country->setValue('US');
+
         return array(
             'form' => $form
         );
@@ -106,6 +111,10 @@ class VenueController extends AbstractActionController
                 return $this->plugin('redirect')->toUrl('/venue/detail?id=' . $venue->getId());
             }
         }
+
+        $country = $form->get('country');
+        $countries = include(__DIR__ . '/../../../../../vendor/umpirsky/country-list/country/cldr/en_US/country.php');
+        $country->setValueOptions($countries);
 
         return array(
             'form' => $form,
