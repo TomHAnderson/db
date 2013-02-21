@@ -36,7 +36,7 @@
         "lncd/Oauth2": "dev-develop",
  
         "keen-io/keen-io": "dev-master",
-        "gracenote/gracenote-tha": "dev-master",
+        "gracenote/gracenote": "dev-master",
         "jambase/jambase-tha": "dev-master"
     }
 }
