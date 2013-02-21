@@ -2,18 +2,18 @@
 use Zend\Form\Element;
 use Zend\Form\Form;
 
-$formElement = new Element\Text('venue');
+$formElement = new Element\Text('performer');
 $formElement
-    ->setLabel('<i class="icon-map-marker"></i> ' . $this->label)
+    ->setLabel('<i class="icon-film"></i> ' . $this->label)
     ->setAttributes(array(
-        'id' => 'venue',
+        'id' => 'performer',
         'autocomplete' => 'off',
         'placeholder'  => '',
     ));
 
-if ($venue) {
+if ($performer) {
     $formElement->setAttributes(array(
-        'value' => $venue->getName(),
+        'value' => $performer->getName(),
     ));
 }
 
@@ -21,21 +21,21 @@ if ($venue) {
 
 <?= $this->formRow($formElement); ?>
 
-<input type="hidden" name="venue_id" <?php if ($venue) echo 'value="' . $venue->getId() . '"'; ?> id="venueId"/>
+<input type="hidden" name="performer_id" <?php if ($performer) echo 'value="' . $performer->getId() . '"'; ?> id="performerId"/>
 
 <script>
-var venues = {};
-var venueLabels = [];
+var performers = {};
+var performerLabels = [];
 
 require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
 
-    $( "#venue" ).typeahead({
+    $( "#performer" ).typeahead({
         source: function ( query, process ) {
-            searchVenues( query, process );
+            searchPerformers( query, process );
         }
         , updater: function (item) {
             //save the id value into the hidden field
-            $( "#venueId" ).val( venues[ item ] );
+            $( "#performerId" ).val( performers[ item ] );
 
             //return the string you want to go into the textbox (e.g. name)
             return item;
@@ -43,36 +43,36 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
         , matcher: function () { return true; }
     });
 
-    var searchVenues = _.debounce(function ( query, process ) {
+    var searchPerformers = _.debounce(function ( query, process ) {
 
         //the "process" argument is a callback, expecting an array of values (strings) to display
 
         //get the data to populate the typeahead (plus some)
         //from your api, wherever that may be
-        $.get('/venue/search-json', { q: query }, function ( data ) {
+        $.get('/performer/search-json', { q: query }, function ( data ) {
 
             //reset these containers
-            venues = {};
-            venueLabels = [];
+            performers = {};
+            performerLabels = [];
 
             //for each item returned, if the display name is already included
             //(e.g. multiple "John Smith" records) then add a unique value to the end
             //so that the user can tell them apart. Using underscore.js for a functional approach.
-            _.each( data.venues, function( item, ix, list ){
+            _.each( data.performers, function( item, ix, list ){
 
-                if ( _.contains( venues, item.label ) ){
+                if ( _.contains( performers, item.label ) ){
                     item.label = item.label + ' #' + item.value;
                 }
 
                 //add the label to the display array
-                venueLabels.push( item.label );
+                performerLabels.push( item.label );
 
                 //also store a mapping to get from label back to ID
-                venues[ item.label ] = item.value;
+                performers[ item.label ] = item.value;
             });
 
             //return the display array
-            process( venueLabels );
+            process( performerLabels );
         });
     }, 300);
 

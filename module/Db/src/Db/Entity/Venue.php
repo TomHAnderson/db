@@ -18,6 +18,8 @@ class Venue extends AbstractEntity
         , \Db\Entity\Field\Note
         , \Db\Entity\Field\City
         , \Db\Entity\Field\State
+        , \Db\Entity\Field\Country
+        , \Db\Entity\Field\Zipcode
         ;
 
     use \Db\Entity\Relation\Performances

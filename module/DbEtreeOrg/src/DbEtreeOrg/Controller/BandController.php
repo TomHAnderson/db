@@ -5,6 +5,8 @@ use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Entity\Band as BandEntity
+    , Db\Filter\Normalize
+    , Zend\View\Model\JsonModel
     ;
 
 class BandController extends AbstractActionController
@@ -134,5 +136,33 @@ class BandController extends AbstractActionController
         }
 
         return $this->plugin('redirect')->toUrl('/');
+    }
+
+    public function searchJsonAction()
+    {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $query = $this->getRequest()->getQuery()->get('q');
+        $filterNormalize = new Normalize();
+        $query = $filterNormalize(trim($query));
+
+        $bands = $em->getRepository('Db\Entity\Band')->findLike(array(
+            'nameNormalize' => '%' . $query . '%',
+        ), array(), 20);
+
+        $return = array();
+        $i = 0;
+        foreach ($bands as $band) {
+            if (++$i > 25) break;
+            $return[] = array(
+                'value' => $band->getId(),
+                'label' => $band->getName(),
+            );
+        }
+
+        $jsonModel = new JsonModel;
+        $jsonModel->setVariable('bands', $return);
+
+        return $jsonModel;
     }
 }

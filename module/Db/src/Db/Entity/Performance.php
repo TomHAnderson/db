@@ -21,6 +21,7 @@ class Performance extends AbstractEntity
         , \Db\Entity\Field\Lineup
         , \Db\Entity\Field\Venue
         , \Db\Entity\Field\Event
+        , \Db\Entity\Field\Mbid
     ;
 
     use \Db\Entity\Relation\Links
@@ -38,6 +39,7 @@ class Performance extends AbstractEntity
     {
         return array(
             'id' => $this->getId(),
+            'mbid' => $this->getMbid(),
             'name' => $this->getName(),
             'performanceDate' => $this->getPerformanceDate(),
             'performanceDateAt' => $this->getPerformanceDateAt()->format('r'),
@@ -47,6 +49,7 @@ class Performance extends AbstractEntity
 
     public function exchangeArray($data)
     {
+        $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNameNormalize(isset($data['nameNormalize']) ? $data['nameNormalize']: null);
         $this->setPerformanceDate(isset($data['performanceDate']) ? $data['performanceDate']: null);
@@ -57,6 +60,7 @@ class Performance extends AbstractEntity
     {
         $inputFilter = new InputFilter();
 
+        $inputFilter->add($this->inputFilterInputMbid($inputFilter));
         $inputFilter->add($this->inputFilterInputName($inputFilter));
         $inputFilter->add($this->inputFilterInputPerformanceDate($inputFilter));
         $inputFilter->add($this->inputFilterInputNote($inputFilter));

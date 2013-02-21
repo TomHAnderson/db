@@ -149,7 +149,7 @@ class VenueController extends AbstractActionController
 
         $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
-        ));
+        ), array(), 20);
 
         $return = array();
         $i = 0;

@@ -11,6 +11,7 @@ use Zend\Form\Annotation as Form;
 class Source extends AbstractEntity
 {
     use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Mbid
         , \Db\Entity\Field\Performance
         , \Db\Entity\Field\Note
         , \Db\Entity\Field\Content
@@ -32,25 +33,44 @@ class Source extends AbstractEntity
     {
         return array(
             'id' => $this->getId(),
+            'mbid' => $this->getMbid(),
             'name' => $this->getName(),
-            'showdate' => $this->getShowdate(),
-            'showdateAt' => $this->getShowdateAt()->format('r'),
-            'set1' => $this->getSet1(),
-            'set2' => $this->getSet2(),
-            'set3' => $this->getSet3(),
-            'note' => $this->getNote(),
+            'content' => $this->getContent(),
+            'mediaSizeCompressed' => $this->getMediaSizeCompressed(),
+            'mediaSizeUnCompressed' => $this->getMediaSizeUnCompressed(),
+            'discCountWav' => $this->getDiscCountWav(),
+            'discCountShn' => $this->getDiscCountShn(),
+            'createdAt' => $this->getCreatedAt()->format('r'),
+            'circulatedAt' => $this->getCirculatedAt()->format('r'),
         );
     }
 
     public function exchangeArray($data)
     {
+        $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setShowdate(isset($data['showdate']) ? $data['showdate']: null);
-        $this->setShowdateAt(isset($data['showdateAt']) ? $data['showdateAt']: null);
-        $this->setSet1(isset($data['set1']) ? $data['set1']: null);
-        $this->setSet1(isset($data['set2']) ? $data['set2']: null);
-        $this->setSet1(isset($data['set3']) ? $data['set3']: null);
-        $this->setSet1(isset($data['note']) ? $data['note']: null);
+        $this->setContnet(isset($data['content']) ? $data['content']: null);
+        $this->setMediaSizeCompressed(isset($data['mediaSizeCompressed']) ? $data['mediaSizeCompressed']: null);
+        $this->setMediaSizeUncompressed(isset($data['mediaSizeUncompressed']) ? $data['mediaSizeUncompressed']: null);
+        $this->setDiscCountWav(isset($data['discCountWav']) ? $data['discCountWav']: null);
+        $this->setDiscCountShn(isset($data['discCountShn']) ? $data['discCountShn']: null);
+        $this->setCirculatedAt(isset($data['circulatedAt']) ? $data['circulatedAt']: null);
+    }
+
+    public function getInputFilter()
+    {
+        $inputFilter = new InputFilter();
+
+        $inputFilter->add($this->inputFilterInputMbid($inputFilter));
+        $inputFilter->add($this->inputFilterInputName($inputFilter));
+        $inputFilter->add($this->inputFilterInputContent($inputFilter));
+        $inputFilter->add($this->inputFilterInputMediaSizeCompressed($inputFilter));
+        $inputFilter->add($this->inputFilterInputMediaSizeUncompressed($inputFilter));
+        $inputFilter->add($this->inputFilterInputDiscCountWav($inputFilter));
+        $inputFilter->add($this->inputFilterInputDiscCountShn($inputFilter));
+        $inputFilter->add($this->inputFilterInputCirculatedAt($inputFilter));
+
+        return $inputFilter;
     }
 }
 

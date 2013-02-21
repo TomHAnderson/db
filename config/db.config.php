@@ -14,11 +14,10 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
-        'CdliTwoStageSignup',
+//        'CdliTwoStageSignup',
+        'GoalioForgotPassword',
 
-        'Geoname',
         'Heartsentwined\Cron',
-
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

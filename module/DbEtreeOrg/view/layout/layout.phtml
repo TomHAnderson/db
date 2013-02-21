@@ -9,7 +9,6 @@
 
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'href' => $this->basePath() . '/images/db-logo.png'))
-            ->prependStylesheet($this->basePath() . '/css/qunit.css')
             ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.css')
             ->prependStylesheet($this->basePath() . '/css/style.css')
             ->prependStylesheet($this->basePath() . '/css/bootstrap.css') ?>
@@ -129,9 +128,21 @@
                                 <ul class="dropdown-menu" aria-labelledby="band-drop" role="menu">
 
                                     <li role="menuitem">
-                                        <form class="navbar-search pull-left" name="search" action="/band/search">
-                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Bands">
+                                        <form class="navbar-search pull-left" id="band-search" action="/band/search">
+                                            <?= $this->inputBand(null, 'Search'); ?>
                                         </form>
+
+                                        <script>
+                                            $(function() {
+                                                $('#band-search').on('submit', function(event) {
+                                                    if ($('#bandId').val()) {
+                                                        window.location = '/band/detail?id=' + $('#bandId').val();
+                                                    }
+
+                                                    return false;
+                                                });
+                                            });
+                                        </script>
                                     </li>
 
                                     <?php
@@ -161,8 +172,10 @@
                                                     <li role="menuitem">
                                                         <a href="/band/detail?id=<?= $p->getId(); ?>">
                                                             <i class="icon-group"></i>
-                                                            <?= $this->escapeHtml($p->getBand()->getName()); ?>:
                                                             <?= $this->escapeHtml($p->getName()); ?>
+
+                                                            <i class="icon-cogs"></i>
+                                                            <?= $this->escapeHtml($p->getBand()->getName()); ?>
                                                         </a>
                                                     </li>
                                                 <?php
@@ -194,9 +207,21 @@
                                 <ul class="dropdown-menu" aria-labelledby="performer-drop" role="menu">
 
                                     <li role="menuitem">
-                                        <form class="navbar-search pull-left" name="search" action="/venue/search">
-                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Performers">
+                                        <form class="navbar-search pull-left" id="performer-search" action="/performer/detail">
+                                            <?= $this->inputPerformer(null, 'Search'); ?>
                                         </form>
+
+                                        <script>
+                                            $(function() {
+                                                $('#performer-search').on('submit', function(event) {
+                                                    if ($('#performerId').val()) {
+                                                        window.location = '/performer/detail?id=' + $('#performerId').val();
+                                                    }
+
+                                                    return false;
+                                                });
+                                            });
+                                        </script>
                                     </li>
 
                                     <?php
@@ -225,8 +250,6 @@
                                             Create Performer
                                         </a>
                                     </li>
-
-
                                 </ul>
                             </li>
 
@@ -241,9 +264,21 @@
                                 <ul class="dropdown-menu" aria-labelledby="venue-drop" role="menu">
 
                                     <li role="menuitem">
-                                        <form class="navbar-search pull-left" name="search" action="/venue/search">
-                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Venues">
+                                        <form class="navbar-search pull-left" id="venue-search" action="">
+                                            <?= $this->inputVenue(null, 'Search'); ?>
                                         </form>
+
+                                        <script>
+                                            $(function() {
+                                                $('#venue-search').on('submit', function(event) {
+                                                if ($('#venueId').val()) {
+                                                        window.location = '/venue/detail?id=' + $('#venueId').val();
+                                                    }
+
+                                                    return false;
+                                                });
+                                            });
+                                        </script>
                                     </li>
 
                                     <?php

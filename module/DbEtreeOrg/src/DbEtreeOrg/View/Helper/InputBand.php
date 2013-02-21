@@ -7,15 +7,15 @@ use Zend\View\Helper\AbstractHelper
     , Zend\View\Model\ViewModel
     ;
 
-final class InputVenue extends AbstractHelper implements ServiceLocatorAwareInterface {
+final class InputBand extends AbstractHelper implements ServiceLocatorAwareInterface {
     use \Db\Model\Component\ServiceLocator;
 
-    public function __invoke($venue = '', $label = 'Venue')
+    public function __invoke($band = '', $label = 'Band')
     {
         $view = $this->getServiceLocator()->getServiceLocator()->get('View');
         $model = new ViewModel();
-        $model->setTemplate('db-etree-org/helper/input-venue.phtml');
-        $model->setVariable('venue', $venue);
+        $model->setTemplate('db-etree-org/helper/input-band.phtml');
+        $model->setVariable('band', $band);
         $model->setVariable('label', $label);
         $model->setOption('has_parent', true);
         return $view->render($model);

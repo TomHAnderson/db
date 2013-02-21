@@ -156,7 +156,7 @@ class PerformerController extends AbstractActionController
         if (!$queryFirst and $queryLast) {
             $aliases = $em->getRepository('Db\Entity\PerformerAlias')->findLike(array(
                 'nameNormalize' => $queryLast
-            ));
+            ), array(), 20);
         }
 
         $return = array();

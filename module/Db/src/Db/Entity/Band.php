@@ -16,6 +16,7 @@ class Band extends AbstractEntity {
         , \Db\Entity\Field\Name
         , \Db\Entity\Field\NameNormalize
         , \Db\Entity\Field\Note
+        , \Db\Entity\Field\Mbid
         ;
 
     use \Db\Entity\Relation\Aliases
@@ -30,6 +31,7 @@ class Band extends AbstractEntity {
     {
         return array(
             'id' => $this->getId(),
+            'mbid' => $this->getMbid(),
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
@@ -38,6 +40,7 @@ class Band extends AbstractEntity {
 
     public function exchangeArray($data)
     {
+        $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }
@@ -46,6 +49,7 @@ class Band extends AbstractEntity {
     {
         $inputFilter = new InputFilter();
 
+        $inputFilter->add($this->inputFilterInputMbid($inputFilter));
         $inputFilter->add($this->inputFilterInputName($inputFilter));
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
 
