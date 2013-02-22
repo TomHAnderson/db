@@ -14,8 +14,6 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
-//        'CdliTwoStageSignup',
-        'GoalioForgotPassword',
 
         'Heartsentwined\Cron',
     ),

@@ -213,54 +213,61 @@
         ]
     },
     {
-        "name": "twig/twig",
-        "version": "v1.9.2",
-        "version_normalized": "1.9.2.0",
+        "name": "cdli/two-stage-signup",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "git://github.com/fabpot/Twig.git",
-            "reference": "v1.9.2"
+            "url": "https://github.com/cdli/CdliTwoStageSignup.git",
+            "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/fabpot/Twig/zipball/v1.9.2",
-            "reference": "v1.9.2",
+            "url": "https://api.github.com/repos/cdli/CdliTwoStageSignup/zipball/41f88cde87f69ddd9393e1b0568edb4cec6c6046",
+            "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.2.4"
+            "zendframework/zendframework": "2.*",
+            "zf-commons/zfc-user": "0.*"
         },
-        "time": "2012-08-25 10:32:57",
+        "replace": {
+            "cdli/cdlitwostagesignup": "self.version"
+        },
+        "suggest": {
+            "doctrine/doctrine-orm-module": "dev-master",
+            "zf-commons/zfc-user-doctrine-orm": "dev-master"
+        },
+        "time": "2013-02-13 12:16:55",
         "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.9-dev"
-            }
-        },
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-0": {
-                "Twig_": "lib/"
-            }
+                "CdliTwoStageSignup": "src/"
+            },
+            "classmap": [
+                "./"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-3"
+            "BSD-3-Clause"
         ],
         "authors": [
             {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Armin Ronacher",
-                "email": "armin.ronacher@active-4.com"
+                "name": "Adam Lundrigan",
+                "email": "adamlundrigan@cdli.ca",
+                "homepage": "http://www.cdli.ca/"
             }
         ],
-        "description": "Twig, the flexible, fast, and secure template language for PHP",
-        "homepage": "http://twig.sensiolabs.org",
+        "description": "Two-stage signup process for ZfcUser",
+        "homepage": "https://github.com/cdli/CdliTwoStageSignup",
         "keywords": [
-            "templating"
+            "register",
+            "signup",
+            "user",
+            "zf2",
+            "zfcuser"
         ]
     },
     {
@@ -335,6 +342,49 @@
         ]
     },
     {
+        "name": "doctrine/data-fixtures",
+        "version": "v1.0.0-ALPHA3",
+        "version_normalized": "1.0.0.0-alpha3",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/doctrine/data-fixtures.git",
+            "reference": "v1.0.0-ALPHA3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/doctrine/data-fixtures/zipball/v1.0.0-ALPHA3",
+            "reference": "v1.0.0-ALPHA3",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "time": "2012-09-20 03:26:34",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Doctrine\\Common\\DataFixtures": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jonathan Wage",
+                "email": "jonwage@gmail.com",
+                "homepage": "http://www.jwage.com/"
+            }
+        ],
+        "description": "Data Fixtures for all Doctrine Object Managers",
+        "homepage": "http://www.doctrine-project.org",
+        "keywords": [
+            "database"
+        ]
+    },
+    {
         "name": "symfony/console",
         "version": "v2.1.7",
         "version_normalized": "2.1.7.0",
@@ -377,92 +427,6 @@
         ],
         "description": "Symfony Console Component",
         "homepage": "http://symfony.com"
-    },
-    {
-        "name": "doctrine/doctrine-module",
-        "version": "0.7.0",
-        "version_normalized": "0.7.0.0",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/doctrine/DoctrineModule.git",
-            "reference": "0.7.0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/doctrine/DoctrineModule/archive/0.7.0.zip",
-            "reference": "0.7.0",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/common": ">=2.3-dev,<2.5-dev",
-            "php": ">=5.3.3",
-            "symfony/console": ">=2.0.13",
-            "zendframework/zend-authentication": "2.*",
-            "zendframework/zend-cache": "2.*",
-            "zendframework/zend-mvc": "2.*",
-            "zendframework/zend-paginator": "2.*",
-            "zendframework/zend-servicemanager": "2.*",
-            "zendframework/zend-stdlib": "2.*",
-            "zendframework/zend-validator": "2.*"
-        },
-        "suggest": {
-            "doctrine/data-fixtures": "Data Fixtures if you want to generate test data or bootstrap data for your deployments"
-        },
-        "time": "2013-01-13 19:39:22",
-        "bin": [
-            "bin/doctrine-module"
-        ],
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "0.8.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "DoctrineModule\\": "src/",
-                "DoctrineModuleTest\\": "tests/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Kyle Spraggs",
-                "email": "theman@spiffyjr.me",
-                "homepage": "http://www.spiffyjr.me/"
-            },
-            {
-                "name": "Marco Pivetta",
-                "email": "ocramius@gmail.com",
-                "homepage": "http://marco-pivetta.com/",
-                "role": "Developer"
-            },
-            {
-                "name": "Evan Coury",
-                "email": "me@evancoury.com",
-                "homepage": "http://blog.evan.pro/"
-            },
-            {
-                "name": "Guilherme Blanco",
-                "email": "guilhermeblanco@hotmail.com"
-            },
-            {
-                "name": "Michaël Gallego",
-                "email": "mic.gallego@gmail.com",
-                "homepage": "http://www.michaelgallego.fr"
-            }
-        ],
-        "description": "Zend Framework 2 Module that provides Doctrine basic functionality required for ORM and ODM modules",
-        "homepage": "http://www.doctrine-project.org/",
-        "keywords": [
-            "doctrine",
-            "module",
-            "zf2"
-        ]
     },
     {
         "name": "doctrine/dbal",
@@ -599,6 +563,92 @@
         "keywords": [
             "database",
             "orm"
+        ]
+    },
+    {
+        "name": "doctrine/doctrine-module",
+        "version": "0.7.0",
+        "version_normalized": "0.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/doctrine/DoctrineModule.git",
+            "reference": "0.7.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/doctrine/DoctrineModule/archive/0.7.0.zip",
+            "reference": "0.7.0",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/common": ">=2.3-dev,<2.5-dev",
+            "php": ">=5.3.3",
+            "symfony/console": ">=2.0.13",
+            "zendframework/zend-authentication": "2.*",
+            "zendframework/zend-cache": "2.*",
+            "zendframework/zend-mvc": "2.*",
+            "zendframework/zend-paginator": "2.*",
+            "zendframework/zend-servicemanager": "2.*",
+            "zendframework/zend-stdlib": "2.*",
+            "zendframework/zend-validator": "2.*"
+        },
+        "suggest": {
+            "doctrine/data-fixtures": "Data Fixtures if you want to generate test data or bootstrap data for your deployments"
+        },
+        "time": "2013-01-13 19:39:22",
+        "bin": [
+            "bin/doctrine-module"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.8.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "DoctrineModule\\": "src/",
+                "DoctrineModuleTest\\": "tests/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kyle Spraggs",
+                "email": "theman@spiffyjr.me",
+                "homepage": "http://www.spiffyjr.me/"
+            },
+            {
+                "name": "Marco Pivetta",
+                "email": "ocramius@gmail.com",
+                "homepage": "http://marco-pivetta.com/",
+                "role": "Developer"
+            },
+            {
+                "name": "Evan Coury",
+                "email": "me@evancoury.com",
+                "homepage": "http://blog.evan.pro/"
+            },
+            {
+                "name": "Guilherme Blanco",
+                "email": "guilhermeblanco@hotmail.com"
+            },
+            {
+                "name": "Michaël Gallego",
+                "email": "mic.gallego@gmail.com",
+                "homepage": "http://www.michaelgallego.fr"
+            }
+        ],
+        "description": "Zend Framework 2 Module that provides Doctrine basic functionality required for ORM and ODM modules",
+        "homepage": "http://www.doctrine-project.org/",
+        "keywords": [
+            "doctrine",
+            "module",
+            "zf2"
         ]
     },
     {
@@ -740,329 +790,30 @@
         ]
     },
     {
-        "name": "doctrine/data-fixtures",
-        "version": "v1.0.0-ALPHA3",
-        "version_normalized": "1.0.0.0-alpha3",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/doctrine/data-fixtures.git",
-            "reference": "v1.0.0-ALPHA3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/doctrine/data-fixtures/zipball/v1.0.0-ALPHA3",
-            "reference": "v1.0.0-ALPHA3",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2"
-        },
-        "time": "2012-09-20 03:26:34",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Doctrine\\Common\\DataFixtures": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jonathan Wage",
-                "email": "jonwage@gmail.com",
-                "homepage": "http://www.jwage.com/"
-            }
-        ],
-        "description": "Data Fixtures for all Doctrine Object Managers",
-        "homepage": "http://www.doctrine-project.org",
-        "keywords": [
-            "database"
-        ]
-    },
-    {
-        "name": "symfony/yaml",
-        "version": "v2.0.22",
-        "version_normalized": "2.0.22.0",
-        "target-dir": "Symfony/Component/Yaml",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/Yaml",
-            "reference": "v2.0.22"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Yaml/zipball/v2.0.22",
-            "reference": "v2.0.22",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2"
-        },
-        "time": "2013-01-17 21:16:19",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Symfony\\Component\\Yaml": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "http://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony Yaml Component",
-        "homepage": "http://symfony.com"
-    },
-    {
-        "name": "zf-commons/zfc-user-doctrine-orm",
+        "name": "echonest/echonest",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/ZF-Commons/ZfcUserDoctrineORM.git",
-            "reference": "0.1.1"
+            "url": "https://github.com/TomHAnderson/EchonestClient-PHP.git",
+            "reference": "a2cf6628798f17da0f2885cf7cc25cc637b38962"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/ZF-Commons/ZfcUserDoctrineORM/zipball/0.1.1",
-            "reference": "0.1.1",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/doctrine-orm-module": "0.*",
-            "php": ">=5.3.3",
-            "zf-commons/zfc-user": "0.*"
-        },
-        "time": "2013-02-08 00:41:12",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "ZfcUserDoctrineORM": "src/"
-            },
-            "classmap": [
-                "./"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "authors": [
-            {
-                "name": "Kyle Spraggs",
-                "email": "theman@spiffyjr.me",
-                "homepage": "http://www.spiffyjr.me/"
-            },
-            {
-                "name": "Evan Coury",
-                "email": "me@evancoury.com",
-                "homepage": "http://blog.evan.pro/"
-            }
-        ],
-        "description": "Doctrine2 ORM storage adapter for ZfcUser.",
-        "homepage": "https://github.com/ZF-Commons/ZfcUserDoctrineORM",
-        "keywords": [
-            "zf2"
-        ]
-    },
-    {
-        "name": "cdli/two-stage-signup",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cdli/CdliTwoStageSignup.git",
-            "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cdli/CdliTwoStageSignup/zipball/41f88cde87f69ddd9393e1b0568edb4cec6c6046",
-            "reference": "41f88cde87f69ddd9393e1b0568edb4cec6c6046",
-            "shasum": ""
-        },
-        "require": {
-            "zendframework/zendframework": "2.*",
-            "zf-commons/zfc-user": "0.*"
-        },
-        "replace": {
-            "cdli/cdlitwostagesignup": "self.version"
-        },
-        "suggest": {
-            "doctrine/doctrine-orm-module": "dev-master",
-            "zf-commons/zfc-user-doctrine-orm": "dev-master"
-        },
-        "time": "2013-02-13 12:16:55",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "CdliTwoStageSignup": "src/"
-            },
-            "classmap": [
-                "./"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Adam Lundrigan",
-                "email": "adamlundrigan@cdli.ca",
-                "homepage": "http://www.cdli.ca/"
-            }
-        ],
-        "description": "Two-stage signup process for ZfcUser",
-        "homepage": "https://github.com/cdli/CdliTwoStageSignup",
-        "keywords": [
-            "register",
-            "signup",
-            "user",
-            "zf2",
-            "zfcuser"
-        ]
-    },
-    {
-        "name": "lncd/Oauth2",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/lncd/OAuth2.git",
-            "reference": "1.0.5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/lncd/OAuth2/zipball/1.0.5",
-            "reference": "1.0.5",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "mockery/mockery": ">=0.7.2",
-            "phpunit/phpunit": "*"
-        },
-        "time": "2013-02-21 17:51:59",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "OAuth2": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Alex Bilbie",
-                "email": "hello@alexbilbie.com",
-                "homepage": "http://www.alexbilbie.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "OAuth 2.0 Framework",
-        "homepage": "https://github.com/lncd/OAuth2",
-        "keywords": [
-            "Authentication",
-            "api",
-            "authorization",
-            "oauth",
-            "oauth2",
-            "resource",
-            "server"
-        ]
-    },
-    {
-        "name": "umpirsky/country-list",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/umpirsky/country-list.git",
-            "reference": "1.0.0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/umpirsky/country-list/zipball/1.0.0",
-            "reference": "1.0.0",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2"
-        },
-        "require-dev": {
-            "doctrine/dbal": "2.*",
-            "symfony/class-loader": "2.1.*",
-            "symfony/console": "2.1.*",
-            "symfony/filesystem": "2.1.*",
-            "symfony/finder": "2.1.*",
-            "symfony/locale": "2.1.*",
-            "symfony/yaml": "2.1.*",
-            "zendframework/zend-db": "2.0.*",
-            "zendframework/zendframework1": "1.*"
-        },
-        "time": "2012-11-27 09:51:19",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Umpirsky\\Country": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Саша Стаменковић",
-                "email": "umpirsky@gmail.com",
-                "homepage": "http://umpirsky.com/"
-            }
-        ],
-        "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats."
-    },
-    {
-        "name": "keen-io/keen-io",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/keenlabs/KeenClient-PHP.git",
-            "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/keenlabs/KeenClient-PHP/zipball/562593bb91aa19e0ffac99869d9323ad3d47beea",
-            "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea",
+            "url": "https://api.github.com/repos/TomHAnderson/EchonestClient-PHP/zipball/a2cf6628798f17da0f2885cf7cc25cc637b38962",
+            "reference": "a2cf6628798f17da0f2885cf7cc25cc637b38962",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3",
             "zendframework/zendframework": "2.*,!=2.0.6"
         },
-        "time": "2013-01-13 02:09:37",
+        "time": "2013-02-21 23:30:10",
         "type": "library",
         "installation-source": "source",
         "autoload": {
             "psr-0": {
-                "KeenIO": "src/"
+                "Echonest": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -1073,14 +824,14 @@
             {
                 "name": "Tom Anderson",
                 "email": "tom.h.anderson@gmail.com",
-                "homepage": "http://db.etree.org"
+                "homepage": "http://db.etree.org/"
             }
         ],
-        "description": "A PHP library for reporting events to the Keen IO API",
-        "homepage": "http://keen.io",
+        "description": "A PHP library for abstracting the Echonest API",
+        "homepage": "http://developer.echonest.com/docs/v4/contents.html",
         "keywords": [
-            "analytics",
-            "keen io",
+            "echonest",
+            "music",
             "zf2"
         ]
     },
@@ -1131,143 +882,6 @@
         ]
     },
     {
-        "name": "jambase/jambase",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/TomHAnderson/JambaseClient-PHP.git",
-            "reference": "a5ac41042863209bbed8059ecec6e8446e3bd941"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/TomHAnderson/JambaseClient-PHP/zipball/a5ac41042863209bbed8059ecec6e8446e3bd941",
-            "reference": "a5ac41042863209bbed8059ecec6e8446e3bd941",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3",
-            "zendframework/zendframework": "2.*,!=2.0.6"
-        },
-        "time": "2013-02-21 19:14:50",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Jambase": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Tom Anderson",
-                "email": "tom.h.anderson@gmail.com",
-                "homepage": "http://db.etree.org/"
-            }
-        ],
-        "description": "A PHP library for the Jambase API",
-        "homepage": "http://developer.jambase.com",
-        "keywords": [
-            "concerts",
-            "live music",
-            "zf2"
-        ]
-    },
-    {
-        "name": "echonest/echonest",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/TomHAnderson/EchonestClient-PHP.git",
-            "reference": "a2cf6628798f17da0f2885cf7cc25cc637b38962"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/TomHAnderson/EchonestClient-PHP/zipball/a2cf6628798f17da0f2885cf7cc25cc637b38962",
-            "reference": "a2cf6628798f17da0f2885cf7cc25cc637b38962",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3",
-            "zendframework/zendframework": "2.*,!=2.0.6"
-        },
-        "time": "2013-02-21 23:30:10",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Echonest": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Tom Anderson",
-                "email": "tom.h.anderson@gmail.com",
-                "homepage": "http://db.etree.org/"
-            }
-        ],
-        "description": "A PHP library for abstracting the Echonest API",
-        "homepage": "http://developer.echonest.com/docs/v4/contents.html",
-        "keywords": [
-            "echonest",
-            "music",
-            "zf2"
-        ]
-    },
-    {
-        "name": "kriswallsmith/assetic",
-        "version": "v1.0.4",
-        "version_normalized": "1.0.4.0",
-        "source": {
-            "type": "git",
-            "url": "http://github.com/kriswallsmith/assetic.git",
-            "reference": "v1.0.4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/kriswallsmith/assetic/zipball/v1.0.4",
-            "reference": "v1.0.4",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.1"
-        },
-        "time": "2012-08-28 05:18:28",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Assetic": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Kris Wallsmith",
-                "email": "kris.wallsmith@gmail.com",
-                "homepage": "http://kriswallsmith.net/"
-            }
-        ],
-        "description": "Asset Management for PHP",
-        "homepage": "https://github.com/kriswallsmith/assetic",
-        "keywords": [
-            "assets",
-            "compression",
-            "minification"
-        ]
-    },
-    {
         "name": "heartsentwined/arg-validator",
         "version": "1.1.3",
         "version_normalized": "1.1.3.0",
@@ -1313,6 +927,97 @@
             "validate",
             "validator"
         ]
+    },
+    {
+        "name": "heartsentwined/zf2-cli",
+        "version": "1.0.3",
+        "version_normalized": "1.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/heartsentwined/zf2-cli",
+            "reference": "1.0.3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/heartsentwined/zf2-cli/zipball/1.0.3",
+            "reference": "1.0.3",
+            "shasum": ""
+        },
+        "require": {
+            "heartsentwined/arg-validator": "1.*",
+            "php": ">=5.3.3",
+            "zendframework/zend-console": "2.*"
+        },
+        "time": "2012-10-03 12:54:08",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Heartsentwined\\Cli": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "heartsentwined",
+                "email": "heartsentwined@cogito-lab.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "helper functions for building a zf2 CLI app",
+        "homepage": "https://github.com/heartsentwined/zf2-cli",
+        "keywords": [
+            "cli",
+            "helper",
+            "zf2"
+        ]
+    },
+    {
+        "name": "symfony/yaml",
+        "version": "v2.0.22",
+        "version_normalized": "2.0.22.0",
+        "target-dir": "Symfony/Component/Yaml",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Yaml",
+            "reference": "v2.0.22"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Yaml/zipball/v2.0.22",
+            "reference": "v2.0.22",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "time": "2013-01-17 21:16:19",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Yaml": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Yaml Component",
+        "homepage": "http://symfony.com"
     },
     {
         "name": "heartsentwined/yaml",
@@ -1403,6 +1108,199 @@
             "cli",
             "doctrine",
             "zf2"
+        ]
+    },
+    {
+        "name": "heartsentwined/file-system-manager",
+        "version": "1.1.3",
+        "version_normalized": "1.1.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/heartsentwined/php-file-system-manager",
+            "reference": "1.1.3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/heartsentwined/php-file-system-manager/zipball/1.1.3",
+            "reference": "1.1.3",
+            "shasum": ""
+        },
+        "require": {
+            "heartsentwined/arg-validator": "1.*",
+            "php": ">=5.3.3"
+        },
+        "time": "2012-10-03 12:54:08",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Heartsentwined\\FileSystemManager": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "heartsentwined",
+                "email": "heartsentwined@cogito-lab.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "A collection of file and directory management functions.",
+        "homepage": "https://github.com/heartsentwined/file-system-manager",
+        "keywords": [
+            "dir",
+            "directory",
+            "file",
+            "manager",
+            "system"
+        ]
+    },
+    {
+        "name": "heartsentwined/zf2-phpunit-testcase",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/heartsentwined/zf2-phpunit-testcase",
+            "reference": "1.0.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/heartsentwined/zf2-phpunit-testcase/zipball/1.0.2",
+            "reference": "1.0.2",
+            "shasum": ""
+        },
+        "require": {
+            "heartsentwined/arg-validator": "1.*",
+            "heartsentwined/file-system-manager": "1.*",
+            "heartsentwined/zf2-doctrine": "1.*",
+            "php": ">=5.3.3",
+            "zendframework/zendframework": "2.*"
+        },
+        "time": "2012-09-27 15:19:28",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Heartsentwined\\Phpunit\\Testcase": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "heartsentwined",
+                "email": "heartsentwined@cogito-lab.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "PHPUnit test case base classes for ZF2 applications.",
+        "homepage": "https://github.com/heartsentwined/zf2-phpunit-testcase",
+        "keywords": [
+            "ZendFramework",
+            "phpunit",
+            "zf2"
+        ]
+    },
+    {
+        "name": "twig/twig",
+        "version": "v1.9.2",
+        "version_normalized": "1.9.2.0",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/fabpot/Twig.git",
+            "reference": "v1.9.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/fabpot/Twig/zipball/v1.9.2",
+            "reference": "v1.9.2",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.4"
+        },
+        "time": "2012-08-25 10:32:57",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.9-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Twig_": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Armin Ronacher",
+                "email": "armin.ronacher@active-4.com"
+            }
+        ],
+        "description": "Twig, the flexible, fast, and secure template language for PHP",
+        "homepage": "http://twig.sensiolabs.org",
+        "keywords": [
+            "templating"
+        ]
+    },
+    {
+        "name": "kriswallsmith/assetic",
+        "version": "v1.0.4",
+        "version_normalized": "1.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "http://github.com/kriswallsmith/assetic.git",
+            "reference": "v1.0.4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/kriswallsmith/assetic/zipball/v1.0.4",
+            "reference": "v1.0.4",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.1"
+        },
+        "time": "2012-08-28 05:18:28",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Assetic": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kris Wallsmith",
+                "email": "kris.wallsmith@gmail.com",
+                "homepage": "http://kriswallsmith.net/"
+            }
+        ],
+        "description": "Asset Management for PHP",
+        "homepage": "https://github.com/kriswallsmith/assetic",
+        "keywords": [
+            "assets",
+            "compression",
+            "minification"
         ]
     },
     {
@@ -1504,103 +1402,6 @@
         "homepage": "https://github.com/heartsentwined/phing-task",
         "keywords": [
             "phing"
-        ]
-    },
-    {
-        "name": "heartsentwined/file-system-manager",
-        "version": "1.1.3",
-        "version_normalized": "1.1.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/heartsentwined/php-file-system-manager",
-            "reference": "1.1.3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/heartsentwined/php-file-system-manager/zipball/1.1.3",
-            "reference": "1.1.3",
-            "shasum": ""
-        },
-        "require": {
-            "heartsentwined/arg-validator": "1.*",
-            "php": ">=5.3.3"
-        },
-        "time": "2012-10-03 12:54:08",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Heartsentwined\\FileSystemManager": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0"
-        ],
-        "authors": [
-            {
-                "name": "heartsentwined",
-                "email": "heartsentwined@cogito-lab.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "A collection of file and directory management functions.",
-        "homepage": "https://github.com/heartsentwined/file-system-manager",
-        "keywords": [
-            "dir",
-            "directory",
-            "file",
-            "manager",
-            "system"
-        ]
-    },
-    {
-        "name": "heartsentwined/zf2-phpunit-testcase",
-        "version": "1.0.2",
-        "version_normalized": "1.0.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/heartsentwined/zf2-phpunit-testcase",
-            "reference": "1.0.2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/heartsentwined/zf2-phpunit-testcase/zipball/1.0.2",
-            "reference": "1.0.2",
-            "shasum": ""
-        },
-        "require": {
-            "heartsentwined/arg-validator": "1.*",
-            "heartsentwined/file-system-manager": "1.*",
-            "heartsentwined/zf2-doctrine": "1.*",
-            "php": ">=5.3.3",
-            "zendframework/zendframework": "2.*"
-        },
-        "time": "2012-09-27 15:19:28",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Heartsentwined\\Phpunit\\Testcase": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0"
-        ],
-        "authors": [
-            {
-                "name": "heartsentwined",
-                "email": "heartsentwined@cogito-lab.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "PHPUnit test case base classes for ZF2 applications.",
-        "homepage": "https://github.com/heartsentwined/zf2-phpunit-testcase",
-        "keywords": [
-            "ZendFramework",
-            "phpunit",
-            "zf2"
         ]
     },
     {
@@ -1748,49 +1549,248 @@
         ]
     },
     {
-        "name": "heartsentwined/zf2-cli",
-        "version": "1.0.3",
-        "version_normalized": "1.0.3.0",
+        "name": "jambase/jambase",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/heartsentwined/zf2-cli",
-            "reference": "1.0.3"
+            "url": "https://github.com/TomHAnderson/JambaseClient-PHP.git",
+            "reference": "a5ac41042863209bbed8059ecec6e8446e3bd941"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/heartsentwined/zf2-cli/zipball/1.0.3",
-            "reference": "1.0.3",
+            "url": "https://api.github.com/repos/TomHAnderson/JambaseClient-PHP/zipball/a5ac41042863209bbed8059ecec6e8446e3bd941",
+            "reference": "a5ac41042863209bbed8059ecec6e8446e3bd941",
             "shasum": ""
         },
         "require": {
-            "heartsentwined/arg-validator": "1.*",
             "php": ">=5.3.3",
-            "zendframework/zend-console": "2.*"
+            "zendframework/zendframework": "2.*,!=2.0.6"
         },
-        "time": "2012-10-03 12:54:08",
+        "time": "2013-02-21 19:14:50",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-0": {
-                "Heartsentwined\\Cli": "src/"
+                "Jambase": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "GPL-3.0"
+            "MIT"
         ],
         "authors": [
             {
-                "name": "heartsentwined",
-                "email": "heartsentwined@cogito-lab.com",
+                "name": "Tom Anderson",
+                "email": "tom.h.anderson@gmail.com",
+                "homepage": "http://db.etree.org/"
+            }
+        ],
+        "description": "A PHP library for the Jambase API",
+        "homepage": "http://developer.jambase.com",
+        "keywords": [
+            "concerts",
+            "live music",
+            "zf2"
+        ]
+    },
+    {
+        "name": "keen-io/keen-io",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/keenlabs/KeenClient-PHP.git",
+            "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/keenlabs/KeenClient-PHP/zipball/562593bb91aa19e0ffac99869d9323ad3d47beea",
+            "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "zendframework/zendframework": "2.*,!=2.0.6"
+        },
+        "time": "2013-01-13 02:09:37",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "KeenIO": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Tom Anderson",
+                "email": "tom.h.anderson@gmail.com",
+                "homepage": "http://db.etree.org"
+            }
+        ],
+        "description": "A PHP library for reporting events to the Keen IO API",
+        "homepage": "http://keen.io",
+        "keywords": [
+            "analytics",
+            "keen io",
+            "zf2"
+        ]
+    },
+    {
+        "name": "lncd/Oauth2",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/lncd/OAuth2.git",
+            "reference": "1.0.5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/lncd/OAuth2/zipball/1.0.5",
+            "reference": "1.0.5",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "mockery/mockery": ">=0.7.2",
+            "phpunit/phpunit": "*"
+        },
+        "time": "2013-02-21 17:51:59",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "OAuth2": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Alex Bilbie",
+                "email": "hello@alexbilbie.com",
+                "homepage": "http://www.alexbilbie.com",
                 "role": "Developer"
             }
         ],
-        "description": "helper functions for building a zf2 CLI app",
-        "homepage": "https://github.com/heartsentwined/zf2-cli",
+        "description": "OAuth 2.0 Framework",
+        "homepage": "https://github.com/lncd/OAuth2",
         "keywords": [
-            "cli",
-            "helper",
+            "Authentication",
+            "api",
+            "authorization",
+            "oauth",
+            "oauth2",
+            "resource",
+            "server"
+        ]
+    },
+    {
+        "name": "umpirsky/country-list",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/umpirsky/country-list.git",
+            "reference": "1.0.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/umpirsky/country-list/zipball/1.0.0",
+            "reference": "1.0.0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "doctrine/dbal": "2.*",
+            "symfony/class-loader": "2.1.*",
+            "symfony/console": "2.1.*",
+            "symfony/filesystem": "2.1.*",
+            "symfony/finder": "2.1.*",
+            "symfony/locale": "2.1.*",
+            "symfony/yaml": "2.1.*",
+            "zendframework/zend-db": "2.0.*",
+            "zendframework/zendframework1": "1.*"
+        },
+        "time": "2012-11-27 09:51:19",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Umpirsky\\Country": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Саша Стаменковић",
+                "email": "umpirsky@gmail.com",
+                "homepage": "http://umpirsky.com/"
+            }
+        ],
+        "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats."
+    },
+    {
+        "name": "zf-commons/zfc-user-doctrine-orm",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ZF-Commons/ZfcUserDoctrineORM.git",
+            "reference": "0.1.1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ZF-Commons/ZfcUserDoctrineORM/zipball/0.1.1",
+            "reference": "0.1.1",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/doctrine-orm-module": "0.*",
+            "php": ">=5.3.3",
+            "zf-commons/zfc-user": "0.*"
+        },
+        "time": "2013-02-08 00:41:12",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "ZfcUserDoctrineORM": "src/"
+            },
+            "classmap": [
+                "./"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Kyle Spraggs",
+                "email": "theman@spiffyjr.me",
+                "homepage": "http://www.spiffyjr.me/"
+            },
+            {
+                "name": "Evan Coury",
+                "email": "me@evancoury.com",
+                "homepage": "http://blog.evan.pro/"
+            }
+        ],
+        "description": "Doctrine2 ORM storage adapter for ZfcUser.",
+        "homepage": "https://github.com/ZF-Commons/ZfcUserDoctrineORM",
+        "keywords": [
             "zf2"
         ]
     }
