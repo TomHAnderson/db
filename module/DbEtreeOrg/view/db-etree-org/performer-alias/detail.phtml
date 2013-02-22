@@ -4,18 +4,25 @@
     </li>
 </ul>
 
-<h1>Performer Alias</h1>
 
-<h2><?= $this->escapeHtml($this->performerAlias->getName()); ?></h2>
+<h1>
+    <i class="icon-film"></i>
+    <a href="/performer/detail?id=<?= $this->performerAlias->getPerformer()->getId(); ?>">
+        <?= $this->escapeHtml($this->performerAlias->getPerformer()->getLastname()); ?>
+        <?php if ($this->escapeHtml($this->performerAlias->getPerformer()->getLastname())) echo ', '; ?>
+        <?= $this->escapeHtml($this->performerAlias->getPerformer()->getFirstname()); ?>
+    </a>
+</h1>
 
-<h3>
-Performer:
-<a href="/performer/detail?id=<?= $this->performerAlias->getPerformer()->getId(); ?>">
-<?= $this->escapeHtml($this->performerAlias->getPerformer()->getLastname()); ?>
-<?php if ($this->escapeHtml($this->performerAlias->getPerformer()->getLastname())) echo ', '; ?>
-<?= $this->escapeHtml($this->performerAlias->getPerformer()->getFirstname()); ?>
-</a>
-</h3>
+<h1>
+    <i class="icon-facetime-video"></i>
+    <?= $this->escapeHtml($this->performerAlias->getName()); ?>
+</h1>
 
-
-Note: <?= $this->escapeHtml($this->performerAlias->getNote()); ?>
+<?php
+if ($this->escapeHtml($this->performerAlias->getNote())) {
+?>
+    <pre><?= $this->escapeHtml($this->performerAlias->getNote()); ?></pre>
+<?php
+}
+?>

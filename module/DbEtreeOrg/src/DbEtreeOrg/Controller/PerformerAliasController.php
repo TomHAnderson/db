@@ -27,11 +27,11 @@ class PerformerAliasController extends AbstractActionController
         if (!$performerAlias)
             throw new \Exception("PerformerAlias $id not found");
 
-        if (!isset($_SESSION['performerAlias']['latest'])) $_SESSION['performerAliass']['latest'] = array();
+        if (!isset($_SESSION['performerAlias'])) $_SESSION['performerAliass']['latest'] = array();
         if (in_array($performerAlias->getId(), $_SESSION['performerAliass']['latest'])) {
             unset($_SESSION['performerAlias']['latest'][array_search($performerAlias->getId(), $_SESSION['performerAlias']['latest'])]);
         }
-        if (!$_SESSION['performerAlias']['latest']) $_SESSION['performerAlias']['latest'] = array();
+        if (!$_SESSION['performerAlias']) $_SESSION['performerAlias']['latest'] = array();
         array_unshift($_SESSION['performerAlias']['latest'], $performerAlias->getId());
         $_SESSION['performerAlias']['latest'] = array_slice($_SESSION['performerAlias']['latest'], 0, 10);
 
