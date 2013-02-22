@@ -13,7 +13,7 @@ Installation
     git clone git://github.com/TomHAnderson/db
 
 db uses Doctrine 2 for database abstraction.  Supported drivers are listed here:
-http://www.doctrine-project.org/blog/database-support-doctrine2.html
+https://github.com/doctrine/dbal/tree/master/lib/Doctrine/DBAL/Driver
 
 Copy ~/config/autoload/local.php.dist to ~/config/autoload/local.php and edit it relpacing any '' with the appropriate values.
 
