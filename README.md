@@ -10,8 +10,7 @@ Both sites run on this codebase.
 
 Installation
 ------------
-    git clone git://github.com/TomHAnderson/db.git
-    cd db
+    git clone git://github.com/TomHAnderson/db
 
 Create a mysql database.
 
