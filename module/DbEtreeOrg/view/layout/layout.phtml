@@ -277,7 +277,7 @@
                                                     <li role="menuitem">
                                                         <a href="/performer/detail?id=<?= $p->getId(); ?>">
                                                             <i class="icon-film"></i>
-                                                            <?= $this->escapeHtml($p->getLastname()); ?><?php if ($this->escapeHtml($p->getLastname())) echo ', '; ?><?= $this->escapeHtml($p->getFirstname()); ?>
+                                                            <?= $this->escapeHtml($p->getName()); ?>;
                                                         </a>
                                                     </li>
                                                 <?php
