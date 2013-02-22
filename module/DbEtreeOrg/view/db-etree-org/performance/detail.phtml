@@ -24,20 +24,20 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
     </a>
 </h1>
 
-<h2>
+<h1>
     <a href="/lineup/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
         <i class="icon-group"></i>
         <?= $this->escapeHtml($this->performance->getLineup()->getName()); ?>
     </a>
-</h2>
+</h1>
 
-<h2>
+<h1>
     <a href="/venue/id=<?= $this->performance->getVenue()->getId(); ?>">
 
         <i class="icon-map-marker"></i>
         <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
     </a>
-</h2>
+</h1>
 
 <?php
 if ($this->performance->getNote()) { ?>
@@ -63,13 +63,12 @@ foreach ($this->performance->getPerformanceSets() as $set) {
 ?>
 </ul>
 
-
 <ul class="nav nav-pills">
     <?php //$this->addSetToPerformance($this->performance->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->performance->getId()); ?>
 </ul>
 
 <ul class="nav nav-tabs" id="tabs">
-    <li class="active">
+    <li class="">
         <a href="#comments" data-toggle="tab">
             Comments
         </a>

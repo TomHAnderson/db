@@ -61,9 +61,16 @@ class Performance extends AbstractEntity
         $inputFilter = new InputFilter();
 
         $inputFilter->add($this->inputFilterInputMbid($inputFilter));
-        $inputFilter->add($this->inputFilterInputName($inputFilter));
         $inputFilter->add($this->inputFilterInputPerformanceDate($inputFilter));
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
+
+        // Override name; not required
+        $inputFilter->add($inputFilter->getFactory()->createInput(array(
+            'name' => 'name',
+            'required' => false,
+            'validators' => array(),
+        )));
+
 
         return $inputFilter;
     }

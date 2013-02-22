@@ -10,7 +10,7 @@ use Db\Model\AbstractModel
 
 abstract class AbstractRepository extends EntityRepository
 {
-    public function findLike($search, $sort = array(), $limit, $offset)
+    public function findLike($search, $sort = array(), $limit = 0, $offset = 0)
     {
         $query = $this->createQueryBuilder('s');
         $i = 0;
@@ -26,7 +26,7 @@ abstract class AbstractRepository extends EntityRepository
 
         if ($limit) $query->setMaxResults($limit);
 
-        if ($page) $query->setFirstResult($offset);
+        if ($offset) $query->setFirstResult($offset);
 
         $query = $query->getQuery();
 

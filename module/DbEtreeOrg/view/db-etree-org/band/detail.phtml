@@ -218,11 +218,11 @@ if (sizeof($jambase->event)) {
         ?>
     </div>
 
-   <div class="tab-pane active" id="performances">
+   <div class="tab-pane" id="performances">
         <?= $this->listPerformances($this->band->getPerformances()); ?>
     </div>
 
-   <div class="tab-pane active" id="comments">
+   <div class="tab-pane" id="comments">
         <ul class="nav nav-pills">
             <?= $this->createComment($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
         </ul>
