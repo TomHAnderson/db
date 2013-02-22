@@ -2,11 +2,12 @@
 use Zend\Form\Element;
 use Zend\Form\Form;
 
+$id = md5(uniqid());
 $formElement = new Element\Text('band');
 $formElement
     ->setLabel('<i class="icon-cogs"></i> ' . $this->label)
     ->setAttributes(array(
-        'id' => 'band',
+        'id' => $id,
         'autocomplete' => 'off',
         'placeholder'  => '',
     ));
@@ -21,21 +22,22 @@ if ($band) {
 
 <?= $this->formRow($formElement); ?>
 
-<input type="hidden" name="band_id" <?php if ($band) echo 'value="' . $band->getId() . '"'; ?> id="bandId"/>
+<input type="hidden" name="band_id" <?php if ($band) echo 'value="' . $band->getId() . '"'; ?> id="Id<?= $id; ?>"/>
 
 <script>
-var bands = {};
-var bandLabels = [];
+var bands<?= $id; ?> = {};
+var bandLabels<?= $id; ?> = [];
 
 require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
 
-    $( "#band" ).typeahead({
+    $('#<?= $id; ?>').typeahead({
         source: function ( query, process ) {
-            searchBands( query, process );
+            $('#Id<?= $id; ?>').val('');
+            searchBands<?= $id; ?>( query, process );
         }
         , updater: function (item) {
             //save the id value into the hidden field
-            $( "#bandId" ).val( bands[ item ] );
+            $( "#Id<?= $id; ?>" ).val( bands<?= $id; ?>[ item ] );
 
             //return the string you want to go into the textbox (e.g. name)
             return item;
@@ -43,7 +45,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
         , matcher: function () { return true; }
     });
 
-    var searchBands = _.debounce(function ( query, process ) {
+    var searchBands<?= $id; ?> = _.debounce(function ( query, process ) {
 
         //the "process" argument is a callback, expecting an array of values (strings) to display
 
@@ -52,27 +54,27 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
         $.get('/band/search-json', { q: query }, function ( data ) {
 
             //reset these containers
-            bands = {};
-            bandLabels = [];
+            bands<?= $id; ?> = {};
+            bandLabels<?= $id; ?> = [];
 
             //for each item returned, if the display name is already included
             //(e.g. multiple "John Smith" records) then add a unique value to the end
             //so that the user can tell them apart. Using underscore.js for a functional approach.
             _.each( data.bands, function( item, ix, list ){
 
-                if ( _.contains( bands, item.label ) ){
+                if ( _.contains( bands<?= $id; ?>, item.label ) ){
                     item.label = item.label + ' #' + item.value;
                 }
 
                 //add the label to the display array
-                bandLabels.push( item.label );
+                bandLabels<?= $id; ?>.push( item.label );
 
                 //also store a mapping to get from label back to ID
-                bands[ item.label ] = item.value;
+                bands<?= $id; ?>[ item.label ] = item.value;
             });
 
             //return the display array
-            process( bandLabels );
+            process( bandLabels<?= $id; ?> );
         });
     }, 300);
 

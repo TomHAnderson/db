@@ -220,11 +220,11 @@
     <entity name="Song" uuid="6903266c-5c12-423d-8145-e32fe38258e9">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="3be7d9be-e963-4755-904f-13d9f08aeb0f"/>
       <field name="band_id" type="integer" uuid="58b228e9-ca10-467e-9875-6bb32a63016b"/>
+      <field name="mbid" type="string" uuid="f284ddd3-e15c-46d5-9de8-fda140cdb6ed"/>
       <field name="name" type="string" required="true" uuid="bbd70ddd-dda0-46a4-99a7-611a3a994e3a"/>
       <field name="nameNormalize" type="string" required="true" uuid="b857c4b5-116d-48b7-b863-6ca8c2125c32"/>
       <field name="lyrics" type="text" uuid="325ec709-b1a4-45b3-8f52-8c2853d7347d"/>
       <field name="note" type="text" uuid="74a71e0c-e2a7-4d20-9ba0-c19314a830cb"/>
-      <field name="mbid" type="string" uuid="f284ddd3-e15c-46d5-9de8-fda140cdb6ed"/>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\Song</attribute>
       </orm-attributes>

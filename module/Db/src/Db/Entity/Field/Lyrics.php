@@ -1,8 +1,6 @@
 <?php
 namespace Db\Entity\Field;
 
-use Db\Entity\Lyrics as LyricsEntity;
-
 trait Lyrics
 {
     protected $lyrics;
@@ -12,7 +10,7 @@ trait Lyrics
         return $this->lyrics;
     }
 
-    public function setLyrics(LyricsEntity $value)
+    public function setLyrics($value)
     {
         $this->lyrics = $value;
         return $this;
