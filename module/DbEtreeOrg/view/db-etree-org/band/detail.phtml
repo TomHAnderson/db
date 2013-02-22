@@ -53,7 +53,49 @@ $echonest = Echonest::query('artist', 'biographies', array(
 ?>
 
 <ul class="nav nav-tabs" id="tabs">
-    <li class="active">
+    <?php
+        if ($echonest->response->status->message == 'Success') {
+        ?>
+            <li class="active">
+                <a href="#biography" data-toggle="tab">
+                    Biography
+                </a>
+            </li>
+        <?php
+        }
+    ?>
+
+<?php
+if (sizeof($gracenote->RESPONSE->ALBUM)) {
+?>
+    <li class="">
+        <a href="#albums" data-toggle="tab">
+            Albums
+        </a>
+    </li>
+<?php
+}
+?>
+
+<?php
+if (sizeof($jambase->event)) {
+?>
+    <li class="">
+        <a href="#jambase" data-toggle="tab">
+            Upcoming Shows
+        </a>
+    </li>
+<?php
+}
+?>
+
+    <li class="">
+        <a href="#performances" data-toggle="tab">
+            Performances
+        </a>
+    </li>
+
+    <li class="">
         <a href="#comments" data-toggle="tab">
             Comments
         </a>
@@ -65,63 +107,15 @@ $echonest = Echonest::query('artist', 'biographies', array(
         </a>
     </li>
 
-    <?php
-        if ($echonest->response->status->message == 'Success') {
-        ?>
-            <li class="">
-                <a href="#biography" data-toggle="tab">
-                    Biography
-                </a>
-            </li>
-        <?php
-        }
-    ?>
 
-<?php
-if (sizeof($jambase->event)) {
-?>
-    <li class="">
-        <a href="#jambase" data-toggle="tab">
-            Jambase Shows
-        </a>
-    </li>
-<?php
-}
-?>
-
-<?php
-if (sizeof($gracenote->RESPONSE->ALBUM)) {
-?>
-    <li class="">
-        <a href="#gracenote-albums" data-toggle="tab">
-            Gracenote Albums
-        </a>
-    </li>
-<?php
-}
-?>
 </ul>
 
 <div class="tab-content">
-   <div class="tab-pane active" id="comments">
-        <ul class="nav nav-pills">
-            <?= $this->createComment($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
-        </ul>
-
-        <?= $this->listComments($this->band->getComments()); ?>
-    </div>
-
-    <div class="tab-pane" id="links">
-        <ul class="nav nav-pills">
-            <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
-        </ul>
-    </div>
-
     <?php
         if ($echonest->response->status->message == 'Success') {
         ?>
 
-    <div class="tab-pane" id="biography">
+    <div class="tab-pane active" id="biography">
         <ul class="nav nav-pills">
             <?php
                 if ($echonest->response->status->message == 'Success') {
@@ -188,7 +182,7 @@ if (sizeof($jambase->event)) {
     <?
     if (sizeof($gracenote->RESPONSE->ALBUM)) {
     ?>
-    <div class="tab-pane" id="gracenote-albums">
+    <div class="tab-pane" id="albums">
         <div class="row">
             <div class="span1">
                 <b>Date</b>
@@ -223,4 +217,23 @@ if (sizeof($jambase->event)) {
         }
         ?>
     </div>
+
+   <div class="tab-pane active" id="performances">
+        <?= $this->listPerformances($this->band->getPerformances()); ?>
+    </div>
+
+   <div class="tab-pane active" id="comments">
+        <ul class="nav nav-pills">
+            <?= $this->createComment($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+        </ul>
+
+        <?= $this->listComments($this->band->getComments()); ?>
+    </div>
+
+    <div class="tab-pane" id="links">
+        <ul class="nav nav-pills">
+            <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+        </ul>
+    </div>
+
 </div>

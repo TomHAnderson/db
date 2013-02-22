@@ -22,9 +22,7 @@
 
 <h1>
 <i class="icon-film"></i>
-<?= $this->escapeHtml($this->performer->getLastname()); ?>
-<?php if ($this->escapeHtml($this->performer->getLastname())) echo ', '; ?>
-<?= $this->escapeHtml($this->performer->getFirstname()); ?>
+<?= $this->escapeHtml($this->performer->getFullname()); ?>
 </h1>
 
 <?php
@@ -71,7 +69,36 @@ $echonest = Echonest::query('artist', 'biographies', array(
 ?>
 
 <ul class="nav nav-tabs" id="tabs">
-    <li class="active">
+        <?php
+            if ($echonest->response->status->message == 'Success') {
+            ?>
+                <li class="active">
+                    <a href="#biography" data-toggle="tab">
+                        Biography
+                    </a>
+                </li>
+            <?php
+            }
+        ?>
+
+<?php
+if (sizeof($gracenote->RESPONSE->ALBUM)) {
+?>
+    <li class="">
+        <a href="#gracenote-albums" data-toggle="tab">
+            Albums
+        </a>
+    </li>
+<?php
+}
+?>
+
+    <li class="">
+        <a href="#performances" data-toggle="tab">
+            Performances
+        </a>
+    </li>
+    <li class="">
         <a href="#comments" data-toggle="tab">
             Comments
         </a>
@@ -83,54 +110,12 @@ $echonest = Echonest::query('artist', 'biographies', array(
         </a>
     </li>
 
-        <?php
-            if ($echonest->response->status->message == 'Success') {
-            ?>
-                <li class="">
-                    <a href="#biography" data-toggle="tab">
-                        Biography
-                    </a>
-                </li>
-            <?php
-            }
-        ?>
-
-    <li class="">
-        <a href="#performances" data-toggle="tab">
-            Performances
-        </a>
-    </li>
-<?php
-if (sizeof($gracenote->RESPONSE->ALBUM)) {
-?>
-    <li class="">
-        <a href="#gracenote-albums" data-toggle="tab">
-            Gracenote Albums
-        </a>
-    </li>
-<?php
-}
-?>
 
 </ul>
 
 <div class="tab-content">
 
-   <div class="tab-pane active" id="comments">
-        <ul class="nav nav-pills">
-            <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
-        </ul>
-
-        <?= $this->listComments($this->performer->getComments()); ?>
-    </div>
-
-    <div class="tab-pane" id="links">
-        <ul class="nav nav-pills">
-            <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
-        </ul>
-    </div>
-
-    <div class="tab-pane" id="biography">
+    <div class="tab-pane active" id="biography">
         <ul class="nav nav-pills">
             <?php
                 if ($echonest->response->status->message == 'Success') {
@@ -188,5 +173,20 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
             }
         }
         ?>
+
+   <div class="tab-pane active" id="comments">
+        <ul class="nav nav-pills">
+            <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+        </ul>
+
+        <?= $this->listComments($this->performer->getComments()); ?>
+    </div>
+
+    <div class="tab-pane" id="links">
+        <ul class="nav nav-pills">
+            <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+        </ul>
+    </div>
+
 </div>
 

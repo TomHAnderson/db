@@ -4,6 +4,7 @@ namespace Db\Entity;
 use Db\Entity\AbstractEntity;
 use Zend\Form\Annotation as Form
     , Zend\InputFilter\InputFilter
+    , Doctrine\Common\Collections\ArrayCollection
     ;
 
 /**
@@ -54,5 +55,18 @@ class Band extends AbstractEntity {
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
 
         return $inputFilter;
+    }
+
+    public function getPerformances() {
+        $return = new ArrayCollection();
+
+        // fixme add sort
+        foreach ($this->getLineups() as $lineup) {
+            foreach ($lineup->getPerformances() as $performance) {
+                $return->add($performance);
+            }
+        }
+
+        return $return;
     }
 }
