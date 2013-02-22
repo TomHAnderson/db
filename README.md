@@ -12,7 +12,8 @@ Installation
 ------------
     git clone git://github.com/TomHAnderson/db
 
-Create a mysql database.
+db uses Doctrine 2 for database abstraction.  Supported drivers are listed here:
+http://www.doctrine-project.org/blog/database-support-doctrine2.html
 
 Copy ~/config/autoload/local.php.dist to ~/config/autoload/local.php and edit it relpacing any '' with the appropriate values.
 
