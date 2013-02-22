@@ -16,6 +16,12 @@
     <?php
     }
     ?>
+
+    <li>
+        <a class="btn-info" href="/audit/entity/<?= $this->venue->getId(); ?>/Db\Entity\Venue">
+            <i class="icon-list"></i>
+        </a>
+    </li>
 </ul>
 
 <h1><i class="icon-map-marker"></i> <?= $this->escapeHtml($this->venue->getName()); ?></h1>
