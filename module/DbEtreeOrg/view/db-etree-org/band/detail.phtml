@@ -2,6 +2,12 @@
     <li class="">
         <a class="btn-warning" href="/band/edit?id=<?= $this->band->getId(); ?>"><i class="icon-cogs"></i> Edit Band</a>
     </li>
+
+    <li>
+        <a class="btn-info" href="/audit/entity/<?= $this->band->getId(); ?>/Db\Entity\Band">
+            <i class="icon-list"></i>
+        </a>
+    </li>
 </ul>
 
 <h1><i class="icon-cogs"></i> <?= $this->escapeHtml($this->band->getName()); ?></h1>
