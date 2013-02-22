@@ -32,16 +32,8 @@ class Performer extends AbstractEntity {
         return array(
             'id' => $this->getId(),
             'mbid' => $this->getMbid(),
-<<<<<<< HEAD
-            'lastname' => $this->getLastname(),
-            'lastnameNormalize' => $this->getLastnameNormalize(),
-            'firstname' => $this->getFirstname(),
-            'firstnameNormalize' => $this->getFirstnameNormalize(),
-            'fullname' => $this->getFullname(),
-=======
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
->>>>>>> upstream/master
             'note' => $this->getNote(),
         );
     }
@@ -58,6 +50,7 @@ class Performer extends AbstractEntity {
         $inputFilter = new InputFilter();
 
         $inputFilter->add($this->inputFilterInputName($inputFilter));
+        $inputFilter->add($this->inputFilterInputBid($inputFilter));
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
 
         return $inputFilter;
