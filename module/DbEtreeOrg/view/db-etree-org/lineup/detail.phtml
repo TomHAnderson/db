@@ -36,9 +36,7 @@ foreach ($this->lineup->getPerformers() as $performer) {
     <li>
         <i class="icon-film"></i>
         <a href="/performer/detail?id=<?= $performer->getId(); ?>">
-<?= $this->escapeHtml($performer->getLastname()); ?>
-<?php if ($this->escapeHtml($performer->getLastname())) echo ', '; ?>
-<?= $this->escapeHtml($performer->getFirstname()); ?>
+            <?= $this->escapeHtml($performer->getName()); ?>
         </a>
     </li>
 <?php

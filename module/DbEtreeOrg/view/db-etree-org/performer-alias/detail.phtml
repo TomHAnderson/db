@@ -14,9 +14,7 @@
 <h1>
     <i class="icon-film"></i>
     <a href="/performer/detail?id=<?= $this->performerAlias->getPerformer()->getId(); ?>">
-        <?= $this->escapeHtml($this->performerAlias->getPerformer()->getLastname()); ?>
-        <?php if ($this->escapeHtml($this->performerAlias->getPerformer()->getLastname())) echo ', '; ?>
-        <?= $this->escapeHtml($this->performerAlias->getPerformer()->getFirstname()); ?>
+        <?= $this->escapeHtml($this->performerAlias->getPerformer()->getName()); ?>
     </a>
 </h1>
 

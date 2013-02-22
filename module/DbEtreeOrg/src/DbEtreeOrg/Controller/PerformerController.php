@@ -142,16 +142,12 @@ class PerformerController extends AbstractActionController
 
         $filterNormalize = new Normalize();
 
-        $queryLast = $filterNormalize(trim(strtok($query, ',')));
-        $queryFirst = $filterNormalize(trim(strtok(',')));
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $queryArray = array();
-        if ($queryFirst) $queryArray['firstnameNormalize'] = '%' . $queryFirst . '%';
-        if ($queryLast) $queryArray['lastnameNormalize'] = '%' . $queryLast . '%';
+        $queryArray['nameNormalize'] = '%' . $query . '%';
 
-        if ($queryArray) $performers = $em->getRepository('Db\Entity\Performer')->findLike($queryArray);
+        $performers = $em->getRepository('Db\Entity\Performer')->findLike($queryArray);
 
         if (!$queryFirst and $queryLast) {
             $aliases = $em->getRepository('Db\Entity\PerformerAlias')->findLike(array(

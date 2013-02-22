@@ -4,12 +4,10 @@
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
-    <field name="lastname" type="string" nullable="true"/>
-    <field name="lastnameNormalize" type="string" nullable="true"/>
-    <field name="firstname" type="string" nullable="false"/>
-    <field name="firstnameNormalize" type="string" nullable="false"/>
-    <field name="note" type="text" nullable="true"/>
     <field name="mbid" type="string" nullable="true"/>
+    <field name="name" type="string" nullable="false"/>
+    <field name="nameNormalize" type="string" nullable="false"/>
+    <field name="note" type="text" nullable="true"/>
     <one-to-one field="user" target-entity="Db\Entity\User" inversed-by="performer">
       <join-columns>
         <join-column name="user_id" referenced-column-name="id" unique="true"/>

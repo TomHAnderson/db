@@ -13,7 +13,7 @@ class Alias extends AbstractEntity {
         , \Db\Entity\Field\Band
         , \Db\Entity\Field\Name
         , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Note
+        , \Db\Entity\Field\Note
         ;
 
    /** Hydrator functions */
