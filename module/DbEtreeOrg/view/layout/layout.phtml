@@ -60,6 +60,49 @@
 
                             <li class="dropdown">
                                 <a id="performance-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <i class="icon-music"></i>
+                                    <?php echo $this->translate('Songs') ?>
+                                    <b class="caret"></b>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
+
+                                    <li role="menuitem">
+                                        <form class="navbar-search pull-left" name="search" action="/performance/search">
+                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Songs">
+                                        </form>
+                                    </li>
+
+                                    <?php
+                                    if (isset($_SESSION['songs']['latest'])) {
+                                    ?><li class="divider"></li><?php
+                                        foreach ($_SESSION['songs']['latest'] as $id) {
+                                            if ($p = $this->findEntity('Db\Entity\Song', $id)) {
+                                                ?>
+                                                    <li role="menuitem">
+                                                        <a href="/song/detail?id=<?= $p->getId(); ?>">
+                                                            <i class="icon-music"></i>
+                                                            <?= $this->escapeHtml($p->getName()); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <li class="divider"></li>
+
+                                    <li role="">
+                                        <a class="btn-success" id="createSong" href="/song/create" style="color: white;">
+                                            <i class="icon-music"></i>
+                                            Create Song
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            <li class="dropdown">
+                                <a id="performance-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
                                     <i class="icon-magic"></i>
                                     <?php echo $this->translate('Performances') ?>
                                     <b class="caret"></b>
@@ -110,7 +153,7 @@
                                     <li role="">
                                         <a class="btn-success" id="createPerformance" href="/performance/create" style="color: white;">
                                             <i class="icon-magic"></i>
-                                            Create Performane
+                                            Create Performance
                                         </a>
                                     </li>
 

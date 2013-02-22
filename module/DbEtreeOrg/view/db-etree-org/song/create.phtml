@@ -1,0 +1,23 @@
+<h1>
+    <i class="icon-music"></i>
+    Create Song
+</h1>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('name')); ?>
+
+<?= $this->formRow($this->form->get('mbid')); ?>
+
+<?= $this->inputBand(); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<br>
+
+<button type="send" class="btn btn-success">
+    <i class="icon-music"></i>
+    Create Song
+</button>
+
+<?= $this->form()->closeTag(); ?>

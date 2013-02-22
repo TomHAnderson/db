@@ -1,0 +1,49 @@
+<ul class="nav nav-pills pull-right">
+    <li>
+        <a href="/song/edit?id=<?= $this->song->getId(); ?>" class="btn-warning">
+            <i class="icon-music"></i>
+            Edit Song
+        </a>
+    </li>
+</ul>
+
+<h1>
+    <i class="icon-music"></i>
+    <?= $this->escapeHtml($this->song->getName()); ?>
+</h1>
+
+<?php
+    if ($this->song->getBand()) {
+?>
+<h1>
+    <a href="/band/detail?id=<?= $this->song->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
+        <?= $this->escapeHtml($this->song->getBand()->getName()); ?>
+    </a>
+</h1>
+<?php
+}
+?>
+
+<?php
+if ($this->song->getNote()) { ?>
+    <pre><?= $this->escapeHtml($this->song->getNote()); ?></pre>
+<?php
+}
+?>
+
+<ul class="nav nav-tabs" id="tabs">
+    <li class="active">
+        <a href="#performances" data-toggle="tab">
+            Performances
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="performances">
+        <ul class="nav nav-pills">
+            <?= $this->listPerformances($this->song->getPerformances()); ?>
+        </ul>
+    </div>
+</div>

@@ -2,7 +2,10 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form;
+use Zend\Form\Annotation as Form
+    , Zend\InputFilter\InputFilter
+    , Doctrine\Common\Collections\ArrayCollection
+    ;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -32,7 +35,6 @@ class Song extends AbstractEntity {
             'mbid' => $this->getMbid(),
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
-            'composer' => $this->getComposer(),
             'lyrics' => $this->getLyrics(),
             'note' => $this->getNote(),
         );
@@ -42,7 +44,6 @@ class Song extends AbstractEntity {
     {
         $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setComposer(isset($data['composer']) ? $data['composer']: null);
         $this->setLyrics(isset($data['lyrics']) ? $data['lyrics']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }
@@ -53,9 +54,18 @@ class Song extends AbstractEntity {
 
         $inputFilter->add($this->inputFilterInputMbid($inputFilter));
         $inputFilter->add($this->inputFilterInputName($inputFilter));
-        $inputFilter->add($this->inputFilterInputComposer($inputFilter));
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
 
         return $inputFilter;
+    }
+
+    public function getPerformances() {
+
+        $return = new ArrayCollection();
+        foreach ($this->getPerformanceSongs() as $performanceSong) {
+            $return->add($performanceSong->getPerformanceSet()->getPerformance());
+        }
+
+        return $return;
     }
 }
