@@ -1,6 +1,12 @@
 <ul class="nav nav-pills pull-right">
     <li>
-    <a class="btn-warning" href="/performance/edit?id=<?= $this->performance->getId(); ?>"><i class="icon-magic"></i> Edit Performance</a>
+        <a class="btn-success" href="/performance-set/create?id=<?= $this->performance->getId(); ?>">
+            <i class="icon-certificate"></i>
+            Create Performance Set
+        </a>
+    </li>
+    <li>
+        <a class="btn-warning" href="/performance/edit?id=<?= $this->performance->getId(); ?>"><i class="icon-magic"></i> Edit Performance</a>
     </li>
 </ul>
 
@@ -46,29 +52,37 @@ if ($this->performance->getNote()) { ?>
 }
 ?>
 
-<h3>Sets</h3>
 
-<ul>
 <?php
 foreach ($this->performance->getPerformanceSets() as $set) {
-#    print_r($performer);
 ?>
-    <li>
-        <a href="/set/detail?id=<?= $set->getId(); ?>">
-            <?= $this->escapeHtml($set->getName()); ?>
-        </a>
-    </li>
+    <i class="icon-certificate"></i>
+    <a href="/performance-set/detail?id=<?= $set->getId(); ?>">
+        <?= $this->escapeHtml($set->getName()); ?>
+    </a>
+
+    <?php
+    if ($set->getNote()) {
+    ?>
+        <pre><?= $this->escapeHtml($set->getNote()); ?></pre>
+    <?php
+    }
+    ?>
+
+    <?php
+    foreach ($set->getPerformanceSongs() as $song) {
+    ?>
+        <pre><?= $song->getName(); ?></pre>
+    <?php
+    }
+    ?>
 <?php
 }
 ?>
 </ul>
 
-<ul class="nav nav-pills">
-    <?php //$this->addSetToPerformance($this->performance->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->performance->getId()); ?>
-</ul>
-
 <ul class="nav nav-tabs" id="tabs">
-    <li class="">
+    <li class="active">
         <a href="#comments" data-toggle="tab">
             Comments
         </a>

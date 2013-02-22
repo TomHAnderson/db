@@ -1,10 +1,14 @@
 <?php
 namespace Db\Entity\Field;
 
-use Db\Entity\Sort as SortEntity;
-
 trait Sort
 {
+    /**
+     * @Form\Type("Zend\Form\Element")
+     * @Form\Attributes({"type": "string"})
+     * @Form\Attributes({"id": "sort"})
+     * @Form\Options({"label": "Sort"})
+     */
     protected $sort;
 
     public function getSort()
@@ -12,9 +16,21 @@ trait Sort
         return $this->sort;
     }
 
-    public function sortSort(SortEntity $value)
+    public function setSort($value)
     {
         $this->sort = $value;
         return $this;
+    }
+
+    private function inputFilterInputSort($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'sort',
+            'required' => true,
+            'validators' => array(
+                array('name' => 'int'),
+            ),
+        ));
     }
 }

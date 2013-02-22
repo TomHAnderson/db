@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Geoname\Entity\Feature" table="he_geoname_feature" repository-class="Geoname\Repository\Feature">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="code" type="string" nullable="false"/>
+    <field name="description" type="string" nullable="true"/>
+    <field name="comment" type="string" nullable="true"/>
+    <many-to-one field="parent" target-entity="Geoname\Entity\Feature" inversed-by="children">
+      <join-columns>
+        <join-column name="parent_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="children" target-entity="Geoname\Entity\Feature" mapped-by="parent"/>
+    <one-to-many field="places" target-entity="Geoname\Entity\Place" mapped-by="feature"/>
+  </entity>
+</doctrine-mapping>

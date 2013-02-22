@@ -295,7 +295,7 @@
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="4d007523-93f8-4f04-8304-f24cc92c1164"/>
       <field name="performance_id" type="integer" required="true" uuid="6bae6ad8-80af-4105-b076-90bc4ce8bffc"/>
       <field name="name" type="string" required="true" uuid="57c63d9a-170e-4144-9f54-b49b00783307"/>
-      <field name="content" type="text" required="true" uuid="35d0bd9e-4b46-4a08-b267-6b9b23e38422"/>
+      <field name="note" type="text" required="true" uuid="35d0bd9e-4b46-4a08-b267-6b9b23e38422"/>
       <field name="sort" type="integer" required="true" uuid="7a630014-9994-4e8e-8bc9-a3588e5dedb3"/>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\PerformanceSet</attribute>
@@ -303,6 +303,16 @@
     </entity>
     <association from="PerformanceSet" to="Performance" owner-alias="performanceSets" inverse-alias="performance" uuid="45e7a18f-b845-458d-b4f1-b824d2f9b18b">
       <association-field from="performance_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-inverse">
+          <attribute name="order-by">
+            <attribute name="order-by-field">
+              <attribute name="direction">ASC</attribute>
+              <attribute name="field">sort</attribute>
+            </attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <region caption="Band" uuid="86490e22-2c2a-4f81-b8ec-51f819610748">
       <entity-ref name="Band"/>
