@@ -2,16 +2,17 @@
 use Zend\Form\Element;
 use Zend\Form\Form;
 
+$id = md5(uniqid());
 $formElement = new Element\Text('performer');
 $formElement
     ->setLabel('<i class="icon-film"></i> ' . $this->label)
     ->setAttributes(array(
-        'id' => 'performer',
+        'id' => 'data' . $id,
         'autocomplete' => 'off',
         'placeholder'  => '',
     ));
 
-if ($performer) {
+if ($this->performer) {
     $formElement->setAttributes(array(
         'value' => $performer->getName(),
     ));
@@ -21,58 +22,55 @@ if ($performer) {
 
 <?= $this->formRow($formElement); ?>
 
-<input type="hidden" name="performer_id" <?php if ($performer) echo 'value="' . $performer->getId() . '"'; ?> id="performerId"/>
+<input type="hidden" name="performer_id"
+    <?php if ($this->performer) echo 'value="' . $this->performer->getId() . '"'; ?>
+    id="Id<?= $id; ?>"/>
 
 <script>
-var performers = {};
-var performerLabels = [];
+var data<?= $id; ?> = {};
+var dataLabels<?= $id; ?> = [];
 
 require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
 
-    $( "#performer" ).typeahead({
+    $( "#data<?= $id; ?>" ).typeahead({
         source: function ( query, process ) {
-            searchPerformers( query, process );
+            searchData<?= $id; ?>( query, process );
         }
         , updater: function (item) {
-            //save the id value into the hidden field
-            $( "#performerId" ).val( performers[ item ] );
+                $( "#Id<?= $id; ?>" ).val( data<?= $id; ?>[ item ].id );
 
-            //return the string you want to go into the textbox (e.g. name)
             return item;
         }
         , matcher: function () { return true; }
+
+        , highlighter: function(item){
+            var p = data<?= $id; ?>[ item ];
+            var liHtml = ''
+                + "<div class='typeahead_wrapper'>"
+                + "<div class='typeahead_labels'>"
+                + "<div class='typeahead_primary'><b>" + p.fullname + "</b></div>"
+                + "</div>"
+                + "</div>";
+            return liHtml;
+        }
     });
 
-    var searchPerformers = _.debounce(function ( query, process ) {
+    var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
 
-        //the "process" argument is a callback, expecting an array of values (strings) to display
+        $.get('/performer/search-json', { q: query }, function (data) {
+console.log(data);
+            data<?= $id; ?> = {};
+            dataLabels<?= $id; ?> = [];
 
-        //get the data to populate the typeahead (plus some)
-        //from your api, wherever that may be
-        $.get('/performer/search-json', { q: query }, function ( data ) {
-
-            //reset these containers
-            performers = {};
-            performerLabels = [];
-
-            //for each item returned, if the display name is already included
-            //(e.g. multiple "John Smith" records) then add a unique value to the end
-            //so that the user can tell them apart. Using underscore.js for a functional approach.
             _.each( data.performers, function( item, ix, list ){
+                // Alias each item with id
+                item.label = item.fullname + ' #' + item.id;
 
-                if ( _.contains( performers, item.label ) ){
-                    item.label = item.label + ' #' + item.value;
-                }
-
-                //add the label to the display array
-                performerLabels.push( item.label );
-
-                //also store a mapping to get from label back to ID
-                performers[ item.label ] = item.value;
+                data<?= $id; ?>[ item.label ] = item;
+                dataLabels<?= $id; ?>.push( item.label );
             });
 
-            //return the display array
-            process( performerLabels );
+            process(dataLabels<?= $id; ?>);
         });
     }, 300);
 

@@ -257,8 +257,9 @@
                                         <script>
                                             $(function() {
                                                 $('#performer-search').on('submit', function(event) {
-                                                    if ($('#performerId').val()) {
-                                                        window.location = '/performer/detail?id=' + $('#performerId').val();
+                                                    if ($('form#performer-search input[name="performer_id"]').val()) {
+                                                        window.location = '/performer/detail?id='
+                                                            + $('form#performer-search input[name="performer_id"]').val();
                                                     }
 
                                                     return false;
@@ -307,15 +308,17 @@
                                 <ul class="dropdown-menu" aria-labelledby="venue-drop" role="menu">
 
                                     <li role="menuitem">
-                                        <form class="navbar-search pull-left" id="venue-search" action="">
+                                        <form class="navbar-search pull-left" id="venue-search" action="/venue/search">
                                             <?= $this->inputVenue(null, 'Search'); ?>
+                                            <input type="submit">
                                         </form>
 
                                         <script>
                                             $(function() {
                                                 $('#venue-search').on('submit', function(event) {
-                                                if ($('#venueId').val()) {
-                                                        window.location = '/venue/detail?id=' + $('#venueId').val();
+                                                    if ($('form#venue-search input[name="venue_id"]').val()) {
+                                                        window.location = '/venue/detail?id='
+                                                            + $('form#venue-search [name="venue_id"]').val();
                                                     }
 
                                                     return false;

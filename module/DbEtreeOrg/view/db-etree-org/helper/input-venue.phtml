@@ -7,12 +7,12 @@ $formElement = new Element\Text('venue');
 $formElement
     ->setLabel('<i class="icon-map-marker"></i> ' . $this->label)
     ->setAttributes(array(
-        'id' => 'venue' . $id,
+        'id' => 'data' . $id,
         'autocomplete' => 'off',
         'placeholder'  => '',
     ));
 
-if ($venue) {
+if ($this->venue) {
     $formElement->setAttributes(array(
         'value' => $venue->getName(),
     ));
@@ -25,55 +25,54 @@ if ($venue) {
 <input type="hidden" name="venue_id" <?php if ($venue) echo 'value="' . $venue->getId() . '"'; ?> id="Id<?= $id; ?>"/>
 
 <script>
-var venues<?= $id; ?> = {};
-var venueLabels<?= $id; ?> = [];
+var data<?= $id; ?> = {};
+var dataLabels<?= $id; ?> = [];
 
 require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
 
-    $( "#venue<?= $id; ?>" ).typeahead({
+    $( "#data<?= $id; ?>" ).typeahead({
         source: function ( query, process ) {
-            searchVenues<?= $id; ?>( query, process );
+            searchData<?= $id; ?>( query, process );
         }
         , updater: function (item) {
-            //save the id value into the hidden field
-            $( "#Id<?= $id; ?>" ).val( venues<?= $id; ?>[ item ] );
+                $( "#Id<?= $id; ?>" ).val( data<?= $id; ?>[ item ].id );
 
-            //return the string you want to go into the textbox (e.g. name)
             return item;
         }
         , matcher: function () { return true; }
+
+        , highlighter: function(item){
+            var p = data<?= $id; ?>[ item ];
+            var liHtml = ''
+                + "<div class='typeahead_wrapper'>"
+                + "<div class='typeahead_labels'>"
+                + "<div class='typeahead_primary'><b>" + p.name + "</b></div>"
+                + "<div class='typeahead_secondary'>" + p.country + "</div>"
+                + "<div class='typeahead_secondary'>" + p.city + "</div>"
+                + "<div class='typeahead_secondary'>" + p.state + "</div>"
+                + "<div class='typeahead_secondary'>" + p.zipcode + "</div>"
+                + "</div>"
+                + "</div>";
+            return liHtml;
+        }
     });
 
-    var searchVenues<?= $id; ?> = _.debounce(function ( query, process ) {
+    var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
 
-        //the "process" argument is a callback, expecting an array of values (strings) to display
+        $.get('/venue/search-json', { q: query }, function (data) {
 
-        //get the data to populate the typeahead (plus some)
-        //from your api, wherever that may be
-        $.get('/venue/search-json', { q: query }, function ( data ) {
+            data<?= $id; ?> = {};
+            dataLabels<?= $id; ?> = [];
 
-            //reset these containers
-            venues<?= $id; ?> = {};
-            venueLabels<?= $id; ?> = [];
-
-            //for each item returned, if the display name is already included
-            //(e.g. multiple "John Smith" records) then add a unique value to the end
-            //so that the user can tell them apart. Using underscore.js for a functional approach.
             _.each( data.venues, function( item, ix, list ){
+                // Alias each item with id
+                item.label = item.name + ' #' + item.id;
 
-                if ( _.contains( venues<?= $id; ?>, item.label ) ){
-                    item.label = item.label + ' #' + item.value;
-                }
-
-                //add the label to the display array
-                venueLabels<?= $id; ?>.push( item.label );
-
-                //also store a mapping to get from label back to ID
-                venues<?= $id; ?>[ item.label ] = item.value;
+                data<?= $id; ?>[ item.label ] = item;
+                dataLabels<?= $id; ?>.push( item.label );
             });
 
-            //return the display array
-            process(venueLabels<?= $id; ?>);
+            process(dataLabels<?= $id; ?>);
         });
     }, 300);
 

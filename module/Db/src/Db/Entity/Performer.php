@@ -46,6 +46,7 @@ class Performer extends AbstractEntity {
             'lastnameNormalize' => $this->getLastnameNormalize(),
             'firstname' => $this->getFirstname(),
             'firstnameNormalize' => $this->getFirstnameNormalize(),
+            'fullname' => $this->getFullname(),
             'note' => $this->getNote(),
         );
     }

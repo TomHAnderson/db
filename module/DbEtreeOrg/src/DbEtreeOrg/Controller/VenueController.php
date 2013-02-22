@@ -164,10 +164,7 @@ class VenueController extends AbstractActionController
         $i = 0;
         foreach ($venues as $venue) {
             if (++$i > 25) break;
-            $return[] = array(
-                'value' => $venue->getId(),
-                'label' => $venue->getName(),
-            );
+            $return[] = $venue->getArrayCopy();
         }
 
         $jsonModel = new JsonModel;
