@@ -13,6 +13,7 @@ class Alias extends AbstractEntity {
         , \Db\Entity\Field\Band
         , \Db\Entity\Field\Name
         , \Db\Entity\Field\NameNormalize
+        , \Db\Entity\Note
         ;
 
    /** Hydrator functions */
@@ -22,12 +23,13 @@ class Alias extends AbstractEntity {
             'id' => $this->getId(),
             'name' => $this->getName(),
             'nameNormalized' => $this->getNameNormalize(),
+            'note' => $this->getNote(),
         );
     }
 
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setNameNormalized(isset($data['nameNormalize']) ? $data['nameNormalize']: null);
+        $this->setNote(isset($data['note']) ? $data['note']: null);
     }
 }
