@@ -12,13 +12,11 @@ use Zend\Form\Annotation as Form
  */
 class Performer extends AbstractEntity {
     use \Db\Entity\Field\Id
-        , \Db\Entity\Field\User
-        , \Db\Entity\Field\Lastname
-        , \Db\Entity\Field\LastnameNormalize
-        , \Db\Entity\Field\Firstname
-        , \Db\Entity\Field\FirstnameNormalize
-        , \Db\Entity\Field\Note
         , \Db\Entity\Field\Mbid
+        , \Db\Entity\Field\User
+        , \Db\Entity\Field\Name
+        , \Db\Entity\Field\NameNormalize
+        , \Db\Entity\Field\Note
         ;
 
     use \Db\Entity\Relation\Aliases
@@ -28,33 +26,29 @@ class Performer extends AbstractEntity {
         , \Db\Entity\Relation\Comments
         ;
 
-    public function getFullName()
-    {
-        $fullname = $this->getLastname();
-        if ($this->getFirstname()) $fullname .= ', ' . $this->getFirstname();
-
-        return $fullname;
-    }
-
    /** Hydrator functions */
     public function getArrayCopy()
     {
         return array(
             'id' => $this->getId(),
             'mbid' => $this->getMbid(),
+<<<<<<< HEAD
             'lastname' => $this->getLastname(),
             'lastnameNormalize' => $this->getLastnameNormalize(),
             'firstname' => $this->getFirstname(),
             'firstnameNormalize' => $this->getFirstnameNormalize(),
             'fullname' => $this->getFullname(),
+=======
+            'name' => $this->getName(),
+            'nameNormalize' => $this->getNameNormalize(),
+>>>>>>> upstream/master
             'note' => $this->getNote(),
         );
     }
 
     public function exchangeArray($data)
     {
-        $this->setLastname(isset($data['lastname']) ? $data['lastname']: null);
-        $this->setFirstname(isset($data['firstname']) ? $data['firstname']: null);
+        $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }
@@ -63,8 +57,7 @@ class Performer extends AbstractEntity {
     {
         $inputFilter = new InputFilter();
 
-        $inputFilter->add($this->inputFilterInputLastname($inputFilter));
-        $inputFilter->add($this->inputFilterInputFirstname($inputFilter));
+        $inputFilter->add($this->inputFilterInputName($inputFilter));
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
 
         return $inputFilter;

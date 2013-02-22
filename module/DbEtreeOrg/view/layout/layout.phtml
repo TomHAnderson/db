@@ -257,9 +257,9 @@
                                         <script>
                                             $(function() {
                                                 $('#performer-search').on('submit', function(event) {
-                                                    if ($('form#performer-search input[name="performer_id"]').val()) {
+                                                    if ($(this).find('input[name="performer_id"]').val()) {
                                                         window.location = '/performer/detail?id='
-                                                            + $('form#performer-search input[name="performer_id"]').val();
+                                                            + $(this).find('input[name="performer_id"]').val();
                                                     }
 
                                                     return false;
