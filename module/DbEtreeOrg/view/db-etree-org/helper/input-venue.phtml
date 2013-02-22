@@ -2,11 +2,12 @@
 use Zend\Form\Element;
 use Zend\Form\Form;
 
+$id = md5(uniqid());
 $formElement = new Element\Text('venue');
 $formElement
     ->setLabel('<i class="icon-map-marker"></i> ' . $this->label)
     ->setAttributes(array(
-        'id' => 'venue',
+        'id' => 'venue' . $id,
         'autocomplete' => 'off',
         'placeholder'  => '',
     ));
@@ -21,21 +22,21 @@ if ($venue) {
 
 <?= $this->formRow($formElement); ?>
 
-<input type="hidden" name="venue_id" <?php if ($venue) echo 'value="' . $venue->getId() . '"'; ?> id="venueId"/>
+<input type="hidden" name="venue_id" <?php if ($venue) echo 'value="' . $venue->getId() . '"'; ?> id="Id<?= $id; ?>"/>
 
 <script>
-var venues = {};
-var venueLabels = [];
+var venues<?= $id; ?> = {};
+var venueLabels<?= $id; ?> = [];
 
 require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
 
-    $( "#venue" ).typeahead({
+    $( "#venue<?= $id; ?>" ).typeahead({
         source: function ( query, process ) {
-            searchVenues( query, process );
+            searchVenues<?= $id; ?>( query, process );
         }
         , updater: function (item) {
             //save the id value into the hidden field
-            $( "#venueId" ).val( venues[ item ] );
+            $( "#Id<?= $id; ?>" ).val( venues<?= $id; ?>[ item ] );
 
             //return the string you want to go into the textbox (e.g. name)
             return item;
@@ -43,7 +44,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
         , matcher: function () { return true; }
     });
 
-    var searchVenues = _.debounce(function ( query, process ) {
+    var searchVenues<?= $id; ?> = _.debounce(function ( query, process ) {
 
         //the "process" argument is a callback, expecting an array of values (strings) to display
 
@@ -52,27 +53,27 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
         $.get('/venue/search-json', { q: query }, function ( data ) {
 
             //reset these containers
-            venues = {};
-            venueLabels = [];
+            venues<?= $id; ?> = {};
+            venueLabels<?= $id; ?> = [];
 
             //for each item returned, if the display name is already included
             //(e.g. multiple "John Smith" records) then add a unique value to the end
             //so that the user can tell them apart. Using underscore.js for a functional approach.
             _.each( data.venues, function( item, ix, list ){
 
-                if ( _.contains( venues, item.label ) ){
+                if ( _.contains( venues<?= $id; ?>, item.label ) ){
                     item.label = item.label + ' #' + item.value;
                 }
 
                 //add the label to the display array
-                venueLabels.push( item.label );
+                venueLabels<?= $id; ?>.push( item.label );
 
                 //also store a mapping to get from label back to ID
-                venues[ item.label ] = item.value;
+                venues<?= $id; ?>[ item.label ] = item.value;
             });
 
             //return the display array
-            process( venueLabels );
+            process(venueLabels<?= $id; ?>);
         });
     }, 300);
 

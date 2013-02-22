@@ -16,11 +16,13 @@
 </h3>
 <?= $this->form()->openTag($form); ?>
 
+<?= $this->inputVenue(); ?>
+
 <?= $this->formRow($this->form->get('performanceDate')); ?>
 
 <?= $this->formRow($this->form->get('name')); ?>
 
-<?= $this->inputVenue(); ?>
+<?= $this->formRow($this->form->get('mbid')); ?>
 
 <?= $this->formRow($this->form->get('note')); ?>
 
