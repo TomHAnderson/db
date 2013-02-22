@@ -86,6 +86,7 @@ return array(
             'band' => 'DbEtreeOrg\Controller\BandController',
             'lineup' => 'DbEtreeOrg\Controller\LineupController',
             'performance' => 'DbEtreeOrg\Controller\PerformanceController',
+            'performance-set' => 'DbEtreeOrg\Controller\PerformanceSetController',
         ),
     ),
 

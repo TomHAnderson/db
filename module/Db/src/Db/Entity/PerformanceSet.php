@@ -2,7 +2,9 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form;
+use Zend\Form\Annotation as Form
+    , Zend\InputFilter\InputFilter
+    ;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -12,7 +14,7 @@ class PerformanceSet extends AbstractEntity
 {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\Name
-        , \Db\Entity\Field\Content
+        , \Db\Entity\Field\Note
         , \Db\Entity\Field\Sort
         , \Db\Entity\Field\Performance
     ;
@@ -25,7 +27,7 @@ class PerformanceSet extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'content' => $this->getContent(),
+            'note' => $this->getNote(),
             'sort' => $this->getSort(),
         );
     }
@@ -33,8 +35,19 @@ class PerformanceSet extends AbstractEntity
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setContent(isset($data['content']) ? $data['content']: null);
+        $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setSort(isset($data['sort']) ? $data['sort']: null);
+    }
+
+    public function getInputFilter()
+    {
+        $inputFilter = new InputFilter();
+
+        $inputFilter->add($this->inputFilterInputName($inputFilter));
+        $inputFilter->add($this->inputFilterInputNote($inputFilter));
+        $inputFilter->add($this->inputFilterInputSort($inputFilter));
+
+        return $inputFilter;
     }
 }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Geoname\Entity\AltName" table="he_geoname_alt_name" repository-class="Geoname\Repository\AltName">
+    <id name="id" type="integer"/>
+    <field name="name" type="string" nullable="false"/>
+    <field name="isPreferred" type="boolean" nullable="false"/>
+    <field name="isShort" type="boolean" nullable="false"/>
+    <field name="isColloquial" type="boolean" nullable="false"/>
+    <field name="isHistoric" type="boolean" nullable="false"/>
+    <field name="languageOther" type="string" nullable="true"/>
+    <field name="isDeprecated" type="boolean" nullable="true"/>
+    <many-to-one field="place" target-entity="Geoname\Entity\Place" inversed-by="altNames">
+      <join-columns>
+        <join-column name="place_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="language" target-entity="Geoname\Entity\Language">
+      <join-columns>
+        <join-column name="language_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

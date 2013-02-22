@@ -5,7 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="false"/>
-    <field name="content" type="text" nullable="false"/>
+    <field name="note" type="text" nullable="false"/>
     <field name="sort" type="integer" nullable="false"/>
     <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="performanceSets">
       <join-columns>

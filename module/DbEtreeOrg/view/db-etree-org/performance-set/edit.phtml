@@ -1,0 +1,59 @@
+<h1>
+    <i class="icon-certificate"></i>
+    Edit Performance Set
+</h1>
+
+<h1>
+    <i class="icon-magic"></i>
+<?php
+if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+    echo $this->escapeHtml($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
+} else {
+    echo $this->escapeHtml($this->performanceSet->getPerformance()->getPerformanceDate());
+}
+?>
+
+    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getName()); ?>
+</h1>
+
+<h1>
+    <i class="icon-cogs"></i>
+    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getBand()->getName()); ?>
+</h1>
+
+<h1>
+    <i class="icon-group"></i>
+    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getName()); ?>
+</h1>
+
+<h1>
+    <i class="icon-map-marker"></i>
+    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getVenue()->getName()); ?>
+</h1>
+
+<?php
+if ($this->performanceSet->getPerformance()->getNote()) { ?>
+    <pre><?= $this->escapeHtml($this->performanceSet->getPerformance()->getNote()); ?></pre>
+<?php
+}
+?>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('name')); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<?= $this->formRow($this->form->get('sort')); ?>
+
+<br>
+
+<button type="send" class="btn btn-success">
+    <i class="icon-certificate"></i>
+    Edit Performance Set
+</button>
+
+<?= $this->form()->closeTag(); ?>
+
+
+

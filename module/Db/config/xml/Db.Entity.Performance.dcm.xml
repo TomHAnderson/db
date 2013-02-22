@@ -26,7 +26,11 @@
       </join-columns>
     </many-to-one>
     <one-to-many field="sources" target-entity="Db\Entity\Source" mapped-by="performance"/>
-    <one-to-many field="performanceSets" target-entity="Db\Entity\PerformanceSet" mapped-by="performance"/>
+    <one-to-many field="performanceSets" target-entity="Db\Entity\PerformanceSet" mapped-by="performance">
+      <order-by>
+        <order-by-field name="sort" direction="ASC"/>
+      </order-by>
+    </one-to-many>
     <one-to-many field="attendees" target-entity="Db\Entity\Attendance" mapped-by="performance"/>
     <one-to-many field="userPerformances" target-entity="Db\Entity\UserPerformance" mapped-by="performance"/>
     <one-to-many field="wantedBy" target-entity="Db\Entity\Wanted" mapped-by="performance"/>
