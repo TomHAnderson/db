@@ -48,7 +48,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
             var liHtml = ''
                 + "<div class='typeahead_wrapper'>"
                 + "<div class='typeahead_labels'>"
-                + "<div class='typeahead_primary'><b>" + p.fullname + "</b></div>"
+                + "<div class='typeahead_primary'><b>" + p.name + "</b></div>"
                 + "</div>"
                 + "</div>";
             return liHtml;
@@ -64,7 +64,7 @@ console.log(data);
 
             _.each( data.performers, function( item, ix, list ){
                 // Alias each item with id
-                item.label = item.fullname + ' #' + item.id;
+                item.label = item.name + ' #' + item.id;
 
                 data<?= $id; ?>[ item.label ] = item;
                 dataLabels<?= $id; ?>.push( item.label );

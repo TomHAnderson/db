@@ -1,0 +1,21 @@
+<li class="">
+    <a onClick="$('#removePerformerFromPerformance').toggle();" class="btn-danger" href="#">
+        <i class="icon-film"></i>
+        Remove Guest Performer From Performance
+    </a>
+</li>
+
+<div id="removePerformerFromPerformance" style="display: none; clear:both;">
+
+    <form method="post" action="/performance/remove-performer">
+        <input type="hidden" name="id" value="<?= $id; ?>">
+
+        <?= $this->inputPerformer(); ?>
+
+        <br>
+        <button class="btn btn-info" type="send">
+            <i class="icon-save"></i>
+            Submit
+        </button>
+    </form>
+</div>

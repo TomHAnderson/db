@@ -5,27 +5,20 @@
 <div id="addPerformerToLineup" style="display: none; clear:both;">
 
     <form method="post" action="/lineup/add-performer">
+        <input type="hidden" name="id" value="<?= $id; ?>">
+        <input type="hidden" name="entityName" value="<?= $entityName; ?>">
+        <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
 
         <?= $this->inputPerformer(); ?>
 
-        <div class="row">
-            <div class="span1">
-                Note
-            </div>
+        <label for="note">Note</label>
+        <textarea name="note"></textarea>
 
-            <div class="span11">
-                <input type="hidden" name="id" value="<?= $id; ?>">
-                <input type="hidden" name="entityName" value="<?= $entityName; ?>">
-                <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
-                <textarea name="note"></textarea>
-                <br>
-                <button class="btn btn-info" type="send">
-                    <i class="icon-save"></i>
-                    Submit
-                </button>
-            </div>
-
-        </div>
+        <br>
+        <button class="btn btn-info" type="send">
+            <i class="icon-save"></i>
+            Submit
+        </button>
     </form>
 </div>
 

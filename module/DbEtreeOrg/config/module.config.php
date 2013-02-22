@@ -120,6 +120,9 @@ return array(
             'inputBand' => 'DbEtreeOrg\View\Helper\InputBand',
 
             'addPerformerToLineup' => 'DbEtreeOrg\View\Helper\AddPerformerToLineup',
+            'addPerformerToPerformance' => 'DbEtreeOrg\View\Helper\AddPerformerToPerformance',
+            'removePerformerFromPerformance' => 'DbEtreeOrg\View\Helper\RemovePerformerFromPerformance',
+
             'listPerformances' => 'DbEtreeOrg\View\Helper\ListPerformances',
 
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',

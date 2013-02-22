@@ -31,13 +31,6 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
     <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
 </h1>
 
-<?php
-if ($this->performance->getNote()) { ?>
-    <pre><?= $this->escapeHtml($this->performance->getNote()); ?></pre>
-<?php
-}
-?>
-
 <?= $this->form()->openTag($form); ?>
 
 <?= $this->formRow($this->form->get('name')); ?>
@@ -52,6 +45,10 @@ if ($this->performance->getNote()) { ?>
     <i class="icon-certificate"></i>
     Create Performance Set
 </button>
+
+<a class="btn btn-link" href="/performance/detail?id=<?= $this->performance->getId(); ?>">
+    cancel
+</a>
 
 <?= $this->form()->closeTag(); ?>
 

@@ -28,7 +28,7 @@
 
 <h1>
 <i class="icon-film"></i>
-<?= $this->escapeHtml($this->performer->getFullname()); ?>
+<?= $this->escapeHtml($this->performer->getName()); ?>
 </h1>
 
 <?php
@@ -57,7 +57,7 @@ use Gracenote\Service\Gracenote;
 
 $gracenote = Gracenote::query('ALBUM_SEARCH', array(
     'parameters' => array(
-        'ARTIST' => $this->performer->getFullname(),
+        'ARTIST' => $this->performer->getName(),
     ),
     'options' => array(
         'SELECT_EXTENDED' => 'COVER',
@@ -67,7 +67,7 @@ $gracenote = Gracenote::query('ALBUM_SEARCH', array(
 use \Echonest\Service\Echonest;
 
 $echonest = Echonest::query('artist', 'biographies', array(
-    'name' => $this->performer->getFullname(),
+    'name' => $this->performer->getName(),
     'results' => '1',
     'start' => '0',
 ));
