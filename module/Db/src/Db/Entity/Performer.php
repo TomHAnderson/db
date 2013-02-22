@@ -50,6 +50,7 @@ class Performer extends AbstractEntity {
         $inputFilter = new InputFilter();
 
         $inputFilter->add($this->inputFilterInputName($inputFilter));
+        $inputFilter->add($this->inputFilterInputBid($inputFilter));
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
 
         return $inputFilter;

@@ -64,12 +64,10 @@
     <entity name="Performer" uuid="8b9c2e8b-b7e6-4ff7-a0a8-b0452541edf2">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="2773ef01-b20e-467d-a574-b6aae7d9c240"/>
       <field name="user_id" type="integer" unique="true" uuid="8736456f-b643-4849-bf07-799d6ce3926f"/>
-      <field name="lastname" type="string" uuid="dea0f1f5-155b-40fd-ac86-199b53b466a5"/>
-      <field name="lastnameNormalize" type="string" uuid="cca59cd0-bafb-43b1-959e-60ef3ef3ef1e"/>
-      <field name="firstname" type="string" required="true" uuid="94d51def-8ba5-4b73-b537-6826f6069b2f"/>
-      <field name="firstnameNormalize" type="string" required="true" uuid="c3c3fe53-532e-4605-a4a6-21f4a2ebf8c8"/>
-      <field name="note" type="text" uuid="b4f08379-07ea-4a48-8e24-7eff5746ca0c"/>
       <field name="mbid" type="string" uuid="20d15256-013b-43c0-abe4-b9957190d67a"/>
+      <field name="name" type="string" required="true" uuid="dea0f1f5-155b-40fd-ac86-199b53b466a5"/>
+      <field name="nameNormalize" type="string" required="true" uuid="cca59cd0-bafb-43b1-959e-60ef3ef3ef1e"/>
+      <field name="note" type="text" uuid="b4f08379-07ea-4a48-8e24-7eff5746ca0c"/>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\Performer</attribute>
       </orm-attributes>
@@ -143,6 +141,7 @@
       <field name="band_id" type="integer" required="true" uuid="979042f2-8732-43fe-be5e-d8a73abf533b"/>
       <field name="name" type="string" required="true" uuid="d419d061-ed67-4862-9759-6e9bf3ebdb4b"/>
       <field name="nameNormalize" type="string" required="true" uuid="6595f78c-16c8-447c-8179-3776b42c8e5c"/>
+      <field name="note" type="text" uuid="6461e786-fbf6-4c4e-b8e2-9aa06ce81fe5"/>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\Alias</attribute>
       </orm-attributes>
@@ -1038,7 +1037,7 @@
     <association uuid="1c6fa38e-ed34-4102-8971-550fbbb05b0e" splitted="1"/>
     <many-to-many-association-entity uuid="1cc52f1a-06ea-43b4-b7e8-3a34ee00c33a" splitted="1"/>
     <association uuid="1e369c67-c630-44e3-9ac8-68ee1278e073" splitted="1"/>
-    <entity uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b" position-x="2" position-y="28" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
+    <entity uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b" position-x="-15" position-y="4" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
     <association uuid="209fd702-6115-499b-8df3-2184996bcb67" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <inheritance-child uuid="21197a5b-d6b2-48e3-95c8-595c2644dbb6" splitted="1"/>
     <association uuid="24be276e-2e49-4777-bd49-684621e1dc05" splitted="1"/>

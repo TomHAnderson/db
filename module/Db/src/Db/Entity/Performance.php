@@ -51,7 +51,6 @@ class Performance extends AbstractEntity
     {
         $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setNameNormalize(isset($data['nameNormalize']) ? $data['nameNormalize']: null);
         $this->setPerformanceDate(isset($data['performanceDate']) ? $data['performanceDate']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }

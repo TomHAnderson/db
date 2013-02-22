@@ -164,10 +164,7 @@ class PerformerController extends AbstractActionController
 
         foreach ($performers as $performer) {
             if (++$i > 10) break;
-            $return[] = array(
-                'value' => $performer->getId(),
-                'label' => $performer->getFullname(),
-            );
+            $return[] = $performer->getArrayCopy();
         }
 
         $jsonModel = new JsonModel;
