@@ -19,29 +19,31 @@ return array(
         )
     ),
 
-    'gracenote' => array(
-        'clientId' => '',
-        'userId' => '',
-    },
-
     'keen-io' => array(
         'projectId' => '',
         'apiKey' => '',
     ),
 
+    'gracenote' => array(
+        'clientId' => '',
+        'userId' => '',
+    ),
+
+    'jambase' => array(
+        'apiKey' => '',
+    ),
+
+    'echonest' => array(
+        'apiKey' => '',
+    ),
+
     'di' => array(
         'instance' => array(
-            'Jambase\Service\Jambase' => array(
-                'parameters' => array(
-                    'apiKey' => '',
-                ),
-            ),
-
             'geoname' => array(
                 'parameters' => array(
                     # tmp dir for storing geoname data source files
                     'tmpDir'    => 'data/geoname',
-                    # cron expression: how frequently Geoname module 
+                    # cron expression: how frequently Geoname module
                     # should be run
                     # for both auto-install and auto-update
                     'cron'      => '*/15 * * * *',
