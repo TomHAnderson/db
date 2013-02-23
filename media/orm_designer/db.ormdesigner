@@ -202,6 +202,14 @@
       </many-to-many-entity>
       <many-to-many-entity name="Lineup" owning-side="false" alias="lineups" uuid="17927894-b6b8-4862-9ca1-009a513270bb">
         <many-to-many-field from="lineup_id" to="id"/>
+        <orm-attributes>
+          <attribute name="order-by">
+            <attribute name="order-by-field">
+              <attribute name="direction">ASC</attribute>
+              <attribute name="field">name</attribute>
+            </attribute>
+          </attribute>
+        </orm-attributes>
       </many-to-many-entity>
     </many-to-many>
     <entity name="PerformerPerformance" uuid="caa57870-48cb-4347-a53d-465a3ce2d738">
@@ -247,6 +255,16 @@
     </association>
     <association from="PerformanceSong" to="PerformanceSet" owner-alias="performanceSongs" inverse-alias="performanceSet" uuid="e954599d-410b-47b6-a464-e525ff15a3bc">
       <association-field from="performanceSet_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-inverse">
+          <attribute name="order-by">
+            <attribute name="order-by-field">
+              <attribute name="direction">ASC</attribute>
+              <attribute name="field">sort</attribute>
+            </attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="BandGroup" uuid="18cb5d8f-d0ea-49cb-83fa-9127c25c3664">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="31e18fa1-0ba2-4440-ac7a-44c0439dc9a9"/>
