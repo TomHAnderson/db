@@ -124,12 +124,6 @@
                                                 ?>
                                                     <li role="menuitem">
                                                         <a href="/performance/detail?id=<?= $p->getId(); ?>">
-                                                            <i class="icon-cogs"></i>
-                                                            <?= $this->escapeHtml($p->getLineup()->getBand()->getName()); ?>
-
-                                                            <i class="icon-map-marker"></i>
-                                                            <?= $this->escapeHtml($p->getVenue()->getName()); ?>
-
                                                             <i class="icon-magic"></i>
                                                             <?php
                                                             if ($p->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
@@ -140,6 +134,11 @@
                                                             ?>
 
                                                             <?= $this->escapeHtml($p->getName()); ?>
+                                                            <i class="icon-cogs"></i>
+                                                            <?= $this->escapeHtml($p->getLineup()->getBand()->getName()); ?>
+
+                                                            <i class="icon-map-marker"></i>
+                                                            <?= $this->escapeHtml($p->getVenue()->getName()); ?>
                                                         </a>
                                                     </li>
                                                 <?php
@@ -213,7 +212,7 @@
                                             if ($p = $this->findEntity('Db\Entity\Lineup', $id)) {
                                                 ?>
                                                     <li role="menuitem">
-                                                        <a href="/band/detail?id=<?= $p->getId(); ?>">
+                                                        <a href="/lineup/detail?id=<?= $p->getId(); ?>">
                                                             <i class="icon-group"></i>
                                                             <?= $this->escapeHtml($p->getName()); ?>
 
@@ -277,7 +276,7 @@
                                                     <li role="menuitem">
                                                         <a href="/performer/detail?id=<?= $p->getId(); ?>">
                                                             <i class="icon-film"></i>
-                                                            <?= $this->escapeHtml($p->getName()); ?>;
+                                                            <?= $this->escapeHtml($p->getName()); ?>
                                                         </a>
                                                     </li>
                                                 <?php

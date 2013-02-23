@@ -151,27 +151,23 @@ class SongController extends AbstractActionController
         $query = $this->getRequest()->getQuery()->get('q');
 
         $filterNormalize = new Normalize();
-
         $query = $filterNormalize(trim($query));
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
+        $songs = $em->getRepository('Db\Entity\Song')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
         ), array(), 20);
 
         $return = array();
         $i = 0;
-        foreach ($venues as $venue) {
+        foreach ($songs as $song) {
             if (++$i > 25) break;
-            $return[] = array(
-                'value' => $venue->getId(),
-                'label' => $venue->getName(),
-            );
+            $return[] = $song->getArrayCopy();
         }
 
         $jsonModel = new JsonModel;
-        $jsonModel->setVariable('venues', $return);
+        $jsonModel->setVariable('songs', $return);
 
         return $jsonModel;
     }

@@ -88,6 +88,7 @@ return array(
             'performance' => 'DbEtreeOrg\Controller\PerformanceController',
             'performance-set' => 'DbEtreeOrg\Controller\PerformanceSetController',
             'song' => 'DbEtreeOrg\Controller\SongController',
+            'performance-song' => 'DbEtreeOrg\Controller\PerformanceSongController',
         ),
     ),
 
@@ -118,8 +119,14 @@ return array(
             'inputVenue' => 'DbEtreeOrg\View\Helper\InputVenue',
             'inputPerformer' => 'DbEtreeOrg\View\Helper\InputPerformer',
             'inputBand' => 'DbEtreeOrg\View\Helper\InputBand',
+            'inputSong' => 'DbEtreeOrg\View\Helper\InputSong',
 
             'addPerformerToLineup' => 'DbEtreeOrg\View\Helper\AddPerformerToLineup',
+            'addPerformerToPerformance' => 'DbEtreeOrg\View\Helper\AddPerformerToPerformance',
+
+            'removePerformerFromPerformance' => 'DbEtreeOrg\View\Helper\RemovePerformerFromPerformance',
+            'removePerformerFromLineup' => 'DbEtreeOrg\View\Helper\RemovePerformerFromLineup',
+
             'listPerformances' => 'DbEtreeOrg\View\Helper\ListPerformances',
 
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',

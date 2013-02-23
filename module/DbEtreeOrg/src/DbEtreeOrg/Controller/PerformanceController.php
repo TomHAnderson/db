@@ -170,4 +170,41 @@ class PerformanceController extends AbstractActionController
 
         return $this->plugin('redirect')->toUrl($returnUrl);
     }
+
+    public function addPerformerAction()
+    {
+        $id = $this->getRequest()->getPost()->get('id');
+        $performerId = $this->getRequest()->getPost()->get('performer_id');
+
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
+        $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+
+
+        $performance->getPerformers()->add($performer);
+        $performer->getPerformances()->add($performance);
+
+        $em->flush();
+
+        return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $id);
+    }
+
+    public function removePerformerAction()
+    {
+        $id = $this->getRequest()->getPost()->get('id');
+        $performerId = $this->getRequest()->getPost()->get('performer_id');
+
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
+        $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+
+        $performance->getPerformers()->removeElement($performer);
+        $performer->getPerformances()->removeElement($performance);
+
+        $em->flush();
+
+        return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $id);
+    }
 }

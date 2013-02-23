@@ -149,11 +149,7 @@ class PerformerController extends AbstractActionController
 
         $performers = $em->getRepository('Db\Entity\Performer')->findLike($queryArray);
 
-        if (!$queryFirst and $queryLast) {
-            $aliases = $em->getRepository('Db\Entity\PerformerAlias')->findLike(array(
-                'nameNormalize' => $queryLast
-            ), array(), 20);
-        }
+        $aliases = $em->getRepository('Db\Entity\PerformerAlias')->findLike($queryArray, array(), 20);
 
         $return = array();
         $i = 0;

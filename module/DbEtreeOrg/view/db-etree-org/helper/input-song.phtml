@@ -3,18 +3,18 @@ use Zend\Form\Element;
 use Zend\Form\Form;
 
 $id = md5(uniqid());
-$formElement = new Element\Text('performer');
+$formElement = new Element\Text('song');
 $formElement
-    ->setLabel('<i class="icon-film"></i> ' . $this->label)
+    ->setLabel('<i class="icon-music"></i> ' . $this->label)
     ->setAttributes(array(
         'id' => 'data' . $id,
         'autocomplete' => 'off',
         'placeholder'  => '',
     ));
 
-if ($this->performer) {
+if ($this->song) {
     $formElement->setAttributes(array(
-        'value' => $performer->getName(),
+        'value' => $song->getName(),
     ));
 }
 
@@ -22,9 +22,7 @@ if ($this->performer) {
 
 <?= $this->formRow($formElement); ?>
 
-<input type="hidden" name="performer_id"
-    <?php if ($this->performer) echo 'value="' . $this->performer->getId() . '"'; ?>
-    id="Id<?= $id; ?>"/>
+<input type="hidden" name="song_id" <?php if ($song) echo 'value="' . $song->getId() . '"'; ?> id="Id<?= $id; ?>"/>
 
 <script>
 var data<?= $id; ?> = {};
@@ -49,6 +47,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
                 + "<div class='typeahead_wrapper'>"
                 + "<div class='typeahead_labels'>"
                 + "<div class='typeahead_primary'><b>" + p.name + "</b></div>"
+                + "<div class='typeahead_secondary'>" + "</div>"
                 + "</div>"
                 + "</div>";
             return liHtml;
@@ -57,12 +56,13 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
 
     var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
 
-        $.get('/performer/search-json', { q: query }, function (data) {
-console.log(data);
+        $.get('/song/search-json', { q: query }, function (data) {
+
+//console.log(data);
             data<?= $id; ?> = {};
             dataLabels<?= $id; ?> = [];
 
-            _.each( data.performers, function( item, ix, list ){
+            _.each( data.songs, function( item, ix, list ){
                 // Alias each item with id
                 item.label = item.name + ' #' + item.id;
 

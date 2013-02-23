@@ -1,0 +1,21 @@
+<li class="">
+    <a onClick="$('#addPerformerToPerformance').toggle();"  class="btn-success" href="#">
+        <i class="icon-film"></i>
+        Add Guest Performer to Performance
+    </a>
+</li>
+
+<div id="addPerformerToPerformance" style="display: none; clear:both;">
+
+    <form method="post" action="/performance/add-performer">
+        <input type="hidden" name="id" value="<?= $id; ?>">
+
+        <?= $this->inputPerformer(); ?>
+
+        <br>
+        <button class="btn btn-info" type="send">
+            <i class="icon-save"></i>
+            Submit
+        </button>
+    </form>
+</div>

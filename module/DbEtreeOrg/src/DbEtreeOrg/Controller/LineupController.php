@@ -160,4 +160,22 @@ class LineupController extends AbstractActionController
 
         return $this->plugin('redirect')->toUrl($returnUrl);
     }
+
+    public function removePerformerAction()
+    {
+        $id = $this->getRequest()->getPost()->get('id');
+        $performerId = $this->getRequest()->getPost()->get('performer_id');
+
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
+        $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+
+        $lineup->getPerformers()->removeElement($performer);
+        $performer->getLineups()->removeElement($lineup);
+
+        $em->flush();
+
+        return $this->plugin('redirect')->toUrl('/lineup/detail?id=' . $id);
+    }
 }

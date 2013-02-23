@@ -5,6 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="note" type="text" nullable="true"/>
+    <field name="length" type="string" nullable="true"/>
     <field name="isSegue" type="boolean" nullable="true"/>
     <field name="sort" type="integer" nullable="false"/>
     <many-to-one field="song" target-entity="Db\Entity\Song" inversed-by="performanceSongs">

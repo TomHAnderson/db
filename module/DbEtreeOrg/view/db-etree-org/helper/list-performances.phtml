@@ -23,7 +23,7 @@ if ($performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939
         <?= $this->escapeHtml($performance->getLineup()->getBand()->getName()); ?>
     </a>
 
-    <a href="/venue/id=<?= $performance->getVenue()->getId(); ?>">
+    <a href="/venue/detail?id=<?= $performance->getVenue()->getId(); ?>">
 
         <i class="icon-map-marker"></i>
         <?= $this->escapeHtml($performance->getVenue()->getName()); ?>

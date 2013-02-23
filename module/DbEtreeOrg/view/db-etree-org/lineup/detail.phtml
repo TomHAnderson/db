@@ -20,7 +20,10 @@
     </a>
 </h1>
 
-<h2><i class="icon-group"></i> <?= $this->escapeHtml($this->lineup->getName()); ?></h2>
+<h1>
+    <i class="icon-group"></i>
+    <?= $this->escapeHtml($this->lineup->getName()); ?>
+</h1>
 
 <?php
 if ($this->lineup->getNote()) { ?>
@@ -29,17 +32,15 @@ if ($this->lineup->getNote()) { ?>
 }
 ?>
 
-<ul>
 <?php
 foreach ($this->lineup->getPerformers() as $performer) {
 ?>
-    <li>
+     <h3>
         <i class="icon-film"></i>
         <a href="/performer/detail?id=<?= $performer->getId(); ?>">
             <?= $this->escapeHtml($performer->getName()); ?>
         </a>
-    </li>
+    </h3>
 <?php
 }
 ?>
-</ul>
