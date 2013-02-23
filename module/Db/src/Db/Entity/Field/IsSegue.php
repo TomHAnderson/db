@@ -7,10 +7,9 @@ trait IsSegue
 {
     /**
      * @Form\Type("Zend\Form\Element\Radio")
-     * @Form\Attributes({"type": "radio"})
+     * @Form\Attributes({"type": "checkbox"})
      * @Form\Attributes({"id": "isSegue"})
-     * @Form\Attributes({"is_required": true})
-     * @Form\Options({"label": "Public?", "value_options": {"1": "Yes", "0": "No"}})
+     * @Form\Options({"label": "Segue Out?"})
      */
     protected $isSegue;
 
@@ -30,7 +29,7 @@ trait IsSegue
 
         return $inputFilter->getFactory()->createInput(array(
             'name' => 'isSegue',
-            'required' => true,
+            'required' => false,
             'validators' => array(
                 array(
                     'name' => 'digits'

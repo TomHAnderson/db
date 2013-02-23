@@ -3,13 +3,13 @@
 namespace DbEtreeOrg\Controller;
 use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
-    , Db\Entity\Song as SongEntity
+    , Db\Entity\PerformanceSong as PerformanceSongEntity
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Filter\Normalize
     , Zend\View\Model\JsonModel
     ;
 
-class SongController extends AbstractActionController
+class PerformanceSongController extends AbstractActionController
 {
     public function indexAction()
     {
@@ -46,30 +46,33 @@ class SongController extends AbstractActionController
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
             return $this->plugin('redirect')->toUrl('/user/login');
 
-        $song = new SongEntity();
+        $performanceSong = new PerformanceSongEntity();
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($song);
+        $form = $builder->createForm($performanceSong);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $id = $this->getRequest()->getQuery()->get('id');
+        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($song->getInputFilter());
+            $form->setInputFilter($performanceSong->getInputFilter());
 
-            if ($form->isValid()) {
+            $songId = $this->getRequest()->getPost()->get('song_id');
+            $song = $em->getRepository('Db\Entity\Song')->find($songId);
+
+            if ($song and $form->isValid()) {
                 $data = $form->getData();
-                $song->exchangeArray($form->getData());
-                $bandId = $this->getRequest()->getPost()->get('band_id');
-                if ($bandId) {
-                    $band = $em->getRepository('Db\Entity\Band')->find($bandId);
-                    $song->setBand($band);
-                }
+                $performanceSong->exchangeArray($form->getData());
+                $performanceSong->setPerformanceSet($performanceSet);
+                $performanceSong->setSong($song);
 
-                $em->persist($song);
+                $em->persist($performanceSong);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/song/detail?id=' . $song->getId());
+                return $this->plugin('redirect')->toUrl('/performance-set/edit?id=' . $performanceSet->getId());
             }
         }
 
@@ -151,23 +154,27 @@ class SongController extends AbstractActionController
         $query = $this->getRequest()->getQuery()->get('q');
 
         $filterNormalize = new Normalize();
+
         $query = $filterNormalize(trim($query));
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $songs = $em->getRepository('Db\Entity\Song')->findLike(array(
+        $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
         ), array(), 20);
 
         $return = array();
         $i = 0;
-        foreach ($songs as $song) {
+        foreach ($venues as $venue) {
             if (++$i > 25) break;
-            $return[] = $song->getArrayCopy();
+            $return[] = array(
+                'value' => $venue->getId(),
+                'label' => $venue->getName(),
+            );
         }
 
         $jsonModel = new JsonModel;
-        $jsonModel->setVariable('songs', $return);
+        $jsonModel->setVariable('venues', $return);
 
         return $jsonModel;
     }

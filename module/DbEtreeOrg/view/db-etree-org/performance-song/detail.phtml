@@ -1,8 +1,8 @@
 <ul class="nav nav-pills pull-right">
     <li>
-        <a class="btn-warning" href="/performance-set/edit?id=<?= $this->performanceSet->getId(); ?>">
-            <i class="icon-certificate"></i>
-            Edit Performance Set
+        <a class="btn-warning" href="/performance-set/edit?id=<?= $this->performanceSong->getPerformanceSet()->getId(); ?>">
+            <i class="icon-music"></i>
+            Edit Performance Song
         </a>
     </li>
 
@@ -50,6 +50,12 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
     </a>
 </h1>
 
+<h1>
+
+    <i class="icon-certificate"></i>
+    <?= $this->escapeHtml($this->performanceSet->getName()); ?>
+</h1>
+
 <?php
 if ($this->performanceSet->getPerformance()->getNote()) { ?>
     <pre><?= $this->escapeHtml($this->performanceSet->getPerformance()->getNote()); ?></pre>
@@ -57,29 +63,14 @@ if ($this->performanceSet->getPerformance()->getNote()) { ?>
 }
 ?>
 
-<h1>
-    <i class="icon-certificate"></i>
-    <?= $this->escapeHtml($this->performanceSet->getName()); ?>
-</h1>
+        <i class="icon-music"></i>
+        <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?></a></pre>
 
-<?php
-if (sizeof($this->performanceSet->getPerformanceSongs())) {
-    foreach ($this->performanceSet->getPerformanceSongs() as $performanceSong) {
-?>
-        <div class="row">
-            <div class="span5">
-                <pre><i class="icon-music"></i> <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?></pre>
-            </div>
 
-            <div class="span7">
-                <pre><?= $this->escapeHtml($performanceSong->getNote()); ?>&nbsp;</pre>
-            </div>
-        </div>
+        <pre><?= $this->escapeHtml($this->performanceSong->getNote()); ?></pre>
+    </div>
+</div>
 
-<?php
-    }
-}
-?>
 
 <?php
 if ($this->performanceSet->getNote()) {

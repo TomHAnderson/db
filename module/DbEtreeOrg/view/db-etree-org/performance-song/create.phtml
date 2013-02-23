@@ -1,0 +1,23 @@
+<h1>
+    <i class="icon-music"></i>
+    Add Song to Performance Set
+</h1>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->inputSong(); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<?= $this->formRow($this->form->get('isSegue')); ?>
+
+<?= $this->formRow($this->form->get('sort')); ?>
+
+<br>
+
+<button type="send" class="btn btn-success">
+    <i class="icon-music"></i>
+    Create Song
+</button>
+
+<?= $this->form()->closeTag(); ?>

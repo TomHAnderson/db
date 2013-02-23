@@ -1,7 +1,7 @@
 <?php
 namespace Db\Entity\Field;
 
-use Db\Entity\Set as SetEntity;
+use Db\Entity\PerformanceSet as PerformanceSetEntity;
 
 trait PerformanceSet
 {

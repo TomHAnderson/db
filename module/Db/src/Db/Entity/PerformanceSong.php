@@ -2,11 +2,13 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form;
+use Zend\Form\Annotation as Form
+    , Zend\InputFilter\InputFilter
+    ;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("showSong")
+ * @Form\Name("performanceSong")
  */
 class PerformanceSong extends AbstractEntity {
     use \Db\Entity\Field\Id
@@ -33,5 +35,16 @@ class PerformanceSong extends AbstractEntity {
         $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setIsSegue(isset($data['isSegue']) ? $data['isSegue']: null);
         $this->setSort(isset($data['sort']) ? $data['sort']: null);
+    }
+
+    public function getInputFilter()
+    {
+        $inputFilter = new InputFilter();
+
+        $inputFilter->add($this->inputFilterInputNote($inputFilter));
+        $inputFilter->add($this->inputFilterInputIsSegue($inputFilter));
+        $inputFilter->add($this->inputFilterInputSort($inputFilter));
+
+        return $inputFilter;
     }
 }

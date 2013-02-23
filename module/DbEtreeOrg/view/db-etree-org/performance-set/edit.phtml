@@ -22,19 +22,31 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
 </h1>
 
 <h1>
-    <i class="icon-group"></i>
-    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getName()); ?>
-</h1>
-
-<h1>
     <i class="icon-map-marker"></i>
     <?= $this->escapeHtml($this->performanceSet->getPerformance()->getVenue()->getName()); ?>
 </h1>
 
+<h1>
+    <i class="icon-group"></i>
+    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getName()); ?>
+</h1>
+
 <?php
-if ($this->performanceSet->getPerformance()->getNote()) { ?>
-    <pre><?= $this->escapeHtml($this->performanceSet->getPerformance()->getNote()); ?></pre>
+if (sizeof($this->performanceSet->getPerformanceSongs())) {
+    foreach ($this->performanceSet->getPerformanceSongs() as $performanceSong) {
+?>
+        <div class="row">
+            <div class="span5">
+                <pre><a href="/performance-song/detail?id=<?= $performanceSong->getId(); ?>"><i class="icon-music"></i> <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?></a></pre>
+            </div>
+
+            <div class="span7">
+                <pre><?= $this->escapeHtml($performanceSong->getSong()->getNote()); ?></pre>
+            </div>
+        </div>
+
 <?php
+    }
 }
 ?>
 
@@ -53,7 +65,17 @@ if ($this->performanceSet->getPerformance()->getNote()) { ?>
     Edit Performance Set
 </button>
 
+<a class="btn btn-link" href="/performance-set/detail?id=<?= $this->performanceSet->getId(); ?>">
+    cancel
+</a>
+
 <?= $this->form()->closeTag(); ?>
 
-
-
+<ul class="nav nav-pills">
+    <li>
+        <a class="btn-success" href="/performance-song/create?id=<?= $this->performanceSet->getId(); ?>">
+            <i class="icon-music"></i>
+            Add Song to Performace Set
+        </a>
+    </li>
+</ul>

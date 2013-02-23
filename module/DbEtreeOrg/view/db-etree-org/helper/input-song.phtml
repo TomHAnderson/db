@@ -1,0 +1,78 @@
+<?php
+use Zend\Form\Element;
+use Zend\Form\Form;
+
+$id = md5(uniqid());
+$formElement = new Element\Text('song');
+$formElement
+    ->setLabel('<i class="icon-music"></i> ' . $this->label)
+    ->setAttributes(array(
+        'id' => 'data' . $id,
+        'autocomplete' => 'off',
+        'placeholder'  => '',
+    ));
+
+if ($this->song) {
+    $formElement->setAttributes(array(
+        'value' => $song->getName(),
+    ));
+}
+
+?>
+
+<?= $this->formRow($formElement); ?>
+
+<input type="hidden" name="song_id" <?php if ($song) echo 'value="' . $song->getId() . '"'; ?> id="Id<?= $id; ?>"/>
+
+<script>
+var data<?= $id; ?> = {};
+var dataLabels<?= $id; ?> = [];
+
+require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
+
+    $( "#data<?= $id; ?>" ).typeahead({
+        source: function ( query, process ) {
+            searchData<?= $id; ?>( query, process );
+        }
+        , updater: function (item) {
+                $( "#Id<?= $id; ?>" ).val( data<?= $id; ?>[ item ].id );
+
+            return item;
+        }
+        , matcher: function () { return true; }
+
+        , highlighter: function(item){
+            var p = data<?= $id; ?>[ item ];
+            var liHtml = ''
+                + "<div class='typeahead_wrapper'>"
+                + "<div class='typeahead_labels'>"
+                + "<div class='typeahead_primary'><b>" + p.name + "</b></div>"
+                + "<div class='typeahead_secondary'>" + "</div>"
+                + "</div>"
+                + "</div>";
+            return liHtml;
+        }
+    });
+
+    var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
+
+        $.get('/song/search-json', { q: query }, function (data) {
+
+//console.log(data);
+            data<?= $id; ?> = {};
+            dataLabels<?= $id; ?> = [];
+
+            _.each( data.songs, function( item, ix, list ){
+                // Alias each item with id
+                item.label = item.name + ' #' + item.id;
+
+                data<?= $id; ?>[ item.label ] = item;
+                dataLabels<?= $id; ?>.push( item.label );
+            });
+
+            process(dataLabels<?= $id; ?>);
+        });
+    }, 300);
+
+});
+</script>
