@@ -123,7 +123,9 @@ return array(
 
             'addPerformerToLineup' => 'DbEtreeOrg\View\Helper\AddPerformerToLineup',
             'addPerformerToPerformance' => 'DbEtreeOrg\View\Helper\AddPerformerToPerformance',
+
             'removePerformerFromPerformance' => 'DbEtreeOrg\View\Helper\RemovePerformerFromPerformance',
+            'removePerformerFromLineup' => 'DbEtreeOrg\View\Helper\RemovePerformerFromLineup',
 
             'listPerformances' => 'DbEtreeOrg\View\Helper\ListPerformances',
 

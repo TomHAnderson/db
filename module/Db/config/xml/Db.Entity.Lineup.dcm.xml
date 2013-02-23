@@ -14,6 +14,10 @@
     </many-to-one>
     <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="lineup"/>
     <one-to-many field="comments" target-entity="Db\Entity\LineupComment" mapped-by="lineup"/>
-    <many-to-many field="performers" target-entity="Db\Entity\Performer" mapped-by="lineups"/>
+    <many-to-many field="performers" target-entity="Db\Entity\Performer" mapped-by="lineups">
+      <order-by>
+        <order-by-field name="name" direction="ASC"/>
+      </order-by>
+    </many-to-many>
   </entity>
 </doctrine-mapping>
