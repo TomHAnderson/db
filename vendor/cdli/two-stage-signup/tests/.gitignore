@@ -1,4 +1,0 @@
-log/coverage
-config/*
-!config/*.dist
-phpunit.xml
