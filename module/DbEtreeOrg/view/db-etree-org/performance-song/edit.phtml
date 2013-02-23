@@ -1,0 +1,25 @@
+<h1>
+    <i class="icon-music"></i>
+    Edit Performance Set Song
+</h1>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->inputSong($this->performanceSong->getSong()); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<?= $this->formRow($this->form->get('isSegue')); ?>
+
+<br>
+
+<button type="send" class="btn btn-warning">
+    <i class="icon-music"></i>
+    Edit Performance Set Song
+</button>
+
+<a class="btn btn-link" href="/performance-song/detail?id=<?= $this->performanceSong->getId(); ?>">
+    cancel
+</a>
+
+<?= $this->form()->closeTag(); ?>

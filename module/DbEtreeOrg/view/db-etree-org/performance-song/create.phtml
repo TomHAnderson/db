@@ -5,13 +5,11 @@
 
 <?= $this->form()->openTag($form); ?>
 
-<?= $this->inputSong(); ?>
+<?= $this->inputSong($this->song); ?>
 
 <?= $this->formRow($this->form->get('note')); ?>
 
 <?= $this->formRow($this->form->get('isSegue')); ?>
-
-<?= $this->formRow($this->form->get('sort')); ?>
 
 <br>
 

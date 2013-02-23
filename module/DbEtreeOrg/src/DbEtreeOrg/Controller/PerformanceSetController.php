@@ -57,6 +57,7 @@ class PerformanceSetController extends AbstractActionController
                 $data = $form->getData();
                 $performanceSet->exchangeArray($form->getData());
                 $performanceSet->setPerformance($performance);
+                $performanceSet->setSort(99999);
 
                 $em->persist($performanceSet);
                 $em->flush();
@@ -112,8 +113,7 @@ class PerformanceSetController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
+        die('not implemented');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
@@ -162,5 +162,28 @@ class PerformanceSetController extends AbstractActionController
         $jsonModel->setVariable('venues', $return);
 
         return $jsonModel;
+    }
+
+    public function sortPerformanceSongsAction()
+    {
+        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
+            return $this->plugin('redirect')->toUrl('/user/login');
+
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $id = $this->getRequest()->getQuery()->get('id');
+        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+
+        $sort = $this->getRequest()->getQuery()->get('sort');
+
+        $sortOrder = 1;
+        foreach (explode(',', $sort) as $key) {
+            strtok($key, '_');
+            $performanceSong = $em->getRepository('Db\Entity\PerformanceSong')->find(strtok('_'));
+            if ($performanceSong->getPerformanceSet() == $performanceSet) $performanceSong->setSort($sortOrder ++);
+        }
+
+        $em->flush();
+        die();
     }
 }

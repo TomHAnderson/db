@@ -36,7 +36,6 @@ class PerformanceSet extends AbstractEntity
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
-        $this->setSort(isset($data['sort']) ? $data['sort']: null);
     }
 
     public function getInputFilter()

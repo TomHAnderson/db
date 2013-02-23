@@ -33,20 +33,30 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
 
 <?php
 if (sizeof($this->performanceSet->getPerformanceSongs())) {
+?>
+<div id="sortSongs">
+<?php
     foreach ($this->performanceSet->getPerformanceSongs() as $performanceSong) {
 ?>
-        <div class="row">
+        <div class="row" id="performanceSong_<?= $performanceSong->getId(); ?>">
             <div class="span5">
                 <pre><a href="/performance-song/detail?id=<?= $performanceSong->getId(); ?>"><i class="icon-music"></i> <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?></a></pre>
             </div>
 
-            <div class="span7">
+            <div class="span6">
                 <pre><?= $this->escapeHtml($performanceSong->getSong()->getNote()); ?></pre>
+            </div>
+
+            <div class="span1">
+                <pre><i class="icon-sort"></i></pre>
             </div>
         </div>
 
 <?php
     }
+?>
+</div>
+<?php
 }
 ?>
 
@@ -56,11 +66,9 @@ if (sizeof($this->performanceSet->getPerformanceSongs())) {
 
 <?= $this->formRow($this->form->get('note')); ?>
 
-<?= $this->formRow($this->form->get('sort')); ?>
-
 <br>
 
-<button type="send" class="btn btn-success">
+<button type="send" class="btn btn-warning">
     <i class="icon-certificate"></i>
     Edit Performance Set
 </button>
@@ -79,3 +87,16 @@ if (sizeof($this->performanceSet->getPerformanceSongs())) {
         </a>
     </li>
 </ul>
+
+<script>
+require(['jquery-ui.min'], function() {
+    $('#sortSongs').sortable({
+        update: function(event, ui) {
+            $.get('/performance-set/sort-performance-songs', {
+                id: <?= $this->performanceSet->getId(); ?>,
+                sort: $(this).sortable('toArray').toString()
+            });
+        }
+    });
+});
+</script>

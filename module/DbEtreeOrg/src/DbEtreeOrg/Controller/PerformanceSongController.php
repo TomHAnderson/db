@@ -24,20 +24,13 @@ class PerformanceSongController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $song = $em->getRepository('Db\Entity\Song')->find($id);
+        $performanceSong = $em->getRepository('Db\Entity\PerformanceSong')->find($id);
 
-        if (!$song)
-            throw new \Exception("Performance Set $id not found");
-
-        if (!isset($_SESSION['songs']['latest'])) $_SESSION['songs']['latest'] = array();
-        if (in_array($song->getId(), $_SESSION['songs']['latest'])) {
-            unset($_SESSION['songs']['latest'][array_search($song->getId(), $_SESSION['songs']['latest'])]);
-        }
-        array_unshift($_SESSION['songs']['latest'], $song->getId());
-        $_SESSION['songs']['latest'] = array_slice($_SESSION['songs']['latest'], 0, 10);
+        if (!$performanceSong)
+            throw new \Exception("Performance Song $id not found");
 
         return array(
-            'song' => $song
+            'performanceSong' => $performanceSong
         );
     }
 
@@ -55,19 +48,22 @@ class PerformanceSongController extends AbstractActionController
         $id = $this->getRequest()->getQuery()->get('id');
         $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
 
+        $song = null;
+
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
             $form->setInputFilter($performanceSong->getInputFilter());
 
             $songId = $this->getRequest()->getPost()->get('song_id');
-            $song = $em->getRepository('Db\Entity\Song')->find($songId);
+            if ($songId) $song = $em->getRepository('Db\Entity\Song')->find($songId);
 
             if ($song and $form->isValid()) {
                 $data = $form->getData();
                 $performanceSong->exchangeArray($form->getData());
                 $performanceSong->setPerformanceSet($performanceSet);
                 $performanceSong->setSong($song);
+                $performanceSong->setSort(99999);
 
                 $em->persist($performanceSong);
                 $em->flush();
@@ -78,6 +74,7 @@ class PerformanceSongController extends AbstractActionController
 
         return array(
             'form' => $form,
+            'song' => $song,
         );
     }
 
@@ -89,39 +86,38 @@ class PerformanceSongController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $song = $em->getRepository('Db\Entity\Song')->find($id);
+        $performanceSong = $em->getRepository('Db\Entity\PerformanceSong')->find($id);
 
-        if (!$song)
-            throw new \Exception("Performance Set $id not found");
+        if (!$performanceSong)
+            throw new \Exception("Performance Song $id not found");
 
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($song);
-        $form->setData($song->getArrayCopy());
+        $form = $builder->createForm($performanceSong);
+        $form->setData($performanceSong->getArrayCopy());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($song->getInputFilter());
+            $form->setInputFilter($performanceSong->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $song->exchangeArray($form->getData());
-                $bandId = $this->getRequest()->getPost()->get('band_id');
-                if ($bandId) {
-                    $band = $em->getRepository('Db\Entity\Band')->find($bandId);
-                    $song->setBand($band);
-                }
+                $performanceSong->exchangeArray($form->getData());
+
+                $songId = $this->getRequest()->getPost()->get('song_id');
+                $song = $em->getRepository('Db\Entity\Song')->find($songId);
+                $performanceSong->setSong($song);
 
                 $em->persist($song);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/song/detail?id=' . $song->getId());
+                return $this->plugin('redirect')->toUrl('/performance-song/detail?id=' . $performanceSong->getId());
             }
         }
 
         return array(
             'form' => $form,
-            'song' => $song,
+            'performanceSong' => $performanceSong,
         );
     }
 
@@ -133,49 +129,15 @@ class PerformanceSongController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
-        if (!$venue)
+        $performanceSong = $em->getRepository('Db\Entity\PerformanceSong')->find($id);
+
+        if (!$performanceSong)
             return $this->plugin('redirect')->toUrl('/');
 
-        if (!sizeof($venue->getPerformances())
-            and !sizeof($venue->getVenueGroups())
-            and !sizeof($venue->getLinks())
-            and !sizeof($venue->getComments()))
-        {
-            $em->remove($venue);
-            $em->flush();
-        }
+        $performanceSetId = $performanceSong->getPerformanceSet()->getId();
+        $em->remove($performanceSong);
+        $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/');
-    }
-
-    public function searchJsonAction()
-    {
-        $query = $this->getRequest()->getQuery()->get('q');
-
-        $filterNormalize = new Normalize();
-
-        $query = $filterNormalize(trim($query));
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
-            'nameNormalize' => '%' . $query . '%',
-        ), array(), 20);
-
-        $return = array();
-        $i = 0;
-        foreach ($venues as $venue) {
-            if (++$i > 25) break;
-            $return[] = array(
-                'value' => $venue->getId(),
-                'label' => $venue->getName(),
-            );
-        }
-
-        $jsonModel = new JsonModel;
-        $jsonModel->setVariable('venues', $return);
-
-        return $jsonModel;
+        return $this->plugin('redirect')->toUrl('/performance-set/detail?id=' . $performanceSetId);
     }
 }

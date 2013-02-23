@@ -34,7 +34,6 @@ class PerformanceSong extends AbstractEntity {
     {
         $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setIsSegue(isset($data['isSegue']) ? $data['isSegue']: null);
-        $this->setSort(isset($data['sort']) ? $data['sort']: null);
     }
 
     public function getInputFilter()
