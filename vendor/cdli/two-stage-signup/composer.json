@@ -1,0 +1,37 @@
+{
+    "name": "cdli/two-stage-signup",
+    "description": "Two-stage signup process for ZfcUser",
+    "version": "0.8.0",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "zf2", "zfcuser", "user", "signup", "register"
+    ],
+    "homepage": "https://github.com/cdli/CdliTwoStageSignup",
+    "authors": [
+        {
+            "name": "Adam Lundrigan",
+            "email": "adamlundrigan@cdli.ca",
+            "homepage": "http://www.cdli.ca/"
+        }
+    ],
+    "require": {
+        "zendframework/zendframework": "2.*",
+        "zf-commons/zfc-user": "0.*"
+    },
+    "suggest": {
+        "zf-commons/zfc-user-doctrine-orm": "dev-master",
+        "doctrine/doctrine-orm-module": "dev-master"
+    },
+    "replace": {
+        "cdli/CdliTwoStageSignup": "self.version"
+    },
+    "autoload": {
+        "psr-0": {
+            "CdliTwoStageSignup": "src/"
+        },
+        "classmap": [
+            "./"
+        ]
+    }
+}
