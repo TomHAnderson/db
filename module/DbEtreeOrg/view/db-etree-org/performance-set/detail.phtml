@@ -50,13 +50,6 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
     </a>
 </h1>
 
-<?php
-if ($this->performanceSet->getPerformance()->getNote()) { ?>
-    <pre><?= $this->escapeHtml($this->performanceSet->getPerformance()->getNote()); ?></pre>
-<?php
-}
-?>
-
 <h1>
     <i class="icon-certificate"></i>
     <?= $this->escapeHtml($this->performanceSet->getName()); ?>
@@ -76,7 +69,11 @@ if (sizeof($this->performanceSet->getPerformanceSongs())) {
                 <pre><i class="icon-music"></i> <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?></pre>
             </div>
 
-            <div class="span6">
+            <div class="span1">
+                <pre><?= $this->escapeHtml($performanceSong->getLength()); ?>&nbsp;</pre>
+            </div>
+
+            <div class="span5">
                 <pre><?= $this->escapeHtml($performanceSong->getNote()); ?>&nbsp;</pre>
             </div>
         </div>

@@ -247,11 +247,12 @@
     <association from="Song" to="Band" owner-alias="songs" inverse-alias="band" uuid="5c53322a-3c77-4d30-b605-3b68132d0b19">
       <association-field from="band_id" to="id"/>
     </association>
-    <entity name="PerformanceSong" uuid="4cae9159-3783-4e82-9afc-b16f6f6a826b">
+    <entity name="PerformanceSong" description="s" uuid="4cae9159-3783-4e82-9afc-b16f6f6a826b">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="097abc51-8873-4f03-a7fa-d49f545bff3c"/>
       <field name="song_id" type="integer" required="true" uuid="aea997cd-9b57-449d-8bbc-316837c12d07"/>
       <field name="performanceSet_id" type="integer" required="true" uuid="815aa343-c614-4af3-9abc-6caff0ae019d"/>
       <field name="note" type="text" uuid="e2ab4902-8ab6-4993-9eae-7d9c08e5dae8"/>
+      <field name="length" type="string" uuid="fdb8369e-a8bc-44a7-93db-4537467a1f93"/>
       <field name="isSegue" type="boolean" uuid="0e02e43b-8740-4e93-9f90-c9ef160da207"/>
       <field name="sort" type="integer" required="true" uuid="b1cd0e02-facd-4de9-928e-9c612c9dd9f7"/>
       <orm-attributes>

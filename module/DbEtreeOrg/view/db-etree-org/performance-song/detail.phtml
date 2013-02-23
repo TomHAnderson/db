@@ -73,6 +73,14 @@ if ($this->performanceSong->getPerformanceSet()->getPerformance()->getPerformanc
 </h1>
 
 <?php
+if ($this->performanceSong->getLength()) {
+?>
+    <pre><?= $this->escapeHtml($this->performanceSong->getLength()); ?></pre>
+<?php
+}
+?>
+
+<?php
 if ($this->performanceSong->getNote()) {
 ?>
     <pre><?= $this->escapeHtml($this->performanceSong->getNote()); ?></pre>
