@@ -11,6 +11,8 @@ Both sites run on this codebase.
 Installation
 ------------
     git clone git://github.com/TomHAnderson/db
+    cd db
+    php composer.phar install
 
 db uses Doctrine 2 for database abstraction.  Supported drivers are listed here:
 https://github.com/doctrine/dbal/tree/master/lib/Doctrine/DBAL/Driver
