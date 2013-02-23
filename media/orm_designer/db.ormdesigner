@@ -219,6 +219,14 @@
     <many-to-many mn-entity="PerformerPerformance" uuid="faf761e8-03bd-401a-b157-6fd9a1da50c9">
       <many-to-many-entity name="Performance" owning-side="true" alias="performances" uuid="1cc52f1a-06ea-43b4-b7e8-3a34ee00c33a">
         <many-to-many-field from="performance_id" to="id"/>
+        <orm-attributes>
+          <attribute name="order-by">
+            <attribute name="order-by-field">
+              <attribute name="direction">ASC</attribute>
+              <attribute name="field">name</attribute>
+            </attribute>
+          </attribute>
+        </orm-attributes>
       </many-to-many-entity>
       <many-to-many-entity name="Performer" owning-side="false" alias="performers" uuid="1dd4c473-d688-4f81-bb04-768a114b03cd">
         <many-to-many-field from="performer_id" to="id"/>
