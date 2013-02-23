@@ -1,0 +1,91 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a class="btn-warning" href="/venue/edit?id=<?= $this->venue->getId(); ?>"><i class="icon-map-marker"></i> Edit Venue</a>
+    </li>
+
+    <?php
+    if (!sizeof($this->venue->getPerformances())
+        and !sizeof($this->venue->getLinks())
+        and !sizeof($this->venue->getComments())
+        and !sizeof($this->venue->getVenueGroups()))
+    {
+    ?>
+        <li class="">
+            <a class="btn-danger confirm" href="/venue/delete?id=<?= $this->venue->getId(); ?>"><i class="icon-map-marker"></i> Delete Venue</a>
+        </li>
+    <?php
+    }
+    ?>
+
+    <li>
+        <a class="btn-info" href="/audit/entity/<?= $this->venue->getId(); ?>/Db\Entity\Venue">
+            <i class="icon-list"></i>
+        </a>
+    </li>
+</ul>
+
+<h1><i class="icon-map-marker"></i> <?= $this->escapeHtml($this->venue->getName()); ?></h1>
+
+City: <?= $this->escapeHtml($this->venue->getCity()); ?>
+<br>
+State: <?= $this->escapeHtml($this->venue->getState()); ?>
+<br>
+Country: <?= $this->escapeHtml($this->venue->getCountry()); ?>
+<br>
+Zipcode: <?= $this->escapeHtml($this->venue->getZipcode()); ?>
+<br>
+Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
+
+<ul class="nav nav-tabs" id="tabs">
+    <li class="active">
+        <a href="#comments" data-toggle="tab">
+            Comments
+        </a>
+    </li>
+
+    <li class="">
+        <a href="#links" data-toggle="tab">
+            Links
+        </a>
+    </li>
+
+<?php
+if ($this->venue->getPerformances()) {
+?>
+
+    <li class="">
+        <a href="#performances" data-toggle="tab">
+            Performances
+        </a>
+    </li>
+<?php
+}
+?>
+
+</ul>
+
+<div class="tab-content">
+   <div class="tab-pane active" id="comments">
+        <ul class="nav nav-pills">
+            <?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+        </ul>
+
+        <?= $this->listComments($this->venue->getComments()); ?>
+    </div>
+
+    <div class="tab-pane" id="links">
+        <ul class="nav nav-pills">
+            <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+        </ul>
+    </div>
+
+<?php
+if ($this->venue->getPerformances()) {
+?>
+    <div class="tab-pane" id="performances">
+        <?= $this->listPerformances($this->venue->getPerformances()); ?>
+    </div>
+<?php
+}
+?>
+</div>

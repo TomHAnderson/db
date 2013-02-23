@@ -3,7 +3,14 @@ namespace Db\Entity\Field;
 
 trait Sort
 {
-    protected $sort;
+    /**
+     * @Form\Type("Zend\Form\Element")
+     * @Form\Attributes({"type": "number"})
+     * @Form\Attributes({"id": "sort"})
+     * @Form\Options({"label": "Sort"})
+     * @Form\Attributes({"required": "required"})
+     */
+    protected $sort = 9999;
 
     public function getSort()
     {

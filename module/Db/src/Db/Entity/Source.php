@@ -11,7 +11,9 @@ use Zend\Form\Annotation as Form;
 class Source extends AbstractEntity
 {
     use \Db\Entity\Field\Id
+        , \Db\Entity\Field\Name
         , \Db\Entity\Field\Mbid
+        , \Db\Entity\Field\Format
         , \Db\Entity\Field\Performance
         , \Db\Entity\Field\Note
         , \Db\Entity\Field\Content

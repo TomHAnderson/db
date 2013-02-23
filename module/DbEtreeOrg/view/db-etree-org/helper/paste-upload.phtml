@@ -1,0 +1,41 @@
+<?php
+
+$this->id = md5(uniqid());
+
+?>
+
+<label for="uploadFile<?= $this->id; ?>"><?= $this->label; ?></label>
+<input type="file" name="uploadfile<?= $this->id; ?>" id="<?= $this->id; ?>">
+
+<script>
+require(['bootstrap.min'], function() {
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        $('#<?= $this->id; ?>').on('change', function(event) {
+
+            var files = this.files; // FileList object
+            var file = files[0];
+
+            // read the file metadata
+            var output = '';
+                output += '<span id="fileinfo"><br />\n';
+                output += 'FileType: ' + (file.type || 'n/a') + '<br />\n';
+                output += 'FileSize: ' + file.size + ' bytes<br />\n';
+                output += 'LastModified: ' + (file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() : 'n/a') + '<br /></span>';
+            $('#<?= $this->id; ?>fileinfo').remove();
+            $(output).insertAfter('#<?= $this->id; ?>');
+
+            // read the file contents
+            var reader = new FileReader();
+            reader.readAsText(file);
+
+            reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
+
+            reader.onload = function(event){
+                var upload = event.target.result;
+                $('#<?= $this->targetFieldId; ?>').val(upload);
+            };
+        });
+    }
+});
+
+</script>

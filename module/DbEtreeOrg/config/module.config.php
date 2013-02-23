@@ -89,6 +89,7 @@ return array(
             'performance-set' => 'DbEtreeOrg\Controller\PerformanceSetController',
             'song' => 'DbEtreeOrg\Controller\SongController',
             'performance-song' => 'DbEtreeOrg\Controller\PerformanceSongController',
+            'source' => 'DbEtreeOrg\Controller\SourceController',
         ),
     ),
 
@@ -139,6 +140,8 @@ return array(
 
             'createLink' => 'DbEtreeOrg\View\Helper\CreateLink',
             'listLinks' => 'DbEtreeOrg\View\Helper\ListLinks',
+
+            'pasteUpload' => 'DbEtreeOrg\View\Helper\PasteUpload',
         ),
     ),
 

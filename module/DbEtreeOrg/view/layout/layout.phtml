@@ -177,8 +177,9 @@
                                         <script>
                                             $(function() {
                                                 $('#band-search').on('submit', function(event) {
-                                                    if ($('#bandId').val()) {
-                                                        window.location = '/band/detail?id=' + $('#bandId').val();
+                                                    if ($(this).find('input[name="band_id"]').val()) {
+                                                        window.location = '/band/detail?id='
+                                                            + $(this).find('input[name="band_id"]').val();
                                                     }
 
                                                     return false;
