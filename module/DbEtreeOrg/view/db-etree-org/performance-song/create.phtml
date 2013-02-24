@@ -1,5 +1,5 @@
 <h1>
-    <i class="icon-music"></i>
+    <i class="icon-bolt"></i>
     Add Song to Performance Set
 </h1>
 
@@ -58,10 +58,21 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
 <?= $this->formRow($this->form->get('isSegue')); ?>
 
 <br>
+<br>
 
 <button type="send" class="btn btn-success">
-    <i class="icon-music"></i>
-    Create Song
+    <i class="icon-bolt"></i>
+    Add Song to Performance Set
 </button>
 
 <?= $this->form()->closeTag(); ?>
+
+
+<ul class="nav nav-pills">
+    <li>
+        <a href="/song/create" class="btn-success">
+            <i class="icon-music"></i>
+            Create Song
+        </a>
+    </li>
+</ul>

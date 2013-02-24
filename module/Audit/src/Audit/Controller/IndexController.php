@@ -9,6 +9,58 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 
 class IndexController extends AbstractActionController {
 
+    private $iconMap = array(
+        'Db\Entity\Performer' => 'icon-film',
+        'Db\Entity\PerformerAlias' => 'icon-facetime-video',
+        'Db\Entity\Performance'  => 'icon-magic',
+        'Db\Entity\PerformanceSet' => 'icon-certificate',
+        'Db\Entity\Venue' => 'icon-map-marker',
+        'Db\Entity\VenueGroup' => 'icon-folder-close',
+        'Db\Entity\Event' => 'icon-folder-close',
+        'Db\Entity\Producer' => 'icon-folder-close',
+        'Db\Entity\Lineup' => 'icon-group',
+        'Db\Entity\Band' => 'icon-cogs',
+        'Db\Entity\BandGroup' => 'icon-folder-close',
+        'Db\Entity\Alias' => 'icon-folder-close',
+        'Db\Entity\Source' => 'icon-headphones',
+        'Db\Entity\Checksum' => 'icon-ok-circle',
+        'Db\Entity\PerformanceSong' => 'icon-bolt',
+        'Db\Entity\Song' => 'icon-music',
+        'Db\Entity\Composer' => 'icon-folder-close',
+        'Db\Entity\AbstractComment' => 'icon-folder-close',
+        'Db\Entity\AbstractLink' => 'icon-folder-close',
+    );
+
+    private $routeMap = array(
+        'Db\Entity\Performer' => 'performer',
+        'Db\Entity\PerformerAlias' => 'performer-alias',
+        'Db\Entity\Performance'  => 'performance',
+        'Db\Entity\PerformanceSet' => 'performance-set',
+        'Db\Entity\Venue' => 'venue',
+        'Db\Entity\VenueGroup' => 'venue-group',
+        'Db\Entity\Event' => 'event',
+        'Db\Entity\Producer' => 'producer',
+        'Db\Entity\Lineup' => 'lineup',
+        'Db\Entity\Band' => 'band',
+        'Db\Entity\BandGroup' => 'band-group',
+        'Db\Entity\Alias' => 'alias',
+        'Db\Entity\Source' => 'source',
+        'Db\Entity\Checksum' => 'checksum',
+        'Db\Entity\PerformanceSong' => 'performance-song',
+        'Db\Entity\Song' => 'song',
+        'Db\Entity\Composer' => 'composer',
+        'Db\Entity\AbstractComment' => '',
+        'Db\Entity\AbstractLink' => '',
+    );
+
+    private function getIconMap() {
+        return $this->iconMap;
+    }
+
+    private function getRouteMap() {
+        return $this->routeMap;
+    }
+
     /**
      * Renders a paginated list of revisions.
      *
@@ -27,6 +79,8 @@ class IndexController extends AbstractActionController {
         return new ViewModel(array(
             'revisions' => $revisions,
             'auditReader' => $auditReader,
+            'iconMap' => $this->getIconMap(),
+            'routeMap' => $this->getRouteMap(),
         ));
     }
 
@@ -48,6 +102,8 @@ class IndexController extends AbstractActionController {
         return new ViewModel(array(
             'revision' => $revision,
             'changedEntities' => $changedEntities,
+            'iconMap' => $this->getIconMap(),
+            'routeMap' => $this->getRouteMap(),
         ));
     }
 
@@ -69,6 +125,8 @@ class IndexController extends AbstractActionController {
             'id' => $id,
             'className' => $className,
             'revisions' => $revisions,
+            'iconMap' => $this->getIconMap(),
+            'routeMap' => $this->getRouteMap(),
         ));
     }
 
@@ -99,6 +157,8 @@ class IndexController extends AbstractActionController {
             'className' => $className,
             'entity' => $entity,
             'data' => $data,
+            'iconMap' => $this->getIconMap(),
+            'routeMap' => $this->getRouteMap(),
         ));
     }
 
@@ -144,6 +204,8 @@ class IndexController extends AbstractActionController {
             'oldRev' => $oldRev,
             'newRev' => $newRev,
             'diff' => $diff,
+            'iconMap' => $this->getIconMap(),
+            'routeMap' => $this->getRouteMap(),
         ));
     }
 
