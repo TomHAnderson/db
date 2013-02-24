@@ -40,6 +40,13 @@
 
 <?= $this->pasteUpload('content', 'Paste Uploaded File to Textdoc'); ?>
 
+<?= $this->formRow($this->form->get('mediaSizeCompressed')); ?>
+
+<?= $this->formRow($this->form->get('mediaSizeUncompressed')); ?>
+
+<?= $this->formRow($this->form->get('circulatedAt')); ?>
+
+
 <br>
 
 <button type="send" class="btn btn-success">
@@ -48,34 +55,3 @@
 </button>
 
 <?= $this->form()->closeTag(); ?>
-
-<script>
-$(function() {
-    $('#lookup-zipcode').on('click', function(event) {
-        $('#lookup-alert').hide();
-
-        if ($('#country').val() && $('#zipcode').val()) {
-            $.ajax({
-                url: 'http://api.zippopotam.us/'
-                    + $('#country').val().trim().toLowerCase()
-                    + '/'
-                    + $('#zipcode').val().trim().toLowerCase()
-                    ,
-                success: function(data) {
-                    if (data.places.length == 1) {
-                        $('#city').val(data.places[0]['place name']);
-                        $('#state').val(data.places[0]['state abbreviation']);
-                    } else {
-                        alert('more than one place found');
-                    }
-                },
-                dataType: 'json'
-            });
-        } else {
-            $('#lookup-alert').show();
-        }
-
-        return false;
-    });
-});
-</script>

@@ -22,9 +22,6 @@ trait Format
     {
         $this->format = $value;
 
-        if (method_exists($this, 'setFormatNormalize'))
-            $this->setFormatNormalize($this->getFormat());
-
         return $this;
     }
 

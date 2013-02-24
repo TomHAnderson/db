@@ -61,18 +61,17 @@ class SourceController extends AbstractActionController
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($performance->getInputFilter());
+            $form->setInputFilter($source->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $performance->exchangeArray($form->getData());
+                $source->exchangeArray($form->getData());
+                $source->setPerformance($performance);
 
-                # $venue->setPlace($place);
-
-                $em->persist($performance);
+                $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performance->getId());
+                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
             }
         }
 
@@ -90,38 +89,34 @@ class SourceController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
+        $source = $em->getRepository('Db\Entity\Source')->find($id);
 
-        if (!$venue)
-            throw new \Exception("Venue $id not found");
+        if (!$source)
+            throw new \Exception("Source $id not found");
 
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($venue);
-        $form->setData($venue->getArrayCopy());
+        $form = $builder->createForm($source);
+        $form->setData($source->getArrayCopy());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($venue->getInputFilter());
+            $form->setInputFilter($source->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $venue->exchangeArray($form->getData());
+                $source->exchangeArray($form->getData());
 
-                $em->persist($venue);
+                $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/venue/detail?id=' . $venue->getId());
+                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
             }
         }
 
-        $country = $form->get('country');
-        $countries = include(__DIR__ . '/../../../../../vendor/umpirsky/country-list/country/cldr/en_US/country.php');
-        $country->setValueOptions($countries);
-
         return array(
             'form' => $form,
-            'venue' => $venue,
+            'source' => $source,
         );
     }
 

@@ -59,29 +59,42 @@
                         <ul class="nav">
 
                             <li class="dropdown">
-                                <a id="performance-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
-                                    <i class="icon-music"></i>
-                                    <?php echo $this->translate('Songs') ?>
+                                <a id="performer-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <i class="icon-film"></i>
+                                    <?php echo $this->translate('Performers') ?>
                                     <b class="caret"></b>
                                 </a>
 
-                                <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
+                                <ul class="dropdown-menu" aria-labelledby="performer-drop" role="menu">
 
                                     <li role="menuitem">
-                                        <form class="navbar-search pull-left" name="search" action="/performance/search">
-                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Songs">
+                                        <form class="navbar-search pull-left" id="performer-search" action="/performer/detail">
+                                            <?= $this->inputPerformer(null, 'Search'); ?>
                                         </form>
+
+                                        <script>
+                                            $(function() {
+                                                $('#performer-search').on('submit', function(event) {
+                                                    if ($(this).find('input[name="performer_id"]').val()) {
+                                                        window.location = '/performer/detail?id='
+                                                            + $(this).find('input[name="performer_id"]').val();
+                                                    }
+
+                                                    return false;
+                                                });
+                                            });
+                                        </script>
                                     </li>
 
                                     <?php
-                                    if (isset($_SESSION['songs']['latest'])) {
+                                    if (isset($_SESSION['performers']['latest'])) {
                                     ?><li class="divider"></li><?php
-                                        foreach ($_SESSION['songs']['latest'] as $id) {
-                                            if ($p = $this->findEntity('Db\Entity\Song', $id)) {
+                                        foreach ($_SESSION['performers']['latest'] as $id) {
+                                            if ($p = $this->findPerformer($id)) {
                                                 ?>
                                                     <li role="menuitem">
-                                                        <a href="/song/detail?id=<?= $p->getId(); ?>">
-                                                            <i class="icon-music"></i>
+                                                        <a href="/performer/detail?id=<?= $p->getId(); ?>">
+                                                            <i class="icon-film"></i>
                                                             <?= $this->escapeHtml($p->getName()); ?>
                                                         </a>
                                                     </li>
@@ -94,71 +107,13 @@
                                     <li class="divider"></li>
 
                                     <li role="">
-                                        <a class="btn-success" id="createSong" href="/song/create" style="color: white;">
-                                            <i class="icon-music"></i>
-                                            Create Song
+                                        <a class="btn-success" href="/performer/create" style="color: white;">
+                                            <i class="icon-film"></i>
+                                            Create Performer
                                         </a>
                                     </li>
-
-                                </ul>
-                            <li class="dropdown">
-                                <a id="performance-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
-                                    <i class="icon-magic"></i>
-                                    <?php echo $this->translate('Performances') ?>
-                                    <b class="caret"></b>
-                                </a>
-
-                                <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
-
-                                    <li role="menuitem">
-                                        <form class="navbar-search pull-left" name="search" action="/performance/search">
-                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Performances">
-                                        </form>
-                                    </li>
-
-                                    <?php
-                                    if (isset($_SESSION['performances']['latest'])) {
-                                    ?><li class="divider"></li><?php
-                                        foreach ($_SESSION['performances']['latest'] as $id) {
-                                            if ($p = $this->findEntity('Db\Entity\Performance', $id)) {
-                                                ?>
-                                                    <li role="menuitem">
-                                                        <a href="/performance/detail?id=<?= $p->getId(); ?>">
-                                                            <i class="icon-magic"></i>
-                                                            <?php
-                                                            if ($p->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
-                                                                echo $this->escapeHtml($p->getPerformanceDateAt()->format('F d, Y'));
-                                                            } else {
-                                                                echo $this->escapeHtml($p->getPerformanceDate());
-                                                            }
-                                                            ?>
-
-                                                            <?= $this->escapeHtml($p->getName()); ?>
-                                                            <i class="icon-cogs"></i>
-                                                            <?= $this->escapeHtml($p->getLineup()->getBand()->getName()); ?>
-
-                                                            <i class="icon-map-marker"></i>
-                                                            <?= $this->escapeHtml($p->getVenue()->getName()); ?>
-                                                        </a>
-                                                    </li>
-                                                <?php
-                                            }
-                                        }
-                                    }
-                                    ?>
-
-                                    <li class="divider"></li>
-
-                                    <li role="">
-                                        <a class="btn-success" id="createPerformance" href="/performance/create" style="color: white;">
-                                            <i class="icon-magic"></i>
-                                            Create Performance
-                                        </a>
-                                    </li>
-
                                 </ul>
                             </li>
-
 
                             <li class="dropdown">
                                 <a id="band-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
@@ -240,63 +195,6 @@
                                 </ul>
                             </li>
 
-                            <li class="dropdown">
-                                <a id="performer-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
-                                    <i class="icon-film"></i>
-                                    <?php echo $this->translate('Performers') ?>
-                                    <b class="caret"></b>
-                                </a>
-
-                                <ul class="dropdown-menu" aria-labelledby="performer-drop" role="menu">
-
-                                    <li role="menuitem">
-                                        <form class="navbar-search pull-left" id="performer-search" action="/performer/detail">
-                                            <?= $this->inputPerformer(null, 'Search'); ?>
-                                        </form>
-
-                                        <script>
-                                            $(function() {
-                                                $('#performer-search').on('submit', function(event) {
-                                                    if ($(this).find('input[name="performer_id"]').val()) {
-                                                        window.location = '/performer/detail?id='
-                                                            + $(this).find('input[name="performer_id"]').val();
-                                                    }
-
-                                                    return false;
-                                                });
-                                            });
-                                        </script>
-                                    </li>
-
-                                    <?php
-                                    if (isset($_SESSION['performers']['latest'])) {
-                                    ?><li class="divider"></li><?php
-                                        foreach ($_SESSION['performers']['latest'] as $id) {
-                                            if ($p = $this->findPerformer($id)) {
-                                                ?>
-                                                    <li role="menuitem">
-                                                        <a href="/performer/detail?id=<?= $p->getId(); ?>">
-                                                            <i class="icon-film"></i>
-                                                            <?= $this->escapeHtml($p->getName()); ?>
-                                                        </a>
-                                                    </li>
-                                                <?php
-                                            }
-                                        }
-                                    }
-                                    ?>
-
-                                    <li class="divider"></li>
-
-                                    <li role="">
-                                        <a class="btn-success" href="/performer/create" style="color: white;">
-                                            <i class="icon-film"></i>
-                                            Create Performer
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
 
                             <li class="dropdown">
                                 <a id="venue-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
@@ -358,6 +256,173 @@
                                 </ul>
                             </li>
 
+
+                            <li class="dropdown">
+                                <a id="performance-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <i class="icon-magic"></i>
+                                    <?php echo $this->translate('Performances') ?>
+                                    <b class="caret"></b>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
+
+                                    <li role="menuitem">
+                                        <form class="navbar-search pull-left" name="search" action="/performance/search">
+                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Performances">
+                                        </form>
+                                    </li>
+
+                                    <?php
+                                    if (isset($_SESSION['performances']['latest'])) {
+                                    ?><li class="divider"></li><?php
+                                        foreach ($_SESSION['performances']['latest'] as $id) {
+                                            if ($p = $this->findEntity('Db\Entity\Performance', $id)) {
+                                                ?>
+                                                    <li role="menuitem">
+                                                        <a href="/performance/detail?id=<?= $p->getId(); ?>">
+                                                            <i class="icon-magic"></i>
+                                                            <?php
+                                                            if ($p->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+                                                                echo $this->escapeHtml($p->getPerformanceDateAt()->format('F d, Y'));
+                                                            } else {
+                                                                echo $this->escapeHtml($p->getPerformanceDate());
+                                                            }
+                                                            ?>
+
+                                                            <?= $this->escapeHtml($p->getName()); ?>
+                                                            <i class="icon-cogs"></i>
+                                                            <?= $this->escapeHtml($p->getLineup()->getBand()->getName()); ?>
+
+                                                            <i class="icon-map-marker"></i>
+                                                            <?= $this->escapeHtml($p->getVenue()->getName()); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <li class="divider"></li>
+
+                                    <li role="">
+                                        <a class="btn-success" id="createPerformance" href="/performance/create" style="color: white;">
+                                            <i class="icon-magic"></i>
+                                            Create Performance
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a id="performance-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <i class="icon-music"></i>
+                                    <?php echo $this->translate('Songs') ?>
+                                    <b class="caret"></b>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
+
+                                    <li role="menuitem">
+                                        <form class="navbar-search pull-left" name="search" action="/performance/search">
+                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Songs">
+                                        </form>
+                                    </li>
+
+                                    <?php
+                                    if (isset($_SESSION['songs']['latest'])) {
+                                    ?><li class="divider"></li><?php
+                                        foreach ($_SESSION['songs']['latest'] as $id) {
+                                            if ($p = $this->findEntity('Db\Entity\Song', $id)) {
+                                                ?>
+                                                    <li role="menuitem">
+                                                        <a href="/song/detail?id=<?= $p->getId(); ?>">
+                                                            <i class="icon-music"></i>
+                                                            <?= $this->escapeHtml($p->getName()); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <li class="divider"></li>
+
+                                    <li role="">
+                                        <a class="btn-success" id="createSong" href="/song/create" style="color: white;">
+                                            <i class="icon-music"></i>
+                                            Create Song
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+
+                            <li class="dropdown">
+                                <a id="source-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                    <i class="icon-headphones"></i>
+                                    <?php echo $this->translate('Sources') ?>
+                                    <b class="caret"></b>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="source-drop" role="menu">
+
+                                    <li role="menuitem">
+                                        <form class="navbar-search pull-left" name="search" action="/source/search">
+                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Sources">
+                                        </form>
+                                    </li>
+
+                                    <?php
+                                    if (isset($_SESSION['sources']['latest'])) {
+                                    ?><li class="divider"></li><?php
+                                        foreach ($_SESSION['sources']['latest'] as $id) {
+                                            if ($p = $this->findEntity('Db\Entity\Source', $id)) {
+                                                ?>
+                                                    <li role="menuitem">
+                                                        <a href="/source/detail?id=<?= $p->getId(); ?>">
+                                                            <i class="icon-headphones"></i>
+                                                            <?= $this->escapeHtml($p->getNote()); ?>
+
+                                                            <i class="icon-magic"></i>
+                                                            <?php
+                                                            if ($p->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+                                                                echo $this->escapeHtml($p->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
+                                                            } else {
+                                                                echo $this->escapeHtml($p->getPerformance()->getPerformanceDate());
+                                                            }
+                                                            ?>
+
+                                                            <i class="icon-cogs"></i>
+                                                            <?= $this->escapeHtml($p->getPerformance()->getLineup()->getBand()->getName()); ?>
+
+                                                            <i class="icon-map-marker"></i>
+                                                            <?= $this->escapeHtml($p->getPerformance()->getVenue()->getName()); ?>
+                                                        </a>
+                                                    </li>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <li class="divider"></li>
+
+                                    <li role="">
+                                        <a class="btn-success" id="createSource" href="/performance/create" style="color: white;">
+                                            <i class="icon-headphones"></i>
+                                            Create Source
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
                             <li>
                                 <a href="/audit">
                                     <i class="icon-list"></i>
@@ -407,6 +472,11 @@
 
             $('#createPerformance').click(function(event) {
                 alert('To create a performance select a lineup from a band');
+                return false;
+            });
+
+            $('#createSource').click(function(event) {
+                alert('To create a source select a performance');
                 return false;
             });
         });

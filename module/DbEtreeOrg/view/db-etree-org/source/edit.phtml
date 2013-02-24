@@ -1,68 +1,70 @@
 <h1>
-    <i class="icon-map-marker"></i>
-    Edit Venue
+    <i class="icon-headphones"></i>
+    Edit Source
 </h1>
+
+<h1>
+    <a href="/performance/detail?id=<?= $this->source->getPerformance()->getId(); ?>">
+    <i class="icon-magic"></i>
+<?php
+if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+    echo $this->escapeHtml($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
+} else {
+    echo $this->escapeHtml($this->source->getPerformance()->getPerformanceDate());
+}
+?>
+
+    <?= $this->escapeHtml($this->source->getPerformance()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/band/detail?id=<?= $this->source->getPerformance()->getLineup()->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
+        <?= $this->escapeHtml($this->source->getPerformance()->getLineup()->getBand()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/venue/detail?id=<?= $this->source->getPerformance()->getVenue()->getId(); ?>">
+
+        <i class="icon-map-marker"></i>
+        <?= $this->escapeHtml($this->source->getPerformance()->getVenue()->getName()); ?>
+    </a>
+</h1>
+
+
 
 <?= $this->form()->openTag($form); ?>
 
 <?= $this->formRow($this->form->get('name')); ?>
 
-<?= $this->formRow($this->form->get('country')); ?>
+<?= $this->formRow($this->form->get('mbid')); ?>
 
-<?= $this->formRow($this->form->get('zipcode')); ?>
-
-<a href="#" id="lookup-zipcode" class="btn btn-primary"><i class="icon-book"></i> Lookup</a>
-<div class="alert" style="display: none;" id="lookup-alert">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    Enter Country and Zipcode to Lookup location
-</div>
-
-<?= $this->formRow($this->form->get('city')); ?>
-
-<?= $this->formRow($this->form->get('state')); ?>
+<?= $this->formRow($this->form->get('format')); ?>
 
 <?= $this->formRow($this->form->get('note')); ?>
+
+<?= $this->formRow($this->form->get('content')->setLabel('Textdoc')); ?>
+
+<?= $this->pasteUpload('content', 'Paste Uploaded File to Textdoc'); ?>
+
+<?= $this->formRow($this->form->get('mediaSizeCompressed')); ?>
+
+<?= $this->formRow($this->form->get('mediaSizeUncompressed')); ?>
+
+<?= $this->formRow($this->form->get('circulatedAt')); ?>
+
 
 <br>
 
 <button type="send" class="btn btn-warning">
-    <i class="icon-map-marker"></i>
-    Edit Venue
+    <i class="icon-headphones"></i>
+    Edit Source
 </button>
 
-<a class="btn btn-link" href="/venue/detail?id=<?= $this->venue->getId(); ?>">
+<a class="btn btn-link" href="/source/detail?id=<?= $this->source->getId(); ?>">
     cancel
 </a>
 
 <?= $this->form()->closeTag(); ?>
-
-<script>
-$(function() {
-    $('#lookup-zipcode').on('click', function(event) {
-        $('#lookup-alert').hide();
-
-        if ($('#country').val() && $('#zipcode').val()) {
-            $.ajax({
-                url: 'http://api.zippopotam.us/'
-                    + $('#country').val().trim().toLowerCase()
-                    + '/'
-                    + $('#zipcode').val().trim().toLowerCase()
-                    ,
-                success: function(data) {
-                    if (data.places.length == 1) {
-                        $('#city').val(data.places[0]['place name']);
-                        $('#state').val(data.places[0]['state abbreviation']);
-                    } else {
-                        alert('more than one place found');
-                    }
-                },
-                dataType: 'json'
-            });
-        } else {
-            $('#lookup-alert').show();
-        }
-
-        return false;
-    });
-});
-</script>

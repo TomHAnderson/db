@@ -2,7 +2,9 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form;
+use Zend\Form\Annotation as Form
+    , Zend\InputFilter\InputFilter
+    ;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -31,6 +33,11 @@ class Source extends AbstractEntity
         , \Db\Entity\Relation\WantedBy
         ;
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new \Datetime());
+    }
+
     public function getArrayCopy()
     {
         return array(
@@ -38,12 +45,14 @@ class Source extends AbstractEntity
             'mbid' => $this->getMbid(),
             'name' => $this->getName(),
             'content' => $this->getContent(),
+            'format' => $this->getFormat(),
+            'note' => $this->getNote(),
             'mediaSizeCompressed' => $this->getMediaSizeCompressed(),
             'mediaSizeUnCompressed' => $this->getMediaSizeUnCompressed(),
             'discCountWav' => $this->getDiscCountWav(),
             'discCountShn' => $this->getDiscCountShn(),
             'createdAt' => $this->getCreatedAt()->format('r'),
-            'circulatedAt' => $this->getCirculatedAt()->format('r'),
+            'circulatedAt' => $this->getCirculatedAt(),
         );
     }
 
@@ -51,12 +60,12 @@ class Source extends AbstractEntity
     {
         $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setContnet(isset($data['content']) ? $data['content']: null);
+        $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setContent(isset($data['content']) ? $data['content']: null);
         $this->setMediaSizeCompressed(isset($data['mediaSizeCompressed']) ? $data['mediaSizeCompressed']: null);
         $this->setMediaSizeUncompressed(isset($data['mediaSizeUncompressed']) ? $data['mediaSizeUncompressed']: null);
-        $this->setDiscCountWav(isset($data['discCountWav']) ? $data['discCountWav']: null);
-        $this->setDiscCountShn(isset($data['discCountShn']) ? $data['discCountShn']: null);
         $this->setCirculatedAt(isset($data['circulatedAt']) ? $data['circulatedAt']: null);
+        $this->setFormat(isset($data['format']) ? $data['format']: null);
     }
 
     public function getInputFilter()
@@ -64,13 +73,25 @@ class Source extends AbstractEntity
         $inputFilter = new InputFilter();
 
         $inputFilter->add($this->inputFilterInputMbid($inputFilter));
-        $inputFilter->add($this->inputFilterInputName($inputFilter));
+        $inputFilter->add($this->inputFilterInputFormat($inputFilter));
         $inputFilter->add($this->inputFilterInputContent($inputFilter));
+
         $inputFilter->add($this->inputFilterInputMediaSizeCompressed($inputFilter));
         $inputFilter->add($this->inputFilterInputMediaSizeUncompressed($inputFilter));
-        $inputFilter->add($this->inputFilterInputDiscCountWav($inputFilter));
-        $inputFilter->add($this->inputFilterInputDiscCountShn($inputFilter));
         $inputFilter->add($this->inputFilterInputCirculatedAt($inputFilter));
+
+        // Allow for null name
+        $inputFilter->add($inputFilter->getFactory()->createInput(array(
+            'name' => 'name',
+            'required' => false,
+            'validators' => array(),
+        )));
+
+        $inputFilter->add($inputFilter->getFactory()->createInput(array(
+            'name' => 'note',
+            'required' => true,
+            'validators' => array(),
+        )));
 
         return $inputFilter;
     }

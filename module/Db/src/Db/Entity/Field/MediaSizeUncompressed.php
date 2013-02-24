@@ -10,7 +10,7 @@ trait MediaSizeUncompressed
      * @Form\Attributes({"type": "number"})
      * @Form\Attributes({"id": "mediaSizeUncompressed"})
      * @Form\Attributes({"min": "0"})
-     * @Form\Attributes({"step": "1"})
+     * @Form\Attributes({"step": "1000"})
      * @Form\Options({"label": "Media Size Uncompressed"})
      */
     protected $mediaSizeUncompressed;
@@ -24,5 +24,19 @@ trait MediaSizeUncompressed
     {
         $this->mediaSizeUncompressed = $value;
         return $this;
+    }
+
+    private function inputFilterInputMediaSizeUncompressed($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'mediaSizeUncompressed',
+            'required' => false,
+            'validators' => array(
+                array(
+                    'name' => 'int',
+                )
+            ),
+        ));
     }
 }

@@ -1,40 +1,93 @@
 <ul class="nav nav-pills pull-right">
     <li class="">
-        <a class="btn-warning" href="/venue/edit?id=<?= $this->venue->getId(); ?>"><i class="icon-map-marker"></i> Edit Venue</a>
+        <a class="btn-warning" href="/source/edit?id=<?= $this->source->getId(); ?>">
+            <i class="icon-map-marker"></i>
+            Edit Source
+        </a>
     </li>
 
-    <?php
-    if (!sizeof($this->venue->getPerformances())
-        and !sizeof($this->venue->getLinks())
-        and !sizeof($this->venue->getComments())
-        and !sizeof($this->venue->getVenueGroups()))
-    {
-    ?>
-        <li class="">
-            <a class="btn-danger confirm" href="/venue/delete?id=<?= $this->venue->getId(); ?>"><i class="icon-map-marker"></i> Delete Venue</a>
-        </li>
-    <?php
-    }
-    ?>
-
     <li>
-        <a class="btn-info" href="/audit/entity/<?= $this->venue->getId(); ?>/Db\Entity\Venue">
+        <a class="btn-info" href="/audit/entity/<?= $this->source->getId(); ?>/Db\Entity\Source">
             <i class="icon-list"></i>
         </a>
     </li>
 </ul>
 
-<h1><i class="icon-map-marker"></i> <?= $this->escapeHtml($this->venue->getName()); ?></h1>
+<h1>
+    <i class="icon-headphones"></i>
+    <?= $this->escapeHtml($this->source->getNote()); ?>
+</h1>
 
-City: <?= $this->escapeHtml($this->venue->getCity()); ?>
-<br>
-State: <?= $this->escapeHtml($this->venue->getState()); ?>
-<br>
-Country: <?= $this->escapeHtml($this->venue->getCountry()); ?>
-<br>
-Zipcode: <?= $this->escapeHtml($this->venue->getZipcode()); ?>
-<br>
-Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
+<h1>
+    <?= $this->escapeHtml($this->source->getFormat()); ?>
+</h1>
+
+<h1>
+    <a href="/performance/detail?id=<?= $this->source->getPerformance()->getId(); ?>">
+    <i class="icon-magic"></i>
+<?php
+if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+    echo $this->escapeHtml($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
+} else {
+    echo $this->escapeHtml($this->source->getPerformance()->getPerformanceDate());
+}
+?>
+
+    <?= $this->escapeHtml($this->source->getPerformance()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/band/detail?id=<?= $this->source->getPerformance()->getLineup()->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
+        <?= $this->escapeHtml($this->source->getPerformance()->getLineup()->getBand()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/venue/detail?id=<?= $this->source->getPerformance()->getVenue()->getId(); ?>">
+
+        <i class="icon-map-marker"></i>
+        <?= $this->escapeHtml($this->source->getPerformance()->getVenue()->getName()); ?>
+    </a>
+</h1>
+
+<div class="row">
+    <div class="span12">
+        <pre><?= $this->escapeHtml($this->source->getContent()); ?></pre>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="span3">
+        <b>Name</b>
+    </div>
+    <div class="span3">
+        <b>Media Size Compressed</b>
+    </div>
+    <div class="span3">
+        <b>Media Size Uncompressed</b>
+    </div>
+    <div class="span3">
+        <b>Circulated</b>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span3">
+        <pre><?= $this->escapeHtml($this->source->getName()); ?>&nbsp;</pre>
+    </div>
+    <div class="span3">
+        <pre><?= $this->escapeHtml($this->source->getMediaSizeCompressed()); ?>&nbsp;</pre>
+    </div>
+    <div class="span3">
+        <pre><?= $this->escapeHtml($this->source->getMediaSizeUncompressed()); ?>&nbsp;</pre>
+    </div>
+    <div class="span3">
+        <pre><?= $this->escapeHtml($this->source->getCirculatedAt()); ?>&nbsp;</pre>
+    </div>
+</div>
 
 <ul class="nav nav-tabs" id="tabs">
     <li class="active">
@@ -48,44 +101,20 @@ Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
             Links
         </a>
     </li>
-
-<?php
-if ($this->venue->getPerformances()) {
-?>
-
-    <li class="">
-        <a href="#performances" data-toggle="tab">
-            Performances
-        </a>
-    </li>
-<?php
-}
-?>
-
 </ul>
 
 <div class="tab-content">
    <div class="tab-pane active" id="comments">
         <ul class="nav nav-pills">
-            <?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+            <?= $this->createComment($this->source->getId(), 'Db\Entity\Source', '/source/detail?id=' . $this->source->getId()); ?>
         </ul>
 
-        <?= $this->listComments($this->venue->getComments()); ?>
+        <?= $this->listComments($this->source->getComments()); ?>
     </div>
 
     <div class="tab-pane" id="links">
         <ul class="nav nav-pills">
-            <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+            <?= $this->createLink($this->source->getId(), 'Db\Entity\Source', '/source/detail?id=' . $this->source->getId()); ?>
         </ul>
     </div>
-
-<?php
-if ($this->venue->getPerformances()) {
-?>
-    <div class="tab-pane" id="performances">
-        <?= $this->listPerformances($this->venue->getPerformances()); ?>
-    </div>
-<?php
-}
-?>
 </div>
