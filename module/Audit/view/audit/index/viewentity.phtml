@@ -1,6 +1,14 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a class="btn-info" href="/<?= $this->routeMap[$className]; ?>/detail?id=<?= $this->id; ?>"><i class="<?= $this->iconMap[$className]; ?>"></i></a>
+    </li>
+</ul>
+
 <h1>
-    <i class="icon-list"></i>
-    Audit log for <?php  echo $this->escapeHtml($className); ?> identifier <?php  echo $this->escapeHtml($id); ?>
+    <a class="btn-info btn" href="/audit">
+        <i class="icon-list"></i>
+    </a>
+    <?php  echo $this->escapeHtml($className); ?> identifier <?php  echo $this->escapeHtml($id); ?>
 </h1>
 
 <form action="<?=

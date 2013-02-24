@@ -1,5 +1,7 @@
 <h1>
-    <i class="icon-list"></i>
+    <a class="btn-info btn" href="/audit">
+        <i class="icon-list"></i>
+    </a>
     Entities changed in revision <?= $this->escapeHtml($this->revision->getId()); ?>
 </h1>
 
@@ -35,25 +37,33 @@
                                 <?php echo $this->escapeHtml($id["id"]);?></a>
                         </td>
                         <td>
-                            <span class="label label-<?php
+                            <a href="<?php
                                 switch ($ce->getRevisionType()) {
                                     case 'INS':
-                                        echo 'success';
+                                        $buttonClass = 'btn-success';
                                         break;
                                     case 'UPD':
-                                        echo 'warning';
+                                        $buttonClass = 'btn-warning';
                                         break;
                                     case 'DEL':
-                                        echo 'important';
+                                        $buttonClass = 'btn-danger';
                                         break;
                                     default:
-                                        echo 'info';
+                                        $buttonClass = 'btn-info';
                                 }
-                            ?>">
-                                    <i class="icon-folder-close"></i>
-                                    <?php echo $this->escapeHtml($ce->getClassName()); ?>
-                            </span>
-                        </td>
+
+                            echo $this->url(
+                                'audit_viewentity',
+                                array(
+                                    'id' => $id['id'],
+                                    'className' => $ce->getClassName(),
+                                )
+                            );?>" class="btn <?= $buttonClass; ?>">
+
+                            <?= $this->escapeHtml($ce->getClassName()); ?>
+                        </a>
+                    </td>
+
                         <td><?php var_dump($ce->getEntity()); ?></td>
                     </tr>
                 <? endforeach; ?>

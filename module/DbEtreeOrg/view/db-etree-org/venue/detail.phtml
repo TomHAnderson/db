@@ -26,16 +26,50 @@
 
 <h1><i class="icon-map-marker"></i> <?= $this->escapeHtml($this->venue->getName()); ?></h1>
 
-City: <?= $this->escapeHtml($this->venue->getCity()); ?>
-<br>
-State: <?= $this->escapeHtml($this->venue->getState()); ?>
-<br>
-Country: <?= $this->escapeHtml($this->venue->getCountry()); ?>
-<br>
-Zipcode: <?= $this->escapeHtml($this->venue->getZipcode()); ?>
-<br>
-Note: <?= $this->escapeHtml($this->venue->getNote()); ?>
+<div class="row">
+    <div class="span3">
+        <b>City</b>
+    </div>
 
+    <div class="span3">
+        <b>State</b>
+    </div>
+
+    <div class="span3">
+        <b>Country</b>
+    </div>
+
+    <div class="span3">
+        <b>Zipcode</b>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span3">
+        <pre><?= $this->escapeHtml($this->venue->getCity()); ?>&nbsp;</pre>
+    </div>
+
+    <div class="span3">
+        <pre><?= $this->escapeHtml($this->venue->getState()); ?>&nbsp;</pre>
+    </div>
+
+    <div class="span3">
+        <pre><?= $this->escapeHtml($this->venue->getCountry()); ?>&nbsp;</pre>
+    </div>
+
+    <div class="span3">
+        <pre><?= $this->escapeHtml($this->venue->getZipcode()); ?>&nbsp;</pre>
+    </div>
+</div>
+
+
+<?php
+if ($this->venue->getNote()) {
+?>
+    <pre><?= $this->escapeHtml($this->venue->getNote()); ?></pre>
+<?php
+}
+?>
 <ul class="nav nav-tabs" id="tabs">
     <li class="active">
         <a href="#comments" data-toggle="tab">
