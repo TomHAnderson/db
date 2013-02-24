@@ -135,7 +135,7 @@
         <attribute name="repository-class">Db\Repository\Checksum</attribute>
       </orm-attributes>
     </entity>
-    <association from="Checksum" to="Source" uuid="68ad424c-ee40-4b79-8cf6-a43e71b53ddd">
+    <association from="Checksum" to="Source" owner-alias="checksums" inverse-alias="source" uuid="68ad424c-ee40-4b79-8cf6-a43e71b53ddd">
       <association-field from="source_id" to="id"/>
     </association>
     <entity name="Alias" uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b">
