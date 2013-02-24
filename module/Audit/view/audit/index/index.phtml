@@ -99,7 +99,15 @@
                                             )
                                         );?>" class="<?= $buttonClass; ?> btn">
 
-                                        <?= $this->escapeHtml($ce->getClassName()); ?>
+                                        <?php
+                                        strtok($ce->getClassName(), '\\');
+                                        strtok('\\');
+                                        $entityName = strtok('\\');
+                                        preg_match_all('/((?:^|[A-Z])[a-z]+)/', $entityName, $matches);
+                                        print_r(implode(' ', $matches[1]));
+
+                                        ?>
+
                                     </a>
 
                         <?php
