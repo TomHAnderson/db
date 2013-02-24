@@ -31,6 +31,7 @@ class Source extends AbstractEntity
         , \Db\Entity\Relation\Comments
         , \Db\Entity\Relation\UserPerformances
         , \Db\Entity\Relation\WantedBy
+        , \Db\Entity\Relation\Checksums
         ;
 
     public function __construct()

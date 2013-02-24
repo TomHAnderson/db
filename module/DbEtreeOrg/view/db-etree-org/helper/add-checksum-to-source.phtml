@@ -1,0 +1,26 @@
+<li class="">
+    <a onClick="$('#addChecksumToSource').toggle(); return false;"  class="btn-success" href="#">
+        <i class="icon-film"></i>
+        Add Checksum to Source
+    </a>
+</li>
+
+<div id="addChecksumToSource" style="display: none; clear:both;">
+
+    <form method="post" action="/checksum/create?id=<?= $this->id; ?>">
+
+        <label for="name">Name</label>
+        <input type="text" name="name">
+
+        <label for="content">Content</label>
+        <textarea name="content" id="content_checksum"></textarea>
+
+        <?= $this->PasteUpload('content_checksum', 'Paste Uploaded File to Content'); ?>
+
+        <br>
+        <button class="btn btn-info" type="send">
+            <i class="icon-save"></i>
+            Submit
+        </button>
+    </form>
+</div>

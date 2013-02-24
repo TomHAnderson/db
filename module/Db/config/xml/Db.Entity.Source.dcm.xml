@@ -20,6 +20,7 @@
         <join-column name="performance_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
+    <one-to-many field="checksums" target-entity="Db\Entity\Checksum" mapped-by="source"/>
     <one-to-many field="userPerformances" target-entity="Db\Entity\UserPerformance" mapped-by="source"/>
     <one-to-many field="wantedBy" target-entity="Db\Entity\Wanted" mapped-by="source"/>
     <one-to-many field="links" target-entity="Db\Entity\SourceLink" mapped-by="source"/>

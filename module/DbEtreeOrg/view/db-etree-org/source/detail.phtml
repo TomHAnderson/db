@@ -89,6 +89,21 @@ if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') !=
     </div>
 </div>
 
+<?php
+foreach ($this->source->getChecksums() as $checksum) {
+?>
+    <h3>
+        <a href="/checksum/detail?id=<?= $checksum->getId(); ?>">
+            <i class="icon-ok-circle"></i>
+            <?= $this->escapeHtml($checksum->getName()); ?>
+        </a>
+    </h3>
+    <pre><?= $this->escapeHtml($checksum->getContent()); ?></pre>
+
+<?php
+}
+?>
+
 <ul class="nav nav-tabs" id="tabs">
     <li class="active">
         <a href="#comments" data-toggle="tab">
