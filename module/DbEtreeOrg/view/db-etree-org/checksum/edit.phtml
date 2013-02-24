@@ -1,0 +1,48 @@
+<ul class="nav nav-pills pull-right">
+
+<?php
+#    if (!sizeof($this->checksum->getSource()->getPerformances())
+#        and !sizeof($this->venue->getLinks())
+#        and !sizeof($this->venue->getComments())
+#        and !sizeof($this->venue->getVenueGroups()))
+#    {
+?>
+    <li class="">
+        <a class="btn-danger confirm" href="/checksum/delete?id=<?= $this->checksum->getId(); ?>">
+            <i class="icon-ok-circle"></i>
+            Delete Checksum
+        </a>
+    </li>
+    <?php
+#    }
+    ?>
+</ul>
+
+
+<h1>
+    <i class="icon-ok-circle"></i>
+    Edit Checksum
+</h1>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('name')); ?>
+
+<?= $this->formRow($this->form->get('content')); ?>
+
+<?= $this->PasteUpload('content', 'Paste Uploaded File to Content'); ?>
+
+<?= $this->checksum->getName(); ?>
+
+<br>
+
+<button type="send" class="btn btn-warning">
+    <i class="icon-ok-circle"></i>
+    Edit Checksum
+</button>
+
+<a class="btn btn-link" href="/checksum/detail?id=<?= $this->checksum->getId(); ?>">
+    cancel
+</a>
+
+<?= $this->form()->closeTag(); ?>

@@ -23,4 +23,14 @@ trait Content
         $this->content = $value;
         return $this;
     }
+
+    private function inputFilterInputContent($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'content',
+            'required' => true,
+            'validators' => array(),
+        ));
+    }
 }

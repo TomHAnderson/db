@@ -8,7 +8,7 @@ trait CirculatedAt
 {
     /**
      * @Form\Type("Zend\Form\Element")
-     * @Form\Attributes({"type": "datetime"})
+     * @Form\Attributes({"type": "text"})
      * @Form\Attributes({"id": "circulatedAt"})
      * @Form\Options({"label": "Date Circulated"})
      */
@@ -19,9 +19,19 @@ trait CirculatedAt
         return $this->circulatedAt;
     }
 
-    public function setCirculatedAt(\DateTime $value)
+    public function setCirculatedAt($value)
     {
         $this->circulatedAt = $value;
         return $this;
+    }
+
+    private function inputFilterInputCirculatedAt($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'circulatedAt',
+            'required' => false,
+            'validators' => array(),
+        ));
     }
 }

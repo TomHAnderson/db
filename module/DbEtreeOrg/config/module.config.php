@@ -89,6 +89,8 @@ return array(
             'performance-set' => 'DbEtreeOrg\Controller\PerformanceSetController',
             'song' => 'DbEtreeOrg\Controller\SongController',
             'performance-song' => 'DbEtreeOrg\Controller\PerformanceSongController',
+            'source' => 'DbEtreeOrg\Controller\SourceController',
+            'checksum' => 'DbEtreeOrg\Controller\ChecksumController',
         ),
     ),
 
@@ -123,6 +125,7 @@ return array(
 
             'addPerformerToLineup' => 'DbEtreeOrg\View\Helper\AddPerformerToLineup',
             'addPerformerToPerformance' => 'DbEtreeOrg\View\Helper\AddPerformerToPerformance',
+            'addChecksumToSource' => 'DbEtreeOrg\View\Helper\AddChecksumToSource',
 
             'removePerformerFromPerformance' => 'DbEtreeOrg\View\Helper\RemovePerformerFromPerformance',
             'removePerformerFromLineup' => 'DbEtreeOrg\View\Helper\RemovePerformerFromLineup',
@@ -139,6 +142,8 @@ return array(
 
             'createLink' => 'DbEtreeOrg\View\Helper\CreateLink',
             'listLinks' => 'DbEtreeOrg\View\Helper\ListLinks',
+
+            'pasteUpload' => 'DbEtreeOrg\View\Helper\PasteUpload',
         ),
     ),
 

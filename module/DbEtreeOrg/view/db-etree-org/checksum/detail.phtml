@@ -1,0 +1,60 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a class="btn-warning" href="/checksum/edit?id=<?= $this->checksum->getId(); ?>">
+            <i class="icon-map-marker"></i>
+            Edit Checksum
+        </a>
+    </li>
+
+    <li>
+        <a class="btn-info" href="/audit/entity/<?= $this->checksum->getId(); ?>/Db\Entity\Checksum">
+            <i class="icon-list"></i>
+        </a>
+    </li>
+</ul>
+
+<h1>
+    <i class="icon-ok-circle"></i>
+    <?= $this->escapeHtml($this->checksum->getName()); ?>
+</h1>
+
+<h1>
+    <a href="/source/detail?id=<?= $this->checksum->getSource()->getId(); ?>">
+        <i class="icon-headphones"></i>
+        <?= $this->escapeHtml($this->checksum->getSource()->getNote()); ?>
+    </a>
+</h1>
+
+
+<h1>
+    <a href="/performance/detail?id=<?= $this->checksum->getSource()->getPerformance()->getId(); ?>">
+    <i class="icon-magic"></i>
+<?php
+if ($this->checksum->getSource()->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+    echo $this->escapeHtml($this->checksum->getSource()->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
+} else {
+    echo $this->escapeHtml($this->checksum->getSource()->getPerformance()->getPerformanceDate());
+}
+?>
+
+    <?= $this->escapeHtml($this->checksum->getSource()->getPerformance()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/band/detail?id=<?= $this->checksum->getSource()->getPerformance()->getLineup()->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
+        <?= $this->escapeHtml($this->checksum->getSource()->getPerformance()->getLineup()->getBand()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/venue/detail?id=<?= $this->checksum->getSource()->getPerformance()->getVenue()->getId(); ?>">
+
+        <i class="icon-map-marker"></i>
+        <?= $this->escapeHtml($this->checksum->getSource()->getPerformance()->getVenue()->getName()); ?>
+    </a>
+</h1>
+
+
+<pre><?= $this->escapeHtml($this->checksum->getContent()); ?></pre>

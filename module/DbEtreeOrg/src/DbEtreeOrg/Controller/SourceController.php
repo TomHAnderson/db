@@ -3,13 +3,13 @@
 namespace DbEtreeOrg\Controller;
 use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
-    , Db\Entity\PerformanceSet as PerformanceSetEntity
+    , Db\Entity\Source as SourceEntity
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Filter\Normalize
     , Zend\View\Model\JsonModel
     ;
 
-class PerformanceSetController extends AbstractActionController
+class SourceController extends AbstractActionController
 {
     public function indexAction()
     {
@@ -21,16 +21,23 @@ class PerformanceSetController extends AbstractActionController
     {
         $id = $this->getRequest()->getQuery()->get('id');
         if (!$id)
-            return $this->plugin('redirect')->toUrl('/venue');
+            return $this->plugin('redirect')->toUrl('/source');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $source = $em->getRepository('Db\Entity\Source')->find($id);
 
-        if (!$performanceSet)
-            throw new \Exception("Performance Set $id not found");
+        if (!$source)
+            throw new \Exception("Source $id not found");
+
+        if (!isset($_SESSION['sources']['latest'])) $_SESSION['sources']['latest'] = array();
+        if (in_array($source->getId(), $_SESSION['sources']['latest'])) {
+            unset($_SESSION['sources']['latest'][array_search($source->getId(), $_SESSION['sources']['latest'])]);
+        }
+        array_unshift($_SESSION['sources']['latest'], $source->getId());
+        $_SESSION['sources']['latest'] = array_slice($_SESSION['sources']['latest'], 0, 10);
 
         return array(
-            'performanceSet' => $performanceSet
+            'source' => $source
         );
     }
 
@@ -39,35 +46,38 @@ class PerformanceSetController extends AbstractActionController
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
             return $this->plugin('redirect')->toUrl('/user/login');
 
-        $performanceSet = new PerformanceSetEntity();
-        $builder = new AnnotationBuilder();
-        $form = $builder->createForm($performanceSet);
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $source = new SourceEntity();
+        $builder = new AnnotationBuilder();
+        $form = $builder->createForm($source);
 
         $id = $this->getRequest()->getQuery()->get('id');
         $performance = $em->getRepository('Db\Entity\Performance')->find($id);
 
-        if ($performance and $this->getRequest()->isPost()) {
+        if (!$performance)
+            throw new \Exception("Performance $id not found");
+
+        if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($performanceSet->getInputFilter());
+            $form->setInputFilter($source->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $performanceSet->exchangeArray($form->getData());
-                $performanceSet->setPerformance($performance);
+                $source->exchangeArray($form->getData());
+                $source->setPerformance($performance);
 
-                $em->persist($performanceSet);
+                $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performance->getId());
+                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
             }
         }
 
         return array(
-            'performance' => $performance,
             'form' => $form,
+            'performance' => $performance,
         );
     }
 
@@ -79,40 +89,41 @@ class PerformanceSetController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $source = $em->getRepository('Db\Entity\Source')->find($id);
 
-        if (!$performanceSet)
-            throw new \Exception("Performance Set $id not found");
+        if (!$source)
+            throw new \Exception("Source $id not found");
 
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($performanceSet);
-        $form->setData($performanceSet->getArrayCopy());
+        $form = $builder->createForm($source);
+        $form->setData($source->getArrayCopy());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($performanceSet->getInputFilter());
+            $form->setInputFilter($source->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $performanceSet->exchangeArray($form->getData());
+                $source->exchangeArray($form->getData());
 
-                $em->persist($performanceSet);
+                $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performance-set/detail?id=' . $performanceSet->getId());
+                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
             }
         }
 
         return array(
             'form' => $form,
-            'performanceSet' => $performanceSet,
+            'source' => $source,
         );
     }
 
     public function deleteAction()
     {
-        die('not implemented');
+        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
+            return $this->plugin('redirect')->toUrl('/user/login');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
@@ -151,38 +162,12 @@ class PerformanceSetController extends AbstractActionController
         $i = 0;
         foreach ($venues as $venue) {
             if (++$i > 25) break;
-            $return[] = array(
-                'value' => $venue->getId(),
-                'label' => $venue->getName(),
-            );
+            $return[] = $venue->getArrayCopy();
         }
 
         $jsonModel = new JsonModel;
         $jsonModel->setVariable('venues', $return);
 
         return $jsonModel;
-    }
-
-    public function sortPerformanceSongsAction()
-    {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
-
-        $sort = $this->getRequest()->getQuery()->get('sort');
-
-        $sortOrder = 1;
-        foreach (explode(',', $sort) as $key) {
-            strtok($key, '_');
-            $performanceSong = $em->getRepository('Db\Entity\PerformanceSong')->find(strtok('_'));
-            if ($performanceSong->getPerformanceSet() == $performanceSet) $performanceSong->setSort($sortOrder ++);
-        }
-
-        $em->flush();
-        die();
     }
 }

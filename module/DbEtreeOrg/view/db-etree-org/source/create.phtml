@@ -1,0 +1,57 @@
+<h1>
+    <i class="icon-headphones"></i>
+    Create Source
+</h1>
+
+<h1>
+    <a href="/performance/detail?id=<?= $this->performance->getId(); ?>">
+        <i class="icon-magic"></i>
+    <?php
+    if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+        echo $this->escapeHtml($this->performance->getPerformanceDateAt()->format('F d, Y'));
+    } else {
+        echo $this->escapeHtml($this->performance->getPerformanceDate());
+    }
+    ?>
+
+        <?= $this->escapeHtml($this->performance->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
+        <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
+    </a>
+</h1>
+
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('name')); ?>
+
+<?= $this->formRow($this->form->get('mbid')); ?>
+
+<?= $this->formRow($this->form->get('format')); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<?= $this->formRow($this->form->get('content')->setLabel('Textdoc')); ?>
+
+<?= $this->pasteUpload('content', 'Paste Uploaded File to Textdoc'); ?>
+
+<?= $this->formRow($this->form->get('mediaSizeCompressed')); ?>
+
+<?= $this->formRow($this->form->get('mediaSizeUncompressed')); ?>
+
+<?= $this->formRow($this->form->get('circulatedAt')); ?>
+
+
+<br>
+
+<button type="send" class="btn btn-success">
+    <i class="icon-headphones"></i>
+    Create Source
+</button>
+
+<?= $this->form()->closeTag(); ?>
