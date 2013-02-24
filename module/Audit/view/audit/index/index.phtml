@@ -111,7 +111,7 @@
 
                         <td>
                             <a class="btn btn-default" href="/user/<?= $this->escapeHtml($revision->getUser()->getUserName()); ?>">
-                                <i class="icon-user"></i>
+                                <?php echo $this->gravatar($revision->getUser()->getEmail(), array('img_size' => 24)); ?>
                                 <?= $this->escapeHtml($revision->getUser()->getDisplayName()); ?>
                             </a>
                         </td>
