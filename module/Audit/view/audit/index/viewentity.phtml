@@ -8,7 +8,11 @@
     <a class="btn-info btn" href="/audit">
         <i class="icon-list"></i>
     </a>
-    <?php  echo $this->escapeHtml($className); ?> identifier <?php  echo $this->escapeHtml($id); ?>
+    <?php
+        strtok($className, '\\');
+        strtok('\\');
+
+        echo $this->escapeHtml(strtok('\\')); ?> # <?php  echo $this->escapeHtml($id); ?>
 </h1>
 
 <form action="<?=
@@ -70,10 +74,12 @@
                         </a>
                     </td>
                     <td>
-                        <span class="label label-info">
-                            <i class="icon-user"></i>
-                            <?= $revision->getUser()->getDisplayName(); ?>
-                        </span>
+
+                            <a class="btn btn-default" href="/user/<?= $this->escapeHtml($revision->getUser()->getUsername()); ?>">
+                                <?php echo $this->gravatar($revision->getUser()->getEmail(), array('img_size' => 24)); ?>
+                                <?= $revision->getUser()->getDisplayName(); ?>
+                            </a>
+
                     </td>
 
                     <td>
