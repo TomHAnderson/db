@@ -74,7 +74,7 @@ class PerformanceSongController extends AbstractActionController
 
         return array(
             'form' => $form,
-            'song' => $song,
+            'performanceSet' => $performanceSet,
         );
     }
 

@@ -15,12 +15,15 @@
 
 <h1>
     <i class="icon-headphones"></i>
-    <?= $this->escapeHtml($this->source->getNote()); ?>
+    <?= $this->escapeHtml($this->source->getName()); ?>
 </h1>
 
 <h1>
     <?= $this->escapeHtml($this->source->getFormat()); ?>
 </h1>
+
+<pre><?= $this->escapeHtml($this->source->getNote()); ?></pre>
+
 
 <h1>
     <a href="/performance/detail?id=<?= $this->source->getPerformance()->getId(); ?>">

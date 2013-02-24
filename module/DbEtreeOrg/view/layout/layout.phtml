@@ -208,7 +208,6 @@
                                     <li role="menuitem">
                                         <form class="navbar-search pull-left" id="venue-search" action="/venue/search">
                                             <?= $this->inputVenue(null, 'Search'); ?>
-                                            <input type="submit">
                                         </form>
 
                                         <script>
@@ -386,7 +385,7 @@
                                                     <li role="menuitem">
                                                         <a href="/source/detail?id=<?= $p->getId(); ?>">
                                                             <i class="icon-headphones"></i>
-                                                            <?= $this->escapeHtml($p->getNote()); ?>
+                                                            <?= $this->escapeHtml($p->getName()); ?>
 
                                                             <i class="icon-magic"></i>
                                                             <?php

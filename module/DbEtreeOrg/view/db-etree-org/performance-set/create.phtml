@@ -4,6 +4,7 @@
 </h1>
 
 <h1>
+    <a href="/performance/detail?id=<?= $this->performance->getId(); ?>">
     <i class="icon-magic"></i>
 <?php
 if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
@@ -14,22 +15,24 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
 ?>
 
     <?= $this->escapeHtml($this->performance->getName()); ?>
+    </a>
 </h1>
 
 <h1>
-    <i class="icon-cogs"></i>
-    <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
+    <a href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
+        <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
+    </a>
 </h1>
 
 <h1>
-    <i class="icon-group"></i>
-    <?= $this->escapeHtml($this->performance->getLineup()->getName()); ?>
+    <a href="/venue/detail?id=<?= $this->performance->getVenue()->getId(); ?>">
+
+        <i class="icon-map-marker"></i>
+        <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
+    </a>
 </h1>
 
-<h1>
-    <i class="icon-map-marker"></i>
-    <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
-</h1>
 
 <?= $this->form()->openTag($form); ?>
 

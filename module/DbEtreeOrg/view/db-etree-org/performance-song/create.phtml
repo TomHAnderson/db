@@ -3,6 +3,50 @@
     Add Song to Performance Set
 </h1>
 
+<h1>
+    <a href="/performance/detail?id=<?= $this->performanceSet->getPerformance()->getId(); ?>">
+    <i class="icon-magic"></i>
+<?php
+if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+    echo $this->escapeHtml($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
+} else {
+    echo $this->escapeHtml($this->performanceSet->getPerformance()->getPerformanceDate());
+}
+?>
+
+    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/band/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
+        <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getBand()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/lineup/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
+        <i class="icon-group"></i>
+        <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/venue/detail?id=<?= $this->performanceSet->getPerformance()->getVenue()->getId(); ?>">
+
+        <i class="icon-map-marker"></i>
+        <?= $this->escapeHtml($this->performanceSet->getPerformance()->getVenue()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <a href="/performance-set/detail?id=<?= $this->performanceSet->getId(); ?>">
+        <i class="icon-certificate"></i>
+        <?= $this->escapeHtml($this->performanceSet->getName()); ?>
+    </a>
+</h1>
+
 <?= $this->form()->openTag($form); ?>
 
 <?= $this->inputSong($this->song); ?>
