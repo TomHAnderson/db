@@ -6,7 +6,7 @@
             <?php
             if ($p = $this->findEntity($className, $id)) {
             ?>
-                <?= $p->getName(); ?>
+                <?php if (method_exists($p, 'getName')) echo $this->escapeHtml($p->getName()); ?>
             <?php
             }
             ?>

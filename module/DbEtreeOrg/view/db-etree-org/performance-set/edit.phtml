@@ -95,15 +95,6 @@ if (sizeof($this->performanceSet->getPerformanceSongs())) {
 
 <?= $this->form()->closeTag(); ?>
 
-<ul class="nav nav-pills">
-    <li>
-        <a class="btn-success" href="/performance-song/create?id=<?= $this->performanceSet->getId(); ?>">
-            <i class="icon-music"></i>
-            Add Song to Performace Set
-        </a>
-    </li>
-</ul>
-
 <script>
 require(['jquery-ui.min'], function() {
     $('#sortSongs').sortable({

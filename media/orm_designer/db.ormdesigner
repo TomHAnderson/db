@@ -1,6 +1,18 @@
 <?xml version="1.0"?>
 <orm-designer version="2.1.9.690" name="db" mvc="Without MVC" orm="Doctrine2" uuid="6b0db420-4a65-402e-8377-355db297598b">
   <module name="db.etree.org" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31">
+    <entity name="PerformerLineup" uuid="9e5723de-5fc9-4f80-aa31-5adb62686eb9">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="e0435b08-59f6-4d32-a132-aabe3cf84a71"/>
+      <field name="performer_id" type="integer" required="true" uuid="a7300160-f22e-42e4-9e78-4a475b197013"/>
+      <field name="lineup_id" type="integer" required="true" uuid="d3032403-ae5c-4f34-9ff3-79b6af4ae6d1"/>
+      <field name="note" type="text" uuid="d9541f3e-af3d-43e3-a41f-8297afc35ede"/>
+    </entity>
+    <association from="PerformerLineup" to="Performer" owner-alias="performerLineups" inverse-alias="performer" uuid="f01b5660-96bd-491f-ae39-3298e9980a3e">
+      <association-field from="performer_id" to="id"/>
+    </association>
+    <association from="PerformerLineup" to="Lineup" caption="New association" owner-alias="performerLineups" inverse-alias="lineup" uuid="73a1d1c2-c49d-48da-9cbf-62034634f974">
+      <association-field from="lineup_id" to="id"/>
+    </association>
     <entity name="PerformerAlias" uuid="53964b5e-51b2-4eaa-9c97-15ec096b3bcf">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="65011d1e-ac15-429d-9a6c-2a82b6eca3fd"/>
       <field name="performer_id" type="integer" required="true" uuid="f67c7f64-d575-48cf-9c97-189a593bdf49"/>
@@ -194,26 +206,6 @@
     <association from="Lineup" to="Band" owner-alias="lineups" inverse-alias="band" uuid="5ef988c5-bb5c-4236-800c-804e598f8b3f">
       <association-field from="band_id" to="id"/>
     </association>
-    <entity name="PerformerLineup" uuid="30857bb0-bd39-46bc-8d58-1c88c9c4a5fd">
-      <field name="performer_id" type="integer" required="true" uuid="c09b225d-92fd-470a-81e5-c34da0dab819"/>
-      <field name="lineup_id" type="integer" required="true" uuid="da3c4f3e-474f-48de-a922-915ee74f244d"/>
-    </entity>
-    <many-to-many mn-entity="PerformerLineup" uuid="58c4a316-e685-4af2-a61c-b08f48386d5f">
-      <many-to-many-entity name="Performer" owning-side="true" alias="performers" uuid="7a5097de-df89-4110-a63d-0e29bd2ccecb">
-        <many-to-many-field from="performer_id" to="id"/>
-      </many-to-many-entity>
-      <many-to-many-entity name="Lineup" owning-side="false" alias="lineups" uuid="17927894-b6b8-4862-9ca1-009a513270bb">
-        <many-to-many-field from="lineup_id" to="id"/>
-        <orm-attributes>
-          <attribute name="order-by">
-            <attribute name="order-by-field">
-              <attribute name="direction">ASC</attribute>
-              <attribute name="field">name</attribute>
-            </attribute>
-          </attribute>
-        </orm-attributes>
-      </many-to-many-entity>
-    </many-to-many>
     <entity name="PerformerPerformance" uuid="caa57870-48cb-4347-a53d-465a3ce2d738">
       <field name="performance_id" type="integer" required="true" uuid="7c751e49-9a98-4820-b2b1-ec6040367cee"/>
       <field name="performer_id" type="integer" required="true" uuid="789d223b-69f2-4a40-a9f5-748461672ec7"/>
@@ -375,8 +367,8 @@
     <region caption="Performer" uuid="dc61b3c0-1ff7-468f-9d5e-977b255a4b26">
       <entity-ref name="PerformerAlias"/>
       <entity-ref name="Performer"/>
-      <entity-ref name="PerformerLineup"/>
       <entity-ref name="PerformerPerformance"/>
+      <entity-ref name="PerformerLineup"/>
     </region>
     <orm-attributes>
       <attribute name="namespace">Db\Entity</attribute>
@@ -1056,7 +1048,6 @@
     <association uuid="13c35ea7-aa41-465f-9602-f0b477836b35" splitted="1"/>
     <region uuid="142287a0-efb1-472e-b4a3-32a2b6d9e760" bk-color="15716788" position-x="750" position-y="271" size-x="0" size-x2="344" size-y="0" size-y2="261"/>
     <association uuid="176656c7-fc2b-4a39-ab91-9251119dbd09" splitted="1"/>
-    <many-to-many-association-entity uuid="17927894-b6b8-4862-9ca1-009a513270bb" splitted="1"/>
     <association uuid="17e92ab3-bb74-4c58-8960-5d6ff6ca819e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
     <entity uuid="186e33a8-75f4-40a8-84d0-bafeb79203de" position-x="231" position-y="37" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
     <entity uuid="18cb5d8f-d0ea-49cb-83fa-9127c25c3664" position-x="252" position-y="-133" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
@@ -1074,7 +1065,6 @@
     <inheritance-child uuid="25980790-208e-4c2d-8738-8bc19483c21f" center-position-x="9" center-position-y="0" splitted="1"/>
     <module uuid="2ac9a24f-cee5-4bee-af9a-33f836afb3d1" bk-color="4294638066" position-x="-173" position-y="363" size-x="0" size-x2="100" size-y="0" size-y2="100"/>
     <entity uuid="2ad447a5-1083-42b2-9cbc-57a4fe47bbb3" position-x="57" position-y="33" size-x="0" size-x2="130" size-y="0" size-y2="60"/>
-    <entity uuid="30857bb0-bd39-46bc-8d58-1c88c9c4a5fd" position-x="171" position-y="224" size-x="0" size-x2="113" size-y="0" size-y2="60"/>
     <entity uuid="31544907-76ed-4476-b1e7-a744bf1fe956" position-x="98" position-y="437" size-x="0" size-x2="124" size-y="0" size-y2="157"/>
     <entity uuid="31ef2589-5576-4911-b4da-dc7396b6eedd" position-x="17" position-y="30" size-x="0" size-x2="109" size-y="0" size-y2="59"/>
     <association uuid="32f968c3-fb3a-4781-8b19-c1290400910c" splitted="1"/>
@@ -1127,9 +1117,9 @@
     <entity uuid="6f4aeefc-a0c7-4aa7-8d07-633fd28fc044" position-x="23" position-y="40" size-x="0" size-x2="140" size-y="0" size-y2="101"/>
     <region uuid="6fbe78c9-c9fd-4d6b-a4f9-2dd405e78bad" bk-color="15716788" position-x="412" position-y="270" size-x="-8" size-x2="327" size-y="0" size-y2="288"/>
     <association uuid="718dcb6e-d8eb-4f09-8eed-8ca784b8447d" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <association uuid="73a1d1c2-c49d-48da-9cbf-62034634f974" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <association uuid="779ac5c4-167a-42dc-95ed-eced2629339c" splitted="1"/>
     <entity uuid="789f89eb-cafa-4e95-9845-cea7170627e4" position-x="223" position-y="112" size-x="0" size-x2="123" size-y="0" size-y2="45"/>
-    <many-to-many-association-entity uuid="7a5097de-df89-4110-a63d-0e29bd2ccecb" splitted="1"/>
     <association uuid="7a6fda74-bbbf-4399-877d-16a5ccf3a711" splitted="1"/>
     <association uuid="7b541b84-a6de-43a4-8698-e7b4e9f56212" splitted="1"/>
     <inheritance-child uuid="813221d1-5d55-4e29-bca4-58c2f63e038c" splitted="1"/>
@@ -1150,6 +1140,7 @@
     <module uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31" bk-color="4293359639" position-x="61" position-y="-228" size-x="28" size-x2="1147" size-y="62" size-y2="563"/>
     <module uuid="9c8416db-f2b4-4889-b17c-a29057586381" bk-color="4293359639" position-x="39" position-y="520" size-x="0" size-x2="1013" size-y="176" size-y2="306"/>
     <entity uuid="9e31240b-a34c-4ad8-afaa-bb21e0724e00" position-x="-240" position-y="-40" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
+    <entity uuid="9e5723de-5fc9-4f80-aa31-5adb62686eb9" position-x="134" position-y="216" size-x="0" size-x2="111" size-y="0" size-y2="73"/>
     <entity uuid="9e7fbb88-4860-492a-b01c-7e88c0769300" position-x="-220" position-y="-240" size-x="0" size-x2="117" size-y="0" size-y2="129"/>
     <entity uuid="9eaae197-c75b-45a8-a2fa-445cae818cee" position-x="360" position-y="110" size-x="0" size-x2="97" size-y="0" size-y2="45"/>
     <association uuid="9ebca2ee-ce15-4516-9048-02f6f76d9e62" center-position-x="0" center-position-y="1"/>
@@ -1197,6 +1188,7 @@
     <association uuid="e954599d-410b-47b6-a464-e525ff15a3bc" center-position-x="0" center-position-y="21" splitted="1"/>
     <entity uuid="eb406a7a-3ed3-4e8c-8395-42b2cdf6d7a3" position-x="294" position-y="29" size-x="0" size-x2="126" size-y="0" size-y2="227"/>
     <inheritance-child uuid="ec0d7a7f-94ad-4233-b6d7-0876c4edc98b" center-position-x="0" center-position-y="0" splitted="1"/>
+    <association uuid="f01b5660-96bd-491f-ae39-3298e9980a3e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <association uuid="f2c14db6-2f95-4b88-82e2-08434097ba92" splitted="1"/>
     <entity uuid="f2ef5068-c394-49f2-9274-ea9f9fb38649" position-x="497" position-y="110" size-x="0" size-x2="95" size-y="0" size-y2="45"/>
     <inheritance-child uuid="f307a3e3-0ea4-4c00-a7d9-44933f85e412" splitted="1"/>
