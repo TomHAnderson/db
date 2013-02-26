@@ -65,13 +65,14 @@ class BandController extends AbstractActionController
                 $em->persist($band);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/band/detail?id=' . $band->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        return $viewModel;
     }
 
     public function editAction()

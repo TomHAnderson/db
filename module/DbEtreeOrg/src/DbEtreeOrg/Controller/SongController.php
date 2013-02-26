@@ -69,13 +69,14 @@ class SongController extends AbstractActionController
                 $em->persist($song);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/song/detail?id=' . $song->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        return $viewModel;
     }
 
     public function editAction()

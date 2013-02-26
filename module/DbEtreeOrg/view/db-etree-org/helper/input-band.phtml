@@ -5,7 +5,7 @@ use Zend\Form\Form;
 $id = md5(uniqid());
 $formElement = new Element\Text('band');
 $formElement
-    ->setLabel('<i class="icon-cogs"></i> ' . $this->label)
+    ->setLabel("<a onClick=\"$('<span class=modal></span>').appendTo('body').load('/band/create').modal(); return false;\" href='#' title=\"Create Band\"><i class=\"icon-cogs\"></i> " . $this->label . "</a>")
     ->setAttributes(array(
         'id' => $id,
         'autocomplete' => 'off',

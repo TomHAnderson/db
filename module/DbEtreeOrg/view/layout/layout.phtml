@@ -186,13 +186,14 @@
 
                                     <li class="divider"></li>
 
-                                    <li role="">
-                                        <a class="btn-success" href="/band/create" style="color: white;">
+                                    <li>
+                                        <a class="btn btn-success" href="#" onClick="
+                                            $('<span class=modal></span>').appendTo('body').load('/band/create').modal();
+                                            ">
                                             <i class="icon-cogs"></i>
                                             Create Band
                                         </a>
                                     </li>
-
 
                                 </ul>
                             </li>
@@ -352,8 +353,11 @@
 
                                     <li class="divider"></li>
 
-                                    <li role="">
-                                        <a class="btn-success" id="createSong" href="/song/create" style="color: white;">
+
+                                    <li>
+                                        <a class="btn btn-success" href="#" onClick="
+                                            $('<span class=modal></span>').appendTo('body').load('/song/create').modal();
+                                            ">
                                             <i class="icon-music"></i>
                                             Create Song
                                         </a>
@@ -361,8 +365,6 @@
 
                                 </ul>
                             </li>
-
-
 
                             <li class="dropdown">
                                 <a id="source-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
