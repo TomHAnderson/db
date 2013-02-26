@@ -8,7 +8,7 @@ trait PerformerLineups
 {
     protected $performerLineups;
 
-    public function getShows() {
+    public function getPerformerLineups() {
         if (!$this->performerLineups)
             $this->performerLineups = new ArrayCollection();
 

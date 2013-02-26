@@ -5,6 +5,7 @@ use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Entity\Performance as PerformanceEntity
+    , Db\Entity\PerformerPerformance as PerformerPerformanceEntity
     ;
 
 class PerformanceController extends AbstractActionController
@@ -180,11 +181,12 @@ class PerformanceController extends AbstractActionController
 
         $performance = $em->getRepository('Db\Entity\Performance')->find($id);
         $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+        $performerPerformance = new PerformerPerformanceEntity;
 
+        $performerPerformance->setPerformer($performer);
+        $performerPerformance->setPerformance($performance);
 
-        $performance->getPerformers()->add($performer);
-        $performer->getPerformances()->add($performance);
-
+        $em->persist($performerPerformance);
         $em->flush();
 
         return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $id);

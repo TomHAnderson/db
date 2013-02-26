@@ -91,6 +91,7 @@ return array(
             'performance-song' => 'DbEtreeOrg\Controller\PerformanceSongController',
             'source' => 'DbEtreeOrg\Controller\SourceController',
             'checksum' => 'DbEtreeOrg\Controller\ChecksumController',
+            'performer-lineup' => 'DbEtreeOrg\Controller\PerformerLineupController',
         ),
     ),
 

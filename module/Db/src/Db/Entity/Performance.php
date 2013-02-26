@@ -22,7 +22,7 @@ class Performance extends AbstractEntity
         , \Db\Entity\Field\Venue
         , \Db\Entity\Field\Event
         , \Db\Entity\Field\Mbid
-    ;
+        ;
 
     use \Db\Entity\Relation\Links
         , \Db\Entity\Relation\Comments
@@ -33,6 +33,7 @@ class Performance extends AbstractEntity
         , \Db\Entity\Relation\Performers
         , \Db\Entity\Relation\PerformanceSets
         , \Db\Entity\Relation\Sources
+        , \Db\Entity\Relation\PerformerPerformances
         ;
 
     public function getArrayCopy()

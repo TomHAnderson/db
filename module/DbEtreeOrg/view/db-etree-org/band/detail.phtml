@@ -10,28 +10,20 @@
     </li>
 </ul>
 
-<h1><i class="icon-cogs"></i> <?= $this->escapeHtml($this->band->getName()); ?></h1>
-
-<?php
-if ($this->band->getNote()) {
-?>
-<pre><?= $this->escapeHtml($this->band->getNote()); ?></pre>
-<?php
-}
-?>
-
-<h3>
-<?php
-foreach ($this->band->getLineups() as $lineup) {
-?>
-    <i class="icon-group"></i>
-    <a href="/lineup/detail?id=<?= $lineup->getId(); ?>">
-        <?= $this->escapeHtml($lineup->getName()); ?>
+<h1>
+    <a class="btn btn-default" href="/band/detail?id=<?= $this->band->getId(); ?>">
+        <i class="icon-cogs"></i>
     </a>
-<?php
-}
-?>
-</h3>
+    <?= $this->escapeHtml($this->band->getName()); ?>
+
+    <?php
+    if ($this->band->getNote()) {
+    ?>
+    <pre><?= $this->escapeHtml($this->band->getNote()); ?></pre>
+    <?php
+    }
+    ?>
+</h1>
 
 <?php
 use Gracenote\Service\Gracenote;
@@ -98,6 +90,12 @@ if (sizeof($jambase->event)) {
     <li class="">
         <a href="#performances" data-toggle="tab">
             Performances
+        </a>
+    </li>
+
+    <li class="">
+        <a href="#lineups" data-toggle="tab">
+            Lineups
         </a>
     </li>
 
@@ -227,6 +225,22 @@ if (sizeof($jambase->event)) {
    <div class="tab-pane" id="performances">
         <?= $this->listPerformances($this->band->getPerformances()); ?>
     </div>
+
+    <div class="tab-pane" id="lineups">
+        <h3>
+        <?php
+        foreach ($this->band->getLineups() as $lineup) {
+        ?>
+            <a class="btn btn-info" href="/lineup/detail?id=<?= $lineup->getId(); ?>">
+                <i class="icon-group"></i>
+            </a>
+            <?= $this->escapeHtml($lineup->getName()); ?>
+        <?php
+        }
+        ?>
+        </h3>
+    </div>
+
 
    <div class="tab-pane" id="comments">
         <ul class="nav nav-pills">

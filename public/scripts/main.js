@@ -26,4 +26,26 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBoot
             return $(this).is(":visible");
         }
     });
+
+    $('a i.icon-film').attr('title', 'Performer');
+    $('a i.icon-facetime-video').attr('title', 'Performer Alias');
+    $('a i.icon-magic').attr('title', 'Performance');
+    $('a i.icon-certificate').attr('title', 'Performance Set');
+    $('a i.icon-map-marker').attr('title', 'Venue');
+    $('a i.icon-folder-close').attr('title', 'Venue Group');
+    $('a i.icon-folder-close').attr('title', 'Event');
+    $('a i.icon-folder-close').attr('title', 'Producer');
+    $('a i.icon-group').attr('title', 'Lineup');
+    $('a i.icon-cogs').attr('title', 'Band');
+    $('a i.icon-folder-close').attr('title', 'Band Group');
+    $('a i.icon-folder-close').attr('title', 'Alias');
+    $('a i.icon-headphones').attr('title', 'Source');
+    $('a i.icon-ok-circle').attr('title', 'Checksum');
+    $('a i.icon-bolt').attr('title', 'Performance Song');
+    $('a i.icon-music').attr('title', 'Song');
+    $('a i.icon-folder-close').attr('title', 'Composer');
+    $('a i.icon-folder-close').attr('title', 'Abstract Comment');
+    $('a i.icon-folder-close').attr('title', 'Abstract Link');
+    $('a i.icon-group').attr('title', 'Performer Lineup');
+
 });

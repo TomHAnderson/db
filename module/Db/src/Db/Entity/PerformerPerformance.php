@@ -10,14 +10,11 @@ use Zend\Form\Annotation as Form
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("lineup")
  */
-class PerformerLineup extends AbstractEntity {
+class PerformerPerformance extends AbstractEntity {
     use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Note
         , \Db\Entity\Field\Performer
-        , \Db\Entity\Field\Lineup
-        ;
-
-    use \Db\Entity\Relation\PerformerPerformances
+        , \Db\Entity\Field\Performance
+        , \Db\Entity\Field\Note
         ;
 
    /** Hydrator functions */

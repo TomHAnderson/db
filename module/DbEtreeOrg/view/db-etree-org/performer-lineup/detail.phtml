@@ -1,0 +1,52 @@
+<ul class="nav nav-pills pull-right">
+    <li class="">
+        <a class="btn-warning" href="/lineup/edit?id=<?= $this->lineup->getId(); ?>"><i class="icon-group"></i> Edit Performer Lineup</a>
+    </li>
+
+    <li>
+        <a class="btn-info" href="/audit/entity/<?= $this->lineup->getId(); ?>/Db\Entity\Lineup">
+            <i class="icon-list"></i>
+        </a>
+    </li>
+</ul>
+
+<h1><i class="icon-cogs"></i>
+    <a href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
+        <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
+    </a>
+</h1>
+
+<h1>
+    <i class="icon-group"></i>
+    <?= $this->escapeHtml($this->lineup->getName()); ?>
+</h1>
+
+<?php
+if ($this->lineup->getNote()) { ?>
+    <pre><?= $this->escapeHtml($this->lineup->getNote()); ?></pre>
+<?php
+}
+?>
+
+<?php
+foreach ($this->lineup->getPerformerLineups() as $performerLineup) {
+?>
+    <h3>
+        &nbsp;&nbsp;&nbsp;
+        <a href="/performer-lineup/detail?id=<?= $performerLineup->getId(); ?>">
+            <i class="icon-film"></i>
+            <?= $this->escapeHtml($performerLineup->getPerformer()->getName()); ?>
+        </a>
+    </h3>
+
+    <?php
+    if ($performerLineup->getNote()) {
+    ?>
+        <pre><?= $this->escapeHtml($performerLineup->getNote()); ?></pre>
+    <?php
+    }
+    ?>
+
+<?php
+}
+?>

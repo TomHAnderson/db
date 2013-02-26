@@ -25,6 +25,7 @@
         <join-column name="lineup_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
+    <one-to-many field="performerPerformances" target-entity="Db\Entity\PerformerPerformance" mapped-by="performance"/>
     <one-to-many field="sources" target-entity="Db\Entity\Source" mapped-by="performance"/>
     <one-to-many field="performanceSets" target-entity="Db\Entity\PerformanceSet" mapped-by="performance">
       <order-by>
@@ -36,18 +37,5 @@
     <one-to-many field="wantedBy" target-entity="Db\Entity\Wanted" mapped-by="performance"/>
     <one-to-many field="links" target-entity="Db\Entity\PerformanceLink" mapped-by="performance"/>
     <one-to-many field="comments" target-entity="Db\Entity\PerformanceComment" mapped-by="performance"/>
-    <many-to-many field="performers" target-entity="Db\Entity\Performer" inversed-by="performances">
-      <join-table name="PerformerPerformance">
-        <join-columns>
-          <join-column name="performance_id" referenced-column-name="id" nullable="false"/>
-        </join-columns>
-        <inverse-join-columns>
-          <join-column name="performer_id" referenced-column-name="id" nullable="false"/>
-        </inverse-join-columns>
-      </join-table>
-      <order-by>
-        <order-by-field name="name" direction="ASC"/>
-      </order-by>
-    </many-to-many>
   </entity>
 </doctrine-mapping>
