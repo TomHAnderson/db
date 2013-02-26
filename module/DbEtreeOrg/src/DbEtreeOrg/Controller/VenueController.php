@@ -65,7 +65,7 @@ class VenueController extends AbstractActionController
                 $em->persist($venue);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/venue/detail?id=' . $venue->getId());
+                die(); // all ok
             }
         }
 
@@ -74,9 +74,11 @@ class VenueController extends AbstractActionController
         $country->setValueOptions($countries);
         $country->setValue('US');
 
-        return array(
-            'form' => $form
-        );
+
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        return $viewModel;
     }
 
     public function editAction()

@@ -2,11 +2,11 @@
 
 namespace DbEtreeOrg\Controller;
 use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
     , Db\Entity\Source as SourceEntity
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Filter\Normalize
     , Zend\View\Model\JsonModel
+    , Zend\View\Model\ViewModel
     ;
 
 class SourceController extends AbstractActionController
@@ -71,14 +71,15 @@ class SourceController extends AbstractActionController
                 $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
+                return $this->plugin('redirect')->toUrl('/source/edit?id=' . $source->getId());
             }
         }
 
-        return array(
-            'form' => $form,
-            'performance' => $performance,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('performance', $performance);
+        return $viewModel;
     }
 
     public function editAction()

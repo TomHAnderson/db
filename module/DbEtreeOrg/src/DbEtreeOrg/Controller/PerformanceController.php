@@ -175,6 +175,7 @@ class PerformanceController extends AbstractActionController
     public function addPerformerAction()
     {
         $id = $this->getRequest()->getPost()->get('id');
+        $note = $this->getRequest()->getPost()->get('note');
         $performerId = $this->getRequest()->getPost()->get('performer_id');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
@@ -185,6 +186,7 @@ class PerformanceController extends AbstractActionController
 
         $performerPerformance->setPerformer($performer);
         $performerPerformance->setPerformance($performance);
+        $performerPerformance->setNote($note);
 
         $em->persist($performerPerformance);
         $em->flush();
@@ -202,9 +204,12 @@ class PerformanceController extends AbstractActionController
         $performance = $em->getRepository('Db\Entity\Performance')->find($id);
         $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
 
-        $performance->getPerformers()->removeElement($performer);
-        $performer->getPerformances()->removeElement($performance);
+        $performerPerformance = $em->getRepository('Db\Entity\PerformerPerformance')->findOneBy(array(
+            'performer' => $performer,
+            'performance' => $performance,
+        ));
 
+        $em->remove($performerPerformance);
         $em->flush();
 
         return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $id);

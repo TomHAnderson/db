@@ -6,6 +6,9 @@
       <field name="performer_id" type="integer" required="true" uuid="a7300160-f22e-42e4-9e78-4a475b197013"/>
       <field name="lineup_id" type="integer" required="true" uuid="d3032403-ae5c-4f34-9ff3-79b6af4ae6d1"/>
       <field name="note" type="text" uuid="d9541f3e-af3d-43e3-a41f-8297afc35ede"/>
+      <orm-attributes>
+        <attribute name="repository-class">Db\Repository\PerformerLineup</attribute>
+      </orm-attributes>
     </entity>
     <association from="PerformerLineup" to="Performer" owner-alias="performerLineups" inverse-alias="performer" uuid="f01b5660-96bd-491f-ae39-3298e9980a3e">
       <association-field from="performer_id" to="id"/>
@@ -18,6 +21,9 @@
       <field name="performer_id" type="integer" required="true" uuid="2724b899-0e06-4125-b997-57adf28a2fd6"/>
       <field name="performance_id" type="integer" required="true" uuid="8742d3eb-0f5c-4592-b6fc-3752f90b8aae"/>
       <field name="note" type="text" uuid="a369e378-169b-48f6-92c5-641c1316ce77"/>
+      <orm-attributes>
+        <attribute name="repository-class">Db\Repository\PerformerPerformance</attribute>
+      </orm-attributes>
     </entity>
     <association from="PerformerPerformance" to="Performance" owner-alias="performerPerformances" inverse-alias="performance" uuid="0712f5ef-eca0-460d-bbaa-4c07c2b10314">
       <association-field from="performance_id" to="id"/>

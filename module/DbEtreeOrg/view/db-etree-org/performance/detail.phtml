@@ -1,10 +1,16 @@
 <ul class="nav nav-pills pull-right">
     <li>
-        <a class="btn-success" href="/source/create?id=<?= $this->performance->getId(); ?>">
+        <a class="btn-success" href="#" onClick="
+            $('#createSourceSpan').load('/source/create?id=<?= $this->performance->getId(); ?>');
+            $('#createSource').modal();
+
+            ">
             <i class="icon-headphones"></i>
             Create Source
         </a>
     </li>
+
+    <span class="modal" id="createSourceSpan"></span>
 
     <li>
         <a class="btn-warning" href="/performance/edit?id=<?= $this->performance->getId(); ?>">
@@ -35,16 +41,16 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
     <?= $this->escapeHtml($this->performance->getName()); ?>
 </h1>
 
-    <h1>
-        <a class="btn btn-info" href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
-            <i class="icon-cogs"></i>
-        </a>
+<h1>
+    <a class="btn btn-info" href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
+    </a>
 
-        <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
+    <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
 
-        <a class="btn btn-default" href="#" onClick="$('#performance_drop').toggle();">
-            <i class="icon-double-angle-down"></i>
-        </a>
+    <a class="btn btn-default" href="#" onClick="$('#performance_drop').toggle();">
+        <i class="icon-double-angle-down"></i>
+    </a>
 
 
     <div id="performance_drop" style="display: none;">
@@ -58,7 +64,7 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
         <?php
         foreach ($this->performance->getLineup()->getPerformerLineups() as $performerLineup) {
         ?>
-            <h3>
+            <div class="h3">
                 <a class="btn btn-info" href="/performer-lineup/detail?id=<?= $performerLineup->getId(); ?>">
                     <i class="icon-film"></i>
                 </a>
@@ -71,7 +77,7 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
                 <?php
                 }
                 ?>
-            </h3>
+            </div class="h3">
         <?php
         }
         ?>
@@ -82,7 +88,12 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
             <h2>
                 <i class="icon-group"></i>
                 Guest Performers
-            </h2>
+
+                <ul class="nav nav-pills">
+                    <?= $this->addPerformerToPerformance($performance->getId()); ?>
+                    <?= $this->removePerformerFromPerformance($performance->getId()); ?>
+                </ul>
+</h2>
         <?php
         }
 
@@ -93,6 +104,14 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
                     <i class="icon-film"></i>
                 </a>
                 <?= $this->escapeHtml($performerPerformance->getPerformer()->getName()); ?>
+
+                <?php
+                if ($performerPerformance->getNote()) {
+                ?>
+                    <pre><?= $this->escapeHtml($performerPerformance->getNote()); ?></pre>
+                <?php
+                }
+                ?>
             </h3>
 
         <?php

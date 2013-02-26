@@ -1,44 +1,45 @@
 <li class="">
-    <a onClick="$('#createComment').toggle();"  class="btn-success" href="#"><i class="icon-comment"></i> Create Comment</a>
+    <a onClick="$('#createComment').modal();"  class="btn-success" href="#"><i class="icon-comment"></i> Create Comment</a>
 </li>
 
-<div id="createComment" style="display: none; clear:both;">
-    <div class="row">
 
-        <div class="span1">
-            Rating
-        </div>
+    <div id="createComment" class="modal hide fade">
+    <form method="post" action="/comment/create" id="createCommentForm">
+        <input type="hidden" name="id" value="<?= $id; ?>">
+        <input type="hidden" name="entityName" value="<?= $entityName; ?>">
+        <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
 
-        <div class="span11">
-
-            <span class="rating">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </span>
-        </div>
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Create Comment</h3>
     </div>
+    <div class="modal-body">
 
-    <div class="row">
-        <div class="span1">
-            Comment
-        </div>
+        <label for="rating">Rating</label>
+        <span class="rating">
+            <span class="star"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+        </span>
 
-        <div class="span11">
-            <form method="post" action="/comment/create">
-                <input type="hidden" name="id" value="<?= $id; ?>">
-                <input type="hidden" name="entityName" value="<?= $entityName; ?>">
-                <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
-                <textarea name="note"></textarea>
-                <br>
-                <button class="btn btn-info" type="send">
-                    <i class="icon-save"></i>
-                    Submit
-                </button>
-            </form>
-        </div>
+        <label for="note">Note</label>
+        <textarea name="note"></textarea>
+
 
     </div>
+    <div class="modal-footer">
+
+    <a href="#" onClick="$('#createCommentForm').submit();"  class="btn btn-success">
+        <i class="icon-comment"></i>
+        Save Comment
+    </a>
+    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+        Cancel
+    </button>
+    </div>
+    </form>
 </div>
+
+
