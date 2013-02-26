@@ -1,18 +1,58 @@
-<h1>Create Performer</h1>
+<?php
+$id = md5(uniqid());
+?>
 
 <?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-film"></i>
+            Create Performer
+        </h1>
+    </div>
 
-<?= $this->formRow($this->form->get('name')); ?>
+    <div class="modal-body">
 
-<?= $this->formRow($this->form->get('mbid')); ?>
+        <?= $this->formRow($this->form->get('name')); ?>
 
-<?= $this->formRow($this->form->get('note')); ?>
+        <?= $this->formRow($this->form->get('mbid')); ?>
 
-<br>
+        <?= $this->formRow($this->form->get('note')); ?>
 
-<button type="send" class="btn btn-success">
-    <i class="icon-film"></i>
-    Create Performer
-</button>
+    </div>
+
+    <div class="modal-footer">
+        <button type="send" class="btn btn-success">
+            <i class="icon-film"></i>
+            Create Performer
+        </button>
+
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
+    </div>
 
 <?= $this->form()->closeTag(); ?>
+
+<script>
+$(function() {
+
+    $('form#performer').attr('id', 'performer<?= $id; ?>');
+    $('form#performer<?= $id; ?>').on('submit', function(event) {
+
+        $.ajax({
+            url: '/performer/create',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                $(this.span).modal('hide');
+                if (data) $('<span class=modal></span>').appendTo('body').html(data).modal();
+            }
+        });
+
+        return false;
+    });
+});
+
+</script>

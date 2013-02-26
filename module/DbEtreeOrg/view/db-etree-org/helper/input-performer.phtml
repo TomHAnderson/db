@@ -5,7 +5,7 @@ use Zend\Form\Form;
 $id = md5(uniqid());
 $formElement = new Element\Text('performer');
 $formElement
-    ->setLabel('<i class="icon-film"></i> ' . $this->label)
+    ->setLabel("<a onClick=\"$('<span class=modal></span>').appendTo('body').load('/performer/create').modal(); return false;\" href='#' title=\"Create Performer\"><i class=\"icon-film\"></i> " . $this->label . "</a>")
     ->setAttributes(array(
         'id' => 'data' . $id,
         'autocomplete' => 'off',
@@ -58,7 +58,6 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
     var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
 
         $.get('/performer/search-json', { q: query }, function (data) {
-console.log(data);
             data<?= $id; ?> = {};
             dataLabels<?= $id; ?> = [];
 

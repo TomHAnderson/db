@@ -106,8 +106,10 @@
 
                                     <li class="divider"></li>
 
-                                    <li role="">
-                                        <a class="btn-success" href="/performer/create" style="color: white;">
+                                    <li>
+                                        <a class="btn btn-success" href="#" onClick="
+                                            $('<span class=modal></span>').appendTo('body').load('/performer/create').modal();
+                                            ">
                                             <i class="icon-film"></i>
                                             Create Performer
                                         </a>
