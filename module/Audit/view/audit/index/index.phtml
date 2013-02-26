@@ -100,17 +100,31 @@
                                         );?>" class="<?= $buttonClass; ?> btn">
 
                                         <?php
-                                        strtok($ce->getClassName(), '\\');
-                                        strtok('\\');
-                                        $entityName = strtok('\\');
-                                        preg_match_all('/((?:^|[A-Z])[a-z]+)/', $entityName, $matches);
-                                        print_r(implode(' ', $matches[1]));
-
+                                        if ($p = $this->findEntity($ce->getClassName(), $id)) {
                                         ?>
+                                            <?php
+                                            if (method_exists($p, 'getName') and $p->getName()) {
+                                                echo $p->getName();
+                                            } else {
+                                                strtok($ce->getClassName(), '\\');
+                                                strtok('\\');
+                                                $entityName = strtok('\\');
+                                                preg_match_all('/((?:^|[A-Z])[a-z]+)/', $entityName, $matches);
+                                                print_r(implode(' ', $matches[1]));
+                                            }
+                                            ?>
+                                        <?php
+                                        } else {
 
+                                                strtok($ce->getClassName(), '\\');
+                                                strtok('\\');
+                                                $entityName = strtok('\\');
+                                                preg_match_all('/((?:^|[A-Z])[a-z]+)/', $entityName, $matches);
+                                                print_r(implode(' ', $matches[1]));
+                                        }
+                                        ?>
                                     </a>
-
-                        <?php
+                            <?php
                         $i++;
                         }
                         ?>

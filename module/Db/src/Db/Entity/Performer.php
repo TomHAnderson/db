@@ -24,6 +24,8 @@ class Performer extends AbstractEntity {
         , \Db\Entity\Relation\Performances
         , \Db\Entity\Relation\Links
         , \Db\Entity\Relation\Comments
+        , \Db\Entity\Relation\PerformerLineups
+        , \Db\Entity\Relation\PerformerPerformances
         ;
 
    /** Hydrator functions */

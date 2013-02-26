@@ -44,7 +44,7 @@ if ($this->performer->getNote()) {
 foreach ($this->performer->getAliases() as $alias) {
 ?>
         <i class="icon-facetime-video"></i>
-        <a href="/performerAlias/detail?id=<?= $alias->getId(); ?>">
+        <a href="/performer-alias/detail?id=<?= $alias->getId(); ?>">
             <?= $this->escapeHtml($alias->getName()); ?>
         </a>
 <?php

@@ -7,7 +7,10 @@
     </li>
 
     <li>
-        <a class="btn-warning" href="/performance/edit?id=<?= $this->performance->getId(); ?>"><i class="icon-magic"></i> Edit Performance</a>
+        <a class="btn-warning" href="/performance/edit?id=<?= $this->performance->getId(); ?>">
+            <i class="icon-magic"></i>
+            Edit Performance
+        </a>
     </li>
 
     <li>
@@ -18,7 +21,9 @@
 </ul>
 
 <h1>
-    <i class="icon-magic"></i>
+    <a href="/performance/detail?id=<?= $this->performance->getId(); ?>" class="btn btn-default">
+        <i class="icon-magic"></i>
+    </a>
 <?php
 if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
     echo $this->escapeHtml($this->performance->getPerformanceDateAt()->format('F d, Y'));
@@ -30,67 +35,84 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
     <?= $this->escapeHtml($this->performance->getName()); ?>
 </h1>
 
-<h1>
-    <a href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
-        <i class="icon-cogs"></i>
+    <h1>
+        <a class="btn btn-info" href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+            <i class="icon-cogs"></i>
+        </a>
+
         <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
-    </a>
+
+        <a class="btn btn-default" href="#" onClick="$('#performance_drop').toggle();">
+            <i class="icon-double-angle-down"></i>
+        </a>
+
+
+    <div id="performance_drop" style="display: none;">
+
+        <h2>
+            <a class="btn btn-info" href="/lineup/detail?id=<?= $this->performance->getLineup()->getId(); ?>">
+                <i class="icon-group"></i>
+            </a>
+            <?= $this->escapeHtml($this->performance->getLineup()->getName()); ?>
+
+        <?php
+        foreach ($this->performance->getLineup()->getPerformerLineups() as $performerLineup) {
+        ?>
+            <h3>
+                <a class="btn btn-info" href="/performer-lineup/detail?id=<?= $performerLineup->getId(); ?>">
+                    <i class="icon-film"></i>
+                </a>
+                <?= $this->escapeHtml($performerLineup->getPerformer()->getName()); ?>
+
+                <?php
+                if ($performerLineup->getNote()) {
+                ?>
+                    <pre><?= $this->escapeHtml($performerLineup->getNote()); ?></pre>
+                <?php
+                }
+                ?>
+            </h3>
+        <?php
+        }
+        ?>
+
+        <?php
+        if (sizeof($this->performance->getPerformerPerformances())) {
+        ?>
+            <h2>
+                <i class="icon-group"></i>
+                Guest Performers
+            </h2>
+        <?php
+        }
+
+        foreach ($this->performance->getPerformerPerformances() as $performerPerformance) {
+        ?>
+            <h3>
+                <a class="btn btn-info" href="/performer/detail?id=<?= $performerPerformance->getPerformer()->getId(); ?>">
+                    <i class="icon-film"></i>
+                </a>
+                <?= $this->escapeHtml($performerPerformance->getPerformer()->getName()); ?>
+            </h3>
+
+        <?php
+        }
+        ?>
+
+        </h2>
+
+    </div>
+
 </h1>
+
 
 <h1>
-    <a href="/venue/detail?id=<?= $this->performance->getVenue()->getId(); ?>">
-
+    <a class="btn btn-info" href="/venue/detail?id=<?= $this->performance->getVenue()->getId(); ?>">
         <i class="icon-map-marker"></i>
-        <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
     </a>
+
+    <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
 </h1>
-
-<h3>
-    <a href="/lineup/detail?id=<?= $this->performance->getLineup()->getId(); ?>">
-        <i class="icon-group"></i>
-        <?= $this->escapeHtml($this->performance->getLineup()->getName()); ?>
-    </a>
-</h3>
-
-<?php
-foreach ($this->performance->getLineup()->getPerformers() as $performer) {
-?>
-    <h3>
-        &nbsp;&nbsp;&nbsp;
-        <a href="/performer/detail?id=<?= $performer->getId(); ?>">
-            <i class="icon-film"></i>
-            <?= $this->escapeHtml($performer->getName()); ?>
-        </a>
-    </h3>
-
-<?php
-}
-?>
-
-<?php
-if (sizeof($this->performance->getPerformers())) {
-?>
-    <h3>
-        <i class="icon-group"></i>
-        Guest Performers
-    </h3>
-<?php
-}
-
-foreach ($this->performance->getPerformers() as $performer) {
-?>
-    <h3>
-        &nbsp;&nbsp;&nbsp;
-        <a href="/performer/detail?id=<?= $performer->getId(); ?>">
-            <i class="icon-film"></i>
-            <?= $this->escapeHtml($performer->getName()); ?>
-        </a>
-    </h3>
-
-<?php
-}
-?>
-
 
 <?php
 if ($this->performance->getNote()) { ?>

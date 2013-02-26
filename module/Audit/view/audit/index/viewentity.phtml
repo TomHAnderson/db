@@ -1,6 +1,17 @@
 <ul class="nav nav-pills pull-right">
     <li class="">
-        <a class="btn-info" href="/<?= $this->routeMap[$className]; ?>/detail?id=<?= $this->id; ?>"><i class="<?= $this->iconMap[$className]; ?>"></i></a>
+        <a class="btn-info" href="/<?= $this->routeMap[$className]; ?>/detail?id=<?= $this->id; ?>">
+            <i class="<?= $this->iconMap[$className]; ?>"></i>
+
+            <?php
+            if ($p = $this->findEntity($className, $id)) {
+            ?>
+                <?php if (method_exists($p, 'getName')) echo $this->escapeHtml($p->getName()); ?>
+            <?php
+            }
+            ?>
+
+        </a>
     </li>
 </ul>
 
@@ -11,8 +22,10 @@
     <?php
         strtok($className, '\\');
         strtok('\\');
-
-        echo $this->escapeHtml(strtok('\\')); ?> # <?php  echo $this->escapeHtml($id); ?>
+        $entityName = strtok('\\');
+        preg_match_all('/((?:^|[A-Z])[a-z]+)/', $entityName, $matches);
+        print_r(implode(' ', $matches[1]));
+    ?>
 </h1>
 
 <form action="<?=

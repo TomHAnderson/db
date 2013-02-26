@@ -14,33 +14,48 @@
     </li>
 </ul>
 
-<h1><i class="icon-cogs"></i>
-    <a href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
-        <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
+<h1>
+    <a class="btn btn-info" href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
     </a>
+    <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
 </h1>
 
 <h1>
-    <i class="icon-group"></i>
+    <a class="btn btn-default" href="/lineup/detail?id=<?= $this->lineup->getId(); ?>">
+        <i class="icon-group"></i>
+    </a>
     <?= $this->escapeHtml($this->lineup->getName()); ?>
+
+    <?php
+    if ($this->lineup->getNote()) { ?>
+        <pre><?= $this->escapeHtml($this->lineup->getNote()); ?></pre>
+    <?php
+    }
+    ?>
 </h1>
 
-<?php
-if ($this->lineup->getNote()) { ?>
-    <pre><?= $this->escapeHtml($this->lineup->getNote()); ?></pre>
-<?php
-}
-?>
 
 <?php
-foreach ($this->lineup->getPerformers() as $performer) {
+foreach ($this->lineup->getPerformerLineups() as $performerLineup) {
 ?>
-     <h3>
-        <i class="icon-film"></i>
-        <a href="/performer/detail?id=<?= $performer->getId(); ?>">
-            <?= $this->escapeHtml($performer->getName()); ?>
+    <h3>
+        <a class="btn btn-info" href="/performer-lineup/detail?id=<?= $performerLineup->getId(); ?>">
+            <i class="icon-film"></i>
         </a>
+
+        <?= $this->escapeHtml($performerLineup->getPerformer()->getName()); ?>
+
+    <?php
+    if ($performerLineup->getNote()) {
+    ?>
+        <pre><?= $this->escapeHtml($performerLineup->getNote()); ?></pre>
+    <?php
+    }
+    ?>
+
     </h3>
+
 <?php
 }
 ?>

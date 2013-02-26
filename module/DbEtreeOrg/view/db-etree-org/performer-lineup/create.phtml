@@ -1,0 +1,22 @@
+<h1><i class="icon-group"></i> Create Lineup</h1>
+
+<h2><i class="icon-cogs"></i> <?= $this->escapeHtml($this->band->getName()); ?></h2>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($this->form->get('name')); ?>
+
+<?= $this->formRow($this->form->get('note')); ?>
+
+<br>
+
+<button type="send" class="btn btn-success">
+    <i class="icon-group"></i>
+    Create Lineup
+</button>
+
+<a class="btn btn-link" href="/band/detail?id=<?= $this->band->getId(); ?>">
+    cancel
+</a>
+
+<?= $this->form()->closeTag(); ?>

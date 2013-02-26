@@ -21,6 +21,8 @@ return array(
             'Db\Entity\Composer',
             'Db\Entity\AbstractComment',
             'Db\Entity\AbstractLink',
+            'Db\Entity\PerformerLineup',
+            'Db\Entity\PerformerPerformance',
         ),
         'ui' => array(
             'datetime.format' => 'r',

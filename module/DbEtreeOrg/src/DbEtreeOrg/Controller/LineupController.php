@@ -5,6 +5,7 @@ use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Entity\Lineup as LineupEntity
+    , Db\Entity\PerformerLineup as PerformerLineupEntity
     ;
 
 class LineupController extends AbstractActionController
@@ -144,6 +145,7 @@ class LineupController extends AbstractActionController
     public function addPerformerAction()
     {
         $id = $this->getRequest()->getPost()->get('id');
+        $note = $this->getRequest()->getPost()->get('note');
         $performerId = $this->getRequest()->getPost()->get('performer_id');
         $returnUrl = $this->getRequest()->getPost()->get('returnUrl');
 
@@ -151,11 +153,12 @@ class LineupController extends AbstractActionController
 
         $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
         $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+        $performerLineup = new PerformerLineupEntity;
+        $performerLineup->setLineup($lineup);
+        $performerLineup->setPerformer($performer);
+        $performerLineup->setNote($note);
 
-
-        $lineup->getPerformers()->add($performer);
-        $performer->getLineups()->add($lineup);
-
+        $em->persist($performerLineup);
         $em->flush();
 
         return $this->plugin('redirect')->toUrl($returnUrl);
