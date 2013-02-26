@@ -1,13 +1,32 @@
-    <?= $this->form()->openTag($form); ?>
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>
-        <i class="icon-headphones"></i>
-        Create Source
-    </h3>
-    </div>
-    <div class="modal-body">
+<h1>
+    <i class="icon-headphones"></i>
+    Create Source
+</h1>
 
+<h1>
+    <a class="btn btn-info" href="/performance/detail?id=<?= $this->performance->getId(); ?>">
+        <i class="icon-magic"></i>
+    </a>
+<?php
+if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+    echo $this->escapeHtml($this->performance->getPerformanceDateAt()->format('F d, Y'));
+} else {
+    echo $this->escapeHtml($this->performance->getPerformanceDate());
+}
+?>
+
+    <?= $this->escapeHtml($this->performance->getName()); ?>
+</h1>
+
+<h1>
+    <a class="btn btn-info" href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+        <i class="icon-cogs"></i>
+    </a>
+
+    <?= $this->escapeHtml($this->performance->getLineup()->getBand()->getName()); ?>
+</h1>
+
+<?= $this->form()->openTag($form); ?>
 
 <?= $this->formRow($this->form->get('name')); ?>
 
@@ -27,20 +46,15 @@
 
 <?= $this->formRow($this->form->get('circulatedAt')); ?>
 
+<br>
 
+<button type="send" class="btn btn-success">
+    <i class="icon-headphones"></i>
+    Create Source
+</button>
 
-    </div>
-    <div class="modal-footer">
+<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+    Cancel
+</button>
 
-        <button type="send" class="btn btn-success">
-            <i class="icon-headphones"></i>
-            Create Source
-        </button>
-
-        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
-            Cancel
-        </button>
-
-
-    </div>
-    <?= $this->form()->closeTag(); ?>
+<?= $this->form()->closeTag(); ?>

@@ -50,16 +50,6 @@ $(function() {
 
     $('form#venue').attr('id', 'venue<?= $id; ?>');
     $('form#venue<?= $id; ?>').on('submit', function(event) {
-
-        $(this).find('button[type="send"]').removeClass('btn-success');
-        $(this).find('button[type="send"]').attr('disabled', 'disabled');
-        $(this).find('button[type="send"] i')
-            .removeClass('icon-map-marker')
-            .addClass('icon-spinner')
-            .addClass('icon-spin');
-
-
-
         $.ajax({
             url: '/venue/create',
             type: $(this).attr('method'),

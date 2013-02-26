@@ -75,11 +75,10 @@ class SourceController extends AbstractActionController
             }
         }
 
-        $viewModel = new ViewModel();
-        $viewModel->setTerminal(true);
-        $viewModel->setVariable('form', $form);
-        $viewModel->setVariable('performance', $performance);
-        return $viewModel;
+        return array(
+            'form' => $form,
+            'performance' => $performance,
+        );
     }
 
     public function editAction()
