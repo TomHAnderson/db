@@ -10,8 +10,20 @@
     <association from="PerformerLineup" to="Performer" owner-alias="performerLineups" inverse-alias="performer" uuid="f01b5660-96bd-491f-ae39-3298e9980a3e">
       <association-field from="performer_id" to="id"/>
     </association>
-    <association from="PerformerLineup" to="Lineup" caption="New association" owner-alias="performerLineups" inverse-alias="lineup" uuid="73a1d1c2-c49d-48da-9cbf-62034634f974">
+    <association from="PerformerLineup" to="Lineup" owner-alias="performerLineups" inverse-alias="lineup" uuid="73a1d1c2-c49d-48da-9cbf-62034634f974">
       <association-field from="lineup_id" to="id"/>
+    </association>
+    <entity name="PerformerPerformance" uuid="1a1ee0b8-55ba-4abf-9108-85dcdcdf75d0">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="8072a342-fcc8-467d-8cea-0f74565d5872"/>
+      <field name="performer_id" type="integer" required="true" uuid="2724b899-0e06-4125-b997-57adf28a2fd6"/>
+      <field name="performance_id" type="integer" required="true" uuid="8742d3eb-0f5c-4592-b6fc-3752f90b8aae"/>
+      <field name="note" type="text" uuid="a369e378-169b-48f6-92c5-641c1316ce77"/>
+    </entity>
+    <association from="PerformerPerformance" to="Performance" owner-alias="performerPerformances" inverse-alias="performance" uuid="0712f5ef-eca0-460d-bbaa-4c07c2b10314">
+      <association-field from="performance_id" to="id"/>
+    </association>
+    <association from="PerformerPerformance" to="Performer" owner-alias="performerPerformances" inverse-alias="performer" uuid="3acc122b-66d1-4224-b360-5fb7781bbbd9">
+      <association-field from="performer_id" to="id"/>
     </association>
     <entity name="PerformerAlias" uuid="53964b5e-51b2-4eaa-9c97-15ec096b3bcf">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="65011d1e-ac15-429d-9a6c-2a82b6eca3fd"/>
@@ -206,26 +218,6 @@
     <association from="Lineup" to="Band" owner-alias="lineups" inverse-alias="band" uuid="5ef988c5-bb5c-4236-800c-804e598f8b3f">
       <association-field from="band_id" to="id"/>
     </association>
-    <entity name="PerformerPerformance" uuid="caa57870-48cb-4347-a53d-465a3ce2d738">
-      <field name="performance_id" type="integer" required="true" uuid="7c751e49-9a98-4820-b2b1-ec6040367cee"/>
-      <field name="performer_id" type="integer" required="true" uuid="789d223b-69f2-4a40-a9f5-748461672ec7"/>
-    </entity>
-    <many-to-many mn-entity="PerformerPerformance" uuid="faf761e8-03bd-401a-b157-6fd9a1da50c9">
-      <many-to-many-entity name="Performance" owning-side="true" alias="performances" uuid="1cc52f1a-06ea-43b4-b7e8-3a34ee00c33a">
-        <many-to-many-field from="performance_id" to="id"/>
-        <orm-attributes>
-          <attribute name="order-by">
-            <attribute name="order-by-field">
-              <attribute name="direction">ASC</attribute>
-              <attribute name="field">name</attribute>
-            </attribute>
-          </attribute>
-        </orm-attributes>
-      </many-to-many-entity>
-      <many-to-many-entity name="Performer" owning-side="false" alias="performers" uuid="1dd4c473-d688-4f81-bb04-768a114b03cd">
-        <many-to-many-field from="performer_id" to="id"/>
-      </many-to-many-entity>
-    </many-to-many>
     <entity name="Song" uuid="6903266c-5c12-423d-8145-e32fe38258e9">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="3be7d9be-e963-4755-904f-13d9f08aeb0f"/>
       <field name="band_id" type="integer" uuid="58b228e9-ca10-467e-9875-6bb32a63016b"/>
@@ -367,18 +359,18 @@
     <region caption="Performer" uuid="dc61b3c0-1ff7-468f-9d5e-977b255a4b26">
       <entity-ref name="PerformerAlias"/>
       <entity-ref name="Performer"/>
-      <entity-ref name="PerformerPerformance"/>
       <entity-ref name="PerformerLineup"/>
+      <entity-ref name="PerformerPerformance"/>
     </region>
     <orm-attributes>
       <attribute name="namespace">Db\Entity</attribute>
     </orm-attributes>
   </module>
-  <module name="etreedb.org" import-format="Doctrine2Xml" import-path="../../../newdb/media/orm_designer/../../module/Db/config/xml" uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda">
+  <module name="etreedb.org" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda">
     <entity name="Attendance" uuid="4e1e7abf-b0e7-43cd-b51f-5e42b193daa5">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="1012efdc-5750-4450-b99c-619b614b74e5"/>
       <field name="user_id" type="integer" required="true" uuid="b615dea2-61e1-485e-8011-9aa98946ea83"/>
-      <field name="show_id" type="integer" required="true" uuid="8a64869b-dc07-45e4-8d15-9cdd0b241277"/>
+      <field name="performance_id" type="integer" required="true" uuid="8a64869b-dc07-45e4-8d15-9cdd0b241277"/>
       <field name="note" type="text" uuid="2471b963-12d1-426a-9bec-d4d27a7f99ac"/>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\Attendance</attribute>
@@ -388,7 +380,7 @@
       <association-field from="user_id" to="id"/>
     </association>
     <association from="Attendance" to="Performance" owner-alias="attendees" inverse-alias="performance" uuid="e8eb80a6-0776-4176-84d7-a6a43f0b40d9">
-      <association-field from="show_id" to="id"/>
+      <association-field from="performance_id" to="id"/>
     </association>
     <entity name="Friends" uuid="2ad447a5-1083-42b2-9cbc-57a4fe47bbb3">
       <field name="source_User_id" type="integer" required="true" uuid="a62a3b78-1b69-48e1-ba03-a7102f4017f3"/>
@@ -1038,6 +1030,7 @@
     <entity uuid="0422e7df-736b-47b5-86f2-644bad5a59b3" position-x="230" position-y="36" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
     <inheritance-child uuid="04b92fbc-2839-4a2d-9388-61e167f9ef55" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
     <association uuid="06c521a4-df8e-438a-b214-0672351a82b6" center-position-x="0" center-position-y="0"/>
+    <association uuid="0712f5ef-eca0-460d-bbaa-4c07c2b10314" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
     <association uuid="0733e495-e674-4cac-a3cb-07346e488ace" splitted="1"/>
     <entity uuid="077f4a47-5b70-46f5-bb24-53b355f15ec8" position-x="352" position-y="39" size-x="0" size-x2="112" size-y="0" size-y2="45"/>
     <association uuid="099ca87f-13e2-48f1-9944-eaf7bb47e3df" splitted="1"/>
@@ -1053,9 +1046,9 @@
     <entity uuid="18cb5d8f-d0ea-49cb-83fa-9127c25c3664" position-x="252" position-y="-133" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
     <inheritance-child uuid="193b0eef-8bf2-41c1-beb0-38d118061091" splitted="1"/>
     <entity uuid="196b1120-9de8-406b-a18b-209b92301d05" position-x="795" position-y="41" size-x="0" size-x2="100" size-y="0" size-y2="45"/>
+    <entity uuid="1a1ee0b8-55ba-4abf-9108-85dcdcdf75d0" position-x="158" position-y="27" size-x="0" size-x2="122" size-y="0" size-y2="73"/>
     <association uuid="1bcf942f-4c7d-4a6b-82a4-a6c6f7c8e947" splitted="1"/>
     <association uuid="1c6fa38e-ed34-4102-8971-550fbbb05b0e" splitted="1"/>
-    <many-to-many-association-entity uuid="1cc52f1a-06ea-43b4-b7e8-3a34ee00c33a" splitted="1"/>
     <association uuid="1e369c67-c630-44e3-9ac8-68ee1278e073" splitted="1"/>
     <entity uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b" position-x="-15" position-y="4" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
     <association uuid="209fd702-6115-499b-8df3-2184996bcb67" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
@@ -1070,6 +1063,7 @@
     <association uuid="32f968c3-fb3a-4781-8b19-c1290400910c" splitted="1"/>
     <association uuid="35af89d5-6581-406e-bb52-6be0aa4fbfb2" splitted="1"/>
     <inheritance-child uuid="36dc3ca6-70d5-4c6e-ae7f-ef69436c924a" center-position-x="14" center-position-y="0" splitted="1"/>
+    <association uuid="3acc122b-66d1-4224-b360-5fb7781bbbd9" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <association uuid="3bd1e05b-fdb0-4821-aa2c-78c06d08efe3" splitted="1"/>
     <region uuid="3be2c6d7-da43-4462-a925-fa5e605f4bc5" bk-color="4293906868" position-x="27" position-y="-142" size-x="0" size-x2="966" size-y="0" size-y2="195"/>
     <module uuid="3cbdb9d3-941f-4690-8568-c9258ce21152" bk-color="4293359639" position-x="936" position-y="345" size-x="-142" size-x2="1025" size-y="0" size-y2="672"/>
@@ -1084,14 +1078,14 @@
     <entity uuid="4bf4c0aa-d36f-428e-a616-5acc5a8aa717" position-x="234" position-y="36" size-x="0" size-x2="125" size-y="0" size-y2="115"/>
     <entity uuid="4cae9159-3783-4e82-9afc-b16f6f6a826b" position-x="36" position-y="24" size-x="0" size-x2="105" size-y="0" size-y2="115"/>
     <association uuid="4d1e8140-45e6-402d-9fe5-70a9b1700d6b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-20"/>
-    <entity uuid="4e1e7abf-b0e7-43cd-b51f-5e42b193daa5" position-x="234" position-y="168" size-x="0" size-x2="99" size-y="0" size-y2="73"/>
+    <entity uuid="4e1e7abf-b0e7-43cd-b51f-5e42b193daa5" position-x="236" position-y="169" size-x="0" size-x2="93" size-y="0" size-y2="73"/>
     <entity uuid="4e5bd64e-a59a-41b8-90bb-fcbd5e4d7f6f" position-x="30" position-y="106" size-x="0" size-x2="117" size-y="0" size-y2="59"/>
     <entity uuid="4fa7e45c-16f5-488d-b5ee-36000f375c4e" position-x="748" position-y="41" size-x="0" size-x2="100" size-y="0" size-y2="45"/>
-    <module uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda" bk-color="15169559" position-x="1193" position-y="-282" size-x="-31" size-x2="850" size-y="5" size-y2="607"/>
+    <module uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda" bk-color="4293359639" position-x="1193" position-y="-282" size-x="-31" size-x2="850" size-y="5" size-y2="607"/>
     <association uuid="50a15d73-6118-43c0-907f-34a44b69aa8a" splitted="1"/>
     <region uuid="52ac6c26-25b6-4d3b-9572-bd8e75c16ab8" bk-color="15716788" position-x="480" position-y="24" size-x="31" size-x2="356" size-y="0" size-y2="545"/>
     <inheritance-child uuid="5368bcd9-44dc-4bcd-8913-efde725fe9b7" center-position-x="2" center-position-y="10" splitted="1"/>
-    <entity uuid="53964b5e-51b2-4eaa-9c97-15ec096b3bcf" position-x="242" position-y="94" size-x="0" size-x2="117" size-y="0" size-y2="87"/>
+    <entity uuid="53964b5e-51b2-4eaa-9c97-15ec096b3bcf" position-x="250" position-y="113" size-x="0" size-x2="117" size-y="0" size-y2="87"/>
     <entity uuid="553871ee-0f25-4f9f-b05b-cb7c4bb9c8a2" position-x="200" position-y="173" size-x="0" size-x2="111" size-y="0" size-y2="60"/>
     <region uuid="58593bcd-f57a-4938-90e4-a3ea6cbdc2bc" bk-color="15716788" position-x="166" position-y="32" size-x="0" size-x2="671" size-y="10" size-y2="627"/>
     <entity uuid="5960a44a-781b-42e4-be06-60a106c0abf9" position-x="354" position-y="37" size-x="0" size-x2="112" size-y="0" size-y2="45"/>
@@ -1117,7 +1111,7 @@
     <entity uuid="6f4aeefc-a0c7-4aa7-8d07-633fd28fc044" position-x="23" position-y="40" size-x="0" size-x2="140" size-y="0" size-y2="101"/>
     <region uuid="6fbe78c9-c9fd-4d6b-a4f9-2dd405e78bad" bk-color="15716788" position-x="412" position-y="270" size-x="-8" size-x2="327" size-y="0" size-y2="288"/>
     <association uuid="718dcb6e-d8eb-4f09-8eed-8ca784b8447d" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
-    <association uuid="73a1d1c2-c49d-48da-9cbf-62034634f974" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <association uuid="73a1d1c2-c49d-48da-9cbf-62034634f974" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
     <association uuid="779ac5c4-167a-42dc-95ed-eced2629339c" splitted="1"/>
     <entity uuid="789f89eb-cafa-4e95-9845-cea7170627e4" position-x="223" position-y="112" size-x="0" size-x2="123" size-y="0" size-y2="45"/>
     <association uuid="7a6fda74-bbbf-4399-877d-16a5ccf3a711" splitted="1"/>
@@ -1137,10 +1131,10 @@
     <entity uuid="93d9b80b-1d07-43eb-89a4-37a87bffdcc7" position-x="28" position-y="303" size-x="0" size-x2="83" size-y="0" size-y2="87"/>
     <region uuid="96f356b4-b805-4ea4-8d92-055900e0e964" bk-color="15716788" position-x="1006" position-y="211" size-x="356" size-x2="-94" size-y="251" size-y2="48"/>
     <entity uuid="99fcccf0-d144-4dd1-bbd2-f0aca7e96f8b" position-x="35" position-y="133" size-x="0" size-x2="77" size-y="0" size-y2="59"/>
-    <module uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31" bk-color="4293359639" position-x="61" position-y="-228" size-x="28" size-x2="1147" size-y="62" size-y2="563"/>
+    <module uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31" bk-color="4293359639" position-x="61" position-y="-228" size-x="28" size-x2="1149" size-y="62" size-y2="563"/>
     <module uuid="9c8416db-f2b4-4889-b17c-a29057586381" bk-color="4293359639" position-x="39" position-y="520" size-x="0" size-x2="1013" size-y="176" size-y2="306"/>
     <entity uuid="9e31240b-a34c-4ad8-afaa-bb21e0724e00" position-x="-240" position-y="-40" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
-    <entity uuid="9e5723de-5fc9-4f80-aa31-5adb62686eb9" position-x="134" position-y="216" size-x="0" size-x2="111" size-y="0" size-y2="73"/>
+    <entity uuid="9e5723de-5fc9-4f80-aa31-5adb62686eb9" position-x="163" position-y="218" size-x="0" size-x2="111" size-y="0" size-y2="73"/>
     <entity uuid="9e7fbb88-4860-492a-b01c-7e88c0769300" position-x="-220" position-y="-240" size-x="0" size-x2="117" size-y="0" size-y2="129"/>
     <entity uuid="9eaae197-c75b-45a8-a2fa-445cae818cee" position-x="360" position-y="110" size-x="0" size-x2="97" size-y="0" size-y2="45"/>
     <association uuid="9ebca2ee-ce15-4516-9048-02f6f76d9e62" center-position-x="0" center-position-y="1"/>
@@ -1163,7 +1157,6 @@
     <association uuid="c7646cb9-cc39-4531-ac0e-ee79509c9c99" splitted="1"/>
     <association uuid="c8b868f5-7a7e-46e8-8e4f-a42a8c4eacfa" splitted="1"/>
     <inheritance-child uuid="c9270a59-e814-41d0-909f-aed25d1ead29" splitted="1"/>
-    <entity uuid="caa57870-48cb-4347-a53d-465a3ce2d738" position-x="118" position-y="23" size-x="0" size-x2="138" size-y="0" size-y2="60"/>
     <association uuid="cc0e540b-a3fc-4a78-99ac-57cfdcaca938" splitted="1"/>
     <entity uuid="d1ed7de2-6778-48e0-a81c-22735fc0d71e" position-x="-10" position-y="228" size-x="0" size-x2="139" size-y="0" size-y2="60"/>
     <entity uuid="d3030348-9746-4be7-9ec6-e8206e98f498" position-x="625" position-y="110" size-x="0" size-x2="108" size-y="0" size-y2="45"/>
@@ -1176,7 +1169,7 @@
     <association uuid="db2ed8ab-450d-4d09-b542-b500c5f3a648" splitted="1"/>
     <association uuid="dbc7b8f0-bbca-48da-8d5c-384e03404912" splitted="1"/>
     <region uuid="dc3874d1-08ad-4106-95bc-e52e07edeab3" bk-color="4293906868" position-x="15" position-y="19" size-x="0" size-x2="186" size-y="0" size-y2="243"/>
-    <region uuid="dc61b3c0-1ff7-468f-9d5e-977b255a4b26" bk-color="15716788" position-x="-4" position-y="-41" size-x="0" size-x2="393" size-y="0" size-y2="301"/>
+    <region uuid="dc61b3c0-1ff7-468f-9d5e-977b255a4b26" bk-color="15716788" position-x="-4" position-y="-41" size-x="0" size-x2="395" size-y="0" size-y2="301"/>
     <entity uuid="dc854433-cfaa-4890-b913-ef302bb0d250" position-x="40" position-y="22" size-x="0" size-x2="140" size-y="0" size-y2="157"/>
     <many-to-many-association-entity uuid="e2031257-85e7-4937-9dcd-a4b50ba65923" splitted="1"/>
     <entity uuid="e2f1b616-219b-4bd7-be91-dc04c98bd3a5" position-x="39" position-y="40" size-x="0" size-x2="97" size-y="0" size-y2="87"/>
