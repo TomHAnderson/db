@@ -69,7 +69,7 @@
 
                                     <li role="menuitem">
                                         <form class="navbar-search pull-left" id="performer-search" action="/performer/detail">
-                                            <?= $this->inputPerformer(null, 'Search'); ?>
+                                            <?= $this->inputPerformer(null, 'Create Performer'); ?>
                                         </form>
 
                                         <script>
@@ -104,16 +104,6 @@
                                     }
                                     ?>
 
-                                    <li class="divider"></li>
-
-                                    <li>
-                                        <a class="btn btn-success" href="#" onClick="
-                                            $('<span class=modal></span>').appendTo('body').load('/performer/create').modal();
-                                            ">
-                                            <i class="icon-film"></i>
-                                            Create Performer
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>
 
@@ -128,7 +118,7 @@
 
                                     <li role="menuitem">
                                         <form class="navbar-search pull-left" id="band-search" action="/band/search">
-                                            <?= $this->inputBand(null, 'Search'); ?>
+                                            <?= $this->inputBand(null, 'Create Band'); ?>
                                         </form>
 
                                         <script>
@@ -184,17 +174,6 @@
                                     }
                                     ?>
 
-                                    <li class="divider"></li>
-
-                                    <li>
-                                        <a class="btn btn-success" href="#" onClick="
-                                            $('<span class=modal></span>').appendTo('body').load('/band/create').modal();
-                                            ">
-                                            <i class="icon-cogs"></i>
-                                            Create Band
-                                        </a>
-                                    </li>
-
                                 </ul>
                             </li>
 
@@ -202,7 +181,7 @@
                             <li class="dropdown">
                                 <a id="venue-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
                                     <i class="icon-map-marker"></i>
-                                    <?php echo $this->translate('Venues') ?>
+                                    <?= $this->translate('Venues'); ?>
                                     <b class="caret"></b>
                                 </a>
 
@@ -210,21 +189,21 @@
 
                                     <li role="menuitem">
                                         <form class="navbar-search pull-left" id="venue-search" action="/venue/search">
-                                            <?= $this->inputVenue(null, 'Search'); ?>
-                                        </form>
+                                            <?= $this->inputVenue(null, $this->translate('Create Venue')); ?>
 
-                                        <script>
-                                            $(function() {
-                                                $('#venue-search').on('submit', function(event) {
-                                                    if ($('form#venue-search input[name="venue_id"]').val()) {
-                                                        window.location = '/venue/detail?id='
-                                                            + $('form#venue-search [name="venue_id"]').val();
-                                                    }
+                                            <script>
+                                                $(function() {
+                                                    $('#venue-search').on('submit', function(event) {
+                                                        if ($('form#venue-search input[name="venue_id"]').val()) {
+                                                            window.location = '/venue/detail?id='
+                                                                + $('form#venue-search [name="venue_id"]').val();
+                                                        }
 
-                                                    return false;
+                                                        return false;
+                                                    });
                                                 });
-                                            });
-                                        </script>
+                                            </script>
+                                        </form>
                                     </li>
 
                                     <?php
@@ -244,17 +223,6 @@
                                         }
                                     }
                                     ?>
-
-                                    <li class="divider"></li>
-
-                                    <li>
-                                        <a class="btn btn-success" href="#" onClick="
-                                            $('<span class=modal></span>').appendTo('body').load('/venue/create').modal();
-                                            ">
-                                            <i class="icon-map-marker"></i>
-                                            Create Venue
-                                        </a>
-                                    </li>
 
                                 </ul>
                             </li>
@@ -328,8 +296,21 @@
                                 <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
 
                                     <li role="menuitem">
-                                        <form class="navbar-search pull-left" name="search" action="/performance/search">
-                                            <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Songs">
+                                        <form class="navbar-search pull-left" id="song-search" action="/song/search">
+                                            <?= $this->inputSong(null, $this->translate('Create Song')); ?>
+
+                                            <script>
+                                                $(function() {
+                                                    $('#song-search').on('submit', function(event) {
+                                                        if ($('form#song-search input[name="song_id"]').val()) {
+                                                            window.location = '/song/detail?id='
+                                                                + $('form#song-search [name="song_id"]').val();
+                                                        }
+
+                                                        return false;
+                                                    });
+                                                });
+                                            </script>
                                         </form>
                                     </li>
 
@@ -350,19 +331,6 @@
                                         }
                                     }
                                     ?>
-
-                                    <li class="divider"></li>
-
-
-                                    <li>
-                                        <a class="btn btn-success" href="#" onClick="
-                                            $('<span class=modal></span>').appendTo('body').load('/song/create').modal();
-                                            ">
-                                            <i class="icon-music"></i>
-                                            Create Song
-                                        </a>
-                                    </li>
-
                                 </ul>
                             </li>
 

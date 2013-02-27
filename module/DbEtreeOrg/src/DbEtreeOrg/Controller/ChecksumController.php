@@ -64,13 +64,13 @@ class ChecksumController extends AbstractActionController
                 $em->persist($checksum);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
+                die();
             }
         }
 
         return array(
             'form' => $form,
-            'performance' => $performance,
+            'source' => $source,
         );
     }
 
