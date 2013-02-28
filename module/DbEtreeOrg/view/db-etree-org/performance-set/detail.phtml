@@ -21,9 +21,10 @@
     </li>
 </ul>
 
-<h1>
-    <a href="/performance/detail?id=<?= $this->performanceSet->getPerformance()->getId(); ?>">
-    <i class="icon-magic"></i>
+<div class="h1">
+    <a class="btn btn-info" href="/performance/detail?id=<?= $this->performanceSet->getPerformance()->getId(); ?>">
+        <i class="icon-magic"></i>
+    </a>
 <?php
 if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
     echo $this->escapeHtml($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
@@ -33,35 +34,36 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
 ?>
 
     <?= $this->escapeHtml($this->performanceSet->getPerformance()->getName()); ?>
-    </a>
-</h1>
+</div>
 
-<h1>
-    <a href="/band/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
+<div class="h1">
+    <a class="btn btn-info" href="/band/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
         <i class="icon-cogs"></i>
-        <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getBand()->getName()); ?>
     </a>
-</h1>
 
-<h1>
-    <a href="/lineup/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
+    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getBand()->getName()); ?>
+</div>
+
+<div class="h1">
+    <a class="btn btn-info" href="/lineup/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
         <i class="icon-group"></i>
-        <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getName()); ?>
     </a>
-</h1>
 
-<h1>
-    <a href="/venue/detail?id=<?= $this->performanceSet->getPerformance()->getVenue()->getId(); ?>">
+    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getName()); ?>
+</div>
 
+<div class="h1">
+    <a class="btn btn-info" href="/venue/detail?id=<?= $this->performanceSet->getPerformance()->getVenue()->getId(); ?>">
         <i class="icon-map-marker"></i>
-        <?= $this->escapeHtml($this->performanceSet->getPerformance()->getVenue()->getName()); ?>
     </a>
-</h1>
 
-<h1>
+    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getVenue()->getName()); ?>
+</div>
+
+<div class="h1">
     <i class="icon-certificate"></i>
     <?= $this->escapeHtml($this->performanceSet->getName()); ?>
-</h1>
+</div>
 
 <?php
 if (sizeof($this->performanceSet->getPerformanceSongs())) {

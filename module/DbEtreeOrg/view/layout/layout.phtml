@@ -287,13 +287,13 @@
                             </li>
 
                             <li class="dropdown">
-                                <a id="performance-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
+                                <a id="song-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">
                                     <i class="icon-music"></i>
                                     <?php echo $this->translate('Songs') ?>
                                     <b class="caret"></b>
                                 </a>
 
-                                <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
+                                <ul class="dropdown-menu" aria-labelledby="song-drop" role="menu">
 
                                     <li role="menuitem">
                                         <form class="navbar-search pull-left" id="song-search" action="/song/search">
@@ -316,7 +316,11 @@
 
                                     <?php
                                     if (isset($_SESSION['songs']['latest'])) {
-                                    ?><li class="divider"></li><?php
+                                    ?>
+
+                                    <li class="divider"></li>
+
+                                    <?php
                                         foreach ($_SESSION['songs']['latest'] as $id) {
                                             if ($p = $this->findEntity('Db\Entity\Song', $id)) {
                                                 ?>

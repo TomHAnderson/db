@@ -20,7 +20,7 @@
     </li>
 </ul>
 
-<h1>
+<div class="h1">
     <a href="/performance/detail?id=<?= $this->performance->getId(); ?>" class="btn btn-default">
         <i class="icon-magic"></i>
     </a>
@@ -33,9 +33,16 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
 ?>
 
     <?= $this->escapeHtml($this->performance->getName()); ?>
-</h1>
+</div>
 
-<h1>
+<?php
+if ($this->performance->getNote()) { ?>
+    <pre><?= $this->escapeHtml($this->performance->getNote()); ?></pre>
+<?php
+}
+?>
+
+<div class="h1">
     <a class="btn btn-info" href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
         <i class="icon-cogs"></i>
     </a>
@@ -49,7 +56,7 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
 
     <div id="performance_drop" style="display: none;">
 
-        <h2>
+        <div class="h2">
             <a class="btn btn-info" href="/lineup/detail?id=<?= $this->performance->getLineup()->getId(); ?>">
                 <i class="icon-group"></i>
             </a>
@@ -79,7 +86,7 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
         <?php
         if (sizeof($this->performance->getPerformerPerformances())) {
         ?>
-            <h2>
+            <div class="h2">
                 <i class="icon-group"></i>
                 Guest Performers
 
@@ -87,13 +94,13 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
                     <?= $this->addPerformerToPerformance($performance->getId()); ?>
                     <?= $this->removePerformerFromPerformance($performance->getId()); ?>
                 </ul>
-</h2>
+</div>
         <?php
         }
 
         foreach ($this->performance->getPerformerPerformances() as $performerPerformance) {
         ?>
-            <h3>
+            <div class="h3">
                 <a class="btn btn-info" href="/performer/detail?id=<?= $performerPerformance->getPerformer()->getId(); ?>">
                     <i class="icon-film"></i>
                 </a>
@@ -106,43 +113,37 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
                 <?php
                 }
                 ?>
-            </h3>
+            </div>
 
         <?php
         }
         ?>
 
-        </h2>
+        </div>
 
     </div>
 
-</h1>
+</div>
 
 
-<h1>
+<div class="h1">
     <a class="btn btn-info" href="/venue/detail?id=<?= $this->performance->getVenue()->getId(); ?>">
         <i class="icon-map-marker"></i>
     </a>
 
     <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
-</h1>
-
-<?php
-if ($this->performance->getNote()) { ?>
-    <pre><?= $this->escapeHtml($this->performance->getNote()); ?></pre>
-<?php
-}
-?>
+</div>
 
 <?php
 foreach ($this->performance->getPerformanceSets() as $set) {
 ?>
-    <h2>
-        <i class="icon-certificate"></i>
-        <a href="/performance-set/detail?id=<?= $set->getId(); ?>">
-            <?= $this->escapeHtml($set->getName()); ?>
+    <div class="h1">
+        <a class="btn btn-info" href="/performance-set/detail?id=<?= $set->getId(); ?>">
+            <i class="icon-certificate"></i>
         </a>
-    </h3>
+
+        <?= $this->escapeHtml($set->getName()); ?>
+    </div>
 
     <?php
     if (sizeof($set->getPerformanceSongs())) {
