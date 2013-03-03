@@ -5,7 +5,7 @@ use Zend\Form\Form;
 $id = md5(uniqid());
 $formElement = new Element\Text('performer');
 $formElement
-    ->setLabel("<a class=\"btn btn-success\" onClick=\"$('<span class=modal></span>').appendTo('body').load('/performer/create').modal(); return false;\" href='#' title=\"Create Performer\"><i class=\"icon-film\"></i> " . $this->label . "</a>")
+    ->setLabel("<a class=\"btn btn-success create-performer\" href=\"#\" title=\"Create Performer\"><i class=\"icon-film\"></i> " . $this->label . "</a>")
     ->setAttributes(array(
         'id' => 'data' . $id,
         'autocomplete' => 'off',

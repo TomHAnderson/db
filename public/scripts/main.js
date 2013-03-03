@@ -1,4 +1,6 @@
-require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBootstrapValidation'], function() {
+require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBootstrapValidation', 'DbEtreeOrg'], function() {
+    DbEtreeOrg.init();
+
     $('a.confirm').live('click', function(event) {
         return confirm('Are you sure?');
     });
@@ -54,6 +56,9 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBoot
         $(this).attr('disabled', 'disabled')
             .removeClass('btn-success')
             .addClass('btn-default');
+
+        // Disable cancel button
+        $(this).parent().find('button[data-dismiss="modal"]').attr('disabled', 'disabled');
 
         $(this).find('i').removeClass()
             .removeClass('icon-map-marker')

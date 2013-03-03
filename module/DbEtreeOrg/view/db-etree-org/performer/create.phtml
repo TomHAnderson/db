@@ -46,8 +46,11 @@ $(function() {
             data: $(this).serialize(),
             span: $(this).closest('span'),
             success: function(data) {
-                $(this.span).modal('hide');
-                if (data) $('<span class=modal></span>').appendTo('body').html(data).modal();
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                }
             }
         });
 
