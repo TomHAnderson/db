@@ -5,11 +5,11 @@ use Zend\Form\Form;
 $id = md5(uniqid());
 $formElement = new Element\Text('song');
 $formElement
-    ->setLabel('<i class="icon-music"></i> ' . $this->label)
+    ->setLabel("<a class=\"btn btn-success create-song\" href='#' title=\"Create Song\"><i class=\"icon-music\"></i> " . $this->label . "</a>")
     ->setAttributes(array(
         'id' => 'data' . $id,
         'autocomplete' => 'off',
-        'placeholder'  => '',
+        'placeholder'  => 'Search Songs',
     ));
 
 if ($this->song) {

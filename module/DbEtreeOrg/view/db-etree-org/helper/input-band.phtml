@@ -5,11 +5,11 @@ use Zend\Form\Form;
 $id = md5(uniqid());
 $formElement = new Element\Text('band');
 $formElement
-    ->setLabel('<i class="icon-cogs"></i> ' . $this->label)
+    ->setLabel("<a class=\"btn btn-success create-band\" href='#' title=\"Create Band\"><i class=\"icon-cogs\"></i> " . $this->label . "</a>")
     ->setAttributes(array(
         'id' => $id,
         'autocomplete' => 'off',
-        'placeholder'  => '',
+        'placeholder'  => 'Search Bands',
     ));
 
 if ($band) {

@@ -29,12 +29,12 @@ class SongController extends AbstractActionController
         if (!$song)
             throw new \Exception("Performance Set $id not found");
 
-        if (!isset($_SESSION['songs']['latest'])) $_SESSION['songs']['latest'] = array();
-        if (in_array($song->getId(), $_SESSION['songs']['latest'])) {
-            unset($_SESSION['songs']['latest'][array_search($song->getId(), $_SESSION['songs']['latest'])]);
+        if (!isset($_SESSION['menu']['songs'])) $_SESSION['menu']['songs'] = array();
+        if (in_array($song->getId(), $_SESSION['menu']['songs'])) {
+            unset($_SESSION['menu']['songs'][array_search($song->getId(), $_SESSION['menu']['songs'])]);
         }
-        array_unshift($_SESSION['songs']['latest'], $song->getId());
-        $_SESSION['songs']['latest'] = array_slice($_SESSION['songs']['latest'], 0, 10);
+        array_unshift($_SESSION['menu']['songs'], $song->getId());
+        $_SESSION['menu']['songs'] = array_slice($_SESSION['menu']['songs'], 0, 10);
 
         return array(
             'song' => $song
@@ -69,13 +69,14 @@ class SongController extends AbstractActionController
                 $em->persist($song);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/song/detail?id=' . $song->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        return $viewModel;
     }
 
     public function editAction()

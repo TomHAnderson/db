@@ -7,6 +7,7 @@ use Zend\Mvc\Controller\AbstractActionController
     , Db\Entity\Performer as PerformerEntity
     , Db\Filter\Normalize
     , Zend\View\Model\JsonModel
+    , DbEtreeOrg\Service\Menu
     ;
 
 class PerformerController extends AbstractActionController
@@ -29,12 +30,7 @@ class PerformerController extends AbstractActionController
         if (!$performer)
             throw new \Exception("Performer $id not found");
 
-        if (!isset($_SESSION['performers']['latest'])) $_SESSION['performers']['latest'] = array();
-        if (in_array($performer->getId(), $_SESSION['performers']['latest'])) {
-            unset($_SESSION['performers']['latest'][array_search($performer->getId(), $_SESSION['performers']['latest'])]);
-        }
-        array_unshift($_SESSION['performers']['latest'], $performer->getId());
-        $_SESSION['performers']['latest'] = array_slice($_SESSION['performers']['latest'], 0, 10);
+        Menu::addRecent('performers', $performer->getId());
 
         return array(
             'performer' => $performer
@@ -63,13 +59,14 @@ class PerformerController extends AbstractActionController
                 $em->persist($performer);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performer/detail?id=' . $performer->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        return $viewModel;
     }
 
     public function editAction()

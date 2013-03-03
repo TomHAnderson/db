@@ -28,13 +28,13 @@ class PerformanceController extends AbstractActionController
         if (!$performance)
             throw new \Exception("Performance $id not found");
 
-        if (!isset($_SESSION['performances']['latest'])) $_SESSION['performances']['latest'] = array();
-        if (in_array($performance->getId(), $_SESSION['performances']['latest'])) {
-            unset($_SESSION['performances']['latest'][array_search($performance->getId(), $_SESSION['performances']['latest'])]);
+        if (!isset($_SESSION['menu']['performances'])) $_SESSION['menu']['performances'] = array();
+        if (in_array($performance->getId(), $_SESSION['menu']['performances'])) {
+            unset($_SESSION['menu']['performances'][array_search($performance->getId(), $_SESSION['menu']['performances'])]);
         }
-        if (!isset($_SESSION['performances']['latest'])) $_SESSION['performances']['latest'] = array();
-        array_unshift($_SESSION['performances']['latest'], $performance->getId());
-        $_SESSION['performances']['latest'] = array_slice($_SESSION['performances']['latest'], 0, 10);
+        if (!isset($_SESSION['menu']['performances'])) $_SESSION['menu']['performances'] = array();
+        array_unshift($_SESSION['menu']['performances'], $performance->getId());
+        $_SESSION['menu']['performances'] = array_slice($_SESSION['menu']['performances'], 0, 10);
 
         return array(
             'performance' => $performance
@@ -175,6 +175,7 @@ class PerformanceController extends AbstractActionController
     public function addPerformerAction()
     {
         $id = $this->getRequest()->getPost()->get('id');
+        $note = $this->getRequest()->getPost()->get('note');
         $performerId = $this->getRequest()->getPost()->get('performer_id');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
@@ -185,6 +186,7 @@ class PerformanceController extends AbstractActionController
 
         $performerPerformance->setPerformer($performer);
         $performerPerformance->setPerformance($performance);
+        $performerPerformance->setNote($note);
 
         $em->persist($performerPerformance);
         $em->flush();
@@ -202,9 +204,12 @@ class PerformanceController extends AbstractActionController
         $performance = $em->getRepository('Db\Entity\Performance')->find($id);
         $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
 
-        $performance->getPerformers()->removeElement($performer);
-        $performer->getPerformances()->removeElement($performance);
+        $performerPerformance = $em->getRepository('Db\Entity\PerformerPerformance')->findOneBy(array(
+            'performer' => $performer,
+            'performance' => $performance,
+        ));
 
+        $em->remove($performerPerformance);
         $em->flush();
 
         return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $id);

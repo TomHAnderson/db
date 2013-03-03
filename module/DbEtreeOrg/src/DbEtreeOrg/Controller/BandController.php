@@ -29,13 +29,13 @@ class BandController extends AbstractActionController
         if (!$band)
             throw new \Exception("Band $id not found");
 
-        if (!isset($_SESSION['bands']['latest'])) $_SESSION['bands']['latest'] = array();
-        if (in_array($band->getId(), $_SESSION['bands']['latest'])) {
-            unset($_SESSION['bands']['latest'][array_search($band->getId(), $_SESSION['bands']['latest'])]);
+        if (!isset($_SESSION['menu']['bands'])) $_SESSION['menu']['bands'] = array();
+        if (in_array($band->getId(), $_SESSION['menu']['bands'])) {
+            unset($_SESSION['menu']['bands'][array_search($band->getId(), $_SESSION['menu']['bands'])]);
         }
-        if (!isset($_SESSION['bands']['latest'])) $_SESSION['bands']['latest'] = array();
-        array_unshift($_SESSION['bands']['latest'], $band->getId());
-        $_SESSION['bands']['latest'] = array_slice($_SESSION['bands']['latest'], 0, 10);
+        if (!isset($_SESSION['menu']['bands'])) $_SESSION['menu']['bands'] = array();
+        array_unshift($_SESSION['menu']['bands'], $band->getId());
+        $_SESSION['menu']['bands'] = array_slice($_SESSION['menu']['bands'], 0, 10);
 
         return array(
             'band' => $band
@@ -65,13 +65,14 @@ class BandController extends AbstractActionController
                 $em->persist($band);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/band/detail?id=' . $band->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        return $viewModel;
     }
 
     public function editAction()

@@ -4,8 +4,9 @@
 </h1>
 
 <h1>
-    <a href="/performance/detail?id=<?= $this->source->getPerformance()->getId(); ?>">
-    <i class="icon-magic"></i>
+    <a class="btn btn-info" href="/performance/detail?id=<?= $this->source->getPerformance()->getId(); ?>">
+        <i class="icon-magic"></i>
+    </a>
 <?php
 if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
     echo $this->escapeHtml($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
@@ -15,25 +16,14 @@ if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') !=
 ?>
 
     <?= $this->escapeHtml($this->source->getPerformance()->getName()); ?>
-    </a>
 </h1>
 
 <h1>
-    <a href="/band/detail?id=<?= $this->source->getPerformance()->getLineup()->getBand()->getId(); ?>">
+    <a class="btn btn-info" href="/band/detail?id=<?= $this->source->getPerformance()->getLineup()->getBand()->getId(); ?>">
         <i class="icon-cogs"></i>
-        <?= $this->escapeHtml($this->source->getPerformance()->getLineup()->getBand()->getName()); ?>
     </a>
+    <?= $this->escapeHtml($this->source->getPerformance()->getLineup()->getBand()->getName()); ?>
 </h1>
-
-<h1>
-    <a href="/venue/detail?id=<?= $this->source->getPerformance()->getVenue()->getId(); ?>">
-
-        <i class="icon-map-marker"></i>
-        <?= $this->escapeHtml($this->source->getPerformance()->getVenue()->getName()); ?>
-    </a>
-</h1>
-
-
 
 <?= $this->form()->openTag($form); ?>
 
@@ -68,7 +58,3 @@ if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') !=
 </a>
 
 <?= $this->form()->closeTag(); ?>
-
-<ul class="nav nav-pills">
-    <?= $this->addChecksumToSource($this->source->getId()); ?>
-</ul>

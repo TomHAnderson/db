@@ -1,4 +1,6 @@
-require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBootstrapValidation'], function() {
+require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBootstrapValidation', 'DbEtreeOrg'], function() {
+    DbEtreeOrg.init();
+
     $('a.confirm').live('click', function(event) {
         return confirm('Are you sure?');
     });
@@ -27,6 +29,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBoot
         }
     });
 
+    // Map all icons to title name
     $('a i.icon-film').attr('title', 'Performer');
     $('a i.icon-facetime-video').attr('title', 'Performer Alias');
     $('a i.icon-magic').attr('title', 'Performance');
@@ -48,4 +51,18 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBoot
     $('a i.icon-folder-close').attr('title', 'Abstract Link');
     $('a i.icon-group').attr('title', 'Performer Lineup');
 
+    // Change submit button to disabled and add spinner
+    $('button[type="send"]').live('click', function(event) {
+        $(this).attr('disabled', 'disabled')
+            .removeClass('btn-success')
+            .addClass('btn-default');
+
+        // Disable cancel button
+        $(this).parent().find('button[data-dismiss="modal"]').attr('disabled', 'disabled');
+
+        $(this).find('i').removeClass()
+            .removeClass('icon-map-marker')
+            .addClass('icon-spinner')
+            .addClass('icon-spin');
+    });
 });

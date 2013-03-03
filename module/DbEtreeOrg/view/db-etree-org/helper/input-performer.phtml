@@ -5,11 +5,11 @@ use Zend\Form\Form;
 $id = md5(uniqid());
 $formElement = new Element\Text('performer');
 $formElement
-    ->setLabel('<i class="icon-film"></i> ' . $this->label)
+    ->setLabel("<a class=\"btn btn-success create-performer\" href=\"#\" title=\"Create Performer\"><i class=\"icon-film\"></i> " . $this->label . "</a>")
     ->setAttributes(array(
         'id' => 'data' . $id,
         'autocomplete' => 'off',
-        'placeholder'  => '',
+        'placeholder'  => 'Search Performers',
     ));
 
 if ($this->performer) {
@@ -58,7 +58,6 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
     var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
 
         $.get('/performer/search-json', { q: query }, function (data) {
-console.log(data);
             data<?= $id; ?> = {};
             dataLabels<?= $id; ?> = [];
 

@@ -2,11 +2,11 @@
 
 namespace DbEtreeOrg\Controller;
 use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
     , Db\Entity\Source as SourceEntity
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Filter\Normalize
     , Zend\View\Model\JsonModel
+    , Zend\View\Model\ViewModel
     ;
 
 class SourceController extends AbstractActionController
@@ -29,12 +29,12 @@ class SourceController extends AbstractActionController
         if (!$source)
             throw new \Exception("Source $id not found");
 
-        if (!isset($_SESSION['sources']['latest'])) $_SESSION['sources']['latest'] = array();
-        if (in_array($source->getId(), $_SESSION['sources']['latest'])) {
-            unset($_SESSION['sources']['latest'][array_search($source->getId(), $_SESSION['sources']['latest'])]);
+        if (!isset($_SESSION['menu']['sources'])) $_SESSION['menu']['sources'] = array();
+        if (in_array($source->getId(), $_SESSION['menu']['sources'])) {
+            unset($_SESSION['menu']['sources'][array_search($source->getId(), $_SESSION['menu']['sources'])]);
         }
-        array_unshift($_SESSION['sources']['latest'], $source->getId());
-        $_SESSION['sources']['latest'] = array_slice($_SESSION['sources']['latest'], 0, 10);
+        array_unshift($_SESSION['menu']['sources'], $source->getId());
+        $_SESSION['menu']['sources'] = array_slice($_SESSION['menu']['sources'], 0, 10);
 
         return array(
             'source' => $source
@@ -71,7 +71,7 @@ class SourceController extends AbstractActionController
                 $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
+                return $this->plugin('redirect')->toUrl('/source/edit?id=' . $source->getId());
             }
         }
 

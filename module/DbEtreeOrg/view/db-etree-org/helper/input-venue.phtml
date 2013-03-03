@@ -4,13 +4,14 @@ use Zend\Form\Form;
 
 $id = md5(uniqid());
 $formElement = new Element\Text('venue');
-$formElement
-    ->setLabel('<i class="icon-map-marker"></i> ' . $this->label)
-    ->setAttributes(array(
-        'id' => 'data' . $id,
-        'autocomplete' => 'off',
-        'placeholder'  => '',
-    ));
+$formElement->setAttributes(array(
+    'id' => 'data' . $id,
+    'autocomplete' => 'off',
+    'placeholder'  => 'Search Venues',
+));
+
+if ($this->label)
+    $formElement->setLabel("<a class=\"btn btn-success create-venue\" href='#' title=\"Create Venue\"><i class=\"icon-map-marker\"></i> " . $this->label . "</a>");
 
 if ($this->venue) {
     $formElement->setAttributes(array(

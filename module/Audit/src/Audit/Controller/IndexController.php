@@ -30,6 +30,7 @@ class IndexController extends AbstractActionController {
         'Db\Entity\AbstractComment' => 'icon-folder-close',
         'Db\Entity\AbstractLink' => 'icon-folder-close',
         'Db\Entity\PerformerLineup' => 'icon-group',
+        'Db\Entity\PerformerPerformance' => 'icon-group',
     );
 
     private $routeMap = array(
@@ -53,6 +54,7 @@ class IndexController extends AbstractActionController {
         'Db\Entity\AbstractComment' => '',
         'Db\Entity\AbstractLink' => '',
         'Db\Entity\PerformerLineup' => 'performer-lineup',
+        'Db\Entity\PerformerPerformance' => 'performer-lineup',
     );
 
     private function getIconMap() {
