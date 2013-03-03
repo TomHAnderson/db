@@ -150,6 +150,16 @@ return array(
 
     'di' => array(
         'instance' => array(
+            'alias' => array(
+                'menu' => 'DbEtreeOrg\Service\Menu',
+            ),
+
+            'DbEtreeOrg\Service\Menu' => array(
+                'parameters' => array(
+                    'servicemanager' => 'Zend\ServiceManager\ServiceManager',
+                ),
+            ),
         ),
     ),
+
 );

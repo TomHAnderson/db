@@ -87,12 +87,14 @@
                                     </li>
 
                                     <?php
-                                    if (isset($_SESSION['performers']['latest'])) {
-                                    ?><li class="divider"></li><?php
-                                        foreach ($_SESSION['performers']['latest'] as $id) {
+                                    if (isset($_SESSION['menu']['performers'])) {
+                                    ?><li class="divider"></li>
+
+                                    <?php
+                                        foreach ($_SESSION['menu']['performers'] as $id) {
                                             if ($p = $this->findPerformer($id)) {
                                                 ?>
-                                                    <li role="menuitem">
+                                                    <li role="menuitem" class="recent">
                                                         <a href="/performer/detail?id=<?= $p->getId(); ?>">
                                                             <i class="icon-film"></i>
                                                             <?= $this->escapeHtml($p->getName()); ?>
