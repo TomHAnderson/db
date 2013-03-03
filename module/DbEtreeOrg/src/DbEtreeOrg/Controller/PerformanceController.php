@@ -28,13 +28,13 @@ class PerformanceController extends AbstractActionController
         if (!$performance)
             throw new \Exception("Performance $id not found");
 
-        if (!isset($_SESSION['performances']['latest'])) $_SESSION['performances']['latest'] = array();
-        if (in_array($performance->getId(), $_SESSION['performances']['latest'])) {
-            unset($_SESSION['performances']['latest'][array_search($performance->getId(), $_SESSION['performances']['latest'])]);
+        if (!isset($_SESSION['menu']['performances'])) $_SESSION['menu']['performances'] = array();
+        if (in_array($performance->getId(), $_SESSION['menu']['performances'])) {
+            unset($_SESSION['menu']['performances'][array_search($performance->getId(), $_SESSION['menu']['performances'])]);
         }
-        if (!isset($_SESSION['performances']['latest'])) $_SESSION['performances']['latest'] = array();
-        array_unshift($_SESSION['performances']['latest'], $performance->getId());
-        $_SESSION['performances']['latest'] = array_slice($_SESSION['performances']['latest'], 0, 10);
+        if (!isset($_SESSION['menu']['performances'])) $_SESSION['menu']['performances'] = array();
+        array_unshift($_SESSION['menu']['performances'], $performance->getId());
+        $_SESSION['menu']['performances'] = array_slice($_SESSION['menu']['performances'], 0, 10);
 
         return array(
             'performance' => $performance

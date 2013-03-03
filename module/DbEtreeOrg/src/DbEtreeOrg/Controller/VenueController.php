@@ -29,12 +29,12 @@ class VenueController extends AbstractActionController
         if (!$venue)
             throw new \Exception("Venue $id not found");
 
-        if (!isset($_SESSION['venues']['latest'])) $_SESSION['venues']['latest'] = array();
-        if (in_array($venue->getId(), $_SESSION['venues']['latest'])) {
-            unset($_SESSION['venues']['latest'][array_search($venue->getId(), $_SESSION['venues']['latest'])]);
+        if (!isset($_SESSION['menu']['venues'])) $_SESSION['menu']['venues'] = array();
+        if (in_array($venue->getId(), $_SESSION['menu']['venues'])) {
+            unset($_SESSION['menu']['venues'][array_search($venue->getId(), $_SESSION['menu']['venues'])]);
         }
-        array_unshift($_SESSION['venues']['latest'], $venue->getId());
-        $_SESSION['venues']['latest'] = array_slice($_SESSION['venues']['latest'], 0, 10);
+        array_unshift($_SESSION['menu']['venues'], $venue->getId());
+        $_SESSION['menu']['venues'] = array_slice($_SESSION['menu']['venues'], 0, 10);
 
         return array(
             'venue' => $venue

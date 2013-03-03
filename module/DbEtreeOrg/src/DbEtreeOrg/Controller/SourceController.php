@@ -29,12 +29,12 @@ class SourceController extends AbstractActionController
         if (!$source)
             throw new \Exception("Source $id not found");
 
-        if (!isset($_SESSION['sources']['latest'])) $_SESSION['sources']['latest'] = array();
-        if (in_array($source->getId(), $_SESSION['sources']['latest'])) {
-            unset($_SESSION['sources']['latest'][array_search($source->getId(), $_SESSION['sources']['latest'])]);
+        if (!isset($_SESSION['menu']['sources'])) $_SESSION['menu']['sources'] = array();
+        if (in_array($source->getId(), $_SESSION['menu']['sources'])) {
+            unset($_SESSION['menu']['sources'][array_search($source->getId(), $_SESSION['menu']['sources'])]);
         }
-        array_unshift($_SESSION['sources']['latest'], $source->getId());
-        $_SESSION['sources']['latest'] = array_slice($_SESSION['sources']['latest'], 0, 10);
+        array_unshift($_SESSION['menu']['sources'], $source->getId());
+        $_SESSION['menu']['sources'] = array_slice($_SESSION['menu']['sources'], 0, 10);
 
         return array(
             'source' => $source
