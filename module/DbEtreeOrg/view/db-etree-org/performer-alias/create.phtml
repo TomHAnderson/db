@@ -6,13 +6,12 @@ $id = md5(uniqid());
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h1>
-            <i class="icon-group"></i>
-            Create Lineup
+            <i class="icon-camera"></i>
+            Create Performer Alias
         </h1>
     </div>
 
     <div class="modal-body">
-        <?= $this->form()->openTag($form); ?>
 
         <?= $this->formRow($this->form->get('name')); ?>
 
@@ -22,24 +21,27 @@ $id = md5(uniqid());
 
     <div class="modal-footer">
         <button type="send" class="btn btn-success">
-            <i class="icon-group"></i>
-            Create Lineup
+            <i class="icon-cogs"></i>
+            Create PerformerAlias
         </button>
 
         <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
             Cancel
         </button>
     </div>
+
 <?= $this->form()->closeTag(); ?>
+
 
 <script>
 $(function() {
 
-    $('form#lineup').attr('id', 'lineup<?= $id; ?>');
-    $('form#lineup<?= $id; ?>').on('submit', function(event) {
+    $('form#performerAlias').attr('id', 'performerAlias<?= $id; ?>');
+    $('form#performerAlias<?= $id; ?>').on('submit', function(event) {
 
         $.ajax({
-            url: '/lineup/create?id=<?= $band_id; ?>',
+            url: '/performer-alias/create?id=<?= $performer_id; ?>',
+
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),
@@ -47,8 +49,10 @@ $(function() {
                 if (data) {
                     $(this.span).html(data);
                 } else {
+
                     $(this.span).modal('hide');
-                    Menu.refresh();
+                    //Menu.refresh();
+                    window.location.reload();
                 }
             }
         });

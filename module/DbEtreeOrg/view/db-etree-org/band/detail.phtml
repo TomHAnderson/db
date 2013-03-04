@@ -239,6 +239,15 @@ if (sizeof($jambase->event)) {
         }
         ?>
         </h3>
+
+        <ul class="nav nav-pills">
+            <li class="">
+                 <a class="btn-success create-lineup" data-id="<?= $this->band->getId(); ?>" href="/lineup/create?id=<?= $this->band->getId(); ?>">
+                    <i class="icon-group"></i>
+                    Create Lineup
+                </a>
+             </li>
+        </ul>
     </div>
 
 

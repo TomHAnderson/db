@@ -28,6 +28,18 @@ DbEtreeOrg = {
             DbEtreeOrg.createModal('/song/create');
             return false;
         });
+
+        $('.create-lineup').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/lineup/create?id=' + id);
+            return false;
+        });
+
+        $('.create-performer-alias').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performer-alias/create?id=' + id);
+            return false;
+        });
     },
 
     createModal: function(page) {

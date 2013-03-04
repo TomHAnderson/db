@@ -28,13 +28,8 @@ class LineupController extends AbstractActionController
         if (!$lineup)
             throw new \Exception("Lineup $id not found");
 
-        if (!isset($_SESSION['lineups']['latest'])) $_SESSION['lineups']['latest'] = array();
-        if (in_array($lineup->getId(), $_SESSION['lineups']['latest'])) {
-            unset($_SESSION['lineups']['latest'][array_search($lineup->getId(), $_SESSION['lineups']['latest'])]);
-        }
-        if (!isset($_SESSION['lineups']['latest'])) $_SESSION['lineups']['latest'] = array();
-        array_unshift($_SESSION['lineups']['latest'], $lineup->getId());
-        $_SESSION['lineups']['latest'] = array_slice($_SESSION['lineups']['latest'], 0, 10);
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('lineups', $lineup->getId());
 
         return array(
             'lineup' => $lineup
@@ -52,8 +47,8 @@ class LineupController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $band = $em->getRepository('Db\Entity\Band')->find($id);
+        $band_id = $this->getRequest()->getQuery()->get('id');
+        $band = $em->getRepository('Db\Entity\Band')->find($band_id);
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -68,14 +63,19 @@ class LineupController extends AbstractActionController
                 $em->persist($lineup);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/lineup/detail?id=' . $lineup->getId());
+                $menu = $this->getServiceLocator()->get('menu');
+                $menu->addRecent('lineups', $lineup->getId());
+
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-            'band' => $band,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('band_id', $band_id);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('band', $band);
+        return $viewModel;
     }
 
     public function editAction()
@@ -94,6 +94,9 @@ class LineupController extends AbstractActionController
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($lineup);
         $form->setData($lineup->getArrayCopy());
+
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('lineups', $lineup->getId());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -135,6 +138,9 @@ class LineupController extends AbstractActionController
             and !sizeof($lineup->getLinks())
             and !sizeof($lineup->getComments()))
         {
+            $menu = $this->getServiceLocator()->get('menu');
+            $menu->addRecent('lineups', $lineup->getId());
+
             $em->remove($lineup);
             $em->flush();
         }

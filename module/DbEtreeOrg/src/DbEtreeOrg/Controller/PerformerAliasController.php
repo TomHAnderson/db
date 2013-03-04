@@ -27,13 +27,8 @@ class PerformerAliasController extends AbstractActionController
         if (!$performerAlias)
             throw new \Exception("PerformerAlias $id not found");
 
-        if (!isset($_SESSION['performerAlias'])) $_SESSION['performerAliass']['latest'] = array();
-        if (in_array($performerAlias->getId(), $_SESSION['performerAliass']['latest'])) {
-            unset($_SESSION['performerAlias']['latest'][array_search($performerAlias->getId(), $_SESSION['performerAlias']['latest'])]);
-        }
-        if (!$_SESSION['performerAlias']) $_SESSION['performerAlias']['latest'] = array();
-        array_unshift($_SESSION['performerAlias']['latest'], $performerAlias->getId());
-        $_SESSION['performerAlias']['latest'] = array_slice($_SESSION['performerAlias']['latest'], 0, 10);
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('performerAlias', $performerAlias->getId());
 
         return array(
             'performerAlias' => $performerAlias
@@ -51,7 +46,7 @@ class PerformerAliasController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getPost()->get('id');
+        $id = $this->getRequest()->getQuery()->get('id');
         $performer = $em->getRepository('Db\Entity\Performer')->find($id);
 
         if ($this->getRequest()->isPost()) {
@@ -67,13 +62,19 @@ class PerformerAliasController extends AbstractActionController
                 $em->persist($performerAlias);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performer/detail?id=' . $performerAlias->getPerformer()->getId());
+                $menu = $this->getServiceLocator()->get('menu');
+                $menu->addRecent('performerAlias', $performerAlias->getId());
+
+                die();
             }
         }
 
-        return array(
-            'form' => $form
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('performer_id', $performer->getId());
+        return $viewModel;
+
     }
 
     public function editAction()
@@ -92,6 +93,9 @@ class PerformerAliasController extends AbstractActionController
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($performerAlias);
         $form->setData($performerAlias->getArrayCopy());
+
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('performerAlias', $performerAlias->getId());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -135,6 +139,9 @@ class PerformerAliasController extends AbstractActionController
             and !sizeof($performerAlias->getLinks())
             and !sizeof($performerAlias->getComments()))
         {
+            $menu = $this->getServiceLocator()->get('menu');
+            $menu->addRecent('performerAlias', $performerAlias->getId());
+
             $em->remove($performerAlias);
             $em->flush();
         }

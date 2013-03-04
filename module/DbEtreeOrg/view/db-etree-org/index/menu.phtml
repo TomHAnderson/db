@@ -81,6 +81,7 @@
         if (isset($recent['bands'])) {
         ?><li class="divider"></li><?php
             foreach ($recent['bands'] as $id) {
+                if (!$id) continue;
                 if ($p = $this->findEntity('Db\Entity\Band', $id)) {
                     ?>
                         <li role="menuitem">
@@ -99,6 +100,7 @@
         if (isset($recent['lineups'])) {
         ?><li class="divider"></li><?php
             foreach ($recent['lineups'] as $id) {
+                if (!$id) continue;
                 if ($p = $this->findEntity('Db\Entity\Lineup', $id)) {
                     ?>
                         <li role="menuitem">
@@ -152,6 +154,7 @@
         if (isset($recent['venues'])) {
         ?><li class="divider"></li><?php
             foreach ($recent['venues'] as $id) {
+                if (!$id) continue;
                 if ($v = $this->findVenue($id)) {
                     ?>
                         <li role="menuitem">
@@ -189,6 +192,7 @@
         if (isset($recent['performances'])) {
         ?><li class="divider"></li><?php
             foreach ($recent['performances'] as $id) {
+                if (!$id) continue;
                 if ($p = $this->findEntity('Db\Entity\Performance', $id)) {
                     ?>
                         <li role="menuitem">
@@ -299,6 +303,7 @@
         if (isset($recent['sources'])) {
         ?><li class="divider"></li><?php
             foreach ($recent['sources'] as $id) {
+                if (!$id) continue;
                 if ($p = $this->findEntity('Db\Entity\Source', $id)) {
                     ?>
                         <li role="menuitem">

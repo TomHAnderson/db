@@ -14,14 +14,14 @@
     </li>
 </ul>
 
-<h1>
+<div class="h1">
     <a class="btn btn-info" href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
         <i class="icon-cogs"></i>
     </a>
     <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
-</h1>
+</div>
 
-<h1>
+<div class="h1">
     <a class="btn btn-default" href="/lineup/detail?id=<?= $this->lineup->getId(); ?>">
         <i class="icon-group"></i>
     </a>
@@ -33,7 +33,7 @@
     <?php
     }
     ?>
-</h1>
+</div>
 
 
 <?php
