@@ -27,30 +27,17 @@
 </ul>
 
 <h1>
-<i class="icon-film"></i>
-<?= $this->escapeHtml($this->performer->getName()); ?>
+    <i class="icon-film"></i>
+    <?= $this->escapeHtml($this->performer->getName()); ?>
+
+    <?php
+    if ($this->performer->getNote()) {
+    ?>
+    <pre><?= $this->escapeHtml($this->performer->getNote()); ?></pre>
+    <?php
+    }
+    ?>
 </h1>
-
-<?php
-if ($this->performer->getNote()) {
-?>
-<pre><?= $this->escapeHtml($this->performer->getNote()); ?></pre>
-<?php
-}
-?>
-
-<h3>
-<?php
-foreach ($this->performer->getAliases() as $alias) {
-?>
-        <i class="icon-facetime-video"></i>
-        <a href="/performer-alias/detail?id=<?= $alias->getId(); ?>">
-            <?= $this->escapeHtml($alias->getName()); ?>
-        </a>
-<?php
-}
-?>
-</h3>
 
 <?php
 use Gracenote\Service\Gracenote;
@@ -104,6 +91,13 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
             Performances
         </a>
     </li>
+
+    <li class="">
+        <a href="#aliases" data-toggle="tab">
+            Aliases
+        </a>
+    </li>
+
     <li class="">
         <a href="#comments" data-toggle="tab">
             Comments
@@ -179,8 +173,23 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
             }
         }
         ?>
+    </div>
 
-   <div class="tab-pane active" id="comments">
+    <div class="tab-pane" id="aliases">
+        <?php
+        foreach ($this->performer->getAliases() as $alias) {
+        ?>
+            <i class="icon-facetime-video"></i>
+            <a href="/performer-alias/detail?id=<?= $alias->getId(); ?>">
+                <?= $this->escapeHtml($alias->getName()); ?>
+            </a>
+            <br>
+        <?php
+        }
+        ?>
+    </div>
+
+   <div class="tab-pane" id="comments">
         <ul class="nav nav-pills">
             <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
         </ul>

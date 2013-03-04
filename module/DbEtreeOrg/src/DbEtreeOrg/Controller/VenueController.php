@@ -29,12 +29,8 @@ class VenueController extends AbstractActionController
         if (!$venue)
             throw new \Exception("Venue $id not found");
 
-        if (!isset($_SESSION['menu']['venues'])) $_SESSION['menu']['venues'] = array();
-        if (in_array($venue->getId(), $_SESSION['menu']['venues'])) {
-            unset($_SESSION['menu']['venues'][array_search($venue->getId(), $_SESSION['menu']['venues'])]);
-        }
-        array_unshift($_SESSION['menu']['venues'], $venue->getId());
-        $_SESSION['menu']['venues'] = array_slice($_SESSION['menu']['venues'], 0, 10);
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('venues', $venue->getId());
 
         return array(
             'venue' => $venue
@@ -65,6 +61,9 @@ class VenueController extends AbstractActionController
                 $em->persist($venue);
                 $em->flush();
 
+                $menu = $this->getServiceLocator()->get('menu');
+                $menu->addRecent('venues', $venue->getId());
+
                 die(); // all ok
             }
         }
@@ -73,7 +72,6 @@ class VenueController extends AbstractActionController
         $countries = include(__DIR__ . '/../../../../../vendor/umpirsky/country-list/country/cldr/en_US/country.php');
         $country->setValueOptions($countries);
         $country->setValue('US');
-
 
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);
@@ -97,6 +95,9 @@ class VenueController extends AbstractActionController
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($venue);
         $form->setData($venue->getArrayCopy());
+
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('venues', $venue->getId());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -141,6 +142,9 @@ class VenueController extends AbstractActionController
             and !sizeof($venue->getLinks())
             and !sizeof($venue->getComments()))
         {
+            $menu = $this->getServiceLocator()->get('menu');
+            $menu->removeRecent('venues', $venue->getId());
+
             $em->remove($venue);
             $em->flush();
         }

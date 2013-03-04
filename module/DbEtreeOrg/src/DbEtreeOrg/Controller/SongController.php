@@ -29,12 +29,8 @@ class SongController extends AbstractActionController
         if (!$song)
             throw new \Exception("Performance Set $id not found");
 
-        if (!isset($_SESSION['menu']['songs'])) $_SESSION['menu']['songs'] = array();
-        if (in_array($song->getId(), $_SESSION['menu']['songs'])) {
-            unset($_SESSION['menu']['songs'][array_search($song->getId(), $_SESSION['menu']['songs'])]);
-        }
-        array_unshift($_SESSION['menu']['songs'], $song->getId());
-        $_SESSION['menu']['songs'] = array_slice($_SESSION['menu']['songs'], 0, 10);
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('songs', $song->getId());
 
         return array(
             'song' => $song
@@ -69,6 +65,9 @@ class SongController extends AbstractActionController
                 $em->persist($song);
                 $em->flush();
 
+                $menu = $this->getServiceLocator()->get('menu');
+                $menu->addRecent('songs', $song->getId());
+
                 die();
             }
         }
@@ -95,6 +94,9 @@ class SongController extends AbstractActionController
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($song);
         $form->setData($song->getArrayCopy());
+
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('songs', $song->getId());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -140,6 +142,10 @@ class SongController extends AbstractActionController
             and !sizeof($venue->getLinks())
             and !sizeof($venue->getComments()))
         {
+
+            $menu = $this->getServiceLocator()->get('menu');
+            $menu->removeRecent('songs', $song->getId());
+
             $em->remove($venue);
             $em->flush();
         }

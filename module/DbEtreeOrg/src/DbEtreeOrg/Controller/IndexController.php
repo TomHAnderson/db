@@ -17,11 +17,14 @@ class IndexController extends AbstractActionController
     }
 
     public function menuAction() {
-        if (!isset($_SESSION['menu'])) $_SESSION['menu'] = array();
+        $menu = $this->getServiceLocator()->get('menu');
 
-        $jsonModel = new JsonModel;
-        $jsonModel->setVariable('menu', $_SESSION['menu']);
+        $recent = $menu->getRecent();
 
-        return $jsonModel;
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('recent', $recent);
+        return $viewModel;
+
     }
 }
