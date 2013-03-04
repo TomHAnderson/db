@@ -8,7 +8,7 @@ trait Venues
 {
     protected $venues;
 
-    public function getShows() {
+    public function getVenues() {
         if (!$this->venues)
             $this->venues = new ArrayCollection();
 
