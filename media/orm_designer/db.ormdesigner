@@ -363,10 +363,10 @@
       <entity-ref name="ComposerSong"/>
     </region>
     <region caption="Performer" uuid="dc61b3c0-1ff7-468f-9d5e-977b255a4b26">
-      <entity-ref name="PerformerAlias"/>
-      <entity-ref name="Performer"/>
       <entity-ref name="PerformerLineup"/>
       <entity-ref name="PerformerPerformance"/>
+      <entity-ref name="PerformerAlias"/>
+      <entity-ref name="Performer"/>
     </region>
     <orm-attributes>
       <attribute name="namespace">Db\Entity</attribute>
@@ -555,211 +555,19 @@
       <attribute name="namespace">Db\Entity</attribute>
     </orm-attributes>
   </module>
-  <module name="Geoname" import-format="Doctrine2Xml" import-path="../../module/Geoname/config/xml" uuid="3cbdb9d3-941f-4690-8568-c9258ce21152">
-    <entity name="CountryNeighbours" uuid="a2a59f55-c89a-4f32-b323-d6d26145f1f8">
-      <field name="country_id" type="integer" required="true" primary="true" uuid="b9c0148c-7263-4dab-ae42-2da1952a07cf"/>
-      <field name="neighbour_id" type="integer" required="true" primary="true" uuid="2cfd9753-7558-45c2-866c-8cdb4a325ab4"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_countries_neighbours</attribute>
-      </orm-attributes>
-    </entity>
-    <many-to-many mn-entity="CountryNeighbours" uuid="d8d82db7-5d15-4d05-bc25-b7d27f3ada74">
-      <many-to-many-entity name="Country" owning-side="true" alias="country" uuid="3519345a-d78c-4203-9e6e-91f7e61d0f0d">
-        <many-to-many-field from="country_id" to="id"/>
-      </many-to-many-entity>
-      <many-to-many-entity name="Country" owning-side="false" alias="neighbours" uuid="c7727019-9f9c-4ef8-84d1-83e936b5bdbb">
-        <many-to-many-field from="neighbour_id" to="id"/>
-      </many-to-many-entity>
-    </many-to-many>
-    <entity name="AltName" uuid="31544907-76ed-4476-b1e7-a744bf1fe956">
-      <field name="id" type="integer" primary="true" uuid="f00a8be7-7b05-4fc8-82d0-4cbf1bc2a9b2"/>
-      <field name="name" type="string" required="true" uuid="7c789238-1f99-483f-8080-b90cfea578da"/>
-      <field name="isPreferred" type="boolean" required="true" uuid="8a28e1fd-335c-49a7-aa4c-e7bc6185072f"/>
-      <field name="isShort" type="boolean" required="true" uuid="66c078f6-c841-4185-92d8-985f7f0322a1"/>
-      <field name="isColloquial" type="boolean" required="true" uuid="af935ab9-7809-49e2-9284-3961c85591d1"/>
-      <field name="isHistoric" type="boolean" required="true" uuid="f253b4a3-fd1f-47ca-9ff3-8c50ca145c54"/>
-      <field name="languageOther" type="string" uuid="bf304cbf-8dab-4896-a0ca-0dde01f4a01c"/>
-      <field name="isDeprecated" type="boolean" uuid="cfb225a6-36d1-4479-b741-782ca22c174a"/>
-      <field name="place_id" type="integer" uuid="83f084d4-2e30-4a34-8dce-404fb3a694aa"/>
-      <field name="language_id" type="integer" uuid="d927a393-14c2-45c5-8658-dfde4c33bfae"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_alt_name</attribute>
-        <attribute name="repository-class">Geoname\Repository\AltName</attribute>
-      </orm-attributes>
-    </entity>
-    <association from="AltName" to="Place" owner-alias="altNames" inverse-alias="place" uuid="17b6248f-719a-4f65-948a-5d008f7ff080">
-      <association-field from="place_id" to="id"/>
-    </association>
-    <association from="AltName" to="Language" inverse-alias="language" uuid="845f695a-1bf1-4a93-8c8f-9cb7ce1ccb9a">
-      <association-field from="language_id" to="id"/>
-    </association>
-    <entity name="Country" uuid="eb406a7a-3ed3-4e8c-8395-42b2cdf6d7a3">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="b647da91-81d5-49ae-a5d3-fe14e315c1e6"/>
-      <field name="iso3" type="string" uuid="b758c4bb-8fc8-4dba-b9be-17c775903088"/>
-      <field name="iso2" type="string" uuid="ecb075cf-d101-4110-9207-cf80d2359844"/>
-      <field name="isoNum" type="string" uuid="aceb9281-4d3f-400d-8383-594a0ab9588d"/>
-      <field name="capital" type="string" uuid="982cfb59-51ff-4ff7-9d76-a6f001830bdb"/>
-      <field name="area" type="integer" uuid="2d982ce6-dd3e-4f91-909e-ea5ec8dc81ae"/>
-      <field name="population" type="integer" uuid="c3575eed-233d-4fcf-8093-5f7ebaf9a3e6"/>
-      <field name="tld" type="string" uuid="13d576c5-354b-4d7a-ae93-45a829a9a2cb"/>
-      <field name="phone" type="string" uuid="4e7de2fc-cb06-4e34-924a-e3284dbd9de8"/>
-      <field name="postalCode" type="string" uuid="3cd3ed12-86e4-46ef-8514-f45ef67ec33c"/>
-      <field name="postalCodeRegex" type="string" uuid="400e1cfb-7937-4e5a-a227-2e8be6817040"/>
-      <field name="continent_id" type="integer" uuid="7f6868c2-90d2-4d74-af1e-563378fa9817"/>
-      <field name="place_id" type="integer" unique="true" uuid="f6a83a5e-4df1-4528-9247-b8aec65c8933"/>
-      <field name="currency_id" type="integer" uuid="82527201-1db1-4890-b506-0627d735269e"/>
-      <field name="mainlocale_id" type="integer" uuid="a812f068-d9d3-4516-bcd8-3ee9f003ac36"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_country</attribute>
-        <attribute name="repository-class">Geoname\Repository\Country</attribute>
-      </orm-attributes>
-    </entity>
-    <association from="Country" to="Place" owner-alias="countries" inverse-alias="continent" uuid="9ebca2ee-ce15-4516-9048-02f6f76d9e62">
-      <association-field from="continent_id" to="id"/>
-    </association>
-    <association from="Country" to="Place" owner-alias="country" inverse-alias="place" uuid="ad7a2621-da0b-476d-90c2-7b6226f732b3">
-      <association-field from="place_id" to="id"/>
-    </association>
-    <association from="Country" to="Currency" owner-alias="countries" inverse-alias="currency" uuid="62a9d141-efc9-43be-a799-6501caef1e76">
-      <association-field from="currency_id" to="id"/>
-    </association>
-    <association from="Country" to="Locale" inverse-alias="mainLocale" uuid="2dfc4855-8f23-464f-9c7d-67bba1ed68b0">
-      <association-field from="mainlocale_id" to="id"/>
-    </association>
-    <entity name="Currency" uuid="68ebcd14-7e6e-416d-a7a0-5fb37578329c">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="f1ee0d72-bd86-47a5-97fa-85910cec0d24"/>
-      <field name="code" type="string" uuid="85a54d41-365e-4c08-8fbe-241faf973c13"/>
-      <field name="name" type="string" uuid="66c5ae0e-1ced-4eee-b7fe-e5408c5ae73a"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_currency</attribute>
-        <attribute name="repository-class">Geoname\Repository\Currency</attribute>
-      </orm-attributes>
-    </entity>
-    <entity name="Feature" uuid="64337f4d-a815-4821-bf46-e11c83c1d8a3">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="dfd059eb-63a9-4cfd-bc77-2d0982849c67"/>
-      <field name="code" type="string" required="true" uuid="c96b6f5c-310f-44dd-8e76-3e936f4a72a0"/>
-      <field name="description" type="string" uuid="c86b4c47-df03-4523-bf38-61bfb536fde1"/>
-      <field name="comment" type="string" uuid="7bb24044-26fb-4129-85dc-b8330f1b5a13"/>
-      <field name="parent_id" type="integer" uuid="23f85cf8-ba0c-48d5-bf01-99958e9e0c28"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_feature</attribute>
-        <attribute name="repository-class">Geoname\Repository\Feature</attribute>
-      </orm-attributes>
-    </entity>
-    <association from="Feature" to="Feature" owner-alias="children" inverse-alias="parent" uuid="5ca62afa-b36d-4fa3-8b68-9e5fac9dce01">
-      <association-field from="parent_id" to="id"/>
-    </association>
-    <entity name="Language" uuid="93d9b80b-1d07-43eb-89a4-37a87bffdcc7">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="14268f94-a72b-4044-8552-5168f641d0e3"/>
-      <field name="name" type="string" uuid="5518f5d3-410d-4d61-8a75-e4b8fda0fc8a"/>
-      <field name="iso3" type="string" uuid="43cd537c-021c-41ef-97bb-ec476ecb0ccd"/>
-      <field name="iso2" type="string" uuid="79769e84-d87f-4de5-9909-78844744e3e1"/>
-      <field name="iso1" type="string" uuid="8c6d0712-ddb5-4025-ac67-f8f5f30c4392"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_language</attribute>
-        <attribute name="repository-class">Geoname\Repository\Language</attribute>
-      </orm-attributes>
-    </entity>
-    <entity name="Locale" uuid="4e5bd64e-a59a-41b8-90bb-fcbd5e4d7f6f">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="81bdf796-f756-4ac9-9494-16d51d9ec3dd"/>
-      <field name="code" type="string" required="true" uuid="753e05e9-e194-423b-9d30-e318a88b82d4"/>
-      <field name="language_id" type="integer" uuid="d66f494f-a6fe-4fc4-9329-2c02ccd8f67a"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_locale</attribute>
-        <attribute name="repository-class">Geoname\Repository\Locale</attribute>
-      </orm-attributes>
-    </entity>
-    <association from="Locale" to="Language" owner-alias="locales" inverse-alias="language" uuid="c6135085-6793-4bf8-93e6-332b8a5622ba">
-      <association-field from="language_id" to="id"/>
-    </association>
-    <entity name="Meta" uuid="85042b69-8b14-4540-81ee-c0d91ea5ef6b">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="4dd79acf-470c-4455-ba1e-d8cb5e5e37c7"/>
-      <field name="status" type="integer" required="true" uuid="214ca5f9-f725-442e-ac55-2caf2ffb7ceb"/>
-      <field name="isLocked" type="boolean" uuid="7b5ca263-1479-4490-979c-dfcb62b294ef"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_meta</attribute>
-        <attribute name="repository-class">Geoname\Repository\Meta</attribute>
-      </orm-attributes>
-    </entity>
-    <entity name="Place" uuid="d8d44aff-eaa4-4ed8-9bd8-e1adf9f51093">
-      <field name="id" type="integer" required="true" primary="true" uuid="0c167f03-1c50-4c48-9250-b3b6e4810faa"/>
-      <field name="name" type="string" uuid="0ceb272f-74a4-43ad-b164-86f75b66dfa2"/>
-      <field name="latitude" type="decimal" uuid="1f9de968-5fe9-4b26-8f36-c03d7524d992"/>
-      <field name="longitude" type="decimal" uuid="6a98bb20-cd26-4666-8796-675cf1b0e89a"/>
-      <field name="elevation" type="integer" uuid="4297dae3-7508-4747-b176-9146947d6e94"/>
-      <field name="digiEleModel" type="integer" uuid="2869c610-def2-44bb-82c6-a2c707ddb24e"/>
-      <field name="population" type="bigint" uuid="e4991f16-ff61-4925-a4e2-9dbfd33fe4f4"/>
-      <field name="countryCode" type="string" uuid="46683edd-f423-4f85-9b72-c677e5680a4e"/>
-      <field name="admin1Code" type="string" uuid="ba3e2c93-47ac-4729-977c-9b65e2e0f30b"/>
-      <field name="admin2Code" type="string" uuid="87e6354e-3635-4a97-a6eb-ddaf07e5101f"/>
-      <field name="admin3Code" type="string" uuid="cdb72a59-46b6-481a-9589-edfd4ac732a8"/>
-      <field name="admin4Code" type="string" uuid="3ee47c9c-4c70-4260-a0ab-b99e70b0f81f"/>
-      <field name="isDeprecated" type="boolean" uuid="e245bbbe-02b8-4d73-9cb2-13f859b097e2"/>
-      <field name="parent_id" type="integer" uuid="e0d6beee-ecd4-478e-b4ed-3b1f3fabefa7"/>
-      <field name="feature_id" type="integer" uuid="74d474c1-ec2f-4457-bcbf-27a9485dfede"/>
-      <field name="timezone_id" type="integer" uuid="e893c8bb-47b8-45ec-bf4e-634e32ca1a5b"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_place</attribute>
-        <attribute name="repository-class">Geoname\Repository\Place</attribute>
-      </orm-attributes>
-    </entity>
-    <association from="Place" to="Place" owner-alias="children" inverse-alias="parent" uuid="4d1e8140-45e6-402d-9fe5-70a9b1700d6b">
-      <association-field from="parent_id" to="id"/>
-    </association>
-    <association from="Place" to="Feature" owner-alias="places" inverse-alias="feature" uuid="dbf3ec07-c05d-4c16-b021-b861953bfc38">
-      <association-field from="feature_id" to="id"/>
-    </association>
-    <association from="Place" to="Timezone" owner-alias="places" inverse-alias="timezone" uuid="60669063-df73-461b-8ecb-78dba5cb61be">
-      <association-field from="timezone_id" to="id"/>
-    </association>
-    <entity name="Timezone" uuid="862e2114-4ca1-4ba3-8aab-cad8b25177de">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="8864d7d8-67c2-4201-82b7-095d583a002a"/>
-      <field name="code" type="string" required="true" uuid="aff2429a-775c-452f-9701-4d680e7df5ca"/>
-      <field name="offset" type="decimal" uuid="6494ea46-3e3a-4439-929c-d8b68900d5cf"/>
-      <field name="offsetJan" type="decimal" uuid="a05a3bdb-a7b6-4738-a5c3-775ac831a915"/>
-      <field name="offsetJul" type="decimal" uuid="5fc02c8a-b5d5-49ad-bb79-f0078cb3b603"/>
-      <field name="country_id" type="integer" uuid="6cd09419-5733-4388-ad8f-a9a79f618930"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_timezone</attribute>
-        <attribute name="repository-class">Geoname\Repository\Timezone</attribute>
-      </orm-attributes>
-    </entity>
-    <association from="Timezone" to="Country" owner-alias="timezones" inverse-alias="country" uuid="8610d688-6d7a-445d-bcde-b8b669a3213a">
-      <association-field from="country_id" to="id"/>
-    </association>
-    <entity name="CountryLocale" uuid="11812438-e06d-4d02-8b87-5dd7f475b4fc">
-      <field name="country_id" type="integer" required="true" uuid="76010f28-8cd4-4e73-84fa-5e70fc955ffc"/>
-      <field name="locale_id" type="integer" required="true" uuid="7d9ac6b1-82bb-46f7-95dc-f2fdfe67179e"/>
-      <orm-attributes>
-        <attribute name="table">he_geoname_countries_locales</attribute>
-      </orm-attributes>
-    </entity>
-    <many-to-many mn-entity="CountryLocale" uuid="e11d5951-daec-49c5-b1d1-1cf71dc449a0">
-      <many-to-many-entity name="Country" owning-side="true" alias="" uuid="1c418237-8871-4b74-9c1f-a4c8427edcf4">
-        <many-to-many-field from="country_id" to="id"/>
-      </many-to-many-entity>
-      <many-to-many-entity name="Locale" owning-side="false" alias="locales" uuid="4d4add0e-64e9-4089-aa6d-2169b53af7f6">
-        <many-to-many-field from="locale_id" to="id"/>
-      </many-to-many-entity>
-    </many-to-many>
-    <region caption="Geoname" uuid="58593bcd-f57a-4938-90e4-a3ea6cbdc2bc">
-      <entity-ref name="CountryNeighbours"/>
-      <entity-ref name="AltName"/>
-      <entity-ref name="Country"/>
-      <entity-ref name="Currency"/>
-      <entity-ref name="Feature"/>
-      <entity-ref name="Language"/>
-      <entity-ref name="Locale"/>
-      <entity-ref name="Meta"/>
-      <entity-ref name="Place"/>
-      <entity-ref name="Timezone"/>
-      <entity-ref name="CountryLocale"/>
-    </region>
-    <orm-attributes>
-      <attribute name="namespace">Geoname\Entity</attribute>
-    </orm-attributes>
-  </module>
   <module name="User" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="49b4509d-b15f-4ae3-a072-1825b437649d">
+    <entity name="UserMeta" uuid="5962da12-c86d-4c50-a074-e2318f465982">
+      <field name="id" type="integer" primary="true" auto-increment="true" uuid="a436511d-bbcb-4c13-8c1b-492f2bdc2429"/>
+      <field name="user_id" type="integer" required="true" uuid="40aeffc9-1fdb-4d53-859e-78782978086a"/>
+      <field name="name" type="string" required="true" uuid="1ef779d2-caa9-416f-91a4-2866661b667c"/>
+      <field name="content" type="text" uuid="f2bfe250-7141-4f69-bb22-ae93297c797f"/>
+      <orm-attributes>
+        <attribute name="repository-class">Db\Repository\UserMeta</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="UserMeta" to="User" owner-alias="userMeta" inverse-alias="user" uuid="3bbdc063-8e50-40ce-a201-2987db43e666">
+      <association-field from="user_id" to="id"/>
+    </association>
     <entity name="User" uuid="59a80c15-1576-4c7a-8a76-0acdcb9b5e54">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="793c6cf2-2702-41f8-9a42-14aa03038198"/>
       <field name="displayName" type="string" required="true" uuid="82af8b90-92a6-40b9-90fc-4519e1315fb1"/>
@@ -779,6 +587,7 @@
     </entity>
     <region caption="User" uuid="dc3874d1-08ad-4106-95bc-e52e07edeab3">
       <entity-ref name="User"/>
+      <entity-ref name="UserMeta"/>
     </region>
     <orm-attributes>
       <attribute name="namespace">Db\Entity</attribute>
@@ -1018,19 +827,6 @@
       <attribute name="namespace">Audit\Entity</attribute>
     </orm-attributes>
   </module>
-  <module name="GoalioForgotPassword" import-format="Doctrine2Xml" import-path="../../module/GoalioForgotPassword/config/xml" uuid="2ac9a24f-cee5-4bee-af9a-33f836afb3d1">
-    <entity name="UserPasswordReset" uuid="31ef2589-5576-4911-b4da-dc7396b6eedd">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="799692ac-e5cd-4916-9f6c-75bb4b805df3"/>
-      <field name="RequestAt" type="datetime" required="true" uuid="f55ea78a-9779-453d-935c-51c3e0ce041a"/>
-      <field name="user_id" type="integer" required="true" uuid="3b06b50f-c777-473a-9a98-ec91a495afc1"/>
-    </entity>
-    <association from="UserPasswordReset" to="User" caption="New association" inverse-alias="user" uuid="718dcb6e-d8eb-4f09-8eed-8ca784b8447d">
-      <association-field from="user_id" to="id"/>
-    </association>
-    <orm-attributes>
-      <attribute name="namespace">GoalioForgotPassword\Entity</attribute>
-    </orm-attributes>
-  </module>
   <visual-data>
     <entity uuid="0288b513-9531-454a-bc91-5f02c7d49f45" position-x="-18" position-y="-100" size-x="0" size-x2="98" size-y="0" size-y2="73"/>
     <entity uuid="0422e7df-736b-47b5-86f2-644bad5a59b3" position-x="230" position-y="36" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
@@ -1041,7 +837,6 @@
     <entity uuid="077f4a47-5b70-46f5-bb24-53b355f15ec8" position-x="352" position-y="39" size-x="0" size-x2="112" size-y="0" size-y2="45"/>
     <association uuid="099ca87f-13e2-48f1-9944-eaf7bb47e3df" splitted="1"/>
     <inheritance-child uuid="09e7846f-f21e-4304-afb1-03b91134950d" splitted="1"/>
-    <entity uuid="11812438-e06d-4d02-8b87-5dd7f475b4fc" position-x="129" position-y="222" size-x="0" size-x2="111" size-y="0" size-y2="60"/>
     <association uuid="12d9049b-6ae0-4c55-bc8d-c2719e614680" splitted="1"/>
     <association uuid="136b6eba-dce9-4391-88d5-3186fe322a4a" splitted="1"/>
     <association uuid="13c35ea7-aa41-465f-9602-f0b477836b35" splitted="1"/>
@@ -1062,30 +857,25 @@
     <association uuid="24be276e-2e49-4777-bd49-684621e1dc05" splitted="1"/>
     <entity uuid="25157232-610d-4bc9-be16-343fe9764e87" position-x="253" position-y="50" size-x="0" size-x2="117" size-y="0" size-y2="60"/>
     <inheritance-child uuid="25980790-208e-4c2d-8738-8bc19483c21f" center-position-x="9" center-position-y="0" splitted="1"/>
-    <module uuid="2ac9a24f-cee5-4bee-af9a-33f836afb3d1" bk-color="4294638066" position-x="-173" position-y="363" size-x="0" size-x2="100" size-y="0" size-y2="100"/>
     <entity uuid="2ad447a5-1083-42b2-9cbc-57a4fe47bbb3" position-x="57" position-y="33" size-x="0" size-x2="130" size-y="0" size-y2="60"/>
-    <entity uuid="31544907-76ed-4476-b1e7-a744bf1fe956" position-x="98" position-y="437" size-x="0" size-x2="124" size-y="0" size-y2="157"/>
-    <entity uuid="31ef2589-5576-4911-b4da-dc7396b6eedd" position-x="17" position-y="30" size-x="0" size-x2="109" size-y="0" size-y2="59"/>
     <association uuid="32f968c3-fb3a-4781-8b19-c1290400910c" splitted="1"/>
     <association uuid="35af89d5-6581-406e-bb52-6be0aa4fbfb2" splitted="1"/>
     <inheritance-child uuid="36dc3ca6-70d5-4c6e-ae7f-ef69436c924a" center-position-x="14" center-position-y="0" splitted="1"/>
     <association uuid="3acc122b-66d1-4224-b360-5fb7781bbbd9" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <association uuid="3bbdc063-8e50-40ce-a201-2987db43e666" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <association uuid="3bd1e05b-fdb0-4821-aa2c-78c06d08efe3" splitted="1"/>
     <region uuid="3be2c6d7-da43-4462-a925-fa5e605f4bc5" bk-color="4293906868" position-x="27" position-y="-142" size-x="0" size-x2="966" size-y="0" size-y2="195"/>
-    <module uuid="3cbdb9d3-941f-4690-8568-c9258ce21152" bk-color="4293359639" position-x="936" position-y="345" size-x="-142" size-x2="1025" size-y="0" size-y2="672"/>
     <entity uuid="3cc86590-d96a-48d6-b575-5aad4941e6c5" position-x="63" position-y="129" size-x="0" size-x2="117" size-y="0" size-y2="101"/>
     <entity uuid="3d3181bb-c13e-46cc-8b20-8172c8d12154" position-x="191" position-y="150" size-x="0" size-x2="133" size-y="0" size-y2="381"/>
     <inheritance-child uuid="43047de0-f818-4a3c-95cd-271557018eb4" splitted="1"/>
     <many-to-many-association-entity uuid="4532882c-d00c-4535-ae38-afff3ce41613" splitted="1"/>
     <inheritance-child uuid="47ddd537-35d7-4835-a8cf-4942b190466f" splitted="1"/>
     <entity uuid="4864cc5f-572c-4f9b-bbfa-92522469cbf7" position-x="230" position-y="282" size-x="0" size-x2="106" size-y="0" size-y2="73"/>
-    <module uuid="49b4509d-b15f-4ae3-a072-1825b437649d" bk-color="4293359639" position-x="-201" position-y="-292" size-x="0" size-x2="215" size-y="0" size-y2="279"/>
+    <module uuid="49b4509d-b15f-4ae3-a072-1825b437649d" bk-color="4293359639" position-x="-201" position-y="-292" size-x="0" size-x2="215" size-y="0" size-y2="482"/>
     <association uuid="4a171c01-8a95-4cd0-938f-ce5fd9fa1a46" splitted="1"/>
     <entity uuid="4bf4c0aa-d36f-428e-a616-5acc5a8aa717" position-x="234" position-y="36" size-x="0" size-x2="125" size-y="0" size-y2="115"/>
     <entity uuid="4cae9159-3783-4e82-9afc-b16f6f6a826b" position-x="36" position-y="24" size-x="0" size-x2="105" size-y="0" size-y2="115"/>
-    <association uuid="4d1e8140-45e6-402d-9fe5-70a9b1700d6b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-20"/>
     <entity uuid="4e1e7abf-b0e7-43cd-b51f-5e42b193daa5" position-x="236" position-y="169" size-x="0" size-x2="93" size-y="0" size-y2="73"/>
-    <entity uuid="4e5bd64e-a59a-41b8-90bb-fcbd5e4d7f6f" position-x="30" position-y="106" size-x="0" size-x2="117" size-y="0" size-y2="59"/>
     <entity uuid="4fa7e45c-16f5-488d-b5ee-36000f375c4e" position-x="748" position-y="41" size-x="0" size-x2="100" size-y="0" size-y2="45"/>
     <module uuid="505dca3b-a34c-430f-a3ca-3117f60e3bda" bk-color="4293359639" position-x="1193" position-y="-282" size-x="-31" size-x2="850" size-y="5" size-y2="607"/>
     <association uuid="50a15d73-6118-43c0-907f-34a44b69aa8a" splitted="1"/>
@@ -1093,21 +883,18 @@
     <inheritance-child uuid="5368bcd9-44dc-4bcd-8913-efde725fe9b7" center-position-x="2" center-position-y="10" splitted="1"/>
     <entity uuid="53964b5e-51b2-4eaa-9c97-15ec096b3bcf" position-x="250" position-y="113" size-x="0" size-x2="117" size-y="0" size-y2="87"/>
     <entity uuid="553871ee-0f25-4f9f-b05b-cb7c4bb9c8a2" position-x="200" position-y="173" size-x="0" size-x2="111" size-y="0" size-y2="60"/>
-    <region uuid="58593bcd-f57a-4938-90e4-a3ea6cbdc2bc" bk-color="15716788" position-x="166" position-y="32" size-x="0" size-x2="671" size-y="10" size-y2="627"/>
     <entity uuid="5960a44a-781b-42e4-be06-60a106c0abf9" position-x="354" position-y="37" size-x="0" size-x2="112" size-y="0" size-y2="45"/>
+    <entity uuid="5962da12-c86d-4c50-a074-e2318f465982" position-x="41" position-y="286" size-x="0" size-x2="20" size-y="0" size-y2="20"/>
     <entity uuid="59a80c15-1576-4c7a-8a76-0acdcb9b5e54" position-x="20" position-y="22" size-x="0" size-x2="123" size-y="0" size-y2="185"/>
     <inheritance-child uuid="5b0e12b7-63f3-49aa-a192-7f5795bbe41c" splitted="1"/>
     <association uuid="5b41b03a-1296-4025-8447-067288f64858" splitted="1"/>
     <association uuid="5c53322a-3c77-4d30-b605-3b68132d0b19" splitted="1"/>
-    <association uuid="5ca62afa-b36d-4fa3-8b68-9e5fac9dce01" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-20"/>
     <association uuid="5e03ea82-cfff-4c1e-8854-c966850ea809" splitted="1"/>
     <entity uuid="5e5eed40-c20e-44b5-a239-358575cccdc3" position-x="35" position-y="-46" size-x="0" size-x2="117" size-y="0" size-y2="129"/>
     <many-to-many-association-entity uuid="5f06bae6-df65-4ff0-8bfb-9980fe9b2f4d" splitted="1"/>
     <association uuid="63eca234-7c86-49f6-ba4c-262ca6f8fbc2" splitted="1"/>
-    <entity uuid="64337f4d-a815-4821-bf46-e11c83c1d8a3" position-x="503" position-y="471" size-x="0" size-x2="109" size-y="0" size-y2="87"/>
     <entity uuid="687e66f7-2707-4262-b22e-f5b98cbbe16b" position-x="22" position-y="39" size-x="0" size-x2="156" size-y="0" size-y2="171"/>
     <entity uuid="68cf3687-882b-4cbb-b942-389514edfb4e" position-x="746" position-y="112" size-x="0" size-x2="99" size-y="0" size-y2="45"/>
-    <entity uuid="68ebcd14-7e6e-416d-a7a0-5fb37578329c" position-x="531" position-y="3" size-x="0" size-x2="83" size-y="0" size-y2="59"/>
     <entity uuid="6903266c-5c12-423d-8145-e32fe38258e9" position-x="33" position-y="153" size-x="0" size-x2="117" size-y="0" size-y2="101"/>
     <project uuid="6b0db420-4a65-402e-8377-355db297598b" size-x="219" size-x2="2261" size-y="316" size-y2="1067"/>
     <inheritance-child uuid="6ca566ae-c0e4-4774-a6f9-1dea84e9bb08" center-position-x="9" center-position-y="0" splitted="1"/>
@@ -1116,7 +903,6 @@
     <entity uuid="6e82ba04-ce37-484f-ba25-149030015036" position-x="135" position-y="-58" size-x="0" size-x2="117" size-y="0" size-y2="101"/>
     <entity uuid="6f4aeefc-a0c7-4aa7-8d07-633fd28fc044" position-x="23" position-y="40" size-x="0" size-x2="140" size-y="0" size-y2="101"/>
     <region uuid="6fbe78c9-c9fd-4d6b-a4f9-2dd405e78bad" bk-color="15716788" position-x="412" position-y="270" size-x="-8" size-x2="327" size-y="0" size-y2="288"/>
-    <association uuid="718dcb6e-d8eb-4f09-8eed-8ca784b8447d" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <association uuid="73a1d1c2-c49d-48da-9cbf-62034634f974" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
     <association uuid="779ac5c4-167a-42dc-95ed-eced2629339c" splitted="1"/>
     <entity uuid="789f89eb-cafa-4e95-9845-cea7170627e4" position-x="223" position-y="112" size-x="0" size-x2="123" size-y="0" size-y2="45"/>
@@ -1125,16 +911,13 @@
     <inheritance-child uuid="813221d1-5d55-4e29-bca4-58c2f63e038c" splitted="1"/>
     <inheritance-child uuid="81949f09-9133-4b01-b39d-755484649516" splitted="1"/>
     <entity uuid="84a8d9b9-d842-414b-8220-ad30a48fc440" position-x="524" position-y="110" size-x="0" size-x2="95" size-y="0" size-y2="45"/>
-    <entity uuid="85042b69-8b14-4540-81ee-c0d91ea5ef6b" position-x="55" position-y="11" size-x="0" size-x2="106" size-y="0" size-y2="59"/>
     <entity uuid="859e7fea-b536-4fc1-8405-29100471e852" position-x="-343" position-y="-106" size-x="0" size-x2="122" size-y="0" size-y2="60"/>
-    <entity uuid="862e2114-4ca1-4ba3-8aab-cad8b25177de" position-x="511" position-y="290" size-x="0" size-x2="111" size-y="0" size-y2="101"/>
     <region uuid="86490e22-2c2a-4f81-b8ec-51f819610748" bk-color="15716788" position-x="28" position-y="413" size-x="30" size-x2="383" size-y="144" size-y2="119"/>
-    <module uuid="8af8ad2c-3c5e-4de0-b8d0-4bcf049eefc0" bk-color="4293359639" position-x="-199" position-y="9" size-x="0" size-x2="214" size-y="0" size-y2="306"/>
+    <module uuid="8af8ad2c-3c5e-4de0-b8d0-4bcf049eefc0" bk-color="4293359639" position-x="-196" position-y="278" size-x="0" size-x2="214" size-y="0" size-y2="306"/>
     <entity uuid="8b9c2e8b-b7e6-4ff7-a0a8-b0452541edf2" position-x="27" position-y="104" size-x="0" size-x2="91" size-y="0" size-y2="87"/>
     <entity uuid="8d270e66-501b-466f-ab56-045250803130" position-x="23" position-y="36" size-x="0" size-x2="140" size-y="0" size-y2="87"/>
     <region uuid="8f69e7ba-888b-4cc0-b80a-fea1e0da2238" bk-color="15716788" position-x="45" position-y="24" size-x="0" size-x2="388" size-y="0" size-y2="375"/>
     <entity uuid="93579d77-9cf7-4d37-baef-58ebafc386da" position-x="512" position-y="38" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
-    <entity uuid="93d9b80b-1d07-43eb-89a4-37a87bffdcc7" position-x="28" position-y="303" size-x="0" size-x2="83" size-y="0" size-y2="87"/>
     <region uuid="96f356b4-b805-4ea4-8d92-055900e0e964" bk-color="15716788" position-x="1006" position-y="211" size-x="356" size-x2="-94" size-y="251" size-y2="48"/>
     <entity uuid="99fcccf0-d144-4dd1-bbd2-f0aca7e96f8b" position-x="35" position-y="133" size-x="0" size-x2="77" size-y="0" size-y2="59"/>
     <module uuid="9b7f19eb-d406-45d8-96dc-262754d1eb31" bk-color="4293359639" position-x="61" position-y="-228" size-x="28" size-x2="1149" size-y="62" size-y2="563"/>
@@ -1143,9 +926,7 @@
     <entity uuid="9e5723de-5fc9-4f80-aa31-5adb62686eb9" position-x="163" position-y="218" size-x="0" size-x2="111" size-y="0" size-y2="73"/>
     <entity uuid="9e7fbb88-4860-492a-b01c-7e88c0769300" position-x="-220" position-y="-240" size-x="0" size-x2="117" size-y="0" size-y2="129"/>
     <entity uuid="9eaae197-c75b-45a8-a2fa-445cae818cee" position-x="360" position-y="110" size-x="0" size-x2="97" size-y="0" size-y2="45"/>
-    <association uuid="9ebca2ee-ce15-4516-9048-02f6f76d9e62" center-position-x="0" center-position-y="1"/>
     <entity uuid="a13ba289-ccbe-4cb0-8565-7706df3ee82f" position-x="514" position-y="40" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
-    <entity uuid="a2a59f55-c89a-4f32-b323-d6d26145f1f8" position-x="489" position-y="112" size-x="0" size-x2="92" size-y="0" size-y2="20"/>
     <association uuid="a2c72590-97e7-4fb1-abff-34d77daa4a3d" splitted="1"/>
     <association uuid="a6bcb53a-0137-410d-a1d5-0cb54dc3b703" splitted="1"/>
     <region uuid="a74a049c-1664-410b-939f-641fa25b9278" bk-color="4293906868" position-x="19" position-y="22" size-x="0" size-x2="178" size-y="0" size-y2="267"/>
@@ -1171,10 +952,9 @@
     <region uuid="d58ec363-3d3a-4f2a-8fa1-cda3102d8ee6" bk-color="4293906868" position-x="45" position-y="82" size-x="0" size-x2="948" size-y="0" size-y2="207"/>
     <entity uuid="d794f911-287a-4ecc-ac5f-aadce68e5b30" position-x="177" position-y="53" size-x="0" size-x2="119" size-y="0" size-y2="60"/>
     <inheritance-child uuid="d818f169-4309-400f-8b41-15b8b03cf75e" splitted="1"/>
-    <entity uuid="d8d44aff-eaa4-4ed8-9bd8-e1adf9f51093" position-x="297" position-y="354" size-x="0" size-x2="124" size-y="0" size-y2="241"/>
     <association uuid="db2ed8ab-450d-4d09-b542-b500c5f3a648" splitted="1"/>
     <association uuid="dbc7b8f0-bbca-48da-8d5c-384e03404912" splitted="1"/>
-    <region uuid="dc3874d1-08ad-4106-95bc-e52e07edeab3" bk-color="4293906868" position-x="15" position-y="19" size-x="0" size-x2="186" size-y="0" size-y2="243"/>
+    <region uuid="dc3874d1-08ad-4106-95bc-e52e07edeab3" bk-color="4293906868" position-x="15" position-y="19" size-x="0" size-x2="186" size-y="0" size-y2="425"/>
     <region uuid="dc61b3c0-1ff7-468f-9d5e-977b255a4b26" bk-color="15716788" position-x="-4" position-y="-41" size-x="0" size-x2="395" size-y="0" size-y2="301"/>
     <entity uuid="dc854433-cfaa-4890-b913-ef302bb0d250" position-x="40" position-y="22" size-x="0" size-x2="140" size-y="0" size-y2="157"/>
     <many-to-many-association-entity uuid="e2031257-85e7-4937-9dcd-a4b50ba65923" splitted="1"/>
@@ -1185,7 +965,6 @@
     <entity uuid="e63050c6-78fe-4e6e-b4bb-44f031943f51" position-x="208" position-y="109" size-x="0" size-x2="123" size-y="0" size-y2="45"/>
     <association uuid="e8eb80a6-0776-4176-84d7-a6a43f0b40d9" splitted="1"/>
     <association uuid="e954599d-410b-47b6-a464-e525ff15a3bc" center-position-x="0" center-position-y="21" splitted="1"/>
-    <entity uuid="eb406a7a-3ed3-4e8c-8395-42b2cdf6d7a3" position-x="294" position-y="29" size-x="0" size-x2="126" size-y="0" size-y2="227"/>
     <inheritance-child uuid="ec0d7a7f-94ad-4233-b6d7-0876c4edc98b" center-position-x="0" center-position-y="0" splitted="1"/>
     <association uuid="f01b5660-96bd-491f-ae39-3298e9980a3e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <association uuid="f2c14db6-2f95-4b88-82e2-08434097ba92" splitted="1"/>

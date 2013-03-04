@@ -20,7 +20,6 @@ $id = md5(uniqid());
 
         <a href="#" id="lookup-zipcode<?= $id; ?>" class="btn btn-primary"><i class="icon-book"></i> Lookup</a>
         <div class="alert" style="display: none;" id="lookup-alert<?= $id; ?>">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
             Enter Country and Zipcode to Lookup location
         </div>
 
@@ -60,6 +59,7 @@ $(function() {
                     $(this.span).html(data);
                 } else {
                     $(this.span).modal('hide');
+                    Menu.refresh();
                 }
             }
         });
@@ -70,12 +70,14 @@ $(function() {
     $('#lookup-zipcode<?= $id; ?>').on('click', function(event) {
         $('#lookup-alert<?= $id; ?>').hide();
 
-        if ($('#country').val() && $('#zipcode').val()) {
+        thisForm = $(this).closest('form');
+
+        if ($(thisForm).find('[name="country"]').val() && $(thisForm).find('[name="zipcode"]').val()) {
             $.ajax({
                 url: 'http://api.zippopotam.us/'
-                    + $('[name="country"]').val().trim().toLowerCase()
+                    + $(thisForm).find('[name="country"]').val().trim().toLowerCase()
                     + '/'
-                    + $('[name="zipcode"]').val().trim().toLowerCase()
+                    + $(thisForm).find('[name="zipcode"]').val().trim().toLowerCase()
                     ,
                 success: function(data) {
                     if (data.places.length == 1) {
@@ -88,6 +90,9 @@ $(function() {
                 dataType: 'json'
             });
         } else {
+            alert('id: ' + $(thisForm).find('#zipcode').val());
+            alert('country: ' + $('thisForm).find([name="country"]').val());
+            alert('zipcode: ' + $('thisForm).find([name="zipcode"]').val());
             $('#lookup-alert<?= $id; ?>').show();
         }
 

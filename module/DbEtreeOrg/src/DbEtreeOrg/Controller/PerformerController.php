@@ -7,7 +7,6 @@ use Zend\Mvc\Controller\AbstractActionController
     , Db\Entity\Performer as PerformerEntity
     , Db\Filter\Normalize
     , Zend\View\Model\JsonModel
-    , DbEtreeOrg\Service\Menu
     ;
 
 class PerformerController extends AbstractActionController
@@ -30,7 +29,8 @@ class PerformerController extends AbstractActionController
         if (!$performer)
             throw new \Exception("Performer $id not found");
 
-        Menu::addRecent('performers', $performer->getId());
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('performers', $performer->getId());
 
         return array(
             'performer' => $performer
@@ -59,6 +59,9 @@ class PerformerController extends AbstractActionController
                 $em->persist($performer);
                 $em->flush();
 
+                $menu = $this->getServiceLocator()->get('menu');
+                $menu->addRecent('performers', $performer->getId());
+
                 die();
             }
         }
@@ -85,6 +88,9 @@ class PerformerController extends AbstractActionController
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($performer);
         $form->setData($performer->getArrayCopy());
+
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('performers', $performer->getId());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -126,6 +132,9 @@ class PerformerController extends AbstractActionController
             and !sizeof($performer->getLinks())
             and !sizeof($performer->getComments()))
         {
+            $menu = $this->getServiceLocator()->get('menu');
+            $menu->removeRecent('performers', $performer->getId());
+
             $em->remove($performer);
             $em->flush();
         }

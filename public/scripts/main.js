@@ -1,5 +1,6 @@
-require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBootstrapValidation', 'DbEtreeOrg'], function() {
+require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBootstrapValidation', 'DbEtreeOrg', 'Menu'], function() {
     DbEtreeOrg.init();
+    Menu.init();
 
     $('a.confirm').live('click', function(event) {
         return confirm('Are you sure?');

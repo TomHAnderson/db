@@ -43,6 +43,7 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Entity\Relation\FieldConfig
         , \Db\Entity\Relation\BandGroups
         , \Db\Entity\Relation\Revisions
+        , \Db\Entity\Relation\UserMeta
         ;
 
     protected $state;
