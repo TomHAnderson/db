@@ -5,6 +5,9 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="note" type="text" nullable="true"/>
+    <unique-constraints>
+      <unique-constraint name="UniquePerformers" columns="performer_id,lineup_id"/>
+    </unique-constraints>
     <many-to-one field="performer" target-entity="Db\Entity\Performer" inversed-by="performerLineups">
       <join-columns>
         <join-column name="performer_id" referenced-column-name="id" nullable="false"/>

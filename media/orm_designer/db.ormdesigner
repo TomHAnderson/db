@@ -6,6 +6,10 @@
       <field name="performer_id" type="integer" required="true" uuid="a7300160-f22e-42e4-9e78-4a475b197013"/>
       <field name="lineup_id" type="integer" required="true" uuid="d3032403-ae5c-4f34-9ff3-79b6af4ae6d1"/>
       <field name="note" type="text" uuid="d9541f3e-af3d-43e3-a41f-8297afc35ede"/>
+      <index name="UniquePerformers" unique="true">
+        <index-field name="performer_id"/>
+        <index-field name="lineup_id"/>
+      </index>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\PerformerLineup</attribute>
       </orm-attributes>
@@ -21,6 +25,10 @@
       <field name="performer_id" type="integer" required="true" uuid="2724b899-0e06-4125-b997-57adf28a2fd6"/>
       <field name="performance_id" type="integer" required="true" uuid="8742d3eb-0f5c-4592-b6fc-3752f90b8aae"/>
       <field name="note" type="text" uuid="a369e378-169b-48f6-92c5-641c1316ce77"/>
+      <index name="Unique Performers" unique="true">
+        <index-field name="performer_id"/>
+        <index-field name="performance_id"/>
+      </index>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\PerformerPerformance</attribute>
       </orm-attributes>
@@ -586,8 +594,8 @@
       </orm-attributes>
     </entity>
     <region caption="User" uuid="dc3874d1-08ad-4106-95bc-e52e07edeab3">
-      <entity-ref name="User"/>
       <entity-ref name="UserMeta"/>
+      <entity-ref name="User"/>
     </region>
     <orm-attributes>
       <attribute name="namespace">Db\Entity</attribute>

@@ -40,6 +40,18 @@ DbEtreeOrg = {
             DbEtreeOrg.createModal('/performer-alias/create?id=' + id);
             return false;
         });
+
+        $('.add-performer-to-lineup').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performer-lineup/create?id=' + id);
+            return false;
+        });
+
+        $('.edit-performer-lineup').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performer-lineup/edit?id=' + id);
+            return false;
+        });
     },
 
     createModal: function(page) {

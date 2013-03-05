@@ -3,7 +3,7 @@
 namespace DbEtreeOrg\Controller;
 use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
-    , Db\Entity\PerformanceSet as PerformanceSetEntity
+    , Db\Entity\PerformerLineup as PerformerLineupEntity
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Filter\Normalize
     , Zend\View\Model\JsonModel
@@ -39,36 +39,45 @@ class PerformerLineupController extends AbstractActionController
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
             return $this->plugin('redirect')->toUrl('/user/login');
 
-        $performanceSet = new PerformanceSetEntity();
+        $performerLineup = new PerformerLineupEntity();
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($performanceSet);
+        $form = $builder->createForm($performerLineup);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
+        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
+        if (!$lineup)
+            throw new \Exception('Cannot find lineup');
 
-        if ($performance and $this->getRequest()->isPost()) {
+        $performerId = (int)$this->getRequest()->getPost()->get('performer_id');
+        $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+
+        if ($performer and $lineup and $this->getRequest()->isPost()) {
+
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($performanceSet->getInputFilter());
+            $form->setInputFilter($performerLineup->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $performanceSet->exchangeArray($form->getData());
-                $performanceSet->setPerformance($performance);
+                $performerLineup->exchangeArray($form->getData());
+                $performerLineup->setPerformer($performer);
+                $performerLineup->setLineup($lineup);
 
-                $em->persist($performanceSet);
+                $em->persist($performerLineup);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performance->getId());
+                die();
             }
         }
 
-        return array(
-            'performance' => $performance,
-            'form' => $form,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('id', $id);
+        $viewModel->setVariable('lineup', $lineup);
+        return $viewModel;
     }
 
     public function editAction()
@@ -79,58 +88,54 @@ class PerformerLineupController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $performerLineup = $em->getRepository('Db\Entity\PerformerLineup')->find($id);
 
-        if (!$performanceSet)
-            throw new \Exception("Performance Set $id not found");
+        if (!$performerLineup)
+            throw new \Exception("Performer Lineup $id not found");
 
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($performanceSet);
-        $form->setData($performanceSet->getArrayCopy());
+        $form = $builder->createForm($performerLineup);
+        $form->setData($performerLineup->getArrayCopy());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($performanceSet->getInputFilter());
+            $form->setInputFilter($performerLineup->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $performanceSet->exchangeArray($form->getData());
+                $performerLineup->exchangeArray($form->getData());
 
-                $em->persist($performanceSet);
+                $em->persist($performerLineup);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performance-set/detail?id=' . $performanceSet->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-            'performanceSet' => $performanceSet,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('id', $id);
+        $viewModel->setVariable('performerLineup', $performerLineup);
+        return $viewModel;
     }
 
     public function deleteAction()
     {
-        die('not implemented');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
-        if (!$venue)
+        $performerLineup = $em->getRepository('Db\Entity\PerformerLineup')->find($id);
+        if (!$performerLineup)
             return $this->plugin('redirect')->toUrl('/');
 
-        if (!sizeof($venue->getPerformances())
-            and !sizeof($venue->getVenueGroups())
-            and !sizeof($venue->getLinks())
-            and !sizeof($venue->getComments()))
-        {
-            $em->remove($venue);
-            $em->flush();
-        }
+        $lineup = $performerLineup->getLineup();
 
-        return $this->plugin('redirect')->toUrl('/');
+        $em->remove($performerLineup);
+        $em->flush();
+
+        return $this->plugin('redirect')->toUrl('/lineup/detail?id=' . $lineup->getId());
     }
 
     public function searchJsonAction()

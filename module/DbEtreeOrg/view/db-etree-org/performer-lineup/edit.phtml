@@ -1,26 +1,61 @@
-<h1>Edit Lineup</h1>
+<?php
+$id = md5(uniqid());
+?>
 
 <?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-facetime-video"></i>
+            Edit Performer Lineup
+        </h1>
+    </div>
+    <div class="modal-body">
 
-<?= $this->formRow($this->form->get('name')); ?>
+        <?= $this->formRow($this->form->get('note')); ?>
 
-<?= $this->formRow($this->form->get('note')); ?>
+    </div>
+    <div class="modal-footer">
 
-<br>
+        <button type="send" class="btn btn-warning">
+            <i class="icon-facetime-video"></i>
+            Edit Performer Lineup
+        </button>
 
-<button type="send" class="btn btn-warning">
-    <i class="icon-group"></i>
-    Edit Lineup
-</button>
+        <a class="confirm btn btn-danger" href="/performer-lineup/delete?id=<?= $this->id; ?>">
+            <i class="icon-facetime-video"></i>
+            Remove Performer from Lineup
+        </a>
 
-<a class="btn btn-link" href="/lineup/detail?id=<?= $this->lineup->getId(); ?>">
-    cancel
-</a>
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
 
+    </div>
 <?= $this->form()->closeTag(); ?>
 
-<ul class="nav nav-pills">
-    <?= $this->addPerformerToLineup($this->lineup->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->lineup->getId()); ?>
+<script>
 
-    <?= $this->removePerformerFromLineup($this->lineup->getId()); ?>
-</ul>
+$(function() {
+    $('form#performer-lineup').attr('id', 'performer-lineup<?= $id; ?>');
+    $('form#performer-lineup<?= $id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/performer-lineup/edit?id=<?= $this->performerLineup->getId(); ?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
+            }
+        });
+
+        return false;
+    });
+});
+
+</script>
