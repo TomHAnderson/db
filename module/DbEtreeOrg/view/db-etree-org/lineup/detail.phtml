@@ -35,16 +35,31 @@
     ?>
 </div>
 
+<br>
 
+
+<div class="h1">
+    Performers
+
+    <div class="h2">
+        <a class="btn btn-success add-performer-to-lineup" data-id="<?= $this->lineup->getId(); ?>" href="#">
+            <i class="icon-facetime-video"></i>
+            Add
+        </a>
+    </div>
 <?php
 foreach ($this->lineup->getPerformerLineups() as $performerLineup) {
 ?>
-    <h3>
-        <a class="btn btn-info" href="/performer-lineup/detail?id=<?= $performerLineup->getId(); ?>">
+    <div class="h2">
+        <a class="btn btn-info" href="/performer/detail?id=<?= $performerLineup->getPerformer()->getId(); ?>">
             <i class="icon-film"></i>
         </a>
 
-        <?= $this->escapeHtml($performerLineup->getPerformer()->getName()); ?>
+        <a class="btn btn-warning edit-performer-lineup" data-id="<?= $performerLineup->getId(); ?>" href="#">
+            <i class="icon-facetime-video"></i>
+        </a>
+
+       <?= $this->escapeHtml($performerLineup->getPerformer()->getName()); ?>
 
     <?php
     if ($performerLineup->getNote()) {
@@ -54,8 +69,10 @@ foreach ($this->lineup->getPerformerLineups() as $performerLineup) {
     }
     ?>
 
-    </h3>
+    </div>
 
 <?php
 }
 ?>
+
+</div>

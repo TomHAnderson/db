@@ -18,9 +18,3 @@
 </a>
 
 <?= $this->form()->closeTag(); ?>
-
-<ul class="nav nav-pills">
-    <?= $this->addPerformerToLineup($this->lineup->getId(), 'Db\Entity\Lineup', '/lineup/detail?id=' . $this->lineup->getId()); ?>
-
-    <?= $this->removePerformerFromLineup($this->lineup->getId()); ?>
-</ul>
