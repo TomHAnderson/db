@@ -346,9 +346,19 @@
 </li>
 
 
-<li>
+<li id="menu-audit">
     <a href="/audit">
         <i class="icon-list"></i>
         Audit Log
     </a>
 </li>
+
+<script>
+$(function() {
+    if (getCookie('editMode') == 'on') {
+        $('a#brand.btn').trigger('turnOn');
+    } else {
+        $('a#brand.btn').trigger('turnOff');
+    }
+});
+</script>

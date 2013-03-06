@@ -52,6 +52,12 @@ DbEtreeOrg = {
             DbEtreeOrg.createModal('/performer-lineup/edit?id=' + id);
             return false;
         });
+
+        $('.edit-performer-alias').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performer-alias/edit?id=' + id);
+            return false;
+        });
     },
 
     createModal: function(page) {

@@ -1,6 +1,9 @@
 <ul class="nav nav-pills pull-right">
-    <li class="">
-        <a class="btn-warning" href="/performer-alias/edit?id=<?= $this->performerAlias->getId(); ?>"><i class="icon-film"></i> Edit Performer Alias</a>
+    <li>
+        <a data-id="<?= $this->performerAlias->getId(); ?>" class="btn-warning edit-performer-alias" href="#">
+            <i class="icon-user"></i>
+            Edit Performer Alias
+        </a>
     </li>
 
     <li>
@@ -11,17 +14,21 @@
 </ul>
 
 
-<h1>
-    <i class="icon-film"></i>
-    <a href="/performer/detail?id=<?= $this->performerAlias->getPerformer()->getId(); ?>">
-        <?= $this->escapeHtml($this->performerAlias->getPerformer()->getName()); ?>
-    </a>
-</h1>
+<div class="h1">
 
-<h1>
-    <i class="icon-facetime-video"></i>
+    <a class="btn btn-info" href="/performer/detail?id=<?= $this->performerAlias->getPerformer()->getId(); ?>">
+        <i class="icon-film"></i>
+    </a>
+
+    <?= $this->escapeHtml($this->performerAlias->getPerformer()->getName()); ?>
+</div>
+
+<div class="h1">
+    <a class="btn btn-default" href="/performer-alias/detail?id=<?= $this->performerAlias->getId(); ?>">
+        <i class="icon-user"></i>
+    </a>
     <?= $this->escapeHtml($this->performerAlias->getName()); ?>
-</h1>
+</div>
 
 <?php
 if ($this->escapeHtml($this->performerAlias->getNote())) {

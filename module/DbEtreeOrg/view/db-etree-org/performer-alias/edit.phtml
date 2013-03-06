@@ -1,24 +1,58 @@
-<h1>
-    <i class="icon-facetime-video"></i>
-    Edit Performer Alias
-</h1>
-
-<h1>
-    <i class="icon-film"></i>
-    <?= $this->escapeHtml($this->performerAlias->getPerformer()->getName()); ?>
-</h3>
-
 <?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-user"></i>
+            Edit Performer Alias
+        </h1>
+    </div>
+    <div class="modal-body">
 
-<?= $this->formRow($this->form->get('name')->setLabel('Alias')); ?>
+        <?= $this->formRow($this->form->get('name')->setLabel('Alias')); ?>
 
-<?= $this->formRow($this->form->get('note')); ?>
+        <?= $this->formRow($this->form->get('note')); ?>
 
-<br>
 
-<button type="send" class="btn btn-warning">
-    <i class="icon-film"></i>
-    Edit Performer Alias
-</button>
+    </div>
+    <div class="modal-footer">
 
+        <button type="send" class="btn btn-warning">
+            <i class="icon-user"></i>
+            Edit Performer Alias
+        </button>
+
+        <a class="confirm btn btn-danger" href="/performer-alias/delete?id=<?= $this->id; ?>">
+            <i class="icon-user"></i>
+            Delete Performer Alias
+        </a>
+
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
+
+    </div>
 <?= $this->form()->closeTag(); ?>
+
+<script>
+$(function() {
+    $('form#performer-alias').attr('id', 'performer-alias<?= $this->id; ?>');
+    $('form#performer-alias<?= $this->id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/performer-alias/edit?id=<?= $this->id; ?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
+            }
+        });
+
+        return false;
+    });
+});
+</script>

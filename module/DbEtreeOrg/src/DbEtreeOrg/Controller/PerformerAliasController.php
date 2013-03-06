@@ -109,20 +109,19 @@ class PerformerAliasController extends AbstractActionController
                 $em->persist($performerAlias);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performerAlias/detail?id=' . $performerAlias->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-            'performerAlias' => $performerAlias,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('id', $performerAlias->getId());
+        return $viewModel;
     }
 
     public function deleteAction()
     {
-        die("Once you get an alias you're stuck with it");
-
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
             return $this->plugin('redirect')->toUrl('/user/login');
 
@@ -133,19 +132,14 @@ class PerformerAliasController extends AbstractActionController
         if (!$performerAlias)
             return $this->plugin('redirect')->toUrl('/');
 
-        if (!sizeof($performerAlias->getAliases())
-            and !sizeof($performerAlias->getLineups())
-            and !sizeof($performerAlias->getPerformances())
-            and !sizeof($performerAlias->getLinks())
-            and !sizeof($performerAlias->getComments()))
-        {
-            $menu = $this->getServiceLocator()->get('menu');
-            $menu->addRecent('performerAlias', $performerAlias->getId());
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('performerAlias', $performerAlias->getId());
 
-            $em->remove($performerAlias);
-            $em->flush();
-        }
+        $performer = $performerAlias->getPerformer();
 
-        return $this->plugin('redirect')->toUrl('/');
+        $em->remove($performerAlias);
+        $em->flush();
+
+        return $this->plugin('redirect')->toUrl('/performer/detail?id=' . $performer->getId());
     }
 }

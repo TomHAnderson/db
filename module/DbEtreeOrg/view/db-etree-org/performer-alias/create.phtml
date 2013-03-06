@@ -6,7 +6,7 @@ $id = md5(uniqid());
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h1>
-            <i class="icon-camera"></i>
+            <i class="icon-facetime-video"></i>
             Create Performer Alias
         </h1>
     </div>
@@ -21,7 +21,7 @@ $id = md5(uniqid());
 
     <div class="modal-footer">
         <button type="send" class="btn btn-success">
-            <i class="icon-cogs"></i>
+            <i class="icon-facetime-video"></i>
             Create PerformerAlias
         </button>
 
@@ -36,8 +36,8 @@ $id = md5(uniqid());
 <script>
 $(function() {
 
-    $('form#performerAlias').attr('id', 'performerAlias<?= $id; ?>');
-    $('form#performerAlias<?= $id; ?>').on('submit', function(event) {
+    $('form#performer-alias').attr('id', 'performer-alias<?= $id; ?>');
+    $('form#performer-alias<?= $id; ?>').on('submit', function(event) {
 
         $.ajax({
             url: '/performer-alias/create?id=<?= $performer_id; ?>',

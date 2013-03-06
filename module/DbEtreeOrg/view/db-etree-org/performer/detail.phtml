@@ -26,8 +26,11 @@
     </li>
 </ul>
 
-<h1>
-    <i class="icon-film"></i>
+<div class="h1">
+    <a class="btn btn-default" href="/performer/detail?id=<?= $this->performer->getId(); ?>">
+        <i class="icon-film"></i>
+    </a>
+
     <?= $this->escapeHtml($this->performer->getName()); ?>
 
     <?php
@@ -37,7 +40,7 @@
     <?php
     }
     ?>
-</h1>
+</div>
 
 <?php
 use Gracenote\Service\Gracenote;
@@ -179,11 +182,22 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
         <?php
         foreach ($this->performer->getAliases() as $alias) {
         ?>
-            <i class="icon-facetime-video"></i>
-            <a href="/performer-alias/detail?id=<?= $alias->getId(); ?>">
+            <div class="h1">
+                <a href="/performer-alias/detail?id=<?= $alias->getId(); ?>" class="btn btn-info" href="#">
+                    <i class="icon-user"></i>
+                </a>
+
                 <?= $this->escapeHtml($alias->getName()); ?>
-            </a>
-            <br>
+
+                <?php
+                if ($this->escapeHtml($alias->getNote())) {
+                ?>
+                    <pre><?= $this->escapeHtml($alias->getNote()); ?></pre>
+                <?php
+                }
+                ?>
+
+            </div>
         <?php
         }
         ?>
@@ -203,7 +217,10 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
     </div>
 
     <div class="tab-pane" id="links">
-        <ul class="nav nav-pills">
+            <a href="/performer-alias/create?id=<?= $this->performer->getId(); ?>" class="btn btn-success">
+                <i class="icon-share"></i>
+            </a>
+
             <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
         </ul>
     </div>
