@@ -3,7 +3,7 @@ namespace Db\Repository;
 
 use Db\Repository\AbstractRepository;
 
-class PerformanceSong extends AbstractRepository
+class PerformanceSetSong extends AbstractRepository
 {
 
 }

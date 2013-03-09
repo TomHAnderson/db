@@ -1,15 +1,16 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
+
 use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
-    , Db\Entity\PerformanceSet as PerformanceSetEntity
+    , Db\Entity\PerformerPerformance as PerformerPerformanceEntity
     , Zend\Form\Annotation\AnnotationBuilder
     , Db\Filter\Normalize
     , Zend\View\Model\JsonModel
     ;
 
-class PerformanceSetController extends AbstractActionController
+class PerformerPerformanceController extends AbstractActionController
 {
     public function indexAction()
     {
@@ -24,13 +25,13 @@ class PerformanceSetController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/venue');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $performerPerformance = $em->getRepository('Db\Entity\PerformerPerformance')->find($id);
 
-        if (!$performanceSet)
-            throw new \Exception("Performance Set $id not found");
+        if (!$performerPerformance)
+            throw new \Exception("Performer Performance $id not found");
 
         return array(
-            'performanceSet' => $performanceSet
+            'performerPerformance' => $performerPerformance
         );
     }
 
@@ -39,26 +40,33 @@ class PerformanceSetController extends AbstractActionController
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
             return $this->plugin('redirect')->toUrl('/user/login');
 
-        $performanceSet = new PerformanceSetEntity();
+        $performerPerformance = new PerformerPerformanceEntity();
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($performanceSet);
+        $form = $builder->createForm($performerPerformance);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
         $performance = $em->getRepository('Db\Entity\Performance')->find($id);
+        if (!$performance)
+            throw new \Exception('Cannot find performance');
 
-        if ($performance and $this->getRequest()->isPost()) {
+        $performerId = (int)$this->getRequest()->getPost()->get('performer_id');
+        $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+
+        if ($performer and $performance and $this->getRequest()->isPost()) {
+
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($performanceSet->getInputFilter());
+            $form->setInputFilter($performerPerformance->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $performanceSet->exchangeArray($form->getData());
-                $performanceSet->setPerformance($performance);
+                $performerPerformance->exchangeArray($form->getData());
+                $performerPerformance->setPerformer($performer);
+                $performerPerformance->setPerformance($performance);
 
-                $em->persist($performanceSet);
+                $em->persist($performerPerformance);
                 $em->flush();
 
                 die();
@@ -81,25 +89,25 @@ class PerformanceSetController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $performerPerformance = $em->getRepository('Db\Entity\PerformerPerformance')->find($id);
 
-        if (!$performanceSet)
-            throw new \Exception("Performance Set $id not found");
+        if (!$performerPerformance)
+            throw new \Exception("Performer Performance $id not found");
 
         $builder = new AnnotationBuilder();
-        $form = $builder->createForm($performanceSet);
-        $form->setData($performanceSet->getArrayCopy());
+        $form = $builder->createForm($performerPerformance);
+        $form->setData($performerPerformance->getArrayCopy());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($performanceSet->getInputFilter());
+            $form->setInputFilter($performerPerformance->getInputFilter());
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $performanceSet->exchangeArray($form->getData());
+                $performerPerformance->exchangeArray($form->getData());
 
-                $em->persist($performanceSet);
+                $em->persist($performerPerformance);
                 $em->flush();
 
                 die();
@@ -110,31 +118,25 @@ class PerformanceSetController extends AbstractActionController
         $viewModel->setTerminal(true);
         $viewModel->setVariable('form', $form);
         $viewModel->setVariable('id', $id);
-        $viewModel->setVariable('performanceSet', $performanceSet);
+        $viewModel->setVariable('performerPerformance', $performerPerformance);
         return $viewModel;
     }
 
     public function deleteAction()
     {
-        die('not implemented');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
-        if (!$venue)
+        $performerPerformance = $em->getRepository('Db\Entity\PerformerPerformance')->find($id);
+        if (!$performerPerformance)
             return $this->plugin('redirect')->toUrl('/');
 
-        if (!sizeof($venue->getPerformances())
-            and !sizeof($venue->getVenueGroups())
-            and !sizeof($venue->getLinks())
-            and !sizeof($venue->getComments()))
-        {
-            $em->remove($venue);
-            $em->flush();
-        }
+        $performance = $performerPerformance->getPerformance();
 
-        return $this->plugin('redirect')->toUrl('/');
+        $em->remove($performerPerformance);
+        $em->flush();
+
+        return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performance->getId());
     }
 
     public function searchJsonAction()

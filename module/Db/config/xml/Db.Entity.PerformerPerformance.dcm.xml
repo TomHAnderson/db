@@ -6,7 +6,7 @@
     </id>
     <field name="note" type="text" nullable="true"/>
     <unique-constraints>
-      <unique-constraint name="Unique Performers" columns="performer_id,performance_id"/>
+      <unique-constraint name="UniquePerformers" columns="performer_id,performance_id"/>
     </unique-constraints>
     <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="performerPerformances">
       <join-columns>

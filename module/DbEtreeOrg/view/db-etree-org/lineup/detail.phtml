@@ -1,10 +1,6 @@
 <ul class="nav nav-pills pull-right">
     <li class="">
-        <a class="btn-success" href="/performance/create?id=<?= $this->lineup->getId(); ?>"><i class="icon-magic"></i> Create Performane</a>
-    </li>
-
-    <li class="">
-        <a class="btn-warning" href="/lineup/edit?id=<?= $this->lineup->getId(); ?>"><i class="icon-group"></i> Edit Lineup</a>
+        <a class="btn-success" href="/performance/create?id=<?= $this->lineup->getId(); ?>"><i class="icon-magic"></i> Create Performance</a>
     </li>
 
     <li>
@@ -15,38 +11,36 @@
 </ul>
 
 <div class="h1">
-    <a class="btn btn-info" href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
-        <i class="icon-cogs"></i>
-    </a>
-    <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
-</div>
+        <a class="btn btn-warning edit-lineup" data-id="<?= $this->lineup->getId(); ?>" href="#">
+            <i class="icon-group"></i>
+        </a>
 
-<div class="h1">
-    <a class="btn btn-default" href="/lineup/detail?id=<?= $this->lineup->getId(); ?>">
         <i class="icon-group"></i>
-    </a>
-    <?= $this->escapeHtml($this->lineup->getName()); ?>
+        <?= $this->escapeHtml($this->lineup->getName()); ?>
 
-    <?php
-    if ($this->lineup->getNote()) { ?>
-        <pre><?= $this->escapeHtml($this->lineup->getNote()); ?></pre>
-    <?php
-    }
-    ?>
-</div>
-
-<br>
-
-
-<div class="h1">
-    Performers
+        <?php
+        if ($this->lineup->getNote()) { ?>
+            <pre><?= $this->escapeHtml($this->lineup->getNote()); ?></pre>
+        <?php
+        }
+        ?>
 
     <div class="h2">
-        <a class="btn btn-success add-performer-to-lineup" data-id="<?= $this->lineup->getId(); ?>" href="#">
-            <i class="icon-facetime-video"></i>
-            Add
+        <a class="btn btn-info" href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
+            <i class="icon-cogs"></i>
         </a>
+        <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
     </div>
+</div>
+
+
+
+<div class="h1">
+    <a class="btn btn-success add-performer-to-lineup" data-id="<?= $this->lineup->getId(); ?>" href="#">
+        <i class="icon-facetime-video"></i>
+    </a>
+    Performers
+
 <?php
 foreach ($this->lineup->getPerformerLineups() as $performerLineup) {
 ?>

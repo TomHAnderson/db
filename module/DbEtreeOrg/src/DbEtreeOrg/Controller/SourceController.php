@@ -29,12 +29,8 @@ class SourceController extends AbstractActionController
         if (!$source)
             throw new \Exception("Source $id not found");
 
-        if (!isset($_SESSION['menu']['sources'])) $_SESSION['menu']['sources'] = array();
-        if (in_array($source->getId(), $_SESSION['menu']['sources'])) {
-            unset($_SESSION['menu']['sources'][array_search($source->getId(), $_SESSION['menu']['sources'])]);
-        }
-        array_unshift($_SESSION['menu']['sources'], $source->getId());
-        $_SESSION['menu']['sources'] = array_slice($_SESSION['menu']['sources'], 0, 10);
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('sources', $source->getId());
 
         return array(
             'source' => $source
@@ -71,7 +67,7 @@ class SourceController extends AbstractActionController
                 $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/source/edit?id=' . $source->getId());
+                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
             }
         }
 
@@ -110,14 +106,15 @@ class SourceController extends AbstractActionController
                 $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-            'source' => $source,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('source', $source);
+        return $viewModel;
     }
 
     public function deleteAction()

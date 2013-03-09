@@ -1,41 +1,40 @@
 <ul class="nav nav-pills pull-right">
     <li>
-        <a href="/song/edit?id=<?= $this->song->getId(); ?>" class="btn-warning">
-            <i class="icon-music"></i>
-            Edit Song
-        </a>
-    </li>
-    <li>
         <a class="btn-info" href="/audit/entity/<?= $this->song->getId(); ?>/Db\Entity\Song">
             <i class="icon-list"></i>
         </a>
     </li>
 </ul>
 
-<h1>
+<div class="h1">
+    <a href="#" class="btn btn-warning edit-song" data-id="<?= $this->song->getId(); ?>">
+        <i class="icon-music"></i>
+    </a>
+
     <i class="icon-music"></i>
     <?= $this->escapeHtml($this->song->getName()); ?>
-</h1>
 
-<?php
-    if ($this->song->getBand()) {
-?>
-<h1>
-    <a href="/band/detail?id=<?= $this->song->getBand()->getId(); ?>">
-        <i class="icon-cogs"></i>
-        <?= $this->escapeHtml($this->song->getBand()->getName()); ?>
-    </a>
-</h1>
-<?php
-}
-?>
+    <?php
+        if ($this->song->getBand()) {
+    ?>
+        <div class="h2">
+            <a class="btn btn-info" href="/band/detail?id=<?= $this->song->getBand()->getId(); ?>">
+                <i class="icon-cogs"></i>
+            </a>
+            <?= $this->escapeHtml($this->song->getBand()->getName()); ?>
 
-<?php
-if ($this->song->getNote()) { ?>
-    <pre><?= $this->escapeHtml($this->song->getNote()); ?></pre>
-<?php
-}
-?>
+        </div>
+    <?php
+    }
+    ?>
+
+    <?php
+    if ($this->song->getNote()) { ?>
+        <pre><?= $this->escapeHtml($this->song->getNote()); ?></pre>
+    <?php
+    }
+    ?>
+</div>
 
 <ul class="nav nav-tabs" id="tabs">
     <li class="active">

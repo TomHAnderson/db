@@ -6,42 +6,41 @@ $id = md5(uniqid());
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h1>
-            <i class="icon-facetime-video"></i>
-            Create Performer Alias
+            <i class="icon-bolt"></i>
+            Add Song to Performance Set
         </h1>
     </div>
-
     <div class="modal-body">
 
-        <?= $this->formRow($this->form->get('name')); ?>
+        <?= $this->inputSong($this->song); ?>
+
+        <?= $this->formRow($this->form->get('length')); ?>
 
         <?= $this->formRow($this->form->get('note')); ?>
 
-    </div>
+        <?= $this->formRow($this->form->get('isSegue')); ?>
 
+    </div>
     <div class="modal-footer">
+
         <button type="send" class="btn btn-success">
-            <i class="icon-facetime-video"></i>
-            Create Performer Alias
+            <i class="icon-bolt"></i>
+            Add Song to Performance Set
         </button>
 
         <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
             Cancel
         </button>
+
     </div>
-
 <?= $this->form()->closeTag(); ?>
-
 
 <script>
 $(function() {
-
-    $('form#performer-alias').attr('id', 'performer-alias<?= $id; ?>');
-    $('form#performer-alias<?= $id; ?>').on('submit', function(event) {
-
+    $('form#performance-set-song').attr('id', 'performance-set-song<?= $id; ?>');
+    $('form#performance-set-song<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performer-alias/create?id=<?= $performer_id; ?>',
-
+            url: '/performance-set-song/create?id=<?= $this->id; ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),
@@ -49,10 +48,8 @@ $(function() {
                 if (data) {
                     $(this.span).html(data);
                 } else {
-
                     $(this.span).modal('hide');
-                    //Menu.refresh();
-                    window.location.reload();
+                    document.location.reload();
                 }
             }
         });
@@ -60,5 +57,4 @@ $(function() {
         return false;
     });
 });
-
 </script>

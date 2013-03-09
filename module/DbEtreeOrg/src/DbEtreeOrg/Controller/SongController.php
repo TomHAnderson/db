@@ -115,14 +115,15 @@ class SongController extends AbstractActionController
                 $em->persist($song);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/song/detail?id=' . $song->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-            'song' => $song,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('song', $song);
+        return $viewModel;
     }
 
     public function deleteAction()

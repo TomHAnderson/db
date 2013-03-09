@@ -8,7 +8,7 @@ use Zend\Form\Annotation as Form
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("performanceSet")
+ * @Form\Name("performance-set")
  */
 class PerformanceSet extends AbstractEntity
 {
@@ -19,7 +19,7 @@ class PerformanceSet extends AbstractEntity
         , \Db\Entity\Field\Performance
     ;
 
-    use \Db\Entity\Relation\PerformanceSongs
+    use \Db\Entity\Relation\PerformanceSetSongs
         ;
 
     public function getArrayCopy()

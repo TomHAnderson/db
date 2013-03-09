@@ -1,7 +1,7 @@
 <ul class="nav nav-pills pull-right">
 
     <li>
-        <a class="btn-success" href="/performance-song/create?id=<?= $this->performanceSet->getId(); ?>">
+        <a class="btn-success btn create-performance-set-song" href="#" data-id="<?= $this->performanceSet->getId(); ?>">
             <i class="icon-music"></i>
             Add Song to Performace Set
         </a>
@@ -66,9 +66,9 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
 </div>
 
 <?php
-if (sizeof($this->performanceSet->getPerformanceSongs())) {
+if (sizeof($this->performanceSet->getPerformanceSetSongs())) {
     $count = 1;
-    foreach ($this->performanceSet->getPerformanceSongs() as $performanceSong) {
+    foreach ($this->performanceSet->getPerformanceSetSongs() as $performanceSong) {
 ?>
         <div class="row">
             <div class="span1">

@@ -35,22 +35,24 @@ $id = md5(uniqid());
 
 <script>
 $(function() {
-
     $('form#checksum').attr('id', 'checksum<?= $id; ?>');
     $('form#checksum<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/checksum/create?id=<?= $source->getId(); ?>',
+            url: '/checksum/create?id=<?= $this->source->getId(); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),
             success: function(data) {
-                $(this.span).modal('hide');
-                if (data) $('<span class=modal></span>').appendTo('body').html(data).modal();
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
             }
         });
 
         return false;
     });
 });
-
 </script>

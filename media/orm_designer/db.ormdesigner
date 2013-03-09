@@ -25,7 +25,7 @@
       <field name="performer_id" type="integer" required="true" uuid="2724b899-0e06-4125-b997-57adf28a2fd6"/>
       <field name="performance_id" type="integer" required="true" uuid="8742d3eb-0f5c-4592-b6fc-3752f90b8aae"/>
       <field name="note" type="text" uuid="a369e378-169b-48f6-92c5-641c1316ce77"/>
-      <index name="Unique Performers" unique="true">
+      <index name="UniquePerformers" unique="true">
         <index-field name="performer_id"/>
         <index-field name="performance_id"/>
       </index>
@@ -247,7 +247,7 @@
     <association from="Song" to="Band" owner-alias="songs" inverse-alias="band" uuid="5c53322a-3c77-4d30-b605-3b68132d0b19">
       <association-field from="band_id" to="id"/>
     </association>
-    <entity name="PerformanceSong" description="s" uuid="4cae9159-3783-4e82-9afc-b16f6f6a826b">
+    <entity name="PerformanceSetSong" description="s" uuid="4cae9159-3783-4e82-9afc-b16f6f6a826b">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="097abc51-8873-4f03-a7fa-d49f545bff3c"/>
       <field name="song_id" type="integer" required="true" uuid="aea997cd-9b57-449d-8bbc-316837c12d07"/>
       <field name="performanceSet_id" type="integer" required="true" uuid="815aa343-c614-4af3-9abc-6caff0ae019d"/>
@@ -256,13 +256,13 @@
       <field name="isSegue" type="boolean" uuid="0e02e43b-8740-4e93-9f90-c9ef160da207"/>
       <field name="sort" type="integer" required="true" uuid="b1cd0e02-facd-4de9-928e-9c612c9dd9f7"/>
       <orm-attributes>
-        <attribute name="repository-class">Db\Repository\PerformanceSong</attribute>
+        <attribute name="repository-class">Db\Repository\PerformanceSetSong</attribute>
       </orm-attributes>
     </entity>
-    <association from="PerformanceSong" to="Song" owner-alias="performanceSongs" inverse-alias="song" uuid="7ea7f4b5-d23f-4cfc-a3e8-aab1d06b3a4d">
+    <association from="PerformanceSetSong" to="Song" owner-alias="performanceSetSongs" inverse-alias="song" uuid="7ea7f4b5-d23f-4cfc-a3e8-aab1d06b3a4d">
       <association-field from="song_id" to="id"/>
     </association>
-    <association from="PerformanceSong" to="PerformanceSet" owner-alias="performanceSongs" inverse-alias="performanceSet" uuid="e954599d-410b-47b6-a464-e525ff15a3bc">
+    <association from="PerformanceSetSong" to="PerformanceSet" owner-alias="performanceSetSongs" inverse-alias="performanceSet" uuid="e954599d-410b-47b6-a464-e525ff15a3bc">
       <association-field from="performanceSet_id" to="id"/>
       <orm-attributes>
         <attribute name="side-inverse">
@@ -366,7 +366,7 @@
     </region>
     <region caption="Song" uuid="6fbe78c9-c9fd-4d6b-a4f9-2dd405e78bad">
       <entity-ref name="Song"/>
-      <entity-ref name="PerformanceSong"/>
+      <entity-ref name="PerformanceSetSong"/>
       <entity-ref name="Composer"/>
       <entity-ref name="ComposerSong"/>
     </region>

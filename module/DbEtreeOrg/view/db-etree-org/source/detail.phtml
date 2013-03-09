@@ -1,11 +1,4 @@
 <ul class="nav nav-pills pull-right">
-    <li class="">
-        <a class="btn-warning" href="/source/edit?id=<?= $this->source->getId(); ?>">
-            <i class="icon-headphones"></i>
-            Edit Source
-        </a>
-    </li>
-
     <li>
         <a class="btn-info" href="/audit/entity/<?= $this->source->getId(); ?>/Db\Entity\Source">
             <i class="icon-list"></i>
@@ -13,19 +6,23 @@
     </li>
 </ul>
 
-<h1>
+<div class="h1">
+    <a href="#" class="btn btn-warning edit-source" data-id="<?= $this->source->getId(); ?>">
+        <i class="icon-headphones"></i>
+    </a>
+
     <i class="icon-headphones"></i>
     <?= $this->escapeHtml($this->source->getName()); ?>
-</h1>
+</div>
 
-<h1>
+<div class="h1">
     <?= $this->escapeHtml($this->source->getFormat()); ?>
-</h1>
+</div>
 
 <pre><?= $this->escapeHtml($this->source->getNote()); ?></pre>
 
 
-<h1>
+<div class="h1">
     <a class="btn btn-info" href="/performance/detail?id=<?= $this->source->getPerformance()->getId(); ?>">
         <i class="icon-magic"></i>
     </a>
@@ -38,22 +35,22 @@ if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') !=
 ?>
 
     <?= $this->escapeHtml($this->source->getPerformance()->getName()); ?>
-</h1>
+</div>
 
-<h1>
+<div class="h1">
     <a class="btn btn-info" href="/band/detail?id=<?= $this->source->getPerformance()->getLineup()->getBand()->getId(); ?>">
         <i class="icon-cogs"></i>
     </a>
 
     <?= $this->escapeHtml($this->source->getPerformance()->getLineup()->getBand()->getName()); ?>
-</h1>
+</div>
 
-<h1>
+<div class="h1">
     <a class="btn btn-info" href="/venue/detail?id=<?= $this->source->getPerformance()->getVenue()->getId(); ?>">
         <i class="icon-map-marker"></i>
     </a>
     <?= $this->escapeHtml($this->source->getPerformance()->getVenue()->getName()); ?>
-</h1>
+</div>
 
 <div class="row">
     <div class="span12">
@@ -92,20 +89,25 @@ if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') !=
     </div>
 </div>
 
-<h1>Checksums</h1>
+<div class="h1">Checksums</div>
 
-<?= $this->addChecksumToSource($this->source->getId()); ?>
+<a href="#" class="btn btn-success create-checksum" data-id="<?= $this->source->getId(); ?>">
+    <i class="icon-ok-circle"></i>
+</a>
 
 <?php
 foreach ($this->source->getChecksums() as $checksum) {
 ?>
-    <h3>
-        <a href="/checksum/detail?id=<?= $checksum->getId(); ?>">
+    <div class="h2">
+        <a class="btn btn-warning edit-checksum" href="#" data-id="<?= $checksum->getId(); ?>">
             <i class="icon-ok-circle"></i>
-            <?= $this->escapeHtml($checksum->getName()); ?>
         </a>
-    </h3>
-    <pre><?= $this->escapeHtml($checksum->getContent()); ?></pre>
+
+        <?= $this->escapeHtml($checksum->getName()); ?>
+
+        <pre><?= $this->escapeHtml($checksum->getContent()); ?></pre>
+    </div>
+
 
 <?php
 }

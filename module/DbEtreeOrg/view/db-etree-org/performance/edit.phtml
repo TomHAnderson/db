@@ -1,42 +1,62 @@
-<h1>
-    <i class="icon-magic"></i>
-    Edit Performance
-</h1>
+<?php
+$id = md5(uniqid());
+?>
 
 <?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-magic"></i>
+            Edit Performance
+        </h1>
+    </div>
+    <div class="modal-body">
 
-<?= $this->inputVenue($this->performance->getVenue()); ?>
+        <?= $this->inputVenue($this->performance->getVenue()); ?>
 
-<?= $this->formRow($this->form->get('performanceDate')); ?>
+        <?= $this->formRow($this->form->get('performanceDate')); ?>
 
-<?= $this->formRow($this->form->get('name')); ?>
+        <?= $this->formRow($this->form->get('name')); ?>
 
-<?= $this->formRow($this->form->get('mbid')); ?>
+        <?= $this->formRow($this->form->get('mbid')); ?>
 
-<?= $this->formRow($this->form->get('note')); ?>
+        <?= $this->formRow($this->form->get('note')); ?>
 
-<br>
+    </div>
+    <div class="modal-footer">
 
-<button type="send" class="btn btn-warning">
-    <i class="icon-magic"></i>
-    Edit Performance
-</button>
+        <button type="send" class="btn btn-warning">
+            <i class="icon-magic"></i>
+            Edit Performance
+        </button>
 
-<a class="btn btn-link" href="/performance/detail?id=<?= $this->performance->getId(); ?>">
-    cancel
-</a>
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
 
+    </div>
 <?= $this->form()->closeTag(); ?>
 
+<script>
+$(function() {
+    $('form#performance').attr('id', 'performance<?= $id; ?>');
+    $('form#performance<?= $id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/performance/edit?id=<?= $this->performance->getId(); ?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
+            }
+        });
 
-<ul class="nav nav-pills">
-    <li>
-        <a class="btn-success" href="/performance-set/create?id=<?= $this->performance->getId(); ?>">
-            <i class="icon-certificate"></i>
-            Create Performance Set
-        </a>
-    </li>
-
-    <?= $this->addPerformerToPerformance($performance->getId()); ?>
-    <?= $this->removePerformerFromPerformance($performance->getId()); ?>
-</ul>
+        return false;
+    });
+});
+</script>

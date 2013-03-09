@@ -104,14 +104,16 @@ class PerformerController extends AbstractActionController
                 $em->persist($performer);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performer/detail?id=' . $performer->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-            'performer' => $performer,
-        );
+
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('performer', $performer);
+        return $viewModel;
     }
 
     public function deleteAction()

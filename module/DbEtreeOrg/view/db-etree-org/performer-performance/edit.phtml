@@ -7,41 +7,40 @@ $id = md5(uniqid());
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h1>
             <i class="icon-facetime-video"></i>
-            Create Performer Alias
+            Edit Guest Performer Performance
         </h1>
     </div>
-
     <div class="modal-body">
-
-        <?= $this->formRow($this->form->get('name')); ?>
 
         <?= $this->formRow($this->form->get('note')); ?>
 
     </div>
-
     <div class="modal-footer">
-        <button type="send" class="btn btn-success">
+
+        <button type="send" class="btn btn-warning">
             <i class="icon-facetime-video"></i>
-            Create Performer Alias
+            Edit Guest Performer Performance
         </button>
+
+        <a class="confirm btn btn-danger" href="/performer-performance/delete?id=<?= $this->id; ?>">
+            <i class="icon-facetime-video"></i>
+            Remove Guest Performer from Performance
+        </a>
 
         <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
             Cancel
         </button>
-    </div>
 
+    </div>
 <?= $this->form()->closeTag(); ?>
 
-
 <script>
+
 $(function() {
-
-    $('form#performer-alias').attr('id', 'performer-alias<?= $id; ?>');
-    $('form#performer-alias<?= $id; ?>').on('submit', function(event) {
-
+    $('form#performer-performance').attr('id', 'performer-performance<?= $id; ?>');
+    $('form#performer-performance<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performer-alias/create?id=<?= $performer_id; ?>',
-
+            url: '/performer-performance/edit?id=<?= $this->performerPerformance->getId(); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),
@@ -49,10 +48,8 @@ $(function() {
                 if (data) {
                     $(this.span).html(data);
                 } else {
-
                     $(this.span).modal('hide');
-                    //Menu.refresh();
-                    window.location.reload();
+                    document.location.reload();
                 }
             }
         });

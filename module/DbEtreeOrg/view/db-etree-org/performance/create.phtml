@@ -1,17 +1,24 @@
-<h1>
+<div class="h1">
     <i class="icon-magic"></i>
     Create Performance
-</h1>
 
-<h2>
-    <i class="icon-cogs"></i>
+<div class="h2">
+    <a href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>" class="btn btn-info">
+        <i class="icon-cogs"></i>
+    </a>
+
     <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
-</h2>
+</div>
 
-<h2>
-    <i class="icon-group"></i>
+<div class="h2">
+    <a href="/lineup/detail?id=<?= $this->lineup->getId(); ?>" class="btn btn-info">
+        <i class="icon-group"></i>
+    </a>
+
     <?= $this->escapeHtml($this->lineup->getName()); ?>
-</h2>
+</div>
+
+</div>
 
 <?= $this->form()->openTag($form); ?>
 

@@ -1,8 +1,4 @@
 <ul class="nav nav-pills pull-right">
-    <li class="">
-        <a class="btn-warning" href="/venue/edit?id=<?= $this->venue->getId(); ?>"><i class="icon-map-marker"></i> Edit Venue</a>
-    </li>
-
     <?php
     if (!sizeof($this->venue->getPerformances())
         and !sizeof($this->venue->getLinks())
@@ -24,7 +20,14 @@
     </li>
 </ul>
 
-<h1><i class="icon-map-marker"></i> <?= $this->escapeHtml($this->venue->getName()); ?></h1>
+<div class="h1">
+    <a class="btn btn-warning edit-venue" href="#" data-id="<?= $this->venue->getId(); ?>">
+        <i class="icon-map-marker"></i>
+    </a>
+
+    <i class="icon-map-marker"></i>
+    <?= $this->escapeHtml($this->venue->getName()); ?>
+</div>
 
 <div class="row">
     <div class="span3">

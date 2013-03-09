@@ -88,10 +88,11 @@ return array(
             'performance' => 'DbEtreeOrg\Controller\PerformanceController',
             'performance-set' => 'DbEtreeOrg\Controller\PerformanceSetController',
             'song' => 'DbEtreeOrg\Controller\SongController',
-            'performance-song' => 'DbEtreeOrg\Controller\PerformanceSongController',
+            'performance-set-song' => 'DbEtreeOrg\Controller\PerformanceSetSongController',
             'source' => 'DbEtreeOrg\Controller\SourceController',
             'checksum' => 'DbEtreeOrg\Controller\ChecksumController',
             'performer-lineup' => 'DbEtreeOrg\Controller\PerformerLineupController',
+            'performer-performance' => 'DbEtreeOrg\Controller\PerformerPerformanceController',
         ),
     ),
 

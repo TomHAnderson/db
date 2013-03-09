@@ -1,48 +1,65 @@
-<ul class="nav nav-pills pull-right">
-
 <?php
-#    if (!sizeof($this->checksum->getSource()->getPerformances())
-#        and !sizeof($this->venue->getLinks())
-#        and !sizeof($this->venue->getComments())
-#        and !sizeof($this->venue->getVenueGroups()))
-#    {
+$id = md5(uniqid());
 ?>
-    <li class="">
-        <a class="btn-danger confirm" href="/checksum/delete?id=<?= $this->checksum->getId(); ?>">
+
+<?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-ok-circle"></i>
+            Edit Checksum
+        </h1>
+    </div>
+    <div class="modal-body">
+
+        <?= $this->formRow($this->form->get('name')); ?>
+
+        <?= $this->formRow($this->form->get('content')); ?>
+
+        <?= $this->PasteUpload('content', 'Paste Uploaded File to Content'); ?>
+
+        <?= $this->checksum->getName(); ?>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="send" class="btn btn-warning">
+            <i class="icon-ok-circle"></i>
+            Edit Checksum
+        </button>
+
+        <a class="btn btn-danger confirm" href="/checksum/delete?id=<?= $this->checksum->getId(); ?>">
             <i class="icon-ok-circle"></i>
             Delete Checksum
         </a>
-    </li>
-    <?php
-#    }
-    ?>
-</ul>
 
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
 
-<h1>
-    <i class="icon-ok-circle"></i>
-    Edit Checksum
-</h1>
-
-<?= $this->form()->openTag($form); ?>
-
-<?= $this->formRow($this->form->get('name')); ?>
-
-<?= $this->formRow($this->form->get('content')); ?>
-
-<?= $this->PasteUpload('content', 'Paste Uploaded File to Content'); ?>
-
-<?= $this->checksum->getName(); ?>
-
-<br>
-
-<button type="send" class="btn btn-warning">
-    <i class="icon-ok-circle"></i>
-    Edit Checksum
-</button>
-
-<a class="btn btn-link" href="/checksum/detail?id=<?= $this->checksum->getId(); ?>">
-    cancel
-</a>
-
+    </div>
 <?= $this->form()->closeTag(); ?>
+
+<script>
+$(function() {
+    $('form#checksum').attr('id', 'checksum<?= $id; ?>');
+    $('form#checksum<?= $id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/checksum/edit?id=<?= $this->checksum->getId(); ?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
+            }
+        });
+
+        return false;
+    });
+});
+</script>

@@ -11,15 +11,23 @@ Menu = {
 
     bindUIActions: function()
     {
-        $('a#brand.btn').on('click', function(event) {
+        $('a#brand').on('turnOn', function(event) {
+            setCookie('editMode', 'on');
+            $(this).removeClass('btn-default').addClass('btn-warning');
+            $('a.btn-warning, a.btn-danger, a.btn-success, li#menu-audit').show();
+        });
+
+        $('a#brand').on('turnOff', function(event) {
+            setCookie('editMode', false);
+            $(this).removeClass('btn-warning').addClass('btn-default');
+            $('a.btn-warning, a.btn-danger, a.btn-success, li#menu-audit').hide();
+        });
+
+        $('a#brand').on('click', function(event) {
             if ($(this).hasClass('btn-default')) {
-                setCookie('editMode', 'on');
-                $(this).removeClass('btn-default').addClass('btn-warning');
-                $('a.btn-warning, a.btn-danger, a.btn-success').show();
+                $(this).trigger('turnOn');
             } else {
-                setCookie('editMode', false);
-                $(this).removeClass('btn-warning').addClass('btn-default');
-                $('a.btn-warning, a.btn-danger, a.btn-success').hide();
+                $(this).trigger('turnOff');
             }
             $(this).show();
 
@@ -27,9 +35,9 @@ Menu = {
         });
 
         if (getCookie('editMode') == 'on') {
-            $('a#brand.btn').trigger('click');
+            $('a#brand').trigger('turnOn');
         } else {
-            $('a.btn-warning, a.btn-danger, a.btn-success').hide();
+            $('a#brand').trigger('turnOff');
         }
 
     },

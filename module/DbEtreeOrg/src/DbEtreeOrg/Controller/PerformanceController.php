@@ -28,13 +28,8 @@ class PerformanceController extends AbstractActionController
         if (!$performance)
             throw new \Exception("Performance $id not found");
 
-        if (!isset($_SESSION['menu']['performances'])) $_SESSION['menu']['performances'] = array();
-        if (in_array($performance->getId(), $_SESSION['menu']['performances'])) {
-            unset($_SESSION['menu']['performances'][array_search($performance->getId(), $_SESSION['menu']['performances'])]);
-        }
-        if (!isset($_SESSION['menu']['performances'])) $_SESSION['menu']['performances'] = array();
-        array_unshift($_SESSION['menu']['performances'], $performance->getId());
-        $_SESSION['menu']['performances'] = array_slice($_SESSION['menu']['performances'], 0, 10);
+        $menu = $this->getServiceLocator()->get('menu');
+        $menu->addRecent('performances', $performance->getId());
 
         return array(
             'performance' => $performance
@@ -117,14 +112,16 @@ class PerformanceController extends AbstractActionController
                 $em->persist($performance);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performance->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-            'performance' => $performance,
-        );
+
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('performance', $performance);
+        return $viewModel;
     }
 
     public function deleteAction()

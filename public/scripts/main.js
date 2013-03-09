@@ -56,7 +56,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBoot
 
     // Map all icons to title name
     $('a i.icon-film').attr('title', 'Performer');
-    $('a i.icon-facetime-video').attr('title', 'Performer Alias');
+    $('a i.icon-facetime-video').attr('title', 'Performer (performing)');
     $('a i.icon-magic').attr('title', 'Performance');
     $('a i.icon-certificate').attr('title', 'Performance Set');
     $('a i.icon-map-marker').attr('title', 'Venue');
