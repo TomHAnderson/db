@@ -58,6 +58,98 @@ DbEtreeOrg = {
             DbEtreeOrg.createModal('/performer-alias/edit?id=' + id);
             return false;
         });
+
+        $('.edit-lineup').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/lineup/edit?id=' + id);
+            return false;
+        });
+
+        $('.create-performer-performance').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performer-performance/create?id=' + id);
+            return false;
+        });
+
+        $('.edit-performer-performance').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performer-performance/edit?id=' + id);
+            return false;
+        });
+
+        $('.create-performance-set').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performance-set/create?id=' + id);
+            return false;
+        });
+
+        $('.edit-performance-set').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performance-set/edit?id=' + id);
+            return false;
+        });
+
+        $('.create-performance-set-song').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performance-set-song/create?id=' + id);
+            return false;
+        });
+
+
+        $('.edit-performance-set-song').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performance-set-song/edit?id=' + id);
+            return false;
+        });
+
+        $('.create-checksum').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/checksum/create?id=' + id);
+            return false;
+        });
+
+        $('.edit-checksum').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/checksum/edit?id=' + id);
+            return false;
+        });
+
+        $('.edit-source').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/source/edit?id=' + id);
+            return false;
+        });
+
+        $('.edit-performer').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performer/edit?id=' + id);
+            return false;
+        });
+
+        $('.edit-band').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/band/edit?id=' + id);
+            return false;
+        });
+
+        $('.edit-venue').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/venue/edit?id=' + id);
+            return false;
+        });
+
+        $('.edit-song').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/song/edit?id=' + id);
+            return false;
+        });
+
+        $('.edit-performance').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/performance/edit?id=' + id);
+            return false;
+        });
+
     },
 
     createModal: function(page) {

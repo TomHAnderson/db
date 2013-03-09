@@ -5494,7 +5494,12 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .brand {
+  padding-top: 9px;
   color: #999999;
+}
+
+.navbar-inverse .brand.btn {
+  padding-top: 3px;
 }
 
 .navbar-inverse .navbar-text {

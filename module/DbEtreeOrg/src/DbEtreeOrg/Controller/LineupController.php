@@ -110,14 +110,15 @@ class LineupController extends AbstractActionController
                 $em->persist($lineup);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/lineup/detail?id=' . $lineup->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-            'lineup' => $lineup,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('lineup', $lineup);
+        return $viewModel;
     }
 
     public function deleteAction()

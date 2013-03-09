@@ -68,10 +68,11 @@ class ChecksumController extends AbstractActionController
             }
         }
 
-        return array(
-            'form' => $form,
-            'source' => $source,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('source', $source);
+        return $viewModel;
     }
 
     public function editAction()
@@ -103,14 +104,16 @@ class ChecksumController extends AbstractActionController
                 $em->persist($checksum);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/checksum/detail?id=' . $checksum->getId());
+                die();
             }
         }
 
-        return array(
-            'form' => $form,
-            'checksum' => $checksum,
-        );
+
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('checksum', $checksum);
+        return $viewModel;
     }
 
     public function deleteAction()

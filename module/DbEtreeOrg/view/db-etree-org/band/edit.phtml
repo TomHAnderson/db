@@ -1,22 +1,58 @@
-<h1>Edit Band</h1>
+<?php
+$id = md5(uniqid());
+?>
 
 <?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-cogs"></i>
+            Edit Band
+        </h1>
+    </div>
+    <div class="modal-body">
 
-<?= $this->formRow($this->form->get('name')); ?>
+        <?= $this->formRow($this->form->get('name')); ?>
 
-<?= $this->formRow($this->form->get('mbid')); ?>
+        <?= $this->formRow($this->form->get('mbid')); ?>
 
-<?= $this->formRow($this->form->get('note')); ?>
+        <?= $this->formRow($this->form->get('note')); ?>
 
-<br>
+    </div>
+    <div class="modal-footer">
 
-<button type="send" class="btn btn-warning">
-    <i class="icon-cogs"></i>
-    Edit Band
-</button>
+        <button type="send" class="btn btn-warning">
+            <i class="icon-cogs"></i>
+            Edit Band
+        </button>
 
-<a class="btn btn-link" href="/band/detail?id=<?= $this->band->getId(); ?>">
-    cancel
-</a>
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
 
+    </div>
 <?= $this->form()->closeTag(); ?>
+
+<script>
+$(function() {
+    $('form#band').attr('id', 'band<?= $id; ?>');
+    $('form#band<?= $id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/band/edit?id=<?= $this->band->getId(); ?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
+            }
+        });
+
+        return false;
+    });
+});
+</script>

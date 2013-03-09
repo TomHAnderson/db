@@ -21,7 +21,6 @@ class Performer extends AbstractEntity {
 
     use \Db\Entity\Relation\Aliases
         , \Db\Entity\Relation\Lineups
-        , \Db\Entity\Relation\Performances
         , \Db\Entity\Relation\Links
         , \Db\Entity\Relation\Comments
         , \Db\Entity\Relation\PerformerLineups
@@ -56,5 +55,19 @@ class Performer extends AbstractEntity {
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
 
         return $inputFilter;
+    }
+
+    public function getPerformances()
+    {
+        $performances = array();
+        foreach ($this->getPerformerLineups() as $lineup) {
+            $performances += getPerformances();
+        }
+        foreach ($this->getPerformerPerformances() as $performerPerformance) {
+            $performances[] = $performerPerformance->getPerformance();
+        }
+
+
+        return $performances;
     }
 }

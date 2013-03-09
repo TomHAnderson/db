@@ -8,7 +8,7 @@ use Zend\Form\Annotation as Form
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("lineup")
+ * @Form\Name("performer-performance")
  */
 class PerformerPerformance extends AbstractEntity {
     use \Db\Entity\Field\Id

@@ -1,57 +1,88 @@
-<h1>
-    <i class="icon-map-marker"></i>
-    Edit Venue
-</h1>
+<?php
+$id = md5(uniqid());
+?>
 
 <?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-map-marker"></i>
+            Edit Venue
+        </h1>
+    </div>
+    <div class="modal-body">
 
-<?= $this->formRow($this->form->get('name')); ?>
+        <?= $this->formRow($this->form->get('name')); ?>
 
-<?= $this->formRow($this->form->get('country')); ?>
+        <?= $this->formRow($this->form->get('country')); ?>
 
-<?= $this->formRow($this->form->get('zipcode')); ?>
+        <?= $this->formRow($this->form->get('zipcode')); ?>
 
-<a href="#" id="lookup-zipcode" class="btn btn-primary"><i class="icon-book"></i> Lookup</a>
-<div class="alert" style="display: none;" id="lookup-alert">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    Enter Country and Zipcode to Lookup location
-</div>
+        <a href="#" id="lookup-zipcode<?= $id; ?>" class="btn btn-primary"><i class="icon-book"></i> Lookup</a>
+        <div class="alert" style="display: none;" id="lookup-alert<?= $id; ?>">
+            Enter Country and Zipcode to Lookup location
+        </div>
 
-<?= $this->formRow($this->form->get('city')); ?>
+        <?= $this->formRow($this->form->get('city')); ?>
 
-<?= $this->formRow($this->form->get('state')); ?>
+        <?= $this->formRow($this->form->get('state')); ?>
 
-<?= $this->formRow($this->form->get('note')); ?>
+        <?= $this->formRow($this->form->get('note')); ?>
 
-<br>
+    </div>
+    <div class="modal-footer">
 
-<button type="send" class="btn btn-warning">
-    <i class="icon-map-marker"></i>
-    Edit Venue
-</button>
+        <button type="send" class="btn btn-warning">
+            <i class="icon-map-marker"></i>
+            Edit Venue
+        </button>
 
-<a class="btn btn-link" href="/venue/detail?id=<?= $this->venue->getId(); ?>">
-    cancel
-</a>
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
 
+    </div>
 <?= $this->form()->closeTag(); ?>
 
 <script>
 $(function() {
-    $('#lookup-zipcode').on('click', function(event) {
-        $('#lookup-alert').hide();
 
-        if ($('#country').val() && $('#zipcode').val()) {
+    $('form#venue').attr('id', 'venue<?= $id; ?>');
+    $('form#venue<?= $id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/venue/edit?id=<?= $this->venue->getId();?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
+            }
+        });
+
+        return false;
+    });
+
+    $('#lookup-zipcode<?= $id; ?>').on('click', function(event) {
+        $('#lookup-alert<?= $id; ?>').hide();
+
+        thisForm = $(this).closest('form');
+
+        if ($(thisForm).find('[name="country"]').val() && $(thisForm).find('[name="zipcode"]').val()) {
             $.ajax({
                 url: 'http://api.zippopotam.us/'
-                    + $('#country').val().trim().toLowerCase()
+                    + $(thisForm).find('[name="country"]').val().trim().toLowerCase()
                     + '/'
-                    + $('#zipcode').val().trim().toLowerCase()
+                    + $(thisForm).find('[name="zipcode"]').val().trim().toLowerCase()
                     ,
                 success: function(data) {
                     if (data.places.length == 1) {
-                        $('#city').val(data.places[0]['place name']);
-                        $('#state').val(data.places[0]['state abbreviation']);
+                        $('[name="city"]').val(data.places[0]['place name']);
+                        $('[name="state"]').val(data.places[0]['state abbreviation']);
                     } else {
                         alert('more than one place found');
                     }
@@ -59,7 +90,10 @@ $(function() {
                 dataType: 'json'
             });
         } else {
-            $('#lookup-alert').show();
+            alert('id: ' + $(thisForm).find('#zipcode').val());
+            alert('country: ' + $('thisForm).find([name="country"]').val());
+            alert('zipcode: ' + $('thisForm).find([name="zipcode"]').val());
+            $('#lookup-alert<?= $id; ?>').show();
         }
 
         return false;

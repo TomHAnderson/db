@@ -22,7 +22,7 @@ class Song extends AbstractEntity {
         , \Db\Entity\Field\Mbid
         ;
 
-    use \Db\Entity\Relation\PerformanceSongs
+    use \Db\Entity\Relation\PerformanceSetSongs
         , \Db\Entity\Relation\Links
         , \Db\Entity\Relation\Composers
         , \Db\Entity\Relation\Comments
@@ -62,8 +62,8 @@ class Song extends AbstractEntity {
     public function getPerformances() {
 
         $return = new ArrayCollection();
-        foreach ($this->getPerformanceSongs() as $performanceSong) {
-            $return->add($performanceSong->getPerformanceSet()->getPerformance());
+        foreach ($this->getPerformanceSetSongs() as $performanceSetSong) {
+            $return->add($performanceSetSong->getPerformanceSet()->getPerformance());
         }
 
         return $return;

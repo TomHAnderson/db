@@ -1,60 +1,70 @@
-<h1>
-    <i class="icon-headphones"></i>
-    Edit Source
-</h1>
-
-<h1>
-    <a class="btn btn-info" href="/performance/detail?id=<?= $this->source->getPerformance()->getId(); ?>">
-        <i class="icon-magic"></i>
-    </a>
 <?php
-if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
-    echo $this->escapeHtml($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
-} else {
-    echo $this->escapeHtml($this->source->getPerformance()->getPerformanceDate());
-}
+$id = md5(uniqid());
 ?>
 
-    <?= $this->escapeHtml($this->source->getPerformance()->getName()); ?>
-</h1>
-
-<h1>
-    <a class="btn btn-info" href="/band/detail?id=<?= $this->source->getPerformance()->getLineup()->getBand()->getId(); ?>">
-        <i class="icon-cogs"></i>
-    </a>
-    <?= $this->escapeHtml($this->source->getPerformance()->getLineup()->getBand()->getName()); ?>
-</h1>
-
 <?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-headphones"></i>
+            Edit Source
+        </h1>
+    </div>
+    <div class="modal-body">
 
-<?= $this->formRow($this->form->get('name')); ?>
+        <?= $this->formRow($this->form->get('name')); ?>
 
-<?= $this->formRow($this->form->get('mbid')); ?>
+        <?= $this->formRow($this->form->get('mbid')); ?>
 
-<?= $this->formRow($this->form->get('format')); ?>
+        <?= $this->formRow($this->form->get('format')); ?>
 
-<?= $this->formRow($this->form->get('note')); ?>
+        <?= $this->formRow($this->form->get('note')); ?>
 
-<?= $this->formRow($this->form->get('content')->setLabel('Textdoc')); ?>
+        <?= $this->formRow($this->form->get('content')->setLabel('Textdoc')); ?>
 
-<?= $this->pasteUpload('content', 'Paste Uploaded File to Textdoc'); ?>
+        <?= $this->pasteUpload('content', 'Paste Uploaded File to Textdoc'); ?>
 
-<?= $this->formRow($this->form->get('mediaSizeCompressed')); ?>
+        <?= $this->formRow($this->form->get('mediaSizeCompressed')); ?>
 
-<?= $this->formRow($this->form->get('mediaSizeUncompressed')); ?>
+        <?= $this->formRow($this->form->get('mediaSizeUncompressed')); ?>
 
-<?= $this->formRow($this->form->get('circulatedAt')); ?>
+        <?= $this->formRow($this->form->get('circulatedAt')); ?>
 
+    </div>
+    <div class="modal-footer">
 
-<br>
+        <button type="send" class="btn btn-warning">
+            <i class="icon-headphones"></i>
+            Edit Source
+        </button>
 
-<button type="send" class="btn btn-warning">
-    <i class="icon-headphones"></i>
-    Edit Source
-</button>
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
 
-<a class="btn btn-link" href="/source/detail?id=<?= $this->source->getId(); ?>">
-    cancel
-</a>
-
+    </div>
 <?= $this->form()->closeTag(); ?>
+
+<script>
+$(function() {
+    $('form#source').attr('id', 'source<?= $id; ?>');
+    $('form#source<?= $id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/source/edit?id=<?= $this->source->getId(); ?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
+            }
+        });
+
+        return false;
+    });
+});
+</script>

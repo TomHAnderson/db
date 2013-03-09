@@ -111,7 +111,7 @@ class VenueController extends AbstractActionController
                 $em->persist($venue);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/venue/detail?id=' . $venue->getId());
+                die();
             }
         }
 
@@ -119,10 +119,11 @@ class VenueController extends AbstractActionController
         $countries = include(__DIR__ . '/../../../../../vendor/umpirsky/country-list/country/cldr/en_US/country.php');
         $country->setValueOptions($countries);
 
-        return array(
-            'form' => $form,
-            'venue' => $venue,
-        );
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        $viewModel->setVariable('form', $form);
+        $viewModel->setVariable('venue', $venue);
+        return $viewModel;
     }
 
     public function deleteAction()

@@ -168,7 +168,7 @@ class PerformerLineupController extends AbstractActionController
         return $jsonModel;
     }
 
-    public function sortPerformanceSongsAction()
+    public function sortPerformanceSetSongsAction()
     {
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
             return $this->plugin('redirect')->toUrl('/user/login');

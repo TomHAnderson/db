@@ -7,13 +7,6 @@
     </li>
 
     <li>
-        <a class="btn-warning" href="/performance/edit?id=<?= $this->performance->getId(); ?>">
-            <i class="icon-magic"></i>
-            Edit Performance
-        </a>
-    </li>
-
-    <li>
         <a class="btn-info" href="/audit/entity/<?= $this->performance->getId(); ?>/Db\Entity\Performance">
             <i class="icon-list"></i>
         </a>
@@ -21,9 +14,11 @@
 </ul>
 
 <div class="h1">
-    <a href="/performance/detail?id=<?= $this->performance->getId(); ?>" class="btn btn-default">
+    <a class="btn btn-warning edit-performance" href="#" data-id="<?= $this->performance->getId(); ?>">
         <i class="icon-magic"></i>
     </a>
+
+    <i class="icon-magic"></i>
 <?php
 if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
     echo $this->escapeHtml($this->performance->getPerformanceDateAt()->format('F d, Y'));
@@ -82,27 +77,23 @@ if ($this->performance->getNote()) { ?>
         <?php
         }
         ?>
-
-        <?php
-        if (sizeof($this->performance->getPerformerPerformances())) {
-        ?>
             <div class="h2">
-                <i class="icon-group"></i>
+                <a href="#" data-id="<?= $performance->getId(); ?>" class="btn btn-success create-performer-performance">
+                    <i class="icon-facetime-video"></i>
+                </a>
                 Guest Performers
 
-                <ul class="nav nav-pills">
-                    <?= $this->addPerformerToPerformance($performance->getId()); ?>
-                    <?= $this->removePerformerFromPerformance($performance->getId()); ?>
-                </ul>
 </div>
         <?php
-        }
 
         foreach ($this->performance->getPerformerPerformances() as $performerPerformance) {
         ?>
             <div class="h3">
                 <a class="btn btn-info" href="/performer/detail?id=<?= $performerPerformance->getPerformer()->getId(); ?>">
                     <i class="icon-film"></i>
+                </a>
+                <a class="btn btn-warning edit-performer-performance" data-id="<?= $performerPerformance->getId(); ?>" href="">
+                    <i class="icon-facetime-video"></i>
                 </a>
                 <?= $this->escapeHtml($performerPerformance->getPerformer()->getName()); ?>
 
@@ -125,7 +116,6 @@ if ($this->performance->getNote()) { ?>
 
 </div>
 
-
 <div class="h1">
     <a class="btn btn-info" href="/venue/detail?id=<?= $this->performance->getVenue()->getId(); ?>">
         <i class="icon-map-marker"></i>
@@ -134,44 +124,31 @@ if ($this->performance->getNote()) { ?>
     <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
 </div>
 
+
+<div class="h1">
+<a href="#" data-id="<?= $performance->getId(); ?>" class="btn btn-success create-performance-set">
+    <i class="icon-certificate"></i>
+</a>
+
+Performance Sets
+
 <?php
 foreach ($this->performance->getPerformanceSets() as $set) {
 ?>
-    <div class="h1">
+    <div class="h2">
+<!--
         <a class="btn btn-info" href="/performance-set/detail?id=<?= $set->getId(); ?>">
             <i class="icon-certificate"></i>
         </a>
+-->
+        <a class="btn btn-warning edit-performance-set" href="#" data-id="<?= $set->getId(); ?>">
+            <i class="icon-certificate"></i>
+        </a>
+        <a class="btn btn-success create-performance-set-song" href="#" data-id="<?= $set->getId(); ?>">
+            <i class="icon-music"></i>
+        </a>
 
         <?= $this->escapeHtml($set->getName()); ?>
-    </div>
-
-    <?php
-    if (sizeof($set->getPerformanceSongs())) {
-        $count = 1;
-        foreach ($set->getPerformanceSongs() as $performanceSong) {
-    ?>
-            <div class="row">
-                <div class="span1">
-                    <pre><?= $count ++; ?></pre>
-                </div>
-
-                <div class="span5">
-                    <pre><a href="/song/detail?id=<?= $performanceSong->getSong()->getId(); ?>"><i class="icon-music"></i> <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?></a><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?></pre>
-                </div>
-
-                <div class="span1">
-                    <pre><?= $this->escapeHtml($performanceSong->getLength()); ?>&nbsp;</pre>
-                </div>
-
-                <div class="span5">
-                    <pre><?= $this->escapeHtml($performanceSong->getNote()); ?>&nbsp;</pre>
-                </div>
-            </div>
-
-    <?php
-        }
-    }
-    ?>
 
     <?php
     if ($set->getNote()) {
@@ -181,7 +158,48 @@ foreach ($this->performance->getPerformanceSets() as $set) {
     }
     ?>
 
+    <?php
+    if (sizeof($set->getPerformanceSetSongs())) {
+        $count = 1;
+        foreach ($set->getPerformanceSetSongs() as $performanceSong) {
+    ?>
+        <div class="h3">
+
+            <div class="row">
+                <div class="span5">
+                    <a href="/song/detail?id=<?= $performanceSong->getSong()->getId(); ?>" class="btn btn-info">
+                        <i class="icon-music"></i>
+                    </a>
+
+                    <a href="#" class="btn btn-warning edit-performance-set-song" data-id="<?= $performanceSong->getId(); ?>">
+                        <i class="icon-music"></i>
+                    </a>
+
+                    <?= $count ++; ?>
+
+                    <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?></a><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?>
+                </div>
+
+                <div class="span1">
+                    <pre><?= $this->escapeHtml($performanceSong->getLength()); ?>&nbsp;</pre>
+                </div>
+
+                <div class="span3">
+                    <pre><?= $this->escapeHtml($performanceSong->getNote()); ?>&nbsp;</pre>
+                </div>
+            </div>
+        </div>
+
+    <?php
+        }
+    }
+    ?>
+
+    </div>
+</div>
+
 <?php
+
 }
 ?>
 </ul>

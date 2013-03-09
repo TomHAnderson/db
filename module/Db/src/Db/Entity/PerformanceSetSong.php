@@ -8,9 +8,9 @@ use Zend\Form\Annotation as Form
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("performanceSong")
+ * @Form\Name("performance-set-song")
  */
-class PerformanceSong extends AbstractEntity {
+class PerformanceSetSong extends AbstractEntity {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\Song
         , \Db\Entity\Field\PerformanceSet

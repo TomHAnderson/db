@@ -181,6 +181,12 @@
     </a>
 
     <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
+        <li role="menuitem">
+            <a class="btn btn-success" id="createPerformance" href="/performance/create" style="color: white;">
+                <i class="icon-magic"></i>
+                Create Performance
+            </a>
+        </li>
 
         <li role="menuitem">
             <form class="navbar-search pull-left" name="search" action="/performance/search">
@@ -219,16 +225,6 @@
             }
         }
         ?>
-
-        <li class="divider"></li>
-
-        <li role="">
-            <a class="btn-success" id="createPerformance" href="/performance/create" style="color: white;">
-                <i class="icon-magic"></i>
-                Create Performance
-            </a>
-        </li>
-
     </ul>
 </li>
 
@@ -294,6 +290,13 @@
     <ul class="dropdown-menu" aria-labelledby="source-drop" role="menu">
 
         <li role="menuitem">
+            <a class="btn btn-success" id="createSource" href="/performance/create" style="color: white;">
+                <i class="icon-headphones"></i>
+                Create Source
+            </a>
+        </li>
+
+        <li role="menuitem">
             <form class="navbar-search pull-left" name="search" action="/source/search">
                 <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Sources">
             </form>
@@ -332,16 +335,6 @@
             }
         }
         ?>
-
-        <li class="divider"></li>
-
-        <li role="">
-            <a class="btn-success" id="createSource" href="/performance/create" style="color: white;">
-                <i class="icon-headphones"></i>
-                Create Source
-            </a>
-        </li>
-
     </ul>
 </li>
 
@@ -355,10 +348,21 @@
 
 <script>
 $(function() {
-    if (getCookie('editMode') == 'on') {
-        $('a#brand.btn').trigger('turnOn');
+    if (getCookie('editMode') == 'on' && '<?= ($this->zfcUserIdentity()) ? 'loggedin': ''; ?>') {
+        $('a#brand').trigger('turnOn');
     } else {
-        $('a#brand.btn').trigger('turnOff');
+        $('a#brand').trigger('turnOff');
     }
 });
+
+$('#createPerformance').click(function(event) {
+    alert('To create a performance select a lineup from a band');
+    return false;
+});
+
+$('#createSource').click(function(event) {
+    alert('To create a source select a performance');
+    return false;
+});
+
 </script>

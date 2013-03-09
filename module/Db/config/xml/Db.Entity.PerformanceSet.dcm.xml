@@ -12,7 +12,7 @@
         <join-column name="performance_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <one-to-many field="performanceSongs" target-entity="Db\Entity\PerformanceSong" mapped-by="performanceSet">
+    <one-to-many field="performanceSetSongs" target-entity="Db\Entity\PerformanceSetSong" mapped-by="performanceSet">
       <order-by>
         <order-by-field name="sort" direction="ASC"/>
       </order-by>

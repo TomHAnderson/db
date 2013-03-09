@@ -8,7 +8,7 @@ use Zend\Form\Annotation as Form
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("show")
+ * @Form\Name("performance")
  */
 class Performance extends AbstractEntity
 {
@@ -29,7 +29,7 @@ class Performance extends AbstractEntity
         , \Db\Entity\Relation\Attendees
         , \Db\Entity\Relation\UserPerformances
         , \Db\Entity\Relation\WantedBy
-        , \Db\Entity\Relation\PerformanceSongs
+        , \Db\Entity\Relation\PerformanceSetSongs
         , \Db\Entity\Relation\Performers
         , \Db\Entity\Relation\PerformanceSets
         , \Db\Entity\Relation\Sources

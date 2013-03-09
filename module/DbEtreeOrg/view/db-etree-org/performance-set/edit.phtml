@@ -1,80 +1,17 @@
-<h1>
-    <i class="icon-certificate"></i>
-    Edit Performance Set
-</h1>
-
-<h1>
-    <a href="/performance/detail?id=<?= $this->performanceSet->getPerformance()->getId(); ?>">
-    <i class="icon-magic"></i>
 <?php
-if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
-    echo $this->escapeHtml($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d, Y'));
-} else {
-    echo $this->escapeHtml($this->performanceSet->getPerformance()->getPerformanceDate());
-}
-?>
-
-    <?= $this->escapeHtml($this->performanceSet->getPerformance()->getName()); ?>
-    </a>
-</h1>
-
-<h1>
-    <a href="/band/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
-        <i class="icon-cogs"></i>
-        <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getBand()->getName()); ?>
-    </a>
-</h1>
-
-<h1>
-    <a href="/lineup/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
-        <i class="icon-group"></i>
-        <?= $this->escapeHtml($this->performanceSet->getPerformance()->getLineup()->getName()); ?>
-    </a>
-</h1>
-
-<h1>
-    <a href="/venue/detail?id=<?= $this->performanceSet->getPerformance()->getVenue()->getId(); ?>">
-
-        <i class="icon-map-marker"></i>
-        <?= $this->escapeHtml($this->performanceSet->getPerformance()->getVenue()->getName()); ?>
-    </a>
-</h1>
-
-
-<?php
-if (sizeof($this->performanceSet->getPerformanceSongs())) {
-?>
-<div id="sortSongs">
-<?php
-    foreach ($this->performanceSet->getPerformanceSongs() as $performanceSong) {
-?>
-        <div class="row" id="performanceSong_<?= $performanceSong->getId(); ?>">
-            <div class="span5">
-                <pre><a href="/performance-song/detail?id=<?= $performanceSong->getId(); ?>"><i class="icon-music"></i> <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?></a></pre>
-            </div>
-
-            <div class="span1">
-                <pre><?= $this->escapeHtml($performanceSong->getLength()); ?>&nbsp;</pre>
-            </div>
-
-            <div class="span5">
-                <pre><?= $this->escapeHtml($performanceSong->getNote()); ?>&nbsp;</pre>
-            </div>
-
-            <div class="span1">
-                <pre><i class="icon-sort"></i></pre>
-            </div>
-        </div>
-
-<?php
-    }
-?>
-</div>
-<?php
-}
+$id = md5(uniqid());
 ?>
 
 <?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-certificate"></i>
+            Edit Performance Set
+        </h1>
+    </div>
+    <div class="modal-body">
+
 
 <?= $this->formRow($this->form->get('name')); ?>
 
@@ -82,18 +19,44 @@ if (sizeof($this->performanceSet->getPerformanceSongs())) {
 
 <?= $this->formRow($this->form->get('sort')); ?>
 
-<br>
+    </div>
+    <div class="modal-footer">
 
-<button type="send" class="btn btn-warning">
-    <i class="icon-certificate"></i>
-    Edit Performance Set
-</button>
+        <button type="send" class="btn btn-success">
+            <i class="icon-certificate"></i>
+            Edit Performance Set
+        </button>
 
-<a class="btn btn-link" href="/performance-set/detail?id=<?= $this->performanceSet->getId(); ?>">
-    cancel
-</a>
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
 
+    </div>
 <?= $this->form()->closeTag(); ?>
+
+<script>
+$(function() {
+    $('form#performance-set').attr('id', 'performance-set<?= $id; ?>');
+    $('form#performance-set<?= $id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/performance-set/edit?id=<?= $this->id; ?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
+            }
+        });
+
+        return false;
+    });
+});
+</script>
 
 <script>
 require(['jquery-ui.min'], function() {
