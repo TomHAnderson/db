@@ -1,0 +1,58 @@
+<?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-facetime-video"></i>
+            Edit Band Alias
+        </h1>
+    </div>
+    <div class="modal-body">
+
+        <?= $this->formRow($this->form->get('name')->setLabel('Alias')); ?>
+
+        <?= $this->formRow($this->form->get('note')); ?>
+
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="send" class="btn btn-warning">
+            <i class="icon-facetime-video"></i>
+            Edit Band Alias
+        </button>
+
+        <a class="confirm btn btn-danger" href="/band-alias/delete?id=<?= $this->id; ?>">
+            <i class="icon-facetime-video"></i>
+            Delete Band Alias
+        </a>
+
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
+
+    </div>
+<?= $this->form()->closeTag(); ?>
+
+<script>
+$(function() {
+    $('form#band-alias').attr('id', 'band-alias<?= $this->id; ?>');
+    $('form#band-alias<?= $this->id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/band-alias/edit?id=<?= $this->bandAlias->getId(); ?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    document.location.reload();
+                }
+            }
+        });
+
+        return false;
+    });
+});
+</script>

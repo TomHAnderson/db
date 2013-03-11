@@ -93,6 +93,7 @@ return array(
             'checksum' => 'DbEtreeOrg\Controller\ChecksumController',
             'performer-lineup' => 'DbEtreeOrg\Controller\PerformerLineupController',
             'performer-performance' => 'DbEtreeOrg\Controller\PerformerPerformanceController',
+            'band-alias' => 'DbEtreeOrg\Controller\BandAliasController',
         ),
     ),
 
