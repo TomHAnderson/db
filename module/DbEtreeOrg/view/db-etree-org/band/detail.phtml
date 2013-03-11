@@ -231,19 +231,6 @@ if (sizeof($jambase->event)) {
     </div>
 
     <div class="tab-pane" id="lineups">
-        <h3>
-        <?php
-        foreach ($this->band->getLineups() as $lineup) {
-        ?>
-            <a class="btn btn-info" href="/lineup/detail?id=<?= $lineup->getId(); ?>">
-                <i class="icon-group"></i>
-            </a>
-            <?= $this->escapeHtml($lineup->getName()); ?>
-        <?php
-        }
-        ?>
-        </h3>
-
         <ul class="nav nav-pills">
             <li class="">
                  <a class="btn-success create-lineup" data-id="<?= $this->band->getId(); ?>" href="/lineup/create?id=<?= $this->band->getId(); ?>">
@@ -252,26 +239,58 @@ if (sizeof($jambase->event)) {
                 </a>
              </li>
         </ul>
-    </div>
-
-    <div class="tab-pane" id="alias">
+    <div class="row">
         <?php
-        foreach ($this->band->getAliases() as $alias) {
+        foreach ($this->band->getLineups() as $lineup) {
         ?>
-            <i class="icon-user"></i>
-            <?= $this->escapeHtml($alias->getName()); ?>
+        <div class="span4">
+            <a class="btn btn-info" href="/lineup/detail?id=<?= $lineup->getId(); ?>">
+                <i class="icon-group"></i>
+            </a>
+            <?= $this->escapeHtml($lineup->getName()); ?>
+        </div>
         <?php
         }
         ?>
+    </div>
+
+    </div>
+
+    <div class="tab-pane" id="alias">
 
         <ul class="nav nav-pills">
             <li class="">
                  <a class="btn-success create-band-alias" data-id="<?= $this->band->getId(); ?>" href="#">
-                    <i class="icon-group"></i>
+                    <i class="icon-facetime-video"></i>
                     Create Alias
                 </a>
              </li>
         </ul>
+
+        <div class="row">
+        <?php
+        foreach ($this->band->getAliases() as $alias) {
+        ?>
+            <div class="span4">
+                <a href="/band-alias/detail?id=<?= $alias->getId(); ?>" class="btn btn-info">
+                    <i class="icon-facetime-video"></i>
+                </a>
+
+                <a href="#" data-id="<?= $alias->getId(); ?>" class="btn btn-warning edit-band-alias">
+                    <i class="icon-facetime-video"></i>
+                </a>
+
+                <?= $this->escapeHtml($alias->getName()); ?>
+
+
+                <?php if ($alias->getNote()) { ?>
+                <pre><?= $this->escapeHtml($alias->getNote()); ?></pre>
+                <?php } ?>
+            </div>
+        <?php
+        }
+        ?>
+        </div>
     </div>
 
 

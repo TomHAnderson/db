@@ -22,16 +22,16 @@ class BandAliasController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/performer-alias');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performerAlias = $em->getRepository('Db\Entity\PerformerAlias')->find($id);
+        $bandAlias = $em->getRepository('Db\Entity\BandAlias')->find($id);
 
-        if (!$performerAlias)
-            throw new \Exception("PerformerAlias $id not found");
+        if (!$bandAlias)
+            throw new \Exception("Band Alias $id not found");
 
         $menu = $this->getServiceLocator()->get('menu');
-        $menu->addRecent('performerAlias', $performerAlias->getId());
+        $menu->addRecent('bandAlias', $bandAlias->getId());
 
         return array(
-            'performerAlias' => $performerAlias
+            'bandAlias' => $bandAlias
         );
     }
 
@@ -116,7 +116,7 @@ class BandAliasController extends AbstractActionController
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);
         $viewModel->setVariable('form', $form);
-        $viewModel->setVariable('id', $bandAlias->getId());
+        $viewModel->setVariable('bandAlias', $bandAlias);
         return $viewModel;
     }
 
@@ -128,18 +128,18 @@ class BandAliasController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $bandAlias = $em->getRepository('Db\Entity\bandAlias')->find($id);
+        $bandAlias = $em->getRepository('Db\Entity\BandAlias')->find($id);
         if (!$bandAlias)
             return $this->plugin('redirect')->toUrl('/');
 
         $menu = $this->getServiceLocator()->get('menu');
         $menu->addRecent('bandAlias', $bandAlias->getId());
 
-        $performer = $bandAlias->getPerformer();
+        $band = $bandAlias->getBand();
 
         $em->remove($bandAlias);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/performer/detail?id=' . $performer->getId());
+        return $this->plugin('redirect')->toUrl('/band/detail?id=' . $band->getId());
     }
 }

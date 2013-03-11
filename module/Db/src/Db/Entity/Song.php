@@ -15,7 +15,6 @@ class Song extends AbstractEntity {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\Name
         , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Composer
         , \Db\Entity\Field\Lyrics
         , \Db\Entity\Field\Note
         , \Db\Entity\Field\Band
@@ -24,7 +23,6 @@ class Song extends AbstractEntity {
 
     use \Db\Entity\Relation\PerformanceSetSongs
         , \Db\Entity\Relation\Links
-        , \Db\Entity\Relation\Composers
         , \Db\Entity\Relation\Comments
         ;
 

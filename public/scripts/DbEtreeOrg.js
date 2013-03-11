@@ -156,6 +156,12 @@ DbEtreeOrg = {
             return false;
         });
 
+        $('.edit-band-alias').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/band-alias/edit?id=' + id);
+            return false;
+        });
+
     },
 
     createModal: function(page) {

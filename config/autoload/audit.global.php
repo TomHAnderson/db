@@ -18,7 +18,6 @@ return array(
             'Db\Entity\Checksum',
             'Db\Entity\PerformanceSetSong',
             'Db\Entity\Song',
-            'Db\Entity\Composer',
             'Db\Entity\AbstractComment',
             'Db\Entity\AbstractLink',
             'Db\Entity\PerformerLineup',

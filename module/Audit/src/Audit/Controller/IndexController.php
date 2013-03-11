@@ -26,11 +26,11 @@ class IndexController extends AbstractActionController {
         'Db\Entity\Checksum' => 'icon-ok-circle',
         'Db\Entity\PerformanceSetSong' => 'icon-bolt',
         'Db\Entity\Song' => 'icon-music',
-        'Db\Entity\Composer' => 'icon-folder-close',
         'Db\Entity\AbstractComment' => 'icon-folder-close',
         'Db\Entity\AbstractLink' => 'icon-folder-close',
         'Db\Entity\PerformerLineup' => 'icon-group',
         'Db\Entity\PerformerPerformance' => 'icon-group',
+        'Db\Entity\BandAlias' => 'icon-facetime-video',
     );
 
     private $routeMap = array(
@@ -50,11 +50,11 @@ class IndexController extends AbstractActionController {
         'Db\Entity\Checksum' => 'checksum',
         'Db\Entity\PerformanceSetSong' => 'performance-set-song',
         'Db\Entity\Song' => 'song',
-        'Db\Entity\Composer' => 'composer',
         'Db\Entity\AbstractComment' => '',
         'Db\Entity\AbstractLink' => '',
         'Db\Entity\PerformerLineup' => 'performer-lineup',
         'Db\Entity\PerformerPerformance' => 'performer-lineup',
+        'Db\Entity\BandAlias' => 'band-alias',
     );
 
     private function getIconMap() {
