@@ -13,7 +13,11 @@ class SongController extends AbstractActionController
 {
     public function indexAction()
     {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        $songs = $em->getRepository('Db\Entity\Song')->findBy(array(), array('name' => 'ASC'));
+
         return array(
+            'songs' => $songs,
         );
     }
 

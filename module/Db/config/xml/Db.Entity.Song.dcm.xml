@@ -17,15 +17,5 @@
     <one-to-many field="performanceSetSongs" target-entity="Db\Entity\PerformanceSetSong" mapped-by="song"/>
     <one-to-many field="links" target-entity="Db\Entity\SongLink" mapped-by="song"/>
     <one-to-many field="comments" target-entity="Db\Entity\SongComment" mapped-by="song"/>
-    <many-to-many field="composers" target-entity="Db\Entity\Composer" inversed-by="songs">
-      <join-table name="ComposerSong">
-        <join-columns>
-          <join-column name="song_id" referenced-column-name="id" nullable="false"/>
-        </join-columns>
-        <inverse-join-columns>
-          <join-column name="composer_id" referenced-column-name="id" nullable="false"/>
-        </inverse-join-columns>
-      </join-table>
-    </many-to-many>
   </entity>
 </doctrine-mapping>

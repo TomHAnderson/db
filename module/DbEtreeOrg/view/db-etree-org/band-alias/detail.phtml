@@ -1,0 +1,39 @@
+<ul class="nav nav-pills pull-right">
+    <li>
+        <a data-id="<?= $this->performerAlias->getId(); ?>" class="btn-warning edit-performer-alias" href="#">
+            <i class="icon-user"></i>
+            Edit Performer Alias
+        </a>
+    </li>
+
+    <li>
+        <a class="btn-info" href="/audit/entity/<?= $this->performerAlias->getId(); ?>/Db\Entity\PerformerAlias">
+            <i class="icon-list"></i>
+        </a>
+    </li>
+</ul>
+
+
+<div class="h1">
+
+    <a class="btn btn-info" href="/performer/detail?id=<?= $this->performerAlias->getPerformer()->getId(); ?>">
+        <i class="icon-film"></i>
+    </a>
+
+    <?= $this->escapeHtml($this->performerAlias->getPerformer()->getName()); ?>
+</div>
+
+<div class="h1">
+    <a class="btn btn-default" href="/performer-alias/detail?id=<?= $this->performerAlias->getId(); ?>">
+        <i class="icon-user"></i>
+    </a>
+    <?= $this->escapeHtml($this->performerAlias->getName()); ?>
+</div>
+
+<?php
+if ($this->escapeHtml($this->performerAlias->getNote())) {
+?>
+    <pre><?= $this->escapeHtml($this->performerAlias->getNote()); ?></pre>
+<?php
+}
+?>

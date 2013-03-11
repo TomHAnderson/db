@@ -6,9 +6,9 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("alias")
+ * @Form\Name("band-alias")
  */
-class Alias extends AbstractEntity {
+class BandAlias extends AbstractEntity {
     use \Db\Entity\Field\Id
         , \Db\Entity\Field\Band
         , \Db\Entity\Field\Name

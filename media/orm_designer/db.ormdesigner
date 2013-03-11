@@ -176,7 +176,7 @@
     <association from="Checksum" to="Source" owner-alias="checksums" inverse-alias="source" uuid="68ad424c-ee40-4b79-8cf6-a43e71b53ddd">
       <association-field from="source_id" to="id"/>
     </association>
-    <entity name="Alias" uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b">
+    <entity name="BandAlias" uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="77b8de49-2f81-435f-b83a-71e41b9133a0"/>
       <field name="band_id" type="integer" required="true" uuid="979042f2-8732-43fe-be5e-d8a73abf533b"/>
       <field name="name" type="string" required="true" uuid="d419d061-ed67-4862-9759-6e9bf3ebdb4b"/>
@@ -186,7 +186,7 @@
         <attribute name="repository-class">Db\Repository\Alias</attribute>
       </orm-attributes>
     </entity>
-    <association from="Alias" to="Band" owner-alias="aliases" inverse-alias="band" uuid="06c521a4-df8e-438a-b214-0672351a82b6">
+    <association from="BandAlias" to="Band" owner-alias="aliases" inverse-alias="band" uuid="06c521a4-df8e-438a-b214-0672351a82b6">
       <association-field from="band_id" to="id"/>
     </association>
     <entity name="Producer" uuid="99fcccf0-d144-4dd1-bbd2-f0aca7e96f8b">
@@ -296,27 +296,6 @@
         <many-to-many-field from="bandGroup_id" to="id"/>
       </many-to-many-entity>
     </many-to-many>
-    <entity name="Composer" uuid="6de9205a-0f2f-43e1-b082-be956ca60ad0">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="e3f16d1a-e46e-48d3-8029-1c98ea9c47a9"/>
-      <field name="name" type="string" required="true" uuid="8b30b1a2-4163-451a-ae01-6ccf4fb275af"/>
-      <field name="nameNormalize" type="string" required="true" uuid="f710da93-db9d-466a-b544-ee839343eaae"/>
-      <field name="note" type="text" uuid="dca68284-243b-4710-af18-2e67652240de"/>
-      <orm-attributes>
-        <attribute name="repository-class">Db\Repository\Composer</attribute>
-      </orm-attributes>
-    </entity>
-    <entity name="ComposerSong" uuid="553871ee-0f25-4f9f-b05b-cb7c4bb9c8a2">
-      <field name="song_id" type="integer" required="true" uuid="df9009ba-4db6-4277-9da2-209edf9c2e40"/>
-      <field name="composer_id" type="integer" required="true" uuid="ac4d555f-978b-4139-b9f0-34d27b6dcf9f"/>
-    </entity>
-    <many-to-many mn-entity="ComposerSong" uuid="f2a9b92f-9939-4678-b9f9-c12ccbe0b201">
-      <many-to-many-entity name="Song" owning-side="true" alias="songs" uuid="94d60319-674c-4109-909b-5d037d5bae65">
-        <many-to-many-field from="song_id" to="id"/>
-      </many-to-many-entity>
-      <many-to-many-entity name="Composer" owning-side="false" alias="composers" uuid="afac9db8-c995-4909-8991-8f16fa9d1a73">
-        <many-to-many-field from="composer_id" to="id"/>
-      </many-to-many-entity>
-    </many-to-many>
     <entity name="PerformanceSet" uuid="b0a5c9f7-a36e-4d07-8e1c-bf43a0560882">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="4d007523-93f8-4f04-8304-f24cc92c1164"/>
       <field name="performance_id" type="integer" required="true" uuid="6bae6ad8-80af-4105-b076-90bc4ce8bffc"/>
@@ -342,7 +321,7 @@
     </association>
     <region caption="Band" uuid="86490e22-2c2a-4f81-b8ec-51f819610748">
       <entity-ref name="Band"/>
-      <entity-ref name="Alias"/>
+      <entity-ref name="BandAlias"/>
       <entity-ref name="Lineup"/>
       <entity-ref name="BandGroup"/>
       <entity-ref name="UserBandGroup"/>
@@ -367,8 +346,6 @@
     <region caption="Song" uuid="6fbe78c9-c9fd-4d6b-a4f9-2dd405e78bad">
       <entity-ref name="Song"/>
       <entity-ref name="PerformanceSetSong"/>
-      <entity-ref name="Composer"/>
-      <entity-ref name="ComposerSong"/>
     </region>
     <region caption="Performer" uuid="dc61b3c0-1ff7-468f-9d5e-977b255a4b26">
       <entity-ref name="PerformerLineup"/>
@@ -705,14 +682,6 @@
     <association from="BandLink" to="Band" owner-alias="links" inverse-alias="band" uuid="f2c14db6-2f95-4b88-82e2-08434097ba92">
       <association-field from="band_id" to="id"/>
     </association>
-    <entity name="ComposerLink" uuid="d574d5bd-a418-4082-9d9d-d5e7462fde4d">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="4ef926ea-081f-486f-bb54-5ba1945c8807"/>
-      <field name="composer_id" type="integer" uuid="faaed645-ae8c-48de-a618-b731bfef3005"/>
-      <inheritance-child derived-from="AbstractLink" discriminator-value="Composer" uuid="d818f169-4309-400f-8b41-15b8b03cf75e"/>
-    </entity>
-    <association from="ComposerLink" to="Composer" owner-alias="links" inverse-alias="composer" uuid="1e369c67-c630-44e3-9ac8-68ee1278e073">
-      <association-field from="composer_id" to="id"/>
-    </association>
     <entity name="SongLink" uuid="93579d77-9cf7-4d37-baef-58ebafc386da">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="7c9bc991-faa4-4bbf-8019-b1a0d3f83cb4"/>
       <field name="song_id" type="integer" uuid="55c8597d-2349-48b6-9022-76aeb0d261b8"/>
@@ -800,7 +769,6 @@
       <entity-ref name="ProducerLink"/>
       <entity-ref name="VenueGroupLink"/>
       <entity-ref name="BandLink"/>
-      <entity-ref name="ComposerLink"/>
       <entity-ref name="SongLink"/>
     </region>
     <orm-attributes>
@@ -858,7 +826,6 @@
     <entity uuid="1a1ee0b8-55ba-4abf-9108-85dcdcdf75d0" position-x="158" position-y="27" size-x="0" size-x2="122" size-y="0" size-y2="73"/>
     <association uuid="1bcf942f-4c7d-4a6b-82a4-a6c6f7c8e947" splitted="1"/>
     <association uuid="1c6fa38e-ed34-4102-8971-550fbbb05b0e" splitted="1"/>
-    <association uuid="1e369c67-c630-44e3-9ac8-68ee1278e073" splitted="1"/>
     <entity uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b" position-x="-15" position-y="4" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
     <association uuid="209fd702-6115-499b-8df3-2184996bcb67" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <inheritance-child uuid="21197a5b-d6b2-48e3-95c8-595c2644dbb6" splitted="1"/>
@@ -890,7 +857,6 @@
     <region uuid="52ac6c26-25b6-4d3b-9572-bd8e75c16ab8" bk-color="15716788" position-x="480" position-y="24" size-x="31" size-x2="356" size-y="0" size-y2="545"/>
     <inheritance-child uuid="5368bcd9-44dc-4bcd-8913-efde725fe9b7" center-position-x="2" center-position-y="10" splitted="1"/>
     <entity uuid="53964b5e-51b2-4eaa-9c97-15ec096b3bcf" position-x="250" position-y="113" size-x="0" size-x2="117" size-y="0" size-y2="87"/>
-    <entity uuid="553871ee-0f25-4f9f-b05b-cb7c4bb9c8a2" position-x="200" position-y="173" size-x="0" size-x2="111" size-y="0" size-y2="60"/>
     <entity uuid="5960a44a-781b-42e4-be06-60a106c0abf9" position-x="354" position-y="37" size-x="0" size-x2="112" size-y="0" size-y2="45"/>
     <entity uuid="5962da12-c86d-4c50-a074-e2318f465982" position-x="41" position-y="286" size-x="0" size-x2="20" size-y="0" size-y2="20"/>
     <entity uuid="59a80c15-1576-4c7a-8a76-0acdcb9b5e54" position-x="20" position-y="22" size-x="0" size-x2="123" size-y="0" size-y2="185"/>
@@ -903,11 +869,10 @@
     <association uuid="63eca234-7c86-49f6-ba4c-262ca6f8fbc2" splitted="1"/>
     <entity uuid="687e66f7-2707-4262-b22e-f5b98cbbe16b" position-x="22" position-y="39" size-x="0" size-x2="156" size-y="0" size-y2="171"/>
     <entity uuid="68cf3687-882b-4cbb-b942-389514edfb4e" position-x="746" position-y="112" size-x="0" size-x2="99" size-y="0" size-y2="45"/>
-    <entity uuid="6903266c-5c12-423d-8145-e32fe38258e9" position-x="33" position-y="153" size-x="0" size-x2="117" size-y="0" size-y2="101"/>
+    <entity uuid="6903266c-5c12-423d-8145-e32fe38258e9" position-x="184" position-y="140" size-x="0" size-x2="117" size-y="0" size-y2="115"/>
     <project uuid="6b0db420-4a65-402e-8377-355db297598b" size-x="219" size-x2="2261" size-y="316" size-y2="1067"/>
     <inheritance-child uuid="6ca566ae-c0e4-4774-a6f9-1dea84e9bb08" center-position-x="9" center-position-y="0" splitted="1"/>
     <association uuid="6d961e8d-34b1-46d4-b94f-e547d6fe1eec" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
-    <entity uuid="6de9205a-0f2f-43e1-b082-be956ca60ad0" position-x="197" position-y="51" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
     <entity uuid="6e82ba04-ce37-484f-ba25-149030015036" position-x="135" position-y="-58" size-x="0" size-x2="117" size-y="0" size-y2="101"/>
     <entity uuid="6f4aeefc-a0c7-4aa7-8d07-633fd28fc044" position-x="23" position-y="40" size-x="0" size-x2="140" size-y="0" size-y2="101"/>
     <region uuid="6fbe78c9-c9fd-4d6b-a4f9-2dd405e78bad" bk-color="15716788" position-x="412" position-y="270" size-x="-8" size-x2="327" size-y="0" size-y2="288"/>
@@ -916,6 +881,7 @@
     <entity uuid="789f89eb-cafa-4e95-9845-cea7170627e4" position-x="223" position-y="112" size-x="0" size-x2="123" size-y="0" size-y2="45"/>
     <association uuid="7a6fda74-bbbf-4399-877d-16a5ccf3a711" splitted="1"/>
     <association uuid="7b541b84-a6de-43a4-8698-e7b4e9f56212" splitted="1"/>
+    <association uuid="7ea7f4b5-d23f-4cfc-a3e8-aab1d06b3a4d" center-position-x="16" center-position-y="0"/>
     <inheritance-child uuid="813221d1-5d55-4e29-bca4-58c2f63e038c" splitted="1"/>
     <inheritance-child uuid="81949f09-9133-4b01-b39d-755484649516" splitted="1"/>
     <entity uuid="84a8d9b9-d842-414b-8220-ad30a48fc440" position-x="524" position-y="110" size-x="0" size-x2="95" size-y="0" size-y2="45"/>
@@ -956,10 +922,8 @@
     <entity uuid="d1ed7de2-6778-48e0-a81c-22735fc0d71e" position-x="-10" position-y="228" size-x="0" size-x2="139" size-y="0" size-y2="60"/>
     <entity uuid="d3030348-9746-4be7-9ec6-e8206e98f498" position-x="625" position-y="110" size-x="0" size-x2="108" size-y="0" size-y2="45"/>
     <entity uuid="d516b8ce-e87c-4ca9-aa13-013734cc7e29" position-x="38" position-y="34" size-x="0" size-x2="89" size-y="0" size-y2="59"/>
-    <entity uuid="d574d5bd-a418-4082-9d9d-d5e7462fde4d" position-x="645" position-y="40" size-x="0" size-x2="113" size-y="0" size-y2="45"/>
     <region uuid="d58ec363-3d3a-4f2a-8fa1-cda3102d8ee6" bk-color="4293906868" position-x="45" position-y="82" size-x="0" size-x2="948" size-y="0" size-y2="207"/>
     <entity uuid="d794f911-287a-4ecc-ac5f-aadce68e5b30" position-x="177" position-y="53" size-x="0" size-x2="119" size-y="0" size-y2="60"/>
-    <inheritance-child uuid="d818f169-4309-400f-8b41-15b8b03cf75e" splitted="1"/>
     <association uuid="db2ed8ab-450d-4d09-b542-b500c5f3a648" splitted="1"/>
     <association uuid="dbc7b8f0-bbca-48da-8d5c-384e03404912" splitted="1"/>
     <region uuid="dc3874d1-08ad-4106-95bc-e52e07edeab3" bk-color="4293906868" position-x="15" position-y="19" size-x="0" size-x2="186" size-y="0" size-y2="425"/>

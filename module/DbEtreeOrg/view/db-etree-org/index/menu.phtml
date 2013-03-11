@@ -238,8 +238,17 @@
     <ul class="dropdown-menu" aria-labelledby="song-drop" role="menu">
 
         <li role="menuitem">
+            <form style="display: inline;">
+            <a class="btn btn-info" href="/song">
+                <i class="icon-music"></i>
+                Browse
+            </a>
+            </form>
+        </li>
+
+        <li role="menuitem">
             <form class="navbar-search pull-left" id="song-search" action="/song/search">
-                <?= $this->inputSong(null, $this->translate('Create Song')); ?>
+                <?= $this->inputSong(null, $this->translate('Create')); ?>
 
                 <script>
                     $(function() {

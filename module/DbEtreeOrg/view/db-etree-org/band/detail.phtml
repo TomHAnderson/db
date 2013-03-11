@@ -98,6 +98,12 @@ if (sizeof($jambase->event)) {
     </li>
 
     <li class="">
+        <a href="#alias" data-toggle="tab">
+            Aliases
+        </a>
+    </li>
+
+    <li class="">
         <a href="#comments" data-toggle="tab">
             Comments
         </a>
@@ -243,6 +249,26 @@ if (sizeof($jambase->event)) {
                  <a class="btn-success create-lineup" data-id="<?= $this->band->getId(); ?>" href="/lineup/create?id=<?= $this->band->getId(); ?>">
                     <i class="icon-group"></i>
                     Create Lineup
+                </a>
+             </li>
+        </ul>
+    </div>
+
+    <div class="tab-pane" id="alias">
+        <?php
+        foreach ($this->band->getAliases() as $alias) {
+        ?>
+            <i class="icon-user"></i>
+            <?= $this->escapeHtml($alias->getName()); ?>
+        <?php
+        }
+        ?>
+
+        <ul class="nav nav-pills">
+            <li class="">
+                 <a class="btn-success create-band-alias" data-id="<?= $this->band->getId(); ?>" href="#">
+                    <i class="icon-group"></i>
+                    Create Alias
                 </a>
              </li>
         </ul>
