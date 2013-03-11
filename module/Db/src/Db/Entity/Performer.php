@@ -3,6 +3,7 @@ namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
 use Zend\Form\Annotation as Form
+    , Doctrine\Common\Collections\ArrayCollection
     , Zend\InputFilter\InputFilter
     ;
 
@@ -59,14 +60,15 @@ class Performer extends AbstractEntity {
 
     public function getPerformances()
     {
-        $performances = array();
-        foreach ($this->getPerformerLineups() as $lineup) {
-            $performances += getPerformances();
+        $performances = new ArrayCollection;
+        foreach ($this->getPerformerLineups() as $performerLineup) {
+            foreach ($performerLineup->getLineup()->getPerformances() as $performance) {
+                $performances->add($performance);
+            }
         }
         foreach ($this->getPerformerPerformances() as $performerPerformance) {
-            $performances[] = $performerPerformance->getPerformance();
+            $performances->add($performerPerformance->getPerformance());
         }
-
 
         return $performances;
     }
