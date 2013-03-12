@@ -74,7 +74,19 @@ if ($this->venue->getNote()) {
 }
 ?>
 <ul class="nav nav-tabs" id="tabs">
-    <li class="active">
+    <?php
+    if ($this->venue->getPerformances()) {
+    ?>
+
+        <li class="active">
+            <a href="#performances" data-toggle="tab">
+                Performances
+            </a>
+        </li>
+    <?php
+    }
+    ?>
+    <li class="<?php if (!$this->venue->getPerformances()) echo 'active'; ?>">
         <a href="#comments" data-toggle="tab">
             Comments
         </a>
@@ -85,24 +97,21 @@ if ($this->venue->getNote()) {
             Links
         </a>
     </li>
-
-<?php
-if ($this->venue->getPerformances()) {
-?>
-
-    <li class="">
-        <a href="#performances" data-toggle="tab">
-            Performances
-        </a>
-    </li>
-<?php
-}
-?>
-
 </ul>
 
 <div class="tab-content">
-   <div class="tab-pane active" id="comments">
+
+    <?php
+    if ($this->venue->getPerformances()) {
+    ?>
+        <div class="tab-pane active" id="performances">
+            <?= $this->listPerformances($this->venue->getPerformances()); ?>
+        </div>
+    <?php
+    }
+    ?>
+
+   <div class="tab-pane <?php if (!$this->venue->getPerformances()) echo 'active'; ?>" id="comments">
         <ul class="nav nav-pills">
             <?= $this->createComment($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
         </ul>
@@ -115,14 +124,4 @@ if ($this->venue->getPerformances()) {
             <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
         </ul>
     </div>
-
-<?php
-if ($this->venue->getPerformances()) {
-?>
-    <div class="tab-pane" id="performances">
-        <?= $this->listPerformances($this->venue->getPerformances()); ?>
-    </div>
-<?php
-}
-?>
 </div>

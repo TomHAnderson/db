@@ -1,52 +1,43 @@
 <ul class="nav nav-pills pull-right">
-    <li class="">
-        <a class="btn-warning" href="/lineup/edit?id=<?= $this->lineup->getId(); ?>"><i class="icon-group"></i> Edit Performer Lineup</a>
-    </li>
-
     <li>
-        <a class="btn-info" href="/audit/entity/<?= $this->lineup->getId(); ?>/Db\Entity\Lineup">
+        <a class="btn-info" href="/audit/entity/<?= $this->performerLineup->getId(); ?>/Db\Entity\PerformerLineup">
             <i class="icon-list"></i>
         </a>
     </li>
 </ul>
 
-<h1><i class="icon-cogs"></i>
-    <a href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
-        <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
+<div class="h1">
+    <a class="btn btn-info" href="/lineup/detail?id=<?= $this->performerLineup->getLineup()->getId(); ?>">
+        <i class="icon-group"></i>
     </a>
-</h1>
 
-<h1>
-    <i class="icon-group"></i>
-    <?= $this->escapeHtml($this->lineup->getName()); ?>
-</h1>
+    <?= $this->escapeHtml($this->performerLineup->getLineup()->getName()); ?>
 
-<?php
-if ($this->lineup->getNote()) { ?>
-    <pre><?= $this->escapeHtml($this->lineup->getNote()); ?></pre>
-<?php
-}
-?>
 
-<?php
-foreach ($this->lineup->getPerformerLineups() as $performerLineup) {
-?>
-    <h3>
-        &nbsp;&nbsp;&nbsp;
-        <a href="/performer-lineup/detail?id=<?= $performerLineup->getId(); ?>">
-            <i class="icon-film"></i>
-            <?= $this->escapeHtml($performerLineup->getPerformer()->getName()); ?>
+    <div class="h2">
+        <a class="btn btn-info" href="/band/detail?id=<?= $this->performerLineup->getLineup()->getBand()->getId(); ?>">
+            <i class="icon-cogs"></i>
         </a>
-    </h3>
+        <?= $this->escapeHtml($this->performerLineup->getLineup()->getBand()->getName()); ?>
+
+    </div>
+
+    <a class="btn btn-info" href="/performer/detail?id=<?= $this->performerLineup->getPerformer()->getId(); ?>">
+        <i class="icon-film"></i>
+    </a>
+
+    <a class="btn btn-warning edit-performer-lineup" data-id="<?= $this->performerLineup->getId(); ?>">
+        <i class="icon-bolt"></i>
+    </a>
+
+    <?= $this->escapeHtml($this->performerLineup->getPerformer()->getName()); ?>
 
     <?php
-    if ($performerLineup->getNote()) {
+    if ($this->performerLineup->getNote()) {
     ?>
-        <pre><?= $this->escapeHtml($performerLineup->getNote()); ?></pre>
+        <pre><?= $this->escapeHtml($this->performerLineup->getNote()); ?></pre>
     <?php
     }
     ?>
 
-<?php
-}
-?>
+</div>
