@@ -1,12 +1,5 @@
 <ul class="nav nav-pills pull-right">
     <li>
-        <a data-id="<?= $this->performerAlias->getId(); ?>" class="btn-warning edit-performer-alias" href="#">
-            <i class="icon-user"></i>
-            Edit Performer Alias
-        </a>
-    </li>
-
-    <li>
         <a class="btn-info" href="/audit/entity/<?= $this->performerAlias->getId(); ?>/Db\Entity\PerformerAlias">
             <i class="icon-list"></i>
         </a>
@@ -24,9 +17,10 @@
 </div>
 
 <div class="h1">
-    <a class="btn btn-default" href="/performer-alias/detail?id=<?= $this->performerAlias->getId(); ?>">
-        <i class="icon-user"></i>
+    <a data-id="<?= $this->performerAlias->getId(); ?>" class="btn btn-warning edit-performer-alias" href="#">
+        <i class="icon-github-alt"></i>
     </a>
+
     <?= $this->escapeHtml($this->performerAlias->getName()); ?>
 </div>
 
