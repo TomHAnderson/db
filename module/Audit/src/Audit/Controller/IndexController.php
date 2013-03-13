@@ -11,7 +11,7 @@ class IndexController extends AbstractActionController {
 
     private $iconMap = array(
         'Db\Entity\Performer' => 'icon-film',
-        'Db\Entity\PerformerAlias' => 'icon-facetime-video',
+        'Db\Entity\PerformerAlias' => 'icon-github-alt',
         'Db\Entity\Performance'  => 'icon-magic',
         'Db\Entity\PerformanceSet' => 'icon-certificate',
         'Db\Entity\Venue' => 'icon-map-marker',
@@ -29,7 +29,7 @@ class IndexController extends AbstractActionController {
         'Db\Entity\AbstractComment' => 'icon-folder-close',
         'Db\Entity\AbstractLink' => 'icon-folder-close',
         'Db\Entity\PerformerLineup' => 'icon-group',
-        'Db\Entity\PerformerPerformance' => 'icon-group',
+        'Db\Entity\PerformerPerformance' => 'icon-facetime-video',
         'Db\Entity\BandAlias' => 'icon-facetime-video',
     );
 

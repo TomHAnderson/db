@@ -24,13 +24,13 @@ class PerformerLineupController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/venue');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $performerLineup = $em->getRepository('Db\Entity\PerformerLineup')->find($id);
 
-        if (!$performanceSet)
-            throw new \Exception("Performance Set $id not found");
+        if (!$performerLineup)
+            throw new \Exception("Performer Lineup $id not found");
 
         return array(
-            'performanceSet' => $performanceSet
+            'performerLineup' => $performerLineup
         );
     }
 

@@ -2,9 +2,9 @@
     <a onClick="$('#createLink').toggle();"  class="btn-success" href="#"><i class="icon-bookmark"></i> Create Link</a>
 </li>
 
-<div style="display: none; clear: both;" id="createLink">
 
-    <form method="post" action="/link/create">
+    <div id="createComment" class="modal hide fade">
+    <form method="post" action="/link/create" id="createLinkForm">
         <input type="hidden" name="id" value="<?= $id; ?>">
         <input type="hidden" name="entityName" value="<?= $entityName; ?>">
         <input type="hidden" name="returnUrl" value="<?= $returnUrl; ?>">
@@ -44,7 +44,37 @@
                     Submit
                 </button>
             </div>
-        </div>
+
+
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Create Link</h3>
+    </div>
+    <div class="modal-body">
+
+        <label for="rating">Rating</label>
+        <span class="rating">
+            <span class="star"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+        </span>
+
+        <label for="note">Note</label>
+        <textarea name="note"></textarea>
+
+
+    </div>
+    <div class="modal-footer">
+
+    <a href="#" onClick="$('#createCommentForm').submit();"  class="btn btn-success">
+        <i class="icon-comment"></i>
+        Save Comment
+    </a>
+    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+        Cancel
+    </button>
+    </div>
     </form>
 </div>
-

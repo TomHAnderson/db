@@ -42,7 +42,21 @@
             Performances
         </a>
     </li>
+
+    <li class="<?php if (!$this->song->getPerformances()) echo 'active'; ?>">
+        <a href="#comments" data-toggle="tab">
+            Comments
+        </a>
+    </li>
+
+    <li class="">
+        <a href="#links" data-toggle="tab">
+            Links
+        </a>
+    </li>
+
 </ul>
+
 
 <div class="tab-content">
     <div class="tab-pane active" id="performances">
@@ -50,4 +64,19 @@
             <?= $this->listPerformances($this->song->getPerformances()); ?>
         </ul>
     </div>
+
+   <div class="tab-pane <?php if (!$this->song->getPerformances()) echo 'active'; ?>" id="comments">
+        <ul class="nav nav-pills">
+            <?= $this->createComment($this->song->getId(), 'Db\Entity\Song', '/song/detail?id=' . $this->song->getId()); ?>
+        </ul>
+
+        <?= $this->listComments($this->song->getComments()); ?>
+    </div>
+
+    <div class="tab-pane" id="links">
+        <ul class="nav nav-pills">
+            <?= $this->createLink($this->song->getId(), 'Db\Entity\Song', '/song/detail?id=' . $this->song->getId()); ?>
+        </ul>
+    </div>
 </div>
+

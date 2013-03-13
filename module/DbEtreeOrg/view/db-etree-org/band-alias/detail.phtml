@@ -1,18 +1,19 @@
 <ul class="nav nav-pills pull-right">
     <li>
-        <a data-id="<?= $this->bandAlias->getId(); ?>" class="btn-warning edit-band-alias" href="#">
-            <i class="icon-user"></i>
-            Edit Band Alias
-        </a>
-    </li>
-
-    <li>
         <a class="btn-info" href="/audit/entity/<?= $this->bandAlias->getId(); ?>/Db\Entity\bandAlias">
             <i class="icon-list"></i>
         </a>
     </li>
 </ul>
 
+
+<div class="h1">
+    <a class="btn btn-warning" href="#" data-id="<?= $this->bandAlias->getId(); ?>">
+        <i class="icon-legal"></i>
+    </a>
+    <i class="icon-legal"></i>
+    <?= $this->escapeHtml($this->bandAlias->getName()); ?>
+</div>
 
 <div class="h1">
 
@@ -23,12 +24,6 @@
     <?= $this->escapeHtml($this->bandAlias->getBand()->getName()); ?>
 </div>
 
-<div class="h1">
-    <a class="btn btn-default" href="/band-alias/detail?id=<?= $this->bandAlias->getId(); ?>">
-        <i class="icon-facetime-video"></i>
-    </a>
-    <?= $this->escapeHtml($this->bandAlias->getName()); ?>
-</div>
 
 <?php
 if ($this->escapeHtml($this->bandAlias->getNote())) {
