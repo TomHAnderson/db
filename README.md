@@ -1,12 +1,9 @@
-db.etree.org & etreedb.org
+www.etreedb.org
 ==========================
 
 Introduction
 ------------
-db.etree.org is a setlist database.  
-etreedb.org is a database of shows owned by users of the sites.  
-Both sites run on this codebase.
-
+etreedb.org is the next generation of db.etree.org
 
 Installation
 ------------
