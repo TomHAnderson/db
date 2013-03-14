@@ -1,3 +1,10 @@
+<style>
+    .performance-song-detail {
+        display: none;
+    }
+</style>
+
+
 <ul class="nav nav-pills pull-right">
 <!--
     <li>
@@ -177,14 +184,21 @@ if ($this->performance->getNote()) { ?>
                     <?= $count ++; ?>
 
                     <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?></a><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?>
+                        <a class="btn btn-default show-performance-song-detail" href="#" data-id="<?= $performanceSong->getId(); ?>">
+                            <i class="icon-double-angle-down"></i>
+                        </a>
                 </div>
 
-                <div class="span1">
-                    <pre><?= $this->escapeHtml($performanceSong->getLength()); ?>&nbsp;</pre>
-                </div>
+                <div class="performance-song-detail" data-id="<?= $performanceSong->getId(); ?>">
 
-                <div class="span3">
-                    <pre><?= $this->escapeHtml($performanceSong->getNote()); ?>&nbsp;</pre>
+                    <div class="span1">
+                        <pre><?= $this->escapeHtml($performanceSong->getLength()); ?>&nbsp;</pre>
+                    </div>
+
+                    <div class="span3">
+                        <pre><?= $this->escapeHtml($performanceSong->getNote()); ?>&nbsp;</pre>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -233,3 +247,21 @@ if ($this->performance->getNote()) { ?>
         </ul>
     </div>
 </div>
+
+
+<script>
+$(function() {
+
+    $('.show-performance-song-detail').on('click', function(event) {
+        $('.performance-song-detail[data-id="' + $(this).attr('data-id') + '"]').toggle();
+        return false;
+    });
+
+});
+
+
+
+
+onClick="$('#performance_drop').toggle();"
+
+</script>
