@@ -29,38 +29,25 @@
     <?= $this->escapeHtml($this->venue->getName()); ?>
 </div>
 
+
 <div class="row">
-    <div class="span3">
+    <div class="span4">
         <b>City</b>
-    </div>
-
-    <div class="span3">
-        <b>State</b>
-    </div>
-
-    <div class="span3">
-        <b>Country</b>
-    </div>
-
-    <div class="span3">
-        <b>Zipcode</b>
-    </div>
-</div>
-
-<div class="row">
-    <div class="span3">
         <pre><?= $this->escapeHtml($this->venue->getCity()); ?>&nbsp;</pre>
     </div>
 
-    <div class="span3">
+    <div class="span2">
+        <b>State</b>
         <pre><?= $this->escapeHtml($this->venue->getState()); ?>&nbsp;</pre>
     </div>
 
     <div class="span3">
+        <b>Country</b>
         <pre><?= $this->escapeHtml($this->venue->getCountry()); ?>&nbsp;</pre>
     </div>
 
     <div class="span3">
+        <b>Zipcode</b>
         <pre><?= $this->escapeHtml($this->venue->getZipcode()); ?>&nbsp;</pre>
     </div>
 </div>

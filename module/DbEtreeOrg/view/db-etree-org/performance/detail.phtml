@@ -1,5 +1,5 @@
 <style>
-    .performance-song-detail {
+    .performance-song-detail, .venue-detail {
         display: none;
     }
 </style>
@@ -129,6 +129,18 @@ if ($this->performance->getNote()) { ?>
     </a>
 
     <?= $this->escapeHtml($this->performance->getVenue()->getName()); ?>
+
+    <a class="btn btn-default show-venue-detail" href="#">
+        <i class="icon-double-angle-down"></i>
+    </a>
+
+    <div class="h2 venue-detail">
+        <?= ($this->performance->getVenue()->getCity()) ? $this->escapeHtml($this->performance->getVenue()->getCity()) . '<br>': ''; ?>
+        <?= ($this->performance->getVenue()->getState()) ? $this->escapeHtml($this->performance->getVenue()->getState()) . '<br>': ''; ?>
+        <?= ($this->performance->getVenue()->getCountry()) ? $this->escapeHtml($this->performance->getVenue()->getCountry()) . '<br>': ''; ?>
+        <?= ($this->performance->getVenue()->getZipcode()) ? $this->escapeHtml($this->performance->getVenue()->getZipcode()) . '<br>': ''; ?>
+    </div>
+
 </div>
 
 
@@ -257,11 +269,9 @@ $(function() {
         return false;
     });
 
+    $('.show-venue-detail').on('click', function(event) {
+        $('.venue-detail').toggle();
+    });
+
 });
-
-
-
-
-onClick="$('#performance_drop').toggle();"
-
 </script>
