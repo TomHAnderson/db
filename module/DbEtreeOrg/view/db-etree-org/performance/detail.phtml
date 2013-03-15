@@ -22,8 +22,13 @@
 </ul>
 
 <div class="h1">
+
     <a class="btn btn-warning edit-performance" href="#" data-id="<?= $this->performance->getId(); ?>">
         <i class="icon-magic"></i>
+    </a>
+
+    <a href="#" data-id="<?= $performance->getId(); ?>" class="btn btn-success create-performance-set">
+        <i class="icon-certificate"></i>
     </a>
 
     <i class="icon-magic"></i>
@@ -60,10 +65,18 @@ if ($this->performance->getNote()) { ?>
     <div id="performance_drop" style="display: none;">
 
         <div class="h2">
+
             <a class="btn btn-info" href="/lineup/detail?id=<?= $this->performance->getLineup()->getId(); ?>">
                 <i class="icon-group"></i>
             </a>
+
+            <a href="#" data-id="<?= $performance->getId(); ?>" class="btn btn-success create-performer-performance">
+                <i class="icon-facetime-video"></i>
+            </a>
+
             <?= $this->escapeHtml($this->performance->getLineup()->getName()); ?>
+
+
 
         <?php
         foreach ($this->performance->getLineup()->getPerformerLineups() as $performerLineup) {
@@ -85,13 +98,7 @@ if ($this->performance->getNote()) { ?>
         <?php
         }
         ?>
-            <div class="h2">
-                <a href="#" data-id="<?= $performance->getId(); ?>" class="btn btn-success create-performer-performance">
-                    <i class="icon-facetime-video"></i>
-                </a>
-                Guest Performers
 
-</div>
         <?php
 
         foreach ($this->performance->getPerformerPerformances() as $performerPerformance) {
@@ -145,12 +152,6 @@ if ($this->performance->getNote()) { ?>
 
 
 <div class="h1">
-    <a href="#" data-id="<?= $performance->getId(); ?>" class="btn btn-success create-performance-set">
-        <i class="icon-certificate"></i>
-    </a>
-
-    Performance Sets
-
     <?php
     foreach ($this->performance->getPerformanceSets() as $set) {
     ?>
