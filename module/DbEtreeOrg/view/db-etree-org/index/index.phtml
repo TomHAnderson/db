@@ -1,1 +1,26 @@
-<h1>Welcome to db.etree.org</h1>
+<style>
+    .index {
+        display: none;
+    }
+</style>
+
+<div class="h1">Welcome to www.etreedb.org
+
+<a class="btn btn-default show-index" href="#">
+    <i class="icon-double-angle-down"></i>
+</a>
+
+<div class="h2 index">
+    A community driven open database of live concert information.
+</div>
+
+</div>
+
+<script>
+$(function() {
+    $('.show-index').on('click', function(event) {
+        $('.index').toggle();
+    });
+
+});
+</script>
