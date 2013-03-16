@@ -358,20 +358,21 @@
 </li>
 
 <script>
+
 $(function() {
     if (getCookie('editMode') == 'on' && '<?= ($this->zfcUserIdentity()) ? 'loggedin': ''; ?>') {
-        $('a#brand').trigger('turnOn');
+        $('a#brand.btn').trigger('turnOn');
     } else {
-        $('a#brand').trigger('turnOff');
+        $('a#brand.btn').trigger('turnOff');
     }
 });
 
-$('#createPerformance').click(function(event) {
+$('#createPerformance').on('click', function(event) {
     alert('To create a performance select a lineup from a band');
     return false;
 });
 
-$('#createSource').click(function(event) {
+$('#createSource').on('click', function(event) {
     alert('To create a source select a performance');
     return false;
 });
