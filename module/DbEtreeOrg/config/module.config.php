@@ -126,9 +126,6 @@ return array(
             'inputBand' => 'DbEtreeOrg\View\Helper\InputBand',
             'inputSong' => 'DbEtreeOrg\View\Helper\InputSong',
 
-            'addPerformerToLineup' => 'DbEtreeOrg\View\Helper\AddPerformerToLineup',
-            'addPerformerToPerformance' => 'DbEtreeOrg\View\Helper\AddPerformerToPerformance',
-            'addChecksumToSource' => 'DbEtreeOrg\View\Helper\AddChecksumToSource',
 
             'removePerformerFromPerformance' => 'DbEtreeOrg\View\Helper\RemovePerformerFromPerformance',
             'removePerformerFromLineup' => 'DbEtreeOrg\View\Helper\RemovePerformerFromLineup',
