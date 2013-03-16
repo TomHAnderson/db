@@ -7,7 +7,7 @@ etreedb.org is the next generation of db.etree.org
 
 Installation
 ------------
-    git clone git://github.com/TomHAnderson/db
+    git clone git://github.com/etreedb/db
     cd db
     php composer.phar install
 
