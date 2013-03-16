@@ -27,7 +27,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand <?php if ($this->zfcUserIdentity()) echo 'btn btn-small btn-default'; ?>" id="brand" href="/"><img src="/images/db-logo.png"></a>
+                    <a class="brand <?php if ($this->zfcUserIdentity()) echo 'btn btn-small btn-default'; ?>" id="brand" href="#"><img src="/images/db-logo.png"></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <?php
@@ -93,6 +93,34 @@
                 },
                 suppressKeyPressRepeat: true,
             });
+
+            $('a#brand').on('turnOn', function(event) {
+                setCookie('editMode', 'on');
+                $(this).removeClass('btn-default').addClass('btn-warning');
+                $('a.btn-warning, a.btn-danger, a.btn-success, li#menu-audit').show();
+            });
+
+            $('a#brand').on('turnOff', function(event) {
+                setCookie('editMode', false);
+                $(this).removeClass('btn-warning').addClass('btn-default');
+                $('a.btn-warning, a.btn-danger, a.btn-success, li#menu-audit').hide();
+            });
+
+            $('a#brand.btn').live('click', function(event) {
+                if ($(this).hasClass('btn-default')) {
+                    $(this).trigger('turnOn');
+                } else {
+                    $(this).trigger('turnOff');
+                }
+                $(this).show();
+                return false;
+            });
+
+            if (getCookie('editMode') == 'on') {
+                $('a#brand.btn').trigger('turnOn');
+            } else {
+                $('a#brand.btn').trigger('turnOff');
+            }
         });
 
         </script>
