@@ -77,7 +77,7 @@ $echonest = Echonest::query('artist', 'biographies', array(
 if (sizeof($gracenote->RESPONSE->ALBUM)) {
 ?>
     <li class="">
-        <a href="#gracenote-albums" data-toggle="tab">
+        <a href="#albums" data-toggle="tab">
             Albums
         </a>
     </li>
@@ -144,7 +144,7 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
     <?
     if (sizeof($gracenote->RESPONSE->ALBUM)) {
     ?>
-    <div class="tab-pane" id="gracenote-albums">
+    <div class="tab-pane" id="albums">
         <table class="table table-striped">
             <thead>
                 <tr>

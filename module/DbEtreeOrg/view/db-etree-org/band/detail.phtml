@@ -146,42 +146,43 @@ if (sizeof($jambase->event)) {
 if (sizeof($jambase->event)) {
 ?>
     <div class="tab-pane" id="jambase">
-        <div class="row">
-            <div class="span2">
-                <b>Date</b>
-            </div>
-
-            <div class="span5">
-                <b>Venue</b>
-            </div>
-            <div class="span3">
-                <b>City</b>
-            </div>
-            <div class="span1">
-                <b>State</b>
-            </div>
-        </div>
+        <table class="table table-striped">
+            <thead>
+                <th>Date</th>
+                <th>Venue</th>
+                <th>City</th>
+                <th>State</th>
+            </thead>
+            <tbody>
 
         <?php
         foreach ($jambase->event as $event) {
         ?>
-            <div class="row">
-                <div class="span2">
-                    <pre><a href="<?= (string)$event->event_url; ?>"><?= $this->escapeHtml((string)$event->event_date); ?></a></pre>
-                </div>
-                <div class="span5">
-                    <pre><a href="<?= (string)$event->event_url; ?>"><?= $this->escapeHtml((string)$event->venue->venue_name); ?></a></pre>
-                </div>
-                <div class="span3">
-                    <pre><a href="<?= (string)$event->event_url; ?>"><?= $this->escapeHtml((string)$event->venue->venue_city); ?></a></pre>
-                </div>
-                <div class="span1">
-                    <pre><a href="<?= (string)$event->event_url; ?>"><?= $this->escapeHtml((string)$event->venue->venue_state); ?></a></pre>
-                </div>
-            </div>
+            <tr>
+                <td>
+                    <a class="btn btn-info" href="<?= (string)$event->event_url; ?>">
+                        <i class="icon-external-link"></i>
+                    </a>
+                    <?= $this->escapeHtml((string)$event->event_date); ?>
+                </td>
+                <td>
+                    <?= $this->escapeHtml((string)$event->venue->venue_name); ?>
+                </td>
+
+                <td>
+                    <?= $this->escapeHtml((string)$event->venue->venue_city); ?>
+                </td>
+
+                <td>
+                    <?= $this->escapeHtml((string)$event->venue->venue_state); ?>
+                </td>
+            </tr>
         <?php
         }
         ?>
+            </tbody>
+        </table>
+
     </div>
 <?php
 }
@@ -228,43 +229,55 @@ if (sizeof($jambase->event)) {
     </div>
 
     <div class="tab-pane" id="lineups">
-        <ul class="nav nav-pills">
-            <li class="">
-                 <a class="btn-success create-lineup" data-id="<?= $this->band->getId(); ?>" href="/lineup/create?id=<?= $this->band->getId(); ?>">
-                    <i class="icon-group"></i>
-                    Create Lineup
-                </a>
-             </li>
-        </ul>
-        <div class="row">
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <a class="btn btn-success create-lineup" data-id="<?= $this->band->getId(); ?>" href="/lineup/create?id=<?= $this->band->getId(); ?>">
+                            <i class="icon-group"></i>
+                        </a>
+
+                        Lineups
+                    </th>
+                    <th>Performers</th>
+                </tr>
+            </thead>
+            <tbody>
+
             <?php
             foreach ($this->band->getLineups() as $lineup) {
             ?>
-            <div class="span4 h1">
-                <a class="btn btn-info" href="/lineup/detail?id=<?= $lineup->getId(); ?>">
-                    <i class="icon-group"></i>
-                </a>
-                <?= $this->escapeHtml($lineup->getName()); ?>
+                <tr>
+                    <td>
 
-                <div class="h2">
-                <?php
+                        <a class="btn btn-info" href="/lineup/detail?id=<?= $lineup->getId(); ?>">
+                            <i class="icon-group"></i>
+                        </a>
+                        <?= $this->escapeHtml($lineup->getName()); ?>
+                    </td>
+
+                    <td>
+
+                    <?php
                     foreach ($lineup->getPerformerLineups() as $performerLineup) {
                     ?>
+                        <p>
                         <a class="btn btn-info" href="/performer/detail?id=<?= $performerLineup->getPerformer()->getId(); ?>">
                             <i class="icon-film"></i>
                         </a>
 
                         <?= $this->escapeHtml($performerLineup->getPerformer()->getName()); ?>
+                        </p>
                     <?php
                     }
                     ?>
-
-                </div>
-            </div>
+                    </td>
+                </tr>
             <?php
             }
             ?>
-        </div>
+        </table>
     </div>
 
     <div class="tab-pane" id="alias">

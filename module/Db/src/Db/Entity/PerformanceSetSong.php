@@ -35,6 +35,7 @@ class PerformanceSetSong extends AbstractEntity {
     public function exchangeArray($data)
     {
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setSort(isset($data['sort']) ? $data['sort']: null);
         $this->setLength(isset($data['length']) ? $data['length']: null);
         $this->setIsSegue(isset($data['isSegue']) ? $data['isSegue']: null);
     }

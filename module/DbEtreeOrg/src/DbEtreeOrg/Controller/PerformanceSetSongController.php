@@ -63,7 +63,6 @@ class PerformanceSetSongController extends AbstractActionController
                 $performanceSetSong->exchangeArray($form->getData());
                 $performanceSetSong->setPerformanceSet($performanceSet);
                 $performanceSetSong->setSong($song);
-                $performanceSetSong->setSort(99999);
 
                 $em->persist($performanceSetSong);
                 $em->flush();

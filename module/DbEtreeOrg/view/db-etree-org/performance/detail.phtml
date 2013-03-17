@@ -180,7 +180,6 @@ if ($this->performance->getNote()) { ?>
 
     <?php
     if (sizeof($set->getPerformanceSetSongs())) {
-        $count = 1;
         foreach ($set->getPerformanceSetSongs() as $performanceSong) {
     ?>
         <div class="h3">
@@ -193,8 +192,6 @@ if ($this->performance->getNote()) { ?>
                     <a href="#" class="btn btn-warning edit-performance-set-song" data-id="<?= $performanceSong->getId(); ?>">
                         <i class="icon-bolt"></i>
                     </a>
-
-                    <?= $count ++; ?>
 
                     <?= $this->escapeHtml($performanceSong->getSong()->getName()); ?></a><?php if ($performanceSong->getIsSegue()) echo ' &gt; '; ?>
                         <a class="btn btn-default show-performance-song-detail" href="#" data-id="<?= $performanceSong->getId(); ?>">
