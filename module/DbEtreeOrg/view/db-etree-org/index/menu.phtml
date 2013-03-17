@@ -363,7 +363,7 @@ $(function() {
     if (getCookie('editMode') == 'on' && '<?= ($this->zfcUserIdentity()) ? 'loggedin': ''; ?>') {
         $('a#brand.btn').trigger('turnOn');
     } else {
-        $('a#brand.btn').trigger('turnOff');
+        $('a#brand').trigger('turnOff');
     }
 });
 
