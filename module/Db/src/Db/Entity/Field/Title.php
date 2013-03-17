@@ -21,4 +21,14 @@ trait Title
         $this->title = $value;
         return $this;
     }
+
+    private function inputFilterInputTitle($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'title',
+            'required' => true  ,
+            'validators' => array(),
+        ));
+    }
 }

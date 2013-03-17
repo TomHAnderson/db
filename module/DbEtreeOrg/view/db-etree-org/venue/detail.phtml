@@ -107,8 +107,8 @@ if ($this->venue->getNote()) {
     </div>
 
     <div class="tab-pane" id="links">
-        <ul class="nav nav-pills">
-            <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
-        </ul>
+        <?= $this->createLink($this->venue->getId(), 'Db\Entity\Venue', '/venue/detail?id=' . $this->venue->getId()); ?>
+
+        <?= $this->listLinks($this->venue->getLinks()); ?>
     </div>
 </div>

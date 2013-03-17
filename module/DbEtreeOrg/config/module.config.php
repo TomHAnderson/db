@@ -94,6 +94,7 @@ return array(
             'performer-lineup' => 'DbEtreeOrg\Controller\PerformerLineupController',
             'performer-performance' => 'DbEtreeOrg\Controller\PerformerPerformanceController',
             'band-alias' => 'DbEtreeOrg\Controller\BandAliasController',
+            'link' => 'DbEtreeOrg\Controller\LinkController',
         ),
     ),
 
@@ -126,22 +127,15 @@ return array(
             'inputBand' => 'DbEtreeOrg\View\Helper\InputBand',
             'inputSong' => 'DbEtreeOrg\View\Helper\InputSong',
 
-
-            'removePerformerFromPerformance' => 'DbEtreeOrg\View\Helper\RemovePerformerFromPerformance',
-            'removePerformerFromLineup' => 'DbEtreeOrg\View\Helper\RemovePerformerFromLineup',
-
             'listPerformances' => 'DbEtreeOrg\View\Helper\ListPerformances',
+            'listComments' => 'DbEtreeOrg\View\Helper\ListComments',
+            'listLinks' => 'DbEtreeOrg\View\Helper\ListLinks',
 
             'findVenue' => 'DbEtreeOrg\View\Helper\FindVenue',
             'findPerformer' => 'DbEtreeOrg\View\Helper\FindPerformer',
 
             'createComment' => 'DbEtreeOrg\View\Helper\CreateComment',
-            'listComments' => 'DbEtreeOrg\View\Helper\ListComments',
-
-            'createPerformerAlias' => 'DbEtreeOrg\View\Helper\CreatePerformerAlias',
-
             'createLink' => 'DbEtreeOrg\View\Helper\CreateLink',
-            'listLinks' => 'DbEtreeOrg\View\Helper\ListLinks',
 
             'pasteUpload' => 'DbEtreeOrg\View\Helper\PasteUpload',
         ),

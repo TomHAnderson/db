@@ -74,9 +74,9 @@
     </div>
 
     <div class="tab-pane" id="links">
-        <ul class="nav nav-pills">
-            <?= $this->createLink($this->song->getId(), 'Db\Entity\Song', '/song/detail?id=' . $this->song->getId()); ?>
-        </ul>
+        <?= $this->createLink($this->song->getId(), 'Db\Entity\Song', '/song/detail?id=' . $this->song->getId()); ?>
+
+        <?= $this->listLinks($this->song->getLinks()); ?>
     </div>
 </div>
 
