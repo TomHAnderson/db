@@ -162,6 +162,19 @@ DbEtreeOrg = {
             return false;
         });
 
+        $('.create-link').live('click', function() {
+            id = $(this).attr('data-id');
+            entityName = $(this).attr('data-entity-name');
+            DbEtreeOrg.createModal('/link/create?id=' + id + '&entityName=' + entityName);
+            return false;
+        });
+
+        $('.edit-link').live('click', function() {
+            id = $(this).attr('data-id');
+            DbEtreeOrg.createModal('/link/edit?id=' + id);
+            return false;
+        });
+
     },
 
     createModal: function(page) {

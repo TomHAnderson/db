@@ -21,4 +21,18 @@ trait Url
         $this->url = $value;
         return $this;
     }
+
+    private function inputFilterInputUrl($inputFilter = null) {
+        if (!$inputFilter) $inputFilter = new InputFilter();
+
+        return $inputFilter->getFactory()->createInput(array(
+            'name' => 'url',
+            'required' => true  ,
+            'validators' => array(
+                array(
+                    'name' => 'uri'
+                ),
+            ),
+        ));
+    }
 }

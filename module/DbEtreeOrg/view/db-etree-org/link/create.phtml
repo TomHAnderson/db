@@ -1,0 +1,91 @@
+<?php
+$id = md5(uniqid());
+?>
+
+<?= $this->form()->openTag($form); ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h1>
+            <i class="icon-external-link"></i>
+            Create Link
+        </h1>
+    </div>
+    <div class="modal-body">
+
+        <?= $this->formRow($this->form->get('title')); ?>
+
+        <?= $this->formRow($this->form->get('url')); ?>
+
+        <?= $this->formRow($this->form->get('note')); ?>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="send" class="btn btn-success">
+            <i class="icon-external-link"></i>
+            Create Link
+        </button>
+
+        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+            Cancel
+        </button>
+
+    </div>
+<?= $this->form()->closeTag(); ?>
+
+<script>
+$(function() {
+
+    $('form#link').attr('id', 'link<?= $id; ?>');
+    $('form#link<?= $id; ?>').on('submit', function(event) {
+        $.ajax({
+            url: '/link/create?id=<?= $this->id; ?>&entityName=<?= $this->escapeJs($this->entityName); ?>',
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            span: $(this).closest('span'),
+            success: function(data) {
+                if (data) {
+                    $(this.span).html(data);
+                } else {
+                    $(this.span).modal('hide');
+                    window.location.reload();
+                }
+            }
+        });
+
+        return false;
+    });
+
+    $('#lookup-zipcode<?= $id; ?>').on('click', function(event) {
+        $('#lookup-alert<?= $id; ?>').hide();
+
+        thisForm = $(this).closest('form');
+
+        if ($(thisForm).find('[name="country"]').val() && $(thisForm).find('[name="zipcode"]').val()) {
+            $.ajax({
+                url: 'http://api.zippopotam.us/'
+                    + $(thisForm).find('[name="country"]').val().trim().toLowerCase()
+                    + '/'
+                    + $(thisForm).find('[name="zipcode"]').val().trim().toLowerCase()
+                    ,
+                success: function(data) {
+                    if (data.places.length == 1) {
+                        $('[name="city"]').val(data.places[0]['place name']);
+                        $('[name="state"]').val(data.places[0]['state abbreviation']);
+                    } else {
+                        alert('more than one place found');
+                    }
+                },
+                dataType: 'json'
+            });
+        } else {
+            alert('id: ' + $(thisForm).find('#zipcode').val());
+            alert('country: ' + $('thisForm).find([name="country"]').val());
+            alert('zipcode: ' + $('thisForm).find([name="zipcode"]').val());
+            $('#lookup-alert<?= $id; ?>').show();
+        }
+
+        return false;
+    });
+});
+</script>

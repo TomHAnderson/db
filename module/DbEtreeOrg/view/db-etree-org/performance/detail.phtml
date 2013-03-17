@@ -255,9 +255,9 @@ if ($this->performance->getNote()) { ?>
     </div>
 
     <div class="tab-pane" id="links">
-        <ul class="nav nav-pills">
-            <?= $this->createLink($this->performance->getId(), 'Db\Entity\Performance', '/performance/detail?id=' . $this->performance->getId()); ?>
-        </ul>
+        <?= $this->createLink($this->performance->getId(), 'Db\Entity\Performance', '/performance/detail?id=' . $this->performance->getId()); ?>
+
+        <?= $this->listLinks($this->performance->getLinks()); ?>
     </div>
 </div>
 

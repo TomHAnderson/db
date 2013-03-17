@@ -137,8 +137,8 @@ foreach ($this->source->getChecksums() as $checksum) {
     </div>
 
     <div class="tab-pane" id="links">
-        <ul class="nav nav-pills">
-            <?= $this->createLink($this->source->getId(), 'Db\Entity\Source', '/source/detail?id=' . $this->source->getId()); ?>
-        </ul>
+        <?= $this->createLink($this->source->getId(), 'Db\Entity\Source', '/source/detail?id=' . $this->source->getId()); ?>
+
+        <?= $this->listLinks($this->source->getLinks()); ?>
     </div>
 </div>

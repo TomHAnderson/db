@@ -1,35 +1,59 @@
-<ul>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Performance
+            </th>
+            <th>
+                Band
+            </th>
+            <th>
+                Venue
+            </th>
+        </tr>
+    </thead>
 
+    <tbody>
 <?php
 foreach ($performances as $performance) {
 ?>
+<tr>
+    <td>
+        <a class="btn btn-info" href="/performance/detail?id=<?= $performance->getId(); ?>">
+            <i class="icon-magic"></i>
+        </a>
+        <?php
+        if ($performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+            echo $this->escapeHtml($performance->getPerformanceDateAt()->format('Y-m-d'));
+        } else {
+            echo $this->escapeHtml($performance->getPerformanceDate());
+        }
+        ?>
 
-<li>
-    <a href="/performance/detail?id=<?= $performance->getId(); ?>">
-    <i class="icon-magic"></i>
+        <?= $this->escapeHtml($performance->getName()); ?>
+    </td>
+
+    <td>
+        <a class="btn btn-info" href="/band/detail?id=<?= $performance->getLineup()->getBand()->getId(); ?>">
+            <i class="icon-cogs"></i>
+        </a>
+
+        <?= $this->escapeHtml($performance->getLineup()->getBand()->getName()); ?>
+    </td>
+
+    <td class="span3">
+        <a class="btn btn-info" href="/venue/detail?id=<?= $performance->getVenue()->getId(); ?>">
+            <i class="icon-map-marker"></i>
+        </a>
+
+        <?= $this->escapeHtml($performance->getVenue()->getName()); ?>
+    </td>
+</tr>
+
+
 <?php
-if ($performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
-    echo $this->escapeHtml($performance->getPerformanceDateAt()->format('F d, Y'));
-} else {
-    echo $this->escapeHtml($performance->getPerformanceDate());
 }
 ?>
-    </a>
 
-    <?= $this->escapeHtml($performance->getName()); ?>
-
-    <a href="/band/detail?id=<?= $performance->getLineup()->getBand()->getId(); ?>">
-        <i class="icon-cogs"></i>
-        <?= $this->escapeHtml($performance->getLineup()->getBand()->getName()); ?>
-    </a>
-
-    <a href="/venue/detail?id=<?= $performance->getVenue()->getId(); ?>">
-
-        <i class="icon-map-marker"></i>
-        <?= $this->escapeHtml($performance->getVenue()->getName()); ?>
-    </a>
-</h2>
-
-
-<?php
-}
+</tbody>
+</table>

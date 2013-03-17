@@ -191,39 +191,36 @@ if (sizeof($jambase->event)) {
     if (sizeof($gracenote->RESPONSE->ALBUM)) {
     ?>
     <div class="tab-pane" id="albums">
-        <div class="row">
-            <div class="span1">
-                <b>Date</b>
-            </div>
-
-            <div class="span4">
-                <b>Artist</b>
-            </div>
-
-            <div class="span6">
-                <b>Title</b>
-            </div>
-        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Performer</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
 
         <?php
             foreach ($gracenote->RESPONSE->ALBUM as $album) {
         ?>
-            <div class="row">
-                <div class="span1">
-                    <pre><?= $this->escapeHtml((string)$album->DATE); ?>&nbsp;</pre>
-                </div>
-                <div class="span4">
-                    <pre><?= $this->escapeHtml((string)$album->ARTIST); ?>&nbsp;</pre>
-                </div>
-                <div class="span6">
-                    <pre><?= $this->escapeHtml((string)$album->TITLE); ?></pre>
-                </div>
-            </div>
-
+                <tr>
+                    <td>
+                        <?= $this->escapeHtml((string)$album->DATE); ?>
+                    </td>
+                    <td>
+                        <?= $this->escapeHtml((string)$album->ARTIST); ?>
+                    </td>
+                    <td>
+                        <?= $this->escapeHtml((string)$album->TITLE); ?>
+                    </td>
+                </tr>
         <?php
             }
         }
         ?>
+            </tbody>
+        </table>
     </div>
 
    <div class="tab-pane" id="performances">
@@ -239,21 +236,35 @@ if (sizeof($jambase->event)) {
                 </a>
              </li>
         </ul>
-    <div class="row">
-        <?php
-        foreach ($this->band->getLineups() as $lineup) {
-        ?>
-        <div class="span4">
-            <a class="btn btn-info" href="/lineup/detail?id=<?= $lineup->getId(); ?>">
-                <i class="icon-group"></i>
-            </a>
-            <?= $this->escapeHtml($lineup->getName()); ?>
-        </div>
-        <?php
-        }
-        ?>
-    </div>
+        <div class="row">
+            <?php
+            foreach ($this->band->getLineups() as $lineup) {
+            ?>
+            <div class="span4 h1">
+                <a class="btn btn-info" href="/lineup/detail?id=<?= $lineup->getId(); ?>">
+                    <i class="icon-group"></i>
+                </a>
+                <?= $this->escapeHtml($lineup->getName()); ?>
 
+                <div class="h2">
+                <?php
+                    foreach ($lineup->getPerformerLineups() as $performerLineup) {
+                    ?>
+                        <a class="btn btn-info" href="/performer/detail?id=<?= $performerLineup->getPerformer()->getId(); ?>">
+                            <i class="icon-film"></i>
+                        </a>
+
+                        <?= $this->escapeHtml($performerLineup->getPerformer()->getName()); ?>
+                    <?php
+                    }
+                    ?>
+
+                </div>
+            </div>
+            <?php
+            }
+            ?>
+        </div>
     </div>
 
     <div class="tab-pane" id="alias">
@@ -303,9 +314,9 @@ if (sizeof($jambase->event)) {
     </div>
 
     <div class="tab-pane" id="links">
-        <ul class="nav nav-pills">
-            <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
-        </ul>
+        <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+
+        <?= $this->listLinks($this->band->getLinks()); ?>
     </div>
 
 </div>

@@ -92,6 +92,12 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
     </li>
 
     <li class="">
+        <a href="#lineups" data-toggle="tab">
+            Lineups
+        </a>
+    </li>
+
+    <li class="">
         <a href="#aliases" data-toggle="tab">
             Aliases
         </a>
@@ -139,39 +145,76 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
     if (sizeof($gracenote->RESPONSE->ALBUM)) {
     ?>
     <div class="tab-pane" id="gracenote-albums">
-        <div class="row">
-            <div class="span1">
-                <b>Date</b>
-            </div>
-
-            <div class="span4">
-                <b>Artist</b>
-            </div>
-
-            <div class="span6">
-                <b>Title</b>
-            </div>
-        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Performer</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
 
         <?php
             foreach ($gracenote->RESPONSE->ALBUM as $album) {
         ?>
-            <div class="row">
-                <div class="span1">
-                    <pre><?= $this->escapeHtml((string)$album->DATE); ?>&nbsp;</pre>
-                </div>
-                <div class="span4">
-                    <pre><?= $this->escapeHtml((string)$album->ARTIST); ?>&nbsp;</pre>
-                </div>
-                <div class="span6">
-                    <pre><?= $this->escapeHtml((string)$album->TITLE); ?></pre>
-                </div>
-            </div>
-
+                <tr>
+                    <td>
+                        <?= $this->escapeHtml((string)$album->DATE); ?>
+                    </td>
+                    <td>
+                        <?= $this->escapeHtml((string)$album->ARTIST); ?>
+                    </td>
+                    <td>
+                        <?= $this->escapeHtml((string)$album->TITLE); ?>
+                    </td>
+                </tr>
         <?php
             }
         }
         ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tab-pane" id="lineups">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Band</th>
+                    <th>Lineup</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($this->performer->getPerformerLineups() as $performerLineup) {
+            ?>
+
+                <tr>
+                    <td>
+                        <a class="btn btn-info" href="/band/detail?id=<?= $performerLineup->getLineup()->getBand()->getId(); ?>">
+                            <i class="icon-cogs"></i>
+                        </a>
+                            <?= $this->escapeHtml($performerLineup->getLineup()->getBand()->getName()); ?>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info" href="/band/detail?id=<?= $performerLineup->getLineup()->getBand()->getId(); ?>">
+                            <i class="icon-group"></i>
+                        </a>
+                        <?= $this->escapeHtml($performerLineup->getLineup()->getName()); ?>
+                    </td>
+                    <td>
+                        <?= $this->escapeHtml($performerLineup->getNote()); ?>
+                    </td>
+                </tr>
+
+            <?php
+            }
+            ?>
+            </tbody>
+        </table>
     </div>
 
     <div class="tab-pane" id="aliases">
@@ -213,12 +256,9 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
     </div>
 
     <div class="tab-pane" id="links">
-            <a href="/performer-alias/create?id=<?= $this->performer->getId(); ?>" class="btn btn-success">
-                <i class="icon-share"></i>
-            </a>
+        <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
 
-            <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
-        </ul>
+        <?= $this->listLinks($this->performer->getLinks()); ?>
     </div>
 
 </div>

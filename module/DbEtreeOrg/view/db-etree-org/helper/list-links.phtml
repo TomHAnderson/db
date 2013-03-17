@@ -1,0 +1,21 @@
+<?php
+foreach ($this->links as $link) {
+?>
+    <blockquote>
+        <a href="#" class="btn btn-warning edit-link" data-id="<?= $link->getId(); ?>">
+            <i class="icon-external-link"></i>
+        </a>
+
+        <cite>
+            <a href="<?= $link->getUrl(); ?>"><?= $this->escapeHtml($link->getTitle()); ?></a>
+        </cite>
+
+        <?php
+        if ($link->getNote()) echo ' &middot; ';
+        ?>
+
+        <?= $this->escapeHtml($link->getNote()); ?>
+    </blockquote>
+<?php
+}
+?>

@@ -1,8 +1,10 @@
 <?php
 namespace Db\Entity;
 
-use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form;
+use Db\Entity\AbstractEntity
+    , Zend\Form\Annotation as Form
+    , Zend\InputFilter\InputFilter
+;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -34,4 +36,15 @@ class AbstractLink extends AbstractEntity {
         $this->setUrl(isset($data['url']) ? $data['url']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }
+
+    public function getInputFilter() {
+        $inputFilter = new InputFilter();
+
+        $inputFilter->add($this->inputFilterInputTitle($inputFilter));
+        $inputFilter->add($this->inputFilterInputUrl($inputFilter));
+        $inputFilter->add($this->inputFilterInputNote($inputFilter));
+
+        return $inputFilter;
+    }
+
 }
