@@ -9,6 +9,11 @@ DbEtreeOrg = {
     },
 
     bindUIActions: function() {
+        $('.expand-all').live('click', function() {
+            console.log($('i.icon-double-angle-down').parent().not('.expand-all').trigger('click'));
+            return false;
+        });
+
         $('.create-performer').live('click', function() {
             DbEtreeOrg.createModal('/performer/create');
             return false;
