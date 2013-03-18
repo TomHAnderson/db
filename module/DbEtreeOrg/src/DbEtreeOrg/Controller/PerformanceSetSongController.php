@@ -137,10 +137,10 @@ class PerformanceSetSongController extends AbstractActionController
         if (!$performanceSetSong)
             return $this->plugin('redirect')->toUrl('/');
 
-        $performanceSetId = $performanceSetSong->getPerformanceSet()->getId();
+        $performanceId = $performanceSetSong->getPerformanceSet()->getPerformance()->getId();
         $em->remove($performanceSetSong);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/performance-set/detail?id=' . $performanceSetId);
+        return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performanceId);
     }
 }
