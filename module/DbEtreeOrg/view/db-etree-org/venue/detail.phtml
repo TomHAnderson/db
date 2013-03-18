@@ -29,30 +29,6 @@
     <?= $this->escapeHtml($this->venue->getName()); ?>
 </div>
 
-
-<div class="row">
-    <div class="span4">
-        <b>City</b>
-        <pre><?= $this->escapeHtml($this->venue->getCity()); ?>&nbsp;</pre>
-    </div>
-
-    <div class="span2">
-        <b>State</b>
-        <pre><?= $this->escapeHtml($this->venue->getState()); ?>&nbsp;</pre>
-    </div>
-
-    <div class="span3">
-        <b>Country</b>
-        <pre><?= $this->escapeHtml($this->venue->getCountry()); ?>&nbsp;</pre>
-    </div>
-
-    <div class="span3">
-        <b>Zipcode</b>
-        <pre><?= $this->escapeHtml($this->venue->getZipcode()); ?>&nbsp;</pre>
-    </div>
-</div>
-
-
 <?php
 if ($this->venue->getNote()) {
 ?>
@@ -60,6 +36,27 @@ if ($this->venue->getNote()) {
 <?php
 }
 ?>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Zipcode</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><?= $this->escapeHtml($this->venue->getCity()); ?></td>
+            <td><?= $this->escapeHtml($this->venue->getState()); ?></td>
+            <td><?= $this->escapeHtml($this->venue->getCountry()); ?></td>
+            <td><?= $this->escapeHtml($this->venue->getZipcode()); ?></td>
+        </tr>
+    </tbody>
+</table>
+
 <ul class="nav nav-tabs" id="tabs">
     <?php
     if ($this->venue->getPerformances()) {
