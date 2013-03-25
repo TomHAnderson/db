@@ -12,7 +12,11 @@ class PerformanceController extends AbstractActionController
 {
     public function indexAction()
     {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        $performances = $em->getRepository('Db\Entity\Performance')->findBy(array(), array('performanceDate' => 'DESC', 'name' => 'ASC'));
+
         return array(
+            'performances' => $performances,
         );
     }
 

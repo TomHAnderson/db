@@ -6,6 +6,14 @@
     </a>
 
     <ul class="dropdown-menu" aria-labelledby="performer-drop" role="menu">
+        <li role="menuitem">
+            <form style="display: inline;">
+            <a class="btn btn-info" href="/performer">
+                <i class="icon-film"></i>
+                Browse
+            </a>
+            </form>
+        </li>
 
         <li role="menuitem">
             <form class="navbar-search pull-left" id="performer-search" action="/performer/detail">
@@ -57,6 +65,15 @@
     </a>
 
     <ul class="dropdown-menu" aria-labelledby="band-drop" role="menu">
+
+        <li role="menuitem">
+            <form style="display: inline;">
+            <a class="btn btn-info" href="/band">
+                <i class="icon-cogs"></i>
+                Browse
+            </a>
+            </form>
+        </li>
 
         <li role="menuitem">
             <form class="navbar-search pull-left" id="band-search" action="/band/search">
@@ -132,6 +149,15 @@
     <ul class="dropdown-menu" aria-labelledby="venue-drop" role="menu">
 
         <li role="menuitem">
+            <form style="display: inline;">
+            <a class="btn btn-info" href="/venue">
+                <i class="icon-map-marker"></i>
+                Browse
+            </a>
+            </form>
+        </li>
+
+        <li role="menuitem">
             <form class="navbar-search pull-left" id="venue-search" action="/venue/search">
                 <?= $this->inputVenue(null, $this->translate('Create Venue')); ?>
 
@@ -181,6 +207,15 @@
     </a>
 
     <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
+        <li role="menuitem">
+            <form style="display: inline;">
+            <a class="btn btn-info" href="/performance">
+                <i class="icon-magic"></i>
+                Browse
+            </a>
+            </form>
+        </li>
+
         <li role="menuitem">
             <a class="btn btn-success" id="createPerformance" href="/performance/create" style="color: white;">
                 <i class="icon-magic"></i>

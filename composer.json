@@ -23,6 +23,8 @@
         "doctrine/doctrine-module":"0.7.0",
         "doctrine/doctrine-orm-module":"dev-master",
 
+        "bjyoungblood/bjy-authorize":"dev-master",
+
         "heartsentwined/yaml": "1.*",
         "heartsentwined/arg-validator": "1.*",
         "heartsentwined/zf2-doctrine": "1.*",
@@ -33,9 +35,11 @@
         "heartsentwined/zf2-phing-task": "1.*",
 
         "lncd/Oauth2": "dev-master",
+
         "umpirsky/country-list": "dev-master",
  
         "keen-io/keen-io": "dev-master",
+        "kriswallsmith/buzz": "dev-master",
         "gracenote/gracenote": "dev-master",
         "jambase/jambase": "dev-master",
         "echonest/echonest": "dev-master"
