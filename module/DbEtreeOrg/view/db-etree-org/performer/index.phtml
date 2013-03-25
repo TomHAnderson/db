@@ -1,0 +1,21 @@
+<div class="h1">
+    <i class="icon-music"></i>
+    Performers
+</div>
+
+<div class="row">
+    <?php
+
+    foreach ($performers as $index => $performer) {
+    ?>
+        <div class="span3" style="padding-top: 4px;">
+            <a class="btn btn-info" href="/performer/detail?id=<?= $performer->getId(); ?>">
+                <i class="icon-film"></i>
+            </a>
+
+            <?= $this->escapeHtml($performer->getName()); ?>
+        </div>
+    <?php
+    }
+    ?>
+</div>

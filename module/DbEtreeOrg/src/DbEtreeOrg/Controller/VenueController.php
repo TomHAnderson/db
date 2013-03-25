@@ -1,6 +1,7 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
+
 use Zend\Mvc\Controller\AbstractActionController
     , Zend\View\Model\ViewModel
     , Db\Entity\Venue as VenueEntity
@@ -13,7 +14,11 @@ class VenueController extends AbstractActionController
 {
     public function indexAction()
     {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        $venues = $em->getRepository('Db\Entity\Venue')->findBy(array(), array('name' => 'ASC'));
+
         return array(
+            'venues' => $venues,
         );
     }
 

@@ -13,7 +13,11 @@ class BandController extends AbstractActionController
 {
     public function indexAction()
     {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        $bands = $em->getRepository('Db\Entity\Band')->findBy(array(), array('name' => 'ASC'));
+
         return array(
+            'bands' => $bands,
         );
     }
 
@@ -100,10 +104,16 @@ class BandController extends AbstractActionController
 
             if ($form->isValid()) {
                 $data = $form->getData();
-                $band->exchangeArray($form->getData());
 
-                $em->persist($band);
-                $em->flush();
+                $user = $this->getServiceLocator()->get('zfcuser_auth_service')->getIdentity();
+
+                if ($user->isNotAdmin()) {
+                    store_diff($band->getId(), get_class($band), $band-$diff($form->getData());
+                } else {
+                    $band->exchangeArray($form->getData());
+                    $em->persist($band);
+                    $em->flush();
+                }
 
                 die();
             }

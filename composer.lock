@@ -1,6 +1,71 @@
 {
-    "hash": "0edaa6434abb944117894f57f4cc2b5d",
+    "hash": "95ead025b3b750a5e6c526b362e3f842",
     "packages": [
+        {
+            "name": "bjyoungblood/bjy-authorize",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bjyoungblood/BjyAuthorize.git",
+                "reference": "1.2.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bjyoungblood/BjyAuthorize/zipball/1.2.3",
+                "reference": "1.2.3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-eventmanager": "2.1.*",
+                "zendframework/zend-mvc": "2.1.*",
+                "zendframework/zend-permissions-acl": "2.1.*",
+                "zendframework/zend-servicemanager": "2.1.*",
+                "zendframework/zend-view": "2.1.*"
+            },
+            "require-dev": {
+                "doctrine/common": "*",
+                "zendframework/zend-developer-tools": "*",
+                "zf-commons/zfc-user": "0.1.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "BjyAuthorize\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com",
+                    "homepage": "http://ocramius.github.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Ben Youngblood",
+                    "email": "bx.youngblood@gmail.com",
+                    "homepage": "http://bjyoungblood.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Zend\\Acl based firewall system for ZF2 dispatch protection",
+            "homepage": "https://github.com/bjyoungblood/BjyAuthorize",
+            "keywords": [
+                "acl",
+                "zf2",
+                "zfc-user"
+            ],
+            "time": "2013-03-16 18:58:40"
+        },
         {
             "name": "cdli/two-stage-signup",
             "version": "dev-master",
@@ -26,7 +91,6 @@
                 "doctrine/doctrine-orm-module": "dev-master",
                 "zf-commons/zfc-user-doctrine-orm": "dev-master"
             },
-            "time": "2013-02-13 12:16:55",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -55,7 +119,8 @@
                 "user",
                 "zf2",
                 "zfcuser"
-            ]
+            ],
+            "time": "2013-02-13 12:16:55"
         },
         {
             "name": "doctrine/common",
@@ -74,7 +139,6 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "2012-07-29 03:44:28",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -124,7 +188,8 @@
                 "eventmanager",
                 "persistence",
                 "spl"
-            ]
+            ],
+            "time": "2012-07-29 03:44:28"
         },
         {
             "name": "doctrine/data-fixtures",
@@ -143,7 +208,6 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "2012-09-20 03:26:34",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -165,7 +229,8 @@
             "homepage": "http://www.doctrine-project.org",
             "keywords": [
                 "database"
-            ]
+            ],
+            "time": "2012-09-20 03:26:34"
         },
         {
             "name": "doctrine/dbal",
@@ -185,7 +250,6 @@
                 "doctrine/common": "2.3.*",
                 "php": ">=5.3.2"
             },
-            "time": "2012-07-29 03:50:46",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -228,7 +292,8 @@
                 "dbal",
                 "persistence",
                 "queryobject"
-            ]
+            ],
+            "time": "2012-07-29 03:50:46"
         },
         {
             "name": "doctrine/doctrine-module",
@@ -259,7 +324,6 @@
             "suggest": {
                 "doctrine/data-fixtures": "Data Fixtures if you want to generate test data or bootstrap data for your deployments"
             },
-            "time": "2013-01-13 19:39:22",
             "bin": [
                 "bin/doctrine-module"
             ],
@@ -312,7 +376,8 @@
                 "doctrine",
                 "module",
                 "zf2"
-            ]
+            ],
+            "time": "2013-01-13 19:39:22"
         },
         {
             "name": "doctrine/doctrine-orm-module",
@@ -346,7 +411,6 @@
                 "doctrine/migrations": "doctrine migrations if you want to keep your schema definitions versioned",
                 "zendframework/zend-developer-tools": "zend-developer-tools if you want to profile operations executed by the ORM during development"
             },
-            "time": "2013-01-23 19:32:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -392,7 +456,8 @@
                 "module",
                 "orm",
                 "zf2"
-            ]
+            ],
+            "time": "2013-01-23 19:32:00"
         },
         {
             "name": "doctrine/migrations",
@@ -419,7 +484,6 @@
             "suggest": {
                 "symfony/console": "to run the migration from the console"
             },
-            "time": "2012-10-05 04:15:13",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -446,7 +510,8 @@
             "keywords": [
                 "database",
                 "migrations"
-            ]
+            ],
+            "time": "2012-10-05 04:15:13"
         },
         {
             "name": "doctrine/orm",
@@ -471,7 +536,6 @@
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
             },
-            "time": "2012-07-29 04:03:10",
             "bin": [
                 "bin/doctrine",
                 "bin/doctrine.php"
@@ -516,7 +580,8 @@
             "keywords": [
                 "database",
                 "orm"
-            ]
+            ],
+            "time": "2012-07-29 04:03:10"
         },
         {
             "name": "echonest/echonest",
@@ -536,7 +601,6 @@
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*,!=2.0.6"
             },
-            "time": "2013-02-21 23:30:10",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -560,7 +624,8 @@
                 "echonest",
                 "music",
                 "zf2"
-            ]
+            ],
+            "time": "2013-02-21 23:30:10"
         },
         {
             "name": "gracenote/gracenote",
@@ -580,7 +645,6 @@
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*,!=2.0.6"
             },
-            "time": "2013-02-20 04:39:08",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -604,7 +668,8 @@
                 "gracenote",
                 "music",
                 "zf2"
-            ]
+            ],
+            "time": "2013-02-20 04:39:08"
         },
         {
             "name": "heartsentwined/arg-validator",
@@ -623,7 +688,6 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-10-03 12:54:08",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -649,7 +713,8 @@
                 "typehinting",
                 "validate",
                 "validator"
-            ]
+            ],
+            "time": "2012-10-03 12:54:08"
         },
         {
             "name": "heartsentwined/background-exec",
@@ -668,7 +733,6 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-09-07 12:48:09",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -694,7 +758,8 @@
                 "file",
                 "manager",
                 "system"
-            ]
+            ],
+            "time": "2012-09-07 12:48:09"
         },
         {
             "name": "heartsentwined/cron-expr-parser",
@@ -714,7 +779,6 @@
                 "heartsentwined/arg-validator": "1.*",
                 "php": ">=5.3.3"
             },
-            "time": "2012-10-03 12:54:08",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -736,7 +800,8 @@
             "homepage": "https://github.com/heartsentwined/cron-expr-parser",
             "keywords": [
                 "cron"
-            ]
+            ],
+            "time": "2012-10-03 12:54:08"
         },
         {
             "name": "heartsentwined/file-system-manager",
@@ -756,7 +821,6 @@
                 "heartsentwined/arg-validator": "1.*",
                 "php": ">=5.3.3"
             },
-            "time": "2012-10-03 12:54:08",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -782,7 +846,8 @@
                 "file",
                 "manager",
                 "system"
-            ]
+            ],
+            "time": "2012-10-03 12:54:08"
         },
         {
             "name": "heartsentwined/yaml",
@@ -803,7 +868,6 @@
                 "php": ">=5.3.3",
                 "symfony/yaml": "2.0.*"
             },
-            "time": "2012-10-03 12:54:08",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -826,37 +890,35 @@
             "keywords": [
                 "yaml",
                 "yml"
-            ]
+            ],
+            "time": "2012-10-03 12:54:08"
         },
         {
             "name": "heartsentwined/zf2-assetwig",
-            "version": "1.1.0",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heartsentwined/zf2-assetwig",
-                "reference": "1.1.0"
+                "reference": "2.0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/heartsentwined/zf2-assetwig/zipball/1.1.0",
-                "reference": "1.1.0",
+                "url": "https://api.github.com/repos/heartsentwined/zf2-assetwig/zipball/2.0.5",
+                "reference": "2.0.5",
                 "shasum": ""
             },
             "require": {
                 "heartsentwined/arg-validator": "1.*",
-                "kriswallsmith/assetic": "1.0.*",
+                "heartsentwined/yaml": "1.*",
+                "kriswallsmith/assetic": "1.*",
                 "php": ">=5.3.3",
-                "symfony/yaml": "2.0.*",
+                "twig/extensions": "1.0.*@dev",
                 "twig/twig": "1.9.*"
             },
-            "require-dev": {
-                "twig/extensions": "1.0.*"
-            },
-            "time": "2012-09-11 14:00:06",
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Assetwig": "src/"
+                    "Heartsentwined\\Assetwig": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -878,7 +940,8 @@
                 "assetic",
                 "twig",
                 "zf2"
-            ]
+            ],
+            "time": "2013-02-11 14:41:49"
         },
         {
             "name": "heartsentwined/zf2-cli",
@@ -899,7 +962,6 @@
                 "php": ">=5.3.3",
                 "zendframework/zend-console": "2.*"
             },
-            "time": "2012-10-03 12:54:08",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -923,20 +985,21 @@
                 "cli",
                 "helper",
                 "zf2"
-            ]
+            ],
+            "time": "2012-10-03 12:54:08"
         },
         {
             "name": "heartsentwined/zf2-cron",
-            "version": "2.2.9",
+            "version": "2.2.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/heartsentwined/zf2-cron",
-                "reference": "2.2.9"
+                "url": "https://github.com/heartsentwined/zf2-cron.git",
+                "reference": "2.2.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heartsentwined/zf2-cron/zipball/2.2.9",
-                "reference": "2.2.9",
+                "url": "https://api.github.com/repos/heartsentwined/zf2-cron/zipball/2.2.11",
+                "reference": "2.2.11",
                 "shasum": ""
             },
             "require": {
@@ -945,12 +1008,13 @@
                 "heartsentwined/cron-expr-parser": "1.*",
                 "heartsentwined/yaml": "1.*",
                 "heartsentwined/zf2-doctrine": "1.*",
-                "heartsentwined/zf2-phing-task": "1.*",
-                "heartsentwined/zf2-phpunit-testcase": "1.*",
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*"
             },
-            "time": "2013-02-11 06:28:30",
+            "require-dev": {
+                "heartsentwined/zf2-phing-task": "1.*",
+                "heartsentwined/zf2-phpunit-testcase": "1.*"
+            },
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -974,7 +1038,8 @@
                 "ZendFramework",
                 "cron",
                 "zf2"
-            ]
+            ],
+            "time": "2013-03-12 15:40:58"
         },
         {
             "name": "heartsentwined/zf2-doctrine",
@@ -995,7 +1060,6 @@
                 "heartsentwined/yaml": "1.*",
                 "php": ">=5.3.3"
             },
-            "time": "2012-09-27 15:19:23",
             "bin": [
                 "bin/doctrine-cli"
             ],
@@ -1017,30 +1081,30 @@
                 "cli",
                 "doctrine",
                 "zf2"
-            ]
+            ],
+            "time": "2012-09-27 15:19:23"
         },
         {
             "name": "heartsentwined/zf2-phing-task",
-            "version": "1.1.1",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heartsentwined/zf2-phing-task",
-                "reference": "1.1.1"
+                "reference": "1.1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/heartsentwined/zf2-phing-task/zipball/1.1.1",
-                "reference": "1.1.1",
+                "url": "https://github.com/heartsentwined/zf2-phing-task/zipball/1.1.4",
+                "reference": "1.1.4",
                 "shasum": ""
             },
             "require": {
                 "heartsentwined/yaml": "1.*",
-                "heartsentwined/zf2-assetwig": "1.*",
+                "heartsentwined/zf2-assetwig": "2.*",
                 "heartsentwined/zf2-doctrine": "1.*",
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*"
             },
-            "time": "2012-09-17 00:04:06",
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -1062,7 +1126,8 @@
             "homepage": "https://github.com/heartsentwined/phing-task",
             "keywords": [
                 "phing"
-            ]
+            ],
+            "time": "2012-10-10 13:07:56"
         },
         {
             "name": "heartsentwined/zf2-phpunit-testcase",
@@ -1085,7 +1150,6 @@
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*"
             },
-            "time": "2012-09-27 15:19:28",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1109,7 +1173,8 @@
                 "ZendFramework",
                 "phpunit",
                 "zf2"
-            ]
+            ],
+            "time": "2012-09-27 15:19:28"
         },
         {
             "name": "jambase/jambase",
@@ -1129,7 +1194,6 @@
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*,!=2.0.6"
             },
-            "time": "2013-02-21 19:14:50",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1153,7 +1217,8 @@
                 "concerts",
                 "live music",
                 "zf2"
-            ]
+            ],
+            "time": "2013-02-21 19:14:50"
         },
         {
             "name": "keen-io/keen-io",
@@ -1161,19 +1226,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/keenlabs/KeenClient-PHP.git",
-                "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea"
+                "reference": "7f9c8a4e39dab18b83965a7c1bd0e7447989e7a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keenlabs/KeenClient-PHP/zipball/562593bb91aa19e0ffac99869d9323ad3d47beea",
-                "reference": "562593bb91aa19e0ffac99869d9323ad3d47beea",
+                "url": "https://api.github.com/repos/keenlabs/KeenClient-PHP/zipball/7f9c8a4e39dab18b83965a7c1bd0e7447989e7a8",
+                "reference": "7f9c8a4e39dab18b83965a7c1bd0e7447989e7a8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3",
-                "zendframework/zendframework": "2.*,!=2.0.6"
+                "kriswallsmith/buzz": "dev-master",
+                "php": ">=5.3.3"
             },
-            "time": "2013-01-13 02:09:37",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1195,9 +1259,9 @@
             "homepage": "http://keen.io",
             "keywords": [
                 "analytics",
-                "keen io",
-                "zf2"
-            ]
+                "keen io"
+            ],
+            "time": "2013-03-13 23:29:15"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1216,7 +1280,6 @@
             "require": {
                 "php": ">=5.3.1"
             },
-            "time": "2012-08-28 05:18:28",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1240,7 +1303,56 @@
                 "assets",
                 "compression",
                 "minification"
-            ]
+            ],
+            "time": "2012-08-28 05:18:28"
+        },
+        {
+            "name": "kriswallsmith/buzz",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kriswallsmith/Buzz.git",
+                "reference": "e4310004bced0598b690fd648df9c0e97fa8f984"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/e4310004bced0598b690fd648df9c0e97fa8f984",
+                "reference": "e4310004bced0598b690fd648df9c0e97fa8f984",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Buzz": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Wallsmith",
+                    "email": "kris.wallsmith@gmail.com",
+                    "homepage": "http://kriswallsmith.net/"
+                }
+            ],
+            "description": "Lightweight HTTP client",
+            "homepage": "https://github.com/kriswallsmith/Buzz",
+            "keywords": [
+                "curl",
+                "http client"
+            ],
+            "time": "2013-03-06 06:11:47"
         },
         {
             "name": "lncd/Oauth2",
@@ -1248,12 +1360,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lncd/OAuth2.git",
-                "reference": "1.0.5"
+                "reference": "1.0.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lncd/OAuth2/zipball/1.0.5",
-                "reference": "1.0.5",
+                "url": "https://api.github.com/repos/lncd/OAuth2/zipball/1.0.8",
+                "reference": "1.0.8",
                 "shasum": ""
             },
             "require": {
@@ -1263,7 +1375,6 @@
                 "mockery/mockery": ">=0.7.2",
                 "phpunit/phpunit": "*"
             },
-            "time": "2013-02-21 17:51:59",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1282,7 +1393,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "OAuth 2.0 Framework",
+            "description": "A lightweight and powerful OAuth 2.0 authorization and resource server library with support for all the core specification grants",
             "homepage": "https://github.com/lncd/OAuth2",
             "keywords": [
                 "Authentication",
@@ -1292,31 +1403,36 @@
                 "oauth2",
                 "resource",
                 "server"
-            ]
+            ],
+            "time": "2013-03-18 16:48:38"
         },
         {
             "name": "symfony/console",
-            "version": "v2.1.7",
+            "version": "v2.2.0",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console",
-                "reference": "v2.1.7"
+                "url": "https://github.com/symfony/Console.git",
+                "reference": "v2.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/v2.1.7",
-                "reference": "v2.1.7",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/v2.2.0",
+                "reference": "v2.2.0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2013-01-17 15:20:05",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Console": ""
+                    "Symfony\\Component\\Console\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1334,27 +1450,27 @@
                 }
             ],
             "description": "Symfony Console Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-03-01 06:43:14"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.0.22",
+            "version": "v2.0.23",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Yaml",
-                "reference": "v2.0.22"
+                "url": "https://github.com/symfony/Yaml.git",
+                "reference": "v2.0.23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/v2.0.22",
-                "reference": "v2.0.22",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/v2.0.23",
+                "reference": "v2.0.23",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "2013-01-17 21:16:19",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1376,7 +1492,55 @@
                 }
             ],
             "description": "Symfony Yaml Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-01-18 09:52:07"
+        },
+        {
+            "name": "twig/extensions",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fabpot/Twig-extensions.git",
+                "reference": "v1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/v1.0.0",
+                "reference": "v1.0.0",
+                "shasum": ""
+            },
+            "require": {
+                "twig/twig": "1.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_Extensions_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Common additional features for Twig that do not directly belong in core",
+            "homepage": "https://github.com/fabpot/Twig-extensions",
+            "keywords": [
+                "debug",
+                "i18n",
+                "text"
+            ],
+            "time": "2013-02-28 14:21:30"
         },
         {
             "name": "twig/twig",
@@ -1395,7 +1559,6 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2012-08-25 10:32:57",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1425,7 +1588,8 @@
             "homepage": "http://twig.sensiolabs.org",
             "keywords": [
                 "templating"
-            ]
+            ],
+            "time": "2012-08-25 10:32:57"
         },
         {
             "name": "umpirsky/country-list",
@@ -1433,12 +1597,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/umpirsky/country-list.git",
-                "reference": "1.0.0"
+                "reference": "3ff219695ee1412e8b9d1fc4269ce50836f36a90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/umpirsky/country-list/zipball/1.0.0",
-                "reference": "1.0.0",
+                "url": "https://api.github.com/repos/umpirsky/country-list/zipball/3ff219695ee1412e8b9d1fc4269ce50836f36a90",
+                "reference": "3ff219695ee1412e8b9d1fc4269ce50836f36a90",
                 "shasum": ""
             },
             "require": {
@@ -1455,7 +1619,6 @@
                 "zendframework/zend-db": "2.0.*",
                 "zendframework/zendframework1": "1.*"
             },
-            "time": "2012-11-27 09:51:19",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1473,20 +1636,21 @@
                     "homepage": "http://umpirsky.com/"
                 }
             ],
-            "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats."
+            "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats.",
+            "time": "2013-03-23 19:13:32"
         },
         {
             "name": "zendframework/zendframework",
-            "version": "2.1.3",
+            "version": "2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "release-2.1.3"
+                "reference": "release-2.1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/release-2.1.3",
-                "reference": "release-2.1.3",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/release-2.1.4",
+                "reference": "release-2.1.4",
                 "shasum": ""
             },
             "require": {
@@ -1546,16 +1710,18 @@
             },
             "require-dev": {
                 "doctrine/common": ">=2.1",
+                "ircmaxell/random-lib": "dev-master",
+                "ircmaxell/security-lib": "dev-master",
                 "phpunit/phpunit": "3.7.*"
             },
             "suggest": {
                 "doctrine/common": "Doctrine\\Common >=2.1 for annotation features",
                 "ext-intl": "ext/intl for i18n features",
+                "ircmaxell/random-lib": "Fallback random byte generator for Zend\\Math\\Rand if OpenSSL/Mcrypt extensions are unavailable",
                 "pecl-weakref": "Implementation of weak references for Zend\\Stdlib\\CallbackHandler",
                 "zendframework/zendpdf": "ZendPdf for creating PDF representations of barcodes",
                 "zendframework/zendservice-recaptcha": "ZendService\\ReCaptcha for rendering ReCaptchas in Zend\\Captcha and/or Zend\\Form"
             },
-            "time": "2013-02-21 21:00:16",
             "bin": [
                 "bin/classmap_generator.php"
             ],
@@ -1570,11 +1736,7 @@
                 "psr-0": {
                     "Zend\\": "library/",
                     "ZendTest\\": "tests/"
-                },
-                "files": [
-                    "library/Zend/Stdlib/compatibility/autoload.php",
-                    "library/Zend/Session/compatibility/autoload.php"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1585,27 +1747,33 @@
             "keywords": [
                 "framework",
                 "zf2"
-            ]
+            ],
+            "time": "2013-03-13 22:26:48"
         },
         {
             "name": "zf-commons/zfc-base",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
-                "url": "git://github.com/ZF-Commons/ZfcBase.git",
-                "reference": "0.1.0"
+                "url": "https://github.com/ZF-Commons/ZfcBase.git",
+                "reference": "0.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ZF-Commons/ZfcBase/zipball/0.1.0",
-                "reference": "0.1.0",
+                "url": "https://api.github.com/repos/ZF-Commons/ZfcBase/zipball/0.1.1",
+                "reference": "0.1.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "zendframework/zendframework": "2.*"
+                "zendframework/zend-db": "2.1.*",
+                "zendframework/zend-eventmanager": "2.1.*",
+                "zendframework/zend-loader": "2.1.*",
+                "zendframework/zend-modulemanager": "2.1.*",
+                "zendframework/zend-mvc": "2.1.*",
+                "zendframework/zend-servicemanager": "2.1.*",
+                "zendframework/zend-stdlib": "2.1.*"
             },
-            "time": "2012-10-24 17:42:28",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1632,7 +1800,8 @@
             "homepage": "https://github.com/ZF-Commons/ZfcBase",
             "keywords": [
                 "zf2"
-            ]
+            ],
+            "time": "2013-03-15 19:29:07"
         },
         {
             "name": "zf-commons/zfc-user",
@@ -1653,7 +1822,6 @@
                 "zendframework/zendframework": "2.1.*",
                 "zf-commons/zfc-base": "0.*"
             },
-            "time": "2013-02-07 00:18:14",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1680,7 +1848,8 @@
             "homepage": "https://github.com/ZF-Commons/ZfcUser",
             "keywords": [
                 "zf2"
-            ]
+            ],
+            "time": "2013-02-07 00:18:14"
         },
         {
             "name": "zf-commons/zfc-user-doctrine-orm",
@@ -1701,7 +1870,6 @@
                 "php": ">=5.3.3",
                 "zf-commons/zfc-user": "0.*"
             },
-            "time": "2013-02-08 00:41:12",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -1728,10 +1896,13 @@
             "homepage": "https://github.com/ZF-Commons/ZfcUserDoctrineORM",
             "keywords": [
                 "zf2"
-            ]
+            ],
+            "time": "2013-02-08 00:41:12"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
@@ -1745,11 +1916,19 @@
         "doctrine/migrations": 15,
         "doctrine/data-fixtures": 15,
         "doctrine/doctrine-orm-module": 20,
+        "bjyoungblood/bjy-authorize": 20,
         "lncd/oauth2": 20,
         "umpirsky/country-list": 20,
         "keen-io/keen-io": 20,
+        "kriswallsmith/buzz": 20,
         "gracenote/gracenote": 20,
         "jambase/jambase": 20,
         "echonest/echonest": 20
-    }
+    },
+    "platform": {
+        "php": ">=5.4"
+    },
+    "platform-dev": [
+
+    ]
 }

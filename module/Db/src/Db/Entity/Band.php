@@ -46,6 +46,19 @@ class Band extends AbstractEntity {
         $this->setNote(isset($data['note']) ? $data['note']: null);
     }
 
+    public function diff($data)
+    {
+        $diff = array();
+        if ($this->getMbid() != $data['mbid']) {
+            $diff['mbid'] = array(
+                'value' => $data['mbid'],
+                'datatype' => 'integer',
+            );
+        }
+
+        return $diff;
+    }
+
     public function getInputFilter()
     {
         $inputFilter = new InputFilter();

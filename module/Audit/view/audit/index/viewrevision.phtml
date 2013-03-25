@@ -70,7 +70,15 @@
                         </a>
                     </td>
 
-                        <td><?php var_dump($ce->getEntity()); ?></td>
+                        <td>
+                        <?php
+
+                            $entity = $ce->getEntity();
+                            $em->detach($entity);
+
+                            var_dump($entity);
+
+                        ?></td>
                     </tr>
                 <? endforeach; ?>
             </tbody>

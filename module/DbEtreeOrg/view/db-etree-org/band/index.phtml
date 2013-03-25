@@ -1,0 +1,21 @@
+<div class="h1">
+    <i class="icon-music"></i>
+    Bands
+</div>
+
+<div class="row">
+    <?php
+
+    foreach ($bands as $index => $band) {
+    ?>
+        <div class="span3" style="padding-top: 4px;">
+            <a class="btn btn-info" href="/band/detail?id=<?= $band->getId(); ?>">
+                <i class="icon-cogs"></i>
+            </a>
+
+            <?= $this->escapeHtml($band->getName()); ?>
+        </div>
+    <?php
+    }
+    ?>
+</div>

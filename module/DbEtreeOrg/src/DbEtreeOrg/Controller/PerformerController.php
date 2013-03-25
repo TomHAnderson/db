@@ -13,7 +13,11 @@ class PerformerController extends AbstractActionController
 {
     public function indexAction()
     {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        $performers = $em->getRepository('Db\Entity\Performer')->findBy(array(), array('name' => 'ASC'));
+
         return array(
+            'performers' => $performers,
         );
     }
 

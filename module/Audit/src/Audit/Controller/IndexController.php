@@ -108,6 +108,7 @@ class IndexController extends AbstractActionController {
             'changedEntities' => $changedEntities,
             'iconMap' => $this->getIconMap(),
             'routeMap' => $this->getRouteMap(),
+            'em' => $this->getServiceLocator()->get('doctrine.entitymanager.orm_default'),
         ));
     }
 
