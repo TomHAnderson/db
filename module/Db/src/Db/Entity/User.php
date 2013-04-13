@@ -23,7 +23,6 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Entity\Field\AccessToken
         , \Db\Entity\Field\Permission
         , \Db\Entity\Field\CreatedAt
-        , \Db\Entity\Field\LastRequestAt
         , \Db\Entity\Field\Subscription
         , \Db\Entity\Field\Performer
         ;
@@ -48,11 +47,11 @@ class User extends AbstractEntity implements UserInterface
         , \Db\Entity\Relation\PendingQueue
         ;
 
+    // State is a ZfcUser field, not geographic information
     protected $state;
 
     public function __construct() {
         $this->setCreatedAt(new \DateTime());
-        $this->setLastRequestAt(new \DateTime());
         $this->setIsPublic(1);
     }
 
@@ -68,8 +67,7 @@ class User extends AbstractEntity implements UserInterface
             'isPublic' => $this->getIsPublic(),
             'accessToken' => $this->getAccessToken(),
             'permission' => $this->getPermission(),
-            'createdAt' => $this->getCreatedAt()->format('r'),
-            'lastRequestAt' => $this->getLastRequestAt()->format('r'),
+            'createdAt' => $this->getCreatedAt(),
             'subscription' => $this->getSubscription(),
         );
     }
