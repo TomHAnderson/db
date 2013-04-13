@@ -11,7 +11,6 @@ final class FindEntity extends AbstractFind
         return $this->getServiceLocator()
             ->getServiceLocator()
             ->get('doctrine.entitymanager.orm_default')
-            ->getRepository($entityName)
-            ->find($id);
+            ->find($entityName, $id);
     }
 }

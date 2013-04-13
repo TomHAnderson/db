@@ -289,7 +289,7 @@
                     $(function() {
                         $('#song-search').on('submit', function(event) {
                             if ($('form#song-search input[name="song_id"]').val()) {
-                                window.location = '/song/detail?id='
+                                window.location = '/song/detail/'
                                     + $('form#song-search [name="song_id"]').val();
                             }
 
@@ -311,7 +311,7 @@
                 if ($p = $this->findEntity('Db\Entity\Song', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/song/detail?id=<?= $p->getId(); ?>">
+                            <a href="/song/detail/<?= $p->getId(); ?>">
                                 <i class="icon-music"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
                             </a>

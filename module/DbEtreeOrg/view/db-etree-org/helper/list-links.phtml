@@ -7,7 +7,10 @@ foreach ($this->links as $link) {
         </a>
 
         <cite>
-            <a href="<?= $link->getUrl(); ?>"><?= $this->escapeHtml($link->getTitle()); ?></a>
+            <a class="btn btn-info" href="<?= $link->getUrl(); ?>">
+                <i class="icon-external-link"></i>
+            </a>
+            <?= $this->escapeHtml($link->getTitle()); ?>
         </cite>
 
         <?php

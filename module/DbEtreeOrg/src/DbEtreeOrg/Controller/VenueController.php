@@ -63,7 +63,19 @@ class VenueController extends AbstractActionController
                 # $venue->setPlace($place);
 
                 $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+
+                // begin collection testing
+                $venueGroup = new \Db\Entity\VenueGroup;
+                $venueGroup->setName('group name');
+
+                $venueGroup->getVenues()->add($venue);
+                $venue->getVenueGroups()->add($venueGroup);
+
                 $em->persist($venue);
+                $em->persist($venueGroup);
+
+                // end collection testing
                 $em->flush();
 
                 $menu = $this->getServiceLocator()->get('menu');

@@ -65,20 +65,43 @@
                                     'className' => $ce->getClassName(),
                                 )
                             );?>" class="btn <?= $buttonClass; ?>">
+                                <i class="icon-list-alt"></i>
+                            </a>
 
-                            <?= $this->escapeHtml($ce->getClassName()); ?>
-                        </a>
+                        <?= $this->escapeHtml($ce->getClassName()); ?>
                     </td>
 
                         <td>
                         <?php
 
                             $entity = $ce->getEntity();
-                            $em->detach($entity);
 
-                            var_dump($entity);
+                            $data = $this->entityValues($entity);
+                        ?>
 
-                        ?></td>
+                        <table class="table table-striped table-hover table-bordered ">
+                            <thead><tr>
+                                    <th>Field</th>
+                                    <th>Value</th>
+                                </tr></thead>
+                            <tbody>
+                                <?php foreach ($data as $field => $value): ?>
+                                    <tr>
+                                        <td><?php  echo $this->escapeHtml($field); ?></td>
+                                        <td>
+                                            <?php if ($value instanceof \DateTime): ?>
+                                                <?= $value->format('r'); ?>
+                                            <?php else : ?>
+                                                <?php  echo $this->escapeHtml($value); ?>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+
+                        </td>
                     </tr>
                 <? endforeach; ?>
             </tbody>

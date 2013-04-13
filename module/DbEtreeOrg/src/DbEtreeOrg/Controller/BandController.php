@@ -107,15 +107,10 @@ class BandController extends AbstractActionController
 
                 $user = $this->getServiceLocator()->get('zfcuser_auth_service')->getIdentity();
 
-                if ($user->isNotAdmin()) {
-                    store_diff($band->getId(), get_class($band), $band-$diff($form->getData());
-                } else {
                     $band->exchangeArray($form->getData());
                     $em->persist($band);
                     $em->flush();
-                }
-
-                die();
+                    die();
             }
         }
 

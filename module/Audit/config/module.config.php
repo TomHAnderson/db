@@ -18,6 +18,12 @@ return array(
         ),
     ),
 
+    'view_helpers' => array(
+        'invokables' => array(
+            'entityValues' => 'Audit\View\Helper\EntityValues',
+        ),
+    ),
+
     'router' => array(
         'routes' => array(
             'audit_index' => array(
