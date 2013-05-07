@@ -16,6 +16,11 @@ class Attendance extends AbstractEntity
         , \Db\Entity\Field\Note
         ;
 
+    public function __toString()
+    {
+        return $this->getPerformance()->getName();
+    }
+
     /** Hydrator functions */
     public function getArrayCopy()
     {

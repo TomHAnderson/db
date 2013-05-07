@@ -18,6 +18,11 @@ class PerformerAlias extends AbstractEntity {
         , \Db\Entity\Field\Note
         ;
 
+    public function __toString()
+    {
+        return $this->getPerformer()->getName() . ': ' . $this->getName();
+    }
+
    /** Hydrator functions */
     public function getArrayCopy()
     {

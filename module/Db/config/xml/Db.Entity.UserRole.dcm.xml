@@ -5,15 +5,6 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" nullable="false"/>
-    <many-to-many field="users" target-entity="Db\Entity\User" inversed-by="userRoles">
-      <join-table name="UserRoleUser">
-        <join-columns>
-          <join-column name="user_role_id" referenced-column-name="id" nullable="false"/>
-        </join-columns>
-        <inverse-join-columns>
-          <join-column name="user_id" referenced-column-name="id" nullable="false"/>
-        </inverse-join-columns>
-      </join-table>
-    </many-to-many>
+    <many-to-many field="users" target-entity="Db\Entity\User" mapped-by="userRoles"/>
   </entity>
 </doctrine-mapping>

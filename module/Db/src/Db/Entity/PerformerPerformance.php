@@ -26,6 +26,11 @@ class PerformerPerformance extends AbstractEntity {
         );
     }
 
+    public function __toString()
+    {
+        return $this->getPerformer()->getName() . ': ' . $this->getPerformance()->getName();
+    }
+
     public function exchangeArray($data)
     {
         $this->setNote(isset($data['note']) ? $data['note']: null);

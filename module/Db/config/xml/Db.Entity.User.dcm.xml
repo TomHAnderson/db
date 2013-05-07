@@ -13,7 +13,6 @@
     <field name="accessToken" type="string" nullable="true"/>
     <field name="permission" type="string" nullable="true"/>
     <field name="createdAt" type="datetime" nullable="false"/>
-    <field name="lastRequestAt" type="datetime" nullable="false"/>
     <field name="subscription" type="string" nullable="true"/>
     <one-to-one field="performer" target-entity="Db\Entity\Performer" mapped-by="user"/>
     <one-to-many field="attendance" target-entity="Db\Entity\Attendance" mapped-by="user"/>
@@ -57,7 +56,16 @@
         </inverse-join-columns>
       </join-table>
     </many-to-many>
+    <many-to-many field="userRoles" target-entity="Db\Entity\UserRole" inversed-by="users">
+      <join-table name="UserToUserRole">
+        <join-columns>
+          <join-column name="user_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="user_role_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
     <many-to-many field="reverseFriends" target-entity="Db\Entity\User" mapped-by="friends"/>
-    <many-to-many field="userRoles" target-entity="Db\Entity\UserRole" mapped-by="users"/>
   </entity>
 </doctrine-mapping>

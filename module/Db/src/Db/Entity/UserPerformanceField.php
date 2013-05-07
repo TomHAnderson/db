@@ -25,6 +25,11 @@ class UserPerformanceField extends AbstractEntity
         );
     }
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);

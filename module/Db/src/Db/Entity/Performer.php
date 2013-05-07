@@ -28,6 +28,11 @@ class Performer extends AbstractEntity {
         , \Db\Entity\Relation\PerformerPerformances
         ;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
    /** Hydrator functions */
     public function getArrayCopy()
     {

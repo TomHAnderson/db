@@ -18,6 +18,11 @@ class Checksum extends AbstractEntity
         , \Db\Entity\Field\Source
         ;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function getArrayCopy()
     {
         return array(

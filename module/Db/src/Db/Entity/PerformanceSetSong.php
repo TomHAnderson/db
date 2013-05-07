@@ -20,6 +20,11 @@ class PerformanceSetSong extends AbstractEntity {
         , \Db\Entity\Field\Sort
         ;
 
+    public function __toString()
+    {
+        return $this->getSong()->getName();
+    }
+
     public function getArrayCopy()
     {
         return array(

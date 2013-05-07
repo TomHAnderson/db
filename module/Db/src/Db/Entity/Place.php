@@ -19,6 +19,11 @@ class Place extends AbstractEntity
         , \Db\Entity\Relation\Events
         ;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function getArrayCopy()
     {
         return array(

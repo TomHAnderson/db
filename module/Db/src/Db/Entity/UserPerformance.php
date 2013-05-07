@@ -42,6 +42,11 @@ class UserPerformance extends AbstractEntity
         , \Db\Entity\Relation\Users
         ;
 
+    public function __toString()
+    {
+        return $this->getUser()->getDisplayName() . ': ' . $this->getPerformance()->getName();
+    }
+
     public function getArrayCopy()
     {
         return array(

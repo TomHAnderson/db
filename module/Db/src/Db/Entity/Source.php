@@ -34,6 +34,11 @@ class Source extends AbstractEntity
         , \Db\Entity\Relation\Checksums
         ;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function __construct()
     {
         $this->setCreatedAt(new \Datetime());

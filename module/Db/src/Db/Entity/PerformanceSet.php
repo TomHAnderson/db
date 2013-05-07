@@ -22,6 +22,11 @@ class PerformanceSet extends AbstractEntity
     use \Db\Entity\Relation\PerformanceSetSongs
         ;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function getArrayCopy()
     {
         return array(

@@ -21,6 +21,11 @@ class UserList extends AbstractEntity
         , \Db\Entity\Relation\Performances
         ;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function getArrayCopy()
     {
         return array(

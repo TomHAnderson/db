@@ -50,6 +50,11 @@ class User extends AbstractEntity implements UserInterface
     // State is a ZfcUser field, not geographic information
     protected $state;
 
+    public function __toString()
+    {
+        return $this->getDisplayName();
+    }
+
     public function __construct() {
         $this->setCreatedAt(new \DateTime());
         $this->setIsPublic(1);

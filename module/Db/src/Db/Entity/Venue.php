@@ -65,4 +65,9 @@ class Venue extends AbstractEntity
 
         return $inputFilter;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

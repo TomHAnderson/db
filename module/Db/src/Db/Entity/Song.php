@@ -26,6 +26,11 @@ class Song extends AbstractEntity {
         , \Db\Entity\Relation\Comments
         ;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function getArrayCopy()
     {
         return array(

@@ -20,6 +20,11 @@ class PerformerLineup extends AbstractEntity {
     use \Db\Entity\Relation\PerformerPerformances
         ;
 
+    public function __toString()
+    {
+        return $this->getLineup()->getName() . ': ' . $this->getPerformer()->getName();
+    }
+
    /** Hydrator functions */
     public function getArrayCopy()
     {

@@ -18,6 +18,11 @@ class UserMeta extends AbstractEntity
         , \Db\Entity\Field\User
         ;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function getArrayCopy()
     {
         return array(

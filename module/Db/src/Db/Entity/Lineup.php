@@ -24,6 +24,10 @@ class Lineup extends AbstractEntity {
         , \Db\Entity\Relation\PerformerLineups
         ;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
    /** Hydrator functions */
     public function getArrayCopy()
