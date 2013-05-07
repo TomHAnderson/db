@@ -16,13 +16,10 @@
         "zf-commons/zfc-user-doctrine-orm": "dev-master",
         "cdli/two-stage-signup": "dev-master",
 
-        "doctrine/common": "2.3.0-RC1",
-        "doctrine/dbal": "2.3.0-RC1",
-        "doctrine/orm": "2.3.0-RC1",
         "doctrine/migrations": "v1.0-ALPHA1",
         "doctrine/data-fixtures": "v1.0.0-ALPHA3",
-        "doctrine/doctrine-module":"0.7.0",
-        "doctrine/doctrine-orm-module":"dev-master",
+        "doctrine/doctrine-module":"0.8.x@dev",
+        "doctrine/doctrine-orm-module":"0.8.x@dev",
 
         "bjyoungblood/bjy-authorize":"dev-master",
 
@@ -36,8 +33,6 @@
         "heartsentwined/zf2-phing-task": "1.*",
 
         "soliantconsulting/entity-audit": "dev-master",
-
-        "lncd/Oauth2": "dev-master",
 
         "umpirsky/country-list": "dev-master",
  

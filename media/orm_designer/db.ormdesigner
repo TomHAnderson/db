@@ -580,7 +580,6 @@
       <field name="accessToken" type="string" uuid="413aa55f-dfbe-48c0-b742-d0d71f0d30d7"/>
       <field name="permission" type="string" uuid="a8fd5149-a638-4854-ba50-aefde6c644bb"/>
       <field name="createdAt" type="datetime" required="true" uuid="f5f043c9-1642-4e84-9bda-d0b604e2fba7"/>
-      <field name="lastRequestAt" type="datetime" required="true" uuid="a1f63fea-bea5-468a-a27f-c35d43a7ecdd"/>
       <field name="subscription" type="string" uuid="db5f7ee7-fbe5-441f-b1b1-aedd86ebfdb1"/>
       <orm-attributes>
         <attribute name="repository-class">Db\Repository\User</attribute>
@@ -793,34 +792,6 @@
       <attribute name="namespace">Db\Entity</attribute>
     </orm-attributes>
   </module>
-  <module name="Audit" import-format="Doctrine2Xml" import-path="../../module/Audit/config/xml" uuid="8af8ad2c-3c5e-4de0-b8d0-4bcf049eefc0">
-    <entity name="Revision" uuid="d516b8ce-e87c-4ca9-aa13-013734cc7e29">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="e17b0027-5be7-4920-87c2-7468da345a46"/>
-      <field name="timestamp" type="datetime" required="true" uuid="5f5b477a-d5a5-4c9c-8e8f-209c1ffb5f76"/>
-      <field name="user_id" type="integer" required="true" uuid="436f2a8c-c52c-4d4c-82e5-4210a712c2a6"/>
-      <orm-attributes>
-        <attribute name="repository-class">Audit\Repository\Revision</attribute>
-      </orm-attributes>
-    </entity>
-    <association from="Revision" to="User" owner-alias="revisions" inverse-alias="user" uuid="17e92ab3-bb74-4c58-8960-5d6ff6ca819e">
-      <association-field from="user_id" to="id"/>
-    </association>
-    <entity name="RevisionComment" uuid="a9e0571c-130f-42c0-83a0-b0940d38e7da">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="0c793d59-f7d8-4225-9ed1-89eade93111f"/>
-      <field name="revision_id" type="integer" uuid="8d5a8f1e-f93e-4acb-895c-e4b4cebae5bb"/>
-      <inheritance-child derived-from="AbstractComment" discriminator-value="Revision" uuid="04b92fbc-2839-4a2d-9388-61e167f9ef55"/>
-    </entity>
-    <association from="RevisionComment" to="Revision" owner-alias="comments" inverse-alias="revision" uuid="209fd702-6115-499b-8df3-2184996bcb67">
-      <association-field from="revision_id" to="id"/>
-    </association>
-    <region caption="Audit" uuid="a74a049c-1664-410b-939f-641fa25b9278">
-      <entity-ref name="Revision"/>
-      <entity-ref name="RevisionComment"/>
-    </region>
-    <orm-attributes>
-      <attribute name="namespace">Audit\Entity</attribute>
-    </orm-attributes>
-  </module>
   <module name="Peer Review" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="82c75821-ba8d-4347-9ce4-22985fcc4d92">
     <entity name="PendingQueue" uuid="8c60d920-0618-4912-90b9-c11396b237d8">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="bb73eb28-7ed9-4508-8b5e-c5061daee710"/>
@@ -846,7 +817,6 @@
   <visual-data>
     <entity uuid="0288b513-9531-454a-bc91-5f02c7d49f45" position-x="-18" position-y="-100" size-x="0" size-x2="98" size-y="0" size-y2="73"/>
     <entity uuid="0422e7df-736b-47b5-86f2-644bad5a59b3" position-x="230" position-y="36" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
-    <inheritance-child uuid="04b92fbc-2839-4a2d-9388-61e167f9ef55" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
     <association uuid="06c521a4-df8e-438a-b214-0672351a82b6" center-position-x="0" center-position-y="0"/>
     <association uuid="0712f5ef-eca0-460d-bbaa-4c07c2b10314" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
     <association uuid="0733e495-e674-4cac-a3cb-07346e488ace" splitted="1"/>
@@ -860,7 +830,6 @@
     <region uuid="142287a0-efb1-472e-b4a3-32a2b6d9e760" bk-color="15716788" position-x="750" position-y="271" size-x="0" size-x2="344" size-y="0" size-y2="261"/>
     <region uuid="1469fa2f-aec0-4784-8e31-92b01f10aa34" bk-color="4293906868" position-x="9" position-y="21" size-x="0" size-x2="304" size-y="0" size-y2="239"/>
     <association uuid="176656c7-fc2b-4a39-ab91-9251119dbd09" splitted="1"/>
-    <association uuid="17e92ab3-bb74-4c58-8960-5d6ff6ca819e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
     <entity uuid="186e33a8-75f4-40a8-84d0-bafeb79203de" position-x="231" position-y="37" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
     <entity uuid="18cb5d8f-d0ea-49cb-83fa-9127c25c3664" position-x="252" position-y="-133" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
     <inheritance-child uuid="193b0eef-8bf2-41c1-beb0-38d118061091" splitted="1"/>
@@ -869,7 +838,6 @@
     <association uuid="1bcf942f-4c7d-4a6b-82a4-a6c6f7c8e947" splitted="1"/>
     <association uuid="1c6fa38e-ed34-4102-8971-550fbbb05b0e" splitted="1"/>
     <entity uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b" position-x="-15" position-y="4" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
-    <association uuid="209fd702-6115-499b-8df3-2184996bcb67" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <inheritance-child uuid="21197a5b-d6b2-48e3-95c8-595c2644dbb6" splitted="1"/>
     <association uuid="24be276e-2e49-4777-bd49-684621e1dc05" splitted="1"/>
     <entity uuid="25157232-610d-4bc9-be16-343fe9764e87" position-x="253" position-y="50" size-x="0" size-x2="117" size-y="0" size-y2="60"/>
@@ -930,7 +898,6 @@
     <entity uuid="84a8d9b9-d842-414b-8220-ad30a48fc440" position-x="524" position-y="110" size-x="0" size-x2="95" size-y="0" size-y2="45"/>
     <entity uuid="859e7fea-b536-4fc1-8405-29100471e852" position-x="-343" position-y="-106" size-x="0" size-x2="122" size-y="0" size-y2="60"/>
     <region uuid="86490e22-2c2a-4f81-b8ec-51f819610748" bk-color="15716788" position-x="28" position-y="413" size-x="30" size-x2="383" size-y="144" size-y2="119"/>
-    <module uuid="8af8ad2c-3c5e-4de0-b8d0-4bcf049eefc0" bk-color="4293359639" position-x="294" position-y="-362" size-x="0" size-x2="261" size-y="0" size-y2="281"/>
     <entity uuid="8b9c2e8b-b7e6-4ff7-a0a8-b0452541edf2" position-x="27" position-y="104" size-x="0" size-x2="91" size-y="0" size-y2="87"/>
     <entity uuid="8c60d920-0618-4912-90b9-c11396b237d8" position-x="37" position-y="25" size-x="0" size-x2="100" size-y="0" size-y2="129"/>
     <entity uuid="8d270e66-501b-466f-ab56-045250803130" position-x="23" position-y="36" size-x="0" size-x2="140" size-y="0" size-y2="87"/>
@@ -949,8 +916,6 @@
     <association uuid="a2c72590-97e7-4fb1-abff-34d77daa4a3d" splitted="1"/>
     <entity uuid="a3acf0be-94de-4f9b-ba75-0ab0ed41f92a" position-x="217" position-y="42" size-x="0" size-x2="109" size-y="0" size-y2="60"/>
     <association uuid="a6bcb53a-0137-410d-a1d5-0cb54dc3b703" splitted="1"/>
-    <region uuid="a74a049c-1664-410b-939f-641fa25b9278" bk-color="4293906868" position-x="36" position-y="19" size-x="0" size-x2="178" size-y="0" size-y2="247"/>
-    <entity uuid="a9e0571c-130f-42c0-83a0-b0940d38e7da" position-x="31" position-y="146" size-x="0" size-x2="103" size-y="0" size-y2="45"/>
     <entity uuid="ac9f2726-6f28-4600-8176-9fbea28acfc7" position-x="228" position-y="164" size-x="0" size-x2="100" size-y="0" size-y2="73"/>
     <association uuid="ad7bce74-bffe-46f6-8cfa-267bb23d9655" splitted="1"/>
     <association uuid="ad9ae0d3-e90a-444f-a08e-51c3a5eb2fdb" splitted="1"/>
@@ -967,7 +932,6 @@
     <association uuid="cc0e540b-a3fc-4a78-99ac-57cfdcaca938" splitted="1"/>
     <entity uuid="d1ed7de2-6778-48e0-a81c-22735fc0d71e" position-x="-10" position-y="228" size-x="0" size-x2="139" size-y="0" size-y2="60"/>
     <entity uuid="d3030348-9746-4be7-9ec6-e8206e98f498" position-x="625" position-y="110" size-x="0" size-x2="108" size-y="0" size-y2="45"/>
-    <entity uuid="d516b8ce-e87c-4ca9-aa13-013734cc7e29" position-x="38" position-y="34" size-x="0" size-x2="89" size-y="0" size-y2="59"/>
     <region uuid="d58ec363-3d3a-4f2a-8fa1-cda3102d8ee6" bk-color="4293906868" position-x="45" position-y="82" size-x="0" size-x2="948" size-y="0" size-y2="207"/>
     <entity uuid="d794f911-287a-4ecc-ac5f-aadce68e5b30" position-x="177" position-y="53" size-x="0" size-x2="119" size-y="0" size-y2="60"/>
     <association uuid="db2ed8ab-450d-4d09-b542-b500c5f3a648" splitted="1"/>

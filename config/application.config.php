@@ -14,7 +14,7 @@ return array(
         'ZfcUser',
         'ZfcUserDoctrineORM',
 
-        'ZendDeveloperTools',
+//        'ZendDeveloperTools',
 
         'Heartsentwined\Cron',
     ),
