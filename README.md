@@ -19,4 +19,6 @@ Copy ~/config/autoload/local.php.dist to ~/config/autoload/local.php and edit it
 Run a virtual host for db.etree.org from the public directory.
     php -S localhost:8080
 
-Browse to http://localhost:8080 and follow the installation instructions.
+Run vendor/bin/doctrine-module and install the database schema.
+
+Browse to http://localhost:8080 
