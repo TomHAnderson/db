@@ -41,6 +41,7 @@ class Band extends AbstractEntity {
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
+            'bandGroup' => $this->getBandGroup(),
         );
     }
 
@@ -49,6 +50,9 @@ class Band extends AbstractEntity {
         $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
+
+        // Set foreign entity relations directly
+        if (isset($data['bandGroup'])) $this->bandGroup = $data['bandGroup'];
     }
 
     public function diff($data)

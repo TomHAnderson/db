@@ -8,13 +8,14 @@ return array(
 
         'DoctrineModule',
         'DoctrineORMModule',
-        'SoliantEntityAudit',
 
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
 
 //        'ZendDeveloperTools',
+
+        'SoliantEntityAudit',
 
         'Heartsentwined\Cron',
     ),

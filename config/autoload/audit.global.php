@@ -149,13 +149,6 @@ return array(
                     'action' => 'detail',
                 ),
             ),
-            'Db\Entity\UserMeta' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'user-meta',
-                    'action' => 'detail',
-                ),
-            ),
             'Db\Entity\UserPerformance' => array(
                 'route' => 'default',
                 'defaults' => array(
