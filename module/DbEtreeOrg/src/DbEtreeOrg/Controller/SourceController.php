@@ -19,7 +19,7 @@ class SourceController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         if (!$id)
             return $this->plugin('redirect')->toUrl('/source');
 
