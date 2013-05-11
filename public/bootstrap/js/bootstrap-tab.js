@@ -1,5 +1,5 @@
 /* ========================================================
- * bootstrap-tab.js v2.2.2
+ * bootstrap-tab.js v2.3.1
  * http://twitter.github.com/bootstrap/javascript.html#tabs
  * ========================================================
  * Copyright 2012 Twitter, Inc.
@@ -20,7 +20,7 @@
 
 !function ($) {
 
-  "use strict"; 
+  "use strict"; // jshint ;_;
 
 
  /* TAB CLASS DEFINITION
