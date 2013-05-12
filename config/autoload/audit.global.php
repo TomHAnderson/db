@@ -135,13 +135,7 @@ return array(
                     'action' => 'detail',
                 ),
             ),
-            'Db\Entity\User' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'user',
-                    'action' => 'detail',
-                ),
-            ),
+            'Db\Entity\User' => array(),
             'Db\Entity\UserList' => array(
                 'route' => 'default',
                 'defaults' => array(
