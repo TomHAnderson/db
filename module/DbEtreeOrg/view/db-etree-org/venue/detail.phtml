@@ -12,13 +12,13 @@
     <?php
     }
     ?>
-
-    <li>
-        <a class="btn-info" href="/audit/entity/<?= $this->venue->getId(); ?>/Db\Entity\Venue">
-            <i class="icon-list"></i>
-        </a>
-    </li>
 </ul>
+
+<?= $this->partial(
+    'db-etree-org/partial/workspace',
+    array('entity' => $this->venue)
+);
+?>
 
 <div class="h1">
     <a class="btn btn-warning edit-venue" href="#" data-id="<?= $this->venue->getId(); ?>">

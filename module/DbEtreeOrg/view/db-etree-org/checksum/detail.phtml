@@ -1,17 +1,13 @@
-<ul class="nav nav-pills pull-right">
-    <li class="">
-        <a class="btn-warning" href="/checksum/edit?id=<?= $this->checksum->getId(); ?>">
-            <i class="icon-map-marker"></i>
-            Edit Checksum
-        </a>
-    </li>
+<a class="pull-right btn-warning" href="/checksum/edit?id=<?= $this->checksum->getId(); ?>">
+    <i class="icon-map-marker"></i>
+    Edit Checksum
+</a>
 
-    <li>
-        <a class="btn-info" href="/audit/entity/<?= $this->checksum->getId(); ?>/Db\Entity\Checksum">
-            <i class="icon-list"></i>
-        </a>
-    </li>
-</ul>
+<?= $this->partial(
+    'db-etree-org/partial/workspace',
+    array('entity' => $this->checksum)
+);
+?>
 
 <h1>
     <i class="icon-ok-circle"></i>

@@ -14,12 +14,13 @@
     }
     ?>
 
-    <li>
-        <a class="btn-info" href="/audit/entity/<?= $this->performer->getId(); ?>/Db\Entity\Performer">
-            <i class="icon-list"></i>
-        </a>
-    </li>
 </ul>
+
+<?= $this->partial(
+    'db-etree-org/partial/workspace',
+    array('entity' => $this->performer)
+);
+?>
 
 <div class="h1">
     <a class="btn btn-warning edit-performer" href="#" data-id="<?= $this->performer->getId(); ?>">

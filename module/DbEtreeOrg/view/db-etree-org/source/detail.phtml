@@ -1,11 +1,8 @@
-<ul class="nav nav-pills pull-right">
-    <li>
-        <a class="btn-info" href="/audit/entity/<?= $this->source->getId(); ?>/Db\Entity\Source">
-            <i class="icon-list"></i>
-        </a>
-    </li>
-</ul>
-
+<?= $this->partial(
+    'db-etree-org/partial/workspace',
+    array('entity' => $this->source)
+);
+?>
 <div class="h1">
     <a href="#" class="btn btn-warning edit-source" data-id="<?= $this->source->getId(); ?>">
         <i class="icon-headphones"></i>

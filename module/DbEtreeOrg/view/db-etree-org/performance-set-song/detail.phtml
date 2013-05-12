@@ -1,24 +1,18 @@
-<ul class="nav nav-pills pull-right">
-    <li>
-        <a class="btn-warning" href="/performance-song/edit?id=<?= $this->performanceSong->getId(); ?>">
-            <i class="icon-music"></i>
-            Edit Performance Set Song
-        </a>
-    </li>
+<a class="pull-right btn-warning" href="/performance-song/edit?id=<?= $this->performanceSong->getId(); ?>">
+    <i class="icon-music"></i>
+    Edit Performance Set Song
+</a>
 
-    <li>
-        <a class="btn-danger confirm" href="/performance-song/delete?id=<?= $this->performanceSong->getId(); ?>">
-            <i class="icon-music"></i>
-            Delete Performance Set Song
-        </a>
-    </li>
+<a class="pull-right btn-danger confirm" href="/performance-song/delete?id=<?= $this->performanceSong->getId(); ?>">
+    <i class="icon-music"></i>
+    Delete Performance Set Song
+</a>
 
-    <li>
-        <a class="btn-info" href="/audit/entity/<?= $this->performanceSong->getId(); ?>/Db\Entity\PerformanceSong">
-            <i class="icon-list"></i>
-        </a>
-    </li>
-</ul>
+<?= $this->partial(
+    'db-etree-org/partial/workspace',
+    array('entity' => $this->performanceSong)
+);
+?>
 
 <h1>
     <a href="/performance/detail?id=<?= $this->performanceSong->getPerformanceSet()->getPerformance()->getId(); ?>">

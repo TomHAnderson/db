@@ -1,18 +1,8 @@
-<span class="pull-right">
-        <?php
-        $currentRevisionEntity = $this->auditCurrentRevisionEntity($this->song);
-        ?>
-
-        <a class="btn btn-info" href="<?=
-            $this->url('audit/revision-entity',
-                array(
-                    'revisionEntityId' => $currentRevisionEntity->getId()
-                )
-            );
-        ?>">
-            <i class="icon-list"></i>
-        </a>
-</span>
+<?= $this->partial(
+    'db-etree-org/partial/workspace',
+    array('entity' => $this->song)
+);
+?>
 
 <div class="h1">
     <a href="#" class="btn btn-warning edit-song" data-id="<?= $this->song->getId(); ?>">

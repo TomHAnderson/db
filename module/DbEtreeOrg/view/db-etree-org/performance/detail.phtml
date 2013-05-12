@@ -7,11 +7,13 @@
 
 <div class="pull-right">
 
-    <a class="btn btn-info" href="/audit/entity/<?= $this->performance->getId(); ?>/Db\Entity\Performance">
-        <i class="icon-list"></i>
-    </a>
+    <?= $this->partial(
+        'db-etree-org/partial/workspace',
+        array('entity' => $this->performance)
+    );
+    ?>
 
-    <a class="btn btn-default expand-all" href="#">
+    <a class="pull-right btn btn-default expand-all" href="#">
         <i class="icon-double-angle-down"></i>
     </a>
 

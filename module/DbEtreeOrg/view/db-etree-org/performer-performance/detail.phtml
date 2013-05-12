@@ -1,14 +1,11 @@
-<ul class="nav nav-pills pull-right">
-    <li class="">
-        <a class="btn-warning" href="/lineup/edit?id=<?= $this->lineup->getId(); ?>"><i class="icon-group"></i> Edit Performer Lineup</a>
-    </li>
+<a class="pull-right btn-warning" href="/lineup/edit?id=<?= $this->lineup->getId(); ?>"><i class="icon-group"></i> Edit Performer Lineup</a>
 
-    <li>
-        <a class="btn-info" href="/audit/entity/<?= $this->lineup->getId(); ?>/Db\Entity\Lineup">
-            <i class="icon-list"></i>
-        </a>
-    </li>
-</ul>
+<?= $this->partial(
+    'db-etree-org/partial/workspace',
+    array('entity' => $this->lineup)
+);
+?>
+
 
 <h1><i class="icon-cogs"></i>
     <a href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">

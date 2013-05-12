@@ -1,25 +1,18 @@
-<ul class="nav nav-pills pull-right">
+<a class="pull-right btn-success btn create-performance-set-song" href="#" data-id="<?= $this->performanceSet->getId(); ?>">
+    <i class="icon-music"></i>
+    Add Song to Performace Set
+</a>
 
-    <li>
-        <a class="btn-success btn create-performance-set-song" href="#" data-id="<?= $this->performanceSet->getId(); ?>">
-            <i class="icon-music"></i>
-            Add Song to Performace Set
-        </a>
-    </li>
+<a class="pull-right btn-warning" href="/performance-set/edit?id=<?= $this->performanceSet->getId(); ?>">
+    <i class="icon-certificate"></i>
+    Edit Performance Set
+</a>
 
-    <li>
-        <a class="btn-warning" href="/performance-set/edit?id=<?= $this->performanceSet->getId(); ?>">
-            <i class="icon-certificate"></i>
-            Edit Performance Set
-        </a>
-    </li>
-
-    <li>
-        <a class="btn-info" href="/audit/entity/<?= $this->performanceSet->getId(); ?>/Db\Entity\PerformanceSet">
-            <i class="icon-list"></i>
-        </a>
-    </li>
-</ul>
+<?= $this->partial(
+    'db-etree-org/partial/workspace',
+    array('entity' => $this->performanceSet)
+);
+?>
 
 <div class="h1">
     <a class="btn btn-info" href="/performance/detail?id=<?= $this->performanceSet->getPerformance()->getId(); ?>">
