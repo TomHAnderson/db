@@ -15,7 +15,7 @@ return array(
 
 //        'ZendDeveloperTools',
 
-        'SoliantEntityAudit',
+        'StukiWorkspace',
 
         'Heartsentwined\Cron',
     ),

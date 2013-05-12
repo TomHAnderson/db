@@ -97,16 +97,20 @@
             $('a#brand').on('turnOn', function(event) {
                 setCookie('editMode', 'on');
                 $(this).removeClass('btn-default').addClass('btn-warning');
-                $('a.btn-warning, a.btn-danger, a.btn-success, li#menu-audit').show();
+                $('a.btn-warning, a.btn-danger, a.btn-success, li#menu-audit').not('.workspace').show();
             });
 
             $('a#brand').on('turnOff', function(event) {
                 setCookie('editMode', false);
                 $(this).removeClass('btn-warning').addClass('btn-default');
-                $('a.btn-warning, a.btn-danger, a.btn-success, li#menu-audit').hide();
+                $('a.btn-warning, a.btn-danger, a.btn-success').not('.workspace').hide();
             });
-
+/*
             $('a#brand.btn').live('click', function(event) {
+//                $(this).trigger('turnOn');
+//                $(this).show();
+                return false;
+
                 if ($(this).hasClass('btn-default')) {
                     $(this).trigger('turnOn');
                 } else {
@@ -116,11 +120,15 @@
                 return false;
             });
 
+//            $('a#brand.btn').trigger('turnOn');
+
+/*
             if (getCookie('editMode') == 'on') {
                 $('a#brand.btn').trigger('turnOn');
             } else {
                 $('a#brand').trigger('turnOff');
             }
+*/
         });
 
         </script>

@@ -32,7 +32,7 @@
         "heartsentwined/zf2-phpunit-testcase": "1.*",
         "heartsentwined/zf2-phing-task": "1.*",
 
-        "soliantconsulting/entity-audit": "dev-master",
+        "stuki/workspace": "dev-master",
 
         "umpirsky/country-list": "dev-master",
  
