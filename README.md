@@ -8,7 +8,7 @@ etreedb.org is the next generation of db.etree.org
 Installation
 ------------
     git clone git://github.com/etreedb/db
-    cd db
+    copy ~/public/.htaccess.dist to ~/public/.htaccess
     php composer.phar install
 
 db uses Doctrine 2 for database abstraction.  Supported drivers are listed here:
