@@ -396,7 +396,7 @@
 <script>
 
 $(function() {
-    if (getCookie('editMode') == 'on' && '<?= ($this->zfcUserIdentity()) ? 'loggedin': ''; ?>') {
+    if ('<?= ($this->zfcUserIdentity()) ? 'loggedin': ''; ?>') {
         $('a#brand.btn').trigger('turnOn');
     } else {
         $('a#brand').trigger('turnOff');
