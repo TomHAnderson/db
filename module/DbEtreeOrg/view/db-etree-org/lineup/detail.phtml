@@ -4,7 +4,7 @@
 );
 ?>
 
-<a style="margin-right: 10px" class="pull-right btn btn-success" href="/performance/create?id=<?= $this->lineup->getId(); ?>"><i class="icon-magic"></i> Create Performance</a>
+<a style="margin-right: 10px" class="pull-right btn btn-success" href="/performance/create/<?= $this->lineup->getId(); ?>"><i class="icon-magic"></i> Create Performance</a>
 
 <div class="h1">
         <a class="btn btn-warning edit-lineup" data-id="<?= $this->lineup->getId(); ?>" href="#">
@@ -24,7 +24,7 @@
 </div>
 
     <div class="h1">
-        <a class="btn btn-info" href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>">
+        <a class="btn btn-info" href="/band/detail/<?= $this->lineup->getBand()->getId(); ?>">
             <i class="icon-cogs"></i>
         </a>
         <?= $this->escapeHtml($this->lineup->getBand()->getName()); ?>
@@ -42,7 +42,7 @@
 foreach ($this->lineup->getPerformerLineups() as $performerLineup) {
 ?>
     <div class="h2">
-        <a class="btn btn-info" href="/performer/detail?id=<?= $performerLineup->getPerformer()->getId(); ?>">
+        <a class="btn btn-info" href="/performer/detail/<?= $performerLineup->getPerformer()->getId(); ?>">
             <i class="icon-film"></i>
         </a>
 
