@@ -77,7 +77,7 @@ class PerformanceController extends AbstractActionController
                 $em->persist($performance);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performance->getId());
+                return $this->plugin('redirect')->toUrl('/performance/detail/' . $performance->getId());
             }
         }
 
@@ -192,7 +192,7 @@ class PerformanceController extends AbstractActionController
         $em->persist($performerPerformance);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $id);
+        return $this->plugin('redirect')->toUrl('/performance/detail/' . $id);
     }
 
     public function removePerformerAction()
@@ -213,6 +213,6 @@ class PerformanceController extends AbstractActionController
         $em->remove($performerPerformance);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $id);
+        return $this->plugin('redirect')->toUrl('/performance/detail/' . $id);
     }
 }

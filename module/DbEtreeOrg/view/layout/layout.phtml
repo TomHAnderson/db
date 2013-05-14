@@ -97,13 +97,13 @@
             $('a#brand').on('turnOn', function(event) {
                 setCookie('editMode', 'on');
                 $(this).removeClass('btn-default').addClass('btn-warning');
-                $('a.btn-warning, a.btn-danger, a.btn-success, li#menu-audit').not('.workspace').show();
+                $('a.btn-warning:not(.workspace), a.btn-danger:not(.workspace), a.btn-success:not(.workspace)').show();
             });
 
             $('a#brand').on('turnOff', function(event) {
                 setCookie('editMode', false);
                 $(this).removeClass('btn-warning').addClass('btn-default');
-                $('a.btn-warning, a.btn-danger, a.btn-success').not('.workspace').hide();
+                $('a.btn-warning:not(.workspace), a.btn-danger:not(.workspace), a.btn-success:not(.workspace)').hide();
             });
 /*
             $('a#brand.btn').live('click', function(event) {

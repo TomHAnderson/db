@@ -1,10 +1,10 @@
-<a class="pull-right btn-success" href="/performance/create?id=<?= $this->lineup->getId(); ?>"><i class="icon-magic"></i> Create Performance</a>
-
 <?= $this->partial(
     'db-etree-org/partial/workspace',
     array('entity' => $this->lineup)
 );
 ?>
+
+<a style="margin-right: 10px" class="pull-right btn btn-success" href="/performance/create?id=<?= $this->lineup->getId(); ?>"><i class="icon-magic"></i> Create Performance</a>
 
 <div class="h1">
         <a class="btn btn-warning edit-lineup" data-id="<?= $this->lineup->getId(); ?>" href="#">

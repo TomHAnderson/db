@@ -19,7 +19,7 @@ foreach ($performances as $performance) {
 ?>
 <tr>
     <td>
-        <a class="btn btn-info" href="/performance/detail?id=<?= $performance->getId(); ?>">
+        <a class="btn btn-info" href="/performance/detail/<?= $performance->getId(); ?>">
             <i class="icon-magic"></i>
         </a>
         <?php
@@ -34,7 +34,7 @@ foreach ($performances as $performance) {
     </td>
 
     <td>
-        <a class="btn btn-info" href="/band/detail?id=<?= $performance->getLineup()->getBand()->getId(); ?>">
+        <a class="btn btn-info" href="/band/detail/<?= $performance->getLineup()->getBand()->getId(); ?>">
             <i class="icon-cogs"></i>
         </a>
 
@@ -42,7 +42,7 @@ foreach ($performances as $performance) {
     </td>
 
     <td class="span3">
-        <a class="btn btn-info" href="/venue/detail?id=<?= $performance->getVenue()->getId(); ?>">
+        <a class="btn btn-info" href="/venue/detail/<?= $performance->getVenue()->getId(); ?>">
             <i class="icon-map-marker"></i>
         </a>
 

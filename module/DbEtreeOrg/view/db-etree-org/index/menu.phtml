@@ -24,7 +24,7 @@
                 $(function() {
                     $('#performer-search').on('submit', function(event) {
                         if ($(this).find('input[name="performer_id"]').val()) {
-                            window.location = '/performer/detail?id='
+                            window.location = '/performer/detail/'
                                 + $(this).find('input[name="performer_id"]').val();
                         }
 
@@ -43,7 +43,7 @@
                 if ($p = $this->findPerformer($id)) {
                     ?>
                         <li role="menuitem" class="recent">
-                            <a href="/performer/detail?id=<?= $p->getId(); ?>">
+                            <a href="/performer/detail/<?= $p->getId(); ?>">
                                 <i class="icon-film"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
                             </a>
@@ -84,7 +84,7 @@
                 $(function() {
                     $('#band-search').on('submit', function(event) {
                         if ($(this).find('input[name="band_id"]').val()) {
-                            window.location = '/band/detail?id='
+                            window.location = '/band/detail/'
                                 + $(this).find('input[name="band_id"]').val();
                         }
 
@@ -102,7 +102,7 @@
                 if ($p = $this->findEntity('Db\Entity\Band', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/band/detail?id=<?= $p->getId(); ?>">
+                            <a href="/band/detail/<?= $p->getId(); ?>">
                                 <i class="icon-cogs"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
                             </a>
@@ -121,7 +121,7 @@
                 if ($p = $this->findEntity('Db\Entity\Lineup', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/lineup/detail?id=<?= $p->getId(); ?>">
+                            <a href="/lineup/detail/<?= $p->getId(); ?>">
                                 <i class="icon-group"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
 
@@ -165,7 +165,7 @@
                     $(function() {
                         $('#venue-search').on('submit', function(event) {
                             if ($('form#venue-search input[name="venue_id"]').val()) {
-                                window.location = '/venue/detail?id='
+                                window.location = '/venue/detail/'
                                     + $('form#venue-search [name="venue_id"]').val();
                             }
 
@@ -184,7 +184,7 @@
                 if ($v = $this->findVenue($id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/venue/detail?id=<?= $v->getId(); ?>">
+                            <a href="/venue/detail/<?= $v->getId(); ?>">
                                 <i class="icon-map-marker"></i>
                                 <?= $this->escapeHtml($v->getName()); ?>
                             </a>
@@ -237,7 +237,7 @@
                 if ($p = $this->findEntity('Db\Entity\Performance', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/performance/detail?id=<?= $p->getId(); ?>">
+                            <a href="/performance/detail/<?= $p->getId(); ?>">
                                 <i class="icon-magic"></i>
                                 <?php
                                 if ($p->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
@@ -355,7 +355,7 @@
                 if ($p = $this->findEntity('Db\Entity\Source', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/source/detail?id=<?= $p->getId(); ?>">
+                            <a href="/source/detail/<?= $p->getId(); ?>">
                                 <i class="icon-headphones"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
 

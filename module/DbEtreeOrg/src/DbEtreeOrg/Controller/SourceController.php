@@ -67,7 +67,7 @@ class SourceController extends AbstractActionController
                 $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/source/detail?id=' . $source->getId());
+                return $this->plugin('redirect')->toUrl('/source/detail/' . $source->getId());
             }
         }
 

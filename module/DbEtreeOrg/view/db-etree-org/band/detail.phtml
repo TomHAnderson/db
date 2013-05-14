@@ -232,7 +232,7 @@ if (sizeof($jambase->event)) {
             <thead>
                 <tr>
                     <th>
-                        <a class="btn btn-success create-lineup" data-id="<?= $this->band->getId(); ?>" href="/lineup/create?id=<?= $this->band->getId(); ?>">
+                        <a class="btn btn-success create-lineup" data-id="<?= $this->band->getId(); ?>" href="/lineup/create/<?= $this->band->getId(); ?>">
                             <i class="icon-group"></i>
                         </a>
 
@@ -249,7 +249,7 @@ if (sizeof($jambase->event)) {
                 <tr>
                     <td>
 
-                        <a class="btn btn-info" href="/lineup/detail?id=<?= $lineup->getId(); ?>">
+                        <a class="btn btn-info" href="/lineup/detail/<?= $lineup->getId(); ?>">
                             <i class="icon-group"></i>
                         </a>
                         <?= $this->escapeHtml($lineup->getName()); ?>
@@ -261,7 +261,7 @@ if (sizeof($jambase->event)) {
                     foreach ($lineup->getPerformerLineups() as $performerLineup) {
                     ?>
                         <p>
-                        <a class="btn btn-info" href="/performer/detail?id=<?= $performerLineup->getPerformer()->getId(); ?>">
+                        <a class="btn btn-info" href="/performer/detail/<?= $performerLineup->getPerformer()->getId(); ?>">
                             <i class="icon-film"></i>
                         </a>
 
@@ -294,7 +294,7 @@ if (sizeof($jambase->event)) {
         foreach ($this->band->getAliases() as $alias) {
         ?>
             <div class="span4">
-                <a href="/band-alias/detail?id=<?= $alias->getId(); ?>" class="btn btn-info">
+                <a href="/band-alias/detail/<?= $alias->getId(); ?>" class="btn btn-info">
                     <i class="icon-facetime-video"></i>
                 </a>
 
@@ -318,14 +318,14 @@ if (sizeof($jambase->event)) {
 
    <div class="tab-pane" id="comments">
         <ul class="nav nav-pills">
-            <?= $this->createComment($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+            <?= $this->createComment($this->band->getId(), 'Db\Entity\Band', '/band/detail/' . $this->band->getId()); ?>
         </ul>
 
         <?= $this->listComments($this->band->getComments()); ?>
     </div>
 
     <div class="tab-pane" id="links">
-        <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail?id=' . $this->band->getId()); ?>
+        <?= $this->createLink($this->band->getId(), 'Db\Entity\Band', '/band/detail/' . $this->band->getId()); ?>
 
         <?= $this->listLinks($this->band->getLinks()); ?>
     </div>
