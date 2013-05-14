@@ -20,7 +20,7 @@
 
 
 <div class="h1">
-    <a class="btn btn-info" href="/performance/detail?id=<?= $this->source->getPerformance()->getId(); ?>">
+    <a class="btn btn-info" href="/performance/detail/<?= $this->source->getPerformance()->getId(); ?>">
         <i class="icon-magic"></i>
     </a>
 <?php
@@ -35,7 +35,7 @@ if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') !=
 </div>
 
 <div class="h1">
-    <a class="btn btn-info" href="/band/detail?id=<?= $this->source->getPerformance()->getLineup()->getBand()->getId(); ?>">
+    <a class="btn btn-info" href="/band/detail/<?= $this->source->getPerformance()->getLineup()->getBand()->getId(); ?>">
         <i class="icon-cogs"></i>
     </a>
 
@@ -43,7 +43,7 @@ if ($this->source->getPerformance()->getPerformanceDateAt()->format('F d, Y') !=
 </div>
 
 <div class="h1">
-    <a class="btn btn-info" href="/venue/detail?id=<?= $this->source->getPerformance()->getVenue()->getId(); ?>">
+    <a class="btn btn-info" href="/venue/detail/<?= $this->source->getPerformance()->getVenue()->getId(); ?>">
         <i class="icon-map-marker"></i>
     </a>
     <?= $this->escapeHtml($this->source->getPerformance()->getVenue()->getName()); ?>
@@ -127,14 +127,14 @@ foreach ($this->source->getChecksums() as $checksum) {
 <div class="tab-content">
    <div class="tab-pane active" id="comments">
         <ul class="nav nav-pills">
-            <?= $this->createComment($this->source->getId(), 'Db\Entity\Source', '/source/detail?id=' . $this->source->getId()); ?>
+            <?= $this->createComment($this->source->getId(), 'Db\Entity\Source', '/source/detail/' . $this->source->getId()); ?>
         </ul>
 
         <?= $this->listComments($this->source->getComments()); ?>
     </div>
 
     <div class="tab-pane" id="links">
-        <?= $this->createLink($this->source->getId(), 'Db\Entity\Source', '/source/detail?id=' . $this->source->getId()); ?>
+        <?= $this->createLink($this->source->getId(), 'Db\Entity\Source', '/source/detail/' . $this->source->getId()); ?>
 
         <?= $this->listLinks($this->source->getLinks()); ?>
     </div>
