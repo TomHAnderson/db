@@ -8,7 +8,7 @@
     {
     ?>
         <li class="">
-            <a class="btn-danger confirm" href="/performer/delete?id=<?= $this->performer->getId(); ?>"><i class="icon-film"></i> Delete Performer</a>
+            <a class="btn-danger confirm" href="/performer/delete/<?= $this->performer->getId(); ?>"><i class="icon-film"></i> Delete Performer</a>
         </li>
     <?php
     }
@@ -194,14 +194,14 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
 
                 <tr>
                     <td>
-                        <a class="btn btn-info" href="/band/detail?id=<?= $performerLineup->getLineup()->getBand()->getId(); ?>">
+                        <a class="btn btn-info" href="/band/detail/<?= $performerLineup->getLineup()->getBand()->getId(); ?>">
                             <i class="icon-cogs"></i>
                         </a>
                             <?= $this->escapeHtml($performerLineup->getLineup()->getBand()->getName()); ?>
                         </a>
                     </td>
                     <td>
-                        <a class="btn btn-info" href="/band/detail?id=<?= $performerLineup->getLineup()->getBand()->getId(); ?>">
+                        <a class="btn btn-info" href="/band/detail/<?= $performerLineup->getLineup()->getBand()->getId(); ?>">
                             <i class="icon-group"></i>
                         </a>
                         <?= $this->escapeHtml($performerLineup->getLineup()->getName()); ?>
@@ -223,7 +223,7 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
         foreach ($this->performer->getAliases() as $alias) {
         ?>
             <div class="h1">
-                <a href="/performer-alias/detail?id=<?= $alias->getId(); ?>" class="btn btn-info" href="#">
+                <a href="/performer-alias/detail/<?= $alias->getId(); ?>" class="btn btn-info" href="#">
                     <i class="icon-github-alt"></i>
                 </a>
 
@@ -250,14 +250,14 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
 
    <div class="tab-pane" id="comments">
         <ul class="nav nav-pills">
-            <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+            <?= $this->createComment($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail/' . $this->performer->getId()); ?>
         </ul>
 
         <?= $this->listComments($this->performer->getComments()); ?>
     </div>
 
     <div class="tab-pane" id="links">
-        <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail?id=' . $this->performer->getId()); ?>
+        <?= $this->createLink($this->performer->getId(), 'Db\Entity\Performer', '/performer/detail/' . $this->performer->getId()); ?>
 
         <?= $this->listLinks($this->performer->getLinks()); ?>
     </div>
