@@ -1,12 +1,12 @@
 <?php
 
 namespace Db\Repository;
-use Db\Model\AbstractModel
-    , Zend\InputFilter\InputFilter
-    , Zend\ServiceManager\ServiceManager
-    , Doctrine\ORM\EntityManager
-    , Doctrine\ORM\EntityRepository
-    ;
+
+use Db\Model\AbstractModel;
+use Zend\InputFilter\InputFilter;
+use Zend\ServiceManager\ServiceManager;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 
 abstract class AbstractRepository extends EntityRepository
 {

@@ -13,7 +13,11 @@ class IndexController extends AbstractActionController
     {
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
-        return array();
+        $performances = $em->getRepository('Db\Entity\Performance')->findBy(array(), array('id' => 'desc'), 10);
+
+        return array(
+            'performances' => $performances,
+        );
     }
 
     public function menuAction() {

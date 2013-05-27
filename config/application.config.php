@@ -13,8 +13,6 @@ return array(
         'ZfcUser',
         'ZfcUserDoctrineORM',
 
-        'Vdql',
-
 //        'ZendDeveloperTools',
 
         'StukiWorkspace',

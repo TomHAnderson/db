@@ -8,7 +8,11 @@
     <ul class="dropdown-menu" aria-labelledby="performer-drop" role="menu">
         <li role="menuitem">
             <form style="display: inline;">
-            <a class="btn btn-info" href="/performer">
+                <a class="btn btn-info" href="<?=
+                    $this->url('default', array(
+                        'controller' => 'performer'
+                    ));
+                ?>">
                 <i class="icon-film"></i>
                 Browse
             </a>
@@ -16,15 +20,24 @@
         </li>
 
         <li role="menuitem">
-            <form class="navbar-search pull-left" id="performer-search" action="/performer/detail">
-                <?= $this->inputPerformer(null, 'Create Performer'); ?>
+            <form class="navbar-search pull-left" id="performer-search" action="<?=
+                $this->url('default', array(
+                    'controller' => 'performer',
+                    'action' => 'detail',
+                ));
+            ?>">
+                <?= $this->inputPerformer(null, 'Create'); ?>
             </form>
 
             <script>
                 $(function() {
                     $('#performer-search').on('submit', function(event) {
                         if ($(this).find('input[name="performer_id"]').val()) {
-                            window.location = '/performer/detail/'
+                            window.location = '<?=
+                                $this->url('default', array(
+                                    'controller' => 'performer',
+                                    'action' => 'detail',
+                                )); ?>'
                                 + $(this).find('input[name="performer_id"]').val();
                         }
 
@@ -43,7 +56,13 @@
                 if ($p = $this->findPerformer($id)) {
                     ?>
                         <li role="menuitem" class="recent">
-                            <a href="/performer/detail/<?= $p->getId(); ?>">
+                            <a href="<?=
+                                $this->url('default', array(
+                                    'controller' => 'performer',
+                                    'action' => 'detail',
+                                    'id' => $p->getId(),
+                                ));
+                            ?>">
                                 <i class="icon-film"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
                             </a>
@@ -68,7 +87,11 @@
 
         <li role="menuitem">
             <form style="display: inline;">
-            <a class="btn btn-info" href="/band">
+            <a class="btn btn-info" href="<?=
+                $this->url('default', array(
+                    'controller' => 'band',
+                    'action' => 'index',
+                )); ?>">
                 <i class="icon-cogs"></i>
                 Browse
             </a>
@@ -76,7 +99,11 @@
         </li>
 
         <li role="menuitem">
-            <form class="navbar-search pull-left" id="band-search" action="/band/search">
+            <form class="navbar-search pull-left" id="band-search" action="<?=
+                $this->url('default', array(
+                    'controller' => 'band',
+                    'action' => 'search',
+                )); ?>">
                 <?= $this->inputBand(null, 'Create Band'); ?>
             </form>
 
@@ -84,7 +111,12 @@
                 $(function() {
                     $('#band-search').on('submit', function(event) {
                         if ($(this).find('input[name="band_id"]').val()) {
-                            window.location = '/band/detail/'
+                            window.location = '<?=
+                                $this->url('default', array(
+                                    'controller' => 'band',
+                                    'action' => 'detail',
+                                ));
+                            ?>'
                                 + $(this).find('input[name="band_id"]').val();
                         }
 
@@ -102,7 +134,13 @@
                 if ($p = $this->findEntity('Db\Entity\Band', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/band/detail/<?= $p->getId(); ?>">
+                            <a href="<?=
+                                $this->url('default', array(
+                                    'controller' => 'band',
+                                    'action' => 'detail',
+                                    'id' => $p->getId(),
+                                ));
+                            ?>">
                                 <i class="icon-cogs"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
                             </a>
@@ -121,7 +159,13 @@
                 if ($p = $this->findEntity('Db\Entity\Lineup', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/lineup/detail/<?= $p->getId(); ?>">
+                            <a href="<?=
+                                $this->url('default', array(
+                                    'controller' => 'lineup',
+                                    'action' => 'detail',
+                                    'id' => $p->getId(),
+                                ));
+                            ?>">
                                 <i class="icon-group"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
 
@@ -150,7 +194,11 @@
 
         <li role="menuitem">
             <form style="display: inline;">
-            <a class="btn btn-info" href="/venue">
+            <a class="btn btn-info" href="<?=
+                $this->url('default', array(
+                    'controller' => 'venue',
+                    'action' => 'index',
+                )); ?>">
                 <i class="icon-map-marker"></i>
                 Browse
             </a>
@@ -165,7 +213,12 @@
                     $(function() {
                         $('#venue-search').on('submit', function(event) {
                             if ($('form#venue-search input[name="venue_id"]').val()) {
-                                window.location = '/venue/detail/'
+                                window.location = '<?=
+                                    $this->url('default', array(
+                                        'controller' => 'venue',
+                                        'action' => 'detail',
+                                    ));
+                                ?>'
                                     + $('form#venue-search [name="venue_id"]').val();
                             }
 
@@ -184,7 +237,13 @@
                 if ($v = $this->findVenue($id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/venue/detail/<?= $v->getId(); ?>">
+                            <a href="<?=
+                                $this->url('default', array(
+                                    'controller' => 'venue',
+                                    'action' => 'detail',
+                                    'id' => $v->getId(),
+                                ));
+                            ?>">
                                 <i class="icon-map-marker"></i>
                                 <?= $this->escapeHtml($v->getName()); ?>
                             </a>
@@ -208,23 +267,36 @@
 
     <ul class="dropdown-menu" aria-labelledby="performance-drop" role="menu">
         <li role="menuitem">
+            <a class="btn btn-success" id="createPerformance" href="<?=
+                $this->url('default', array(
+                    'controller' => 'performance',
+                    'action' => 'create',
+                )); ?>" style="color: white;">
+                <i class="icon-magic"></i>
+                Create
+            </a>
+        </li>
+
+        <li role="menuitem">
             <form style="display: inline;">
-            <a class="btn btn-info" href="/performance">
+            <a class="btn btn-info" href="<?=
+                $this->url('default', array(
+                    'controller' => 'performance',
+                    'action' => 'index',
+                )); ?>">
                 <i class="icon-magic"></i>
                 Browse
             </a>
             </form>
         </li>
 
-        <li role="menuitem">
-            <a class="btn btn-success" id="createPerformance" href="/performance/create" style="color: white;">
-                <i class="icon-magic"></i>
-                Create Performance
-            </a>
-        </li>
 
         <li role="menuitem">
-            <form class="navbar-search pull-left" name="search" action="/performance/search">
+            <form class="navbar-search pull-left" name="search" action="<?=
+                $this->url('default', array(
+                    'controller' => 'performance',
+                    'action' => 'search',
+                )); ?>">
                 <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Performances">
             </form>
         </li>
@@ -237,7 +309,12 @@
                 if ($p = $this->findEntity('Db\Entity\Performance', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/performance/detail/<?= $p->getId(); ?>">
+                            <a href="<?=
+                                $this->url('default', array(
+                                    'controller' => 'performance',
+                                    'action' => 'detail',
+                                    'id' => $p->getId(),
+                                )); ?>">
                                 <i class="icon-magic"></i>
                                 <?php
                                 if ($p->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
@@ -274,7 +351,11 @@
 
         <li role="menuitem">
             <form style="display: inline;">
-            <a class="btn btn-info" href="/song">
+                <a class="btn btn-info" href="<?=
+                    $this->url('default', array(
+                        'controller' => 'song'
+                    ));
+                ?>">
                 <i class="icon-music"></i>
                 Browse
             </a>
@@ -289,7 +370,11 @@
                     $(function() {
                         $('#song-search').on('submit', function(event) {
                             if ($('form#song-search input[name="song_id"]').val()) {
-                                window.location = '/song/detail/'
+                                window.location = '<?=
+                                $this->url('default', array(
+                                    'controller' => 'song',
+                                    'action' => 'detail',
+                                )); ?>'
                                     + $('form#song-search [name="song_id"]').val();
                             }
 
@@ -311,7 +396,12 @@
                 if ($p = $this->findEntity('Db\Entity\Song', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/song/detail/<?= $p->getId(); ?>">
+                            <a href="<?=
+                                $this->url('default', array(
+                                    'controller' => 'song',
+                                    'action' => 'detail',
+                                    'id' => $p->getId(),
+                                )); ?>">
                                 <i class="icon-music"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
                             </a>
@@ -335,14 +425,35 @@
     <ul class="dropdown-menu" aria-labelledby="source-drop" role="menu">
 
         <li role="menuitem">
-            <a class="btn btn-success" id="createSource" href="/performance/create" style="color: white;">
+            <a class="btn btn-success" id="createSource" href="<?=
+                $this->url('default', array(
+                    'controller' => 'source',
+                    'action' => 'create',
+                )); ?>" style="color: white;">
                 <i class="icon-headphones"></i>
-                Create Source
+                Create
             </a>
         </li>
 
         <li role="menuitem">
-            <form class="navbar-search pull-left" name="search" action="/source/search">
+            <form style="display: inline;">
+                <a class="btn btn-info" href="<?=
+                    $this->url('default', array(
+                        'controller' => 'source'
+                    ));
+                ?>">
+                <i class="icon-music"></i>
+                Browse
+            </a>
+            </form>
+        </li>
+
+        <li role="menuitem">
+            <form class="navbar-search pull-left" name="search" action="<?=
+                $this->url('default', array(
+                    'controller' => 'source',
+                    'action' => 'search',
+                )); ?>">
                 <input type="text" name="name" id="name" maxlength="85" size="28" autocomplete="off" placeholder="Search Sources">
             </form>
         </li>
@@ -355,7 +466,12 @@
                 if ($p = $this->findEntity('Db\Entity\Source', $id)) {
                     ?>
                         <li role="menuitem">
-                            <a href="/source/detail/<?= $p->getId(); ?>">
+                            <a href="<?=
+                                $this->url('default', array(
+                                    'controller' => 'source',
+                                    'action' => 'detail',
+                                    'id' => $p->getId(),
+                                )); ?>">
                                 <i class="icon-headphones"></i>
                                 <?= $this->escapeHtml($p->getName()); ?>
 
@@ -390,15 +506,6 @@
         ?>">
         <i class="icon-globe"></i>
         Workspace
-    </a>
-</li>
-
-<li id="menu-workspace">
-    <a href="<?=
-        $this->url('vdql');
-        ?>">
-        <i class="icon-desktop"></i>
-        Visual DQL
     </a>
 </li>
 

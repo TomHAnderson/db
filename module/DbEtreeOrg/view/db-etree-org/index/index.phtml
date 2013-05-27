@@ -1,25 +1,79 @@
-<style>
-    .index {
-        display: none;
-    }
-</style>
-
-<div class="h1">Welcome to www.etreedb.org
-
-    <a class="btn btn-default show-index" href="#">
-        <i class="icon-double-angle-right icon-rotate-90"></i>
-    </a>
-
-    <pre class="index">A community driven open database of live concert information.</pre>
-
-</div>
-
-<script>
+<?php $this->headScript()->captureStart() ?>
 $(function() {
     $('.show-index').on('click', function(event) {
         $('.index').toggle();
-        $('.show-index i').addClass('icon-rotate-90');
+        $('.show-index i').each(function(index, node) {
+            if ($(this).hasClass('icon-double-angle-right')) {
+                $(this).attr('class', 'icon-double-angle-down');
+            } else {
+                $(this).attr('class', 'icon-double-angle-right');
+            }
+        });
     });
 
+    $('.show-recent-performances').on('click', function(event) {
+        $('.recent-performances').toggle();
+        $('.show-recent-performances i').each(function(index, node) {
+            if ($(this).hasClass('icon-double-angle-right')) {
+                $(this).attr('class', 'icon-double-angle-down');
+            } else {
+                $(this).attr('class', 'icon-double-angle-right');
+            }
+        });
+    });
+
+    $('.show-recent-sources').on('click', function(event) {
+        $('.recent-sources').toggle();
+        $('.show-recent-sources i').each(function(index, node) {
+            if ($(this).hasClass('icon-double-angle-right')) {
+                $(this).attr('class', 'icon-double-angle-down');
+            } else {
+                $(this).attr('class', 'icon-double-angle-right');
+            }
+        });
+    });
 });
-</script>
+<?php $this->headScript()->captureEnd() ?>
+
+<h1>Welcome to www.etreedb.org
+
+    <a class="btn btn-default show-index" href="#">
+        <i class="icon-double-angle-down"></i>
+    </a>
+</h1>
+
+<pre class="index">A community driven open database of live concert information.
+
+etreedb also contains sources for shows in circulation.  These are the metadata for live concert recordings including the info file and checksums for each distribution.
+
+etreedb uses workspaces allowing anyone to create or edit anything within your workspace.  When you are satisfied with your content you will flag your workspace and your flagged changes will be reviewed by a privileged user then merged into the data trunk.  This is like source control for a database.  Every user of the site has their own workspace.  Each user only has one workspace.</pre>
+
+<div class="row">
+    <div class="span12">
+        <h2>
+            Recently Added Performances
+            <a class="btn btn-default show-recent-performances" href="#">
+                <i class="icon-double-angle-right"></i>
+            </a>
+        </h2>
+
+        <div style="display: none;" class="recent-performances">
+            <?= $this->listPerformances($this->performances); ?>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <h2>
+            Recently Added Sources
+            <a class="btn btn-default show-recent-sources" href="#">
+                <i class="icon-double-angle-right"></i>
+            </a>
+        </h2>
+
+        <div style="display: none;" class="recent-sources">
+            <?php //$this->listSources($this->sources); ?>
+        </div>
+    </div>
+</div>
