@@ -1,7 +1,9 @@
 <?php
 
 namespace Db\Entity\Field;
+
 use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 trait Name
 {

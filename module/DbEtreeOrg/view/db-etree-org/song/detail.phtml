@@ -16,7 +16,15 @@
         if ($this->song->getBand()) {
     ?>
         <div class="h2">
-            <a class="btn btn-info" href="/band/detail?id=<?= $this->song->getBand()->getId(); ?>">
+            <a class="btn btn-info" href="<?=
+                $this->url('default',
+                    array(
+                        'controller' => 'band',
+                        'action' => 'detail',
+                        'id' => $this->song->getBand()->getId(),
+                    )
+                );
+            ?>">
                 <i class="icon-cogs"></i>
             </a>
             <?= $this->escapeHtml($this->song->getBand()->getName()); ?>
@@ -65,14 +73,32 @@
 
    <div class="tab-pane <?php if (!$this->song->getPerformances()) echo 'active'; ?>" id="comments">
         <ul class="nav nav-pills">
-            <?= $this->createComment($this->song->getId(), 'Db\Entity\Song', '/song/detail?id=' . $this->song->getId()); ?>
+            <?= $this->createComment($this->song->getId(),
+                'Db\Entity\Song',
+                $this->url('default',
+                    array(
+                        'controller' => 'song',
+                        'action' => 'detail',
+                        'id' => $this->song->getId(),
+                    )
+                ) . '#comments'
+            );?>
         </ul>
 
         <?= $this->listComments($this->song->getComments()); ?>
     </div>
 
     <div class="tab-pane" id="links">
-        <?= $this->createLink($this->song->getId(), 'Db\Entity\Song', '/song/detail?id=' . $this->song->getId()); ?>
+        <?= $this->createLink($this->song->getId(),
+            'Db\Entity\Song',
+            $this->url('default',
+                array(
+                    'controller' => 'song',
+                    'action' => 'detail',
+                    'id' => $this->song->getId(),
+                )
+            ) . '#links'
+        );?>
 
         <?= $this->listLinks($this->song->getLinks()); ?>
     </div>
