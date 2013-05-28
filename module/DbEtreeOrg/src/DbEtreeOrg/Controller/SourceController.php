@@ -13,7 +13,41 @@ class SourceController extends AbstractActionController
 {
     public function indexAction()
     {
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $sources = $em->getRepository('Db\Entity\Source')->findBy(array(), array('id' => 'desc'), 30);
+
         return array(
+            'sources' => $sources,
+        );
+    }
+
+    public function bandAction()
+    {
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        $bandId = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $year = (int)$this->getEvent()->getRouteMatch()->getParam('year');
+
+        $band = $em->getRepository('Db\Entity\Band')->find($bandId);
+        if (!$bandId or !$band) {
+            return $this->plugin('redirect')->toRoute('default', array(
+                'controller' => 'source',
+                'action' => 'index',
+            ));
+        }
+
+        // Is the year valid?
+        if ($year < 1877 or $year > date('Y')) $year = 0;
+
+        if (!$year) $year = $em->getRepository('Db\Entity\Band')->getLatestYear($band);
+        $sources = $em->getRepository('Db\Entity\Source')->findByBandYear($band, $year);
+        $years = $em->getRepository('Db\Entity\Source')->findAllYearsByBand($band);
+
+        return array(
+            'band' => $band,
+            'year' => $year,
+            'years' => $years,
+            'sources' => $sources,
         );
     }
 

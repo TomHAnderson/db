@@ -9,6 +9,8 @@ $(function() {
                 $(this).attr('class', 'icon-double-angle-right');
             }
         });
+
+        return false;
     });
 
     $('.show-recent-performances').on('click', function(event) {
@@ -20,6 +22,8 @@ $(function() {
                 $(this).attr('class', 'icon-double-angle-right');
             }
         });
+
+        return false;
     });
 
     $('.show-recent-sources').on('click', function(event) {
@@ -31,11 +35,12 @@ $(function() {
                 $(this).attr('class', 'icon-double-angle-right');
             }
         });
+        return false;
     });
 });
 <?php $this->headScript()->captureEnd() ?>
 
-<h1>Welcome to www.etreedb.org
+<h1>Welcome to etreedb
 
     <a class="btn btn-default show-index" href="#">
         <i class="icon-double-angle-down"></i>
@@ -73,7 +78,9 @@ etreedb uses workspaces allowing anyone to create or edit anything within your w
         </h2>
 
         <div style="display: none;" class="recent-sources">
-            <?php //$this->listSources($this->sources); ?>
+            <?=
+            $this->partial('db-etree-org/partial/sources.phtml', array('sources' => $this->sources));
+            ?>
         </div>
     </div>
 </div>

@@ -1,11 +1,11 @@
 <?php
+
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    , Doctrine\Common\Collections\ArrayCollection
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")

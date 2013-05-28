@@ -14,9 +14,12 @@ class IndexController extends AbstractActionController
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
         $performances = $em->getRepository('Db\Entity\Performance')->findBy(array(), array('id' => 'desc'), 10);
+        $sources = $em->getRepository('Db\Entity\Source')->findBy(array(), array('id' => 'desc'), 10);
+
 
         return array(
             'performances' => $performances,
+            'sources' => $sources,
         );
     }
 

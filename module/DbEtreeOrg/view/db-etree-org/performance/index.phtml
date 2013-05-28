@@ -3,4 +3,4 @@
     Performances
 </div>
 
-<?= $this->listPerformances($this->performances); ?>
+<?= $this->partial('db-etree-org/partial/performances', array('performances' => $this->performances)); ?>

@@ -1,0 +1,75 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Source
+            </th>
+            <th>
+                Performance
+            </th>
+            <th>
+                Band
+            </th>
+            <th>
+                Venue
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+<?php
+foreach ($this->sources as $source) {
+?>
+<tr>
+    <td>
+        <a class="btn btn-info" href="<?=
+            $this->url('default', array(
+                'controller' => 'source',
+                'action' => 'detail',
+                'id' => $source->getId(),
+            )); ?>">
+            <i class="icon-headphones"></i>
+        </a>
+        <?= $this->escapeHtml($source->getName()); ?>
+    </td>
+
+
+    <td>
+        <a class="btn btn-info" href="/source/detail/<?= $source->getId(); ?>">
+            <i class="icon-magic"></i>
+        </a>
+        <?php
+        if ($source->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+            echo $this->escapeHtml($source->getPerformance()->getPerformanceDateAt()->format('Y-m-d'));
+        } else {
+            echo $this->escapeHtml($source->getPerformance()->getPerformanceDate());
+        }
+        ?>
+
+        <?= $this->escapeHtml($source->getPerformance()->getName()); ?>
+    </td>
+
+    <td>
+        <a class="btn btn-info" href="/band/detail/<?= $source->getPerformance()->getLineup()->getBand()->getId(); ?>">
+            <i class="icon-cogs"></i>
+        </a>
+
+        <?= $this->escapeHtml($source->getPerformance()->getLineup()->getBand()->getName()); ?>
+    </td>
+
+    <td class="span3">
+        <a class="btn btn-info" href="/venue/detail/<?= $source->getPerformance()->getVenue()->getId(); ?>">
+            <i class="icon-map-marker"></i>
+        </a>
+
+        <?= $this->escapeHtml($source->getPerformance()->getVenue()->getName()); ?>
+    </td>
+</tr>
+
+
+<?php
+}
+?>
+
+    </tbody>
+</table>

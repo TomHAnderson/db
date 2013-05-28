@@ -1,0 +1,59 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Performance
+            </th>
+            <th>
+                Band
+            </th>
+            <th>
+                Venue
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+<?php
+foreach ($this->performances as $performance) {
+?>
+<tr>
+    <td>
+        <a class="btn btn-info" href="/performance/detail/<?= $performance->getId(); ?>">
+            <i class="icon-magic"></i>
+        </a>
+        <?php
+        if ($performance->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
+            echo $this->escapeHtml($performance->getPerformanceDateAt()->format('Y-m-d'));
+        } else {
+            echo $this->escapeHtml($performance->getPerformanceDate());
+        }
+        ?>
+
+        <?= $this->escapeHtml($performance->getName()); ?>
+    </td>
+
+    <td>
+        <a class="btn btn-info" href="/band/detail/<?= $performance->getLineup()->getBand()->getId(); ?>">
+            <i class="icon-cogs"></i>
+        </a>
+
+        <?= $this->escapeHtml($performance->getLineup()->getBand()->getName()); ?>
+    </td>
+
+    <td class="span3">
+        <a class="btn btn-info" href="/venue/detail/<?= $performance->getVenue()->getId(); ?>">
+            <i class="icon-map-marker"></i>
+        </a>
+
+        <?= $this->escapeHtml($performance->getVenue()->getName()); ?>
+    </td>
+</tr>
+
+
+<?php
+}
+?>
+
+</tbody>
+</table>

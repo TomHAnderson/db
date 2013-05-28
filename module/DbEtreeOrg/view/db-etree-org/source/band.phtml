@@ -1,0 +1,40 @@
+<div class="h1">
+    <i class="icon-headphones"></i>
+    Sources
+
+    <div class="h2">
+        <a class="btn btn-info" href="<?=
+            $this->url('default', array(
+                'controller' => 'band',
+                'action' => 'detail',
+                'id' => $band->getId(),
+            ));
+        ?>">
+            <i class="icon icon-cogs"></i>
+        </a>
+        <?= $this->escapeHtml($band->getName()); ?>
+    </div>
+</div>
+
+<div class="row">
+<?php
+foreach ($this->years as $y) {
+?>
+    <div class="span1">
+        <?php if ($y == $this->year) echo '<strong>'; ?>
+        <a class="btn btn-default" href="<?=
+            $this->url('sourceByBandYear', array(
+                'id' => $band->getId(),
+                'year' => $y,
+            ));
+        ?>">
+            <?= $y; ?>
+        </a>
+        <?php if ($y == $this->year) echo '</strong>'; ?>
+   </div>
+<?php
+}
+?>
+</div>
+
+<?= $this->partial('db-etree-org/partial/sources', array('sources' => $this->sources)); ?>

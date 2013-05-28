@@ -90,6 +90,15 @@ if (sizeof($jambase->event)) {
     </li>
 
     <li class="">
+        <a href="<?=
+            $this->url('sourceByBandYear', array(
+                'id' => $this->band->getId(),
+            )); ?>">
+            Sources
+        </a>
+    </li>
+
+    <li class="">
         <a href="#lineups" data-toggle="tab">
             Lineups
         </a>
@@ -223,7 +232,11 @@ if (sizeof($jambase->event)) {
     </div>
 
    <div class="tab-pane" id="performances">
-        <?= $this->listPerformances($this->band->getPerformances()); ?>
+        <?= $this->partial('db-etree-org/partial/performances', array('performances' => $this->band->getPerformances())); ?>
+    </div>
+
+    <div class="tab-pane" id="sources">
+        Sources
     </div>
 
     <div class="tab-pane" id="lineups">

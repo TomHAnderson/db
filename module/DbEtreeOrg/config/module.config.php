@@ -43,6 +43,17 @@ return array(
                 ),
             ),
 
+            'sourceByBandYear' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/source/band[/:id][/:year]',
+                    'defaults' => array(
+                        'controller' => 'source',
+                        'action'     => 'band',
+                    ),
+                ),
+            ),
+
             'default' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
@@ -127,7 +138,6 @@ return array(
             'inputBand' => 'DbEtreeOrg\View\Helper\InputBand',
             'inputSong' => 'DbEtreeOrg\View\Helper\InputSong',
 
-            'listPerformances' => 'DbEtreeOrg\View\Helper\ListPerformances',
             'listComments' => 'DbEtreeOrg\View\Helper\ListComments',
             'listLinks' => 'DbEtreeOrg\View\Helper\ListLinks',
 
