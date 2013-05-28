@@ -63,7 +63,9 @@ etreedb uses workspaces allowing anyone to create or edit anything within your w
         </h2>
 
         <div style="display: none;" class="recent-performances">
-            <?= $this->listPerformances($this->performances); ?>
+            <?=
+                $this->partial('db-etree-org/partial/performances', array('performances' => $this->performances));
+            ?>
         </div>
     </div>
 </div>
@@ -79,7 +81,7 @@ etreedb uses workspaces allowing anyone to create or edit anything within your w
 
         <div style="display: none;" class="recent-sources">
             <?=
-            $this->partial('db-etree-org/partial/sources.phtml', array('sources' => $this->sources));
+            $this->partial('db-etree-org/partial/sources', array('sources' => $this->sources));
             ?>
         </div>
     </div>
