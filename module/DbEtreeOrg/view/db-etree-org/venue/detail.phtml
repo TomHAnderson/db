@@ -89,7 +89,7 @@ if ($this->venue->getNote()) {
     if ($this->venue->getPerformances()) {
     ?>
         <div class="tab-pane active" id="performances">
-            <?= $this->listPerformances($this->venue->getPerformances()); ?>
+            <?= $this->partial('db-etree-org/partial/performances', array('performances' => $this->venue->getPerformances())); ?>
         </div>
     <?php
     }

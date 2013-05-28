@@ -137,8 +137,8 @@ if (sizeof($gracenote->RESPONSE->ALBUM)) {
     </div>
 
     <div class="tab-pane" id="performances">
-        <ul class="nav nav-pills">
-            <?= $this->listPerformances($this->performer->getPerformances()); ?>
+            <ul class="nav nav-pills">
+            <?= $this->partial('db-etree-org/partial/performances', array('performances' => $this->performer->getPerformances())); ?>
         </ul>
     </div>
 
