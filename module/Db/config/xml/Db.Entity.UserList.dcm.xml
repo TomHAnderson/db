@@ -7,7 +7,7 @@
     <field name="name" type="string" nullable="false"/>
     <field name="abbrev" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
-    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="lists">
+    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="lists" fetch="EAGER">
       <join-columns>
         <join-column name="user_id" referenced-column-name="id" nullable="false"/>
       </join-columns>

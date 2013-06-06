@@ -23,15 +23,12 @@ class SongController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $song = $em->getRepository('Db\Entity\Song')->find($id);
 
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $song = $em->getRepository('Db\Entity\Song')->find($id);
         if (!$song)
-            throw new \Exception("Performance Set $id not found");
+            return $this->plugin('redirect')->toUrl('/');
 
         $menu = $this->getServiceLocator()->get('menu');
         $menu->addRecent('songs', $song->getId());

@@ -18,6 +18,9 @@
         "doctrine/data-fixtures": "v1.0.0-ALPHA3",
         "doctrine/doctrine-module":"0.8.x@dev",
         "doctrine/doctrine-orm-module":"0.8.x@dev",
+        "doctrine/orm": "2.4.*@beta",
+        "doctrine/dbal": "2.4.x-dev",
+        "doctrine/common": "2.4.*@beta",
 
         "bjyoungblood/bjy-authorize":"dev-master",
 
@@ -34,7 +37,7 @@
 
         "umpirsky/country-list": "dev-master",
  
-        "keen-io/keen-io": "dev-master",
+        "keen-io/keen-io-tha": "dev-master",
         "kriswallsmith/buzz": "dev-master",
         "gracenote/gracenote": "dev-master",
         "jambase/jambase": "dev-master",

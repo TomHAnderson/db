@@ -8,12 +8,12 @@
     <field name="note" type="text" nullable="false"/>
     <field name="reply" type="text" nullable="true"/>
     <field name="createdAt" type="datetime" nullable="false"/>
-    <many-to-one field="from" target-entity="Db\Entity\User" inversed-by="feedbackFrom">
+    <many-to-one field="from" target-entity="Db\Entity\User" inversed-by="feedbackFrom" fetch="EAGER">
       <join-columns>
         <join-column name="fromUser_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="to" target-entity="Db\Entity\User" inversed-by="feedbackTo">
+    <many-to-one field="to" target-entity="Db\Entity\User" inversed-by="feedbackTo" fetch="EAGER">
       <join-columns>
         <join-column name="toUser_id" referenced-column-name="id" nullable="false"/>
       </join-columns>

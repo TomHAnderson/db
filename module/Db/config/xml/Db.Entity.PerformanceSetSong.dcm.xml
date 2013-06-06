@@ -8,12 +8,12 @@
     <field name="length" type="string" nullable="true"/>
     <field name="isSegue" type="boolean" nullable="true"/>
     <field name="sort" type="integer" nullable="false"/>
-    <many-to-one field="song" target-entity="Db\Entity\Song" inversed-by="performanceSetSongs">
+    <many-to-one field="song" target-entity="Db\Entity\Song" inversed-by="performanceSetSongs" fetch="EAGER">
       <join-columns>
         <join-column name="song_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="performanceSet" target-entity="Db\Entity\PerformanceSet" inversed-by="performanceSetSongs">
+    <many-to-one field="performanceSet" target-entity="Db\Entity\PerformanceSet" inversed-by="performanceSetSongs" fetch="EAGER">
       <join-columns>
         <join-column name="performanceSet_id" referenced-column-name="id" nullable="false"/>
       </join-columns>

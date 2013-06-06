@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xsi="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="Db\Entity\SourceComment" extends="AbstractComment">
-    <many-to-one field="source" target-entity="Db\Entity\Source" inversed-by="comments">
+    <many-to-one field="source" target-entity="Db\Entity\Source" inversed-by="comments" fetch="EAGER">
       <join-columns>
         <join-column name="source_id" referenced-column-name="id"/>
       </join-columns>

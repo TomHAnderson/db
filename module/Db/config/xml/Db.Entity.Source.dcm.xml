@@ -15,7 +15,7 @@
     <field name="discCountShn" type="integer" nullable="true"/>
     <field name="createdAt" type="datetime" nullable="false"/>
     <field name="circulatedAt" type="string" nullable="true"/>
-    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="sources">
+    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="sources" fetch="EAGER">
       <join-columns>
         <join-column name="performance_id" referenced-column-name="id" nullable="false"/>
       </join-columns>

@@ -7,7 +7,7 @@
     <field name="name" type="string" nullable="false"/>
     <field name="note" type="text" nullable="false"/>
     <field name="sort" type="integer" nullable="false"/>
-    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="performanceSets">
+    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="performanceSets" fetch="EAGER">
       <join-columns>
         <join-column name="performance_id" referenced-column-name="id" nullable="false"/>
       </join-columns>

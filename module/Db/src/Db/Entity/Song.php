@@ -50,9 +50,7 @@ class Song extends AbstractEntity {
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setLyrics(isset($data['lyrics']) ? $data['lyrics']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
-
-        // Set foreign entity relations directly
-        if (isset($data['band'])) $this->bandGroup = $data['band'];
+        $this->setBand(isset($data['band']) ? $data['band']: null);
     }
 
     public function getInputFilter()

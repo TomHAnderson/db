@@ -8,13 +8,13 @@
     <field name="nameNormalize" type="string" nullable="false"/>
     <field name="note" type="text" nullable="true"/>
     <field name="mbid" type="string" nullable="true"/>
-    <many-to-one field="bandGroup" target-entity="Db\Entity\BandGroup" inversed-by="bands">
+    <many-to-one field="bandGroup" target-entity="Db\Entity\BandGroup" inversed-by="bands" fetch="EAGER">
       <join-columns>
         <join-column name="bandGroup_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
     <one-to-many field="aliases" target-entity="Db\Entity\BandAlias" mapped-by="band"/>
-    <one-to-many field="lineups" target-entity="Db\Entity\Lineup" mapped-by="band"/>
+    <one-to-many field="lineups" target-entity="Db\Entity\Lineup" mapped-by="band" fetch="EAGER"/>
     <one-to-many field="songs" target-entity="Db\Entity\Song" mapped-by="band"/>
     <one-to-many field="links" target-entity="Db\Entity\BandLink" mapped-by="band"/>
     <one-to-many field="comments" target-entity="Db\Entity\BandComment" mapped-by="band"/>

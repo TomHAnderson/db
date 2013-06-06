@@ -10,6 +10,7 @@ use Zend\Mvc\MvcEvent
     , Gracenote\Service\Gracenote
     , Jambase\Service\Jambase
     , Echonest\Service\Echonest
+    , KeenIO\Service\KeenIO
     ;
 
 class Module
@@ -32,6 +33,7 @@ class Module
         Gracenote::configure($config['gracenote']['clientId'], $config['gracenote']['userId']);
         Jambase::configure($config['jambase']['apiKey']);
         Echonest::configure($config['echonest']['apiKey']);
+        KeenIO::configure($config['keen-io']['projectId'], $config['keen-io']['writeKey'], $config['keen-io']['readKey']);
     }
 
     public function getConfig()

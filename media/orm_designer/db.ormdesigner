@@ -16,9 +16,19 @@
     </entity>
     <association from="PerformerLineup" to="Performer" owner-alias="performerLineups" inverse-alias="performer" uuid="f01b5660-96bd-491f-ae39-3298e9980a3e">
       <association-field from="performer_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="PerformerLineup" to="Lineup" owner-alias="performerLineups" inverse-alias="lineup" uuid="73a1d1c2-c49d-48da-9cbf-62034634f974">
       <association-field from="lineup_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="PerformerPerformance" uuid="1a1ee0b8-55ba-4abf-9108-85dcdcdf75d0">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="8072a342-fcc8-467d-8cea-0f74565d5872"/>
@@ -35,9 +45,19 @@
     </entity>
     <association from="PerformerPerformance" to="Performance" owner-alias="performerPerformances" inverse-alias="performance" uuid="0712f5ef-eca0-460d-bbaa-4c07c2b10314">
       <association-field from="performance_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="PerformerPerformance" to="Performer" owner-alias="performerPerformances" inverse-alias="performer" uuid="3acc122b-66d1-4224-b360-5fb7781bbbd9">
       <association-field from="performer_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="PerformerAlias" uuid="53964b5e-51b2-4eaa-9c97-15ec096b3bcf">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="65011d1e-ac15-429d-9a6c-2a82b6eca3fd"/>
@@ -60,6 +80,9 @@
             </attribute>
           </attribute>
         </attribute>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
       </orm-attributes>
     </association>
     <entity name="Performance" uuid="dc854433-cfaa-4890-b913-ef302bb0d250">
@@ -79,12 +102,30 @@
     </entity>
     <association from="Performance" to="Venue" owner-alias="performances" inverse-alias="venue" uuid="c16ceb93-119c-4811-a171-fa7ae36864b8">
       <association-field from="venue_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+        <attribute name="side-inverse">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="Performance" to="Event" owner-alias="performances" inverse-alias="event" uuid="50a15d73-6118-43c0-907f-34a44b69aa8a">
       <association-field from="event_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="Performance" to="Lineup" owner-alias="performances" inverse-alias="lineup" uuid="7a6fda74-bbbf-4399-877d-16a5ccf3a711">
       <association-field from="lineup_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Venue" uuid="9e7fbb88-4860-492a-b01c-7e88c0769300">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="9f126215-974d-4725-827a-53d64dad7f92"/>
@@ -112,6 +153,11 @@
     </entity>
     <association from="Performer" to="User" owner-alias="performer" inverse-alias="user" uuid="b1b14245-ba6e-48f4-ba21-c01d58650b25">
       <association-field from="user_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Source" uuid="687e66f7-2707-4262-b22e-f5b98cbbe16b">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="86461eb9-f869-4d42-8eef-bc104823c507"/>
@@ -133,6 +179,11 @@
     </entity>
     <association from="Source" to="Performance" owner-alias="sources" inverse-alias="performance" uuid="a2c72590-97e7-4fb1-abff-34d77daa4a3d">
       <association-field from="performance_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Band" uuid="6e82ba04-ce37-484f-ba25-149030015036">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="328ad22f-f877-4449-a06f-a8238b47cb14"/>
@@ -147,6 +198,11 @@
     </entity>
     <association from="Band" to="BandGroup" owner-alias="bands" inverse-alias="bandGroup" uuid="5a298604-6995-4022-a80c-d42f8af762b6">
       <association-field from="bandGroup_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Event" description="A festival event is an occurance of a festival" uuid="5e5eed40-c20e-44b5-a239-358575cccdc3">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="b582bf05-c07d-4a97-9a83-ec8ee135cd11"/>
@@ -163,6 +219,11 @@
     </entity>
     <association from="Event" to="Producer" owner-alias="events" inverse-alias="producer" uuid="7d71202d-5a5f-4baf-a2cb-1bf1d6b0325a">
       <association-field from="producer_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Checksum" uuid="ac9f2726-6f28-4600-8176-9fbea28acfc7">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="5c41d5bd-d4cf-4be4-ba1f-c0208670f5f8"/>
@@ -175,6 +236,11 @@
     </entity>
     <association from="Checksum" to="Source" owner-alias="checksums" inverse-alias="source" uuid="68ad424c-ee40-4b79-8cf6-a43e71b53ddd">
       <association-field from="source_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="BandAlias" uuid="1e57e75d-8392-4bf9-bbc8-0f2ac702c74b">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="77b8de49-2f81-435f-b83a-71e41b9133a0"/>
@@ -188,6 +254,11 @@
     </entity>
     <association from="BandAlias" to="Band" owner-alias="aliases" inverse-alias="band" uuid="06c521a4-df8e-438a-b214-0672351a82b6">
       <association-field from="band_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Producer" uuid="99fcccf0-d144-4dd1-bbd2-f0aca7e96f8b">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="7e48f66c-1a00-4c80-9759-8b449a5bae2a"/>
@@ -214,9 +285,15 @@
     <many-to-many mn-entity="VenueToVenueGroup" uuid="ca50dc76-50c1-4b86-8500-8bc7187958bd">
       <many-to-many-entity name="Venue" owning-side="true" alias="venues" uuid="c43e658e-d744-4766-8ae0-ab74fa8af1d7">
         <many-to-many-field from="venue_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
       <many-to-many-entity name="VenueGroup" owning-side="false" alias="venueGroups" uuid="316bdaba-aed1-45bf-b714-d3e655815eb0">
         <many-to-many-field from="venueGroup_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
     </many-to-many>
     <entity name="Lineup" uuid="0288b513-9531-454a-bc91-5f02c7d49f45">
@@ -231,6 +308,14 @@
     </entity>
     <association from="Lineup" to="Band" owner-alias="lineups" inverse-alias="band" uuid="5ef988c5-bb5c-4236-800c-804e598f8b3f">
       <association-field from="band_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+        <attribute name="side-inverse">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Song" uuid="6903266c-5c12-423d-8145-e32fe38258e9">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="3be7d9be-e963-4755-904f-13d9f08aeb0f"/>
@@ -246,6 +331,11 @@
     </entity>
     <association from="Song" to="Band" owner-alias="songs" inverse-alias="band" uuid="5c53322a-3c77-4d30-b605-3b68132d0b19">
       <association-field from="band_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="PerformanceSetSong" description="s" uuid="4cae9159-3783-4e82-9afc-b16f6f6a826b">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="097abc51-8873-4f03-a7fa-d49f545bff3c"/>
@@ -261,6 +351,11 @@
     </entity>
     <association from="PerformanceSetSong" to="Song" owner-alias="performanceSetSongs" inverse-alias="song" uuid="7ea7f4b5-d23f-4cfc-a3e8-aab1d06b3a4d">
       <association-field from="song_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="PerformanceSetSong" to="PerformanceSet" owner-alias="performanceSetSongs" inverse-alias="performanceSet" uuid="e954599d-410b-47b6-a464-e525ff15a3bc">
       <association-field from="performanceSet_id" to="id"/>
@@ -272,6 +367,9 @@
               <attribute name="field">sort</attribute>
             </attribute>
           </attribute>
+        </attribute>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
         </attribute>
       </orm-attributes>
     </association>
@@ -291,9 +389,15 @@
     <many-to-many mn-entity="UserBandGroup" uuid="3a35e688-9e22-4f33-bd10-5a016fcf2b10">
       <many-to-many-entity name="User" owning-side="true" alias="users" uuid="e2031257-85e7-4937-9dcd-a4b50ba65923">
         <many-to-many-field from="user_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
       <many-to-many-entity name="BandGroup" owning-side="false" alias="bandGroups" uuid="0f2ff2db-1cd1-4dcb-881b-d51f6092bfc8">
         <many-to-many-field from="bandGroup_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
     </many-to-many>
     <entity name="PerformanceSet" uuid="b0a5c9f7-a36e-4d07-8e1c-bf43a0560882">
@@ -316,6 +420,9 @@
               <attribute name="field">sort</attribute>
             </attribute>
           </attribute>
+        </attribute>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
         </attribute>
       </orm-attributes>
     </association>
@@ -369,9 +476,19 @@
     </entity>
     <association from="Attendance" to="User" owner-alias="attendance" inverse-alias="user" uuid="35af89d5-6581-406e-bb52-6be0aa4fbfb2">
       <association-field from="user_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="Attendance" to="Performance" owner-alias="attendees" inverse-alias="performance" uuid="e8eb80a6-0776-4176-84d7-a6a43f0b40d9">
       <association-field from="performance_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Friends" uuid="2ad447a5-1083-42b2-9cbc-57a4fe47bbb3">
       <field name="source_User_id" type="integer" required="true" uuid="a62a3b78-1b69-48e1-ba03-a7102f4017f3"/>
@@ -380,9 +497,15 @@
     <many-to-many mn-entity="Friends" uuid="d0a02e96-9f32-42ed-8d92-6e85ffeb8866">
       <many-to-many-entity name="User" owning-side="true" alias="reverseFriends" uuid="5f06bae6-df65-4ff0-8bfb-9980fe9b2f4d">
         <many-to-many-field from="source_User_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
       <many-to-many-entity name="User" owning-side="false" alias="friends" uuid="4532882c-d00c-4535-ae38-afff3ce41613">
         <many-to-many-field from="related_User_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
     </many-to-many>
     <entity name="UserPerformance" uuid="3d3181bb-c13e-46cc-8b20-8172c8d12154">
@@ -418,12 +541,27 @@
     </entity>
     <association from="UserPerformance" to="User" owner-alias="userPerformances" inverse-alias="user" uuid="779ac5c4-167a-42dc-95ed-eced2629339c">
       <association-field from="user_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="UserPerformance" to="Performance" owner-alias="userPerformances" inverse-alias="performance" uuid="12d9049b-6ae0-4c55-bc8d-c2719e614680">
       <association-field from="performance_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="UserPerformance" to="Source" owner-alias="userPerformances" inverse-alias="source" uuid="c8b868f5-7a7e-46e8-8e4f-a42a8c4eacfa">
       <association-field from="source_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Feedback" uuid="4bf4c0aa-d36f-428e-a616-5acc5a8aa717">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="cff1e3d9-1c4b-4719-b0f5-b0bc661c749b"/>
@@ -439,9 +577,19 @@
     </entity>
     <association from="Feedback" to="User" owner-alias="feedbackFrom" inverse-alias="from" uuid="13c35ea7-aa41-465f-9602-f0b477836b35">
       <association-field from="fromUser_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="Feedback" to="User" owner-alias="feedbackTo" inverse-alias="to" uuid="ad9ae0d3-e90a-444f-a08e-51c3a5eb2fdb">
       <association-field from="toUser_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Wanted" uuid="4864cc5f-572c-4f9b-bbfa-92522469cbf7">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="b9274679-9a54-4141-815e-e6bd8cc02386"/>
@@ -457,9 +605,19 @@
     </association>
     <association from="Wanted" to="Source" owner-alias="wantedBy" inverse-alias="source" uuid="7b541b84-a6de-43a4-8698-e7b4e9f56212">
       <association-field from="source_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="Wanted" to="Performance" owner-alias="wantedBy" inverse-alias="performance" uuid="63eca234-7c86-49f6-ba4c-262ca6f8fbc2">
       <association-field from="show_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="Mail" uuid="3cc86590-d96a-48d6-b575-5aad4941e6c5">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="4fdc5f23-1083-4c44-b099-1ab5c6092b9a"/>
@@ -474,9 +632,19 @@
     </entity>
     <association from="Mail" to="User" owner-alias="outbox" inverse-alias="from" uuid="1c6fa38e-ed34-4102-8971-550fbbb05b0e">
       <association-field from="fromUser_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <association from="Mail" to="User" owner-alias="inbox" inverse-alias="to" uuid="af1dc0f3-ed9d-47f2-9717-0a491ce02b98">
       <association-field from="toUser_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="UserList" uuid="e2f1b616-219b-4bd7-be91-dc04c98bd3a5">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="4da9ed3f-bd65-48d4-ae94-bdcf9603a646"/>
@@ -490,6 +658,11 @@
     </entity>
     <association from="UserList" to="User" owner-alias="lists" inverse-alias="user" uuid="5e03ea82-cfff-4c1e-8854-c966850ea809">
       <association-field from="user_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="UserPerformanceList" uuid="d794f911-287a-4ecc-ac5f-aadce68e5b30">
       <field name="listGroup_id" type="integer" required="true" uuid="bebf9c00-3fc3-4d56-8ae5-af351fac98c1"/>
@@ -498,9 +671,15 @@
     <many-to-many mn-entity="UserPerformanceList" uuid="e11f6ab5-99f9-4635-a91a-e5ff60b77b5d">
       <many-to-many-entity name="UserList" owning-side="true" alias="lists" uuid="ef860d5e-b5ad-48f8-a717-d4ae9d742826">
         <many-to-many-field from="listGroup_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
       <many-to-many-entity name="UserPerformance" owning-side="false" alias="userPerformances" uuid="44d51858-40ba-4043-a3bb-028a8c2ee932">
         <many-to-many-field from="userPerformance_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
     </many-to-many>
     <entity name="UserPerformanceField" uuid="fb8433d5-2eb9-4f0b-9f5c-9161e83e3728">
@@ -517,9 +696,15 @@
     <many-to-many mn-entity="UserPerformanceFieldConfig" uuid="3ddb1eb4-b957-442e-8005-c83e142e1a3f">
       <many-to-many-entity name="User" owning-side="true" alias="users" uuid="f3c1d6c9-8ed3-4833-a5bf-bada34d5f274">
         <many-to-many-field from="user_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
       <many-to-many-entity name="UserPerformanceField" owning-side="false" alias="fieldConfig" uuid="a8719c37-aaa2-4aac-ba75-1a50f78b63a9">
         <many-to-many-field from="userPerformanceField_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
     </many-to-many>
     <region caption="User" uuid="8f69e7ba-888b-4cc0-b80a-fea1e0da2238">
@@ -548,9 +733,15 @@
     <many-to-many mn-entity="UserToUserRole" uuid="906f5fd2-9900-47ca-bf62-b86e9a0dba30">
       <many-to-many-entity name="User" owning-side="true" alias="users" uuid="ff277f10-0d43-4ca3-9d97-f0708309e04d">
         <many-to-many-field from="user_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
       <many-to-many-entity name="UserRole" owning-side="false" alias="userRoles" uuid="7d4614a6-2bbd-458b-850e-4d952e65ab3f">
         <many-to-many-field from="user_role_id" to="id"/>
+        <orm-attributes>
+          <attribute name="fetch">EAGER</attribute>
+        </orm-attributes>
       </many-to-many-entity>
     </many-to-many>
     <entity name="UserRole" uuid="9c24a6ee-23d6-4afa-9039-1f663f1c176a">
@@ -568,6 +759,11 @@
     </entity>
     <association from="UserMeta" to="User" owner-alias="userMeta" inverse-alias="user" uuid="3bbdc063-8e50-40ce-a201-2987db43e666">
       <association-field from="user_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="User" uuid="59a80c15-1576-4c7a-8a76-0acdcb9b5e54">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="793c6cf2-2702-41f8-9a42-14aa03038198"/>
@@ -586,10 +782,10 @@
       </orm-attributes>
     </entity>
     <region caption="User" uuid="dc3874d1-08ad-4106-95bc-e52e07edeab3">
+      <entity-ref name="UserToUserRole"/>
       <entity-ref name="UserRole"/>
       <entity-ref name="UserMeta"/>
       <entity-ref name="User"/>
-      <entity-ref name="UserToUserRole"/>
     </region>
     <orm-attributes>
       <attribute name="namespace">Db\Entity</attribute>
@@ -611,6 +807,11 @@
     </entity>
     <association from="VenueLink" to="Venue" owner-alias="links" inverse-alias="venue" uuid="ad7bce74-bffe-46f6-8cfa-267bb23d9655">
       <association-field from="venue_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="SourceLink" uuid="196b1120-9de8-406b-a18b-209b92301d05">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="3203d9b1-20e2-4036-aabb-8e0009b9573d"/>
@@ -619,6 +820,11 @@
     </entity>
     <association from="SourceLink" to="Source" owner-alias="links" inverse-alias="source" uuid="4a171c01-8a95-4cd0-938f-ce5fd9fa1a46">
       <association-field from="source_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="PerformanceLink" uuid="e63050c6-78fe-4e6e-b4bb-44f031943f51">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="a8fb3a95-2b58-4b67-bc86-231c2fed36a1"/>
@@ -627,6 +833,11 @@
     </entity>
     <association from="PerformanceLink" to="Performance" owner-alias="links" inverse-alias="performance" uuid="e58aa347-563a-41ba-8a08-022f909fdf51">
       <association-field from="performance_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="PerformerLink" uuid="077f4a47-5b70-46f5-bb24-53b355f15ec8">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="fd2bbcc2-2097-4156-aa62-369d3136629c"/>
@@ -635,6 +846,11 @@
     </entity>
     <association from="PerformerLink" to="Performer" owner-alias="links" inverse-alias="performer" uuid="cc0e540b-a3fc-4a78-99ac-57cfdcaca938">
       <association-field from="performer_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="EventLink" uuid="f2ef5068-c394-49f2-9274-ea9f9fb38649">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="c3813c8b-5d0f-4e34-9de1-407ec673d6bd"/>
@@ -643,6 +859,11 @@
     </entity>
     <association from="EventLink" to="Event" owner-alias="links" inverse-alias="event" uuid="0733e495-e674-4cac-a3cb-07346e488ace">
       <association-field from="event_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="AbstractComment" uuid="6f4aeefc-a0c7-4aa7-8d07-633fd28fc044">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="bd23da19-6399-4015-a249-b3236062b3a8"/>
@@ -658,6 +879,11 @@
     </entity>
     <association from="AbstractComment" to="User" owner-alias="comments" inverse-alias="user" uuid="a6bcb53a-0137-410d-a1d5-0cb54dc3b703">
       <association-field from="user_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="ProducerLink" uuid="d3030348-9746-4be7-9ec6-e8206e98f498">
       <field name="id" type="text" primary="true" auto-increment="true" uuid="f69c365a-8a3d-4595-81d5-5469a3ba9b12"/>
@@ -666,6 +892,11 @@
     </entity>
     <association from="ProducerLink" to="Producer" owner-alias="links" inverse-alias="producer" uuid="136b6eba-dce9-4391-88d5-3186fe322a4a">
       <association-field from="producer_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="PerformanceComment" uuid="789f89eb-cafa-4e95-9845-cea7170627e4">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="fd81867c-6198-4980-aa2e-f65119604ec5"/>
@@ -674,6 +905,11 @@
     </entity>
     <association from="PerformanceComment" to="Performance" owner-alias="comments" inverse-alias="performance" uuid="e5638835-68c7-4900-b753-d984944d6225">
       <association-field from="performance_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="SourceComment" uuid="4fa7e45c-16f5-488d-b5ee-36000f375c4e">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="36e78ed5-907b-4023-a031-af9cbb9c3813"/>
@@ -682,6 +918,11 @@
     </entity>
     <association from="SourceComment" to="Source" owner-alias="comments" inverse-alias="source" uuid="5b41b03a-1296-4025-8447-067288f64858">
       <association-field from="source_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="VenueGroupLink" uuid="e5aa80ed-8894-4d80-a064-b37287782851">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="05130dbc-8deb-4830-9b63-dda7160f3fca"/>
@@ -690,6 +931,11 @@
     </entity>
     <association from="VenueGroupLink" to="VenueGroup" owner-alias="links" inverse-alias="venueGroup" uuid="099ca87f-13e2-48f1-9944-eaf7bb47e3df">
       <association-field from="venueGroup_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="BandLink" uuid="186e33a8-75f4-40a8-84d0-bafeb79203de">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="ef840679-3f6f-4d1b-aee4-9b671275fc24"/>
@@ -698,6 +944,11 @@
     </entity>
     <association from="BandLink" to="Band" owner-alias="links" inverse-alias="band" uuid="f2c14db6-2f95-4b88-82e2-08434097ba92">
       <association-field from="band_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="SongLink" uuid="93579d77-9cf7-4d37-baef-58ebafc386da">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="7c9bc991-faa4-4bbf-8019-b1a0d3f83cb4"/>
@@ -706,6 +957,11 @@
     </entity>
     <association from="SongLink" to="Song" owner-alias="links" inverse-alias="song" uuid="24be276e-2e49-4777-bd49-684621e1dc05">
       <association-field from="song_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="PerformerComment" uuid="5960a44a-781b-42e4-be06-60a106c0abf9">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="efa839dd-0d5a-4719-8384-4d63954c9281"/>
@@ -714,6 +970,11 @@
     </entity>
     <association from="PerformerComment" to="Performer" owner-alias="comments" inverse-alias="performer" uuid="dbc7b8f0-bbca-48da-8d5c-384e03404912">
       <association-field from="performer_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="BandComment" uuid="0422e7df-736b-47b5-86f2-644bad5a59b3">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="9f6102d1-135b-4d60-8c2e-9c67bfcd1a19"/>
@@ -722,6 +983,11 @@
     </entity>
     <association from="BandComment" to="Band" owner-alias="comments" inverse-alias="band" uuid="3bd1e05b-fdb0-4821-aa2c-78c06d08efe3">
       <association-field from="band_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="VenueComment" uuid="bbe69f06-7ab8-4a84-95b3-4a63d147bd44">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="40fdbfd2-acad-46fa-b1d9-268a7e99cc25"/>
@@ -739,6 +1005,9 @@
             </attribute>
           </attribute>
         </attribute>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
       </orm-attributes>
     </association>
     <entity name="EventComment" uuid="84a8d9b9-d842-414b-8220-ad30a48fc440">
@@ -748,6 +1017,11 @@
     </entity>
     <association from="EventComment" to="Event" owner-alias="comments" inverse-alias="event" uuid="176656c7-fc2b-4a39-ab91-9251119dbd09">
       <association-field from="event_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="SongComment" uuid="a13ba289-ccbe-4cb0-8565-7706df3ee82f">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="18f4000c-2431-4655-89ac-86c90d218334"/>
@@ -756,6 +1030,11 @@
     </entity>
     <association from="SongComment" to="Song" owner-alias="comments" inverse-alias="song" uuid="c7646cb9-cc39-4531-ac0e-ee79509c9c99">
       <association-field from="song_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <entity name="LineupComment" uuid="68cf3687-882b-4cbb-b942-389514edfb4e">
       <field name="id" type="integer" primary="true" auto-increment="true" uuid="54d11400-c34a-4533-902c-223ce3b5e91e"/>
@@ -764,6 +1043,11 @@
     </entity>
     <association from="LineupComment" to="Lineup" owner-alias="comments" inverse-alias="lineup" uuid="1bcf942f-4c7d-4a6b-82a4-a6c6f7c8e947">
       <association-field from="lineup_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <region caption="Comment" uuid="3be2c6d7-da43-4462-a925-fa5e605f4bc5">
       <entity-ref name="AbstractComment"/>
@@ -806,6 +1090,11 @@
     </entity>
     <association from="PendingQueue" to="User" owner-alias="pendingQueue" inverse-alias="user" uuid="11604d93-715c-4fde-8021-646e81fad0fc">
       <association-field from="user_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-owning">
+          <attribute name="fetch">EAGER</attribute>
+        </attribute>
+      </orm-attributes>
     </association>
     <region caption="Peer Review" uuid="1469fa2f-aec0-4784-8e31-92b01f10aa34">
       <entity-ref name="PendingQueue"/>
@@ -916,6 +1205,7 @@
     <association uuid="a2c72590-97e7-4fb1-abff-34d77daa4a3d" splitted="1"/>
     <entity uuid="a3acf0be-94de-4f9b-ba75-0ab0ed41f92a" position-x="217" position-y="42" size-x="0" size-x2="109" size-y="0" size-y2="60"/>
     <association uuid="a6bcb53a-0137-410d-a1d5-0cb54dc3b703" splitted="1"/>
+    <many-to-many-association-entity uuid="a8719c37-aaa2-4aac-ba75-1a50f78b63a9" center-position-x="0" center-position-y="-1"/>
     <entity uuid="ac9f2726-6f28-4600-8176-9fbea28acfc7" position-x="228" position-y="164" size-x="0" size-x2="100" size-y="0" size-y2="73"/>
     <association uuid="ad7bce74-bffe-46f6-8cfa-267bb23d9655" splitted="1"/>
     <association uuid="ad9ae0d3-e90a-444f-a08e-51c3a5eb2fdb" splitted="1"/>

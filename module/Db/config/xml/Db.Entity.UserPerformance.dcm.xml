@@ -26,17 +26,17 @@
     <field name="attendance" type="string" nullable="true"/>
     <field name="taperName" type="string" nullable="true"/>
     <field name="micLocation" type="string" nullable="true"/>
-    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="userPerformances">
+    <many-to-one field="user" target-entity="Db\Entity\User" inversed-by="userPerformances" fetch="EAGER">
       <join-columns>
         <join-column name="user_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="userPerformances">
+    <many-to-one field="performance" target-entity="Db\Entity\Performance" inversed-by="userPerformances" fetch="EAGER">
       <join-columns>
         <join-column name="performance_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="source" target-entity="Db\Entity\Source" inversed-by="userPerformances">
+    <many-to-one field="source" target-entity="Db\Entity\Source" inversed-by="userPerformances" fetch="EAGER">
       <join-columns>
         <join-column name="source_id" referenced-column-name="id"/>
       </join-columns>
