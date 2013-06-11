@@ -1,7 +1,7 @@
 <a class="btn btn-info pull-right" href="<?=
-    $this->url('stuki-workspace/revision-entity',
+    $this->url('workspace/revision-entity',
         array(
-            'revisionEntityId' => $this->stukiCurrentRevisionEntity($this->entity)->getId()
+            'revisionEntityId' => $this->workspaceCurrentRevisionEntity($this->entity)->getId()
         )
     );
 ?>"><i class="icon-globe"></i></a>

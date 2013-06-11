@@ -1,13 +1,14 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Db\Entity\PerformanceSetSong as PerformanceSetSongEntity
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Filter\Normalize
-    , Zend\View\Model\JsonModel
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Db\Entity\PerformanceSetSong as PerformanceSetSongEntity;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Filter\Normalize;
+use Zend\View\Model\JsonModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class PerformanceSetSongController extends AbstractActionController
 {
@@ -24,7 +25,7 @@ class PerformanceSetSongController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performanceSetSong = $em->getRepository('Db\Entity\PerformanceSetSong')->find($id);
+        $performanceSetSong = Workspace::filter($em->getRepository('Db\Entity\PerformanceSetSong')->find($id));
 
         if (!$performanceSetSong)
             throw new \Exception("Performance Set Song $id not found");
@@ -45,8 +46,8 @@ class PerformanceSetSongController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $performanceSet = Workspace::filter($em->getRepository('Db\Entity\PerformanceSet')->find($id));
 
         $song = null;
 
@@ -56,7 +57,7 @@ class PerformanceSetSongController extends AbstractActionController
             $form->setInputFilter($performanceSetSong->getInputFilter());
 
             $songId = $this->getRequest()->getPost()->get('song_id');
-            if ($songId) $song = $em->getRepository('Db\Entity\Song')->find($songId);
+            if ($songId) $song = Workspace::filter($em->getRepository('Db\Entity\Song')->find($songId));
 
             if ($song and $form->isValid()) {
                 $data = $form->getData();
@@ -86,8 +87,8 @@ class PerformanceSetSongController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSetSong = $em->getRepository('Db\Entity\PerformanceSetSong')->find($id);
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $performanceSetSong = Workspace::filter($em->getRepository('Db\Entity\PerformanceSetSong')->find($id));
 
         if (!$performanceSetSong)
             throw new \Exception("Performance Song $id not found");
@@ -106,7 +107,7 @@ class PerformanceSetSongController extends AbstractActionController
                 $performanceSetSong->exchangeArray($form->getData());
 
                 $songId = $this->getRequest()->getPost()->get('song_id');
-                $song = $em->getRepository('Db\Entity\Song')->find($songId);
+                $song = Workspace::filter($em->getRepository('Db\Entity\Song')->find($songId));
                 $performanceSetSong->setSong($song);
 
                 $em->persist($song);
@@ -131,8 +132,8 @@ class PerformanceSetSongController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSetSong = $em->getRepository('Db\Entity\PerformanceSetSong')->find($id);
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $performanceSetSong = Workspace::filter($em->getRepository('Db\Entity\PerformanceSetSong')->find($id));
 
         if (!$performanceSetSong)
             return $this->plugin('redirect')->toUrl('/');

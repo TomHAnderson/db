@@ -2,20 +2,20 @@
 
 namespace DbEtreeOrg\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Db\Entity\Venue as VenueEntity
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Filter\Normalize
-    , Zend\View\Model\JsonModel
-    ;
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Db\Entity\Venue as VenueEntity;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Filter\Normalize;
+use Zend\View\Model\JsonModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class VenueController extends AbstractActionController
 {
     public function indexAction()
     {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $venues = $em->getRepository('Db\Entity\Venue')->findBy(array(), array('name' => 'ASC'));
+        $venues = Workspace::filter($em->getRepository('Db\Entity\Venue')->findBy(array(), array('name' => 'ASC')));
 
         return array(
             'venues' => $venues,
@@ -29,7 +29,7 @@ class VenueController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/venue');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
+        $venue = Workspace::filter($em->getRepository('Db\Entity\Venue')->find($id));
 
         if (!$venue)
             throw new \Exception("Venue $id not found");
@@ -64,14 +64,6 @@ class VenueController extends AbstractActionController
 
                 $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-
-                // begin collection testing
-                $venueGroup = new \Db\Entity\VenueGroup;
-                $venueGroup->setName('group name');
-
-                $venueGroup->getVenues()->add($venue);
-                $venue->getVenueGroups()->add($venueGroup);
-
                 $em->persist($venue);
                 $em->persist($venueGroup);
 
@@ -103,8 +95,8 @@ class VenueController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
+        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $venue = Workspace::filter($em->getRepository('Db\Entity\Venue')->find($id));
 
         if (!$venue)
             throw new \Exception("Venue $id not found");
@@ -145,29 +137,6 @@ class VenueController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
-        if (!$venue)
-            return $this->plugin('redirect')->toUrl('/');
-
-        if (!sizeof($venue->getPerformances())
-            and !sizeof($venue->getVenueGroups())
-            and !sizeof($venue->getLinks())
-            and !sizeof($venue->getComments()))
-        {
-            $menu = $this->getServiceLocator()->get('menu');
-            $menu->removeRecent('venues', $venue->getId());
-
-            $em->remove($venue);
-            $em->flush();
-        }
-
-        return $this->plugin('redirect')->toUrl('/');
     }
 
     public function searchJsonAction()
@@ -180,9 +149,9 @@ class VenueController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
+        $venues = Workspace::filter($em->getRepository('Db\Entity\Venue')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
-        ), array(), 20);
+        ), array(), 20));
 
         $return = array();
         $i = 0;

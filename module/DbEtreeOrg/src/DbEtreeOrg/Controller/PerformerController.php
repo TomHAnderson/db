@@ -1,20 +1,21 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Entity\Performer as PerformerEntity
-    , Db\Filter\Normalize
-    , Zend\View\Model\JsonModel
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Entity\Performer as PerformerEntity;
+use Db\Filter\Normalize;
+use Zend\View\Model\JsonModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class PerformerController extends AbstractActionController
 {
     public function indexAction()
     {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performers = $em->getRepository('Db\Entity\Performer')->findBy(array(), array('name' => 'ASC'));
+        $performers = Workspace::filter($em->getRepository('Db\Entity\Performer')->findBy(array(), array('name' => 'ASC')));
 
         return array(
             'performers' => $performers,
@@ -28,7 +29,7 @@ class PerformerController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/performer');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performer = $em->getRepository('Db\Entity\Performer')->find($id);
+        $performer = Workspace::filter($em->getRepository('Db\Entity\Performer')->find($id));
 
         if (!$performer)
             throw new \Exception("Performer $id not found");
@@ -83,8 +84,8 @@ class PerformerController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performer = $em->getRepository('Db\Entity\Performer')->find($id);
+        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $performer = Workspace::filter($em->getRepository('Db\Entity\Performer')->find($id));
 
         if (!$performer)
             throw new \Exception("Performer $id not found");
@@ -122,30 +123,6 @@ class PerformerController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performer = $em->getRepository('Db\Entity\Performer')->find($id);
-        if (!$performer)
-            return $this->plugin('redirect')->toUrl('/');
-
-        if (!sizeof($performer->getAliases())
-            and !sizeof($performer->getLineups())
-            and !sizeof($performer->getPerformances())
-            and !sizeof($performer->getLinks())
-            and !sizeof($performer->getComments()))
-        {
-            $menu = $this->getServiceLocator()->get('menu');
-            $menu->removeRecent('performers', $performer->getId());
-
-            $em->remove($performer);
-            $em->flush();
-        }
-
-        return $this->plugin('redirect')->toUrl('/');
     }
 
     public function searchJsonAction()
@@ -159,9 +136,9 @@ class PerformerController extends AbstractActionController
         $queryArray = array();
         $queryArray['nameNormalize'] = '%' . $query . '%';
 
-        $performers = $em->getRepository('Db\Entity\Performer')->findLike($queryArray);
+        $performers = Workspace::filter($em->getRepository('Db\Entity\Performer')->findLike($queryArray));
 
-        $aliases = $em->getRepository('Db\Entity\PerformerAlias')->findLike($queryArray, array(), 20);
+        $aliases = Workspace::filter($em->getRepository('Db\Entity\PerformerAlias')->findLike($queryArray, array(), 20));
 
         $return = array();
         $i = 0;

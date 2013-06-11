@@ -1,20 +1,20 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Db\Entity\Song as SongEntity
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Filter\Normalize
-    , Zend\View\Model\JsonModel
-    ;
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Db\Entity\Song as SongEntity;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Filter\Normalize;
+use Zend\View\Model\JsonModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class SongController extends AbstractActionController
 {
     public function indexAction()
     {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $songs = $em->getRepository('Db\Entity\Song')->findBy(array(), array('name' => 'ASC'));
+        $songs = Workspace::filter($em->getRepository('Db\Entity\Song')->findBy(array(), array('name' => 'ASC')));
 
         return array(
             'songs' => $songs,
@@ -26,7 +26,7 @@ class SongController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        $song = $em->getRepository('Db\Entity\Song')->find($id);
+        $song = Workspace::filter($em->getRepository('Db\Entity\Song')->find($id));
         if (!$song)
             return $this->plugin('redirect')->toUrl('/');
 
@@ -59,7 +59,7 @@ class SongController extends AbstractActionController
                 $song->exchangeArray($form->getData());
                 $bandId = $this->getRequest()->getPost()->get('band_id');
                 if ($bandId) {
-                    $band = $em->getRepository('Db\Entity\Band')->find($bandId);
+                    $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($bandId));
                     $song->setBand($band);
                 }
 
@@ -87,7 +87,7 @@ class SongController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $song = $em->getRepository('Db\Entity\Song')->find($id);
+        $song = Workspace::filter($em->getRepository('Db\Entity\Song')->find($id));
 
         if (!$song)
             throw new \Exception("Performance Set $id not found");
@@ -109,7 +109,7 @@ class SongController extends AbstractActionController
                 $song->exchangeArray($form->getData());
                 $bandId = $this->getRequest()->getPost()->get('band_id');
                 if ($bandId) {
-                    $band = $em->getRepository('Db\Entity\Band')->find($bandId);
+                    $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($bandId));
                     $song->setBand($band);
                 }
 
@@ -129,30 +129,6 @@ class SongController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
-        if (!$venue)
-            return $this->plugin('redirect')->toUrl('/');
-
-        if (!sizeof($venue->getPerformances())
-            and !sizeof($venue->getVenueGroups())
-            and !sizeof($venue->getLinks())
-            and !sizeof($venue->getComments()))
-        {
-
-            $menu = $this->getServiceLocator()->get('menu');
-            $menu->removeRecent('songs', $song->getId());
-
-            $em->remove($venue);
-            $em->flush();
-        }
-
-        return $this->plugin('redirect')->toUrl('/');
     }
 
     public function searchJsonAction()
@@ -164,9 +140,9 @@ class SongController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $songs = $em->getRepository('Db\Entity\Song')->findLike(array(
+        $songs = Workspace::filter($em->getRepository('Db\Entity\Song')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
-        ), array(), 20);
+        ), array(), 20));
 
         $return = array();
         $i = 0;

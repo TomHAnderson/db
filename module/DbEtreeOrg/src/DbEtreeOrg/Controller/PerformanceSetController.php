@@ -1,13 +1,14 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Db\Entity\PerformanceSet as PerformanceSetEntity
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Filter\Normalize
-    , Zend\View\Model\JsonModel
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Db\Entity\PerformanceSet as PerformanceSetEntity;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Filter\Normalize;
+use Zend\View\Model\JsonModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class PerformanceSetController extends AbstractActionController
 {
@@ -20,11 +21,13 @@ class PerformanceSetController extends AbstractActionController
     public function detailAction()
     {
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
+
+        if (!$id) {
             return $this->plugin('redirect')->toUrl('/venue');
+        }
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $performanceSet = Workspace::filter($em->getRepository('Db\Entity\PerformanceSet')->find($id));
 
         if (!$performanceSet)
             throw new \Exception("Performance Set $id not found");
@@ -46,7 +49,7 @@ class PerformanceSetController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
+        $performance = Workspace::filter($em->getRepository('Db\Entity\Performance')->find($id));
 
         if ($performance and $this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -80,8 +83,8 @@ class PerformanceSetController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $performanceSet = Workspace::filter($em->getRepository('Db\Entity\PerformanceSet')->find($id));
 
         if (!$performanceSet)
             throw new \Exception("Performance Set $id not found");
@@ -120,10 +123,12 @@ class PerformanceSetController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
-        if (!$venue)
+        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $venue = Workspace::filter($em->getRepository('Db\Entity\Venue')->find($id));
+
+        if (!$venue) {
             return $this->plugin('redirect')->toUrl('/');
+        }
 
         if (!sizeof($venue->getPerformances())
             and !sizeof($venue->getVenueGroups())
@@ -147,9 +152,9 @@ class PerformanceSetController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
+        $venues = Workspace::filter($em->getRepository('Db\Entity\Venue')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
-        ), array(), 20);
+        ), array(), 20));
 
         $return = array();
         $i = 0;
@@ -175,14 +180,14 @@ class PerformanceSetController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $performanceSet = Workspace::filter($em->getRepository('Db\Entity\PerformanceSet')->find($id));
 
         $sort = $this->getRequest()->getQuery()->get('sort');
 
         $sortOrder = 1;
         foreach (explode(',', $sort) as $key) {
             strtok($key, '_');
-            $performanceSong = $em->getRepository('Db\Entity\PerformanceSong')->find(strtok('_'));
+            $performanceSong = Workspace::filter($em->getRepository('Db\Entity\PerformanceSong')->find(strtok('_')));
             if ($performanceSong->getPerformanceSet() == $performanceSet) $performanceSong->setSort($sortOrder ++);
         }
 

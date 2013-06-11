@@ -1,11 +1,12 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Entity\PerformerAlias as PerformerAliasEntity
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Entity\PerformerAlias as PerformerAliasEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class PerformerAliasController extends AbstractActionController
 {
@@ -22,7 +23,7 @@ class PerformerAliasController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/performer-alias');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performerAlias = $em->getRepository('Db\Entity\PerformerAlias')->find($id);
+        $performerAlias = Workspace::filter($em->getRepository('Db\Entity\PerformerAlias')->find($id));
 
         if (!$performerAlias)
             throw new \Exception("PerformerAlias $id not found");
@@ -46,8 +47,8 @@ class PerformerAliasController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performer = $em->getRepository('Db\Entity\Performer')->find($id);
+        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $performer = Workspace::filter($em->getRepository('Db\Entity\Performer')->find($id));
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -84,8 +85,8 @@ class PerformerAliasController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performerAlias = $em->getRepository('Db\Entity\PerformerAlias')->find($id);
+        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $performerAlias = Workflow::filter($em->getRepository('Db\Entity\PerformerAlias')->find($id));
 
         if (!$performerAlias)
             throw new \Exception("PerformerAlias $id not found");
@@ -127,10 +128,12 @@ class PerformerAliasController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performerAlias = $em->getRepository('Db\Entity\PerformerAlias')->find($id);
-        if (!$performerAlias)
+        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $performerAlias = Workspace::filter($em->getRepository('Db\Entity\PerformerAlias')->find($id));
+
+        if (!$performerAlias) {
             return $this->plugin('redirect')->toUrl('/');
+        }
 
         $menu = $this->getServiceLocator()->get('menu');
         $menu->addRecent('performerAlias', $performerAlias->getId());

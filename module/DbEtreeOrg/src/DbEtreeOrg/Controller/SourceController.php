@@ -1,20 +1,21 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Db\Entity\Source as SourceEntity
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Filter\Normalize
-    , Zend\View\Model\JsonModel
-    , Zend\View\Model\ViewModel
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Db\Entity\Source as SourceEntity;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Filter\Normalize;
+use Zend\View\Model\JsonModel;
+use Zend\View\Model\ViewModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class SourceController extends AbstractActionController
 {
     public function indexAction()
     {
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $sources = $em->getRepository('Db\Entity\Source')->findBy(array(), array('id' => 'desc'), 30);
+        $sources = Workspace::filter($em->getRepository('Db\Entity\Source')->findBy(array(), array('id' => 'desc'), 30));
 
         return array(
             'sources' => $sources,
@@ -28,7 +29,7 @@ class SourceController extends AbstractActionController
         $bandId = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         $year = (int)$this->getEvent()->getRouteMatch()->getParam('year');
 
-        $band = $em->getRepository('Db\Entity\Band')->find($bandId);
+        $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($bandId));
         if (!$bandId or !$band) {
             return $this->plugin('redirect')->toRoute('default', array(
                 'controller' => 'source',
@@ -40,7 +41,7 @@ class SourceController extends AbstractActionController
         if ($year < 1877 or $year > date('Y')) $year = 0;
 
         if (!$year) $year = $em->getRepository('Db\Entity\Band')->getLatestYear($band);
-        $sources = $em->getRepository('Db\Entity\Source')->findByBandYear($band, $year);
+        $sources = Workspace::filter($em->getRepository('Db\Entity\Source')->findByBandYear($band, $year));
         $years = $em->getRepository('Db\Entity\Source')->findAllYearsByBand($band);
 
         return array(
@@ -58,7 +59,7 @@ class SourceController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/source');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $source = $em->getRepository('Db\Entity\Source')->find($id);
+        $source = Workspace::filter($em->getRepository('Db\Entity\Source')->find($id));
 
         if (!$source)
             throw new \Exception("Source $id not found");
@@ -83,7 +84,7 @@ class SourceController extends AbstractActionController
         $form = $builder->createForm($source);
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
+        $performance = Workspace::filter($em->getRepository('Db\Entity\Performance')->find($id));
 
         if (!$performance)
             throw new \Exception("Performance $id not found");
@@ -118,8 +119,8 @@ class SourceController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $source = $em->getRepository('Db\Entity\Source')->find($id);
+        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $source = Workspace::filter($em->getRepository('Db\Entity\Source')->find($id));
 
         if (!$source)
             throw new \Exception("Source $id not found");
@@ -153,26 +154,6 @@ class SourceController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
-        if (!$venue)
-            return $this->plugin('redirect')->toUrl('/');
-
-        if (!sizeof($venue->getPerformances())
-            and !sizeof($venue->getVenueGroups())
-            and !sizeof($venue->getLinks())
-            and !sizeof($venue->getComments()))
-        {
-            $em->remove($venue);
-            $em->flush();
-        }
-
-        return $this->plugin('redirect')->toUrl('/');
     }
 
     public function searchJsonAction()
@@ -185,9 +166,9 @@ class SourceController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
+        $venues = Workspace::filter($em->getRepository('Db\Entity\Venue')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
-        ), array(), 20);
+        ), array(), 20));
 
         $return = array();
         $i = 0;

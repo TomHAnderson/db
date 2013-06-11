@@ -1,11 +1,11 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Db\Entity\User as UserEntity
-    , Zend\Form\Annotation\AnnotationBuilder
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Db\Entity\User as UserEntity;
+use Zend\Form\Annotation\AnnotationBuilder;
 
 class UserController extends AbstractActionController
 {

@@ -2,13 +2,13 @@
 
 namespace DbEtreeOrg\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Db\Entity\PerformerPerformance as PerformerPerformanceEntity
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Filter\Normalize
-    , Zend\View\Model\JsonModel
-    ;
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Db\Entity\PerformerPerformance as PerformerPerformanceEntity;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Filter\Normalize;
+use Zend\View\Model\JsonModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class PerformerPerformanceController extends AbstractActionController
 {
@@ -25,7 +25,7 @@ class PerformerPerformanceController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/venue');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $performerPerformance = $em->getRepository('Db\Entity\PerformerPerformance')->find($id);
+        $performerPerformance = Workspace::filter($em->getRepository('Db\Entity\PerformerPerformance')->find($id));
 
         if (!$performerPerformance)
             throw new \Exception("Performer Performance $id not found");
@@ -46,13 +46,13 @@ class PerformerPerformanceController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performance = $em->getRepository('Db\Entity\Performance')->find($id);
+        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $performance = Workspace::filter($em->getRepository('Db\Entity\Performance')->find($id));
         if (!$performance)
             throw new \Exception('Cannot find performance');
 
         $performerId = (int)$this->getRequest()->getPost()->get('performer_id');
-        $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+        $performer = Workspace::filter($em->getRepository('Db\Entity\Performer')->find($performerId));
 
         if ($performer and $performance and $this->getRequest()->isPost()) {
 
@@ -89,7 +89,7 @@ class PerformerPerformanceController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $performerPerformance = $em->getRepository('Db\Entity\PerformerPerformance')->find($id);
+        $performerPerformance = Workspace::filter($em->getRepository('Db\Entity\PerformerPerformance')->find($id));
 
         if (!$performerPerformance)
             throw new \Exception("Performer Performance $id not found");
@@ -124,19 +124,6 @@ class PerformerPerformanceController extends AbstractActionController
 
     public function deleteAction()
     {
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $id = $this->getRequest()->getQuery()->get('id');
-        $performerPerformance = $em->getRepository('Db\Entity\PerformerPerformance')->find($id);
-        if (!$performerPerformance)
-            return $this->plugin('redirect')->toUrl('/');
-
-        $performance = $performerPerformance->getPerformance();
-
-        $em->remove($performerPerformance);
-        $em->flush();
-
-        return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performance->getId());
     }
 
     public function searchJsonAction()
@@ -149,9 +136,9 @@ class PerformerPerformanceController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
+        $venues = Workspace::filter($em->getRepository('Db\Entity\Venue')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
-        ), array(), 20);
+        ), array(), 20));
 
         $return = array();
         $i = 0;
@@ -177,14 +164,14 @@ class PerformerPerformanceController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $performanceSet = $em->getRepository('Db\Entity\PerformanceSet')->find($id);
+        $performanceSet = Workspace::filter($em->getRepository('Db\Entity\PerformanceSet')->find($id));
 
         $sort = $this->getRequest()->getQuery()->get('sort');
 
         $sortOrder = 1;
         foreach (explode(',', $sort) as $key) {
             strtok($key, '_');
-            $performanceSong = $em->getRepository('Db\Entity\PerformanceSong')->find(strtok('_'));
+            $performanceSong = Workspace::filter($em->getRepository('Db\Entity\PerformanceSong')->find(strtok('_')));
             if ($performanceSong->getPerformanceSet() == $performanceSet) $performanceSong->setSort($sortOrder ++);
         }
 
