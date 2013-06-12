@@ -26,7 +26,7 @@ class SourceController extends AbstractActionController
     {
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
-        $bandId = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $bandId = (int)$this->getEvent()->getRouteMatch()->getParam('bandId');
         $year = (int)$this->getEvent()->getRouteMatch()->getParam('year');
 
         $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($bandId));
@@ -54,10 +54,7 @@ class SourceController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/source');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('sourceId');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $source = Workspace::filter($em->getRepository('Db\Entity\Source')->find($id));
 
@@ -74,16 +71,13 @@ class SourceController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $source = new SourceEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($source);
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceId');
         $performance = Workspace::filter($em->getRepository('Db\Entity\Performance')->find($id));
 
         if (!$performance)
@@ -102,7 +96,9 @@ class SourceController extends AbstractActionController
                 $em->persist($source);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/source/detail/' . $source->getId());
+                return $this->plugin('redirect')->toRoute('source/detail', array(
+                    'id' => $source->getId()
+                ));
             }
         }
 
@@ -114,12 +110,9 @@ class SourceController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('sourceId');
         $source = Workspace::filter($em->getRepository('Db\Entity\Source')->find($id));
 
         if (!$source)
@@ -154,32 +147,5 @@ class SourceController extends AbstractActionController
 
     public function deleteAction()
     {
-    }
-
-    public function searchJsonAction()
-    {
-        $query = $this->getRequest()->getQuery()->get('q');
-
-        $filterNormalize = new Normalize();
-
-        $query = $filterNormalize(trim($query));
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $venues = Workspace::filter($em->getRepository('Db\Entity\Venue')->findLike(array(
-            'nameNormalize' => '%' . $query . '%',
-        ), array(), 20));
-
-        $return = array();
-        $i = 0;
-        foreach ($venues as $venue) {
-            if (++$i > 25) break;
-            $return[] = $venue->getArrayCopy();
-        }
-
-        $jsonModel = new JsonModel;
-        $jsonModel->setVariable('venues', $return);
-
-        return $jsonModel;
     }
 }

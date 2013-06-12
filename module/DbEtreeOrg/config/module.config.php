@@ -12,26 +12,6 @@ namespace DbEtreeOrg;
 return array(
     'router' => array(
         'routes' => array(
-            'takelogin' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/user/takelogin',
-                    'defaults' => array(
-                        'controller' => 'user',
-                        'action'     => 'takelogin',
-                    ),
-                ),
-            ),
-            'logout' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/user/takelogout',
-                    'defaults' => array(
-                        'controller' => 'user',
-                        'action'     => 'takelogout',
-                    ),
-                ),
-            ),
 
             'sourceByBandYear' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',

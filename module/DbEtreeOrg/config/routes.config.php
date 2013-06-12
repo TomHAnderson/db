@@ -877,8 +877,7 @@ return array(
                 ),
             ),
 
-/////////
-
+// Source
             'source' => array(
                 'type' => 'Literal',
                 'priority' => 1000,
@@ -891,35 +890,163 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
+                    'band' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/band[/:bandId][/:year]',
+                            'defaults' => array(
+                                'controller' => 'source',
+                                'action'     => 'band',
+                            ),
+                        ),
+                    ),
                     'detail' => array(
                         'type' => 'Literal',
                         'options' => array(
-                            'route' => '/detail[/:id]',
+                            'route' => '/detail[/:sourceId]',
                             'defaults' => array(
                                 'controller' => 'source',
                                 'action'     => 'detail',
                             ),
                         ),
                     ),
-            'performer-alias' => array(
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:performanceId]',
+                            'defaults' => array(
+                                'controller' => 'source',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:sourceId]',
+                            'defaults' => array(
+                                'controller' => 'source',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:sourceId]',
+                            'defaults' => array(
+                                'controller' => 'source',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+// User
+            'user' => array(
                 'type' => 'Literal',
                 'priority' => 1000,
                 'options' => array(
-                    'route' => '/performer-alias',
+                    'route' => '/user',
                     'defaults' => array(
-                        'controller' => 'performer-alias',
+                        'controller' => 'user',
                         'action'     => 'index',
                     ),
                 ),
                 'may_terminate' => true,
-#                'child_routes' => array(
-#                    'detail' => array(
+                'child_routes' => array(
+                    'profile' => array(
                         'type' => 'Literal',
                         'options' => array(
-                            'route' => '/detail[/:id]',
+                            'route' => '/profile',
                             'defaults' => array(
-                                'controller' => 'band',
+                                'controller' => 'user',
+                                'action'     => 'profile',
+                            ),
+                        ),
+                    ),
+                    'takelogin' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/takelogin',
+                            'defaults' => array(
+                                'controller' => 'user',
+                                'action'     => 'takelogin',
+                            ),
+                        ),
+                    ),
+                    'takelogout' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/takelogout',
+                            'defaults' => array(
+                                'controller' => 'user',
+                                'action'     => 'profile',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+// Venue
+            'venue' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/venue',
+                    'defaults' => array(
+                        'controller' => 'venue',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/detail[/:venueId]',
+                            'defaults' => array(
+                                'controller' => 'venue',
                                 'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create',
+                            'defaults' => array(
+                                'controller' => 'venue',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:venueId]',
+                            'defaults' => array(
+                                'controller' => 'venue',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:venueId]',
+                            'defaults' => array(
+                                'controller' => 'venue',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                    'searchJson' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/search/json',
+                            'defaults' => array(
+                                'controller' => 'venue',
+                                'action'     => 'searchJson',
                             ),
                         ),
                     ),

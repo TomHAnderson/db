@@ -24,10 +24,7 @@ class VenueController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/venue');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('venueId');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $venue = Workspace::filter($em->getRepository('Db\Entity\Venue')->find($id));
 
@@ -44,9 +41,6 @@ class VenueController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $venue = new VenueEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($venue);
@@ -90,12 +84,9 @@ class VenueController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('venueId');
         $venue = Workspace::filter($em->getRepository('Db\Entity\Venue')->find($id));
 
         if (!$venue)
