@@ -19,18 +19,14 @@ class LineupController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/lineup');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('lineupId');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
 
         if (!$lineup)
             throw new \Exception("Lineup $id not found");
 
-        $menu = $this->getServiceLocator()->get('menu');
-        $menu->addRecent('lineups', $lineup->getId());
+        $this->getServiceLocator()->get('menu')->addRecent('lineups', $lineup->getId());
 
         return array(
             'lineup' => $lineup
@@ -39,17 +35,14 @@ class LineupController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $lineup = new LineupEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($lineup);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $band_id = $this->getRequest()->getQuery()->get('id');
-        $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($band_id));
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('bandId');
+        $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($id));
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -73,7 +66,7 @@ class LineupController extends AbstractActionController
 
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);
-        $viewModel->setVariable('band_id', $band_id);
+        $viewModel->setVariable('band_id', $id);
         $viewModel->setVariable('form', $form);
         $viewModel->setVariable('band', $band);
         return $viewModel;
@@ -81,12 +74,9 @@ class LineupController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('lineupId');
         $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
 
         if (!$lineup)
@@ -129,7 +119,7 @@ class LineupController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('lineupId');
         $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
         if (!$lineup)
             return $this->plugin('redirect')->toUrl('/');
@@ -152,7 +142,8 @@ class LineupController extends AbstractActionController
 
     public function addPerformerAction()
     {
-        $id = $this->getRequest()->getPost()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('lineupId');
+
         $note = $this->getRequest()->getPost()->get('note');
         $performerId = $this->getRequest()->getPost()->get('performer_id');
         $returnUrl = $this->getRequest()->getPost()->get('returnUrl');
@@ -174,8 +165,8 @@ class LineupController extends AbstractActionController
 
     public function removePerformerAction()
     {
-        $id = $this->getRequest()->getPost()->get('id');
-        $performerId = $this->getRequest()->getPost()->get('performer_id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('lineupId');
+        $performerId = (int)$this->getEvent()->getRouteMatch()->getParam('performerId');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 

@@ -15,8 +15,8 @@ class CommentController extends AbstractActionController
         if (!$auth->hasIdentity())
             throw new \Exception('User is not authenticated');
 
-        $id = $this->getRequest()->getPost()->get('id');
-        $entityName = $this->getRequest()->getPost()->get('entityName');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $entityName = $this->getEvent()->getRouteMatch()->getParam('entityName');
         $returnUrl = $this->getRequest()->getPost()->get('returnUrl');
 
         $note = $this->getRequest()->getPost()->get('note');
@@ -52,7 +52,7 @@ class CommentController extends AbstractActionController
         if (!$auth->hasIdentity())
             throw new \Exception('User is not authenticated');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('commentId');
         $entityName = $this->getRequest()->getQuery()->get('entityName');
         $returnUrl = $this->getRequest()->getQuery()->get('returnUrl');
 

@@ -5,8 +5,29 @@ namespace DbEtreeOrg;
 return array(
     'router' => array(
         'routes' => array(
+            'home' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/',
+                    'defaults' => array(
+                        'controller' => 'index',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'menu' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/menu',
+                    'defaults' => array(
+                        'controller' => 'index',
+                        'action'     => 'menu',
+                    ),
+                ),
+            ),
+
 // Band Alias
-            'band-alias' => array(
+            'bandAlias' => array(
                 'type' => 'Literal',
                 'priority' => 1000,
                 'options' => array(
@@ -113,7 +134,7 @@ return array(
                             ),
                         ),
                     ),
-                    'search-json' => array(
+                    'searchJson' => array(
                         'type' => 'Literal',
                         'options' => array(
                             'route' => '/search/json',
@@ -151,7 +172,7 @@ return array(
                     'create' => array(
                         'type' => 'Literal',
                         'options' => array(
-                            'route' => '/create',
+                            'route' => '/create[/:sourceId]',
                             'defaults' => array(
                                 'controller' => 'checksum',
                                 'action'     => 'create',
@@ -180,7 +201,120 @@ return array(
                     ),
                 ),
             ),
-//
+
+// Comments
+            'comment' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/comment',
+                    'defaults' => array(
+                        'controller' => 'comment',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:commentId]',
+                            'defaults' => array(
+                                'controller' => 'comment',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:entityName][/:id]',
+                            'defaults' => array(
+                                'controller' => 'comment',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+// Lineup
+            'lineup' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/lineup',
+                    'defaults' => array(
+                        'controller' => 'lineup',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/detail[/:lineupId]',
+                            'defaults' => array(
+                                'controller' => 'lineup',
+                                'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:bandId]',
+                            'defaults' => array(
+                                'controller' => 'lineup',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:lineupId]',
+                            'defaults' => array(
+                                'controller' => 'lineup',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:lineupId]',
+                            'defaults' => array(
+                                'controller' => 'lineup',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                    'addPerformer' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/add-performer[/:lineupId]',
+                            'defaults' => array(
+                                'controller' => 'lineup',
+                                'action'     => 'addPerformer',
+                            ),
+                        ),
+                    ),
+                    'removePerformer' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/remove-performer[/:lineupId][/:performerId]',
+                            'defaults' => array(
+                                'controller' => 'lineup',
+                                'action'     => 'removePerformer',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+/////////
             'source' => array(
                 'type' => 'Literal',
                 'priority' => 1000,

@@ -1,11 +1,12 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Zend\View\Model\JsonModel
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Zend\View\Model\JsonModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class IndexController extends AbstractActionController
 {
@@ -13,9 +14,8 @@ class IndexController extends AbstractActionController
     {
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
-        $performances = $em->getRepository('Db\Entity\Performance')->findBy(array(), array('id' => 'desc'), 10);
-        $sources = $em->getRepository('Db\Entity\Source')->findBy(array(), array('id' => 'desc'), 10);
-
+        $performances = Workspace::filter($em->getRepository('Db\Entity\Performance')->findBy(array(), array('id' => 'desc'), 10));
+        $sources = Workspace::filter($em->getRepository('Db\Entity\Source')->findBy(array(), array('id' => 'desc'), 10));
 
         return array(
             'performances' => $performances,
