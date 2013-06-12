@@ -15,7 +15,7 @@ return array(
 
 //        'ZendDeveloperTools',
 
-        'StukiWorkspace',
+        'Workspace',
 
         'Heartsentwined\Cron',
     ),

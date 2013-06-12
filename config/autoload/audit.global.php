@@ -1,6 +1,6 @@
 <?php
 return array(
-    'audit'=> array(
+    'workspace'=> array(
         'entities' => array(
             'Db\Entity\Attendance' => array(
                 'route' => 'default',
