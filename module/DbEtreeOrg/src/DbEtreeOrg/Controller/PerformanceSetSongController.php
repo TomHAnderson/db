@@ -20,10 +20,7 @@ class PerformanceSetSongController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceSetSongId');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $performanceSetSong = Workspace::filter($em->getRepository('Db\Entity\PerformanceSetSong')->find($id));
 
@@ -37,16 +34,13 @@ class PerformanceSetSongController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $performanceSetSong = new PerformanceSetSongEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($performanceSetSong);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceSetId');
         $performanceSet = Workspace::filter($em->getRepository('Db\Entity\PerformanceSet')->find($id));
 
         $song = null;
@@ -82,12 +76,9 @@ class PerformanceSetSongController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceSetSongId');
         $performanceSetSong = Workspace::filter($em->getRepository('Db\Entity\PerformanceSetSong')->find($id));
 
         if (!$performanceSetSong)
@@ -127,21 +118,20 @@ class PerformanceSetSongController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceSetSongId');
         $performanceSetSong = Workspace::filter($em->getRepository('Db\Entity\PerformanceSetSong')->find($id));
 
         if (!$performanceSetSong)
-            return $this->plugin('redirect')->toUrl('/');
+            return $this->plugin('redirect')->toRoute('home');
 
         $performanceId = $performanceSetSong->getPerformanceSet()->getPerformance()->getId();
         $em->remove($performanceSetSong);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/performance/detail?id=' . $performanceId);
+        return $this->plugin('redirect')->toRoute('performance/detail', array(
+            'id' => $performanceId
+        ));
     }
 }

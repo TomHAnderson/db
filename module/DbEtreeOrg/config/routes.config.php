@@ -501,6 +501,62 @@ return array(
                     ),
                 ),
             ),
+
+// Performance Set Song
+            'performanceSetSong' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/performanceSetSong',
+                    'defaults' => array(
+                        'controller' => 'performanceSetSong',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/detail[/:performanceSetSongId]',
+                            'defaults' => array(
+                                'controller' => 'performanceSetSong',
+                                'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:performanceSetId]',
+                            'defaults' => array(
+                                'controller' => 'performanceSetSong',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:performanceSetSongId]',
+                            'defaults' => array(
+                                'controller' => 'performanceSetSong',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:performanceSetSongId]',
+                            'defaults' => array(
+                                'controller' => 'performanceSetSong',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
 /////////
             'source' => array(
                 'type' => 'Literal',
