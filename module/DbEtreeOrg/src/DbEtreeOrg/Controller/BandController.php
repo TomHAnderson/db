@@ -1,20 +1,21 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Entity\Band as BandEntity
-    , Db\Filter\Normalize
-    , Zend\View\Model\JsonModel
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Entity\Band as BandEntity;
+use Db\Filter\Normalize;
+use Zend\View\Model\JsonModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class BandController extends AbstractActionController
 {
     public function indexAction()
     {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $bands = $em->getRepository('Db\Entity\Band')->findBy(array(), array('name' => 'ASC'));
+        $bands = Workspace::filter($em->getRepository('Db\Entity\Band')->findBy(array(), array('name' => 'ASC')));
 
         return array(
             'bands' => $bands,
@@ -23,18 +24,15 @@ class BandController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/band');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('bandId');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $band = $em->getRepository('Db\Entity\Band')->find($id);
+        $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($id));
 
-        if (!$band)
-            throw new \Exception("Band $id not found");
+        if (!$band) {
+            return $this->plugin('redirect')->toRoute('band');
+        }
 
-        $menu = $this->getServiceLocator()->get('menu');
-        $menu->addRecent('bands', $band->getId());
+        $this->getServiceLocator()->get('menu')->addRecent('bands', $band->getId());
 
         return array(
             'band' => $band
@@ -43,9 +41,6 @@ class BandController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $band = new BandEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($band);
@@ -79,13 +74,10 @@ class BandController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $band = $em->getRepository('Db\Entity\Band')->find($id);
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('bandId');
+        $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($id));
 
         if (!$band)
             throw new \Exception("Band $id not found");
@@ -94,8 +86,7 @@ class BandController extends AbstractActionController
         $form = $builder->createForm($band);
         $form->setData($band->getArrayCopy());
 
-        $menu = $this->getServiceLocator()->get('menu');
-        $menu->addRecent('bands', $band->getId());
+        $this->getServiceLocator()->get('menu')->addRecent('bands', $band->getId());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -107,10 +98,10 @@ class BandController extends AbstractActionController
 
                 $user = $this->getServiceLocator()->get('zfcuser_auth_service')->getIdentity();
 
-                    $band->exchangeArray($form->getData());
-                    $em->persist($band);
-                    $em->flush();
-                    die();
+                $band->exchangeArray($form->getData());
+                $em->persist($band);
+                $em->flush();
+                die();
             }
         }
 
@@ -123,15 +114,14 @@ class BandController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $band = $em->getRepository('Db\Entity\Band')->find($id);
-        if (!$band)
-            return $this->plugin('redirect')->toUrl('/');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('bandId');
+        $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($id));
+
+        if (!$band) {
+            return $this->plugin('redirect')->toRoute('home');
+        }
 
         if (!sizeof($band->getAliases())
             and !sizeof($band->getLineups())
@@ -147,7 +137,7 @@ class BandController extends AbstractActionController
             $em->flush();
         }
 
-        return $this->plugin('redirect')->toUrl('/');
+        return $this->plugin('redirect')->toRoute('home');
     }
 
     public function searchJsonAction()
@@ -158,9 +148,9 @@ class BandController extends AbstractActionController
         $filterNormalize = new Normalize();
         $query = $filterNormalize(trim($query));
 
-        $bands = $em->getRepository('Db\Entity\Band')->findLike(array(
+        $bands = Workspace::filter($em->getRepository('Db\Entity\Band')->findLike(array(
             'nameNormalize' => '%' . $query . '%',
-        ), array(), 20);
+        ), array(), 20));
 
         $return = array();
         $i = 0;

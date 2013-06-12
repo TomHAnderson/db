@@ -1,13 +1,14 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Db\Entity\Checksum as ChecksumEntity
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Filter\Normalize
-    , Zend\View\Model\JsonModel
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Db\Entity\Checksum as ChecksumEntity;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Filter\Normalize;
+use Zend\View\Model\JsonModel;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class ChecksumController extends AbstractActionController
 {
@@ -19,12 +20,9 @@ class ChecksumController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/source');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('checksumId');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $checksum = $em->getRepository('Db\Entity\Checksum')->find($id);
+        $checksum = Workspace::filter($em->getRepository('Db\Entity\Checksum')->find($id));
 
         if (!$checksum)
             throw new \Exception("Checksum $id not found");
@@ -36,17 +34,14 @@ class ChecksumController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $checksum = new ChecksumEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($checksum);
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $source = $em->getRepository('Db\Entity\Source')->find($id);
+        $id = $this->getEvent()->getRouteMatch()->getParam('sourceId');
+        $source = Workspace::filter($em->getRepository('Db\Entity\Source')->find($id));
 
         if (!$source)
             throw new \Exception("Source $id not found");
@@ -77,13 +72,10 @@ class ChecksumController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $checksum = $em->getRepository('Db\Entity\Checksum')->find($id);
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('checksumId');
+        $checksum = Workspace::filter($em->getRepository('Db\Entity\Checksum')->find($id));
 
         if (!$checksum)
             throw new \Exception("Checksum $id not found");
@@ -119,14 +111,14 @@ class ChecksumController extends AbstractActionController
     public function deleteAction()
     {
         if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
+            return $this->plugin('redirect')->toRoute('zfcuser/login');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $checksum = $em->getRepository('Db\Entity\Checksum')->find($id);
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('checksumId');
+        $checksum = Workspace::filter($em->getRepository('Db\Entity\Checksum')->find($id));
         if (!$checksum)
-            return $this->plugin('redirect')->toUrl('/');
+            return $this->plugin('redirect')->toRoute('home');
 
 #        if (!sizeof($venue->getPerformances())
 #            and !sizeof($venue->getVenueGroups())
@@ -138,33 +130,8 @@ class ChecksumController extends AbstractActionController
         $em->flush();
 #        }
 
-        return $this->plugin('redirect')->toUrl('/source/detail?id=' . $sourceId);
-    }
-
-    public function searchJsonAction()
-    {
-        $query = $this->getRequest()->getQuery()->get('q');
-
-        $filterNormalize = new Normalize();
-
-        $query = $filterNormalize(trim($query));
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $venues = $em->getRepository('Db\Entity\Venue')->findLike(array(
-            'nameNormalize' => '%' . $query . '%',
-        ), array(), 20);
-
-        $return = array();
-        $i = 0;
-        foreach ($venues as $venue) {
-            if (++$i > 25) break;
-            $return[] = $venue->getArrayCopy();
-        }
-
-        $jsonModel = new JsonModel;
-        $jsonModel->setVariable('venues', $return);
-
-        return $jsonModel;
+        return $this->plugin('redirect')->toRoute('source/detail', array(
+            'id' => $sourceId
+        ));
     }
 }

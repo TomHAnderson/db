@@ -1,11 +1,12 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Entity\BandAlias as BandAliasEntity
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Entity\BandAlias as BandAliasEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class BandAliasController extends AbstractActionController
 {
@@ -17,12 +18,9 @@ class BandAliasController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/performer-alias');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('bandAliasid');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $bandAlias = $em->getRepository('Db\Entity\BandAlias')->find($id);
+        $bandAlias = Workspace::filter($em->getRepository('Db\Entity\BandAlias')->find($id));
 
         if (!$bandAlias)
             throw new \Exception("Band Alias $id not found");
@@ -37,17 +35,14 @@ class BandAliasController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $bandAlias = new BandAliasEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($bandAlias);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $band = $em->getRepository('Db\Entity\Band')->find($id);
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('bandId');
+        $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($id));
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -79,16 +74,14 @@ class BandAliasController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $bandAlias = $em->getRepository('Db\Entity\bandAlias')->find($id);
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('bandAliasId');
+        $bandAlias = Workspace::filter($em->getRepository('Db\Entity\bandAlias')->find($id));
 
-        if (!$bandAlias)
+        if (!$bandAlias) {
             throw new \Exception("bandAlias $id not found");
+        }
 
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($bandAlias);
@@ -122,15 +115,14 @@ class BandAliasController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $bandAlias = $em->getRepository('Db\Entity\BandAlias')->find($id);
-        if (!$bandAlias)
-            return $this->plugin('redirect')->toUrl('/');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('bandAliasId');
+        $bandAlias = Workspace::filter($em->getRepository('Db\Entity\BandAlias')->find($id));
+
+        if (!$bandAlias) {
+            return $this->plugin('redirect')->toRoute('home');
+        }
 
         $menu = $this->getServiceLocator()->get('menu');
         $menu->addRecent('bandAlias', $bandAlias->getId());
@@ -140,6 +132,8 @@ class BandAliasController extends AbstractActionController
         $em->remove($bandAlias);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/band/detail?id=' . $band->getId());
+        return $this->plugin('redirect')->toRoute('band/detail', array(
+            'id' => $band->getId()
+        );
     }
 }

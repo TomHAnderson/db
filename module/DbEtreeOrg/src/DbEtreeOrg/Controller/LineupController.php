@@ -1,12 +1,13 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Zend\Form\Annotation\AnnotationBuilder
-    , Db\Entity\Lineup as LineupEntity
-    , Db\Entity\PerformerLineup as PerformerLineupEntity
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Zend\Form\Annotation\AnnotationBuilder;
+use Db\Entity\Lineup as LineupEntity;
+use Db\Entity\PerformerLineup as PerformerLineupEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 class LineupController extends AbstractActionController
 {
@@ -23,7 +24,7 @@ class LineupController extends AbstractActionController
             return $this->plugin('redirect')->toUrl('/lineup');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
+        $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
 
         if (!$lineup)
             throw new \Exception("Lineup $id not found");
@@ -48,7 +49,7 @@ class LineupController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $band_id = $this->getRequest()->getQuery()->get('id');
-        $band = $em->getRepository('Db\Entity\Band')->find($band_id);
+        $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($band_id));
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
@@ -86,7 +87,7 @@ class LineupController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
+        $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
 
         if (!$lineup)
             throw new \Exception("Lineup $id not found");
@@ -129,7 +130,7 @@ class LineupController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getRequest()->getQuery()->get('id');
-        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
+        $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
         if (!$lineup)
             return $this->plugin('redirect')->toUrl('/');
 
@@ -158,8 +159,8 @@ class LineupController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
-        $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+        $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
+        $performer = Workspace::filter($em->getRepository('Db\Entity\Performer')->find($performerId));
         $performerLineup = new PerformerLineupEntity;
         $performerLineup->setLineup($lineup);
         $performerLineup->setPerformer($performer);
@@ -178,8 +179,8 @@ class LineupController extends AbstractActionController
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $lineup = $em->getRepository('Db\Entity\Lineup')->find($id);
-        $performer = $em->getRepository('Db\Entity\Performer')->find($performerId);
+        $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
+        $performer = Workspace::filter($em->getRepository('Db\Entity\Performer')->find($performerId));
 
         $lineup->getPerformers()->removeElement($performer);
         $performer->getLineups()->removeElement($lineup);

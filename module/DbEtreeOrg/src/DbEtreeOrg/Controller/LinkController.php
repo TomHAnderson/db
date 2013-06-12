@@ -1,11 +1,11 @@
 <?php
 
 namespace DbEtreeOrg\Controller;
-use Zend\Mvc\Controller\AbstractActionController
-    , Zend\View\Model\ViewModel
-    , Db\Entity\Venue as VenueEntity
-    , Zend\Form\Annotation\AnnotationBuilder
-    ;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Db\Entity\Venue as VenueEntity;
+use Zend\Form\Annotation\AnnotationBuilder;
 
 class LinkController extends AbstractActionController
 {
@@ -15,7 +15,7 @@ class LinkController extends AbstractActionController
         if (!$auth->hasIdentity())
             throw new \Exception('User is not authenticated');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (id)$this->getRequest()->getQuery()->get('id');
         $entityName = $this->getRequest()->getQuery()->get('entityName');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
