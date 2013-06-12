@@ -25,10 +25,10 @@ class SongController extends AbstractActionController
     {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('songId');
         $song = Workspace::filter($em->getRepository('Db\Entity\Song')->find($id));
         if (!$song)
-            return $this->plugin('redirect')->toUrl('/');
+            return $this->plugin('redirect')->toRoute('home');
 
         $menu = $this->getServiceLocator()->get('menu');
         $menu->addRecent('songs', $song->getId());
@@ -40,9 +40,6 @@ class SongController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $song = new SongEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($song);
@@ -81,12 +78,9 @@ class SongController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('songId');
         $song = Workspace::filter($em->getRepository('Db\Entity\Song')->find($id));
 
         if (!$song)
@@ -96,8 +90,7 @@ class SongController extends AbstractActionController
         $form = $builder->createForm($song);
         $form->setData($song->getArrayCopy());
 
-        $menu = $this->getServiceLocator()->get('menu');
-        $menu->addRecent('songs', $song->getId());
+        $this->getServiceLocator()->get('menu')->addRecent('songs', $song->getId());
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());

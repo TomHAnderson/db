@@ -20,10 +20,7 @@ class PerformerPerformanceController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/venue');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performerPerformanceId');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $performerPerformance = Workspace::filter($em->getRepository('Db\Entity\PerformerPerformance')->find($id));
 
@@ -37,16 +34,13 @@ class PerformerPerformanceController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $performerPerformance = new PerformerPerformanceEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($performerPerformance);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceId');
         $performance = Workspace::filter($em->getRepository('Db\Entity\Performance')->find($id));
         if (!$performance)
             throw new \Exception('Cannot find performance');
@@ -83,12 +77,9 @@ class PerformerPerformanceController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performerPerformanceId');
         $performerPerformance = Workspace::filter($em->getRepository('Db\Entity\PerformerPerformance')->find($id));
 
         if (!$performerPerformance)
@@ -126,44 +117,11 @@ class PerformerPerformanceController extends AbstractActionController
     {
     }
 
-    public function searchJsonAction()
-    {
-        $query = $this->getRequest()->getQuery()->get('q');
-
-        $filterNormalize = new Normalize();
-
-        $query = $filterNormalize(trim($query));
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
-        $venues = Workspace::filter($em->getRepository('Db\Entity\Venue')->findLike(array(
-            'nameNormalize' => '%' . $query . '%',
-        ), array(), 20));
-
-        $return = array();
-        $i = 0;
-        foreach ($venues as $venue) {
-            if (++$i > 25) break;
-            $return[] = array(
-                'value' => $venue->getId(),
-                'label' => $venue->getName(),
-            );
-        }
-
-        $jsonModel = new JsonModel;
-        $jsonModel->setVariable('venues', $return);
-
-        return $jsonModel;
-    }
-
     public function sortPerformanceSetSongsAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceSetId');
         $performanceSet = Workspace::filter($em->getRepository('Db\Entity\PerformanceSet')->find($id));
 
         $sort = $this->getRequest()->getQuery()->get('sort');

@@ -745,6 +745,138 @@ return array(
                 ),
             ),
 
+// Performer Performance
+            'performerPerformance' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/performerPerformance',
+                    'defaults' => array(
+                        'controller' => 'performerPerformance',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/detail[/:performerPerformance]',
+                            'defaults' => array(
+                                'controller' => 'performerPerformance',
+                                'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:performanceId]',
+                            'defaults' => array(
+                                'controller' => 'performerPerformance',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:performerPerformance]',
+                            'defaults' => array(
+                                'controller' => 'performerPerformance',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:performerPerformance]',
+                            'defaults' => array(
+                                'controller' => 'performerPerformance',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                    'sortPerformanceSetSongs' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/songs/sort[/:performanceSetId]',
+                            'defaults' => array(
+                                'controller' => 'performerPerformance',
+                                'action'     => 'sortPerformanceSetSongs',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+// Song
+            'song' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/song',
+                    'defaults' => array(
+                        'controller' => 'song',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/detail[/:songId]',
+                            'defaults' => array(
+                                'controller' => 'song',
+                                'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create',
+                            'defaults' => array(
+                                'controller' => 'song',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:songId]',
+                            'defaults' => array(
+                                'controller' => 'song',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:songId]',
+                            'defaults' => array(
+                                'controller' => 'song',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                    'searchJson' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/search/json',
+                            'defaults' => array(
+                                'controller' => 'song',
+                                'action'     => 'searchJson',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
 /////////
 
             'source' => array(

@@ -161,6 +161,20 @@ return array(
                 array('route' => 'performerLineup/delete', 'roles' => array('admin'));
                 array('route' => 'performerLineup/sortPerformanceSetSongs', 'roles' => array('user'));
 
+                array('route' => 'performerPerformance', 'roles' => array('none'));
+                array('route' => 'performerPerformance/detail', 'roles' => array('guest'));
+                array('route' => 'performerPerformance/create', 'roles' => array('user'));
+                array('route' => 'performerPerformance/edit', 'roles' => array('user'));
+                array('route' => 'performerPerformance/delete', 'roles' => array('admin'));
+                array('route' => 'performerPerformance/sortPerformanceSetSongs', 'roles' => array('user'));
+
+                array('route' => 'song', 'roles' => array('guest'));
+                array('route' => 'song/detail', 'roles' => array('guest'));
+                array('route' => 'song/create', 'roles' => array('user'));
+                array('route' => 'song/edit', 'roles' => array('user'));
+                array('route' => 'song/delete', 'roles' => array('admin'));
+                array('route' => 'song/searchJson', 'roles' => array('guest'));
+
 
                 // Below is the default index action used by the [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
                 array('route' => 'application/default', 'roles' => array('none')),

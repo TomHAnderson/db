@@ -128,14 +128,13 @@ class PerformerLineupController extends AbstractActionController
         $em->remove($performerLineup);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/lineup/detail?id=' . $lineup->getId());
+        return $this->plugin('redirect')->toRoute('/lineup/detail', array(
+            'id' => $lineup->getId()
+        ));
     }
 
     public function sortPerformanceSetSongsAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceId');
