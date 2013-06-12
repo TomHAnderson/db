@@ -436,6 +436,71 @@ return array(
                 ),
             ),
 
+// Performance Set
+            'performanceSet' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/performanceSet',
+                    'defaults' => array(
+                        'controller' => 'performanceSet',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/detail[/:performanceSetId]',
+                            'defaults' => array(
+                                'controller' => 'performanceSet',
+                                'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:performanceId]',
+                            'defaults' => array(
+                                'controller' => 'performanceSet',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:performanceSetId]',
+                            'defaults' => array(
+                                'controller' => 'performanceSet',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:performanceSetId]',
+                            'defaults' => array(
+                                'controller' => 'performanceSet',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                    'sortPerformanceSetSongs' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/songs/sort[/:performanceSetId]',
+                            'defaults' => array(
+                                'controller' => 'performanceSet',
+                                'action'     => 'sortPerformanceSetSongs',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
 /////////
             'source' => array(
                 'type' => 'Literal',
