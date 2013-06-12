@@ -18,10 +18,7 @@ class PerformerAliasController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/performer-alias');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performerAliasId');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $performerAlias = Workspace::filter($em->getRepository('Db\Entity\PerformerAlias')->find($id));
 
@@ -38,16 +35,13 @@ class PerformerAliasController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $performerAlias = new PerformerAliasEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($performerAlias);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performerId');
         $performer = Workspace::filter($em->getRepository('Db\Entity\Performer')->find($id));
 
         if ($this->getRequest()->isPost()) {
@@ -80,12 +74,9 @@ class PerformerAliasController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performerAliasId');
         $performerAlias = Workflow::filter($em->getRepository('Db\Entity\PerformerAlias')->find($id));
 
         if (!$performerAlias)
@@ -123,16 +114,13 @@ class PerformerAliasController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performerAliasId');
         $performerAlias = Workspace::filter($em->getRepository('Db\Entity\PerformerAlias')->find($id));
 
         if (!$performerAlias) {
-            return $this->plugin('redirect')->toUrl('/');
+            return $this->plugin('redirect')->toRoute('home');
         }
 
         $menu = $this->getServiceLocator()->get('menu');
@@ -143,6 +131,8 @@ class PerformerAliasController extends AbstractActionController
         $em->remove($performerAlias);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/performer/detail?id=' . $performer->getId());
+        return $this->plugin('redirect')->toRoute('/performer/detail', array(
+            'id' => $performer->getId()
+        ));
     }
 }

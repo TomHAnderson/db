@@ -24,18 +24,14 @@ class PerformerController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/performer');
-
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performerId');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $performer = Workspace::filter($em->getRepository('Db\Entity\Performer')->find($id));
 
         if (!$performer)
             throw new \Exception("Performer $id not found");
 
-        $menu = $this->getServiceLocator()->get('menu');
-        $menu->addRecent('performers', $performer->getId());
+        $this->getServiceLocator()->get('menu')->addRecent('performers', $performer->getId());
 
         return array(
             'performer' => $performer
@@ -44,9 +40,6 @@ class PerformerController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $performer = new PerformerEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($performer);
@@ -79,12 +72,9 @@ class PerformerController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = (int)$this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performerId');
         $performer = Workspace::filter($em->getRepository('Db\Entity\Performer')->find($id));
 
         if (!$performer)
@@ -123,6 +113,7 @@ class PerformerController extends AbstractActionController
 
     public function deleteAction()
     {
+        throw new \Exception('not implemented');
     }
 
     public function searchJsonAction()

@@ -95,7 +95,7 @@ return array(
                 array('route' => 'band/create', 'roles' => array('user'));
                 array('route' => 'band/edit', 'roles' => array('user'));
                 array('route' => 'band/delete', 'roles' => array('admin'));
-                array('route' => 'band/searchJson', 'roles' => array('user'));
+                array('route' => 'band/searchJson', 'roles' => array('guest'));
 
                 array('route' => 'checksum', 'roles' => array('guest'));
                 array('route' => 'checksum/detail', 'roles' => array('guest'));
@@ -140,6 +140,26 @@ return array(
                 array('route' => 'performanceSetSong/create', 'roles' => array('user'));
                 array('route' => 'performanceSetSong/edit', 'roles' => array('user'));
                 array('route' => 'performanceSetSong/delete', 'roles' => array('admin'));
+
+                array('route' => 'performerAlias', 'roles' => array('none'));
+                array('route' => 'performerAlias/detail', 'roles' => array('guest'));
+                array('route' => 'performerAlias/create', 'roles' => array('user'));
+                array('route' => 'performerAlias/edit', 'roles' => array('user'));
+                array('route' => 'performerAlias/delete', 'roles' => array('admin'));
+
+                array('route' => 'performer', 'roles' => array('guest'));
+                array('route' => 'performer/detail', 'roles' => array('guest'));
+                array('route' => 'performer/create', 'roles' => array('user'));
+                array('route' => 'performer/edit', 'roles' => array('user'));
+                array('route' => 'performer/delete', 'roles' => array('admin'));
+                array('route' => 'performer/searchJson', 'roles' => array('guest'));
+
+                array('route' => 'performerLineup', 'roles' => array('none'));
+                array('route' => 'performerLineup/detail', 'roles' => array('guest'));
+                array('route' => 'performerLineup/create', 'roles' => array('user'));
+                array('route' => 'performerLineup/edit', 'roles' => array('user'));
+                array('route' => 'performerLineup/delete', 'roles' => array('admin'));
+                array('route' => 'performerLineup/sortPerformanceSetSongs', 'roles' => array('user'));
 
 
                 // Below is the default index action used by the [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)

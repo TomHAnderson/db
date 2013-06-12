@@ -557,7 +557,196 @@ return array(
                     ),
                 ),
             ),
+
+// Performer Alias
+            'performerAlias' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/performerAlias',
+                    'defaults' => array(
+                        'controller' => 'performerAlias',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/detail[/:performerAliasId]',
+                            'defaults' => array(
+                                'controller' => 'performerAlias',
+                                'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:performerId]',
+                            'defaults' => array(
+                                'controller' => 'performerAlias',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:performerAliasId]',
+                            'defaults' => array(
+                                'controller' => 'performerAlias',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:performerAliasId]',
+                            'defaults' => array(
+                                'controller' => 'performerAlias',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+// Performer
+            'performer' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/performer',
+                    'defaults' => array(
+                        'controller' => 'performer',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/detail[/:performerId]',
+                            'defaults' => array(
+                                'controller' => 'performer',
+                                'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create',
+                            'defaults' => array(
+                                'controller' => 'performer',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:performerId]',
+                            'defaults' => array(
+                                'controller' => 'performer',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:performerId]',
+                            'defaults' => array(
+                                'controller' => 'performer',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                    'searchJson' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/search/json',
+                            'defaults' => array(
+                                'controller' => 'performer',
+                                'action'     => 'searchJson',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+// Performer Lineup
+            'performerLineup' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/performerLineup',
+                    'defaults' => array(
+                        'controller' => 'performerLineup',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/detail[/:performerLineupId]',
+                            'defaults' => array(
+                                'controller' => 'performerLineup',
+                                'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:lineupId]',
+                            'defaults' => array(
+                                'controller' => 'performerLineup',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:performerLineupId]',
+                            'defaults' => array(
+                                'controller' => 'performerLineup',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:performerLineupId]',
+                            'defaults' => array(
+                                'controller' => 'performerLineup',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                    'sortPerformanceSetSongs' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/songs/sort[/:performanceId]',
+                            'defaults' => array(
+                                'controller' => 'performerLineup',
+                                'action'     => 'sortPerformanceSetSongs',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
 /////////
+
             'source' => array(
                 'type' => 'Literal',
                 'priority' => 1000,
