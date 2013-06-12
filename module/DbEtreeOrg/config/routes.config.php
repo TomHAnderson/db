@@ -314,6 +314,128 @@ return array(
                 ),
             ),
 
+// Links
+            'link' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/link',
+                    'defaults' => array(
+                        'controller' => 'link',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:entityName][/:id]',
+                            'defaults' => array(
+                                'controller' => 'link',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:entityName][/:id]',
+                            'defaults' => array(
+                                'controller' => 'link',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:entityName][/:linkId]',
+                            'defaults' => array(
+                                'controller' => 'link',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+// Performance
+            'performance' => array(
+                'type' => 'Literal',
+                'priority' => 1000,
+                'options' => array(
+                    'route' => '/performance',
+                    'defaults' => array(
+                        'controller' => 'performance',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'detail' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/performance[/:performanceId]',
+                            'defaults' => array(
+                                'controller' => 'performance',
+                                'action'     => 'detail',
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/create[/:lineupId]',
+                            'defaults' => array(
+                                'controller' => 'performance',
+                                'action'     => 'create',
+                            ),
+                        ),
+                    ),
+                    'edit' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/edit[/:performanceId]',
+                            'defaults' => array(
+                                'controller' => 'performance',
+                                'action'     => 'edit',
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/delete[/:performanceId]',
+                            'defaults' => array(
+                                'controller' => 'performance',
+                                'action'     => 'delete',
+                            ),
+                        ),
+                    ),
+                    'addPerformer' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/add-performer[/:performanceId]',
+                            'defaults' => array(
+                                'controller' => 'performance',
+                                'action'     => 'addPerformer',
+                            ),
+                        ),
+                    ),
+                    'removePerformer' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/remove-performer[/:performanceId][/:performerId]',
+                            'defaults' => array(
+                                'controller' => 'performance',
+                                'action'     => 'removePerformer',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
 /////////
             'source' => array(
                 'type' => 'Literal',

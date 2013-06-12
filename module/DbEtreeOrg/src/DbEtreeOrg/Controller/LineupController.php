@@ -114,15 +114,12 @@ class LineupController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('lineupId');
         $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
         if (!$lineup)
-            return $this->plugin('redirect')->toUrl('/');
+            return $this->plugin('redirect')->toRoute('home');
 
         if (!sizeof($lineup->getAliases())
             and !sizeof($lineup->getLineups())
@@ -137,7 +134,7 @@ class LineupController extends AbstractActionController
             $em->flush();
         }
 
-        return $this->plugin('redirect')->toUrl('/');
+        return $this->plugin('redirect')->toRoute('home');
     }
 
     public function addPerformerAction()
@@ -178,6 +175,8 @@ class LineupController extends AbstractActionController
 
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/lineup/detail?id=' . $id);
+        return $this->plugin('redirect')->toRoute('lineup/detail', array(
+            'id' => $id
+        ));
     }
 }

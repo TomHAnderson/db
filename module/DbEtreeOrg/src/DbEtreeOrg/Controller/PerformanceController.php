@@ -26,17 +26,13 @@ class PerformanceController extends AbstractActionController
     public function detailAction()
     {
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id)
-            return $this->plugin('redirect')->toUrl('/performance');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $performance = Workspace::filter($em->getRepository('Db\Entity\Performance')->find($id));
 
         if (!$performance)
             throw new \Exception("Performance $id not found");
 
-        $menu = $this->getServiceLocator()->get('menu');
-        $menu->addRecent('performances', $performance->getId());
+        $this->getServiceLocator()->get('menu')->addRecent('performances', $performance->getId());
 
         return array(
             'performance' => $performance
@@ -45,16 +41,13 @@ class PerformanceController extends AbstractActionController
 
     public function createAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $performance = new PerformanceEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($performance);
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('lineupId');
         $lineup = Workspace::filter($em->getRepository('Db\Entity\Lineup')->find($id));
 
         if ($this->getRequest()->isPost()) {
@@ -80,7 +73,9 @@ class PerformanceController extends AbstractActionController
                 $em->persist($performance);
                 $em->flush();
 
-                return $this->plugin('redirect')->toUrl('/performance/detail/' . $performance->getId());
+                return $this->plugin('redirect')->toRoute('performance/detail', array(
+                    'id' =>  $performance->getId()
+                ));
             }
         }
 
@@ -92,12 +87,9 @@ class PerformanceController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceId');
         $performance = Workspace::filter($em->getRepository('Db\Entity\Performance')->find($id));
 
         if (!$performance)
@@ -133,16 +125,13 @@ class PerformanceController extends AbstractActionController
 
     public function deleteAction()
     {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            return $this->plugin('redirect')->toUrl('/user/login');
-
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
-        $id = $this->getRequest()->getQuery()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceId');
         $performance = Workspace::filter($em->getRepository('Db\Entity\Performance')->find($id));
 
         if (!$performance) {
-            return $this->plugin('redirect')->toUrl('/');
+            return $this->plugin('redirect')->toRoute('home');
         }
 
         if (!sizeof($performance->getAliases())
@@ -155,12 +144,12 @@ class PerformanceController extends AbstractActionController
             $em->flush();
         }
 
-        return $this->plugin('redirect')->toUrl('/');
+        return $this->plugin('redirect')->toRoute('home');
     }
-
+/*
     public function addSetAction()
     {
-        $id = $this->getRequest()->getPost()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceId');
         $performerId = $this->getRequest()->getPost()->get('performer_id');
         $returnUrl = $this->getRequest()->getPost()->get('returnUrl');
 
@@ -176,10 +165,10 @@ class PerformanceController extends AbstractActionController
 
         return $this->plugin('redirect')->toUrl($returnUrl);
     }
-
+*/
     public function addPerformerAction()
     {
-        $id = $this->getRequest()->getPost()->get('id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceId');
         $note = $this->getRequest()->getPost()->get('note');
         $performerId = $this->getRequest()->getPost()->get('performer_id');
 
@@ -196,13 +185,15 @@ class PerformanceController extends AbstractActionController
         $em->persist($performerPerformance);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/performance/detail/' . $id);
+        return $this->plugin('redirect')->toRoute('performance/detail', array(
+            'id' =>  $id
+        ));
     }
 
     public function removePerformerAction()
     {
-        $id = $this->getRequest()->getPost()->get('id');
-        $performerId = $this->getRequest()->getPost()->get('performer_id');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('performanceId');
+        $performerId = (int)$this->getEvent()->getRouteMatch()->getParam('performerId');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
@@ -217,6 +208,8 @@ class PerformanceController extends AbstractActionController
         $em->remove($performerPerformance);
         $em->flush();
 
-        return $this->plugin('redirect')->toUrl('/performance/detail/' . $id);
+        return $this->plugin('redirect')->toRoute('performance/detail', array(
+            'id' =>  $id
+        ));
     }
 }

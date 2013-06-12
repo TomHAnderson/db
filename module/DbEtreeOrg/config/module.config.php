@@ -12,16 +12,6 @@ namespace DbEtreeOrg;
 return array(
     'router' => array(
         'routes' => array(
-            'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        'controller' => 'index',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
             'takelogin' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(

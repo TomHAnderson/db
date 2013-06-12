@@ -81,20 +81,21 @@ return array(
              * access to all routes unless they are specified here.
              */
             'BjyAuthorize\Guard\Route' => array(
-                array('route' => 'home', 'roles' => array('guest', 'user')),
+                array('route' => 'home', 'roles' => array('guest')),
+                array('route' => 'menu', 'roles' => array('guest')),
 
-                array('route' => 'band-alias', 'roles' => array('guest'));
-                array('route' => 'band-alias/detail', 'roles' => array('guest'));
-                array('route' => 'band-alias/create', 'roles' => array('user'));
-                array('route' => 'band-alias/edit', 'roles' => array('user'));
-                array('route' => 'band-alias/delete', 'roles' => array('admin'));
+                array('route' => 'bandAlias', 'roles' => array('guest'));
+                array('route' => 'bandAlias/detail', 'roles' => array('guest'));
+                array('route' => 'bandAlias/create', 'roles' => array('user'));
+                array('route' => 'bandAlias/edit', 'roles' => array('user'));
+                array('route' => 'bandAlias/delete', 'roles' => array('admin'));
 
                 array('route' => 'band', 'roles' => array('guest'));
                 array('route' => 'band/detail', 'roles' => array('guest'));
                 array('route' => 'band/create', 'roles' => array('user'));
                 array('route' => 'band/edit', 'roles' => array('user'));
                 array('route' => 'band/delete', 'roles' => array('admin'));
-                array('route' => 'band/search-json', 'roles' => array('user'));
+                array('route' => 'band/searchJson', 'roles' => array('user'));
 
                 array('route' => 'checksum', 'roles' => array('guest'));
                 array('route' => 'checksum/detail', 'roles' => array('guest'));
@@ -102,6 +103,30 @@ return array(
                 array('route' => 'checksum/edit', 'roles' => array('user'));
                 array('route' => 'checksum/delete', 'roles' => array('admin'));
 
+                array('route' => 'comment', 'roles' => array('none'));
+                array('route' => 'comment/create', 'roles' => array('user'));
+                array('route' => 'comment/delete', 'roles' => array('user'));
+
+                array('route' => 'lineup', 'roles' => array('none'));
+                array('route' => 'lineup/detail', 'roles' => array('guest'));
+                array('route' => 'lineup/create', 'roles' => array('user'));
+                array('route' => 'lineup/edit', 'roles' => array('user'));
+                array('route' => 'lineup/delete', 'roles' => array('admin'));
+                array('route' => 'lineup/addPerformer', 'roles' => array('user'));
+                array('route' => 'lineup/removePerformer', 'roles' => array('admin'));
+
+                array('route' => 'link', 'roles' => array('none'));
+                array('route' => 'link/create', 'roles' => array('user'));
+                array('route' => 'link/edit', 'roles' => array('admin'));
+                array('route' => 'link/delete', 'roles' => array('admin'));
+
+                array('route' => 'performance', 'roles' => array('none'));
+                array('route' => 'performance/detail', 'roles' => array('guest'));
+                array('route' => 'performance/create', 'roles' => array('user'));
+                array('route' => 'performance/edit', 'roles' => array('user'));
+                array('route' => 'performance/delete', 'roles' => array('admin'));
+                array('route' => 'performance/addPerformer', 'roles' => array('user'));
+                array('route' => 'performance/removePerformer', 'roles' => array('admin'));
 
                 // Below is the default index action used by the [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
                 array('route' => 'application/default', 'roles' => array('none')),

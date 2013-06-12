@@ -15,8 +15,8 @@ class LinkController extends AbstractActionController
         if (!$auth->hasIdentity())
             throw new \Exception('User is not authenticated');
 
-        $id = (id)$this->getRequest()->getQuery()->get('id');
-        $entityName = $this->getRequest()->getQuery()->get('entityName');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id')
+        $entityName = $this->getEvent()->getRouteMatch()->getParam('entityName');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
@@ -63,8 +63,8 @@ class LinkController extends AbstractActionController
         if (!$auth->hasIdentity())
             throw new \Exception('User is not authenticated');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $entityName = $this->getRequest()->getQuery()->get('entityName');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id')
+        $entityName = $this->getEvent()->getRouteMatch()->getParam('entityName');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
@@ -99,15 +99,14 @@ class LinkController extends AbstractActionController
         return $viewModel;
     }
 
-
     public function deleteAction()
     {
         $auth = $this->getServiceLocator()->get('zfcuser_auth_service');
         if (!$auth->hasIdentity())
             throw new \Exception('User is not authenticated');
 
-        $id = $this->getRequest()->getQuery()->get('id');
-        $entityName = $this->getRequest()->getQuery()->get('entityName');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id')
+        $entityName = $this->getEvent()->getRouteMatch()->getParam('entityName');
         $returnUrl = $this->getRequest()->getQuery()->get('returnUrl');
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
@@ -124,54 +123,4 @@ class LinkController extends AbstractActionController
 
         die('User does not own this comment');
     }
-/*
-    public function editAction()
-    {
-        if (!$this->getServiceLocator()->get('zfcuser_auth_service')->hasIdentity())
-            throw new \Exception('User is not authenticated');
-
-        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-
-        $id = $this->getRequest()->getQuery()->get('id');
-        $venue = $em->getRepository('Db\Entity\Venue')->find($id);
-
-        if (!$venue)
-            throw new \Exception("Venue $id not found");
-
-        $builder = new AnnotationBuilder();
-        $form = $builder->createForm($venue);
-        $form->setData($venue->getArrayCopy());
-
-        $form->add(array(
-            'name' => 'submit',
-            'attributes' => array(
-                'id' => 'submit',
-                'type'  => 'submit',
-                'value' => 'Submit',
-            ),
-        ));
-
-        if ($this->getRequest()->isPost()) {
-            $form->setData($this->getRequest()->getPost()->toArray());
-            $form->setUseInputFilterDefaults(false);
-            $form->setInputFilter($venue->getInputFilter());
-
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $venue->exchangeArray($form->getData());
-
-                $em->persist($venue);
-                $em->flush();
-
-                return $this->plugin('redirect')->toUrl('/venue/detail?id=' . $venue->getId());
-            }
-        }
-
-        return array(
-            'form' => $form,
-            'venue' => $venue,
-        );
-    }
-
-*/
 }
