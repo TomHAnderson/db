@@ -10,12 +10,12 @@ use Zend\Form\Annotation as Form;
  */
 class AbstractComment extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\User
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\Rating
-        , \Db\Entity\Field\CreatedAt
-        , \Db\Entity\Field\TypeDescriminator
+    use Field\Id
+        , Field\User
+        , Field\Note
+        , Field\Rating
+        , Field\CreatedAt
+        , Field\TypeDescriminator
         ;
 
     public function getArrayCopy()
@@ -23,6 +23,7 @@ class AbstractComment extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'note' => $this->getNote(),
+            'rating' => $this->getRating(),
             'createdAt' => $this->getCreatedAt()->format('r'),
         );
     }
@@ -30,5 +31,6 @@ class AbstractComment extends AbstractEntity
     public function exchangeArray($data)
     {
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setNote(isset($data['rating']) ? $data['rating']: null);
     }
 }

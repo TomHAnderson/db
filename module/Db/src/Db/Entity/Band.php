@@ -12,19 +12,19 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Form\Name("band")
  */
 class Band extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\BandGroup
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\Mbid
+    use Field\Id
+        , Field\BandGroup
+        , Field\Name
+        , Field\NameNormalize
+        , Field\Note
+        , Field\Mbid
         ;
 
-    use \Db\Entity\Relation\Aliases
-        , \Db\Entity\Relation\Lineups
-        , \Db\Entity\Relation\Links
-        , \Db\Entity\Relation\Comments
-        , \Db\Entity\Relation\Songs
+    use Relation\Aliases
+        , Relation\Lineups
+        , Relation\Links
+        , Relation\Comments
+        , Relation\Songs
         ;
 
     public function __toString()
@@ -41,7 +41,6 @@ class Band extends AbstractEntity {
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
-            'bandGroup' => $this->getBandGroup(),
         );
     }
 
@@ -50,22 +49,6 @@ class Band extends AbstractEntity {
         $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
-
-        // Set foreign entity relations directly
-        if (isset($data['bandGroup'])) $this->bandGroup = $data['bandGroup'];
-    }
-
-    public function diff($data)
-    {
-        $diff = array();
-        if ($this->getMbid() != $data['mbid']) {
-            $diff['mbid'] = array(
-                'value' => $data['mbid'],
-                'datatype' => 'integer',
-            );
-        }
-
-        return $diff;
     }
 
     public function getInputFilter()

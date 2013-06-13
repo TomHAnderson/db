@@ -1076,33 +1076,6 @@
       <attribute name="namespace">Db\Entity</attribute>
     </orm-attributes>
   </module>
-  <module name="Peer Review" import-format="Doctrine2Xml" import-path="../../module/Db/config/xml" uuid="82c75821-ba8d-4347-9ce4-22985fcc4d92">
-    <entity name="PendingQueue" uuid="8c60d920-0618-4912-90b9-c11396b237d8">
-      <field name="id" type="integer" primary="true" auto-increment="true" uuid="bb73eb28-7ed9-4508-8b5e-c5061daee710"/>
-      <field name="user_id" type="integer" required="true" uuid="73ced162-3727-49a3-9efe-790bdc5f0096"/>
-      <field name="entityId" type="integer" required="true" uuid="336c2e28-a36e-4c58-9776-bab291d4da39"/>
-      <field name="entityName" type="string" required="true" uuid="117cde8a-bedd-4afd-9335-1123e7fa32d2"/>
-      <field name="dataType" type="string" required="true" uuid="39a11979-b4ce-40e4-accb-105ed6ad31ce"/>
-      <field name="field" type="string" required="true" uuid="23d6281c-50c4-4df8-a8f5-a84a3280ff86"/>
-      <field name="value" type="string" uuid="f8c8c414-3c85-4fd6-9c66-a46eaa2010fd"/>
-      <field name="isDelete" description="To mark a whole row as deleted" type="boolean" uuid="b104fa5c-3fa1-4a78-b832-9ac64b405493"/>
-      <field name="createdAt" type="datetime" required="true" uuid="5a75a27b-0fb5-4ff9-a12e-91c58d3e0f1d"/>
-    </entity>
-    <association from="PendingQueue" to="User" owner-alias="pendingQueue" inverse-alias="user" uuid="11604d93-715c-4fde-8021-646e81fad0fc">
-      <association-field from="user_id" to="id"/>
-      <orm-attributes>
-        <attribute name="side-owning">
-          <attribute name="fetch">EAGER</attribute>
-        </attribute>
-      </orm-attributes>
-    </association>
-    <region caption="Peer Review" uuid="1469fa2f-aec0-4784-8e31-92b01f10aa34">
-      <entity-ref name="PendingQueue"/>
-    </region>
-    <orm-attributes>
-      <attribute name="namespace">Db\Entity</attribute>
-    </orm-attributes>
-  </module>
   <visual-data>
     <entity uuid="0288b513-9531-454a-bc91-5f02c7d49f45" position-x="-18" position-y="-100" size-x="0" size-x2="98" size-y="0" size-y2="73"/>
     <entity uuid="0422e7df-736b-47b5-86f2-644bad5a59b3" position-x="230" position-y="36" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
@@ -1112,12 +1085,10 @@
     <entity uuid="077f4a47-5b70-46f5-bb24-53b355f15ec8" position-x="352" position-y="39" size-x="0" size-x2="112" size-y="0" size-y2="45"/>
     <association uuid="099ca87f-13e2-48f1-9944-eaf7bb47e3df" splitted="1"/>
     <inheritance-child uuid="09e7846f-f21e-4304-afb1-03b91134950d" splitted="1"/>
-    <association uuid="11604d93-715c-4fde-8021-646e81fad0fc" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" splitted="1"/>
     <association uuid="12d9049b-6ae0-4c55-bc8d-c2719e614680" splitted="1"/>
     <association uuid="136b6eba-dce9-4391-88d5-3186fe322a4a" splitted="1"/>
     <association uuid="13c35ea7-aa41-465f-9602-f0b477836b35" splitted="1"/>
     <region uuid="142287a0-efb1-472e-b4a3-32a2b6d9e760" bk-color="15716788" position-x="750" position-y="271" size-x="0" size-x2="344" size-y="0" size-y2="261"/>
-    <region uuid="1469fa2f-aec0-4784-8e31-92b01f10aa34" bk-color="4293906868" position-x="9" position-y="21" size-x="0" size-x2="304" size-y="0" size-y2="239"/>
     <association uuid="176656c7-fc2b-4a39-ab91-9251119dbd09" splitted="1"/>
     <entity uuid="186e33a8-75f4-40a8-84d0-bafeb79203de" position-x="231" position-y="37" size-x="0" size-x2="93" size-y="0" size-y2="45"/>
     <entity uuid="18cb5d8f-d0ea-49cb-83fa-9127c25c3664" position-x="252" position-y="-133" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
@@ -1183,12 +1154,10 @@
     <association uuid="7ea7f4b5-d23f-4cfc-a3e8-aab1d06b3a4d" center-position-x="16" center-position-y="0"/>
     <inheritance-child uuid="813221d1-5d55-4e29-bca4-58c2f63e038c" splitted="1"/>
     <inheritance-child uuid="81949f09-9133-4b01-b39d-755484649516" splitted="1"/>
-    <module uuid="82c75821-ba8d-4347-9ce4-22985fcc4d92" bk-color="4293359639" position-x="572" position-y="-360" size-x="0" size-x2="328" size-y="0" size-y2="279"/>
     <entity uuid="84a8d9b9-d842-414b-8220-ad30a48fc440" position-x="524" position-y="110" size-x="0" size-x2="95" size-y="0" size-y2="45"/>
     <entity uuid="859e7fea-b536-4fc1-8405-29100471e852" position-x="-343" position-y="-106" size-x="0" size-x2="122" size-y="0" size-y2="60"/>
     <region uuid="86490e22-2c2a-4f81-b8ec-51f819610748" bk-color="15716788" position-x="28" position-y="413" size-x="30" size-x2="383" size-y="144" size-y2="119"/>
     <entity uuid="8b9c2e8b-b7e6-4ff7-a0a8-b0452541edf2" position-x="27" position-y="104" size-x="0" size-x2="91" size-y="0" size-y2="87"/>
-    <entity uuid="8c60d920-0618-4912-90b9-c11396b237d8" position-x="37" position-y="25" size-x="0" size-x2="100" size-y="0" size-y2="129"/>
     <entity uuid="8d270e66-501b-466f-ab56-045250803130" position-x="23" position-y="36" size-x="0" size-x2="140" size-y="0" size-y2="87"/>
     <region uuid="8f69e7ba-888b-4cc0-b80a-fea1e0da2238" bk-color="15716788" position-x="45" position-y="24" size-x="0" size-x2="388" size-y="0" size-y2="375"/>
     <entity uuid="93579d77-9cf7-4d37-baef-58ebafc386da" position-x="512" position-y="38" size-x="0" size-x2="93" size-y="0" size-y2="45"/>

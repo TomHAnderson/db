@@ -2,26 +2,25 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("lineup")
  */
 class Lineup extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Band
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Note
+    use Field\Id
+        , Field\Band
+        , Field\Name
+        , Field\NameNormalize
+        , Field\Note
         ;
 
-    use \Db\Entity\Relation\Performances
-        , \Db\Entity\Relation\Performers
-        , \Db\Entity\Relation\Comments
-        , \Db\Entity\Relation\PerformerLineups
+    use Relation\Performances
+        , Relation\Performers
+        , Relation\Comments
+        , Relation\PerformerLineups
         ;
 
     public function __toString()

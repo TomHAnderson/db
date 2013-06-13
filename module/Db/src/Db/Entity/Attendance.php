@@ -10,15 +10,15 @@ use Zend\Form\Annotation as Form;
  */
 class Attendance extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\User
-        , \Db\Entity\Field\Performance
-        , \Db\Entity\Field\Note
+    use Field\Id
+        , Field\User
+        , Field\Performance
+        , Field\Note
         ;
 
     public function __toString()
     {
-        return $this->getPerformance()->getName();
+        return 'Attended: ' . $this->getPerformance()->getName();
     }
 
     /** Hydrator functions */

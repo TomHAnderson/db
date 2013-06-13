@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class LineupComment extends AbstractComment
 {
-    use \Db\Entity\Field\Lineup;
+    use Field\Lineup;
 }

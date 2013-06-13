@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class EventLink extends AbstractLink
 {
-    use \Db\Entity\Field\Event;
+    use Field\Event;
 }

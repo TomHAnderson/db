@@ -10,20 +10,19 @@ use Zend\Form\Annotation as Form;
  */
 class Event extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Producer
-        , \Db\Entity\Field\Place
-        , \Db\Entity\Field\Zipcode
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\StartAt
-        , \Db\Entity\Field\EndAt
+    use Field\Id
+        , Field\Producer
+        , Field\Zipcode
+        , Field\Name
+        , Field\NameNormalize
+        , Field\Note
+        , Field\StartAt
+        , Field\EndAt
         ;
 
-    use \Db\Entity\Relation\Performances
-        , \Db\Entity\Relation\Links
-        , \Db\Entity\Relation\Comments
+    use Relation\Performances
+        , Relation\Links
+        , Relation\Comments
         ;
 
     public function __toString()
@@ -38,6 +37,7 @@ class Event extends AbstractEntity
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
+            'zipcode' => $this->getZipcode(),
             'startAt' => $this->getStartAt()->format('r'),
             'endAt' => $this->getStartAt()->format('r'),
         );
@@ -47,6 +47,9 @@ class Event extends AbstractEntity
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setName(isset($data['note']) ? $data['note']: null);
+        $this->setStartAt(isset($data['startAt']) ? $data['startAt']: null);
+        $this->setEndAt(isset($data['endAt']) ? $data['endAt']: null);
+        $this->setZipcode(isset($data['zipcode']) ? $data['zipcode']: null);
     }
 }
 

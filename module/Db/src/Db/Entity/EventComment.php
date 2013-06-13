@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class EventComment extends AbstractComment
 {
-    use \Db\Entity\Field\Event;
+    use Field\Event;
 }

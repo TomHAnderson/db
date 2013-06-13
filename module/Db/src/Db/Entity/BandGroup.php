@@ -9,14 +9,14 @@ use Zend\Form\Annotation as Form;
  * @Form\Name("bandGroup")
  */
 class BandGroup extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Note
+    use Field\Id
+        , Field\Name
+        , Field\NameNormalize
+        , Field\Note
         ;
 
-    use \Db\Entity\Relation\Bands
-        , \Db\Entity\Relation\Users
+    use Relation\Bands
+        , Relation\Users
         ;
 
     public function __toString()

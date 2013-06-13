@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class BandComment extends AbstractComment
 {
-    use \Db\Entity\Field\Band;
+    use Field\Band;
 }

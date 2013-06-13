@@ -11,11 +11,11 @@ use Db\Entity\AbstractEntity
  * @Form\Name("abstractLink")
  */
 class AbstractLink extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Title
-        , \Db\Entity\Field\Url
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\TypeDescriminator
+    use Field\Id
+        , Field\Title
+        , Field\Url
+        , Field\Note
+        , Field\TypeDescriminator
         ;
 
     /** Hydrator functions */
@@ -26,7 +26,6 @@ class AbstractLink extends AbstractEntity {
             'title' => $this->getTitle(),
             'url' => $this->getUrl(),
             'note' => $this->getNote(),
-            'typeDescriminator' => $this->getTypeDescriminator(),
         );
     }
 

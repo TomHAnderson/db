@@ -2,9 +2,8 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -12,10 +11,10 @@ use Zend\Form\Annotation as Form
  */
 class Checksum extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\Content
-        , \Db\Entity\Field\Source
+    use Field\Id
+        , Field\Name
+        , Field\Content
+        , Field\Source
         ;
 
     public function __toString()

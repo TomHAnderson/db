@@ -10,12 +10,12 @@ use Zend\Form\Annotation as Form;
  */
 class Mail extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\From
-        , \Db\Entity\Field\To
-        , \Db\Entity\Field\CreatedAt
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\Status
+    use Field\Id
+        , Field\From
+        , Field\To
+        , Field\CreatedAt
+        , Field\Note
+        , Field\Status
         ;
 
     public function getArrayCopy()
