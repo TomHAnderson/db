@@ -2,28 +2,27 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    , Doctrine\Common\Collections\ArrayCollection
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("song")
  */
 class Song extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Lyrics
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\Band
-        , \Db\Entity\Field\Mbid
+    use Field\Id
+        , Field\Name
+        , Field\NameNormalize
+        , Field\Lyrics
+        , Field\Note
+        , Field\Band
+        , Field\Mbid
         ;
 
-    use \Db\Entity\Relation\PerformanceSetSongs
-        , \Db\Entity\Relation\Links
-        , \Db\Entity\Relation\Comments
+    use Relation\PerformanceSetSongs
+        , Relation\Links
+        , Relation\Comments
         ;
 
     public function __toString()

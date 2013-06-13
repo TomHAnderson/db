@@ -5,13 +5,13 @@ use Db\Entity\AbstractEntity;
 
 class Wanted extends AbstractEntity
 {
-    use \Db\Entity\Field\Id;
-    use \Db\Entity\Field\User;
-    use \Db\Entity\Field\Performance;
-    use \Db\Entity\Field\Source;
+    use Field\Id;
+    use Field\User;
+    use Field\Performance;
+    use Field\Source;
 
     public function __toString()
     {
-        return $this->getPerformance()->getName();
+        return 'Wanted: ' . (string)$this->getPerformance();
     }
 }

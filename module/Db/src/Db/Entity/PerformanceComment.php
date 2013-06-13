@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class PerformanceComment extends AbstractComment
 {
-    use \Db\Entity\Field\Performance;
+    use Field\Performance;
 }

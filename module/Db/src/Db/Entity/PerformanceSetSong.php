@@ -2,22 +2,21 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("performance-set-song")
  */
 class PerformanceSetSong extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Song
-        , \Db\Entity\Field\PerformanceSet
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\Length
-        , \Db\Entity\Field\IsSegue
-        , \Db\Entity\Field\Sort
+    use Field\Id
+        , Field\Song
+        , Field\PerformanceSet
+        , Field\Note
+        , Field\Length
+        , Field\IsSegue
+        , Field\Sort
         ;
 
     public function __toString()
@@ -29,7 +28,6 @@ class PerformanceSetSong extends AbstractEntity {
     {
         return array(
             'id' => $this->getId(),
-            'performanceSet' => $this->getPerformanceSet(),
             'note' => $this->getNote(),
             'length' => $this->getLength(),
             'isSegue' => $this->getIsSegue(),

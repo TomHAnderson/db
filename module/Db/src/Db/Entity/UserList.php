@@ -6,19 +6,19 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("list")
+ * @Form\Name("userList")
  */
 class UserList extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\User
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\Abbrev
-        , \Db\Entity\Field\Note
+    use Field\Id
+        , Field\User
+        , Field\Name
+        , Field\Abbrev
+        , Field\Note
         ;
 
-    use \Db\Entity\Relation\UserPerformances
-        , \Db\Entity\Relation\Performances
+    use Relation\UserPerformances
+        , Relation\Performances
         ;
 
     public function __toString()

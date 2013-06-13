@@ -2,9 +2,8 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -12,26 +11,26 @@ use Zend\Form\Annotation as Form
  */
 class Source extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\Mbid
-        , \Db\Entity\Field\Format
-        , \Db\Entity\Field\Performance
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\Content
-        , \Db\Entity\Field\MediaSizeCompressed
-        , \Db\Entity\Field\MediaSizeUncompressed
-        , \Db\Entity\Field\DiscCountWav
-        , \Db\Entity\Field\DiscCountShn
-        , \Db\Entity\Field\CreatedAt
-        , \Db\Entity\Field\CirculatedAt
+    use Field\Id
+        , Field\Name
+        , Field\Mbid
+        , Field\Format
+        , Field\Performance
+        , Field\Note
+        , Field\Content
+        , Field\MediaSizeCompressed
+        , Field\MediaSizeUncompressed
+        , Field\DiscCountWav
+        , Field\DiscCountShn
+        , Field\CreatedAt
+        , Field\CirculatedAt
         ;
 
-    use \Db\Entity\Relation\Links
-        , \Db\Entity\Relation\Comments
-        , \Db\Entity\Relation\UserPerformances
-        , \Db\Entity\Relation\WantedBy
-        , \Db\Entity\Relation\Checksums
+    use Relation\Links
+        , Relation\Comments
+        , Relation\UserPerformances
+        , Relation\WantedBy
+        , Relation\Checksums
         ;
 
     public function __toString()

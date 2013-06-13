@@ -10,14 +10,14 @@ use Zend\Form\Annotation as Form;
  */
 class Producer extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Note
+    use Field\Id
+        , Field\Name
+        , Field\NameNormalize
+        , Field\Note
         ;
 
-    use \Db\Entity\Relation\Events
-        , \Db\Entity\Relation\Links
+    use Relation\Events
+        , Relation\Links
         ;
 
     public function __toString()

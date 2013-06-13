@@ -12,11 +12,11 @@ use Zend\Form\Annotation as Form
  * @Form\Name("userRole")
  */
 class UserRole extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Name
+    use Field\Id
+        , Field\Name
         ;
 
-    use \Db\Entity\Relation\Users
+    use Relation\Users
         ;
 
     public function __toString()

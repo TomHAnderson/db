@@ -10,36 +10,36 @@ use Zend\Form\Annotation as Form;
  */
 class UserPerformance extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\User
-        , \Db\Entity\Field\Performance
-        , \Db\Entity\Field\Source
-        , \Db\Entity\Field\UserShow\SourceNote
-        , \Db\Entity\Field\UserShow\Checksum
-        , \Db\Entity\Field\CreatedAt
-        , \Db\Entity\Field\UserShow\MediaCount
-        , \Db\Entity\Field\UserShow\MediaType
-        , \Db\Entity\Field\UserShow\NoiseReduction
-        , \Db\Entity\Field\UserShow\ScmsStatus
-        , \Db\Entity\Field\UserShow\ShowRating
-        , \Db\Entity\Field\UserShow\SoundRating
-        , \Db\Entity\Field\UserShow\Microphone
-        , \Db\Entity\Field\UserShow\Generation
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\UserShow\JCardComment
-        , \Db\Entity\Field\UserShow\TechNote
-        , \Db\Entity\Field\UserShow\ReferenceNumber
-        , \Db\Entity\Field\UserShow\TradedFrom
-        , \Db\Entity\Field\UserShow\TradedFromEmail
-        , \Db\Entity\Field\UserShow\TradesAllowed
-        , \Db\Entity\Field\Status
-        , \Db\Entity\Field\UserShow\Attendance
-        , \Db\Entity\Field\UserShow\TaperName
-        , \Db\Entity\Field\UserShow\MicLocation
+    use Field\Id
+        , Field\User
+        , Field\Performance
+        , Field\Source
+        , Field\UserShow\SourceNote
+        , Field\UserShow\Checksum
+        , Field\CreatedAt
+        , Field\UserShow\MediaCount
+        , Field\UserShow\MediaType
+        , Field\UserShow\NoiseReduction
+        , Field\UserShow\ScmsStatus
+        , Field\UserShow\ShowRating
+        , Field\UserShow\SoundRating
+        , Field\UserShow\Microphone
+        , Field\UserShow\Generation
+        , Field\Note
+        , Field\UserShow\JCardComment
+        , Field\UserShow\TechNote
+        , Field\UserShow\ReferenceNumber
+        , Field\UserShow\TradedFrom
+        , Field\UserShow\TradedFromEmail
+        , Field\UserShow\TradesAllowed
+        , Field\Status
+        , Field\UserShow\Attendance
+        , Field\UserShow\TaperName
+        , Field\UserShow\MicLocation
         ;
 
-    use \Db\Entity\Relation\Lists
-        , \Db\Entity\Relation\Users
+    use Relation\Lists
+        , Relation\Users
         ;
 
     public function __toString()
@@ -49,6 +49,7 @@ class UserPerformance extends AbstractEntity
 
     public function getArrayCopy()
     {
+        die('fixme');
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),

@@ -2,9 +2,8 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -12,22 +11,26 @@ use Zend\Form\Annotation as Form
  */
 class Venue extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Place
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\City
-        , \Db\Entity\Field\State
-        , \Db\Entity\Field\Country
-        , \Db\Entity\Field\Zipcode
+    use Field\Id
+        , Field\Name
+        , Field\NameNormalize
+        , Field\Note
+        , Field\City
+        , Field\State
+        , Field\Country
+        , Field\Zipcode
         ;
 
-    use \Db\Entity\Relation\Performances
-        , \Db\Entity\Relation\Links
-        , \Db\Entity\Relation\Comments
-        , \Db\Entity\Relation\VenueGroups
+    use Relation\Performances
+        , Relation\Links
+        , Relation\Comments
+        , Relation\VenueGroups
         ;
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
     public function getArrayCopy()
     {
@@ -64,10 +67,5 @@ class Venue extends AbstractEntity
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
 
         return $inputFilter;
-    }
-
-    public function __toString()
-    {
-        return $this->getName();
     }
 }

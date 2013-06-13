@@ -2,27 +2,26 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("performer-lineup")
  */
 class PerformerLineup extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\Performer
-        , \Db\Entity\Field\Lineup
+    use Field\Id
+        , Field\Note
+        , Field\Performer
+        , Field\Lineup
         ;
 
-    use \Db\Entity\Relation\PerformerPerformances
+    use Relation\PerformerPerformances
         ;
 
     public function __toString()
     {
-        return $this->getLineup()->getName() . ': ' . $this->getPerformer()->getName();
+        return (string)$this->getLineup() . ': ' . (string)$this->getPerformer();
     }
 
    /** Hydrator functions */

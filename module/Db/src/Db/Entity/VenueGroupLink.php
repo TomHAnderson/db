@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class VenueGroupLink extends AbstractLink
 {
-    use \Db\Entity\Field\VenueGroup;
+    use Field\VenueGroup;
 }

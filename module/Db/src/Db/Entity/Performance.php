@@ -2,9 +2,8 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -12,28 +11,29 @@ use Zend\Form\Annotation as Form
  */
 class Performance extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\PerformanceDate
-        , \Db\Entity\Field\PerformanceDateAt
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\Lineup
-        , \Db\Entity\Field\Venue
-        , \Db\Entity\Field\Event
-        , \Db\Entity\Field\Mbid
+    use Field\Id
+        , Field\Mbid
+        , Field\Name
+        , Field\NameNormalize
+        , Field\PerformanceDate
+        , Field\PerformanceDateAt
+        , Field\Note
+
+        , Field\Lineup
+        , Field\Venue
+        , Field\Event
         ;
 
-    use \Db\Entity\Relation\Links
-        , \Db\Entity\Relation\Comments
-        , \Db\Entity\Relation\Attendees
-        , \Db\Entity\Relation\UserPerformances
-        , \Db\Entity\Relation\WantedBy
-        , \Db\Entity\Relation\PerformanceSetSongs
-        , \Db\Entity\Relation\Performers
-        , \Db\Entity\Relation\PerformanceSets
-        , \Db\Entity\Relation\Sources
-        , \Db\Entity\Relation\PerformerPerformances
+    use Relation\Links
+        , Relation\Comments
+        , Relation\Attendees
+        , Relation\UserPerformances
+        , Relation\WantedBy
+        , Relation\PerformanceSetSongs
+        , Relation\Performers
+        , Relation\PerformanceSets
+        , Relation\Sources
+        , Relation\PerformerPerformances
         ;
 
     public function getArrayCopy()
@@ -75,4 +75,3 @@ class Performance extends AbstractEntity
         return $inputFilter;
     }
 }
-

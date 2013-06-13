@@ -9,5 +9,5 @@ use Zend\Form\Annotation as Form;
  */
 final class VenueComment extends AbstractComment
 {
-    use \Db\Entity\Field\Venue;
+    use Field\Venue;
 }

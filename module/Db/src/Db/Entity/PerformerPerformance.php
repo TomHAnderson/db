@@ -2,19 +2,18 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("performer-performance")
  */
 class PerformerPerformance extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Performer
-        , \Db\Entity\Field\Performance
-        , \Db\Entity\Field\Note
+    use Field\Id
+        , Field\Performer
+        , Field\Performance
+        , Field\Note
         ;
 
    /** Hydrator functions */
@@ -28,7 +27,7 @@ class PerformerPerformance extends AbstractEntity {
 
     public function __toString()
     {
-        return $this->getPerformer()->getName() . ': ' . $this->getPerformance()->getName();
+        return (string)$this->getPerformer() . ': ' . (string)$this->getPerformance();
     }
 
     public function exchangeArray($data)

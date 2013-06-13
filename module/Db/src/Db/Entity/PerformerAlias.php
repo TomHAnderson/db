@@ -2,20 +2,19 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("performer-alias")
  */
 class PerformerAlias extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Performer
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Note
+    use Field\Id
+        , Field\Performer
+        , Field\Name
+        , Field\NameNormalize
+        , Field\Note
         ;
 
     public function __toString()

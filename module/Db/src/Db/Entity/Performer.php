@@ -2,30 +2,30 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Doctrine\Common\Collections\ArrayCollection
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Doctrine\Common\Collections\ArrayCollection;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("performer")
  */
 class Performer extends AbstractEntity {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Mbid
-        , \Db\Entity\Field\User
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\NameNormalize
-        , \Db\Entity\Field\Note
+    use Field\Id
+        , Field\Mbid
+        , Field\Name
+        , Field\NameNormalize
+        , Field\Note
+
+        , Field\User
         ;
 
-    use \Db\Entity\Relation\Aliases
-        , \Db\Entity\Relation\Lineups
-        , \Db\Entity\Relation\Links
-        , \Db\Entity\Relation\Comments
-        , \Db\Entity\Relation\PerformerLineups
-        , \Db\Entity\Relation\PerformerPerformances
+    use Relation\Aliases
+        , Relation\Lineups
+        , Relation\Links
+        , Relation\Comments
+        , Relation\PerformerLineups
+        , Relation\PerformerPerformances
         ;
 
     public function __toString()

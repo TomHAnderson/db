@@ -2,9 +2,8 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
@@ -12,14 +11,14 @@ use Zend\Form\Annotation as Form
  */
 class PerformanceSet extends AbstractEntity
 {
-    use \Db\Entity\Field\Id
-        , \Db\Entity\Field\Name
-        , \Db\Entity\Field\Note
-        , \Db\Entity\Field\Sort
-        , \Db\Entity\Field\Performance
+    use Field\Id
+        , Field\Name
+        , Field\Note
+        , Field\Sort
+        , Field\Performance
     ;
 
-    use \Db\Entity\Relation\PerformanceSetSongs
+    use Relation\PerformanceSetSongs
         ;
 
     public function __toString()
