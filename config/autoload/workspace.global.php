@@ -198,7 +198,7 @@ return array(
         'authenticationService' => 'zfcuser_auth_service',
 
         'tableNamePrefix' => '',
-        'tableNameSuffix' => '_audit',
+        'tableNameSuffix' => '_workspace',
         'revisionTableName' => 'Revision',
         'revisionEntityTableName' => 'RevisionEntity',
 
