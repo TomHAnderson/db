@@ -48,7 +48,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:bandAliasid]',
                             'defaults' => array(
@@ -58,7 +58,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:bandId]',
                             'defaults' => array(
@@ -68,7 +68,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:bandAliasid]',
                             'defaults' => array(
@@ -78,7 +78,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:bandAliasid]',
                             'defaults' => array(
@@ -103,7 +103,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:bandId]',
                             'defaults' => array(
@@ -123,7 +123,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:bandId]',
                             'defaults' => array(
@@ -133,7 +133,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:bandId]',
                             'defaults' => array(
@@ -168,7 +168,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:checksumId]',
                             'defaults' => array(
@@ -178,7 +178,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:sourceId]',
                             'defaults' => array(
@@ -188,7 +188,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:checksumId]',
                             'defaults' => array(
@@ -198,7 +198,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:checksumId]',
                             'defaults' => array(
@@ -224,7 +224,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:commentId]',
                             'defaults' => array(
@@ -234,7 +234,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:entityName][/:id]',
                             'defaults' => array(
@@ -260,7 +260,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:lineupId]',
                             'defaults' => array(
@@ -270,7 +270,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:bandId]',
                             'defaults' => array(
@@ -280,7 +280,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:lineupId]',
                             'defaults' => array(
@@ -290,7 +290,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:lineupId]',
                             'defaults' => array(
@@ -300,7 +300,7 @@ return array(
                         ),
                     ),
                     'addPerformer' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/add-performer[/:lineupId]',
                             'defaults' => array(
@@ -310,7 +310,7 @@ return array(
                         ),
                     ),
                     'removePerformer' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/remove-performer[/:lineupId][/:performerId]',
                             'defaults' => array(
@@ -336,7 +336,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:entityName][/:id]',
                             'defaults' => array(
@@ -346,7 +346,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:entityName][/:id]',
                             'defaults' => array(
@@ -356,7 +356,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:entityName][/:linkId]',
                             'defaults' => array(
@@ -382,7 +382,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/performance[/:performanceId]',
                             'defaults' => array(
@@ -392,7 +392,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:lineupId]',
                             'defaults' => array(
@@ -402,7 +402,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:performanceId]',
                             'defaults' => array(
@@ -412,7 +412,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:performanceId]',
                             'defaults' => array(
@@ -422,7 +422,7 @@ return array(
                         ),
                     ),
                     'addPerformer' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/add-performer[/:performanceId]',
                             'defaults' => array(
@@ -432,7 +432,7 @@ return array(
                         ),
                     ),
                     'removePerformer' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/remove-performer[/:performanceId][/:performerId]',
                             'defaults' => array(
@@ -458,7 +458,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:performanceSetId]',
                             'defaults' => array(
@@ -468,7 +468,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:performanceId]',
                             'defaults' => array(
@@ -478,7 +478,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:performanceSetId]',
                             'defaults' => array(
@@ -488,7 +488,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:performanceSetId]',
                             'defaults' => array(
@@ -498,7 +498,7 @@ return array(
                         ),
                     ),
                     'sortPerformanceSetSongs' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/songs/sort[/:performanceSetId]',
                             'defaults' => array(
@@ -524,7 +524,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:performanceSetSongId]',
                             'defaults' => array(
@@ -534,7 +534,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:performanceSetId]',
                             'defaults' => array(
@@ -544,7 +544,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:performanceSetSongId]',
                             'defaults' => array(
@@ -554,7 +554,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:performanceSetSongId]',
                             'defaults' => array(
@@ -580,7 +580,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:performerAliasId]',
                             'defaults' => array(
@@ -590,7 +590,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:performerId]',
                             'defaults' => array(
@@ -600,7 +600,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:performerAliasId]',
                             'defaults' => array(
@@ -610,7 +610,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:performerAliasId]',
                             'defaults' => array(
@@ -635,7 +635,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:performerId]',
                             'defaults' => array(
@@ -655,7 +655,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:performerId]',
                             'defaults' => array(
@@ -665,7 +665,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:performerId]',
                             'defaults' => array(
@@ -701,7 +701,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:performerLineupId]',
                             'defaults' => array(
@@ -711,7 +711,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:lineupId]',
                             'defaults' => array(
@@ -721,7 +721,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:performerLineupId]',
                             'defaults' => array(
@@ -731,7 +731,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:performerLineupId]',
                             'defaults' => array(
@@ -741,7 +741,7 @@ return array(
                         ),
                     ),
                     'sortPerformanceSetSongs' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/songs/sort[/:performanceId]',
                             'defaults' => array(
@@ -767,7 +767,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:performerPerformance]',
                             'defaults' => array(
@@ -777,7 +777,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:performanceId]',
                             'defaults' => array(
@@ -787,7 +787,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:performerPerformance]',
                             'defaults' => array(
@@ -797,7 +797,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:performerPerformance]',
                             'defaults' => array(
@@ -807,7 +807,7 @@ return array(
                         ),
                     ),
                     'sortPerformanceSetSongs' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/songs/sort[/:performanceSetId]',
                             'defaults' => array(
@@ -833,7 +833,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:songId]',
                             'defaults' => array(
@@ -853,7 +853,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:songId]',
                             'defaults' => array(
@@ -863,7 +863,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:songId]',
                             'defaults' => array(
@@ -899,7 +899,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'band' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/band[/:bandId][/:year]',
                             'defaults' => array(
@@ -909,7 +909,7 @@ return array(
                         ),
                     ),
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:sourceId]',
                             'defaults' => array(
@@ -919,7 +919,7 @@ return array(
                         ),
                     ),
                     'create' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/create[/:performanceId]',
                             'defaults' => array(
@@ -929,7 +929,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:sourceId]',
                             'defaults' => array(
@@ -939,7 +939,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:sourceId]',
                             'defaults' => array(
@@ -1009,7 +1009,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'detail' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/detail[/:venueId]',
                             'defaults' => array(
@@ -1029,7 +1029,7 @@ return array(
                         ),
                     ),
                     'edit' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/edit[/:venueId]',
                             'defaults' => array(
@@ -1039,7 +1039,7 @@ return array(
                         ),
                     ),
                     'delete' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
                             'route' => '/delete[/:venueId]',
                             'defaults' => array(

@@ -26,9 +26,7 @@ class SongController extends AbstractActionController
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
 
         $id = $this->getEvent()->getRouteMatch()->getParam('songId');
-        die(' song id ' . $id);
         $song = Workspace::filter($em->getRepository('Db\Entity\Song')->find($id));
-        if (!$song) die('not found');
         if (!$song) {
             return $this->plugin('redirect')->toRoute('home');
         }
