@@ -3,7 +3,7 @@ namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
 use Zend\Form\Annotation as Form;
-use Zend\InputFilter\InputFilter
+use Zend\InputFilter\InputFilter;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")

@@ -25,7 +25,6 @@
     <one-to-many field="lists" target-entity="Db\Entity\UserList" mapped-by="user"/>
     <one-to-many field="userMeta" target-entity="Db\Entity\UserMeta" mapped-by="user"/>
     <one-to-many field="comments" target-entity="Db\Entity\AbstractComment" mapped-by="user"/>
-    <one-to-many field="pendingQueue" target-entity="Db\Entity\PendingQueue" mapped-by="user"/>
     <many-to-many field="bandGroups" target-entity="Db\Entity\BandGroup" inversed-by="users">
       <join-table name="UserBandGroup">
         <join-columns>

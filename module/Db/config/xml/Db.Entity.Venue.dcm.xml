@@ -11,7 +11,7 @@
     <field name="country" type="string" nullable="true"/>
     <field name="zipcode" type="string" nullable="true"/>
     <field name="note" type="text" nullable="true"/>
-    <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="venue"/>
+    <one-to-many field="performances" target-entity="Db\Entity\Performance" mapped-by="venue" fetch="EAGER"/>
     <one-to-many field="links" target-entity="Db\Entity\VenueLink" mapped-by="venue"/>
     <one-to-many field="comments" target-entity="Db\Entity\VenueComment" mapped-by="venue">
       <order-by>

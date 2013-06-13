@@ -16,7 +16,7 @@ Menu = {
     refresh: function()
     {
         $.ajax({
-            url: '/index/menu',
+            url: '/menu',
             success: function(data) {
                 $('#menu').html(data);
             },
