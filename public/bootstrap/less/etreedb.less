@@ -1,0 +1,17 @@
+// Variables
+// --------------------------
+
+@orange:           #e77817;
+@btnWarningBackground:              lighten(@orange, 15%);
+@btnWarningBackgroundHighlight:     @orange;
+
+// Classes
+// Provide *some* extra contrast for those who can get it
+.btn-orange.active {
+  color: rgba(255,255,255,.75);
+}
+
+// Danger and error appear as red
+.btn-orange {
+  .buttonBackground(@btnWarningBackground, @btnDangerBackgroundHighlight);
+}

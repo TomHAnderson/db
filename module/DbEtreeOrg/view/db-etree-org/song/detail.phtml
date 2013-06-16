@@ -17,10 +17,8 @@
     ?>
         <div class="h2">
             <a class="btn btn-info" href="<?=
-                $this->url('default',
+                $this->url('band/detail',
                     array(
-                        'controller' => 'band',
-                        'action' => 'detail',
                         'id' => $this->song->getBand()->getId(),
                     )
                 );
@@ -75,10 +73,8 @@
         <ul class="nav nav-pills">
             <?= $this->createComment($this->song->getId(),
                 'Db\Entity\Song',
-                $this->url('default',
+                $this->url('song/detail',
                     array(
-                        'controller' => 'song',
-                        'action' => 'detail',
                         'id' => $this->song->getId(),
                     )
                 ) . '#comments'
@@ -91,10 +87,8 @@
     <div class="tab-pane" id="links">
         <?= $this->createLink($this->song->getId(),
             'Db\Entity\Song',
-            $this->url('default',
+            $this->url('song/detail',
                 array(
-                    'controller' => 'song',
-                    'action' => 'detail',
                     'id' => $this->song->getId(),
                 )
             ) . '#links'

@@ -57,7 +57,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
 
     var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
 
-        $.get('/performer/search-json', { q: query }, function (data) {
+        $.get('/performer/search/json', { q: query }, function (data) {
             data<?= $id; ?> = {};
             dataLabels<?= $id; ?> = [];
 

@@ -24,7 +24,7 @@ class BandController extends AbstractActionController
 
     public function detailAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('bandId');
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($id));
 

@@ -60,7 +60,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
 
     var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
 
-        $.get('/venue/search-json', { q: query }, function (data) {
+        $.get('/venue/search/json', { q: query }, function (data) {
 
             data<?= $id; ?> = {};
             dataLabels<?= $id; ?> = [];

@@ -50,7 +50,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:bandAliasid]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'band-alias',
                                 'action'     => 'detail',
@@ -105,7 +105,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:bandId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'band',
                                 'action'     => 'detail',
@@ -170,7 +170,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:checksumId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'checksum',
                                 'action'     => 'detail',
@@ -262,7 +262,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:lineupId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'lineup',
                                 'action'     => 'detail',
@@ -384,7 +384,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/performance[/:performanceId]',
+                            'route' => '/performance[/:id]',
                             'defaults' => array(
                                 'controller' => 'performance',
                                 'action'     => 'detail',
@@ -460,7 +460,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:performanceSetId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'performanceSet',
                                 'action'     => 'detail',
@@ -526,7 +526,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:performanceSetSongId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'performanceSetSong',
                                 'action'     => 'detail',
@@ -582,7 +582,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:performerAliasId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'performerAlias',
                                 'action'     => 'detail',
@@ -637,7 +637,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:performerId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'performer',
                                 'action'     => 'detail',
@@ -703,7 +703,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:performerLineupId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'performerLineup',
                                 'action'     => 'detail',
@@ -769,7 +769,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:performerPerformance]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'performerPerformance',
                                 'action'     => 'detail',
@@ -835,7 +835,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:songId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'song',
                                 'action'     => 'detail',
@@ -911,7 +911,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:sourceId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'source',
                                 'action'     => 'detail',
@@ -964,9 +964,9 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'profile' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
-                            'route' => '/profile',
+                            'route' => '/profile[/:id]',
                             'defaults' => array(
                                 'controller' => 'user',
                                 'action'     => 'profile',
@@ -989,7 +989,7 @@ return array(
                             'route' => '/takelogout',
                             'defaults' => array(
                                 'controller' => 'user',
-                                'action'     => 'profile',
+                                'action'     => 'takeLogout',
                             ),
                         ),
                     ),
@@ -1011,7 +1011,7 @@ return array(
                     'detail' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/detail[/:venueId]',
+                            'route' => '/detail[/:id]',
                             'defaults' => array(
                                 'controller' => 'venue',
                                 'action'     => 'detail',
@@ -1143,6 +1143,7 @@ return array(
         ),
         'strategies' => array(
             'ViewJsonStrategy',
+            'DbEtreeOrg\View\Strategy\UnauthorizedStrategy',
         ),
     ),
 
@@ -1172,6 +1173,13 @@ return array(
         'instance' => array(
             'alias' => array(
                 'menu' => 'DbEtreeOrg\Service\Menu',
+            ),
+
+            'Zend\Authentication\AuthenticationService' => array(
+                'parameters' => array(
+                    'storage' => 'DoctrineModule\Authentication\Storage\ObjectRepository',
+ #                   'adapter' => 'AppleConnect\Authentication\Adapter\AppleConnect',
+                ),
             ),
 
             'DbEtreeOrg\Service\Menu' => array(

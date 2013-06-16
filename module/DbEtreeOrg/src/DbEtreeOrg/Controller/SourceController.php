@@ -31,10 +31,7 @@ class SourceController extends AbstractActionController
 
         $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($bandId));
         if (!$bandId or !$band) {
-            return $this->plugin('redirect')->toRoute('default', array(
-                'controller' => 'source',
-                'action' => 'index',
-            ));
+            return $this->plugin('redirect')->toRoute('source');
         }
 
         // Is the year valid?

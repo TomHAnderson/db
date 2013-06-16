@@ -56,7 +56,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
 
     var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
 
-        $.get('/song/search-json', { q: query }, function (data) {
+        $.get('/song/search/json', { q: query }, function (data) {
 
 //console.log(data);
             data<?= $id; ?> = {};

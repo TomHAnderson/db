@@ -4,9 +4,7 @@
 
     <div class="h2">
         <a class="btn btn-info" href="<?=
-            $this->url('default', array(
-                'controller' => 'band',
-                'action' => 'detail',
+            $this->url('band/detail', array(
                 'id' => $band->getId(),
             ));
         ?>">

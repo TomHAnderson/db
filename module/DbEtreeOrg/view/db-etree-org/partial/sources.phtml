@@ -23,9 +23,7 @@ foreach ($this->sources as $source) {
 <tr>
     <td>
         <a class="btn btn-info" href="<?=
-            $this->url('default', array(
-                'controller' => 'source',
-                'action' => 'detail',
+            $this->url('source/detail', array(
                 'id' => $source->getId(),
             )); ?>">
             <i class="icon-headphones"></i>
