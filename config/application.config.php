@@ -13,6 +13,8 @@ return array(
         'ZfcUser',
         'ZfcUserDoctrineORM',
 
+        'BjyAuthorize',
+
 //        'ZendDeveloperTools',
 
         'Workspace',

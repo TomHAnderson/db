@@ -21,10 +21,11 @@ function getCookie(c_name)
     }
 }
 
-require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBootstrapValidation', 'DbEtreeOrg', 'Menu'], function() {
+require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min', 'jqBootstrapValidation', 'DbEtreeOrg', 'Menu', 'Workspace'], function() {
 
     DbEtreeOrg.init();
     Menu.init();
+    Workspace.init();
 
     $('a.confirm').live('click', function(event) {
         return confirm('Are you sure?');
