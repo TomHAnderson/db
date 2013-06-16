@@ -91,7 +91,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    //'login_after_registration' => true,
+    'login_after_registration' => true,
 
     /**
      * Registration Form Captcha
@@ -124,7 +124,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    'use_redirect_parameter_if_present' => true,
+    'use_redirect_parameter_if_present' => false,
 
     /**
      * Sets the view template for the user login widget
@@ -143,7 +143,7 @@ $settings = array(
      * Accepted values: A valid route name within your application
      *
      */
-    'login_redirect_route' => 'user/takelogin',
+    # 'login_redirect_route' => 'user/takelogin',
 
     /**
      * Logout Redirect Route

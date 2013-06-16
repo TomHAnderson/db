@@ -3,189 +3,86 @@ return array(
     'workspace'=> array(
         'entities' => array(
             'Db\Entity\Attendance' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'attendance',
-                    'action' => 'detail',
-                ),
+                'route' => 'attendance/detail',
             ),
             'Db\Entity\Band' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'band',
-                    'action' => 'detail',
-                ),
+                'route' => 'band/detail',
             ),
             'Db\Entity\BandAlias' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'band-alias',
-                    'action' => 'detail',
-                ),
+                'route' => 'bandalias/detail',
             ),
             'Db\Entity\BandGroup' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'band-group',
-                    'action' => 'detail',
-                ),
+                'route' => 'bandgroup/detail',
             ),
             'Db\Entity\Checksum' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'checksum',
-                    'action' => 'detail',
-                ),
+                'route' => 'checksum/detail',
             ),
             'Db\Entity\Event' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'event',
-                    'action' => 'detail',
-                ),
+                'route' => 'event/detail',
             ),
             'Db\Entity\Feedback' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'feedback',
-                    'action' => 'detail',
-                ),
+                'route' => 'feedback/detail',
             ),
             'Db\Entity\Lineup' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'lineup',
-                    'action' => 'detail',
-                ),
+                'route' => 'lineup/detail',
             ),
             'Db\Entity\Mail' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'mail',
-                    'action' => 'detail',
-                ),
+                'route' => 'mail/detail',
             ),
             'Db\Entity\Performance' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'performance',
-                    'action' => 'detail',
-                ),
+                'route' => 'performance/detail',
             ),
             'Db\Entity\PerformanceSet' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'performance-set',
-                    'action' => 'detail',
-                ),
+                'route' => 'performanceset/detail',
             ),
             'Db\Entity\PerformanceSetSong' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'performance-set-song',
-                    'action' => 'detail',
-                ),
+                'route' => 'performancesetsong/detail',
             ),
             'Db\Entity\Performer' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'performer',
-                    'action' => 'detail',
-                ),
+                'route' => 'performer/detail',
             ),
             'Db\Entity\PerformerAlias' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'performer-alias',
-                    'action' => 'detail',
-                ),
+                'route' => 'performeralias/detail',
             ),
             'Db\Entity\PerformerLineup' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'performer-lineup',
-                    'action' => 'detail',
-                ),
+                'route' => 'performerlineup/detail',
             ),
             'Db\Entity\PerformerPerformance' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'performer-performance',
-                    'action' => 'detail',
-                ),
+                'route' => 'performerperformance/detail',
             ),
             'Db\Entity\Producer' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'producer',
-                    'action' => 'detail',
-                ),
+                'route' => 'producer/detail',
             ),
             'Db\Entity\Song' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'song',
-                    'action' => 'detail',
-                ),
+                'route' => 'song/detail',
             ),
             'Db\Entity\Source' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'source',
-                    'action' => 'detail',
-                ),
+                'route' => 'source/detail',
             ),
-            'Db\Entity\User' => array(),
+            'Db\Entity\User' => array(
+                'route' => 'user/profile',
+            ),
             'Db\Entity\UserList' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'user-list',
-                    'action' => 'detail',
-                ),
+                'route' => 'userlist/detail',
             ),
             'Db\Entity\UserPerformance' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'user-performance',
-                    'action' => 'detail',
-                ),
+                'route' => 'userperformance/detail',
             ),
             'Db\Entity\UserPerformanceField' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'user-performance-field',
-                    'action' => 'detail',
-                ),
+                'route' => 'userperformancefield/detail',
             ),
             'Db\Entity\UserRole' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'user-role',
-                    'action' => 'detail',
-                ),
+                'route' => 'userrole/detail',
             ),
             'Db\Entity\Venue' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'venue',
-                    'action' => 'detail',
-                ),
+                'route' => 'venue/detail',
             ),
             'Db\Entity\VenueGroup' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'venue-group',
-                    'action' => 'detail',
-                ),
+                'route' => 'venuegroup/detail',
             ),
             'Db\Entity\Wanted' => array(
-                'route' => 'default',
-                'defaults' => array(
-                    'controller' => 'wanted',
-                    'action' => 'detail',
-                ),
+                'route' => 'wanted/detail',
             ),
-
 
             'Db\Entity\AbstractComment' => array(),
             'Db\Entity\AbstractLink' => array(),
@@ -205,4 +102,3 @@ return array(
         'userEntityClassName' => 'Db\Entity\User',
     ),
 );
-

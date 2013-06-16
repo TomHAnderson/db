@@ -12,7 +12,10 @@ return array(
          *
          * for ZfcUser, this will be your default identity provider
          */
-        'identity_provider' => 'AppleConnect\Provider\Identity\AppleConnect',
+        'identity_provider' => 'DbEtreeOrg\Provider\Identity\ZfcUser',
+
+#        'unauthorized_strategy' => 'DbEtreeOrg\View\Strategy\Redirection',
+        'unauthorized_strategy' => 'BjyAuthorize\View\UnauthorizedStrategy',
 
         /* role providers simply provide a list of roles that should be inserted
          * into the Zend\Acl instance. the module comes with two providers, one
@@ -25,6 +28,7 @@ return array(
              * 'admin' inheriting from user
              */
             'BjyAuthorize\Provider\Role\Config' => array(
+                'none' => array(),
                 'guest' => array(),
                 'user'  => array('children' => array(
                     'admin' => array(),
@@ -36,7 +40,7 @@ return array(
         // in the ACL. like roles, they can be hierarchical
         'resource_providers' => array(
             'BjyAuthorize\Provider\Resource\Config' => array(
-                'pants' => array(),
+//                'pants' => array(),
             ),
         ),
 
@@ -51,7 +55,7 @@ return array(
                 'allow' => array(
                     // allow guests and users (and admins, through inheritance)
                     // the "wear" privilege on the resource "pants"
-                    array(array('guest', 'user'), 'pants', 'wear')
+//                    array(array('guest', 'user'), 'pants', 'wear')
                 ),
 
                 // Don't mix allow/deny rules if you are using role inheritance.
@@ -83,6 +87,31 @@ return array(
             'BjyAuthorize\Guard\Route' => array(
                 array('route' => 'home', 'roles' => array('guest')),
                 array('route' => 'menu', 'roles' => array('guest')),
+
+                array('route' => 'zfcuser', 'roles' => array('guest')),
+                array('route' => 'zfcuser/login', 'roles' => array('guest')),
+                array('route' => 'zfcuser/logout', 'roles' => array('guest')),
+                array('route' => 'zfcuser/register', 'roles' => array('guest')),
+                array('route' => 'user/profile', 'roles' => array('user')),
+                array('route' => 'user/edit', 'roles' => array('user')),
+                array('route' => 'user/takelogout', 'roles' => array('guest')),
+
+                array('route' => 'workspace', 'roles' => array('guest')),
+                array('route' => 'workspace/master', 'roles' => array('guest')),
+                array('route' => 'workspace/user', 'roles' => array('guest')),
+                array('route' => 'workspace/page', 'roles' => array('guest')),
+                array('route' => 'workspace/firehose', 'roles' => array('guest')),
+                array('route' => 'workspace/revision', 'roles' => array('guest')),
+                array('route' => 'workspace/revision-entity', 'roles' => array('guest')),
+                array('route' => 'workspace/one-to-many', 'roles' => array('guest')),
+                array('route' => 'workspace/assoiciation-target', 'roles' => array('guest')),
+                array('route' => 'workspace/assoiciation-source', 'roles' => array('guest')),
+                array('route' => 'workspace/entity', 'roles' => array('guest')),
+                array('route' => 'workspace/compare', 'roles' => array('guest')),
+                array('route' => 'workspace/revision-comment-edit', 'roles' => array('user')),
+                array('route' => 'workspace/revision-approve-submit', 'roles' => array('user')),
+                array('route' => 'workspace/approve', 'roles' => array('user')),
+                array('route' => 'workspace/submitted', 'roles' => array('user')),
 
                 array('route' => 'bandAlias', 'roles' => array('guest')),
                 array('route' => 'bandAlias/detail', 'roles' => array('guest')),
@@ -181,11 +210,6 @@ return array(
                 array('route' => 'source/create', 'roles' => array('user')),
                 array('route' => 'source/edit', 'roles' => array('user')),
                 array('route' => 'source/delete', 'roles' => array('admin')),
-
-                array('route' => 'user/profile', 'roles' => array('user')),
-                array('route' => 'user/edit', 'roles' => array('user')),
-                array('route' => 'user/takelogin', 'roles' => array('guest')),
-                array('route' => 'user/takelogout', 'roles' => array('user')),
 
                 array('route' => 'venue', 'roles' => array('guest')),
                 array('route' => 'venue/detail', 'roles' => array('guest')),
