@@ -38,7 +38,10 @@ $(function() {
     $('form#performer').attr('id', 'performer<?= $id; ?>');
     $('form#performer<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performer/edit?id=<?= $this->performer->getId(); ?>',
+            url: '<?=
+                $this->url('performer/edit', array(
+                    'id' => $this->performer->getId(),
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

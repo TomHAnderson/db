@@ -30,7 +30,10 @@ $id = md5(uniqid());
             Edit Performance Set Song
         </button>
 
-        <a href="/performance-set-song/delete?id=<?= $this->id; ?>" class="btn btn-danger confirm">
+        <a href="<?=
+            $this->url('performance-set-song/delete', array(
+                'id' => $this->id,
+            )); ?>" class="btn btn-danger confirm">
             <icon class="icon-bolt"></i>
             Delete Performance Set Song
         </a>
@@ -47,7 +50,10 @@ $(function() {
     $('form#performance-set-song').attr('id', 'performance-set-song<?= $id; ?>');
     $('form#performance-set-song<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performance-set-song/edit?id=<?= $this->id; ?>',
+            url: '<?=
+                $this->url('performance-set-song/edit', array(
+                    'id' => $this->id,
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

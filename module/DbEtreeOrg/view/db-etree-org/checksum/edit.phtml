@@ -28,7 +28,10 @@ $id = md5(uniqid());
             Edit Checksum
         </button>
 
-        <a class="btn btn-danger confirm" href="/checksum/delete?id=<?= $this->checksum->getId(); ?>">
+        <a class="btn btn-danger confirm" href="<?=
+            $this->url('checksum/delete', array(
+                'id' => $this->checksum->getId(),
+            )); ?>">
             <i class="icon-ok-circle"></i>
             Delete Checksum
         </a>
@@ -45,7 +48,7 @@ $(function() {
     $('form#checksum').attr('id', 'checksum<?= $id; ?>');
     $('form#checksum<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/checksum/edit?id=<?= $this->checksum->getId(); ?>',
+            url: '/checksum/edit/<?= $this->checksum->getId(); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

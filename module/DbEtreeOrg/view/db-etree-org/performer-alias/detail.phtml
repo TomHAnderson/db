@@ -6,7 +6,10 @@
 
 <div class="h1">
 
-    <a class="btn btn-info" href="/performer/detail?id=<?= $this->performerAlias->getPerformer()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('performer/detail', array(
+            'id' => $this->performerAlias->getPerformer()->getId(),
+        )); ?>">
         <i class="icon-film"></i>
     </a>
 

@@ -40,7 +40,10 @@ $(function() {
     $('form#lineup<?= $id; ?>').on('submit', function(event) {
 
         $.ajax({
-            url: '/lineup/edit?id=<?= $this->lineup->getId(); ?>',
+            url: '<?=
+                $this->url('lineup/edit', array(
+                    'id' => $this->lineup->getId(),
+                )); ?>',
 
             type: $(this).attr('method'),
             data: $(this).serialize(),

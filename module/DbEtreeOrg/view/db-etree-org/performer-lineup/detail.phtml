@@ -5,7 +5,10 @@
 ?>
 
 <div class="h1">
-    <a class="btn btn-info" href="/lineup/detail?id=<?= $this->performerLineup->getLineup()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('lineup/detail', array(
+            'id' => $this->performerLineup->getLineup()->getId(),
+        )); ?>">
         <i class="icon-group"></i>
     </a>
 
@@ -13,14 +16,20 @@
 
 
     <div class="h2">
-        <a class="btn btn-info" href="/band/detail?id=<?= $this->performerLineup->getLineup()->getBand()->getId(); ?>">
+        <a class="btn btn-info" href="<?=
+            $this->url('band/detail', array(
+                'id' => $this->performerLineup->getLineup()->getBand()->getId(),
+            )); ?>">
             <i class="icon-cogs"></i>
         </a>
         <?= $this->escapeHtml($this->performerLineup->getLineup()->getBand()->getName()); ?>
 
     </div>
 
-    <a class="btn btn-info" href="/performer/detail?id=<?= $this->performerLineup->getPerformer()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('performer/detail', array(
+            'id' => $this->performerLineup->getPerformer()->getId(),
+        )); ?>">
         <i class="icon-film"></i>
     </a>
 

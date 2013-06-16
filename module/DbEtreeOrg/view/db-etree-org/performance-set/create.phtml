@@ -36,7 +36,10 @@ $(function() {
     $('form#performance-set').attr('id', 'performance-set<?= $id; ?>');
     $('form#performance-set<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performance-set/create?id=<?= $this->id; ?>',
+            url: '<?=
+                $this->url('performance-set/create', array(
+                    'id' => $this->id,
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

@@ -50,7 +50,10 @@ $(function() {
     $('form#venue').attr('id', 'venue<?= $id; ?>');
     $('form#venue<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/venue/edit?id=<?= $this->venue->getId();?>',
+            url: '<?=
+                $this->url('venue/edit', array(
+                    'id' => $this->venue->getId(),
+                ));?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

@@ -30,7 +30,10 @@ foreach ($comments as $comment) {
             <ul class="nav nav-pills pull-right">
                 <li class="">
                    <a class="returnUrl btn-danger"
-                       href="/comment/delete?id=<?= $comment->getId(); ?>&entityName=<?= get_class($comment); ?>">
+                       href="<?=
+                        $this->url('comment/delete', array(
+                            'id' => $comment->getId(),
+                        )); ?>&entityName=<?= get_class($comment); ?>">
                        <i class="icon-comment"></i> Delete Comment
                    </a>
                 </li>

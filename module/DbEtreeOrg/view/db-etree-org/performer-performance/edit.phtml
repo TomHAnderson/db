@@ -22,7 +22,10 @@ $id = md5(uniqid());
             Edit Guest Performer Performance
         </button>
 
-        <a class="confirm btn btn-danger" href="/performer-performance/delete?id=<?= $this->id; ?>">
+        <a class="confirm btn btn-danger" href="<?=
+            $this->url('performer-performance/delete', array(
+                'id' => $this->id,
+            )); ?>">
             <i class="icon-facetime-video"></i>
             Remove Guest Performer from Performance
         </a>
@@ -40,7 +43,10 @@ $(function() {
     $('form#performer-performance').attr('id', 'performer-performance<?= $id; ?>');
     $('form#performer-performance<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performer-performance/edit?id=<?= $this->performerPerformance->getId(); ?>',
+            url: '<?=
+                $this->url('performer-performance/edit', array(
+                    'id' => $this->performerPerformance->getId(),
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

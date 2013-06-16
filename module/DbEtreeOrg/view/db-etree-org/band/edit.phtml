@@ -38,7 +38,7 @@ $(function() {
     $('form#band').attr('id', 'band<?= $id; ?>');
     $('form#band<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/band/edit?id=<?= $this->band->getId(); ?>',
+            url: '/band/edit/<?= $this->band->getId(); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

@@ -39,7 +39,10 @@ $(function() {
     $('form#lineup<?= $id; ?>').on('submit', function(event) {
 
         $.ajax({
-            url: '/lineup/create?id=<?= $band_id; ?>',
+            url: '<?=
+                $this->url('lineup/create', array(
+                    'id' => $band_id,
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

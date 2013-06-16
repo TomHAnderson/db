@@ -3,7 +3,10 @@
     Add Song to Performace Set
 </a>
 
-<a class="pull-right btn-warning" href="/performance-set/edit?id=<?= $this->performanceSet->getId(); ?>">
+<a class="pull-right btn-warning" href="<?=
+    $this->url('performance-set/edit', array(
+        'id' => $this->performanceSet->getId(),
+    )); ?>">
     <i class="icon-certificate"></i>
     Edit Performance Set
 </a>
@@ -15,7 +18,10 @@
 ?>
 
 <div class="h1">
-    <a class="btn btn-info" href="/performance/detail?id=<?= $this->performanceSet->getPerformance()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('performance/detail', array(
+            'id' => $this->performanceSet->getPerformance()->getId(),
+        )); ?>">
         <i class="icon-magic"></i>
     </a>
 <?php
@@ -30,7 +36,10 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
 </div>
 
 <div class="h1">
-    <a class="btn btn-info" href="/band/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('band/detail', array(
+            'id' => $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(),
+        )); ?>">
         <i class="icon-cogs"></i>
     </a>
 
@@ -38,7 +47,10 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
 </div>
 
 <div class="h1">
-    <a class="btn btn-info" href="/lineup/detail?id=<?= $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('lineup/detail', array(
+            'id' => $this->performanceSet->getPerformance()->getLineup()->getBand()->getId(),
+        )); ?>">
         <i class="icon-group"></i>
     </a>
 
@@ -46,7 +58,10 @@ if ($this->performanceSet->getPerformance()->getPerformanceDateAt()->format('F d
 </div>
 
 <div class="h1">
-    <a class="btn btn-info" href="/venue/detail?id=<?= $this->performanceSet->getPerformance()->getVenue()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('venue/detail', array(
+            'id' => $this->performanceSet->getPerformance()->getVenue()->getId(),
+        )); ?>">
         <i class="icon-map-marker"></i>
     </a>
 

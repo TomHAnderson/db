@@ -39,7 +39,11 @@ $(function() {
     $('form#link').attr('id', 'link<?= $id; ?>');
     $('form#link<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/link/create?id=<?= $this->id; ?>&entityName=<?= $this->escapeJs($this->entityName); ?>',
+            url: '<?=
+                $this->url('link/create',
+                    'id' => $this->id,
+                    'entityName' => $this->escapeJs($this->entityName),
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

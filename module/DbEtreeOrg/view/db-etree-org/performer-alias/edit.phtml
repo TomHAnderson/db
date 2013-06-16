@@ -21,7 +21,10 @@
             Edit Performer Alias
         </button>
 
-        <a class="confirm btn btn-danger" href="/performer-alias/delete?id=<?= $this->id; ?>">
+        <a class="confirm btn btn-danger" href="<?=
+            $this->url('performer-alias/delete', array(
+                'id' => $this->id,
+            )); ?>">
             <i class="icon-github-alt"></i>
             Delete Performer Alias
         </a>
@@ -38,7 +41,10 @@ $(function() {
     $('form#performer-alias').attr('id', 'performer-alias<?= $this->id; ?>');
     $('form#performer-alias<?= $this->id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performer-alias/edit?id=<?= $this->id; ?>',
+            url: '<?=
+                $this->url('performer-alias/edit', array(
+                    'id' => $this->id,
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

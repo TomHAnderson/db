@@ -40,7 +40,10 @@ $(function() {
     $('form#song').attr('id', 'song<?= $id; ?>');
     $('form#song<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/song/edit?id=<?= $this->song->getId(); ?>',
+            url: '<?=
+                $this->url('song/edit', array(
+                    'id' => $this->song->getId(),
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

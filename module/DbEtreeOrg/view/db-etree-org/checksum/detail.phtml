@@ -1,4 +1,7 @@
-<a class="pull-right btn-warning" href="/checksum/edit?id=<?= $this->checksum->getId(); ?>">
+<a class="pull-right btn-warning" href="<?=
+    $this->url('checksum/edit', array(
+        'id' => $this->checksum->getId(),
+    )); ?>">
     <i class="icon-map-marker"></i>
     Edit Checksum
 </a>
@@ -15,7 +18,10 @@
 </h1>
 
 <h1>
-    <a href="/source/detail?id=<?= $this->checksum->getSource()->getId(); ?>">
+    <a href="<?=
+        $this->url('source/detail', array(
+            'id' => $this->checksum->getSource()->getId(),
+        )); ?>">
         <i class="icon-headphones"></i>
         <?= $this->escapeHtml($this->checksum->getSource()->getNote()); ?>
     </a>
@@ -23,7 +29,10 @@
 
 
 <h1>
-    <a href="/performance/detail?id=<?= $this->checksum->getSource()->getPerformance()->getId(); ?>">
+    <a href="<?=
+        $this->url('performance/detail', array(
+            'id' => $this->checksum->getSource()->getPerformance()->getId(),
+        )); ?>">
     <i class="icon-magic"></i>
 <?php
 if ($this->checksum->getSource()->getPerformance()->getPerformanceDateAt()->format('F d, Y') != 'September 1, 1939') {
@@ -38,14 +47,20 @@ if ($this->checksum->getSource()->getPerformance()->getPerformanceDateAt()->form
 </h1>
 
 <h1>
-    <a href="/band/detail?id=<?= $this->checksum->getSource()->getPerformance()->getLineup()->getBand()->getId(); ?>">
+    <a href="<?=
+        $this->url('band/detail', array(
+            'id' => $this->checksum->getSource()->getPerformance()->getLineup()->getBand()->getId(),
+        )); ?>">
         <i class="icon-cogs"></i>
         <?= $this->escapeHtml($this->checksum->getSource()->getPerformance()->getLineup()->getBand()->getName()); ?>
     </a>
 </h1>
 
 <h1>
-    <a href="/venue/detail?id=<?= $this->checksum->getSource()->getPerformance()->getVenue()->getId(); ?>">
+    <a href="<?=
+        $this->url('venue/detail', array(
+            'id' =>  $this->checksum->getSource()->getPerformance()->getVenue()->getId(),
+        )); ?>">
 
         <i class="icon-map-marker"></i>
         <?= $this->escapeHtml($this->checksum->getSource()->getPerformance()->getVenue()->getName()); ?>

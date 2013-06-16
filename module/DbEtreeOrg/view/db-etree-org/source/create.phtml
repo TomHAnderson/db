@@ -4,7 +4,10 @@
 </div>
 
 <div class="h1">
-    <a class="btn btn-info" href="/performance/detail?id=<?= $this->performance->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('performance/detail', array(
+            'id' => $this->performance->getId(),
+        )); ?>">
         <i class="icon-magic"></i>
     </a>
 <?php
@@ -19,7 +22,10 @@ if ($this->performance->getPerformanceDateAt()->format('F d, Y') != 'September 1
 </div>
 
 <div class="h1">
-    <a class="btn btn-info" href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('band/detail', array(
+            'id' => $this->performance->getLineup()->getBand()->getId(),
+        )); ?>">
         <i class="icon-cogs"></i>
     </a>
 

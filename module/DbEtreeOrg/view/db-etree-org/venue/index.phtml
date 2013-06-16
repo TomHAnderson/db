@@ -9,7 +9,10 @@
     foreach ($venues as $index => $venue) {
     ?>
         <div class="span3" style="padding-top: 4px;">
-            <a class="btn btn-info" href="/venue/detail?id=<?= $venue->getId(); ?>">
+            <a class="btn btn-info" href="<?=
+                $this->url('venue/detail', array(
+                    'id' => $venue->getId(),
+                )); ?>">
                 <i class="icon-map-marker"></i>
             </a>
 

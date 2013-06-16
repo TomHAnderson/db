@@ -21,7 +21,10 @@
             Edit Band Alias
         </button>
 
-        <a class="confirm btn btn-danger" href="/band-alias/delete?id=<?= $this->id; ?>">
+        <a class="confirm btn btn-danger" href="<?=
+            $this->url('band-alias/delete', array(
+                'id' => $this->id,
+            )); ?>">
             <i class="icon-facetime-video"></i>
             Delete Band Alias
         </a>
@@ -38,7 +41,7 @@ $(function() {
     $('form#band-alias').attr('id', 'band-alias<?= $this->id; ?>');
     $('form#band-alias<?= $this->id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/band-alias/edit?id=<?= $this->bandAlias->getId(); ?>',
+            url: '/band-alias/edit/<?= $this->bandAlias->getId(); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

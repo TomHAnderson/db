@@ -50,7 +50,10 @@ $(function() {
     $('form#source').attr('id', 'source<?= $id; ?>');
     $('form#source<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/source/edit?id=<?= $this->source->getId(); ?>',
+            url: '<?=
+                $this->url('source/edit', array(
+                    'id' => $this->source->getId(),
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

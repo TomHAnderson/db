@@ -3,7 +3,10 @@
     Create Performance
 
 <div class="h2">
-    <a href="/band/detail?id=<?= $this->lineup->getBand()->getId(); ?>" class="btn btn-info">
+    <a href="<?=
+        $this->url('band/detail', array(
+            'id' => $this->lineup->getBand()->getId(),
+        )); ?>" class="btn btn-info">
         <i class="icon-cogs"></i>
     </a>
 
@@ -11,7 +14,10 @@
 </div>
 
 <div class="h2">
-    <a href="/lineup/detail?id=<?= $this->lineup->getId(); ?>" class="btn btn-info">
+    <a href="<?=
+        $this->url('lineup/detail', array(
+            'id' => $this->lineup->getId(),
+        )); ?>" class="btn btn-info">
         <i class="icon-group"></i>
     </a>
 

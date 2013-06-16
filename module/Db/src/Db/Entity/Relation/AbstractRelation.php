@@ -1,25 +1,17 @@
 <?php
-namespace Db\Entity;
 
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\Expr;
+namespace Db\Entity\Relation;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Workspace\Service\WorkspaceService as Workspace;
 
-abstract class AbstractEntity
+trait AbstractRelation
 {
-    public function __toString()
+    public function getProperty()
     {
-        throw new \Excepction('__toString not implemented');
-    }
-
-    public function __call($name, $params)
-    {
-        if (substr($name, 0, 3) !== 'get') {
-            throw new \Exception("Method not found: $name");
-        }
-
-        $property = strtolower(substr($name, 3, 1)) . substr($name, 4);
+        // Find property name based on aliased trait function name
+        $trace = debug_backtrace();
+        $property = strtolower(substr($trace[0]["function"], 3, 1)) . substr($trace[0]["function"], 4);
 
         $filtered = new ArrayCollection();
 
@@ -34,5 +26,4 @@ abstract class AbstractEntity
 
         return $filtered;
     }
-
 }

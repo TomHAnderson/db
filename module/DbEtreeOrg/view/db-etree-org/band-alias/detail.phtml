@@ -14,7 +14,9 @@
 
 <div class="h1">
 
-    <a class="btn btn-info" href="/band/detail?id=<?= $this->bandAlias->getBand()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('band/detail', array('id' => $this->bandAlias->getBand()->getId()));
+    ?>">
         <i class="icon-cogs"></i>
     </a>
 

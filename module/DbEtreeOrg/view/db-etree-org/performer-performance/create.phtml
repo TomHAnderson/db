@@ -39,7 +39,10 @@ $(function() {
     $('form#performer-performance').attr('id', 'performer-performance<?= $id; ?>');
     $('form#performer-performance<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performer-performance/create?id=<?= $this->id; ?>',
+            url: '<?=
+                $this->url('performer-performance/create', array(
+                    'id' => $this->id,
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

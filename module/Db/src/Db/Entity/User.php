@@ -40,10 +40,8 @@ class User extends AbstractEntity implements UserInterface
         , Relation\Outbox
         , Relation\FieldConfig
         , Relation\BandGroups
-        , Relation\Revisions
         , Relation\UserMeta
         , Relation\UserRoles
-        , Relation\PendingQueue
         ;
 
     // State is a ZfcUser field, not geographic information

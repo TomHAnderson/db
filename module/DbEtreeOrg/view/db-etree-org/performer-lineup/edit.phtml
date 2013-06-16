@@ -22,7 +22,10 @@ $id = md5(uniqid());
             Edit Performer Lineup
         </button>
 
-        <a class="confirm btn btn-danger" href="/performer-lineup/delete?id=<?= $this->id; ?>">
+        <a class="confirm btn btn-danger" href="<?=
+            $this->url('performer-lineup/delete', array(
+                'id' => $this->id,
+            )); ?>">
             <i class="icon-facetime-video"></i>
             Remove Performer from Lineup
         </a>
@@ -40,7 +43,10 @@ $(function() {
     $('form#performer-lineup').attr('id', 'performer-lineup<?= $id; ?>');
     $('form#performer-lineup<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performer-lineup/edit?id=<?= $this->performerLineup->getId(); ?>',
+            url: '<?=
+                $this->url('performer-lineup/edit', array(
+                    'id' => $this->performerLineup->getId(),
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

@@ -40,7 +40,10 @@ $(function() {
     $('form#performer-alias<?= $id; ?>').on('submit', function(event) {
 
         $.ajax({
-            url: '/performer-alias/create?id=<?= $performer_id; ?>',
+            url: '<?=
+                $this->url('performer-alias/create', array(
+                    'id' => $performer_id,
+                )); ?>',
 
             type: $(this).attr('method'),
             data: $(this).serialize(),

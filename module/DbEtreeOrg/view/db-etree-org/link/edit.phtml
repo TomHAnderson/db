@@ -39,7 +39,10 @@ $(function() {
     $('form#link').attr('id', 'link<?= $id; ?>');
     $('form#link<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/link/edit?id=<?= $this->link->getId();?>',
+            url: '<?=
+                $this->url('link/edit', array(
+                    'id' => $this->link->getId(),
+                ));?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

@@ -42,7 +42,10 @@ $(function() {
     $('form#performance').attr('id', 'performance<?= $id; ?>');
     $('form#performance<?= $id; ?>').on('submit', function(event) {
         $.ajax({
-            url: '/performance/edit?id=<?= $this->performance->getId(); ?>',
+            url: '<?=
+                $this->url('performance/edit', array(
+                    'id' => $this->performance->getId(),
+                )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
             span: $(this).closest('span'),

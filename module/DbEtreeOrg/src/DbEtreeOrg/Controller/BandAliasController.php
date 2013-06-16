@@ -134,6 +134,6 @@ class BandAliasController extends AbstractActionController
 
         return $this->plugin('redirect')->toRoute('band/detail', array(
             'id' => $band->getId()
-        );
+        ));
     }
 }

@@ -13,7 +13,10 @@
     );
     ?>
 
-    <a style="margin-right: 10px;" class="pull-right btn btn-success" href="/source/create?id=<?= $this->performance->getId(); ?>">
+    <a style="margin-right: 10px;" class="pull-right btn btn-success" href="<?=
+        $this->url('source/create', array(
+            'id' => $this->performance->getId(),
+        )); ?>">
         <i class="icon-headphones"></i> Create Source
     </a>
 
@@ -54,7 +57,10 @@ if ($this->performance->getNote()) { ?>
 ?>
 
 <div class="h1">
-    <a class="btn btn-info" href="/band/detail?id=<?= $this->performance->getLineup()->getBand()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('band/detail', array(
+            'id' => $this->performance->getLineup()->getBand()->getId(),
+        )); ?>">
         <i class="icon-cogs"></i>
     </a>
 
@@ -69,7 +75,10 @@ if ($this->performance->getNote()) { ?>
 
         <div class="h2">
 
-            <a class="btn btn-info" href="/lineup/detail?id=<?= $this->performance->getLineup()->getId(); ?>">
+            <a class="btn btn-info" href="<?=
+                $this->url('lineup/detail', array(
+                    'id' => $this->performance->getLineup()->getId(),
+                )); ?>">
                 <i class="icon-group"></i>
             </a>
 
@@ -85,7 +94,10 @@ if ($this->performance->getNote()) { ?>
         foreach ($this->performance->getLineup()->getPerformerLineups() as $performerLineup) {
         ?>
             <div class="h3">
-                <a class="btn btn-info" href="/performer-lineup/detail?id=<?= $performerLineup->getId(); ?>">
+                <a class="btn btn-info" href="<?=
+                    $this->url('performer-lineup', array(
+                        'detail' => id=<?= $performerLineup->getId(),
+                    )); ?>">
                     <i class="icon-film"></i>
                 </a>
                 <?= $this->escapeHtml($performerLineup->getPerformer()->getName()); ?>
@@ -107,7 +119,10 @@ if ($this->performance->getNote()) { ?>
         foreach ($this->performance->getPerformerPerformances() as $performerPerformance) {
         ?>
             <div class="h3">
-                <a class="btn btn-info" href="/performer/detail?id=<?= $performerPerformance->getPerformer()->getId(); ?>">
+                <a class="btn btn-info" href="<?=
+                    $this->url('performer/detail', array(
+                        'id' => $performerPerformance->getPerformer()->getId(),
+                    )); ?>">
                     <i class="icon-film"></i>
                 </a>
                 <a class="btn btn-warning edit-performer-performance" data-id="<?= $performerPerformance->getId(); ?>" href="">
@@ -134,7 +149,10 @@ if ($this->performance->getNote()) { ?>
 </div>
 
 <div class="h1">
-    <a class="btn btn-info" href="/venue/detail?id=<?= $this->performance->getVenue()->getId(); ?>">
+    <a class="btn btn-info" href="<?=
+        $this->url('venue/detail', array(
+            'id' => $this->performance->getVenue()->getId(),
+        )); ?>">
         <i class="icon-map-marker"></i>
     </a>
 
@@ -159,11 +177,6 @@ if ($this->performance->getNote()) { ?>
     foreach ($this->performance->getPerformanceSets() as $set) {
     ?>
     <div class="h1">
-<!--
-        <a class="btn btn-info" href="/performance-set/detail?id=<?= $set->getId(); ?>">
-            <i class="icon-certificate"></i>
-        </a>
--->
         <a class="btn btn-warning edit-performance-set" href="#" data-id="<?= $set->getId(); ?>">
             <i class="icon-certificate"></i>
         </a>
@@ -187,7 +200,10 @@ if ($this->performance->getNote()) { ?>
     ?>
         <div class="h3">
 
-                    <a href="/song/detail?id=<?= $performanceSong->getSong()->getId(); ?>" class="btn btn-info">
+                    <a href="<?=
+                        $this->url('song/detail', array(
+                            'id' => $performanceSong->getSong()->getId(),
+                        )); ?>" class="btn btn-info">
                         <i class="icon-music"></i>
                     </a>
 
@@ -238,14 +254,14 @@ if ($this->performance->getNote()) { ?>
 <div class="tab-content">
    <div class="tab-pane active" id="comments">
         <ul class="nav nav-pills">
-            <?= $this->createComment($this->performance->getId(), 'Db\Entity\Performance', '/performance/detail?id=' . $this->performance->getId()); ?>
+            <?= $this->createComment($this->performance->getId(), 'Db\Entity\Performance', $this->url('performance/detail', array('id' => $this->performance->getId()))); ?>
         </ul>
 
         <?= $this->listComments($this->performance->getComments()); ?>
     </div>
 
     <div class="tab-pane" id="links">
-        <?= $this->createLink($this->performance->getId(), 'Db\Entity\Performance', '/performance/detail?id=' . $this->performance->getId()); ?>
+        <?= $this->createLink($this->performance->getId(), 'Db\Entity\Performance', $this->url('performance/detail', array('id' => $this->performance->getId()))); ?>
 
         <?= $this->listLinks($this->performance->getLinks()); ?>
     </div>
