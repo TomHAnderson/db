@@ -10,20 +10,19 @@ use Zend\Form\Annotation as Form;
  */
 class Event extends AbstractEntity
 {
-    use Field\Id
-        , Field\Producer
-        , Field\Zipcode
-        , Field\Name
-        , Field\NameNormalize
-        , Field\Note
-        , Field\StartAt
-        , Field\EndAt
-        ;
+    use Field\Id;
+    use Field\Name;
+    use Field\NameNormalize;
+    use Field\Note;
+    use Field\StartAt;
+    use Field\EndAt;
+    use Field\Zipcode;
 
-    use Relation\Performances
-        , Relation\Links
-        , Relation\Comments
-        ;
+    use Field\Producer;
+
+    use Relation\Performances;
+    use Relation\Links;
+    use Relation\Comments;
 
     public function __toString()
     {
@@ -37,19 +36,21 @@ class Event extends AbstractEntity
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
+            'startAt' => $this->getStartAt(),
+            'endAt' => $this->getStartAt(),
             'zipcode' => $this->getZipcode(),
-            'startAt' => $this->getStartAt()->format('r'),
-            'endAt' => $this->getStartAt()->format('r'),
+            'producer' => $this->getProducer(),
         );
     }
 
     public function exchangeArray($data)
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setName(isset($data['note']) ? $data['note']: null);
+        $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setStartAt(isset($data['startAt']) ? $data['startAt']: null);
         $this->setEndAt(isset($data['endAt']) ? $data['endAt']: null);
         $this->setZipcode(isset($data['zipcode']) ? $data['zipcode']: null);
+        $this->setProducer(isset($data['producer']) ? $data['producer']: null);
     }
 }
 

@@ -2,6 +2,7 @@
 namespace Db\Entity\Field;
 
 use Db\Entity\PerformanceSet as PerformanceSetEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 trait PerformanceSet
 {
@@ -9,7 +10,7 @@ trait PerformanceSet
 
     public function getPerformanceSet()
     {
-        return $this->performanceSet;
+        return Workspace::filter($this->performanceSet);
     }
 
     public function setPerformanceSet(PerformanceSetEntity $value)

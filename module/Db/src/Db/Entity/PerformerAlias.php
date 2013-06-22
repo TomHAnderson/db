@@ -10,12 +10,11 @@ use Zend\InputFilter\InputFilter;
  * @Form\Name("performer-alias")
  */
 class PerformerAlias extends AbstractEntity {
-    use Field\Id
-        , Field\Performer
-        , Field\Name
-        , Field\NameNormalize
-        , Field\Note
-        ;
+    use Field\Id;
+    use Field\Name;
+    use Field\NameNormalize;
+    use Field\Note;
+    use Field\Performer;
 
     public function __toString()
     {
@@ -30,6 +29,7 @@ class PerformerAlias extends AbstractEntity {
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
+            'performer' => $this->getPerformer(),
         );
     }
 
@@ -37,6 +37,7 @@ class PerformerAlias extends AbstractEntity {
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setPerformer(isset($data['performer']) ? $data['performer']: null);
     }
 
     public function getInputFilter()

@@ -2,22 +2,19 @@
 namespace Db\Entity;
 
 use Db\Entity\AbstractEntity;
-use Zend\Form\Annotation as Form
-    , Zend\InputFilter\InputFilter
-    , Doctrine\Common\Collections\ArrayCollection
-    ;
+use Zend\Form\Annotation as Form;
+use Zend\InputFilter\InputFilter;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("userRole")
  */
 class UserRole extends AbstractEntity {
-    use Field\Id
-        , Field\Name
-        ;
+    use Field\Id;
+    use Field\Name;
 
-    use Relation\Users
-        ;
+    use Relation\Users;
 
     public function __toString()
     {

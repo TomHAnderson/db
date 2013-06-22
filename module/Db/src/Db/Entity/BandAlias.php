@@ -10,12 +10,12 @@ use Zend\InputFilter\InputFilter;
  * @Form\Name("band-alias")
  */
 class BandAlias extends AbstractEntity {
-    use Field\Id
-        , Field\Band
-        , Field\Name
-        , Field\NameNormalize
-        , Field\Note
-        ;
+    use Field\Id;
+    use Field\Name;
+    use Field\NameNormalize;
+    use Field\Note;
+
+    use Field\Band;
 
     public function __toString()
     {
@@ -30,6 +30,7 @@ class BandAlias extends AbstractEntity {
             'name' => $this->getName(),
             'nameNormalized' => $this->getNameNormalize(),
             'note' => $this->getNote(),
+            'band' => $this->getBand(),
         );
     }
 
@@ -37,6 +38,7 @@ class BandAlias extends AbstractEntity {
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setBand(isset($data['band']) ? $data['band']: null);
     }
 
     public function getInputFilter()

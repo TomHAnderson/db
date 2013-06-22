@@ -9,10 +9,10 @@ return array(
                 'route' => 'band/detail',
             ),
             'Db\Entity\BandAlias' => array(
-                'route' => 'bandalias/detail',
+                'route' => 'bandAlias/detail',
             ),
             'Db\Entity\BandGroup' => array(
-                'route' => 'bandgroup/detail',
+                'route' => 'bandGroup/detail',
             ),
             'Db\Entity\Checksum' => array(
                 'route' => 'checksum/detail',
@@ -33,22 +33,22 @@ return array(
                 'route' => 'performance/detail',
             ),
             'Db\Entity\PerformanceSet' => array(
-                'route' => 'performanceset/detail',
+                'route' => 'performanceSet/detail',
             ),
             'Db\Entity\PerformanceSetSong' => array(
-                'route' => 'performancesetsong/detail',
+                'route' => 'performanceSetSong/detail',
             ),
             'Db\Entity\Performer' => array(
                 'route' => 'performer/detail',
             ),
             'Db\Entity\PerformerAlias' => array(
-                'route' => 'performeralias/detail',
+                'route' => 'performerAlias/detail',
             ),
             'Db\Entity\PerformerLineup' => array(
-                'route' => 'performerlineup/detail',
+                'route' => 'performerLineup/detail',
             ),
             'Db\Entity\PerformerPerformance' => array(
-                'route' => 'performerperformance/detail',
+                'route' => 'performerPerformance/detail',
             ),
             'Db\Entity\Producer' => array(
                 'route' => 'producer/detail',
@@ -66,13 +66,13 @@ return array(
                 'route' => 'userlist/detail',
             ),
             'Db\Entity\UserPerformance' => array(
-                'route' => 'userperformance/detail',
+                'route' => 'userPerformance/detail',
             ),
             'Db\Entity\UserPerformanceField' => array(
-                'route' => 'userperformancefield/detail',
+                'route' => 'userPerformanceField/detail',
             ),
             'Db\Entity\UserRole' => array(
-                'route' => 'userrole/detail',
+                'route' => 'userRole/detail',
             ),
             'Db\Entity\Venue' => array(
                 'route' => 'venue/detail',

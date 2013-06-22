@@ -11,11 +11,10 @@ use Zend\InputFilter\InputFilter;
  */
 class UserMeta extends AbstractEntity
 {
-    use Field\Id
-        , Field\Name
-        , Field\Content
-        , Field\User
-        ;
+    use Field\Id;
+    use Field\Name;
+    use Field\Content;
+    use Field\User;
 
     public function __toString()
     {
@@ -28,6 +27,7 @@ class UserMeta extends AbstractEntity
             'id' => $this->getId(),
             'name' => $this->getName(),
             'content' => $this->getContent(),
+            'user' => $this->getUser(),
         );
     }
 
@@ -35,6 +35,7 @@ class UserMeta extends AbstractEntity
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setContent(isset($data['content']) ? $data['content']: null);
+        $this->setUser(isset($data['user']) ? $data['user']: null);
     }
 
     public function getInputFilter()

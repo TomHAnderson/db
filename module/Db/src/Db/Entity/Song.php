@@ -11,19 +11,18 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Form\Name("song")
  */
 class Song extends AbstractEntity {
-    use Field\Id
-        , Field\Name
-        , Field\NameNormalize
-        , Field\Lyrics
-        , Field\Note
-        , Field\Band
-        , Field\Mbid
-        ;
+    use Field\Id;
+    use Field\Name;
+    use Field\NameNormalize;
+    use Field\Lyrics;
+    use Field\Note;
+    use Field\Mbid;
 
-    use Relation\PerformanceSetSongs
-        , Relation\Links
-        , Relation\Comments
-        ;
+    use Field\Band;
+
+    use Relation\PerformanceSetSongs;
+    use Relation\Links;
+    use Relation\Comments;
 
     public function __toString()
     {

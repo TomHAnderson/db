@@ -6,19 +6,17 @@ use Zend\Form\Annotation as Form;
 
 /**
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Form\Name("producer")
+ * @Form\Name("venueGroup")
  */
 class VenueGroup extends AbstractEntity
 {
-    use Field\Id
-        , Field\Name
-        , Field\Note
-        , Field\NameNormalize
-        ;
+    use Field\Id;
+    use Field\Name;
+    use Field\NameNormalize;
+    use Field\Note;
 
-    use Relation\Venues
-        , Relation\Links
-        ;
+    use Relation\Venues;
+    use Relation\Links;
 
     public function getArrayCopy()
     {

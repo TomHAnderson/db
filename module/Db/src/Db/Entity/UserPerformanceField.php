@@ -10,12 +10,10 @@ use Zend\Form\Annotation as Form;
  */
 class UserPerformanceField extends AbstractEntity
 {
-    use Field\Id
-        , Field\Name
-        ;
+    use Field\Id;
+    use Field\Name;
 
-    use Relation\Users
-        ;
+    use Relation\Users;
 
     public function getArrayCopy()
     {

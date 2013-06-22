@@ -11,21 +11,19 @@ use Zend\InputFilter\InputFilter;
  */
 class Venue extends AbstractEntity
 {
-    use Field\Id
-        , Field\Name
-        , Field\NameNormalize
-        , Field\Note
-        , Field\City
-        , Field\State
-        , Field\Country
-        , Field\Zipcode
-        ;
+    use Field\Id;
+    use Field\Name;
+    use Field\NameNormalize;
+    use Field\City;
+    use Field\State;
+    use Field\Country;
+    use Field\Zipcode;
+    use Field\Note;
 
-    use Relation\Performances
-        , Relation\Links
-        , Relation\Comments
-        , Relation\VenueGroups
-        ;
+    use Relation\Performances;
+    use Relation\Links;
+    use Relation\Comments;
+    use Relation\VenueGroups;
 
     public function __toString()
     {

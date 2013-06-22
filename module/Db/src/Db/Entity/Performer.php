@@ -11,22 +11,20 @@ use Zend\InputFilter\InputFilter;
  * @Form\Name("performer")
  */
 class Performer extends AbstractEntity {
-    use Field\Id
-        , Field\Mbid
-        , Field\Name
-        , Field\NameNormalize
-        , Field\Note
+    use Field\Id;
+    use Field\Mbid;
+    use Field\Name;
+    use Field\NameNormalize;
+    use Field\Note;
 
-        , Field\User
-        ;
+    use Field\User;
 
-    use Relation\Aliases
-        , Relation\Lineups
-        , Relation\Links
-        , Relation\Comments
-        , Relation\PerformerLineups
-        , Relation\PerformerPerformances
-        ;
+    use Relation\Aliases;
+    use Relation\Lineups;
+    use Relation\Links;
+    use Relation\Comments;
+    use Relation\PerformerLineups;
+    use Relation\PerformerPerformances;
 
     public function __toString()
     {
@@ -42,6 +40,7 @@ class Performer extends AbstractEntity {
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
+            'user' => $this->getUser(),
         );
     }
 
@@ -50,6 +49,7 @@ class Performer extends AbstractEntity {
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setUser(isset($data['user']) ? $data['user']: null);
     }
 
     public function getInputFilter()

@@ -10,19 +10,21 @@ use Zend\InputFilter\InputFilter;
  * @Form\Name("performer-performance")
  */
 class PerformerPerformance extends AbstractEntity {
-    use Field\Id
-        , Field\Performer
-        , Field\Performance
-        , Field\Note
-        ;
+    use Field\Id;
+    use Field\Note;
+
+    use Field\Performer;
+    use Field\Performance;
 
    /** Hydrator functions */
     public function getArrayCopy()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'note' => $this->getNote(),
-        );
+            'performer' => $this->getPerformer(),
+            'performance' => $this->getPerformance(),
+        ];
     }
 
     public function __toString()
@@ -33,6 +35,8 @@ class PerformerPerformance extends AbstractEntity {
     public function exchangeArray($data)
     {
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setPerformer(isset($data['performer']) ? $data['performer']: null);
+        $this->setPerformance(isset($data['performance']) ? $data['performance']: null);
     }
 
     public function getInputFilter()

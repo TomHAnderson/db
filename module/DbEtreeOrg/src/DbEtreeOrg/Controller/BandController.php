@@ -41,11 +41,22 @@ class BandController extends AbstractActionController
 
     public function createAction()
     {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
         $band = new BandEntity();
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($band);
 
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        $form->get('owner')->setValueOptions(
+            $this->doctrineSelectOptions(
+                'AppleConnect\Entity\User',
+                [],
+                ['nickName' => 'ASC'],
+                ['Application\Service\Security', 'view']
+            )
+        );
+
+
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());

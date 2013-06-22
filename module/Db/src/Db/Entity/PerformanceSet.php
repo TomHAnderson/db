@@ -11,15 +11,14 @@ use Zend\InputFilter\InputFilter;
  */
 class PerformanceSet extends AbstractEntity
 {
-    use Field\Id
-        , Field\Name
-        , Field\Note
-        , Field\Sort
-        , Field\Performance
-    ;
+    use Field\Id;
+    use Field\Name;
+    use Field\Note;
+    use Field\Sort;
 
-    use Relation\PerformanceSetSongs
-        ;
+    use Field\Performance;
+
+    use Relation\PerformanceSetSongs;
 
     public function __toString()
     {
@@ -33,6 +32,7 @@ class PerformanceSet extends AbstractEntity
             'name' => $this->getName(),
             'note' => $this->getNote(),
             'sort' => $this->getSort(),
+            'performance' => $this->getPerformance(),
         );
     }
 
@@ -41,6 +41,7 @@ class PerformanceSet extends AbstractEntity
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setSort(isset($data['sort']) ? $data['sort']: 9999);
+        $this->setPerformance(isset($data['performance']) ? $data['performance']: null);
     }
 
     public function getInputFilter()

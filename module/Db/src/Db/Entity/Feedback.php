@@ -10,14 +10,14 @@ use Zend\Form\Annotation as Form;
  */
 class Feedback extends AbstractEntity
 {
-    use Field\Id
-        , Field\From
-        , Field\To
-        , Field\Score
-        , Field\Note
-        , Field\Reply
-        , Field\CreatedAt
-        ;
+    use Field\Id;
+    use Field\Score;
+    use Field\Note;
+    use Field\Reply;
+    use Field\CreatedAt;
+
+    use Field\From;
+    use Field\To;
 
     public function getArrayCopy()
     {
@@ -26,7 +26,9 @@ class Feedback extends AbstractEntity
             'score' => $this->getScore(),
             'note' => $this->getNote(),
             'reply' => $this->getReply(),
-            'createdAt' => $this->getCreatedAt()->format('r'),
+            'createdAt' => $this->getCreatedAt(),
+            'from' => $this->getFrom(),
+            'to' => $this->getTo(),
         );
     }
 
@@ -35,5 +37,7 @@ class Feedback extends AbstractEntity
         $this->setScore(isset($data['score']) ? $data['score']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setReply(isset($data['reply']) ? $data['reply']: null);
+        $this->setFrom(isset($data['from']) ? $data['from']: null);
+        $this->setTo(isset($data['to']) ? $data['to']: null);
     }
 }

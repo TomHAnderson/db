@@ -10,29 +10,31 @@ use Zend\Form\Annotation as Form;
  */
 class Mail extends AbstractEntity
 {
-    use Field\Id
-        , Field\From
-        , Field\To
-        , Field\CreatedAt
-        , Field\Note
-        , Field\Status
-        ;
+    use Field\Id;
+    use Field\CreatedAt;
+    use Field\Note;
+    use Field\Status;
+
+    use Field\From;
+    use Field\To;
 
     public function getArrayCopy()
     {
         return array(
             'id' => $this->getId(),
-            'name' => $this->getName(),
-            'createdAt' => $this->getCreatedAt()->format('r'),
+            'createdAt' => $this->getCreatedAt(),
             'note' => $this->getNote(),
             'status' => $this->getStatus(),
+            'from' => $this->getFrom(),
+            'to' => $this->getTo(),
         );
     }
 
     public function exchangeArray($data)
     {
-        $this->setName(isset($data['name']) ? $data['name']: null);
-        $this->setStatus(isset($data['status']) ? $data['status']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setStatus(isset($data['status']) ? $data['status']: null);
+        $this->setFrom(isset($data['from']) ? $data['from']: null);
+        $this->setTo(isset($data['to']) ? $data['to']: null);
     }
 }

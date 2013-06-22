@@ -10,14 +10,14 @@ use Zend\InputFilter\InputFilter;
  * @Form\Name("performance-set-song")
  */
 class PerformanceSetSong extends AbstractEntity {
-    use Field\Id
-        , Field\Song
-        , Field\PerformanceSet
-        , Field\Note
-        , Field\Length
-        , Field\IsSegue
-        , Field\Sort
-        ;
+    use Field\Id;
+    use Field\Note;
+    use Field\Length;
+    use Field\IsSegue;
+    use Field\Sort;
+
+    use Field\Song;
+    use Field\PerformanceSet;
 
     public function __toString()
     {
@@ -26,21 +26,25 @@ class PerformanceSetSong extends AbstractEntity {
 
     public function getArrayCopy()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'note' => $this->getNote(),
             'length' => $this->getLength(),
             'isSegue' => $this->getIsSegue(),
             'sort' => $this->getSort(),
-        );
+            'song' => $this->getSong(),
+            'performanceSet' => $this->getPerformanceSet(),
+        ];
     }
 
     public function exchangeArray($data)
     {
         $this->setNote(isset($data['note']) ? $data['note']: null);
-        $this->setSort(isset($data['sort']) ? $data['sort']: null);
         $this->setLength(isset($data['length']) ? $data['length']: null);
         $this->setIsSegue(isset($data['isSegue']) ? $data['isSegue']: null);
+        $this->setSort(isset($data['sort']) ? $data['sort']: null);
+        $this->setSong(isset($data['song']) ? $data['song']: null);
+        $this->setPerformanceSet(isset($data['performanceSet']) ? $data['performanceSet']: null);
     }
 
     public function getInputFilter()

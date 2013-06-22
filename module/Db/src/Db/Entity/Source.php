@@ -11,27 +11,26 @@ use Zend\InputFilter\InputFilter;
  */
 class Source extends AbstractEntity
 {
-    use Field\Id
-        , Field\Name
-        , Field\Mbid
-        , Field\Format
-        , Field\Performance
-        , Field\Note
-        , Field\Content
-        , Field\MediaSizeCompressed
-        , Field\MediaSizeUncompressed
-        , Field\DiscCountWav
-        , Field\DiscCountShn
-        , Field\CreatedAt
-        , Field\CirculatedAt
-        ;
+    use Field\Id;
+    use Field\Name;
+    use Field\Mbid;
+    use Field\Format;
+    use Field\Note;
+    use Field\Content;
+    use Field\MediaSizeCompressed;
+    use Field\MediaSizeUncompressed;
+    use Field\DiscCountWav;
+    use Field\DiscCountShn;
+    use Field\CreatedAt;
+    use Field\CirculatedAt;
 
-    use Relation\Links
-        , Relation\Comments
-        , Relation\UserPerformances
-        , Relation\WantedBy
-        , Relation\Checksums
-        ;
+    use Field\Performance;
+
+    use Relation\Links;
+    use Relation\Comments;
+    use Relation\UserPerformances;
+    use Relation\WantedBy;
+    use Relation\Checksums;
 
     public function __toString()
     {
@@ -45,32 +44,38 @@ class Source extends AbstractEntity
 
     public function getArrayCopy()
     {
-        return array(
+        return [
             'id' => $this->getId(),
-            'mbid' => $this->getMbid(),
             'name' => $this->getName(),
-            'content' => $this->getContent(),
+            'mbid' => $this->getMbid(),
             'format' => $this->getFormat(),
             'note' => $this->getNote(),
+            'content' => $this->getContent(),
             'mediaSizeCompressed' => $this->getMediaSizeCompressed(),
             'mediaSizeUnCompressed' => $this->getMediaSizeUnCompressed(),
             'discCountWav' => $this->getDiscCountWav(),
             'discCountShn' => $this->getDiscCountShn(),
-            'createdAt' => $this->getCreatedAt()->format('r'),
+            'createdAt' => $this->getCreatedAt(),
             'circulatedAt' => $this->getCirculatedAt(),
-        );
+
+            'performance' => $this->getPerformance(),
+        ];
     }
 
     public function exchangeArray($data)
     {
-        $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
+        $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
+        $this->setFormat(isset($data['format']) ? $data['format']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
         $this->setContent(isset($data['content']) ? $data['content']: null);
         $this->setMediaSizeCompressed(isset($data['mediaSizeCompressed']) ? $data['mediaSizeCompressed']: null);
         $this->setMediaSizeUncompressed(isset($data['mediaSizeUncompressed']) ? $data['mediaSizeUncompressed']: null);
+        $this->setDiscCountWav(isset($data['discCountWav']) ? $data['discCountWav']: null);
+        $this->setDiscCountShn(isset($data['discCountShn']) ? $data['discCountShn']: null);
         $this->setCirculatedAt(isset($data['circulatedAt']) ? $data['circulatedAt']: null);
-        $this->setFormat(isset($data['format']) ? $data['format']: null);
+
+        $this->setPerformance(isset($data['performance']) ? $data['performance']: null);
     }
 
     public function getInputFilter()

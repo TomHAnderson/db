@@ -3,6 +3,7 @@
 namespace Db\Entity\Field;
 
 use Db\Entity\Source as SourceEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 trait Source
 {
@@ -10,7 +11,7 @@ trait Source
 
     public function getSource()
     {
-        return $this->source;
+        return Workspace::filter($this->source);
     }
 
     public function setSource(SourceEntity $value)

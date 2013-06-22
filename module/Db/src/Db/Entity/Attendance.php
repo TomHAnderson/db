@@ -10,11 +10,11 @@ use Zend\Form\Annotation as Form;
  */
 class Attendance extends AbstractEntity
 {
-    use Field\Id
-        , Field\User
-        , Field\Performance
-        , Field\Note
-        ;
+    use Field\Id;
+    use Field\Note;
+
+    use Field\User;
+    use Field\Performance;
 
     public function __toString()
     {
@@ -27,11 +27,15 @@ class Attendance extends AbstractEntity
         return array(
             'id' => $this->getId(),
             'note' => $this->getNote(),
+            'user' => $this->getUser(),
+            'performance' => $this->getPerformance(),
         );
     }
 
     public function exchangeArray($data)
     {
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setUser(isset($data['user']) ? $data['user']: null);
+        $this->setPerformance(isset($data['performance']) ? $data['performance']: null);
     }
 }

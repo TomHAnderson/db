@@ -2,6 +2,7 @@
 namespace Db\Entity\Field;
 
 use Db\Entity\User as UserEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 trait User
 {
@@ -9,7 +10,7 @@ trait User
 
     public function getUser()
     {
-        return $this->user;
+        return Workspace::filter($this->user);
     }
 
     public function setUser(UserEntity $value)

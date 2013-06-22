@@ -2,6 +2,7 @@
 namespace Db\Entity\Field;
 
 use Db\Entity\Song as SongEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 trait Song
 {
@@ -9,7 +10,7 @@ trait Song
 
     public function getSong()
     {
-        return $this->song;
+        return Workspace::filter($this->song);
     }
 
     public function setSong(SongEntity $value)

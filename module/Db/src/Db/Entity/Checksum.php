@@ -11,11 +11,10 @@ use Zend\InputFilter\InputFilter;
  */
 class Checksum extends AbstractEntity
 {
-    use Field\Id
-        , Field\Name
-        , Field\Content
-        , Field\Source
-        ;
+    use Field\Id;
+    use Field\Name;
+    use Field\Content;
+    use Field\Source;
 
     public function __toString()
     {
@@ -28,6 +27,7 @@ class Checksum extends AbstractEntity
             'id' => $this->getId(),
             'name' => $this->getName(),
             'content' => $this->getContent(),
+            'source' => $this->getSource(),
         );
     }
 
@@ -35,6 +35,7 @@ class Checksum extends AbstractEntity
     {
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setContent(isset($data['content']) ? $data['content']: null);
+        $this->setSource(isset($data['source']) ? $data['source']: null);
     }
 
     public function getInputFilter()

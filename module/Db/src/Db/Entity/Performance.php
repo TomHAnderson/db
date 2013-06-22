@@ -11,41 +11,43 @@ use Zend\InputFilter\InputFilter;
  */
 class Performance extends AbstractEntity
 {
-    use Field\Id
-        , Field\Mbid
-        , Field\Name
-        , Field\NameNormalize
-        , Field\PerformanceDate
-        , Field\PerformanceDateAt
-        , Field\Note
+    use Field\Id;
+    use Field\Mbid;
+    use Field\Name;
+    use Field\NameNormalize;
+    use Field\PerformanceDate;
+    use Field\PerformanceDateAt;
+    use Field\Note;
 
-        , Field\Lineup
-        , Field\Venue
-        , Field\Event
-        ;
+    use Field\Lineup;
+    use Field\Venue;
+    use Field\Event;
 
-    use Relation\Links
-        , Relation\Comments
-        , Relation\Attendees
-        , Relation\UserPerformances
-        , Relation\WantedBy
-        , Relation\PerformanceSetSongs
-        , Relation\Performers
-        , Relation\PerformanceSets
-        , Relation\Sources
-        , Relation\PerformerPerformances
-        ;
+    use Relation\Links;
+    use Relation\Comments;
+    use Relation\Attendees;
+    use Relation\UserPerformances;
+    use Relation\WantedBy;
+    use Relation\PerformanceSetSongs;
+    use Relation\Performers;
+    use Relation\PerformanceSets;
+    use Relation\Sources;
+    use Relation\PerformerPerformances;
 
     public function getArrayCopy()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'mbid' => $this->getMbid(),
             'name' => $this->getName(),
+            'nameNormalize' => $this->getNameNormalize(),
             'performanceDate' => $this->getPerformanceDate(),
-            'performanceDateAt' => $this->getPerformanceDateAt()->format('r'),
+            'performanceDateAt' => $this->getPerformanceDateAt(),
             'note' => $this->getNote(),
-        );
+            'lineup' => $this->getLineup(),
+            'venue' => $this->getVenue(),
+            'event' => $this->getEvent(),
+        ];
     }
 
     public function exchangeArray($data)
@@ -54,6 +56,9 @@ class Performance extends AbstractEntity
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setPerformanceDate(isset($data['performanceDate']) ? $data['performanceDate']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setLineup(isset($data['lineup']) ? $data['lineup']: null);
+        $this->setVenue(isset($data['venue']) ? $data['venue']: null);
+        $this->setEvent(isset($data['event']) ? $data['event']: null);
     }
 
     public function getInputFilter()

@@ -11,21 +11,21 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Form\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Name("band")
  */
-class Band extends AbstractEntity {
-    use Field\Id
-        , Field\BandGroup
-        , Field\Name
-        , Field\NameNormalize
-        , Field\Note
-        , Field\Mbid
-        ;
+class Band extends AbstractEntity
+{
+    use Field\Id;
+    use Field\Name;
+    use Field\NameNormalize;
+    use Field\Note;
+    use Field\Mbid;
 
-    use Relation\Aliases
-        , Relation\Lineups
-        , Relation\Links
-        , Relation\Comments
-        , Relation\Songs
-        ;
+    use Field\BandGroup;
+
+    use Relation\Aliases;
+    use Relation\Lineups;
+    use Relation\Links;
+    use Relation\Comments;
+    use Relation\Songs;
 
     public function __toString()
     {
@@ -41,6 +41,7 @@ class Band extends AbstractEntity {
             'name' => $this->getName(),
             'nameNormalize' => $this->getNameNormalize(),
             'note' => $this->getNote(),
+            'bandGroup' => $this->getBandGroup(),
         );
     }
 
@@ -49,6 +50,7 @@ class Band extends AbstractEntity {
         $this->setMbid(isset($data['mbid']) ? $data['mbid']: null);
         $this->setName(isset($data['name']) ? $data['name']: null);
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setNote(isset($data['bandGroup']) ? $data['bandGroup']: null);
     }
 
     public function getInputFilter()

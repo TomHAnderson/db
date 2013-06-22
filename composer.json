@@ -41,6 +41,8 @@
         "kriswallsmith/buzz": "dev-master",
         "gracenote/gracenote": "dev-master",
         "jambase/jambase": "dev-master",
-        "echonest/echonest": "dev-master"
+        "echonest/echonest": "dev-master",
+
+        "fzaninotto/faker": "dev-master"
     }
 }

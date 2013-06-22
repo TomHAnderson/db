@@ -2,6 +2,7 @@
 namespace Db\Entity\Field;
 
 use Db\Entity\Show as ShowEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 trait Producer
 {
@@ -9,7 +10,7 @@ trait Producer
 
     public function getProducer()
     {
-        return $this->producer;
+        return Workspace::filter($this->producer);
     }
 
     public function setProducer(ProducerEntity $value)

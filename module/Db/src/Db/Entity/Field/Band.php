@@ -2,6 +2,7 @@
 namespace Db\Entity\Field;
 
 use Db\Entity\Band as BandEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 trait Band
 {
@@ -9,7 +10,7 @@ trait Band
 
     public function getBand()
     {
-        return $this->band;
+        return Workspace::filter($this->band);
     }
 
     public function setBand($value)

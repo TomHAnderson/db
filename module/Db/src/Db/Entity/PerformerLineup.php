@@ -10,14 +10,13 @@ use Zend\InputFilter\InputFilter;
  * @Form\Name("performer-lineup")
  */
 class PerformerLineup extends AbstractEntity {
-    use Field\Id
-        , Field\Note
-        , Field\Performer
-        , Field\Lineup
-        ;
+    use Field\Id;
+    use Field\Note;
 
-    use Relation\PerformerPerformances
-        ;
+    use Field\Performer;
+    use Field\Lineup;
+
+    use Relation\PerformerPerformances;
 
     public function __toString()
     {
@@ -27,15 +26,19 @@ class PerformerLineup extends AbstractEntity {
    /** Hydrator functions */
     public function getArrayCopy()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'note' => $this->getNote(),
-        );
+            'performer' => $this->getPerformer(),
+            'lineup' => $this->getLineup(),
+        ];
     }
 
     public function exchangeArray($data)
     {
         $this->setNote(isset($data['note']) ? $data['note']: null);
+        $this->setPerformer(isset($data['performer']) ? $data['performer']: null);
+        $this->setLineup(isset($data['lineup']) ? $data['lineup']: null);
     }
 
     public function getInputFilter()

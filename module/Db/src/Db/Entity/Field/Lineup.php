@@ -2,6 +2,7 @@
 namespace Db\Entity\Field;
 
 use Db\Entity\Lineup as LineupEntity;
+use Workspace\Service\WorkspaceService as Workspace;
 
 trait Lineup
 {
@@ -9,7 +10,7 @@ trait Lineup
 
     public function getLineup()
     {
-        return $this->lineup;
+        return Workspace::filter($this->lineup);
     }
 
     public function setLineup(LineupEntity $value)
