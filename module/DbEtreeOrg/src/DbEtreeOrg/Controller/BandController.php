@@ -47,17 +47,6 @@ class BandController extends AbstractActionController
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($band);
 
-        $form->get('owner')->setValueOptions(
-            $this->doctrineSelectOptions(
-                'AppleConnect\Entity\User',
-                [],
-                ['nickName' => 'ASC'],
-                ['Application\Service\Security', 'view']
-            )
-        );
-
-
-
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost()->toArray());
             $form->setUseInputFilterDefaults(false);

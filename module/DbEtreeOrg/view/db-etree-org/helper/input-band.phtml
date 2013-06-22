@@ -3,7 +3,7 @@ use Zend\Form\Element;
 use Zend\Form\Form;
 
 $id = md5(uniqid());
-$formElement = new Element\Text('band');
+$formElement = new Element\Text('band_name');
 $formElement
     ->setLabel("<a class=\"btn btn-success create-band\" href='#' title=\"Create Band\"><i class=\"icon-cogs\"></i> " . $this->label . "</a>")
     ->setAttributes(array(
@@ -22,7 +22,7 @@ if ($band) {
 
 <?= $this->formRow($formElement); ?>
 
-<input type="hidden" name="band_id" <?php if ($band) echo 'value="' . $band->getId() . '"'; ?> id="Id<?= $id; ?>"/>
+<input type="hidden" name="band" <?php if ($band) echo 'value="' . $band->getId() . '"'; ?> id="Id<?= $id; ?>"/>
 
 <script>
 var bands<?= $id; ?> = {};
@@ -63,7 +63,7 @@ require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], functi
             _.each( data.bands, function( item, ix, list ){
 
                 if ( _.contains( bands<?= $id; ?>, item.label ) ){
-                    item.label = item.label + ' #' + item.value;
+                    item.label = item.label; + ' #' + item.value;
                 }
 
                 //add the label to the display array

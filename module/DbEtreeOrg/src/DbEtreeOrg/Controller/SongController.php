@@ -85,7 +85,7 @@ class SongController extends AbstractActionController
         $song = Workspace::filter($em->getRepository('Db\Entity\Song')->find($id));
 
         if (!$song)
-            throw new \Exception("Performance Set $id not found");
+            throw new \Exception("Song #$id not found");
 
         $builder = new AnnotationBuilder();
         $form = $builder->createForm($song);
@@ -99,8 +99,10 @@ class SongController extends AbstractActionController
             $form->setInputFilter($song->getInputFilter());
 
             if ($form->isValid()) {
-                $data = $form->getData();
+                $data = array_merge($song->getArrayCopy(), $form->getData());
+                $data['band'] = $em->getRepository('Db\Entity\Band')->find($data['band']);
                 $song->exchangeArray($form->getData());
+
                 $bandId = $this->getRequest()->getPost()->get('band_id');
                 if ($bandId) {
                     $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($bandId));

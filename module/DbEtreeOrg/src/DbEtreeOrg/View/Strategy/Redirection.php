@@ -16,7 +16,7 @@ use BjyAuthorize\Guard\Controller;
 /**
  * Use with
      'bjyauthorize' => array(
-        'unauthorized_strategy' => 'AppleConnect\View\Strategy\Redirection',
+        'unauthorized_strategy' => 'User\View\Strategy\Redirection',
  */
 class Redirection extends RedirectionStrategy
 {

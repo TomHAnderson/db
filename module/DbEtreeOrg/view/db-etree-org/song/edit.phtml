@@ -42,7 +42,7 @@ $(function() {
         $.ajax({
             url: '<?=
                 $this->url('song/edit', array(
-                    'id' => $this->song->getId(),
+                    'songId' => $this->song->getId(),
                 )); ?>',
             type: $(this).attr('method'),
             data: $(this).serialize(),
