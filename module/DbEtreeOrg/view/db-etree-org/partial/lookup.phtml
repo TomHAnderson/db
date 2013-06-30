@@ -1,0 +1,107 @@
+<?php
+
+/*
+$this->partial('db-etree-org/partial/lookup', [
+    'label' => "<a class=\"btn btn-success create-band\" href='#' title=\"Create Band\"><i class=\"icon-cogs\"></i> " . $this->label . "</a>",
+    'element' => $formAnnotationCreatedHiddenElement,
+    'route' => 'band/searchJson',
+]);
+*/
+
+use Zend\Form\Element;
+use Zend\Form\Form;
+
+$id = md5(uniqid());
+
+$formElement = new Element\Text("data$id");
+
+if ($this->label) {
+    $formElement->setLabel($this->label);
+}
+
+$formElement
+    ->setAttributes(array(
+        'id' => "data$id",
+        'autocomplete' => 'off',
+        'placeholder'  => '',
+    ));
+
+if ($this->userGroup) {
+    $formElement->setAttributes(array(
+        'value' => $userGroup->getName(),
+    ));
+}
+
+$formElement->setMessages($this->element->getMessages());
+?>
+
+<?= $this->formRow($formElement); ?>
+
+<?php
+
+$hiddenFormElement = $this->element;
+$hiddenFormElement->setAttributes(array(
+    'id' => 'Id' . $id,
+));
+
+?>
+
+<?= $this->formRow($hiddenFormElement, null, false);  #false = do not render errors ?>
+
+<script>
+var data<?= $id; ?> = {};
+var dataLabels<?= $id; ?> = [];
+
+require(['modernizr.min', 'bootstrap.min', 'datemask', 'underscore-min'], function() {
+
+    $( "#data<?= $id; ?>" ).typeahead({
+        source: function ( query, process ) {
+            searchData<?= $id; ?>( query, process );
+        }
+        , updater: function (item) {
+                $( "#Id<?= $id; ?>" ).val( data<?= $id; ?>[ item ].value );
+//                $( "#Id<?= $id; ?>" ).val( bands<?= $id; ?>[ item ] );
+
+
+            return item;
+        }
+        , matcher: function () { return true; }
+
+        , highlighter: function(item){
+            var p = data<?= $id; ?>[ item ];
+            var liHtml = ''
+                + "<div class='typeahead_wrapper'>"
+                + "<div class='typeahead_labels'>"
+                + "<div class='typeahead_primary'><b>" + p.label + "</b></div>"
+                + "<div class='typeahead_secondary'>" + "</div>"
+                + "</div>"
+                + "</div>";
+            return liHtml;
+        }
+    });
+
+    var searchData<?= $id; ?> = _.debounce(function ( query, process ) {
+
+        $.get('<?= $this->url($this->route); ?>', { q: query }, function (data) {
+
+//console.log(data);
+            data<?= $id; ?> = {};
+            dataLabels<?= $id; ?> = [];
+
+            _.each( data.results, function( item, ix, list ){
+                // Alias each item with id
+                if ( _.contains( data<?= $id; ?>, item.label ) ){
+                    item.label = item.label + ' #' + item.value;
+                }
+
+                data<?= $id; ?>[ item.label ] = item;
+                dataLabels<?= $id; ?>.push( item.label );
+            });
+
+            process(dataLabels<?= $id; ?>);
+        });
+    }, 300);
+
+});
+
+</script>
