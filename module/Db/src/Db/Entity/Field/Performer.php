@@ -13,7 +13,7 @@ trait Performer
         return Workspace::filter($this->performer);
     }
 
-    public function setPerformer(PerformerEntity $value)
+    public function setPerformer($value)
     {
         $this->performer = $value;
         return $this;

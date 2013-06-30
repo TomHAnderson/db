@@ -26,11 +26,16 @@ $formElement
         'placeholder'  => '',
     ));
 
-if ($this->userGroup) {
-    $formElement->setAttributes(array(
-        'value' => $userGroup->getName(),
-    ));
+if ($formElement->getAttribute('value')) {
+    die('value already set');
 }
+$formElement->setAttributes(array(
+    'value' => (string)$this->element->getEntity(),
+));
+
+$formElement->setAttributes(array(
+    'value' => (string)$this->element->getEntity(),
+));
 
 $formElement->setMessages($this->element->getMessages());
 ?>
@@ -43,6 +48,10 @@ $hiddenFormElement = $this->element;
 $hiddenFormElement->setAttributes(array(
     'id' => 'Id' . $id,
 ));
+
+#$hiddenFormElement->setAttributes(array(
+#    'value' => $this->element->getId(),
+#));
 
 ?>
 

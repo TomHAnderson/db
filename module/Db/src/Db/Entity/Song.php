@@ -58,6 +58,7 @@ class Song extends AbstractEntity {
         $inputFilter->add($this->inputFilterInputMbid($inputFilter));
         $inputFilter->add($this->inputFilterInputName($inputFilter));
         $inputFilter->add($this->inputFilterInputNote($inputFilter));
+        $inputFilter->add($this->inputFilterInputBand($inputFilter));
 
         return $inputFilter;
     }

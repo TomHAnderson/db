@@ -1178,7 +1178,7 @@ return array(
             'Zend\Authentication\AuthenticationService' => array(
                 'parameters' => array(
                     'storage' => 'DoctrineModule\Authentication\Storage\ObjectRepository',
- #                   'adapter' => 'User\Authentication\Adapter\AppleConnect',
+ #                   'adapter' => 'User\Authentication\Adapter\User',
                 ),
             ),
 

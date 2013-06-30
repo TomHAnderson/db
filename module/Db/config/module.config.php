@@ -36,6 +36,12 @@ return array(
                     'entitymanager' => 'Doctrine\ORM\EntityManager',
                 ),
             ),
+
+            'Db\Filter\DoctrineFilter' => [
+                'parameters' => [
+                    'entitymanager' => 'Doctrine\ORM\EntityManager',
+                ],
+            ],
         ),
     ),
 );

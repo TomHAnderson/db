@@ -4,6 +4,7 @@ namespace Db;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Doctrine\ORM\EntityManager;
 
 class Module
 {
@@ -22,4 +23,22 @@ class Module
             ),
         );
     }
+
+    public function onBootstrap(MvcEvent $e)
+    {
+        self::setEntityManager($e->getApplication()->getServiceManager()->get('doctrine.entitymanager.orm_default'));
+    }
+
+    static private $entityManager;
+
+    static public function getEntityManager()
+    {
+        return self::$entityManager;
+    }
+
+    static public function setEntityManager(EntityManager $entityManager)
+    {
+        self::$entityManager = $entityManager;
+    }
 }
+

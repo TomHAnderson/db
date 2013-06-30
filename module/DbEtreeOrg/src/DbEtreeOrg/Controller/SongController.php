@@ -99,17 +99,17 @@ class SongController extends AbstractActionController
             $form->setInputFilter($song->getInputFilter());
 
             if ($form->isValid()) {
+
                 $data = array_merge($song->getArrayCopy(), $form->getData());
-                $data['band'] = $em->getRepository('Db\Entity\Band')->find($data['band']);
-                $song->exchangeArray($form->getData());
+                $data['band'] = ($this->getRequest()->getPost()->toArray()['band']) ?
+                    Workspace::filter($em->getRepository('Db\Entity\Band')->find($this->getRequest()->getPost()->toArray()['band'])):
+                    null;
+if (!$data['band']) {
+    print_r($form->getData());
+    die('no band!');
+}
+                $song->exchangeArray($data);
 
-                $bandId = $this->getRequest()->getPost()->get('band_id');
-                if ($bandId) {
-                    $band = Workspace::filter($em->getRepository('Db\Entity\Band')->find($bandId));
-                    $song->setBand($band);
-                }
-
-                $em->persist($song);
                 $em->flush();
 
                 die();

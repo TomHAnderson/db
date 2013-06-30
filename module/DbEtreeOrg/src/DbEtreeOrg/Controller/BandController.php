@@ -163,7 +163,7 @@ class BandController extends AbstractActionController
         }
 
         $jsonModel = new JsonModel;
-        $jsonModel->setVariable('bands', $return);
+        $jsonModel->setVariable('results', $return);
 
         return $jsonModel;
     }

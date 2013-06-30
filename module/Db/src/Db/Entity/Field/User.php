@@ -13,7 +13,7 @@ trait User
         return Workspace::filter($this->user);
     }
 
-    public function setUser(UserEntity $value)
+    public function setUser($value)
     {
         $this->user = $value;
         return $this;

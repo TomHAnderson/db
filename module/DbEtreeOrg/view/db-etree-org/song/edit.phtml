@@ -14,7 +14,13 @@ $id = md5(uniqid());
 
         <?= $this->formRow($this->form->get('name')); ?>
 
-        <?= $this->inputBand($this->song->getBand()); ?>
+        <?=
+        $this->partial('db-etree-org/partial/lookup', [
+            'label' => "<a class=\"btn btn-success create-band\" href='#' title=\"Create Band\"><i class=\"icon-cogs\"></i> Band</a>",
+            'element' => $this->form->get('band'),
+            'route' => 'band/searchJson',
+        ]);
+        ?>
 
         <?= $this->formRow($this->form->get('mbid')); ?>
 
